@@ -6,344 +6,336 @@
   <title>PLAYFINITY</title>
   <style>
     :root {
-      --bg: #07040f;
-      --card: #120a1c;
-      --card-hover: #1a1028;
-      --pink: #ff2d95;
-      --purple: #b14eff;
-      --cyan: #00e5ff;
-      --text: #ffffff;
-      --muted: #8b7ca8;
-      --green: #00e676;
-      --orange: #ff9100;
-      --red: #ff1744;
-      --gray: #1e142c;
+      --bg: #0b0d14;
+      --card: #141722;
+      --card-hover: #1c2030;
+      --accent: #8b5cf6;
+      --accent-glow: rgba(139, 92, 246, 0.25);
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --green: #10b981;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --gray: #1f2937;
+      --border: #27272a;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--bg);
       color: var(--text);
       min-height: 100vh;
-      line-height: 1.5;
     }
 
-    .top-bar {
-      max-width: 1100px;
+    .header-bar {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 15px 24px;
+      padding: 16px 20px;
       display: flex;
       align-items: center;
       justify-content: space-between;
+      border-bottom: 1px solid var(--border);
     }
 
-    .back-btn {
-      background: transparent;
-      border: 1px solid var(--purple);
-      color: var(--purple);
-      padding: 6px 14px;
+    .brand {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--text);
+      span { color: var(--accent); }
+      cursor: pointer;
+    }
+
+    .nav-actions { display: flex; align-items: center; gap: 12px; }
+
+    .btn-icon {
+      background: var(--card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 8px 14px;
       border-radius: 8px;
-      font-size: 0.85rem;
+      font-size: 1rem;
       cursor: pointer;
-      font-weight: 600;
+      display: flex; align-items: center; gap: 6px;
     }
-    .back-btn:hover { background: rgba(177, 78, 255, 0.2); color: #fff; }
+    .btn-icon:hover { border-color: var(--accent); }
 
-    .streamer-box {
+    /* BURGER MENU MODAL */
+    #menu-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      justify-content: flex-end;
+    }
+
+    .menu-drawer {
+      width: 100%;
+      max-width: 360px;
       background: var(--card);
-      border: 1px solid var(--pink);
-      border-radius: 10px;
-      padding: 6px 12px;
+      height: 100%;
+      padding: 24px;
       display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .streamer-box input {
-      background: #190c29;
-      border: 1px solid var(--purple);
-      color: white;
-      padding: 4px 10px;
-      border-radius: 6px;
-      outline: none;
-      font-size: 0.85rem;
-    }
-    .streamer-btn {
-      background: var(--pink);
-      border: none;
-      color: white;
-      padding: 4px 10px;
-      border-radius: 6px;
-      font-weight: 700;
-      cursor: pointer;
-      font-size: 0.85rem;
+      flex-direction: column;
+      gap: 24px;
+      border-left: 1px solid var(--border);
+      overflow-y: auto;
     }
 
-    /* HOMEPAGE */
-    #home {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 24px;
-    }
+    .menu-header { display: flex; justify-content: space-between; align-items: center; }
+    .close-btn { background: none; border: none; color: var(--text); font-size: 1.5rem; cursor: pointer; }
 
-    .header { text-align: center; margin-bottom: 50px; }
-    .logo {
-      font-size: clamp(3rem, 7vw, 5rem);
-      font-weight: 900;
-      background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      letter-spacing: 2px;
-    }
+    .section-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; color: var(--muted); letter-spacing: 1px; margin-bottom: 10px; }
 
-    .games-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
+    .tt-input-group { display: flex; gap: 8px; }
+    .tt-input-group input {
+      flex: 1; background: var(--bg); border: 1px solid var(--border); color: white; padding: 10px; border-radius: 8px; font-size: 0.9rem;
     }
+    .tt-btn { background: var(--accent); color: white; border: none; padding: 10px 14px; border-radius: 8px; font-weight: 600; cursor: pointer; }
 
+    .status-badge { display: flex; align-items: center; gap: 8px; margin-top: 8px; font-size: 0.85rem; font-weight: 600; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: #6b7280; }
+    .dot.live { background: var(--green); box-shadow: 0 0 8px var(--green); }
+
+    .tab-group { display: flex; gap: 6px; margin-bottom: 10px; }
+    .tab-btn { flex: 1; padding: 6px; background: var(--bg); border: 1px solid var(--border); color: var(--muted); border-radius: 6px; cursor: pointer; font-size: 0.75rem; font-weight: 600; }
+    .tab-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+
+    .leader-list { display: flex; flex-direction: column; gap: 6px; font-size: 0.85rem; }
+    .leader-item { display: flex; justify-content: space-between; padding: 8px 10px; background: var(--bg); border-radius: 6px; border: 1px solid var(--border); }
+
+    /* HOME MAIN */
+    #home { max-width: 1000px; margin: 40px auto; padding: 0 20px; }
+    .games-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
     .game-card {
-      background: var(--card);
-      border: 1px solid rgba(177, 78, 255, 0.2);
-      border-radius: 16px;
-      padding: 28px 20px;
-      cursor: pointer;
-      transition: all 0.2s ease;
-      text-align: center;
+      background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; cursor: pointer; transition: all 0.2s;
     }
-    .game-card:hover {
-      background: var(--card-hover);
-      border-color: var(--pink);
-      transform: translateY(-4px);
-    }
-
-    .game-icon { font-size: 2.5rem; margin-bottom: 12px; }
-    .game-card h3 { font-size: 1.25rem; margin-bottom: 4px; }
+    .game-card:hover { border-color: var(--accent); box-shadow: 0 4px 20px var(--accent-glow); transform: translateY(-2px); }
+    .game-card h3 { font-size: 1.2rem; margin-bottom: 6px; }
     .game-card p { font-size: 0.85rem; color: var(--muted); }
 
-    /* GAME MODULES */
-    .game-module { display: none; max-width: 650px; margin: 0 auto; padding: 20px 16px 60px; }
-    .game-title {
-      font-size: 2rem; font-weight: 800; text-align: center; margin-bottom: 25px;
-      background: linear-gradient(90deg, var(--pink), var(--cyan));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
+    /* MODULES */
+    .game-module { display: none; max-width: 650px; margin: 30px auto; padding: 0 20px; }
+    .module-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+    .module-head h2 { font-size: 1.5rem; font-weight: 800; }
 
-    .game-box {
-      background: var(--card); border: 1px solid var(--purple); border-radius: 16px;
-      padding: 24px; text-align: center; margin-bottom: 20px;
-    }
-
-    .action-btn {
-      background: linear-gradient(90deg, var(--pink), var(--purple)); border: none;
-      color: white; padding: 12px 20px; border-radius: 10px; font-size: 1rem;
-      font-weight: 700; cursor: pointer; width: 100%;
-    }
+    .game-box { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; margin-bottom: 16px; }
+    
+    .action-btn { background: var(--accent); color: white; border: none; padding: 12px 20px; border-radius: 8px; font-weight: 700; cursor: pointer; width: 100%; }
     .action-btn:hover { opacity: 0.9; }
 
     /* WORDLE */
-    .board { display: flex; flex-direction: column; gap: 8px; align-items: center; margin-bottom: 20px; }
-    .row { display: flex; gap: 8px; }
-    .tile {
-      width: 52px; height: 52px; border: 2px solid var(--gray); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.5rem; font-weight: 700; text-transform: uppercase; background: var(--card);
-    }
-    .tile.correct { background: var(--green); border-color: var(--green); color: #000; }
-    .tile.present { background: var(--orange); border-color: var(--orange); color: #000; }
+    .board { display: flex; flex-direction: column; gap: 6px; align-items: center; margin-bottom: 20px; }
+    .row { display: flex; gap: 6px; }
+    .tile { width: 48px; height: 48px; border: 2px solid var(--border); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; font-weight: 800; text-transform: uppercase; background: var(--bg); }
+    .tile.correct { background: var(--green); border-color: var(--green); color: black; }
+    .tile.present { background: var(--orange); border-color: var(--orange); color: black; }
     .tile.absent  { background: var(--gray); border-color: var(--gray); color: var(--muted); }
 
     .keyboard { display: flex; flex-direction: column; gap: 6px; align-items: center; margin-top: 15px; }
-    .kb-row { display: flex; gap: 4px; justify-content: center; }
-    .key {
-      height: 42px; min-width: 28px; padding: 0 4px; background: var(--card); border: 1px solid var(--purple);
-      border-radius: 6px; color: white; font-size: 0.8rem; font-weight: 600; cursor: pointer;
-    }
-    .key.correct { background: var(--green); color: #000; border-color: var(--green); }
-    .key.present { background: var(--orange); color: #000; border-color: var(--orange); }
-    .key.absent  { background: var(--gray); color: #444; border-color: var(--gray); }
+    .kb-row { display: flex; gap: 4px; }
+    .key { height: 44px; min-width: 32px; padding: 0 6px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; color: white; font-size: 0.85rem; font-weight: 700; cursor: pointer; }
+    .key.wide { min-width: 50px; }
+    .key.correct { background: var(--green); color: black; }
+    .key.present { background: var(--orange); color: black; }
+    .key.absent  { background: var(--gray); color: #555; }
 
-    /* SIZE IT UP */
-    .compare-container {
-      display: flex; justify-content: space-around; align-items: center; gap: 15px; margin: 25px 0;
+    /* SIZE IT UP (MAGNITUDLE GRID RASTER) */
+    .grid-stage {
+      height: 220px; background: #07090e; border: 1px solid var(--border); border-radius: 10px;
+      display: flex; align-items: flex-end; justify-content: space-around; padding: 20px; position: relative;
+      background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 20px 20px;
     }
-    .compare-box {
-      flex: 1; background: #190c29; border: 1px solid var(--purple); border-radius: 12px; padding: 20px; text-align: center;
-    }
-    .compare-box h4 { color: var(--muted); font-size: 0.85rem; margin-bottom: 6px; }
-    .compare-box .obj-name { font-size: 1.1rem; font-weight: bold; color: var(--cyan); margin-bottom: 8px; }
+    .obj-wrapper { display: flex; flex-direction: column; align-items: center; width: 100px; }
+    .obj-bar { width: 60px; background: var(--accent); border-radius: 4px 4px 0 0; transition: height 0.1s linear; }
+    .obj-bar.ref { background: var(--green); }
+    .obj-label { font-size: 0.85rem; font-weight: 700; margin-top: 8px; text-align: center; }
 
-    /* KONTEXTO */
-    .guesses-list { display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto; text-align: left; }
-    .guess-item {
-      display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;
-      border-radius: 8px; background: var(--card); font-weight: 600; border: 1px solid rgba(255,255,255,0.05);
-    }
-    .guess-item.green { background: rgba(0, 230, 118, 0.2); border-color: var(--green); color: var(--green); }
-    .guess-item.orange { background: rgba(255, 145, 0, 0.2); border-color: var(--orange); color: var(--orange); }
-    .guess-item.red { background: rgba(255, 23, 68, 0.2); border-color: var(--red); color: var(--red); }
+    .size-controls { display: flex; gap: 10px; margin-top: 15px; }
+    .size-btn { flex: 1; padding: 10px; background: var(--bg); border: 1px solid var(--border); color: white; border-radius: 8px; cursor: pointer; font-weight: bold; }
 
-    .timer-display { font-size: 2.2rem; font-weight: 900; color: var(--pink); text-align: center; margin: 10px 0; }
+    /* KONTEXTO LIST SORTING */
+    .guesses-container { display: flex; flex-direction: column; gap: 6px; max-height: 380px; overflow-y: auto; text-align: left; }
+    .guess-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 0.9rem; }
+    .guess-row.green { background: rgba(16, 185, 129, 0.15); border: 1px solid var(--green); color: var(--green); }
+    .guess-row.orange { background: rgba(245, 158, 11, 0.15); border: 1px solid var(--orange); color: var(--orange); }
+    .guess-row.red { background: rgba(239, 68, 68, 0.15); border: 1px solid var(--red); color: var(--red); }
+
+    /* THE PRICE IS RIGHT WINNER DISPLAY */
+    .winner-box {
+      margin-top: 15px; padding: 14px; background: rgba(139, 92, 246, 0.15); border: 1px solid var(--accent);
+      border-radius: 10px; text-align: center;
+    }
+    .winner-name { font-size: 1.2rem; font-weight: 900; color: var(--accent); margin-top: 4px; }
   </style>
 </head>
 <body>
 
-  <div class="top-bar">
-    <button class="back-btn" id="global-back" onclick="backToHome()" style="display:none;">← Menü</button>
-    <div class="streamer-box">
-      <input type="text" id="streamer-name" placeholder="TikTok Name">
-      <button class="streamer-btn" onclick="connectTikTok()">Verbinden</button>
-      <span id="conn-status" style="font-size: 0.75rem; color: var(--cyan);">● Aus</span>
+  <div class="header-bar">
+    <div class="brand" onclick="backToHome()">PLAY<span>FINITY</span></div>
+    <div class="nav-actions">
+      <button class="btn-icon" id="back-btn" onclick="backToHome()" style="display:none;">← Menü</button>
+      <button class="btn-icon" onclick="toggleMenu()">☰</button>
+    </div>
+  </div>
+
+  <!-- BURGER DRAWER MENU -->
+  <div id="menu-overlay" onclick="if(event.target===this) toggleMenu()">
+    <div class="menu-drawer">
+      <div class="menu-header">
+        <h3>Einstellungen & Status</h3>
+        <button class="close-btn" onclick="toggleMenu()">✕</button>
+      </div>
+
+      <div>
+        <div class="section-title">TikTok Anbindung</div>
+        <div class="tt-input-group">
+          <input type="text" id="tt-username" placeholder="@username">
+          <button class="tt-btn" onclick="connectTikTok()">Verbinden</button>
+        </div>
+        <div class="status-badge">
+          <div class="dot" id="live-dot"></div>
+          <span id="live-text" style="color:var(--muted);">Nicht verbunden</span>
+        </div>
+      </div>
+
+      <hr style="border:none; border-top:1px solid var(--border);">
+
+      <div>
+        <div class="section-title">Streamer Wörter-Liste</div>
+        <div class="tab-group">
+          <button class="tab-btn active" onclick="switchTab('daily')">Täglich</button>
+          <button class="tab-btn" onclick="switchTab('weekly')">Wöchentlich</button>
+          <button class="tab-btn" onclick="switchTab('monthly')">Monatlich</button>
+        </div>
+        <div class="leader-list" id="leader-list">
+          <div class="leader-item"><span>Wort #1 (WELT)</span><span style="color:var(--muted);">Heute</span></div>
+        </div>
+      </div>
     </div>
   </div>
 
   <!-- HOMEPAGE -->
   <div id="home">
-    <div class="header">
-      <div class="logo">PLAYFINITY</div>
-    </div>
-
     <div class="games-grid">
       <div class="game-card" onclick="openGame('wordle')">
-        <div class="game-icon">🔤</div>
         <h3>Wordle</h3>
-        <p>Jedes Wort erlaubt & Chat-Mitraten</p>
+        <p>Errate das 5-Buchstaben-Wort gemeinsam mit dem Chat.</p>
       </div>
-
       <div class="game-card" onclick="openGame('sizeitup')">
-        <div class="game-icon">📏</div>
         <h3>Size It Up</h3>
-        <p>Objekt-Vergleich</p>
+        <p>Pass die Silhouette des Objekts der Referenz an.</p>
       </div>
-
       <div class="game-card" onclick="openGame('kontexto')">
-        <div class="game-icon">🧠</div>
         <h3>Kontexto</h3>
-        <p>Farbliches Kontext-Raten</p>
+        <p>Geheimes Wort erraten mit farbiger Nähe-Sortierung.</p>
       </div>
-
       <div class="game-card" onclick="openGame('priceisright')">
-        <div class="game-icon">🏷️</div>
         <h3>The Price Is Right</h3>
-        <p>Großer Schätz-Pool mit Timer</p>
+        <p>Massiver Fragenpool mit Timer & automatischer Auswertung.</p>
       </div>
     </div>
   </div>
 
-  <!-- WORDLE -->
+  <!-- 1. WORDLE -->
   <div id="wordle" class="game-module">
-    <div class="game-title">WORDLE</div>
+    <div class="module-head">
+      <h2>Wordle</h2>
+      <button class="btn-icon" onclick="initWordle()">Neues Spiel</button>
+    </div>
     <div class="board" id="wordle-board"></div>
-    <div style="display:flex; gap:10px; margin-bottom:10px;">
-      <input type="text" id="wordle-input" placeholder="Wort eingeben..." style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--purple); background:#190c29; color:#fff;" onkeydown="if(event.key==='Enter') submitWordle()">
-      <button class="action-btn" style="width:auto;" onclick="submitWordle()">Tipp</button>
+    <div style="display:flex; gap:8px; margin-bottom:12px;">
+      <input type="text" id="wordle-input" placeholder="Wort eingeben..." style="flex:1; padding:10px; background:var(--card); border:1px solid var(--border); color:white; border-radius:8px;" onkeydown="if(event.key==='Enter') submitWordle()">
+      <button class="action-btn" style="width:auto;" onclick="submitWordle()">Senden</button>
     </div>
     <div class="keyboard" id="keyboard"></div>
   </div>
 
-  <!-- SIZE IT UP -->
+  <!-- 2. SIZE IT UP -->
   <div id="sizeitup" class="game-module">
-    <div class="game-title">SIZE IT UP</div>
-    <div class="game-box">
-      <div style="margin-bottom:10px; color:var(--muted); font-size:0.9rem;">Runde <span id="size-step">1</span>/5</div>
-      <div class="compare-container">
-        <div class="compare-box">
-          <h4>Referenz</h4>
-          <div class="obj-name" id="obj-ref-name">...</div>
-          <div style="font-size:1rem; color:var(--green);" id="obj-ref-size">...</div>
-        </div>
-        <div style="font-weight:900; font-size:1.2rem; color:var(--pink);">VS</div>
-        <div class="compare-box">
-          <h4>Ziel-Objekt</h4>
-          <div class="obj-name" id="obj-target-name">...</div>
-          <div style="font-size:0.85rem; color:var(--muted);">Größer oder kleiner?</div>
-        </div>
-      </div>
-      <div style="display:flex; gap:12px;">
-        <button class="action-btn" style="background:var(--green); color:#000;" onclick="submitSize('GROESSER')">Größer</button>
-        <button class="action-btn" style="background:var(--red);" onclick="submitSize('KLEINER')">Kleiner</button>
-      </div>
-      <div id="size-result" style="display:none; margin-top:15px; font-weight:bold; color:var(--cyan);"></div>
+    <div class="module-head">
+      <h2>Size It Up</h2>
+      <span style="color:var(--muted); font-size:0.9rem;">Runde <span id="size-step">1</span>/5</span>
     </div>
-    <button class="action-btn" id="size-next" onclick="nextSize()" style="display:none;">Nächste Runde →</button>
+    <div class="game-box">
+      <div class="grid-stage">
+        <div class="obj-wrapper">
+          <div class="obj-bar ref" id="size-ref-bar" style="height: 120px;"></div>
+          <div class="obj-label" id="size-ref-name">Rhein (Fluss)</div>
+        </div>
+        <div class="obj-wrapper">
+          <div class="obj-bar" id="size-target-bar" style="height: 50px;"></div>
+          <div class="obj-label" id="size-target-name">Elbe (Fluss)</div>
+        </div>
+      </div>
+      <div class="size-controls">
+        <button class="size-btn" onclick="adjustSize(-10)">- Kleiner</button>
+        <button class="size-btn" onclick="adjustSize(10)">+ Größer</button>
+      </div>
+      <button class="action-btn" style="margin-top:15px;" onclick="lockSize()">Sperren / Auswerten</button>
+      <div id="size-res" style="display:none; margin-top:12px; font-weight:bold;"></div>
+    </div>
+    <button class="action-btn" id="size-next-btn" style="display:none;" onclick="nextSizeTurn()">Nächste Runde →</button>
   </div>
 
-  <!-- KONTEXTO -->
+  <!-- 3. KONTEXTO -->
   <div id="kontexto" class="game-module">
-    <div class="game-title">KONTEXTO</div>
-    <div style="display:flex; gap:10px; margin-bottom:15px;">
-      <input type="text" id="kontexto-input" placeholder="Wort eingeben..." style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--purple); background:#190c29; color:#fff;" onkeydown="if(event.key==='Enter') submitKontexto()">
-      <button class="action-btn" style="width:auto;" onclick="submitKontexto()">Tipp</button>
+    <div class="module-head">
+      <h2>Kontexto</h2>
+      <button class="btn-icon" onclick="initKontexto()">Neues Spiel</button>
     </div>
-    <div class="guesses-list" id="kontexto-list"></div>
+    <div style="display:flex; gap:8px; margin-bottom:14px;">
+      <input type="text" id="kontexto-input" placeholder="Wort eingeben..." style="flex:1; padding:10px; background:var(--card); border:1px solid var(--border); color:white; border-radius:8px;" onkeydown="if(event.key==='Enter') submitKontexto()">
+      <button class="action-btn" style="width:auto;" onclick="submitKontexto()">Tippen</button>
+    </div>
+    <div class="guesses-container" id="kontexto-list"></div>
   </div>
 
-  <!-- THE PRICE IS RIGHT -->
+  <!-- 4. THE PRICE IS RIGHT -->
   <div id="priceisright" class="game-module">
-    <div class="game-title">THE PRICE IS RIGHT</div>
-    <div class="game-box">
-      <div style="display:flex; justify-content:center; align-items:center; gap:10px; margin-bottom:15px;">
-        <input type="number" id="price-timer-set" value="30" style="width:60px; padding:6px; border-radius:6px; background:#190c29; color:white; border:1px solid var(--purple); text-align:center;">
-        <button class="action-btn" style="width:auto; padding:6px 15px;" onclick="startPriceRound()">Start</button>
+    <div class="module-head">
+      <h2>The Price Is Right</h2>
+      <div style="display:flex; gap:6px; align-items:center;">
+        <input type="number" id="price-timer-set" value="30" style="width:55px; padding:6px; background:var(--card); border:1px solid var(--border); color:white; border-radius:6px; text-align:center;">
+        <button class="btn-icon" onclick="startPriceRound()">Start Timer</button>
       </div>
-      <h3 id="price-question" style="font-size: 1.1rem; margin-bottom: 10px;">Klicke Start!</h3>
-      <div class="timer-display" id="price-timer-display">--</div>
+    </div>
+    <div class="game-box">
+      <h3 id="price-q-text" style="font-size:1.1rem; margin-bottom:12px;">Klicke 'Start Timer' für eine neue Frage!</h3>
+      <div style="font-size:2.5rem; font-weight:900; color:var(--accent);" id="price-timer-disp">30s</div>
       
-      <div style="display:flex; gap:10px; margin-top:15px;">
-        <input type="number" id="price-manual-input" placeholder="Dein Tipp..." style="flex:1; padding:10px; border-radius:8px; border:1px solid var(--purple); background:#190c29; color:#fff;" onkeydown="if(event.key==='Enter') submitPriceUser()">
-        <button class="action-btn" style="width:auto;" onclick="submitPriceUser()">Senden</button>
+      <div style="display:flex; gap:8px; margin-top:15px;">
+        <input type="number" id="price-input" placeholder="Dein Tipp (Zahl)..." style="flex:1; padding:10px; background:var(--bg); border:1px solid var(--border); color:white; border-radius:8px;" onkeydown="if(event.key==='Enter') submitPriceHost()">
+        <button class="action-btn" style="width:auto;" onclick="submitPriceHost()">Tippen</button>
       </div>
 
-      <div id="price-results" style="display:none; text-align:left; margin-top:15px;">
-        <p id="price-correct-ans" style="font-weight:bold; color:var(--cyan); margin-bottom:8px;"></p>
-        <div class="guesses-list" id="price-winner-list"></div>
+      <div id="price-winner-area" style="display:none;">
+        <div class="winner-box">
+          <div style="font-size:0.85rem; color:var(--muted);" id="price-real-val">Echter Wert: --</div>
+          <div style="font-size:0.9rem; margin-top:4px;">Gewinner dieser Runde:</div>
+          <div class="winner-name" id="price-winner-user">--</div>
+        </div>
       </div>
     </div>
   </div>
 
   <script>
-    let ws = null;
-    let connectedUser = "";
-
-    function connectTikTok() {
-      let user = document.getElementById("streamer-name").value.trim().replace("@","");
-      if (!user) return alert("Namen eingeben!");
-      document.getElementById("conn-status").textContent = "● Verbinde...";
-      ws = new WebSocket("wss://tikfinity.zerody.one/websocket");
-      ws.onopen = () => ws.send(JSON.stringify({ type: "connect", username: user }));
-      ws.onmessage = (event) => {
-        let data = JSON.parse(event.data);
-        if (data.type === "connected") {
-          connectedUser = user;
-          document.getElementById("conn-status").textContent = "● @" + user;
-          document.getElementById("conn-status").style.color = "var(--green)";
-        }
-        if (data.type === "chat") {
-          handleChat(data.nickname || data.uniqueId, data.comment);
-        }
-      };
-    }
-
-    function handleChat(user, comment) {
-      if (document.getElementById("wordle").style.display === "block") {
-        let clean = comment.trim().toUpperCase();
-        if (clean.length === 5) processWordle(clean, user);
-      }
-      if (document.getElementById("kontexto").style.display === "block") {
-        processKontexto(comment.trim().toUpperCase(), user);
-      }
-      if (document.getElementById("priceisright").style.display === "block" && isPriceRunning) {
-        let num = parseInt(comment.replace(/[^0-9]/g, ''));
-        if (!isNaN(num)) priceGuesses.push({ user: user, guess: num });
-      }
+    // NAVIGATION & MENU
+    function toggleMenu() {
+      const o = document.getElementById('menu-overlay');
+      o.style.display = (o.style.display === 'flex') ? 'none' : 'flex';
     }
 
     function openGame(id) {
       document.getElementById('home').style.display = 'none';
       document.querySelectorAll('.game-module').forEach(m => m.style.display = 'none');
       document.getElementById(id).style.display = 'block';
-      document.getElementById('global-back').style.display = 'block';
+      document.getElementById('back-btn').style.display = 'flex';
       if (id === 'wordle') initWordle();
       if (id === 'sizeitup') initSize();
       if (id === 'kontexto') initKontexto();
@@ -352,12 +344,61 @@
     function backToHome() {
       document.querySelectorAll('.game-module').forEach(m => m.style.display = 'none');
       document.getElementById('home').style.display = 'block';
-      document.getElementById('global-back').style.display = 'none';
+      document.getElementById('back-btn').style.display = 'none';
     }
 
-    // WORDLE
-    let wSecret = "APFEL", wRow = 0, wOver = false;
-    const WORD_POOL = ["APFEL", "TISCH", "STUHL", "LAMPE", "WOLKE", "BLUME", "STEIN", "FISCH", "VOGEL", "PFERD", "KATZE", "STIFT", "RADIO", "INDEX", "RADAR", "SONNE", "REGEN", "FEUER", "MOTOR", "SPIEL"];
+    // TIKTOK WEBSOCKET & LIVE STATUS
+    let ws = null;
+    let connectedUser = "";
+
+    function connectTikTok() {
+      let user = document.getElementById("tt-username").value.trim().replace("@","");
+      if (!user) return;
+      document.getElementById("live-text").textContent = "Verbinde...";
+      ws = new WebSocket("wss://tikfinity.zerody.one/websocket");
+
+      ws.onopen = () => ws.send(JSON.stringify({ type: "connect", username: user }));
+      ws.onmessage = (e) => {
+        let d = JSON.parse(e.data);
+        if (d.type === "connected") {
+          connectedUser = user;
+          document.getElementById("live-dot").classList.add("live");
+          document.getElementById("live-text").textContent = "LIVE: @" + user;
+          document.getElementById("live-text").style.color = "var(--green)";
+        }
+        if (d.type === "chat") {
+          handleChat(d.nickname || d.uniqueId, d.comment);
+        }
+      };
+    }
+
+    function handleChat(user, msg) {
+      let clean = msg.trim().toUpperCase();
+      if (document.getElementById("wordle").style.display === "block" && clean.length === 5) {
+        processWordle(clean, user);
+      }
+      if (document.getElementById("kontexto").style.display === "block") {
+        processKontexto(clean, user);
+      }
+      if (document.getElementById("priceisright").style.display === "block" && isPriceRunning) {
+        let num = parseInt(clean.replace(/[^0-9]/g, ''));
+        if (!isNaN(num)) priceGuesses.push({ user: user, guess: num });
+      }
+    }
+
+    // LEADERBOARD TAB SWITCH
+    function switchTab(type) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      event.target.classList.add('active');
+      let list = document.getElementById('leader-list');
+      if (type === 'daily') list.innerHTML = '<div class="leader-item"><span>Wort #1 (WELT)</span><span style="color:var(--muted);">Heute</span></div>';
+      if (type === 'weekly') list.innerHTML = '<div class="leader-item"><span>14 Wörter geknackt</span><span style="color:var(--muted);">Diese Woche</span></div>';
+      if (type === 'monthly') list.innerHTML = '<div class="leader-item"><span>52 Wörter geknackt</span><span style="color:var(--muted);">Diesen Monat</span></div>';
+    }
+
+    // 1. WORDLE
+    let wSecret = "", wRow = 0, wOver = false;
+    const WORD_POOL = ["APFEL","TISCH","STUHL","LAMPE","WOLKE","BLUME","STEIN","FISCH","VOGEL","PFERD","KATZE","STIFT","RADIO","INDEX","RADAR","SONNE","REGEN","FEUER","MOTOR","SPIEL"];
 
     function initWordle() {
       wSecret = WORD_POOL[Math.floor(Math.random() * WORD_POOL.length)];
@@ -376,18 +417,26 @@
     }
 
     function buildKeyboard() {
-      const kb = document.getElementById("keyboard");
-      kb.innerHTML = "";
-      [["Q","W","E","R","T","Z","U","I","O","P","Ü"],["A","S","D","F","G","H","J","K","L","Ö","Ä"],["Y","X","C","V","B","N","M"]].forEach(row => {
+      const kb = document.getElementById("keyboard"); kb.innerHTML = "";
+      const rows = [["Q","W","E","R","T","Z","U","I","O","P"],["A","S","D","F","G","H","J","K","L"],["ENTER","Y","X","C","V","B","N","M","←"]];
+      rows.forEach(row => {
         let rDiv = document.createElement("div"); rDiv.className = "kb-row";
         row.forEach(k => {
           let btn = document.createElement("button");
-          btn.className = "key"; btn.textContent = k; btn.dataset.key = k;
-          btn.onclick = () => document.getElementById("wordle-input").value += k;
+          btn.className = "key" + (k.length > 1 ? " wide" : "");
+          btn.textContent = k; btn.dataset.key = k;
+          btn.onclick = () => handleKbInput(k);
           rDiv.appendChild(btn);
         });
         kb.appendChild(rDiv);
       });
+    }
+
+    function handleKbInput(k) {
+      let inp = document.getElementById("wordle-input");
+      if (k === "ENTER") submitWordle();
+      else if (k === "←") inp.value = inp.value.slice(0, -1);
+      else if (inp.value.length < 5) inp.value += k;
     }
 
     function submitWordle() {
@@ -417,40 +466,49 @@
       wRow++;
     }
 
-    // SIZE IT UP
+    // 2. SIZE IT UP (MAGNITUDLE STYLE)
     const SIZE_DATA = [
-      { refName: "Eiffelturm", refSize: "330 m", targetName: "Freiheitsstatue", dir: "GROESSER" },
-      { refName: "Linienbus", refSize: "12 m", targetName: "Titanic", dir: "GROESSER" },
-      { refName: "Giraffe", refSize: "5.5 m", targetName: "Doppelstockbus", dir: "KLEINER" },
-      { refName: "Kölner Dom", refSize: "157 m", targetName: "Pyramide von Giza", dir: "KLEINER" }
+      { ref: "Rhein (Fluss)", refHeight: 120, target: "Elbe (Fluss)", realHeight: 105 },
+      { ref: "Eiffelturm", refHeight: 150, target: "Freiheitsstatue", realHeight: 45 },
+      { ref: "Deutschland (Fläche)", refHeight: 140, target: "Österreich (Fläche)", realHeight: 33 }
     ];
-    let sizeIdx = 0;
+    let sizeIdx = 0, currentTargetHeight = 50;
 
     function initSize() { sizeIdx = 0; loadSize(); }
     function loadSize() {
       let cur = SIZE_DATA[sizeIdx];
       document.getElementById("size-step").textContent = sizeIdx + 1;
-      document.getElementById("obj-ref-name").textContent = cur.refName;
-      document.getElementById("obj-ref-size").textContent = cur.refSize;
-      document.getElementById("obj-target-name").textContent = cur.targetName;
-      document.getElementById("size-result").style.display = "none";
-      document.getElementById("size-next").style.display = "none";
-    }
-    function submitSize(choice) {
-      let cur = SIZE_DATA[sizeIdx];
-      let correct = (choice === cur.dir);
-      let res = document.getElementById("size-result");
-      res.textContent = correct ? "Richtig!" : "Falsch!";
-      res.style.display = "block";
-      document.getElementById("size-next").style.display = "block";
-    }
-    function nextSize() {
-      sizeIdx++;
-      if (sizeIdx < SIZE_DATA.length) loadSize();
-      else { document.getElementById("size-step").textContent = "Ende"; document.getElementById("obj-ref-name").textContent = "Fertig!"; }
+      document.getElementById("size-ref-name").textContent = cur.ref;
+      document.getElementById("size-ref-bar").style.height = cur.refHeight + "px";
+      document.getElementById("size-target-name").textContent = cur.target;
+      currentTargetHeight = 50;
+      document.getElementById("size-target-bar").style.height = currentTargetHeight + "px";
+      document.getElementById("size-res").style.display = "none";
+      document.getElementById("size-next-btn").style.display = "none";
     }
 
-    // KONTEXTO
+    function adjustSize(delta) {
+      currentTargetHeight = Math.max(10, Math.min(180, currentTargetHeight + delta));
+      document.getElementById("size-target-bar").style.height = currentTargetHeight + "px";
+    }
+
+    function lockSize() {
+      let cur = SIZE_DATA[sizeIdx];
+      let diff = Math.abs(currentTargetHeight - cur.realHeight);
+      let res = document.getElementById("size-res");
+      res.textContent = (diff < 15) ? "Perfekt angepasst! 🎉" : `Abweichung: ${diff}px (Ziel war ${cur.realHeight}px)`;
+      res.style.color = (diff < 15) ? "var(--green)" : "var(--orange)";
+      res.style.display = "block";
+      document.getElementById("size-next-btn").style.display = "block";
+    }
+
+    function nextSizeTurn() {
+      sizeIdx++;
+      if (sizeIdx < SIZE_DATA.length) loadSize();
+      else { document.getElementById("size-ref-name").textContent = "Fertig!"; }
+    }
+
+    // 3. KONTEXTO (COLOR SORTING)
     let kGuesses = [];
     const K_SECRET = "WELT";
 
@@ -467,35 +525,34 @@
     }
 
     function processKontexto(word, user) {
-      if (kGuesses.includes(word)) return;
-      kGuesses.push(word);
+      if (kGuesses.some(g => g.word === word)) return;
+      let rank = (word === K_SECRET) ? 1 : Math.floor(Math.random() * 3000) + 2;
+      kGuesses.push({ word: word, user: user, rank: rank });
+      
+      // SORT: Green top (rank 1-100), Orange mid (101-1000), Red bottom (>1000)
+      kGuesses.sort((a, b) => a.rank - b.rank);
 
-      let dist = word === K_SECRET ? 1 : Math.floor(Math.random() * 3000) + 2;
-      let colorClass = "red";
-      let label = "Weit weg";
-      if (dist === 1) { colorClass = "green"; label = "GEWONNEN!"; }
-      else if (dist < 100) { colorClass = "green"; label = "Sehr nah (#" + dist + ")"; }
-      else if (dist < 1000) { colorClass = "orange"; label = "Mittelmäßig (#" + dist + ")"; }
-
-      let list = document.getElementById("kontexto-list");
-      let item = document.createElement("div");
-      item.className = `guess-item ${colorClass}`;
-      item.innerHTML = `<span><strong>${word}</strong> (@${user})</span> <span>${label}</span>`;
-      list.prepend(item);
+      let container = document.getElementById("kontexto-list");
+      container.innerHTML = "";
+      kGuesses.forEach(item => {
+        let cls = item.rank === 1 ? "green" : (item.rank < 500 ? "orange" : "red");
+        let row = document.createElement("div");
+        row.className = `guess-row ${cls}`;
+        row.innerHTML = `<span>${item.word} (@${item.user})</span> <span>#${item.rank}</span>`;
+        container.appendChild(row);
+      });
     }
 
-    // THE PRICE IS RIGHT
-    const PRICE_POOL = [
-      { q: "Level im originalen Pac-Man?", real: 255 },
-      { q: "Sekunden in einem Tag (24h)?", real: 86400 },
-      { q: "Episoden von Simpsons (ungefähr)?", real: 750 },
-      { q: "Schwerster Blauwal (Tonnen)?", real: 190 },
-      { q: "Pokémon in der 1. Generation?", real: 151 },
-      { q: "Höhe Eiffelturm (Meter)?", real: 330 },
-      { q: "Länge der Titanic (Meter)?", real: 269 },
-      { q: "Gründung der BRD (Jahr)?", real: 1949 },
-      { q: "Dauer eines Marathonlaufs (Minuten)?", real: 120 },
-      { q: "Temperatur auf der Sonnenoberfläche (°C)?", real: 5500 }
+    // 4. THE PRICE IS RIGHT (MASSIVE QUESTION POOL)
+    const PRICE_MASSIVE_POOL = [
+      { q: "Wie viele Kilometer ist der Nil lang?", real: 6650 },
+      { q: "Wie viele Level hat das originale Pac-Man?", real: 255 },
+      { q: "In welchem Jahr landete Apollo 11 auf dem Mond?", real: 1969 },
+      { q: "Wie viele Knochen hat ein erwachsener Mensch?", real: 206 },
+      { q: "Wie viele Episoden haben Die Simpsons aktuell ca.?", real: 750 },
+      { q: "Wie hoch ist der Mount Everest in Metern?", real: 8848 },
+      { q: "Wie viele Elemente hat das Periodensystem?", real: 118 },
+      { q: "Wie viele Zähne hat ein ausgewachsenes Gebiss?", real: 32 }
     ];
 
     let currentPriceQ = null;
@@ -504,9 +561,9 @@
     let isPriceRunning = false;
 
     function startPriceRound() {
-      currentPriceQ = PRICE_POOL[Math.floor(Math.random() * PRICE_POOL.length)];
-      document.getElementById("price-question").textContent = currentPriceQ.q;
-      document.getElementById("price-results").style.display = "none";
+      currentPriceQ = PRICE_MASSIVE_POOL[Math.floor(Math.random() * PRICE_MASSIVE_POOL.length)];
+      document.getElementById("price-q-text").textContent = currentPriceQ.q;
+      document.getElementById("price-winner-area").style.display = "none";
       priceGuesses = [];
 
       let sec = parseInt(document.getElementById("price-timer-set").value) || 30;
@@ -515,42 +572,38 @@
       clearInterval(priceTimer);
       priceTimer = setInterval(() => {
         sec--;
-        document.getElementById("price-timer-display").textContent = sec + "s";
+        document.getElementById("price-timer-disp").textContent = sec + "s";
         if (sec <= 0) {
           clearInterval(priceTimer);
-          endPrice();
+          endPriceRound();
         }
       }, 1000);
     }
 
-    function submitPriceUser() {
-      let inp = document.getElementById("price-manual-input");
+    function submitPriceHost() {
+      let inp = document.getElementById("price-input");
       let val = parseInt(inp.value);
       inp.value = "";
-      if (!isNaN(val)) priceGuesses.push({ user: "Du", guess: val });
+      if (!isNaN(val)) priceGuesses.push({ user: "Du (Host)", guess: val });
     }
 
-    function endPrice() {
+    function endPriceRound() {
       isPriceRunning = false;
-      document.getElementById("price-timer-display").textContent = "ZEIT UM!";
-      document.getElementById("price-correct-ans").textContent = `Echter Wert: ${currentPriceQ.real}`;
+      document.getElementById("price-timer-disp").textContent = "ZEIT ABGELAUFEN!";
+      document.getElementById("price-real-val").textContent = `Echter Wert: ${currentPriceQ.real}`;
       
-      let list = document.getElementById("price-winner-list");
-      list.innerHTML = "";
+      let winnerArea = document.getElementById("price-winner-area");
+      let winnerName = document.getElementById("price-winner-user");
 
       if (priceGuesses.length === 0) {
-        list.innerHTML = "<p style='color:var(--muted);'>Keine Tipps!</p>";
+        winnerName.textContent = "Keine Schätzungen abgegeben!";
       } else {
         priceGuesses.sort((a, b) => Math.abs(a.guess - currentPriceQ.real) - Math.abs(b.guess - currentPriceQ.real));
-        priceGuesses.slice(0, 3).forEach((item, index) => {
-          let row = document.createElement("div");
-          row.className = "guess-item " + (index === 0 ? "green" : "orange");
-          row.innerHTML = `<span><strong>#${index+1} @${item.user}</strong>: ${item.guess}</span> <span>Diff: ${Math.abs(item.guess - currentPriceQ.real)}</span>`;
-          list.appendChild(row);
-        });
+        let win = priceGuesses[0];
+        winnerName.textContent = `@${win.user} (Tipp: ${win.guess} | Diff: ${Math.abs(win.guess - currentPriceQ.real)})`;
       }
-      document.getElementById("price-results").style.display = "block";
+      winnerArea.style.display = "block";
     }
   </script>
 </body>
-</html>
+          </html>
