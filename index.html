@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLAYFINITY – PLAY • THINK • WIN</title>
+  <style>
+    :root {
+      --bg: #07040f;
+      --card: #120a1c;
+      --card-hover: #1a1028;
+      --pink: #ff2d95;
+      --purple: #b14eff;
+      --cyan: #00e5ff;
+      --text: #ffffff;
+      --muted: #a89bc4;
+      --green: #00e676;
+      --yellow: #ffd600;
+      --gray: #2e2040;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    /* ========== HOMEPAGE ========== */
+    #home {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 40px 24px 80px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .logo {
+      font-size: clamp(2.8rem, 6vw, 4.2rem);
+      font-weight: 800;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 2px;
+      margin-bottom: 8px;
+    }
+
+    .slogan {
+      color: var(--muted);
+      font-size: 1rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .game-card {
+      background: var(--card);
+      border: 1px solid rgba(177, 78, 255, 0.25);
+      border-radius: 18px;
+      padding: 24px 22px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      position: relative;
+    }
+
+    .game-card:hover {
+      background: var(--card-hover);
+      border-color: rgba(255, 45, 149, 0.5);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 30px rgba(255, 45, 149, 0.15);
+    }
+
+    .game-card.available {
+      border-color: rgba(255, 45, 149, 0.45);
+    }
+
+    .game-card.coming {
+      opacity: 0.55;
+      cursor: default;
+    }
+
+    .game-card.coming:hover {
+      transform: none;
+      box-shadow: none;
+      background: var(--card);
+    }
+
+    .game-icon {
+      width: 56px;
+      height: 56px;
+      background: rgba(255, 45, 149, 0.12);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      flex-shrink: 0;
+    }
+
+    .game-info h3 {
+      font-size: 1.25rem;
+      margin-bottom: 4px;
+    }
+
+    .game-info p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .badge {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      background: var(--pink);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 60px;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    /* ========== WORDLE ========== */
+    #wordle {
+      display: none;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 30px 16px 60px;
+    }
+
+    .wordle-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 30px;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      padding: 8px 16px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: rgba(177, 78, 255, 0.15);
+    }
+
+    .wordle-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 28px;
+    }
+
+    .row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .tile {
+      width: 58px;
+      height: 58px;
+      border: 2px solid #3a2a4f;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .tile.filled {
+      border-color: var(--purple);
+    }
+
+    .tile.correct { background: var(--green); border-color: var(--green); color: #000; }
+    .tile.present { background: var(--yellow); border-color: var(--yellow); color: #000; }
+    .tile.absent  { background: var(--gray); border-color: var(--gray); }
+
+    .message {
+      text-align: center;
+      min-height: 28px;
+      margin-bottom: 16px;
+      font-weight: 600;
+      color: var(--cyan);
+      font-size: 1.05rem;
+    }
+
+    .keyboard {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .kb-row {
+      display: flex;
+      gap: 6px;
+      justify-content: center;
+    }
+
+    .key {
+      height: 54px;
+      min-width: 36px;
+      padding: 0 8px;
+      background: #2a1a3d;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: background 0.15s;
+    }
+
+    .key:hover { background: #3a2a50; }
+    .key.wide { min-width: 58px; font-size: 0.8rem; }
+    .key.correct { background: var(--green); color: #000; }
+    .key.present { background: var(--yellow); color: #000; }
+    .key.absent  { background: #1a1025; color: #666; }
+
+    .new-game-btn {
+      display: none;
+      margin: 24px auto 0;
+      background: linear-gradient(90deg, var(--pink), var(--purple));
+      border: none;
+      color: white;
+      padding: 14px 36px;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .new-game-btn:hover {
+      opacity: 0.9;
+    }
+
+    @media (max-width: 600px) {
+      #home { padding: 24px 16px 60px; }
+      .games-grid { grid-template-columns: 1fr; }
+      .tile { width: 50px; height: 50px; font-size: 1.5rem; }
+      .key { height: 48px; min-width: 30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HOMEPAGE -->
+  <div id="home">
+    <div class="header">
+      <div class="logo">PLAYFINITY</div>
+      <div class="slogan">PLAY • THINK • WIN</div>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-card available" onclick="openWordle()">
+        <div class="game-icon">🔤</div>
+        <div class="game-info">
+          <h3>Wordle</h3>
+          <p>Deutsche Wörter erraten</p>
+        </div>
+        <div class="badge">SPIELBAR</div>
+      </div>
+
+      <div class="game-card coming">
+        <div class="game-icon">📏</div>
+        <div class="game-info">
+          <h3>Size It Up</h3>
+          <p>Größen & Umrisse vergleichen</p>
+        </div>
+      </div>
+
+      <div class="game-card coming">
+        <div class="game-icon">🧠</div>
+        <div class="game-info">
+          <h3>Kontexto</h3>
+          <p>Wörter nach Bedeutung erraten</p>
+        </div>
+      </div>
+
+      <div class="game-card coming">
+        <div class="game-icon">🧩</div>
+        <div class="game-info">
+          <h3>Riddle Show</h3>
+          <p>Rätsel lösen</p>
+        </div>
+      </div>
+
+      <div class="game-card coming">
+        <div class="game-icon">🔐</div>
+        <div class="game-info">
+          <h3>Code Breaker</h3>
+          <p>Geheime Codes knacken</p>
+        </div>
+      </div>
+
+      <div class="game-card coming">
+        <div class="game-icon">🔢</div>
+        <div class="game-info">
+          <h3>The Next Number</h3>
+          <p>Zahlenfolgen erkennen</p>
+        </div>
+      </div>
+
+      <div class="game-card coming">
+        <div class="game-icon">👀</div>
+        <div class="game-info">
+          <h3>Find It</h3>
+          <p>Symbole & Objekte finden</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">PLAYFINITY • Neon Gaming</div>
+  </div>
+
+  <!-- WORDLE -->
+  <div id="wordle">
+    <div class="wordle-header">
+      <button class="back-btn" onclick="backToHome()">← Zurück</button>
+      <div class="wordle-title">WORDLE</div>
+      <div style="width:80px"></div>
+    </div>
+
+    <div class="message" id="message"></div>
+    <div class="board" id="board"></div>
+    <div class="keyboard" id="keyboard"></div>
+    <button class="new-game-btn" id="new-game-btn" onclick="startNewGame()">Neues Spiel</button>
+  </div>
+
+  <script>
+    const WORDS = [
+      "APFEL", "TISCH", "STUHL", "LAMPE", "WOLKE", 
+      "BLUME", "STEIN", "FISCH", "VOGEL", "PFERD", 
+      "HUNDE", "KATZE", "AUTOS", "STIFT", "LEHRE", 
+      "BODEN", "DECKE", "SOFAS", "MUSIK", "FILME", 
+      "SPIEL", "SPORT", "TEAMS", "SIEGE", "VATER", 
+      "BABYS", "STADT", "BERGE", "FLUSS", "MEERE", 
+      "INSEL", "WIESE", "BLATT", "SAMEN", "KAESE", 
+      "MILCH", "SALZE", "WURST", "REISE", "SUPPE", 
+      "SALAT", "TORTE", "KEKSE", "BUERO", "FIRMA", 
+      "CHEFS", "KUNDE", "BRIEF", "PAKET", "HOTEL", 
+      "SONNE", "REGEN", "STURM", "WINDE", "HITZE", 
+      "STERN", "MONDE", "NACHT", "ABEND", "JAHRE", 
+      "WOCHE", "MONAT", "FARBE", "LICHT", "FEUER", 
+      "PIZZA", "RADIO", "INDEX", "RADAR"
+    ];
+
+    let secretWord = "";
+    let currentRow = 0;
+    let currentTile = 0;
+    let gameOver = false;
+    const MAX_ROWS = 6;
+    const WORD_LENGTH = 5;
+
+    function openWordle() {
+      document.getElementById("home").style.display = "none";
+      document.getElementById("wordle").style.display = "block";
+      startNewGame();
+    }
+
+    function backToHome() {
+      document.getElementById("wordle").style.display = "none";
+      document.getElementById("home").style.display = "block";
+    }
+
+    function startNewGame() {
+      secretWord = WORDS[Math.floor(Math.random() * WORDS.length)];
+      currentRow = 0;
+      currentTile = 0;
+      gameOver = false;
+
+      document.getElementById("message").textContent = "";
+      document.getElementById("new-game-btn").style.display = "none";
+
+      createBoard();
+      createKeyboard();
+    }
+
+    function createBoard() {
+      const board = document.getElementById("board");
+      board.innerHTML = "";
+      for (let r = 0; r < MAX_ROWS; r++) {
+        const row = document.createElement("div");
+        row.className = "row";
+        for (let c = 0; c < WORD_LENGTH; c++) {
+          const tile = document.createElement("div");
+          tile.className = "tile";
+          tile.id = `tile-${r}-${c}`;
+          row.appendChild(tile);
+        }
+        board.appendChild(row);
+      }
+    }
+
+    function createKeyboard() {
+      const keyboard = document.getElementById("keyboard");
+      keyboard.innerHTML = "";
+      const rows = [
+        ["Q","W","E","R","T","Z","U","I","O","P","Ü"],
+        ["A","S","D","F","G","H","J","K","L","Ö","Ä"],
+        ["ENTER","Y","X","C","V","B","N","M","⌫"]
+      ];
+
+      rows.forEach(keys => {
+        const row = document.createElement("div");
+        row.className = "kb-row";
+        keys.forEach(key => {
+          const btn = document.createElement("button");
+          btn.className = "key" + (key === "ENTER" || key === "⌫" ? " wide" : "");
+          btn.textContent = key;
+          btn.dataset.key = key;
+          btn.onclick = () => handleKey(key);
+          row.appendChild(btn);
+        });
+        keyboard.appendChild(row);
+      });
+    }
+
+    function handleKey(key) {
+      if (gameOver) return;
+      if (key === "ENTER") submitGuess();
+      else if (key === "⌫") deleteLetter();
+      else if (/^[A-ZÄÖÜ]$/.test(key) && currentTile < WORD_LENGTH) {
+        addLetter(key);
+      }
+    }
+
+    function addLetter(letter) {
+      const tile = document.getElementById(`tile-${currentRow}-${currentTile}`);
+      tile.textContent = letter;
+      tile.classList.add("filled");
+      currentTile++;
+    }
+
+    function deleteLetter() {
+      if (currentTile === 0) return;
+      currentTile--;
+      const tile = document.getElementById(`tile-${currentRow}-${currentTile}`);
+      tile.textContent = "";
+      tile.classList.remove("filled");
+    }
+
+    function submitGuess() {
+      if (currentTile < WORD_LENGTH) {
+        showMessage("Nicht genug Buchstaben");
+        return;
+      }
+
+      let guess = "";
+      for (let i = 0; i < WORD_LENGTH; i++) {
+        guess += document.getElementById(`tile-${currentRow}-${i}`).textContent;
+      }
+
+      const result = evaluateGuess(guess, secretWord);
+
+      for (let i = 0; i < WORD_LENGTH; i++) {
+        const tile = document.getElementById(`tile-${currentRow}-${i}`);
+        tile.classList.remove("filled");
+        tile.classList.add(result[i]);
+      }
+
+      updateKeyboard(guess, result);
+
+      if (guess === secretWord) {
+        gameOver = true;
+        showMessage("Gewonnen! 🎉");
+        document.getElementById("new-game-btn").style.display = "block";
+        return;
+      }
+
+      currentRow++;
+      currentTile = 0;
+
+      if (currentRow >= MAX_ROWS) {
+        gameOver = true;
+        showMessage("Das Wort war: " + secretWord);
+        document.getElementById("new-game-btn").style.display = "block";
+      }
+    }
+
+    function evaluateGuess(guess, secret) {
+      const result = Array(WORD_LENGTH).fill("absent");
+      const secretArr = secret.split("");
+      const guessArr = guess.split("");
+
+      for (let i = 0; i < WORD_LENGTH; i++) {
+        if (guessArr[i] === secretArr[i]) {
+          result[i] = "correct";
+          secretArr[i] = null;
+          guessArr[i] = null;
+        }
+      }
+
+      for (let i = 0; i < WORD_LENGTH; i++) {
+        if (guessArr[i] === null) continue;
+        const idx = secretArr.indexOf(guessArr[i]);
+        if (idx !== -1) {
+          result[i] = "present";
+          secretArr[idx] = null;
+        }
+      }
+      return result;
+    }
+
+    function updateKeyboard(guess, result) {
+      for (let i = 0; i < WORD_LENGTH; i++) {
+        const key = document.querySelector(`.key[data-key="${guess[i]}"]`);
+        if (!key) continue;
+        if (result[i] === "correct") {
+          key.classList.remove("present", "absent");
+          key.classList.add("correct");
+        } else if (result[i] === "present" && !key.classList.contains("correct")) {
+          key.classList.remove("absent");
+          key.classList.add("present");
+        } else if (!key.classList.contains("correct") && !key.classList.contains("present")) {
+          key.classList.add("absent");
+        }
+      }
+    }
+
+    function showMessage(text) {
+      const msg = document.getElementById("message");
+      msg.textContent = text;
+      if (!gameOver) {
+        setTimeout(() => {
+          if (msg.textContent === text) msg.textContent = "";
+        }, 1800);
+      }
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (document.getElementById("wordle").style.display === "none") return;
+      const key = e.key.toUpperCase();
+      if (key === "ENTER") handleKey("ENTER");
+      else if (key === "BACKSPACE") handleKey("⌫");
+      else if (/^[A-ZÄÖÜ]$/.test(key)) handleKey(key);
+    });
+  </script>
+</body>
+</html>
