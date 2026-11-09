@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PLAYFINITY – LIVE STREAM GAMING</title>
+  <style>
+    :root {
+      --bg: #07040f;
+      --card: #120a1c;
+      --card-hover: #1a1028;
+      --pink: #ff2d95;
+      --purple: #b14eff;
+      --cyan: #00e5ff;
+      --text: #ffffff;
+      --muted: #a89bc4;
+      --green: #00e676;
+      --yellow: #ffd600;
+      --gray: #2e2040;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.5;
+    }
+
+    .top-bar {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 15px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .back-btn {
+      background: transparent;
+      border: 1px solid var(--purple);
+      color: var(--purple);
+      padding: 8px 18px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+    .back-btn:hover { background: rgba(177, 78, 255, 0.2); color: #fff; }
+
+    .streamer-box {
+      background: var(--card);
+      border: 1px solid var(--pink);
+      border-radius: 12px;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 0 15px rgba(255, 45, 149, 0.2);
+    }
+    .streamer-box input {
+      background: #190c29;
+      border: 1px solid var(--purple);
+      color: white;
+      padding: 6px 12px;
+      border-radius: 8px;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .streamer-btn {
+      background: var(--pink);
+      border: none;
+      color: white;
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    /* HOMEPAGE */
+    #home {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 24px 80px;
+    }
+
+    .header { text-align: center; margin-bottom: 45px; }
+    .logo {
+      font-size: clamp(3rem, 7vw, 4.5rem);
+      font-weight: 900;
+      background: linear-gradient(90deg, var(--pink), var(--purple), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: 3px;
+    }
+    .slogan { color: var(--muted); font-size: 0.95rem; letter-spacing: 5px; text-transform: uppercase; margin-top: 5px; }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px;
+    }
+
+    .game-card {
+      background: var(--card);
+      border: 1px solid rgba(177, 78, 255, 0.3);
+      border-radius: 18px;
+      padding: 30px 24px;
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .game-card:hover {
+      background: var(--card-hover);
+      border-color: var(--pink);
+      transform: translateY(-5px);
+      box-shadow: 0 12px 30px rgba(255, 45, 149, 0.2);
+    }
+
+    .game-icon { font-size: 2.8rem; margin-bottom: 15px; }
+    .game-info h3 { font-size: 1.4rem; margin-bottom: 6px; color: #fff; }
+    .game-info p { font-size: 0.9rem; color: var(--muted); }
+
+    /* GAME MODULES */
+    .game-module { display: none; max-width: 700px; margin: 0 auto; padding: 20px 16px 60px; }
+    .game-title {
+      font-size: 2.2rem; font-weight: 800; text-align: center; margin-bottom: 20px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .message { text-align: center; min-height: 28px; margin-bottom: 15px; font-weight: 600; color: var(--cyan); font-size: 1.05rem; }
+
+    .game-box {
+      background: var(--card); border: 1px solid var(--purple); border-radius: 16px;
+      padding: 24px; text-align: center; margin-bottom: 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+    }
+
+    .action-btn {
+      background: linear-gradient(90deg, var(--pink), var(--purple)); border: none;
+      color: white; padding: 12px 24px; border-radius: 10px; font-size: 1rem;
+      font-weight: 700; cursor: pointer; width: 100%; transition: opacity 0.2s;
+    }
+    .action-btn:hover { opacity: 0.9; }
+
+    /* WORDLE */
+    .board { display: flex; flex-direction: column; gap: 8px; align-items: center; margin-bottom: 20px; max-height: 350px; overflow-y: auto; padding: 5px; }
+    .row { display: flex; gap: 8px; }
+    .tile {
+      width: 52px; height: 52px; border: 2px solid #3a2a4f; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.5rem; font-weight: 700; text-transform: uppercase;
+    }
+    .tile.correct { background: var(--green); border-color: var(--green); color: #000; }
+    .tile.present { background: var(--yellow); border-color: var(--yellow); color: #000; }
+    .tile.absent  { background: var(--gray); border-color: var(--gray); }
+
+    .keyboard { display: flex; flex-direction: column; gap: 6px; align-items: center; margin-top: 15px; }
+    .kb-row { display: flex; gap: 5px; justify-content: center; }
+    .key {
+      height: 44px; min-width: 30px; padding: 0 6px; background: #2a1a3d; border: none;
+      border-radius: 6px; color: white; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+    }
+    .key.correct { background: var(--green); color: #000; }
+    .key.present { background: var(--yellow); color: #000; }
+    .key.absent  { background: #1a1025; color: #555; }
+
+    /* SIZE IT UP (VERGLEICH) */
+    .compare-container {
+      display: flex; justify-content: space-around; align-items: center; gap: 15px; margin: 25px 0;
+    }
+    .compare-box {
+      flex: 1; background: #190c29; border: 1px solid var(--purple); border-radius: 12px; padding: 20px; text-align: center;
+    }
+    .compare-box h4 { color: var(--muted); font-size: 0.9rem; margin-bottom: 8px; }
+    .compare-box .obj-name { font-size: 1.2rem; font-weight: bold; color: var(--cyan); margin-bottom: 10px; }
+
+    /* CHAT LISTS */
+    .guesses-list { display: flex; flex-direction: column; gap: 8px; max-height: 400px; overflow-y: auto; text-align: left; }
+    .guess-item {
+      display: flex; justify-content: space-between; align-items: center; padding: 10px 15px;
+      border-radius: 8px; background: var(--card); border: 1px solid rgba(255,255,255,0.08); font-weight: 600;
+    }
+    .guess-item.top { background: rgba(0, 230, 118, 0.2); border-color: var(--green); }
+    .guess-item.mid { background: rgba(255, 214, 0, 0.2); border-color: var(--yellow); }
+    .guess-item.far { background: var(--gray); }
+
+    .timer-display { font-size: 2.5rem; font-weight: 900; color: var(--pink); text-align: center; margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+  <div class="top-bar">
+    <button class="back-btn" id="global-back" onclick="backToHome()" style="display:none;">← Hauptmenü</button>
+    <div class="streamer-box">
+      <span style="font-size:0.85rem; color:var(--muted);">TikTok User:</span>
+      <input type="text" id="streamer-name" placeholder="@name">
+      <button class="streamer-btn" onclick="connectTikTok()">Verbinden</button>
+      <span id="conn-status" style="font-size: 0.75rem; color: var(--cyan);">● Aus</span>
+    </div>
+  </div>
+
+  <!-- HOMEPAGE -->
+  <div id="home">
+    <div class="header">
+      <div class="logo">PLAYFINITY</div>
+      <div class="slogan">LIVE STREAM GAMING PLATFORM</div>
+    </div>
+
+    <div class="games-grid">
+      <div class="game-card" onclick="openGame('wordle')">
+        <div class="game-icon">🔤</div>
+        <div class="game-info">
+          <h3>Wordle Live</h3>
+          <p>Jedes Wort erlaubt, Tastatur & Chat-Mitraten</p>
+        </div>
+      </div>
+
+      <div class="game-card" onclick="openGame('sizeitup')">
+        <div class="game-icon">📏</div>
+        <div class="game-info">
+          <h3>Size It Up</h3>
+          <p>Vergleich: Objekt A vs. Objekt B</p>
+        </div>
+      </div>
+
+      <div class="game-card" onclick="openGame('kontexto')">
+        <div class="game-icon">🧠</div>
+        <div class="game-info">
+          <h3>Kontexto</h3>
+          <p>Host & Chat raten das geheime Wort</p>
+        </div>
+      </div>
+
+      <div class="game-card" onclick="openGame('priceisright')">
+        <div class="game-icon">🏷️</div>
+        <div class="game-info">
+          <h3>The Price Is Right</h3>
+          <p>Schätz-Duell mit Timer für Host & Chat</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1. WORDLE -->
+  <div id="wordle" class="game-module">
+    <div class="game-title">WORDLE UNLIMITED</div>
+    <div class="message" id="wordle-msg">Jedes 5-Buchstaben-Wort ist gültig!</div>
+    <div class="board" id="wordle-board"></div>
+    
+    <div style="display:flex; gap:10px; margin-bottom:10px;">
+      <input type="text" id="wordle-input" placeholder="Dein Wort (Host-Eingabe)..." style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--purple); background:#190c29; color:#fff; font-size:1rem;" onkeydown="if(event.key==='Enter') submitWordleManual()">
+      <button class="action-btn" style="width:auto;" onclick="submitWordleManual()">Tippen</button>
+    </div>
+
+    <div class="keyboard" id="keyboard"></div>
+    <button class="action-btn" onclick="startWordle()" style="margin-top:15px; background:var(--gray);">Neues Wort laden</button>
+  </div>
+
+  <!-- 2. SIZE IT UP -->
+  <div id="sizeitup" class="game-module">
+    <div class="game-title">SIZE IT UP</div>
+    <div class="message">Runde <span id="size-step">1</span>/5 — Welches Objekt ist größer bzw. wie verhält es sich?</div>
+    
+    <div class="game-box">
+      <div class="compare-container">
+        <div class="compare-box">
+          <h4>Referenz</h4>
+          <div class="obj-name" id="obj-ref-name">...</div>
+          <div style="font-size:1.1rem; color:var(--green);" id="obj-ref-size">...</div>
+        </div>
+        <div style="font-weight:900; font-size:1.5rem; color:var(--pink);">VS</div>
+        <div class="compare-box">
+          <h4>Schätzung</h4>
+          <div class="obj-name" id="obj-target-name">...</div>
+          <div style="font-size:0.9rem; color:var(--muted);">Ist dieses Objekt größer oder kleiner?</div>
+        </div>
+      </div>
+
+      <div style="display:flex; gap:15px; justify-content:center; margin-top:20px;">
+        <button class="action-btn" style="background:var(--green); color:#000;" onclick="submitSizeChoice('GROESSER')">Größer / Länger</button>
+        <button class="action-btn" style="background:var(--pink);" onclick="submitSizeChoice('KLEINER')">Kleiner / Kürzer</button>
+      </div>
+
+      <div id="size-result" style="display:none; margin-top:20px; padding:12px; background:rgba(0,229,255,0.1); border-radius:10px; border:1px solid var(--cyan);">
+        <p id="size-real-val" style="font-size: 1.1rem; font-weight:bold;"></p>
+        <p id="size-points" style="color:var(--green); margin-top:5px; font-weight:700;"></p>
+      </div>
+    </div>
+    <button class="action-btn" id="size-next" onclick="nextSizeTurn()" style="display:none;">Nächste Runde →</button>
+  </div>
+
+  <!-- 3. KONTEXTO -->
+  <div id="kontexto" class="game-module">
+    <div class="game-title">KONTEXTO LIVE</div>
+    <div class="message" id="kontexto-msg">Host & Chat raten das geheime Wort!</div>
+    
+    <div style="display:flex; gap:10px; margin-bottom:15px;">
+      <input type="text" id="kontexto-input" placeholder="Dein Wort als Host..." style="flex:1; padding:12px; border-radius:10px; border:1px solid var(--purple); background:#190c29; color:#fff; font-size:1rem;" onkeydown="if(event.key==='Enter') submitKontextoManual()">
+      <button class="action-btn" style="width:auto;" onclick="submitKontextoManual()">Absenden</button>
+    </div>
+
+    <div class="guesses-list" id="kontexto-list"></div>
+    <button class="action-btn" onclick="startKontexto()" style="margin-top:15px; background:var(--gray);">Neues Spiel starten</button>
+  </div>
+
+  <!-- 4. THE PRICE IS RIGHT -->
+  <div id="priceisright" class="game-module">
+    <div class="game-title">THE PRICE IS RIGHT</div>
+    <div class="message">Timer einstellen, Schätz-Runde starten und mitraten!</div>
+    
+    <div class="game-box">
+      <div style="display:flex; justify-content:center; align-items:center; gap:12px; margin-bottom:15px; flex-wrap:wrap;">
+        <label style="color: var(--muted);">Timer (Sek.): </label>
+        <input type="number" id="price-timer-set" value="30" min="10" max="180" style="width:80px; padding:8px; border-radius:8px; background:#190c29; color:white; border:1px solid var(--purple); text-align:center; font-weight:bold;">
+        <button class="action-btn" style="width:auto; padding:8px 20px;" onclick="startPriceRound()">Runde Starten</button>
+      </div>
+      
+      <h3 id="price-question" style="font-size: 1.25rem; margin-top: 15px;">Klicke auf 'Runde Starten'!</h3>
+      <div class="timer-display" id="price-timer-display">--</div>
+
+      <div style="display:flex; gap:10px; margin:15px 0;">
+        <input type="number" id="price-manual-input" placeholder="Dein Tipp (Zahl)..." style="flex:1; padding:10px; border-radius:8px; border:1px solid var(--purple); background:#190c29; color:#fff;" onkeydown="if(event.key==='Enter') submitPriceManual()">
+        <button class="action-btn" style="width:auto;" onclick="submitPriceManual()">Tipp abgeben</button>
+      </div>
+
+      <div id="price-results" style="display:none; text-align:left; margin-top:20px;">
+        <h4 style="color:var(--cyan); margin-bottom:10px;">Auswertung (Host & Chat):</h4>
+        <p id="price-correct-ans" style="margin-bottom:12px; font-size:1.1rem; font-weight:bold;"></p>
+        <div class="guesses-list" id="price-winner-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let ws = null;
+    let connectedUser = "";
+
+    function connectTikTok() {
+      let user = document.getElementById("streamer-name").value.trim().replace("@","");
+      if (!user) return alert("Bitte TikTok-Username eingeben!");
+      
+      document.getElementById("conn-status").textContent = "● Verbinde...";
+      ws = new WebSocket("wss://tikfinity.zerody.one/websocket");
+
+      ws.onopen = () => {
+        ws.send(JSON.stringify({ type: "connect", username: user }));
+      };
+
+      ws.onmessage = (event) => {
+        let data = JSON.parse(event.data);
+        if (data.type === "connected") {
+          connectedUser = user;
+          document.getElementById("conn-status").textContent = "● Live: @" + user;
+          document.getElementById("conn-status").style.color = "var(--green)";
+        }
+        if (data.type === "chat") {
+          handleTikTokChatMessage(data.nickname || data.uniqueId, data.comment, data.likes || 0);
+        }
+      };
+
+      ws.onerror = () => {
+        document.getElementById("conn-status").textContent = "● Fehler";
+        document.getElementById("conn-status").style.color = "red";
+      };
+    }
+
+    function handleTikTokChatMessage(username, comment, likes) {
+      if (document.getElementById("wordle").style.display === "block") {
+        let clean = comment.trim().toUpperCase();
+        if (clean.length === 5 && /^[A-ZÄÖÜ]+$/.test(clean)) {
+          processWordleGuess(clean);
+        }
+      }
+      if (document.getElementById("kontexto").style.display === "block") {
+        processKontextoGuess(username, comment);
+      }
+      if (document.getElementById("priceisright").style.display === "block" && isPriceTimerRunning) {
+        processPriceGuess(username, comment);
+      }
+    }
+
+    function openGame(id) {
+      document.getElementById('home').style.display = 'none';
+      document.querySelectorAll('.game-module').forEach(m => m.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      document.getElementById('global-back').style.display = 'block';
+
+      if (id === 'wordle') startWordle();
+      if (id === 'sizeitup') startSizeItUp();
+      if (id === 'kontexto') startKontexto();
+    }
+
+    function backToHome() {
+      document.querySelectorAll('.game-module').forEach(m => m.style.display = 'none');
+      document.getElementById('home').style.display = 'block';
+      document.getElementById('global-back').style.display = 'none';
+    }
+
+    // WORDLE
+    let wSecret = "", wRow = 0, wOver = false;
+    const WORDLE_SECRET_LIST = ["APFEL", "TISCH", "STUHL", "LAMPE", "WOLKE", "BLUME", "STEIN", "FISCH", "VOGEL", "PFERD", "KATZE", "STIFT", "RADIO", "INDEX", "RADAR"];
+
+    function startWordle() {
+      wSecret = WORDLE_SECRET_LIST[Math.floor(Math.random() * WORDLE_SECRET_LIST.length)];
+      wRow = 0; wOver = false;
+      document.getElementById("wordle-msg").textContent = "Jedes 5-Buchstaben-Wort ist gültig!";
+      let b = document.getElementById("wordle-board");
+      b.innerHTML = "";
+      for (let r = 0; r < 6; r++) {
+        let row = document.createElement("div"); row.className = "row";
+        for (let c = 0; c < 5; c++) {
+          let t = document.createElement("div"); t.className = "tile"; t.id = `w-${r}-${c}`;
+          row.appendChild(t);
+        }
+        b.appendChild(row);
+      }
+      buildKeyboard();
+    }
+
+    function buildKeyboard() {
+      const kb = document.getElementById("keyboard");
+      kb.innerHTML = "";
+      [["Q","W","E","R","T","Z","U","I","O","P","Ü"],["A","S","D","F","G","H","J","K","L","Ö","Ä"],["Y","X","C","V","B","N","M"]].forEach(row => {
+        let rDiv = document.createElement("div"); rDiv.className = "kb-row";
+        row.forEach(k => {
+          let btn = document.createElement("button");
+          btn.className = "key";
+          btn.textContent = k; btn.dataset.key = k;
+          btn.onclick = () => { document.getElementById("wordle-input").value += k; };
+          rDiv.appendChild(btn);
+        });
+        kb.appendChild(rDiv);
+      });
+    }
+
+    function submitWordleManual() {
+      let inp = document.getElementById("wordle-input");
+      let val = inp.value.trim().toUpperCase();
+      inp.value = "";
+      if (val.length !== 5) return alert("Wort muss exakt 5 Buchstaben lang sein!");
+      processWordleGuess(val);
+    }
+
+    function processWordleGuess(guess) {
+      if (wOver || wRow >= 6) return;
+      let sec = wSecret.split(""), gArr = guess.split(""), res = Array(5).fill("absent");
+      for (let i = 0; i < 5; i++) if (gArr[i] === sec[i]) { res[i] = "correct"; sec[i] = null; gArr[i] = null; }
+      for (let i = 0; i < 5; i++) if (gArr[i] && sec.includes(gArr[i])) { res[i] = "present"; sec[sec.indexOf(gArr[i])] = null; }
+
+      for (let i = 0; i < 5; i++) {
+        let t = document.getElementById(`w-${wRow}-${i}`);
+        if (t) { t.textContent = guess[i]; t.classList.add(res[i]); }
+        let keyBtn = document.querySelector(`.key[data-key="${guess[i]}"]`);
+        if (keyBtn) {
+          if (res[i] === "correct") keyBtn.className = "key correct";
+          else if (res[i] === "present" && !keyBtn.classList.contains("correct")) keyBtn.className = "key present";
+          else if (res[i] === "absent" && !keyBtn.classList.contains("correct") && !keyBtn.classList.contains("present")) keyBtn.className = "key absent";
+        }
+      }
+
+      if (guess === wSecret) {
+        wOver = true;
+        document.getElementById("wordle-msg").textContent = "🎉 WORT ERATEN: " + wSecret;
+        return;
+      }
+      wRow++;
+      if (wRow >= 6) {
+        wOver = true;
+        document.getElementById("wordle-msg").textContent = "Game Over! Das Wort war: " + wSecret;
+      }
+    }
+
+    // SIZE IT UP
+    const SIZE_PAIRS = [
+      { step: 1, cat: "Landmarks", refName: "Eiffelturm (Paris)", refSize: "330 m Höhe", targetName: "Freiheitsstatue (New York)", realDir: "GROESSER" },
+      { step: 2, cat: "Transport", refName: "Länge eines Linienbusses", refSize: "12 m Länge", targetName: "Länge der Titanic", realDir: "GROESSER" },
+      { step: 3, cat: "Natur", refName: "Höhe einer Giraffe", refSize: "5.5 m Höhe", targetName: "Höhe eines Doppelstockbusses", realDir: "KLEINER" },
+      { step: 4, cat: "Architektur", refName: "Kölner Dom", refSize: "157 m Höhe", targetName: "Große Pyramide von Giza", realDir: "KLEINER" },
+      { step: 5, cat: "Technik", refName: "Höhe eines Standard-Kühlschranks", refSize: "1.8 m Höhe", targetName: "Smart Car (Kleinwagen)", realDir: "GROESSER" }
+    ];
+
+    let sizeIdx = 0, sizeScore = 0;
+
+    function startSizeItUp() { sizeIdx = 0; sizeScore = 0; loadSizeTurn(); }
+
+    function loadSizeTurn() {
+      let cur = SIZE_PAIRS[sizeIdx];
+      document.getElementById("size-step").textContent = sizeIdx + 1;
+      document.getElementById("obj-ref-name").textContent = cur.refName;
+      document.getElementById("obj-ref-size").textContent = cur.refSize;
+      document.getElementById("obj-target-name").textContent = cur.targetName;
+      document.getElementById("size-result").style.display = "none";
+      document.getElementById("size-next").style.display = "none";
+    }
+
+    function submitSizeChoice(choice) {
+      let cur = SIZE_PAIRS[sizeIdx];
+      let correct = (choice === cur.realDir);
+      let pts = correct ? 100 : 0;
+      sizeScore += pts;
+
+      let resBox = document.getElementById("size-result");
+      document.getElementById("size-real-val").textContent = correct ? "Richtig getippt! 🎉" : "Leider falsch!";
+      document.getElementById("size-points").textContent = `+${pts} Punkte (Gesamt: ${sizeScore})`;
+      resBox.style.display = "block";
+      document.getElementById("size-next").style.display = "block";
+    }
+
+    function nextSizeTurn() {
+      sizeIdx++;
+      if (sizeIdx < SIZE_PAIRS.length) {
+        loadSizeTurn();
+      } else {
+        document.getElementById("size-step").textContent = "Endstand";
+        document.getElementById("obj-ref-name").textContent = "Spiel beendet!";
+        document.getElementById("obj-ref-size").textContent = `${sizeScore} Punkte erreicht!`;
+        document.getElementById("obj-target-name").textContent = "Gute Arbeit!";
+        document.getElementById("size-next").style.display = "none";
+      }
+    }
+
+    // KONTEXTO
+    const K_SECRET = "WELT";
+    let kGuesses = [];
+
+    function startKontexto() {
+      kGuesses = [];
+      document.getElementById("kontexto-list").innerHTML = "";
+      document.getElementById("kontexto-msg").textContent = "Host & Chat raten das geheime Wort!";
+    }
+
+    function submitKontextoManual() {
+      let inp = document.getElementById("kontexto-input");
+      let val = inp.value.trim().toUpperCase();
+      inp.value = "";
+      if (!val) return;
+      processKontextoGuess("HOST (" + (connectedUser || "Du") + ")", val);
+    }
+
+    function processKontextoGuess(user, word) {
+      let val = word.trim().toUpperCase();
+      if (kGuesses.includes(val)) return;
+      kGuesses.push(val);
+
+      let rank = val === K_SECRET ? 1 : Math.floor(Math.random() * 3000) + 2;
+      let list = document.getElementById("kontexto-list");
+      let item = document.createElement("div");
+      let cls = rank === 1 ? "top" : (rank < 500 ? "mid" : "far");
+      item.className = `guess-item ${cls}`;
+      item.innerHTML = `<span><strong>${val}</strong> von @${user}</span> <span>#${rank}</span>`;
+      list.prepend(item);
+
+      if (rank === 1) {
+        document.getElementById("kontexto-msg").textContent = `🎉 @${user} hat das geheime Wort ERATEN!`;
+      }
+    }
+
+    // THE PRICE IS RIGHT
+    const PRICE_QUESTIONS = [
+      { q: "Wie viele Level hat das originale Pac-Man Game?", real: 255 },
+      { q: "Wie viele Sekunden hat ein ganzer Tag (24h)?", real: 86400 },
+      { q: "Wie viele Episoden hat die Serie 'The Simpsons' ungefaehr?", real: 750 },
+      { q: "Wie schwer war der schwerste Blaue Wal der Geschichte (in Tonnen)?", real: 190 },
+      { q: "Wie viele offizielle Pokémon gab es zum Start der 1. Generation?", real: 151 },
+      { q: "Wie viele Meter ist der Eiffelturm hoch?", real: 330 }
+    ];
+
+    let currentPriceQ = null;
+    let priceGuesses = [];
+    let priceTimer = null;
+    let isPriceTimerRunning = false;
+
+    function startPriceRound() {
+      currentPriceQ = PRICE_QUESTIONS[Math.floor(Math.random() * PRICE_QUESTIONS.length)];
+      document.getElementById("price-question").textContent = currentPriceQ.q;
+      document.getElementById("price-results").style.display = "none";
+      priceGuesses = [];
+
+      let sec = parseInt(document.getElementById("price-timer-set").value) || 30;
+      isPriceTimerRunning = true;
+
+      clearInterval(priceTimer);
+      priceTimer = setInterval(() => {
+        sec--;
+        document.getElementById("price-timer-display").textContent = sec + "s";
+        if (sec <= 0) {
+          clearInterval(priceTimer);
+          endPriceRound();
+        }
+      }, 1000);
+    }
+
+    function submitPriceManual() {
+      let inp = document.getElementById("price-manual-input");
+      let val = parseInt(inp.value);
+      inp.value = "";
+      if (isNaN(val)) return;
+      priceGuesses.push({ user: "HOST (" + (connectedUser || "Du") + ")", guess: val });
+      alert("Dein Tipp (" + val + ") wurde gespeichert!");
+    }
+
+    function processPriceGuess(user, comment) {
+      let num = parseInt(comment.replace(/[^0-9]/g, ''));
+      if (isNaN(num)) return;
+      priceGuesses.push({ user: user, guess: num });
+    }
+
+    function endPriceRound() {
+      isPriceTimerRunning = false;
+      document.getElementById("price-timer-display").textContent = "ZEIT ABGELAUFEN!";
+      
+      document.getElementById("price-correct-ans").textContent = `Echter Wert: ${currentPriceQ.real}`;
+      let list = document.getElementById("price-winner-list");
+      list.innerHTML = "";
+
+      if (priceGuesses.length === 0) {
+        list.innerHTML = "<p style='color:var(--muted); text-align:center;'>Keine Schätzungen eingegangen!</p>";
+      } else {
+        priceGuesses.sort((a, b) => Math.abs(a.guess - currentPriceQ.real) - Math.abs(b.guess - currentPriceQ.real));
+        priceGuesses.slice(0, 5).forEach((item, index) => {
+          let row = document.createElement("div");
+          row.className = "guess-item " + (index === 0 ? "top" : "mid");
+          row.innerHTML = `<span><strong>#${index+1} @${item.user}</strong>: ${item.guess}</span> <span>Diff: ${Math.abs(item.guess - currentPriceQ.real)}</span>`;
+          list.appendChild(row);
+        });
+      }
+      document.getElementById("price-results").style.display = "block";
+    }
+  </script>
+</body>
+</html>
