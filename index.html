@@ -106,6 +106,67 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
 .footer{border-top:1px solid var(--line);padding:22px 0 35px;color:var(--muted);font-size:.8rem;text-align:center}
 @media(min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game{min-height:220px}}
 @media(max-width:420px){.top{height:62px}.logo{font-size:1.2rem}.panel{padding:15px}.size-stage{height:250px}}
+
+/* PLAYFINITY NEON ARCADE REFRESH */
+:root{--bg:#070914;--panel:#10172a;--panel2:#151f36;--line:#263b60;--pink:#ff4da6;--violet:#8b5cf6;--cyan:#39d9ff;--text:#f5f8ff;--muted:#9baac5;--green:#20d99a;--yellow:#ffc45c;--red:#ff5478}
+body{background:radial-gradient(ellipse at 12% -8%,#34206c 0,transparent 36%),radial-gradient(ellipse at 95% 18%,#0d4562 0,transparent 30%),#070914}
+header{background:#070914dc;border-bottom:1px solid #263b60}
+.logo span{background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.arcade-frame{max-width:1040px;background:linear-gradient(145deg,#111a30ed,#0a1020f5);border:1px solid #36527d;border-radius:28px;box-shadow:0 22px 80px #0008, inset 0 1px #ffffff12}
+.arcade-title{letter-spacing:1px;text-shadow:0 0 30px #39d9ff30}
+.arcade-subtitle{text-transform:none;letter-spacing:.2px;font-size:1rem}
+.grid{gap:16px}
+.game{background:linear-gradient(145deg,#172440,#0d1528);border:1px solid #2c4269;border-radius:20px;min-height:190px;box-shadow:inset 0 1px #ffffff0a}
+.game:hover{border-color:var(--cyan);box-shadow:0 14px 38px #39d9ff1e;transform:translateY(-3px)}
+.game .emoji{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#263c66,#171f3a);box-shadow:inset 0 1px #ffffff20}
+.game h3{font-size:1.3rem}
+.game p{max-width:38ch}
+.game small{color:var(--cyan)}
+.view{max-width:980px;margin:26px auto 70px}
+.viewhead{padding:0 2px 12px;border-bottom:1px solid #263b60}
+.viewhead h2{font-size:clamp(1.45rem,3vw,2rem);letter-spacing:-.5px}
+.panel{background:linear-gradient(145deg,#121d33f5,#0d1426f5);border:1px solid #2b4168;border-radius:22px;padding:clamp(16px,3vw,26px);box-shadow:0 18px 55px #0005,inset 0 1px #ffffff0b}
+.field{background:#080f1e;border:1px solid #31496f;border-radius:14px;padding:15px 16px}
+.field:focus{outline:2px solid #39d9ff66;border-color:var(--cyan)}
+.action{background:linear-gradient(110deg,#ff4da6,#8b5cf6 58%,#398cff);border-radius:14px;box-shadow:0 8px 24px #8b5cf633}
+.btn{background:#172440;border-color:#30486f;border-radius:13px}
+.notice{background:#0b2132;border-color:#39d9ff55}
+.guesses{gap:9px;max-height: min(58vh,620px);padding-right:3px}
+.guess-card{min-height:52px;padding:12px 16px;background:#111b2e;border:1px solid #2b4162;border-radius:13px}
+.guess-card .word-title{font-size:1rem;letter-spacing:.1px}
+.guess-card .rank-badge{min-width:62px;text-align:center;border-radius:9px;font-size:.95rem}
+.guess-card .progress-bar{opacity:.26}
+.rank-top{border-color:#20d99a88}.rank-mid{border-color:#ffc45c77}.rank-far{border-color:#ff547866}
+#kontexto .panel>p.muted{display:none}
+#kontexto .row{gap:10px}
+#kontexto .row .field{font-size:1.05rem;min-height:56px}
+#kontexto .row .action{min-width:112px}
+#kmessage{font-size:.82rem;color:#8fa3c3}
+#size .panel{overflow:hidden}
+.size-stage{height:clamp(290px,42vw,420px);padding:28px 5% 54px;border:1px solid #38547e;border-radius:20px;background-color:#091327;background-image:linear-gradient(#31456838 1px,transparent 1px),linear-gradient(90deg,#31456838 1px,transparent 1px);background-size:34px 34px;box-shadow:inset 0 0 55px #0005}
+.size-object{width:44%;height:100%;align-items:end}
+.silhouette{max-height:100%;width:auto;max-width:90%;filter:drop-shadow(0 0 14px #39d9ff35)}
+.silhouette.target{filter:drop-shadow(0 0 14px #ff4da644)}
+.objcaption{bottom:-10px;font-weight:800;color:#d7e6ff;font-size:.88rem}
+#srange{height:10px;cursor:ew-resize}
+.result{background:#0a1427;border-color:#36517a;border-radius:14px;line-height:1.8}
+.score-row{background:#101b30;border-color:#2c4266;border-radius:12px;padding:12px}
+.score-bar-bg{height:10px}
+.timer{color:var(--cyan);text-shadow:0 0 24px #39d9ff55}
+.qtext{font-size:clamp(1.15rem,2.5vw,1.55rem)}
+.footer{border-color:#263b60}
+@media(max-width:600px){
+ .wrap{padding:0 12px}.top{height:64px}.arcade-frame{padding:22px 14px;margin:18px auto;border-radius:20px}
+ .grid{grid-template-columns:1fr;gap:11px}.game{min-height:140px;padding:17px}.game .emoji{width:44px;height:44px;font-size:1.8rem}
+ .game h3{margin:8px 0 4px}.game p{font-size:.82rem}
+ .view{padding:0 12px;margin-top:18px}.viewhead{align-items:center}.viewhead h2{font-size:1.35rem}
+ .panel{padding:15px;border-radius:17px}
+ #kontexto .row{flex-wrap:nowrap}#kontexto .row .action{min-width:82px;padding:12px 10px}
+ .guess-card{padding:10px 12px;min-height:48px}.guess-card .word-title{font-size:.9rem}
+ .size-stage{height:280px;padding:20px 2% 48px;background-size:26px 26px}
+ .size-object{width:47%}.objcaption{font-size:.76rem}
+}
+
 </style>
 </head>
 <body>
@@ -160,8 +221,8 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
     </div>
     <div class="grid">
       <button class="game" onclick="openView('wordle')"><div class="emoji">🔤</div><h3>Wordle</h3><p>Errate das geheime Wort mit unendlichen Versuchen & Chat-Support.</p><small>WORT-RÄTSEL →</small></button>
-      <button class="game" onclick="openView('size')"><div class="emoji">📐</div><h3>Size It Up</h3><p>Vergleiche 500+ Objekte, Länder & Gaming-Daten mit Live-Zoom.</p><small>GRÖSSEN SCHÄTZEN →</small></button>
-      <button class="game" onclick="openView('kontexto')"><div class="emoji">🧠</div><h3>Kontexto</h3><p>Finde das geheime Wort über die semantische Nähe & Ränge[span_9](start_span)[span_9](end_span).</p><small>BEDEUTUNG KNACKEN →</small></button>
+      <button class="game" onclick="openView('size')"><div class="emoji">📐</div><h3>Size It Up</h3><p>Vergleiche echte Größen im direkten Silhouetten-Duell.</p><small>GRÖSSEN SCHÄTZEN →</small></button>
+      <button class="game" onclick="openView('kontexto')"><div class="emoji">🧠</div><h3>Kontexto</h3><p>Finde das geheime Wort.</p><small>BEDEUTUNG KNACKEN →</small></button>
       <button class="game" onclick="openView('price')"><div class="emoji">🎯</div><h3>The Price Is Right</h3><p>Schätze Fakten und Zahlen im einstellbaren Live-Timer.</p><small>ZAHLEN RATEN →</small></button>
     </div>
   </div>
@@ -191,7 +252,7 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
   <div class="viewhead"><h2>📐 Size It Up</h2><button class="btn" onclick="startSizeGame()">Kategorien</button></div>
   
   <div id="size-cat-screen" class="panel">
-    <div class="section-title" style="text-align:center;margin-bottom:15px">Wähle eine Kategorie (5 Runden mit Zufallsvergleich & 500+ Daten)</div>
+    <div class="section-title" style="text-align:center;margin-bottom:15px">Kategorie wählen · 5 Runden</div>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
       <button class="game" onclick="selectCategory('geo')" style="min-height:130px;padding:15px"><div class="emoji">🌍</div><h3>Geografie</h3><p>Länder, Flüsse, Berge</p></button>
       <button class="game" onclick="selectCategory('sight')" style="min-height:130px;padding:15px"><div class="emoji">🏛️</div><h3>Wahrzeichen</h3><p>Türme, Gebäude, Brücken</p></button>
@@ -252,7 +313,7 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
     </div>
   </div>
   <div class="panel">
-    <p class="muted">Finde das geheime Wort über seine Bedeutung[span_12](start_span)[span_12](end_span). Kleinster Rang (Rang 1) gewinnt!</p>
+    
     <div class="row">
       <input id="kinput" class="field" placeholder="Wort eingeben…" maxlength="40" autocomplete="off">
       <button class="action" onclick="submitKontexto()">Raten</button>
