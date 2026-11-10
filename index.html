@@ -13,161 +13,447 @@ header{position:sticky;top:0;z-index:10;background:#090713eF;backdrop-filter:blu
 .top{height:72px;display:flex;align-items:center;justify-content:space-between}.logo{font-weight:1000;letter-spacing:1.5px;font-size:1.45rem;cursor:pointer}.logo span{color:var(--pink);text-shadow:0 0 18px #ff3ca677}.nav{display:flex;gap:10px}.btn{border:1px solid var(--line);border-radius:12px;background:#1b1530;color:var(--text);padding:10px 15px;font-weight:750}.btn:hover{border-color:var(--cyan);box-shadow:0 0 18px #35e5ff22}.btn.primary{border:0;background:linear-gradient(110deg,var(--pink),var(--violet));box-shadow:0 8px 25px #9b5cff35}.hero{padding:62px 0 35px;text-align:center}.eyebrow{color:var(--cyan);font-weight:800;letter-spacing:3px;text-transform:uppercase;font-size:.75rem}.hero h1{font-size:clamp(2.4rem,8vw,5rem);line-height:1.02;margin:14px 0;background:linear-gradient(90deg,#fff 20%,#ff71c5 55%,#8b8cff 85%);color:transparent;background-clip:text}.hero p{color:var(--muted);max-width:620px;margin:0 auto 24px;line-height:1.6}.stats{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.stat{border:1px solid var(--line);background:#151126bb;border-radius:99px;padding:8px 14px;color:#d9d1e9;font-size:.85rem}
 .section-head{display:flex;align-items:end;justify-content:space-between;margin:28px 0 16px}.section-head h2{margin:0;font-size:1.35rem}.section-head p{margin:5px 0 0;color:var(--muted);font-size:.9rem}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px;padding-bottom:55px}.game{position:relative;overflow:hidden;text-align:left;min-height:190px;padding:22px;border-radius:20px;border:1px solid var(--line);background:linear-gradient(145deg,#1c1530,#100d1d);color:var(--text);transition:.2s}.game:hover{transform:translateY(-3px);border-color:var(--pink);box-shadow:0 12px 35px #9b5cff22}.game .emoji{font-size:2rem}.game h3{font-size:1.2rem;margin:13px 0 6px}.game p{color:var(--muted);font-size:.9rem;line-height:1.45;margin:0}.game small{display:inline-block;margin-top:16px;color:var(--cyan);font-weight:800;letter-spacing:.6px}.game:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;right:-60px;top:-65px;background:radial-gradient(circle,#9b5cff33,transparent 70%);pointer-events:none}
 .view{display:none;max-width:850px;margin:30px auto 70px;padding:0 18px}.view.active{display:block}.viewhead{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:18px}.viewhead h2{margin:0;font-size:1.6rem}.panel{background:#151126eF;border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 15px 45px #0003}.muted{color:var(--muted)}.row{display:flex;gap:10px;flex-wrap:wrap}.row>*{flex:1}.field{width:100%;background:#0d0a18;border:1px solid var(--line);border-radius:11px;padding:12px;color:white;min-width:0}.action{background:linear-gradient(110deg,var(--pink),var(--violet));border:0;border-radius:11px;padding:12px 18px;color:white;font-weight:850}.action:disabled{opacity:.45;cursor:not-allowed}.notice{border:1px solid #35e5ff55;background:#10222e66;border-radius:12px;padding:12px;color:#c8f7ff;font-size:.9rem;line-height:1.5}.word-board{display:grid;gap:7px;justify-content:center;margin:18px auto;max-height:380px;overflow-y:auto}.word-row{display:flex;gap:6px}.tile{width:clamp(42px,10vw,54px);height:clamp(42px,10vw,54px);border:2px solid #403657;border-radius:8px;display:grid;place-items:center;font-size:1.35rem;font-weight:900;background:#0d0a18}.tile.correct{background:#159b70;border-color:#159b70}.tile.present{background:#bd861c;border-color:#bd861c}.tile.absent{background:#393346;border-color:#393346;color:#b6aec4}.kb{display:grid;gap:6px;max-width:520px;margin:15px auto}.kbrow{display:flex;justify-content:center;gap:4px}.key{border:1px solid var(--line);border-radius:7px;background:#2a2240;color:white;min-width:0;flex:1;padding:12px 3px;font-weight:800}.key.correct{background:#159b70}.key.present{background:#bd861c}.key.absent{background:#393346;color:#aaa}.key.wide{flex:1.5}
-.size-stage{height:290px;position:relative;overflow:hidden;border:1px solid #33405d;border-radius:16px;background-color:#0b1020;background-image:linear-gradient(#27314a55 1px,transparent 1px),linear-gradient(90deg,#27314a55 1px,transparent 1px);background-size:24px 24px;display:flex;align-items:end;justify-content:space-around;padding:20px 12px}.size-object{width:42%;height:100%;display:flex;align-items:end;justify-content:center;position:relative}.shape{max-height:100%;max-width:100%;width:var(--shape-width,90px);height:var(--shape-height,120px);border:3px solid var(--cyan);background:#35e5ff12;clip-path:var(--shape,polygon(10% 0,90% 0,100% 100%,0 100%));filter:drop-shadow(0 0 8px #35e5ff44)}.shape.target{border-color:var(--pink);background:#ff3ca612;filter:drop-shadow(0 0 8px #ff3ca644)}.objcaption{position:absolute;bottom:-2px;left:0;right:0;text-align:center;transform:translateY(100%);font-size:.8rem;color:var(--muted);padding-top:7px}.size-stage{padding-bottom:42px}.range{width:100%;accent-color:var(--pink)}.result{border:1px solid var(--line);border-radius:11px;padding:12px;margin-top:12px;background:#0e0b19}
+.size-stage{height:290px;position:relative;overflow:hidden;border:1px solid #33405d;border-radius:16px;background-color:#0b1020;background-image:linear-gradient(#27314a55 1px,transparent 1px),linear-gradient(90deg,#27314a55 1px,transparent 1px);background-size:24px 24px;display:flex;align-items:end;justify-content:space-around;padding:20px 12px 42px}.size-object{width:42%;height:100%;display:flex;align-items:end;justify-content:center;position:relative}.shape{max-height:100%;max-width:100%;width:var(--shape-width,90px);height:var(--shape-height,120px);border:3px solid var(--cyan);background:#35e5ff12;clip-path:var(--shape,polygon(10% 0,90% 0,100% 100%,0 100%));filter:drop-shadow(0 0 8px #35e5ff44)}.shape.target{border-color:var(--pink);background:#ff3ca612;filter:drop-shadow(0 0 8px #ff3ca644)}.objcaption{position:absolute;bottom:-2px;left:0;right:0;text-align:center;transform:translateY(100%);font-size:.8rem;color:var(--muted);padding-top:7px}.range{width:100%;accent-color:var(--pink)}.result{border:1px solid var(--line);border-radius:11px;padding:12px;margin-top:12px;background:#0e0b19}
 .guesses{display:flex;flex-direction:column;gap:7px;max-height:430px;overflow:auto}.guess{display:flex;justify-content:space-between;gap:12px;padding:11px 13px;border:1px solid var(--line);border-radius:10px;background:#0e0b19}.guess b{overflow-wrap:anywhere}.rank{font-weight:900;color:var(--cyan);white-space:nowrap}.timer{font-size:2.6rem;font-weight:1000;text-align:center;color:var(--pink);margin:10px}.qtext{font-size:1.2rem;line-height:1.45;font-weight:800;text-align:center;min-height:60px}.footer{border-top:1px solid var(--line);padding:22px 0 35px;color:var(--muted);font-size:.8rem;text-align:center}
 @media(min-width:760px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.game{min-height:220px}.hero{padding-top:82px}}
 @media(max-width:420px){.top{height:62px}.logo{font-size:1.2rem}.nav .btn{padding:8px 10px}.panel{padding:15px}.size-stage{height:245px}}
 </style>
 </head>
 <body>
-<header><div class="wrap top"><div class="logo" onclick="goHome()">PLAY<span>FINITY</span></div><div class="nav"><button class="btn" id="back" onclick="goHome()" hidden>← Menü</button><button class="btn" onclick="document.getElementById('help').hidden=!document.getElementById('help').hidden">ⓘ</button></div></div></header>
+<header>
+  <div class="wrap top">
+    <div class="logo" onclick="goHome()">PLAY<span>FINITY</span></div>
+    <div class="nav">
+      <button class="btn" id="back" onclick="goHome()" hidden>← Menü</button>
+      <button class="btn" onclick="document.getElementById('help').hidden=!document.getElementById('help').hidden">ⓘ</button>
+    </div>
+  </div>
+</header>
+
 <main id="home" class="wrap">
-<section class="hero"><div class="eyebrow">YOUR GAME · YOUR COMMUNITY</div><h1>PLAY BEYOND<br>LIMITS.</h1><p>Vier Spiele. Eine Community. Fordere dich selbst heraus oder spiele gemeinsam mit deinem TikTok-Live-Chat.</p><div class="stats"><span class="stat">✦ 4 Spiele</span><span class="stat">◈ Mobile first</span><span class="stat">⚡ Neon Gaming</span></div></section>
-<div id="help" class="notice" hidden>PLAYFINITY-Vorabversion: Die Spieleoberfläche und lokale Grundfunktionen sind enthalten. Für echte TikTok-Live-Ereignisse, semantische Kontexto-Ränge und gemeinsame Spielstände muss die passende externe Verbindung serverseitig eingerichtet und getestet werden.</div>
-<div class="section-head"><div><h2>Wähle dein Spiel</h2><p>Welches Game startest du?</p></div></div>
-<section class="grid">
-<button class="game" onclick="openView('wordle')"><div class="emoji">🔤</div><h3>Wordle</h3><p>Finde das geheime Wort mit fünf Buchstaben. Auch der Chat kann mitraten.</p><small>WORT-RÄTSEL →</small></button>
-<button class="game" onclick="openView('size')"><div class="emoji">📐</div><h3>Size It Up</h3><p>Schätze Größen und Proportionen in fünf abwechslungsreichen Kategorien.</p><small>GRÖSSEN VERGLEICHEN →</small></button>
-<button class="game" onclick="openView('kontexto')"><div class="emoji">🧠</div><h3>Kontexto</h3><p>Finde das geheime Wort über seine Bedeutung – nicht über die Schreibweise.</p><small>WORTNÄHE KNACKEN →</small></button>
-<button class="game" onclick="openView('price')"><div class="emoji">🎯</div><h3>The Price Is Right</h3><p>Schätze Zahlen. Wer liegt am nächsten an der richtigen Antwort?</p><small>MITRATEN →</small></button>
-</section>
+  <section class="hero">
+    <div class="eyebrow">YOUR GAME · YOUR COMMUNITY</div>
+    <h1>PLAY BEYOND<br>LIMITS.</h1>
+    <p>Vier Spiele. Eine Community. Fordere dich selbst heraus oder spiele gemeinsam mit deinem TikTok-Live-Chat.</p>
+    <div class="stats">
+      <span class="stat">✦ 4 Spiele</span>
+      <span class="stat">◈ Mobile first</span>
+      <span class="stat">⚡ Neon Gaming</span>
+    </div>
+  </section>
+
+  <div id="help" class="notice" hidden>
+    PLAYFINITY-Vorabversion: Die Spieleoberfläche und lokale Grundfunktionen sind enthalten. Für echte TikTok-Live-Ereignisse muss die TikFinity-Verbindung noch eingerichtet werden.
+  </div>
+
+  <div class="section-head">
+    <div>
+      <h2>Wähle dein Spiel</h2>
+      <p>Welches Game startest du?</p>
+    </div>
+  </div>
+
+  <section class="grid">
+    <button class="game" onclick="openView('wordle')">
+      <div class="emoji">🔤</div>
+      <h3>Wordle</h3>
+      <p>Finde das geheime Wort mit fünf Buchstaben. Auch der Chat kann mitraten.</p>
+      <small>WORT-RÄTSEL →</small>
+    </button>
+    <button class="game" onclick="openView('size')">
+      <div class="emoji">📐</div>
+      <h3>Size It Up</h3>
+      <p>Schätze Größen und Proportionen in fünf abwechslungsreichen Kategorien.</p>
+      <small>GRÖSSEN VERGLEICHEN →</small>
+    </button>
+    <button class="game" onclick="openView('kontexto')">
+      <div class="emoji">🧠</div>
+      <h3>Kontexto</h3>
+      <p>Finde das geheime Wort über seine Bedeutung – nicht über die Schreibweise.</p>
+      <small>WORTNÄHE KNACKEN →</small>
+    </button>
+    <button class="game" onclick="openView('price')">
+      <div class="emoji">🎯</div>
+      <h3>The Price Is Right</h3>
+      <p>Schätze Zahlen. Wer liegt am nächsten an der richtigen Antwort?</p>
+      <small>MITRATEN →</small>
+    </button>
+  </section>
 </main>
 
 <section id="wordle" class="view">
-<div class="viewhead"><h2>🔤 Wordle</h2><button class="btn" onclick="newWordle()">Neues Spiel</button></div>
-<div class="panel"><div class="muted" style="text-align:center">Errate das deutsche Wort mit genau fünf Buchstaben · <b>Unendlich Versuche</b></div><div id="wordboard" class="word-board"></div><div class="row"><input id="winput" class="field" maxlength="5" placeholder="Fünf Buchstaben" autocomplete="off"><button class="action" onclick="submitWordle()">Prüfen</button></div><div id="wmessage" class="muted" style="text-align:center;margin-top:12px" aria-live="polite"></div><div id="keyboard" class="kb"></div></div>
+  <div class="viewhead">
+    <h2>🔤 Wordle</h2>
+    <button class="btn" onclick="newWordle()">Neues Spiel</button>
+  </div>
+  <div class="panel">
+    <div class="muted" style="text-align:center">Errate das deutsche Wort mit genau fünf Buchstaben · <b>Unendlich Versuche</b></div>
+    <div id="wordboard" class="word-board"></div>
+    <div class="row">
+      <input id="winput" class="field" maxlength="5" placeholder="Fünf Buchstaben" autocomplete="off">
+      <button class="action" onclick="submitWordle()">Prüfen</button>
+    </div>
+    <div id="wmessage" class="muted" style="text-align:center;margin-top:12px"></div>
+    <div id="keyboard" class="kb"></div>
+  </div>
 </section>
 
 <section id="size" class="view">
-<div class="viewhead"><h2>📐 Size It Up</h2><button class="btn" onclick="newSize()">Neue Runde</button></div>
-<div class="panel">
-<div class="row">
-<div><div class="muted">KATEGORIE</div>
-<select id="sizecat" class="field" onchange="newSize()">
-<option>Geografie</option>
-<option>Sehenswürdigkeiten</option>
-<option>Spielewelt</option>
-<option>Alltägliche Gegenstände</option>
-<option>Transportmittel</option>
-</select></div>
-<div><div class="muted">RUNDE</div><div id="sround" style="font-size:1.25rem;font-weight:900;padding:10px 0">1 / 5</div></div>
-<div><div class="muted">PUNKTE</div><div id="spoints" style="font-size:1.25rem;font-weight:900;padding:10px 0">0</div></div>
-</div>
-<div class="size-stage">
-<div class="size-object"><div id="refshape" class="shape"></div><div class="objcaption" id="refname">Referenz</div></div>
-<div class="size-object"><div id="targetshape" class="shape target"></div><div class="objcaption" id="targetname">Dein Tipp</div></div>
-</div>
-<div style="display:flex;justify-content:space-between;margin:18px 0 6px"><span class="muted">Größe anpassen</span><b id="scaleval">50%</b></div>
-<input id="srange" class="range" type="range" min="10" max="180" value="50" oninput="scaleTarget(this.value)">
-<div class="notice" style="margin-top:15px"><b>Was wird verglichen?</b><div id="sdescription">Die passende Messgröße wird hier angezeigt.</div></div>
-<button id="slock" class="action" style="width:100%;margin-top:15px" onclick="lockSize()">Sperren</button>
-<div id="sresult" class="result" hidden></div>
-<button id="snext" class="btn" style="width:100%;margin-top:10px" onclick="nextSize()" hidden>Nächste Runde →</button>
-</div>
+  <div class="viewhead">
+    <h2>📐 Size It Up</h2>
+    <button class="btn" onclick="newSize()">Neue Runde</button>
+  </div>
+  <div class="panel">
+    <div class="row">
+      <div>
+        <div class="muted">KATEGORIE</div>
+        <select id="sizecat" class="field" onchange="newSize()">
+          <option>Geografie</option>
+          <option>Sehenswürdigkeiten</option>
+          <option>Spielewelt</option>
+          <option>Alltägliche Gegenstände</option>
+          <option>Transportmittel</option>
+        </select>
+      </div>
+      <div>
+        <div class="muted">RUNDE</div>
+        <div id="sround" style="font-size:1.25rem;font-weight:900;padding:10px 0">1 / 5</div>
+      </div>
+      <div>
+        <div class="muted">PUNKTE</div>
+        <div id="spoints" style="font-size:1.25rem;font-weight:900;padding:10px 0">0</div>
+      </div>
+    </div>
+    <div class="size-stage">
+      <div class="size-object">
+        <div id="refshape" class="shape"></div>
+        <div class="objcaption" id="refname">Referenz</div>
+      </div>
+      <div class="size-object">
+        <div id="targetshape" class="shape target"></div>
+        <div class="objcaption" id="targetname">Dein Tipp</div>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:space-between;margin:18px 0 6px">
+      <span class="muted">Größe anpassen</span>
+      <b id="scaleval">50%</b>
+    </div>
+    <input id="srange" class="range" type="range" min="10" max="180" value="50" oninput="scaleTarget(this.value)">
+    <div class="notice" style="margin-top:15px">
+      <b>Was wird verglichen?</b>
+      <div id="sdescription">Die passende Messgröße wird hier angezeigt.</div>
+    </div>
+    <button id="slock" class="action" style="width:100%;margin-top:15px" onclick="lockSize()">Sperren</button>
+    <div id="sresult" class="result" hidden></div>
+    <button id="snext" class="btn" style="width:100%;margin-top:10px" onclick="nextSize()" hidden>Nächste Runde →</button>
+  </div>
 </section>
 
 <section id="kontexto" class="view">
-<div class="viewhead"><h2>🧠 Kontext(o)</h2><button class="btn" onclick="newKontexto()">Neues Spiel</button></div>
-<div class="panel">
-<p class="muted">Finde das geheime Wort. Je kleiner der Rang, desto näher bist du an der Bedeutung.</p>
-<div class="row"><input id="kinput" class="field" placeholder="Wort eingeben…" maxlength="40"><button class="action" onclick="submitKontexto()">Raten</button></div>
-<div id="kmessage" class="muted" style="margin:10px 0" aria-live="polite"></div>
-<div id="klist" class="guesses"></div>
-</div>
+  <div class="viewhead">
+    <h2>🧠 Kontext(o)</h2>
+    <button class="btn" onclick="newKontexto()">Neues Spiel</button>
+  </div>
+  <div class="panel">
+    <p class="muted">Finde das geheime Wort. Je kleiner der Rang, desto näher bist du an der Bedeutung.</p>
+    <div class="row">
+      <input id="kinput" class="field" placeholder="Wort eingeben…" maxlength="40">
+      <button class="action" onclick="submitKontexto()">Raten</button>
+    </div>
+    <div id="kmessage" class="muted" style="margin:10px 0"></div>
+    <div id="klist" class="guesses"></div>
+  </div>
 </section>
 
 <section id="price" class="view">
-<div class="viewhead"><h2>🎯 The Price Is Right</h2><button class="btn" onclick="newPrice()">Neue Frage</button></div>
-<div class="panel">
-<div class="muted" style="text-align:center">SCHÄTZFRAGE</div>
-<div id="pq" class="qtext">Starte eine neue Runde!</div>
-<div id="ptimer" class="timer">30</div>
-<div class="row"><input id="pinput" class="field" type="number" placeholder="Dein Zahlentipp"><button class="action" onclick="submitPrice()">Tipp abgeben</button></div>
-<div id="pmessage" class="muted" style="text-align:center;margin-top:12px"></div>
-<div id="presult" class="result" hidden></div>
-</div>
+  <div class="viewhead">
+    <h2>🎯 The Price Is Right</h2>
+    <button class="btn" onclick="newPrice()">Neue Frage</button>
+  </div>
+  <div class="panel">
+    <div class="muted" style="text-align:center">SCHÄTZFRAGE</div>
+    <div id="pq" class="qtext">Starte eine neue Runde!</div>
+    <div id="ptimer" class="timer">30</div>
+    <div class="row">
+      <input id="pinput" class="field" type="number" placeholder="Dein Zahlentipp">
+      <button class="action" onclick="submitPrice()">Tipp abgeben</button>
+    </div>
+    <div id="pmessage" class="muted" style="text-align:center;margin-top:12px"></div>
+    <div id="presult" class="result" hidden></div>
+  </div>
 </section>
+
 <footer class="footer wrap">PLAYFINITY · Play beyond limits</footer>
+
 <script>
-const $=id=>document.getElementById(id);
-function goHome(){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));\( ('home').hidden=false; \)('back').hidden=true;window.scrollTo(0,0)}
-function openView(id){\( ('home').hidden=true;document.querySelectorAll('.view').forEach(v=>v.classList.remove('active')); \)(id).classList.add('active');$('back').hidden=false;window.scrollTo(0,0);if(id==='wordle')newWordle();if(id==='size')newSize();if(id==='kontexto')newKontexto();if(id==='price')newPrice()}
+function goHome(){
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById('home').hidden=false;
+  document.getElementById('back').hidden=true;
+  window.scrollTo(0,0);
+}
+function openView(id){
+  document.getElementById('home').hidden=true;
+  document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  document.getElementById('back').hidden=false;
+  window.scrollTo(0,0);
+  if(id==='wordle') newWordle();
+  if(id==='size') newSize();
+  if(id==='kontexto') newKontexto();
+  if(id==='price') newPrice();
+}
 
 const WORDS=['APFEL','TISCH','STUHL','LAMPE','WOLKE','BLUME','STEIN','FISCH','VOGEL','PFERD','KATZE','STIFT','RADIO','RADAR','SONNE','REGEN','FEUER','MOTOR','SPIEL','BIRNE','KREIS','KARTE','BLATT','BRIEF','BROTE','DRAHT','ENGEL','FADEN','FARBE','GABEL','GLANZ','GRUND','HONIG','INSEL','JACKE','KABEL','KAMIN','KANAL','KANTE','KERZE','KISTE','KLEID','KNOPF','KREUZ','KRONE','LADEN','LAGER','LASER','LINSE','LITER','LOKAL','MAGEN','MAUER','MEILE','MENGE','MESSE','MITTE','NACHT','NAGEL','NEBEL','NOTEN','OLIVE','OPFER','ORDEN','PAKET','PALME','PAUSE','PERLE','PILOT','PLATZ','POKAL','PUNKT','RACHE','RAUCH','REIHE','REISE','RINDE','RINGE','ROLLE','ROMAN','ROUTE','SACHE','SAITE','SALAT','SALON','SAMEN','SCHAL','SCHUH','SEGEN','SEITE','SENAT','SERIE','SICHT','SILBE','SINNE','SOCKE','SOHLE','SOLAR','SORGE','SORTE','SPALT','SPEER','SPION','SPORT','STAAT','STADT','STAHL','STAND','STARK','STAUB','STERN','STICH','STILL','STOCK','STOFF','STOLZ','STROM','STUFE','STURM','SUCHE','SUMME','SUPPE','TAFEL','TALER','TANTE','TASSE','TEICH','TEMPO','THEMA','TIGER','TITEL','TONNE','TORTE','TRAUM','TREND','TRICK','TROST','TUNNEL','TURBO','UMZUG','UNION','VATER','VIDEO','VILLA','VIRUS','WAGEN','WALZE','WANNE','WEIDE','WEISE','WELLE','WENDE','WERTE','WESEN','WETTE','WIESE','WILLE','WINDE','WOCHE','WOLKE','WOLLE','WORTE','WUNDE','WURST','ZANGE','ZEBRA','ZEILE','ZELLE','ZIEGE','ZIELE','ZITAT','ZONEN','ZUNGE'];
 let secret='',wrow=0,gameOver=false;
-function newWordle(){secret=WORDS[Math.floor(Math.random()*WORDS.length)];wrow=0;gameOver=false;\( ('winput').value=''; \)('wmessage').textContent='Unendlich Versuche – viel Erfolg!';$('wordboard').innerHTML='';addWordleRow(0);buildKeyboard()}
-function addWordleRow(r){let row=document.createElement('div');row.className='word-row';row.id='wrow-'+r;for(let c=0;c<5;c++){let t=document.createElement('div');t.className='tile';t.id=`tile-\( {r}- \){c}`;row.appendChild(t)}$('wordboard').appendChild(row)}
-function buildKeyboard(){let rows=['QWERTZUIOP','ASDFGHJKL','YXCVBNM'];\( ('keyboard').innerHTML='';rows.forEach((str,i)=>{let r=document.createElement('div');r.className='kbrow';if(i===2){let enter=document.createElement('button');enter.className='key wide';enter.textContent='ENTER';enter.onclick=submitWordle;r.appendChild(enter)}[...str].forEach(ch=>{let b=document.createElement('button');b.className='key';b.textContent=ch;b.dataset.letter=ch;b.onclick=()=>{ \)('winput').value=(\( ('winput').value+ch).slice(0,5)};r.appendChild(b)});if(i===2){let del=document.createElement('button');del.className='key wide';del.textContent='⌫';del.onclick=()=> \)('winput').value=\( ('winput').value.slice(0,-1);r.appendChild(del)} \)('keyboard').appendChild(r)})}
-function submitWordle(){let g=\( ('winput').value.trim().toLocaleUpperCase('de-DE');if(gameOver)return;if(g.length!==5||!/^[A-ZÄÖÜ]+ \)/.test(g)){\( ('wmessage').textContent='Bitte genau fünf Buchstaben eingeben.';return}let counts={};[...secret].forEach((c,i)=>{if(g[i]!==c)counts[c]=(counts[c]||0)+1});let marks=Array(5).fill('absent');[...g].forEach((c,i)=>{if(c===secret[i])marks[i]='correct'});[...g].forEach((c,i)=>{if(marks[i]!=='correct'&&counts[c]>0){marks[i]='present';counts[c]--}});[...g].forEach((c,i)=>{ \)(`tile-\( {wrow}- \){i}`).textContent=c;\( (`tile- \){wrow}-\( {i}`).classList.add(marks[i]);let key=document.querySelector(`[data-letter=" \){c}"]`);if(key){if(marks[i]==='correct'||(marks[i]==='present'&&!key.classList.contains('correct')))key.classList.add(marks[i]);else if(marks[i]==='absent'&&!key.classList.contains('correct')&&!key.classList.contains('present'))key.classList.add('absent')}});\( ('winput').value='';if(g===secret){gameOver=true; \)('wmessage').textContent='Richtig! Das Wort war '+secret+' (in '+(wrow+1)+' Versuchen).';return}wrow++;addWordleRow(wrow);\( ('wmessage').textContent='Versuch '+(wrow)+' – weitermachen!'; \)('wordboard').scrollTop=$('wordboard').scrollHeight}
-$('winput').addEventListener('keydown',e=>{if(e.key==='Enter')submitWordle()});
+
+function newWordle(){
+  secret=WORDS[Math.floor(Math.random()*WORDS.length)];
+  wrow=0;gameOver=false;
+  document.getElementById('winput').value='';
+  document.getElementById('wmessage').textContent='Unendlich Versuche – viel Erfolg!';
+  document.getElementById('wordboard').innerHTML='';
+  addWordleRow(0);
+  buildKeyboard();
+}
+function addWordleRow(r){
+  let row=document.createElement('div');
+  row.className='word-row';
+  row.id='wrow-'+r;
+  for(let c=0;c<5;c++){
+    let t=document.createElement('div');
+    t.className='tile';
+    t.id='tile-'+r+'-'+c;
+    row.appendChild(t);
+  }
+  document.getElementById('wordboard').appendChild(row);
+}
+function buildKeyboard(){
+  let rows=['QWERTZUIOP','ASDFGHJKL','YXCVBNM'];
+  document.getElementById('keyboard').innerHTML='';
+  rows.forEach((str,i)=>{
+    let r=document.createElement('div');
+    r.className='kbrow';
+    if(i===2){
+      let enter=document.createElement('button');
+      enter.className='key wide';
+      enter.textContent='ENTER';
+      enter.onclick=submitWordle;
+      r.appendChild(enter);
+    }
+    [...str].forEach(ch=>{
+      let b=document.createElement('button');
+      b.className='key';
+      b.textContent=ch;
+      b.dataset.letter=ch;
+      b.onclick=()=>{document.getElementById('winput').value=(document.getElementById('winput').value+ch).slice(0,5)};
+      r.appendChild(b);
+    });
+    if(i===2){
+      let del=document.createElement('button');
+      del.className='key wide';
+      del.textContent='⌫';
+      del.onclick=()=>{document.getElementById('winput').value=document.getElementById('winput').value.slice(0,-1)};
+      r.appendChild(del);
+    }
+    document.getElementById('keyboard').appendChild(r);
+  });
+}
+function submitWordle(){
+  let g=document.getElementById('winput').value.trim().toLocaleUpperCase('de-DE');
+  if(gameOver) return;
+  if(g.length!==5||!/^[A-ZÄÖÜ]+$/.test(g)){
+    document.getElementById('wmessage').textContent='Bitte genau fünf Buchstaben eingeben.';
+    return;
+  }
+  let counts={};
+  [...secret].forEach((c,i)=>{if(g[i]!==c) counts[c]=(counts[c]||0)+1});
+  let marks=Array(5).fill('absent');
+  [...g].forEach((c,i)=>{if(c===secret[i]) marks[i]='correct'});
+  [...g].forEach((c,i)=>{if(marks[i]!=='correct'&&counts[c]>0){marks[i]='present';counts[c]--}});
+  [...g].forEach((c,i)=>{
+    document.getElementById('tile-'+wrow+'-'+i).textContent=c;
+    document.getElementById('tile-'+wrow+'-'+i).classList.add(marks[i]);
+    let key=document.querySelector('[data-letter="'+c+'"]');
+    if(key){
+      if(marks[i]==='correct'||(marks[i]==='present'&&!key.classList.contains('correct'))) key.classList.add(marks[i]);
+      else if(marks[i]==='absent'&&!key.classList.contains('correct')&&!key.classList.contains('present')) key.classList.add('absent');
+    }
+  });
+  document.getElementById('winput').value='';
+  if(g===secret){
+    gameOver=true;
+    document.getElementById('wmessage').textContent='Richtig! Das Wort war '+secret+' (in '+(wrow+1)+' Versuchen).';
+    return;
+  }
+  wrow++;
+  addWordleRow(wrow);
+  document.getElementById('wmessage').textContent='Versuch '+wrow+' – weitermachen!';
+  document.getElementById('wordboard').scrollTop=document.getElementById('wordboard').scrollHeight;
+}
+document.getElementById('winput').addEventListener('keydown',e=>{if(e.key==='Enter') submitWordle()});
 
 const SIZE_BANK={
-'Geografie':[
-{a:'Deutschland',b:'Frankreich',real:0.55,desc:'Verglichen wird die Landesfläche in km².',shape:'polygon(8% 18%,48% 0,90% 25%,78% 75%,40% 100%,0 65%)'},
-{a:'Rhein',b:'Donau',real:0.43,desc:'Verglichen wird die Flusslänge in km.',shape:'polygon(40% 0,65% 10%,53% 30%,80% 48%,58% 70%,68% 100%,38% 100%,28% 72%,45% 50%,20% 30%)'},
-{a:'Zugspitze',b:'Mont Blanc',real:0.62,desc:'Verglichen wird die Gipfelhöhe in Metern.',shape:'polygon(50% 0,65% 35%,80% 100%,20% 100%,35% 35%)'},
-{a:'Bodensee',b:'Genfersee',real:0.92,desc:'Verglichen wird die Seefläche.',shape:'polygon(10% 40%,30% 20%,70% 15%,95% 40%,80% 70%,40% 80%,5% 60%)'}
-],
-'Sehenswürdigkeiten':[
-{a:'Eiffelturm',b:'Freiheitsstatue',real:0.28,desc:'Verglichen wird die Gesamthöhe in Metern.',shape:'polygon(48% 0,55% 20%,64% 40%,70% 100%,30% 100%,36% 40%,45% 20%)'},
-{a:'Kölner Dom',b:'Ulmer Münster',real:0.97,desc:'Verglichen wird die Turmhöhe.',shape:'polygon(45% 0,55% 0,60% 30%,70% 100%,30% 100%,40% 30%)'},
-{a:'Brandenburger Tor',b:'Kolosseum',real:0.54,desc:'Verglichen wird die Höhe.',shape:'polygon(5% 30%,20% 0,80% 0,95% 30%,95% 100%,5% 100%)'}
-],
-'Spielewelt':[
-{a:'Mario',b:'Pikachu',real:0.26,desc:'Verglichen wird die Figurhöhe.',shape:'polygon(30% 10%,50% 0,70% 10%,80% 40%,70% 100%,30% 100%,20% 40%)'},
-{a:'Game Boy',b:'Smartphone',real:0.99,desc:'Verglichen wird die Gerätehöhe.',shape:'polygon(20% 0,80% 0,85% 10%,85% 90%,80% 100%,20% 100%,15% 90%,15% 10%)'}
-],
-'Alltägliche Gegenstände':[
-{a:'Tür',b:'Kühlschrank',real:0.90,desc:'Verglichen wird die Höhe in cm.',shape:'polygon(15% 0,85% 0,85% 100%,15% 100%)'},
-{a:'Kreditkarte',b:'Smartphone',real:0.57,desc:'Verglichen wird die Länge.',shape:'polygon(5% 20%,95% 20%,95% 80%,5% 80%)'},
-{a:'A4-Blatt',b:'Tischtennisball',real:0.13,desc:'Verglichen wird die Länge / Durchmesser.',shape:'polygon(10% 0,90% 0,90% 100%,10% 100%)'}
-],
-'Transportmittel':[
-{a:'VW Golf',b:'Reisebus',real:0.36,desc:'Verglichen wird die Länge in Metern.',shape:'polygon(5% 40%,25% 25%,75% 25%,95% 40%,95% 70%,5% 70%)'},
-{a:'Fahrrad',b:'Motorrad',real:0.82,desc:'Verglichen wird die Länge.',shape:'polygon(10% 50%,30% 30%,70% 30%,90% 50%,90% 70%,10% 70%)'},
-{a:'ICE',b:'Airbus A380',real:0.55,desc:'Verglichen wird die Länge in Metern.',shape:'polygon(0 40%,80% 35%,100% 50%,80% 65%,0 60%)'}
-]
+  'Geografie':[
+    {a:'Deutschland',b:'Frankreich',real:0.55,desc:'Verglichen wird die Landesfläche in km².',shape:'polygon(8% 18%,48% 0,90% 25%,78% 75%,40% 100%,0 65%)'},
+    {a:'Rhein',b:'Donau',real:0.43,desc:'Verglichen wird die Flusslänge in km.',shape:'polygon(40% 0,65% 10%,53% 30%,80% 48%,58% 70%,68% 100%,38% 100%,28% 72%,45% 50%,20% 30%)'},
+    {a:'Zugspitze',b:'Mont Blanc',real:0.62,desc:'Verglichen wird die Gipfelhöhe in Metern.',shape:'polygon(50% 0,65% 35%,80% 100%,20% 100%,35% 35%)'},
+    {a:'Bodensee',b:'Genfersee',real:0.92,desc:'Verglichen wird die Seefläche.',shape:'polygon(10% 40%,30% 20%,70% 15%,95% 40%,80% 70%,40% 80%,5% 60%)'}
+  ],
+  'Sehenswürdigkeiten':[
+    {a:'Eiffelturm',b:'Freiheitsstatue',real:0.28,desc:'Verglichen wird die Gesamthöhe in Metern.',shape:'polygon(48% 0,55% 20%,64% 40%,70% 100%,30% 100%,36% 40%,45% 20%)'},
+    {a:'Kölner Dom',b:'Ulmer Münster',real:0.97,desc:'Verglichen wird die Turmhöhe.',shape:'polygon(45% 0,55% 0,60% 30%,70% 100%,30% 100%,40% 30%)'},
+    {a:'Brandenburger Tor',b:'Kolosseum',real:0.54,desc:'Verglichen wird die Höhe.',shape:'polygon(5% 30%,20% 0,80% 0,95% 30%,95% 100%,5% 100%)'}
+  ],
+  'Spielewelt':[
+    {a:'Mario',b:'Pikachu',real:0.26,desc:'Verglichen wird die Figurhöhe.',shape:'polygon(30% 10%,50% 0,70% 10%,80% 40%,70% 100%,30% 100%,20% 40%)'},
+    {a:'Game Boy',b:'Smartphone',real:0.99,desc:'Verglichen wird die Gerätehöhe.',shape:'polygon(20% 0,80% 0,85% 10%,85% 90%,80% 100%,20% 100%,15% 90%,15% 10%)'}
+  ],
+  'Alltägliche Gegenstände':[
+    {a:'Tür',b:'Kühlschrank',real:0.90,desc:'Verglichen wird die Höhe in cm.',shape:'polygon(15% 0,85% 0,85% 100%,15% 100%)'},
+    {a:'Kreditkarte',b:'Smartphone',real:0.57,desc:'Verglichen wird die Länge.',shape:'polygon(5% 20%,95% 20%,95% 80%,5% 80%)'},
+    {a:'A4-Blatt',b:'Tischtennisball',real:0.13,desc:'Verglichen wird die Länge / Durchmesser.',shape:'polygon(10% 0,90% 0,90% 100%,10% 100%)'}
+  ],
+  'Transportmittel':[
+    {a:'VW Golf',b:'Reisebus',real:0.36,desc:'Verglichen wird die Länge in Metern.',shape:'polygon(5% 40%,25% 25%,75% 25%,95% 40%,95% 70%,5% 70%)'},
+    {a:'Fahrrad',b:'Motorrad',real:0.82,desc:'Verglichen wird die Länge.',shape:'polygon(10% 50%,30% 30%,70% 30%,90% 50%,90% 70%,10% 70%)'},
+    {a:'ICE',b:'Airbus A380',real:0.55,desc:'Verglichen wird die Länge in Metern.',shape:'polygon(0 40%,80% 35%,100% 50%,80% 65%,0 60%)'}
+  ]
 };
 let sround=1,spoints=0,sdata=null,slocked=false,scale=50;
+
 function newSize(){sround=1;spoints=0;loadSize()}
-function loadSize(){let cat=\( ('sizecat').value,arr=SIZE_BANK[cat];sdata=arr[(sround-1)%arr.length];slocked=false;scale=50; \)('sround').textContent=sround+' / 5';\( ('spoints').textContent=spoints; \)('refname').textContent=sdata.a;\( ('targetname').textContent=sdata.b; \)('sdescription').textContent=sdata.desc;\( ('srange').value=scale; \)('scaleval').textContent=scale+'%';\( ('refshape').style.setProperty('--shape',sdata.shape); \)('targetshape').style.setProperty('--shape',sdata.shape);\( ('refshape').style.setProperty('--shape-height','125px'); \)('targetshape').style.setProperty('--shape-height',Math.round(125*scale/100)+'px');\( ('sresult').hidden=true; \)('snext').hidden=true;$('slock').disabled=false}
-function scaleTarget(v){scale=Number(v);\( ('scaleval').textContent=v+'%'; \)('targetshape').style.setProperty('--shape-height',Math.round(125*scale/100)+'px')}
-function lockSize(){if(slocked)return;slocked=true;let deviation=Math.abs(scale-sdata.real*100)/(sdata.real*100)*100;let pts=Math.max(0,Math.round(100-deviation*1.8));spoints+=pts;\( ('spoints').textContent=spoints; \)('sresult').hidden=false;$('sresult').innerHTML=`<b>Dein Tipp:</b> ${scale}% der Referenz<br><b>Exakter Vergleich:</b> ${Math.round(sdata.real*100)}%<br><b>Abweichung:</b> ${deviation.toFixed(1).replace('.',',')}%<br><b>Punkte:</b> \( {pts} / 100<br><span class="muted"> \){sdata.desc}</span>`;\( ('slock').disabled=true; \)('snext').hidden=false}
-function nextSize(){if(sround>=5){$('sresult').innerHTML+=`<br><b>Runde beendet – Gesamtpunktzahl: \( {spoints}</b>`; \)('snext').hidden=true;return}sround++;loadSize()}
+function loadSize(){
+  let cat=document.getElementById('sizecat').value;
+  let arr=SIZE_BANK[cat];
+  sdata=arr[(sround-1)%arr.length];
+  slocked=false;scale=50;
+  document.getElementById('sround').textContent=sround+' / 5';
+  document.getElementById('spoints').textContent=spoints;
+  document.getElementById('refname').textContent=sdata.a;
+  document.getElementById('targetname').textContent=sdata.b;
+  document.getElementById('sdescription').textContent=sdata.desc;
+  document.getElementById('srange').value=scale;
+  document.getElementById('scaleval').textContent=scale+'%';
+  document.getElementById('refshape').style.setProperty('--shape',sdata.shape);
+  document.getElementById('targetshape').style.setProperty('--shape',sdata.shape);
+  document.getElementById('refshape').style.setProperty('--shape-height','125px');
+  document.getElementById('targetshape').style.setProperty('--shape-height',Math.round(125*scale/100)+'px');
+  document.getElementById('sresult').hidden=true;
+  document.getElementById('snext').hidden=true;
+  document.getElementById('slock').disabled=false;
+}
+function scaleTarget(v){
+  scale=Number(v);
+  document.getElementById('scaleval').textContent=v+'%';
+  document.getElementById('targetshape').style.setProperty('--shape-height',Math.round(125*scale/100)+'px');
+}
+function lockSize(){
+  if(slocked) return;
+  slocked=true;
+  let deviation=Math.abs(scale-sdata.real*100)/(sdata.real*100)*100;
+  let pts=Math.max(0,Math.round(100-deviation*1.8));
+  spoints+=pts;
+  document.getElementById('spoints').textContent=spoints;
+  document.getElementById('sresult').hidden=false;
+  document.getElementById('sresult').innerHTML='<b>Dein Tipp:</b> '+scale+'% der Referenz<br><b>Exakter Vergleich:</b> '+Math.round(sdata.real*100)+'%<br><b>Abweichung:</b> '+deviation.toFixed(1).replace('.',',')+'%<br><b>Punkte:</b> '+pts+' / 100<br><span class="muted">'+sdata.desc+'</span>';
+  document.getElementById('slock').disabled=true;
+  document.getElementById('snext').hidden=false;
+}
+function nextSize(){
+  if(sround>=5){
+    document.getElementById('sresult').innerHTML+='<br><b>Runde beendet – Gesamtpunktzahl: '+spoints+'</b>';
+    document.getElementById('snext').hidden=true;
+    return;
+  }
+  sround++;
+  loadSize();
+}
 
 let kcount=0;
-function newKontexto(){kcount=0;\( ('klist').innerHTML=''; \)('kinput').value='';$('kmessage').textContent='Bereit. Für echte semantische Ränge braucht es später einen Dienst.'}
-function submitKontexto(){let w=\( ('kinput').value.trim();if(!w)return; \)('kinput').value='';kcount++;let row=document.createElement('div');row.className='guess';row.innerHTML=`<b>${escapeHtml(w)}</b><span class="rank">Versuch \( {kcount}</span>`; \)('klist').prepend(row);$('kmessage').textContent='Versuch gespeichert.'}
-$('kinput').addEventListener('keydown',e=>{if(e.key==='Enter')submitKontexto()});
+function newKontexto(){
+  kcount=0;
+  document.getElementById('klist').innerHTML='';
+  document.getElementById('kinput').value='';
+  document.getElementById('kmessage').textContent='Bereit. Für echte semantische Ränge braucht es später einen Dienst.';
+}
+function submitKontexto(){
+  let w=document.getElementById('kinput').value.trim();
+  if(!w) return;
+  document.getElementById('kinput').value='';
+  kcount++;
+  let row=document.createElement('div');
+  row.className='guess';
+  row.innerHTML='<b>'+escapeHtml(w)+'</b><span class="rank">Versuch '+kcount+'</span>';
+  document.getElementById('klist').prepend(row);
+  document.getElementById('kmessage').textContent='Versuch gespeichert.';
+}
+document.getElementById('kinput').addEventListener('keydown',e=>{if(e.key==='Enter') submitKontexto()});
 
 const QUESTIONS=[
-['Wie viele Pokémon gehörten zur ersten Generation?',151,'Erste Generation (Kanto).'],
-['Wie viele Knochen hat ein erwachsener Mensch?',206,'Typischer Wert für Erwachsene.'],
-['In welchem Jahr landete Apollo 11 auf dem Mond?',1969,'Erste bemannte Mondlandung.'],
-['Wie viele Elemente hat das Periodensystem?',118,'Aktuell anerkannte Elemente.'],
-['Wie hoch ist der Mount Everest (Meter)?',8849,'Höhe über dem Meeresspiegel.'],
-['Wie viele Felder hat ein Schachbrett?',64,'8 × 8 Felder.'],
-['Wie viele Minuten hat ein Tag?',1440,'24 × 60.'],
-['Wie viele Zähne hat ein erwachsenes Gebiss inkl. Weisheitszähne?',32,'Vollständiges Gebiss.'],
-['Wie hoch ist der Eiffelturm (Meter)?',330,'Mit Antenne.'],
-['Wie viele Bundesländer hat Deutschland?',16,''],
-['Wie lang ist der Rhein ungefähr (km)?',1233,''],
-['In welchem Jahr fiel die Berliner Mauer?',1989,''],
-['Wie viele Planeten hat unser Sonnensystem?',8,''],
-['Wie viele Tasten hat ein Standard-Klavier?',88,''],
-['Wie viele Sekunden hat ein Tag?',86400,''],
-['Wie hoch ist der Burj Khalifa (Meter)?',828,''],
-['Wie viele Spieler pro Team beim Fußball auf dem Platz?',11,''],
-['Wie lang ist ein Marathon (Meter)?',42195,''],
-['Wie viele Tage hat ein normales Jahr?',365,''],
-['Wie viele Chromosomen hat der Mensch?',46,'']
+  ['Wie viele Pokémon gehörten zur ersten Generation?',151,'Erste Generation (Kanto).'],
+  ['Wie viele Knochen hat ein erwachsener Mensch?',206,'Typischer Wert für Erwachsene.'],
+  ['In welchem Jahr landete Apollo 11 auf dem Mond?',1969,'Erste bemannte Mondlandung.'],
+  ['Wie viele Elemente hat das Periodensystem?',118,'Aktuell anerkannte Elemente.'],
+  ['Wie hoch ist der Mount Everest (Meter)?',8849,'Höhe über dem Meeresspiegel.'],
+  ['Wie viele Felder hat ein Schachbrett?',64,'8 × 8 Felder.'],
+  ['Wie viele Minuten hat ein Tag?',1440,'24 × 60.'],
+  ['Wie viele Zähne hat ein erwachsenes Gebiss inkl. Weisheitszähne?',32,'Vollständiges Gebiss.'],
+  ['Wie hoch ist der Eiffelturm (Meter)?',330,'Mit Antenne.'],
+  ['Wie viele Bundesländer hat Deutschland?',16,''],
+  ['Wie lang ist der Rhein ungefähr (km)?',1233,''],
+  ['In welchem Jahr fiel die Berliner Mauer?',1989,''],
+  ['Wie viele Planeten hat unser Sonnensystem?',8,''],
+  ['Wie viele Tasten hat ein Standard-Klavier?',88,''],
+  ['Wie viele Sekunden hat ein Tag?',86400,''],
+  ['Wie hoch ist der Burj Khalifa (Meter)?',828,''],
+  ['Wie viele Spieler pro Team beim Fußball auf dem Platz?',11,''],
+  ['Wie lang ist ein Marathon (Meter)?',42195,''],
+  ['Wie viele Tage hat ein normales Jahr?',365,''],
+  ['Wie viele Chromosomen hat der Mensch?',46,'']
 ];
 let q=null,ptimer=null,pleft=30,pguesses=[];
-function newPrice(){clearInterval(ptimer);q=QUESTIONS[Math.floor(Math.random()*QUESTIONS.length)];pleft=30;pguesses=[];\( ('pq').textContent=q[0]; \)('ptimer').textContent='30';\( ('pinput').value=''; \)('presult').hidden=true;\( ('pmessage').textContent='Runde läuft – gib deinen Tipp ab!';ptimer=setInterval(()=>{pleft--; \)('ptimer').textContent=pleft;if(pleft<=0)endPrice()},1000)}
-function submitPrice(){if(!q||pleft<=0)return;let n=Number(\( ('pinput').value);if(!Number.isFinite(n)|| \)('pinput').value==='')return;\( ('pinput').value='';pguesses.push({name:'Du',value:n}); \)('pmessage').textContent='Tipp gespeichert: '+n}
-function endPrice(){clearInterval(ptimer);\( ('ptimer').textContent='ENDE';let best=null,bestDiff=Infinity;pguesses.forEach(g=>{let d=Math.abs(g.value-q[1]);if(d<bestDiff){bestDiff=d;best=g}}); \)('presult').hidden=false;$('presult').innerHTML=`<b>Richtige Antwort:</b> \( {q[1]}<br> \){q[2]?`<b>Info:</b> \( {q[2]}<br>`:''} \){best?`<b>Nächster Tipp:</b> ${best.name} mit \( {best.value}`:'Keine Tipps.'}`; \)('pmessage').textContent='Runde beendet.'}
-$('pinput').addEventListener('keydown',e=>{if(e.key==='Enter')submitPrice()});
-function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+
+function newPrice(){
+  clearInterval(ptimer);
+  q=QUESTIONS[Math.floor(Math.random()*QUESTIONS.length)];
+  pleft=30;pguesses=[];
+  document.getElementById('pq').textContent=q[0];
+  document.getElementById('ptimer').textContent='30';
+  document.getElementById('pinput').value='';
+  document.getElementById('presult').hidden=true;
+  document.getElementById('pmessage').textContent='Runde läuft – gib deinen Tipp ab!';
+  ptimer=setInterval(()=>{
+    pleft--;
+    document.getElementById('ptimer').textContent=pleft;
+    if(pleft<=0) endPrice();
+  },1000);
+}
+function submitPrice(){
+  if(!q||pleft<=0) return;
+  let n=Number(document.getElementById('pinput').value);
+  if(!Number.isFinite(n)||document.getElementById('pinput').value==='') return;
+  document.getElementById('pinput').value='';
+  pguesses.push({name:'Du',value:n});
+  document.getElementById('pmessage').textContent='Tipp gespeichert: '+n;
+}
+function endPrice(){
+  clearInterval(ptimer);
+  document.getElementById('ptimer').textContent='ENDE';
+  let best=null,bestDiff=Infinity;
+  pguesses.forEach(g=>{
+    let d=Math.abs(g.value-q[1]);
+    if(d<bestDiff){bestDiff=d;best=g}
+  });
+  document.getElementById('presult').hidden=false;
+  document.getElementById('presult').innerHTML='<b>Richtige Antwort:</b> '+q[1]+'<br>'+(q[2]?'<b>Info:</b> '+q[2]+'<br>':'')+(best?'<b>Nächster Tipp:</b> '+best.name+' mit '+best.value:'Keine Tipps.');
+  document.getElementById('pmessage').textContent='Runde beendet.';
+}
+document.getElementById('pinput').addEventListener('keydown',e=>{if(e.key==='Enter') submitPrice()});
+
+function escapeHtml(s){
+  return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
 </script>
 </body>
 </html>
