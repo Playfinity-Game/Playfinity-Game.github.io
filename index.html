@@ -497,6 +497,12 @@
       direction: ltr;
     }
 
+    .kontexto-header-hints{display:none;align-items:center;gap:6px;margin-left:auto}
+    .kontexto-header-hint{width:38px;height:36px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.15rem;cursor:pointer;transition:all .2s}
+    .kontexto-header-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
+    .kontexto-header-hint:disabled{opacity:.4;cursor:default}
+    body.kontexto-active .kontexto-header-hints{display:flex}
+    .kontexto-category-hint{margin:10px 0;padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
     .guess-row {
       position: relative;
       background: rgba(18, 20, 44, 0.85);
@@ -744,6 +750,7 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
+    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – einmal pro Runde">💡</button></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
@@ -843,6 +850,7 @@
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
 
+        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
@@ -960,6 +968,7 @@
           this.currentScreen = screenId;
         }
 
+        document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
         const backBtn = document.getElementById('btn-back');
         if (screenId === 'menu') {
           backBtn.style.display = 'none';
@@ -1282,6 +1291,19 @@
       roundTimer: null,
       pendingGuesses: new Set(),
       roundId: 0,
+      categoryHintUsed: false,
+      targetHints: {
+        Hund: { category: 'Tier', word: 'Leine' }, Kaffee: { category: 'Getränk', word: 'Tasse' },
+        Schloss: { category: 'Gebäude oder Bauwerk', word: 'Burg' }, Gitarre: { category: 'Musikinstrument', word: 'Musik' },
+        Sommer: { category: 'Jahreszeit', word: 'Sonne' }, Flugzeug: { category: 'Verkehrsmittel', word: 'Flughafen' },
+        Ozean: { category: 'Natur und Gewässer', word: 'Meer' }, Roboter: { category: 'Technik', word: 'Maschine' },
+        Zauberer: { category: 'Figur aus der Fantasywelt', word: 'Magie' }, Kamera: { category: 'Technik und Geräte', word: 'Foto' },
+        Sonne: { category: 'Himmelskörper', word: 'Stern' }, Kuchen: { category: 'Essen und Süßspeisen', word: 'Torte' },
+        Winter: { category: 'Jahreszeit', word: 'Schnee' }, Rakete: { category: 'Raumfahrt', word: 'Weltraum' },
+        Wald: { category: 'Natur und Landschaft', word: 'Bäume' }, Insel: { category: 'Geografie und Orte', word: 'Strand' },
+        Musik: { category: 'Kunst und Unterhaltung', word: 'Lied' }, Pferd: { category: 'Tier', word: 'Reiten' },
+        Telefon: { category: 'Technik und Kommunikation', word: 'Anruf' }, Schmetterling: { category: 'Tier', word: 'Flügel' }
+      },
 
       // 20 deutsche Zielwörter
       targets: [
@@ -1306,6 +1328,28 @@
         document.getElementById('kontexto-input').addEventListener('keydown', (e) => {
           if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
         });
+        document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
+        document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
+      },
+
+      showCategoryHint() {
+        if (this.roundLocked || this.categoryHintUsed) return;
+        const hint = this.targetHints[this.targetWord];
+        if (!hint) return;
+        this.categoryHintUsed = true;
+        const display = document.getElementById('kontexto-category-display');
+        display.textContent = 'Kategorie: ' + hint.category;
+        display.hidden = false;
+        const button = document.getElementById('kontexto-category-hint');
+        button.disabled = true;
+        button.textContent = '🏷️';
+      },
+
+      showWordHint() {
+        if (this.roundLocked) return;
+        const hint = this.targetHints[this.targetWord];
+        if (!hint) return;
+        this.submitGuess(hint.word);
       },
 
       async pickNewTarget() {
@@ -1314,6 +1358,13 @@
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
         this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
+        this.categoryHintUsed = false;
+        const categoryButton = document.getElementById('kontexto-category-hint');
+        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
+        const wordButton = document.getElementById('kontexto-word-hint');
+        if (wordButton) wordButton.textContent = '💡';
+        const categoryDisplay = document.getElementById('kontexto-category-display');
+        if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
         this.guesses = [];
         this.targetEmbedding = null;
         if (this.pipeline) this.targetEmbedding = await this.getEmbedding(this.targetWord);
