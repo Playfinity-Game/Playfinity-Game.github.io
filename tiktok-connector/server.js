@@ -51,16 +51,20 @@ function allowRequest(request) {
 
 function userSummary(user = {}) {
   return {
-    username: user.uniqueId || user.userId || null,
-    nickname: user.nickname || null
+    username: user.uniqueId || user.displayId || user.userId || user.id || null,
+    nickname: user.nickname || user.displayName || null
   };
 }
 
 function eventPayload(type, data = {}) {
   const user = userSummary(data.user);
   switch (type) {
-    case "chat":
-      return { type, user, comment: String(data.comment || "") };
+    case "chat": {
+      // Current TikTokLiveConnection payloads expose chat text as "content".
+      // Keep "comment" as a compatibility fallback for older payload shapes.
+      const comment = data.content ?? data.comment ?? data.data?.content ?? data.data?.comment ?? "";
+      return { type, user, comment: String(comment).trim() };
+    }
     case "gift":
       return {
         type,
