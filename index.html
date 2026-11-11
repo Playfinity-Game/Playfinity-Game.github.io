@@ -111,6 +111,16 @@
     .menu-toggle{border:1px solid rgba(0,240,255,.28);background:rgba(0,240,255,.08);color:var(--neon-cyan);border-radius:9px;width:38px;height:36px;font-size:1.2rem;cursor:pointer}
     .app-menu{display:none;position:fixed;top:68px;right:14px;z-index:180;width:min(300px,calc(100vw - 28px));padding:12px;background:rgba(10,12,28,.98);border:1px solid var(--border-glow);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(16px);flex-direction:column;gap:6px}
     .app-menu.open{display:flex}.app-menu button{width:100%;border:0;border-radius:9px;padding:12px;color:var(--text-main);background:rgba(255,255,255,.045);text-align:left;font:700 .9rem var(--font-main);cursor:pointer}.app-menu button:hover{background:rgba(0,240,255,.1);color:var(--neon-cyan)}.menu-status{color:var(--text-muted);font-size:.75rem;padding:8px 10px 4px;display:flex;align-items:center;gap:9px}.menu-status .status-dot{flex:none}
+    .tiktok-connector-panel{padding:10px;border:1px solid rgba(0,240,255,.2);border-radius:10px;background:rgba(0,240,255,.045);display:flex;flex-direction:column;gap:8px}
+    .tiktok-connector-panel[hidden]{display:none}
+    .tiktok-connector-panel label{font-size:.78rem;font-weight:700;color:var(--text-muted)}
+    .tiktok-connector-panel input{width:100%;min-width:0;padding:11px 12px;border:1px solid rgba(0,240,255,.3);border-radius:8px;background:rgba(7,8,20,.9);color:#fff;font:600 .95rem var(--font-main);outline:none}
+    .tiktok-connector-panel input:focus{border-color:var(--neon-cyan);box-shadow:0 0 10px rgba(0,240,255,.18)}
+    .app-menu .tiktok-connector-panel button{padding:10px;text-align:center;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#000;font-weight:800}
+    .app-menu .tiktok-connector-panel button:hover{color:#000;filter:brightness(1.08)}
+    .app-menu .tiktok-connector-panel #tiktok-disconnect-button{background:rgba(255,0,127,.12);border:1px solid rgba(255,0,127,.35);color:#ff8cbd}
+    #tiktok-connector-status{font-size:.78rem;line-height:1.4;color:var(--text-muted);overflow-wrap:anywhere}
+    .tiktok-connector-note{font-size:.68rem;line-height:1.4;color:var(--text-muted)}
     .status-dot {
       width: 8px;
       height: 8px;
@@ -785,7 +795,15 @@
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
     <button data-menu-action="home">⌂ &nbsp; Startseite</button>
     <button data-menu-action="leaderboard">🏆 &nbsp; Community-Ranglisten</button>
-    <button data-menu-action="connect">🔴 &nbsp; TikTok / TikFinity verbinden</button>
+    <button data-menu-action="connect" aria-expanded="false" aria-controls="tiktok-connector-panel">🔴 &nbsp; TikTok LIVE verbinden</button>
+    <div id="tiktok-connector-panel" class="tiktok-connector-panel" hidden>
+      <label for="tiktok-username">TikTok-Benutzername</label>
+      <input id="tiktok-username" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@deinname" maxlength="25">
+      <button type="button" id="tiktok-connect-button">Mit TikTok LIVE verbinden</button>
+      <button type="button" id="tiktok-disconnect-button" hidden>Verbindung trennen</button>
+      <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
+      <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
+    </div>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -980,10 +998,15 @@
         menu.addEventListener('click', (event) => {
           const action = event.target.closest('[data-menu-action]')?.dataset.menuAction;
           if (!action) return;
+          if (action === 'connect') {
+            const panel = document.getElementById('tiktok-connector-panel');
+            panel.hidden = !panel.hidden;
+            event.target.closest('[data-menu-action]').setAttribute('aria-expanded', panel.hidden ? 'false' : 'true');
+            return;
+          }
           menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
           if (action === 'home') this.go('menu');
           if (action === 'leaderboard') CommunityBoard.showAll();
-          if (action === 'connect') showModal('TikTok / TikFinity verbinden', 'PLAYFINITY verbindet sich über TikFinity auf demselben Computer. Öffne TikFinity, starte die Verbindung und lasse diese PLAYFINITY-Seite geöffnet. Der Status oben zeigt die lokale Verbindung. Ein separater TikTok-Konto-Login ist derzeit nicht eingerichtet.');
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
           if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
@@ -1026,8 +1049,11 @@
     /* ==========================================================================
        2. TIKFINITY LIVE-CHAT WEBSOCKET ENGINE
        ========================================================================== */
+    let activeLiveSource = 'none';
+
     const TikFinity = {
       ws: null,
+      pausedForTikTok: false,
       statusDot: document.getElementById('ws-indicator'),
       statusLabel: document.getElementById('ws-label'),
       reconnectTimer: null,
@@ -1039,12 +1065,14 @@
       },
 
       connect() {
+        if (this.pausedForTikTok) return;
         try {
           this.setStatus('connecting', 'Verbinde TikFinity...');
           this.ws = new WebSocket('ws://localhost:21213/');
 
           this.ws.onopen = () => {
             this.connected = true;
+            if (activeLiveSource !== 'tiktok') activeLiveSource = 'tikfinity';
             this.setStatus('connected', 'TikFinity Live');
             console.log('[TikFinity] Verbunden mit Port 21213');
           };
@@ -1080,6 +1108,7 @@
 
       setStatus(state, label) {
         this.connected = state === 'connected';
+        if (activeLiveSource === 'tiktok') return;
         if (this.statusDot) this.statusDot.className = 'status-dot ' + (state === 'connected' ? 'connected' : state === 'connecting' ? 'connecting' : '');
         if (this.statusLabel) this.statusLabel.innerText = label;
         const labelNode = document.getElementById('ws-label');
@@ -1088,10 +1117,12 @@
 
       scheduleReconnect() {
         clearTimeout(this.reconnectTimer);
+        if (this.pausedForTikTok) return;
         this.reconnectTimer = setTimeout(() => this.connect(), 4000);
       },
 
-      routeLiveChat(user, text) {
+      routeLiveChat(user, text, source = 'tikfinity') {
+        if (activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
@@ -1106,6 +1137,120 @@
     /* ==========================================================================
        COMMUNITY-RANGLISTEN (LETZTE 24 STUNDEN, STREAMER-BROWSER)
        ========================================================================== */
+    const TikTokConnector = {
+      baseUrl: 'https://playfinity-game-github-io.onrender.com',
+      ws: null,
+      connected: false,
+      statusNode: document.getElementById('tiktok-connector-status'),
+      connectButton: document.getElementById('tiktok-connect-button'),
+      disconnectButton: document.getElementById('tiktok-disconnect-button'),
+
+      init() {
+        this.connectButton?.addEventListener('click', () => this.connect());
+        this.disconnectButton?.addEventListener('click', () => this.disconnect());
+        document.getElementById('tiktok-username')?.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') this.connect();
+        });
+      },
+
+      setStatus(message, state = 'idle') {
+        if (this.statusNode) this.statusNode.textContent = message;
+        const isConnected = state === 'connected' || state === 'error-connected';
+        if (this.connectButton) this.connectButton.disabled = state === 'connecting' || isConnected;
+        if (this.disconnectButton) this.disconnectButton.hidden = !isConnected;
+        if (activeLiveSource === 'tiktok' || state === 'connecting') {
+          const dot = document.getElementById('ws-indicator');
+          const label = document.getElementById('ws-label');
+          if (dot) dot.className = 'status-dot ' + (state === 'connected' ? 'connected' : state === 'connecting' ? 'connecting' : '');
+          if (label) label.textContent = message;
+        }
+      },
+
+      async connect() {
+        if (this.connected) return;
+        const input = document.getElementById('tiktok-username');
+        const username = (input?.value || '').trim().replace(/^@/, '');
+        if (!/^[A-Za-z0-9._]{2,24}$/.test(username)) {
+          this.setStatus('Bitte gib einen gültigen TikTok-@Namen ein.', 'error');
+          input?.focus();
+          return;
+        }
+
+        this.setStatus('Verbinde mit dem PLAYFINITY-Server …', 'connecting');
+        try {
+          const response = await fetch(this.baseUrl + '/api/connect', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username })
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.websocketPath) throw new Error(data.error || 'Verbindung konnte nicht gestartet werden.');
+
+          const socketUrl = this.baseUrl.replace(/^https:/, 'wss:') + data.websocketPath;
+          const socket = new WebSocket(socketUrl);
+          this.ws = socket;
+
+          socket.onopen = () => {
+            this.connected = true;
+            activeLiveSource = 'tiktok';
+            TikFinity.pausedForTikTok = true;
+            clearTimeout(TikFinity.reconnectTimer);
+            if (TikFinity.ws && TikFinity.ws.readyState < WebSocket.CLOSING) TikFinity.ws.close();
+            this.setStatus('TikTok LIVE verbunden: @' + data.username, 'connected');
+            console.log('[PLAYFINITY] TikTok LIVE verbunden:', data.username);
+          };
+
+          socket.onmessage = (event) => {
+            try {
+              const message = JSON.parse(event.data);
+              if (message.type === 'chat') {
+                const user = {
+                  id: String(message.user?.username || message.user?.nickname || 'unknown'),
+                  name: String(message.user?.nickname || message.user?.username || 'Zuschauer')
+                };
+                TikFinity.lastUserName = user.name;
+                TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
+              } else if (message.type === 'connector_error') {
+                this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
+              }
+            } catch (error) {
+              console.warn('[PLAYFINITY] TikTok-Paket konnte nicht gelesen werden:', error);
+            }
+          };
+
+          socket.onerror = () => this.setStatus('WebSocket-Verbindung zu TikTok konnte nicht hergestellt werden.', this.connected ? 'error-connected' : 'error');
+
+          socket.onclose = () => {
+            const wasActive = activeLiveSource === 'tiktok';
+            this.connected = false;
+            this.ws = null;
+            if (wasActive) {
+              activeLiveSource = 'none';
+              this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
+              TikFinity.pausedForTikTok = false;
+              TikFinity.connect();
+            }
+          };
+        } catch (error) {
+          this.connected = false;
+          this.setStatus(error.message || 'TikTok LIVE konnte nicht verbunden werden.', 'error');
+          TikFinity.pausedForTikTok = false;
+          if (!TikFinity.connected) TikFinity.connect();
+        }
+      },
+
+      disconnect() {
+        const socket = this.ws;
+        this.ws = null;
+        this.connected = false;
+        activeLiveSource = 'none';
+        this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
+        if (socket) socket.close(1000, 'Vom Streamer getrennt');
+        TikFinity.pausedForTikTok = false;
+        if (!TikFinity.connected) TikFinity.connect();
+      }
+    };
+
     const CommunityBoard = {
       key: 'playfinity_community_scores_v1', windowMs: 86400000,
       read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
@@ -1869,6 +2014,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       PlayfinityRouter.init();
       TikFinity.init();
+      TikTokConnector.init();
     });
   </script>
 </body>
