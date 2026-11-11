@@ -240,7 +240,7 @@
     {
       "id": "pf-027",
       "cat": "Biologie",
-      "q": "Wie viel Liter Blut hat ein erwachsener Mensch durchschnittlich?",
+      "q": "Wie viele Liter Blut hat ein erwachsener Mensch durchschnittlich?",
       "a": 5,
       "u": "Liter",
       "exp": "Ein durchschnittlicher Erwachsener hat etwa fünf Liter Blut; Körpergröße und Geschlecht beeinflussen den Wert.",
@@ -987,7 +987,7 @@
     {
       "id": "pf-110",
       "cat": "Natur",
-      "q": "Wie viele Prozent der globalen Eis- und Süßwasservorräte sind ungefähr in Gletschern und Eisschilden gebunden?",
+      "q": "Wie viel Prozent des weltweiten Süßwassers sind ungefähr in Gletschern und Eisschilden gespeichert?",
       "a": 69,
       "u": "Prozent",
       "exp": "Rund 69 Prozent des Süßwassers der Erde sind in Eis und Gletschern gespeichert.",
@@ -1068,7 +1068,7 @@
     {
       "id": "pf-119",
       "cat": "Rekorde",
-      "q": "Wie viele Meter lang war das längste jemals gemessene Blauwal-Exemplar ungefähr?",
+      "q": "Wie lang können Blauwale ungefähr werden?",
       "a": 30,
       "u": "Meter",
       "exp": "Blauwale können Längen um 30 Meter erreichen.",
@@ -1086,7 +1086,7 @@
     {
       "id": "pf-121",
       "cat": "Rekorde",
-      "q": "Wie viele Kilometer beträgt die Länge des Great Barrier Reef ungefähr?",
+      "q": "Wie lang ist das Great Barrier Reef ungefähr?",
       "a": 2300,
       "u": "Kilometer",
       "exp": "Das Great Barrier Reef erstreckt sich über ungefähr 2.300 Kilometer.",
