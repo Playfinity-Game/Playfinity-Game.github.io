@@ -1418,7 +1418,8 @@
         const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
         const baseRank = Math.max(2, Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 1000000));
         const tieBreak = [...key].reduce((sum, ch, i) => sum + ch.charCodeAt(0) * (i + 17), 0) % 97;
-        const calculatedRank = baseRank * 100 + tieBreak;
+        let calculatedRank = baseRank * 100 + tieBreak;
+        while (this.guesses.some(item => item.rank === calculatedRank)) calculatedRank++;
         this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
         this.guesses.sort((a, b) => a.rank - b.rank);
         this.pendingGuesses.delete(key);
