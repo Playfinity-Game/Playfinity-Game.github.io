@@ -6,7 +6,7 @@
     {
       "id": "pf-001",
       "cat": "Astronomie",
-      "q": "In welchem Jahr startete die erste bemannte Mondlandemission Apollo 11?",
+      "q": "In welchem Jahr brachte die Apollo-11-Mission erstmals Menschen auf den Mond?",
       "a": 1969,
       "u": "Jahr",
       "exp": "Apollo 11 landete am 20. Juli 1969 auf dem Mond.",
@@ -240,7 +240,7 @@
     {
       "id": "pf-027",
       "cat": "Biologie",
-      "q": "Wie viele Liter Blut hat ein erwachsener Mensch ungefähr?",
+      "q": "Wie viel Liter Blut hat ein erwachsener Mensch durchschnittlich?",
       "a": 5,
       "u": "Liter",
       "exp": "Ein durchschnittlicher Erwachsener hat etwa fünf Liter Blut; Körpergröße und Geschlecht beeinflussen den Wert.",
@@ -402,7 +402,7 @@
     {
       "id": "pf-045",
       "cat": "Tiere",
-      "q": "Wie viele Meter kann eine Giraffe ungefähr hoch werden?",
+      "q": "Wie hoch kann eine Giraffe ungefähr werden?",
       "a": 5.5,
       "u": "Meter",
       "exp": "Giraffen erreichen eine Höhe von etwa fünf bis sechs Metern.",
@@ -672,7 +672,7 @@
     {
       "id": "pf-075",
       "cat": "Geschichte",
-      "q": "In welchem Jahr wurde die Druckerpresse mit beweglichen Metalllettern in Europa bekannt?",
+      "q": "In welchem Jahr verbreitete sich die Druckerpresse mit beweglichen Metalllettern in Europa?",
       "a": 1450,
       "u": "Jahr",
       "exp": "Gutenbergs Drucktechnik verbreitete sich in Europa um die Mitte des 15. Jahrhunderts.",
@@ -879,7 +879,7 @@
     {
       "id": "pf-098",
       "cat": "Essen",
-      "q": "Wie viele Minuten braucht ein weich gekochtes Ei ungefähr?",
+      "q": "Wie lange muss ein Ei der Größe M ungefähr kochen, damit es weich ist?",
       "a": 6,
       "u": "Minuten",
       "exp": "Ein Ei der Größe M wird häufig etwa sechs Minuten weich gekocht; Größe und Starttemperatur beeinflussen das Ergebnis.",
@@ -897,7 +897,7 @@
     {
       "id": "pf-100",
       "cat": "Essen",
-      "q": "Wie viele Gramm wiegt ein durchschnittliches Hühnerei der Größe M ungefähr?",
+      "q": "Wie viel wiegt ein Hühnerei der Gewichtsklasse M durchschnittlich?",
       "a": 58,
       "u": "Gramm",
       "exp": "Die Gewichtsklasse M umfasst Eier von 53 bis unter 63 Gramm.",
@@ -1059,7 +1059,7 @@
     {
       "id": "pf-118",
       "cat": "Rekorde",
-      "q": "Wie schnell kann ein Gepard in kurzen Sprints ungefähr laufen?",
+      "q": "Welche Spitzengeschwindigkeit kann ein Gepard auf kurzen Strecken erreichen?",
       "a": 100,
       "u": "km/h",
       "exp": "Geparde erreichen in kurzen Sprints Geschwindigkeiten um 100 km/h; konkrete Spitzenwerte schwanken.",
@@ -1149,7 +1149,7 @@
     {
       "id": "pf-128",
       "cat": "Gaming & Popkultur",
-      "q": "Wie viele Spieler können bei klassischem Tetris gleichzeitig am selben Einzelspieler-Spiel teilnehmen?",
+      "q": "Für wie viele Spieler ist das ursprüngliche Tetris ausgelegt?",
       "a": 1,
       "u": "Spieler",
       "exp": "Das ursprüngliche Tetris ist ein Einzelspieler-Puzzlespiel.",
@@ -1203,7 +1203,7 @@
     {
       "id": "pf-134",
       "cat": "Gaming & Popkultur",
-      "q": "In welchem Jahr startete die erste Folge der Simpsons im US-Fernsehen als Serie?",
+      "q": "In welchem Jahr startete Die Simpsons als eigenständige Fernsehserie in den USA?",
       "a": 1989,
       "u": "Jahr",
       "exp": "Die Simpsons starteten als eigenständige Serie im Dezember 1989.",
@@ -1464,7 +1464,7 @@
     {
       "id": "pf-163",
       "cat": "Biologie",
-      "q": "Wie viele Tage dauert eine menschliche Schwangerschaft gerechnet ab dem ersten Tag der letzten Periode durchschnittlich?",
+      "q": "Wie viele Tage dauert eine menschliche Schwangerschaft durchschnittlich, gerechnet ab dem ersten Tag der letzten Periode?",
       "a": 280,
       "u": "Tage",
       "exp": "Als durchschnittlicher Geburtstermin werden rund 40 Wochen beziehungsweise 280 Tage angesetzt.",
