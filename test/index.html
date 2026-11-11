@@ -1,0 +1,1803 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>PLAYFINITY – TikTok Live Arcade</title>
+  <meta name="theme-color" content="#070814">
+
+  <!-- Transformers.js für Kontexto (semantische KI direkt im Browser) -->
+  <script type="module">
+    import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+    window.transformersPipeline = pipeline;
+    env.allowLocalModels = false;
+  </script>
+
+  <style>
+    /* ==========================================================================
+       1. DESIGN-SYSTEM & VARIABLEN (Dark Arcade Neon)
+       ========================================================================== */
+    :root {
+      --bg-dark: #070814;
+      --bg-card: rgba(18, 20, 44, 0.85);
+      --bg-card-hover: rgba(26, 30, 64, 0.95);
+      --neon-cyan: #00f0ff;
+      --neon-pink: #ff007f;
+      --neon-purple: #b026ff;
+      --neon-green: #00ff9d;
+      --neon-gold: #ffd000;
+      --text-main: #f0f4ff;
+      --text-muted: #8b93b5;
+      --border-glow: rgba(0, 240, 255, 0.25);
+      --font-main: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(176, 38, 255, 0.14) 0%, transparent 40%),
+        radial-gradient(circle at 85% 85%, rgba(0, 240, 255, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(255, 0, 127, 0.06) 0%, transparent 60%);
+      color: var(--text-main);
+      font-family: var(--font-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ==========================================================================
+       2. HEADER & STATUS-BAR
+       ========================================================================== */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 20px;
+      background: rgba(10, 12, 28, 0.92);
+      border-bottom: 1px solid rgba(0, 240, 255, 0.25);
+      backdrop-filter: blur(14px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+    }
+
+    .logo-text {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
+    }
+
+    .btn-nav-back {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .btn-nav-back:hover {
+      background: rgba(255, 0, 127, 0.25);
+      border-color: var(--neon-pink);
+      color: #fff;
+    }
+
+    .menu-toggle{border:1px solid rgba(0,240,255,.28);background:rgba(0,240,255,.08);color:var(--neon-cyan);border-radius:9px;width:38px;height:36px;font-size:1.2rem;cursor:pointer}
+    .app-menu{display:none;position:fixed;top:68px;right:14px;z-index:180;width:min(300px,calc(100vw - 28px));padding:12px;background:rgba(10,12,28,.98);border:1px solid var(--border-glow);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(16px);flex-direction:column;gap:6px}
+    .app-menu.open{display:flex}.app-menu button{width:100%;border:0;border-radius:9px;padding:12px;color:var(--text-main);background:rgba(255,255,255,.045);text-align:left;font:700 .9rem var(--font-main);cursor:pointer}.app-menu button:hover{background:rgba(0,240,255,.1);color:var(--neon-cyan)}.menu-status{color:var(--text-muted);font-size:.75rem;padding:8px 10px 4px;display:flex;align-items:center;gap:9px}.menu-status .status-dot{flex:none}
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #777;
+      transition: all 0.3s;
+    }
+
+    .status-dot.connected {
+      background: var(--neon-green);
+      box-shadow: 0 0 10px var(--neon-green);
+    }
+
+    .status-dot.connecting {
+      background: var(--neon-gold);
+      animation: pulse 1s infinite alternate;
+    }
+
+    @keyframes pulse {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    /* ==========================================================================
+       3. ROUTING & SCREEN-LAYOUTS
+       ========================================================================== */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .screen {
+      display: none;
+      flex-direction: column;
+      flex: 1;
+      padding: 16px;
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+      animation: fadeIn 0.25s ease-out;
+    }
+
+    .screen.active {
+      display: flex;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==========================================================================
+       4. HAUPTMENÜ (ARCADE HUB)
+       ========================================================================== */
+    .hero-title {
+      text-align: center;
+      margin: 15px 0 25px;
+    }
+
+    .hero-title h1 {
+      font-size: 2.1rem;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      color: #fff;
+    }
+
+    .hero-title p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 6px;
+    }
+
+    .arcade-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      width: 100%;
+    }
+
+    .game-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 22px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 180px;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .game-card:hover {
+      transform: translateY(-4px);
+      background: var(--bg-card-hover);
+      border-color: var(--neon-cyan);
+      box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+    }
+
+    .game-card:hover::before {
+      opacity: 1;
+    }
+
+    .game-card.card-pink:hover {
+      border-color: var(--neon-pink);
+      box-shadow: 0 10px 25px rgba(255, 0, 127, 0.25);
+    }
+    .game-card.card-pink::before {
+      background: linear-gradient(90deg, transparent, var(--neon-pink), transparent);
+    }
+
+    .game-card.card-purple:hover {
+      border-color: var(--neon-purple);
+      box-shadow: 0 10px 25px rgba(176, 38, 255, 0.25);
+    }
+    .game-card.card-purple::before {
+      background: linear-gradient(90deg, transparent, var(--neon-purple), transparent);
+    }
+
+    .game-card.card-gold:hover {
+      border-color: var(--neon-gold);
+      box-shadow: 0 10px 25px rgba(255, 208, 0, 0.25);
+    }
+    .game-card.card-gold::before {
+      background: linear-gradient(90deg, transparent, var(--neon-gold), transparent);
+    }
+
+    .card-badge {
+      align-self: flex-start;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+      color: #fff;
+    }
+
+    .card-desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .card-footer {
+      margin-top: 16px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .btn-play-card {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* ==========================================================================
+       5. WORDLE SCREEN
+       ========================================================================== */
+    .wordle-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      flex: 1;
+      max-width: 480px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .wordle-grid {
+      display: grid;
+      grid-template-rows: repeat(6, 1fr);
+      gap: 6px;
+      width: 100%;
+      max-width: 320px;
+      margin: 10px auto;
+    }
+
+    .wordle-row {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 6px;
+    }
+
+    .wordle-cell {
+      aspect-ratio: 1;
+      border: 2px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: rgba(12, 14, 32, 0.7);
+      transition: all 0.2s;
+    }
+
+    .wordle-cell.filled {
+      border-color: rgba(255, 255, 255, 0.4);
+      animation: pop 0.1s ease-in-out;
+    }
+
+    .wordle-cell.correct {
+      background: var(--neon-green) !important;
+      border-color: var(--neon-green) !important;
+      color: #000;
+      box-shadow: 0 0 12px rgba(0, 255, 157, 0.4);
+    }
+
+    .wordle-cell.present {
+      background: var(--neon-gold) !important;
+      border-color: var(--neon-gold) !important;
+      color: #000;
+      box-shadow: 0 0 12px rgba(255, 208, 0, 0.4);
+    }
+
+    .wordle-cell.absent {
+      background: #252842 !important;
+      border-color: #252842 !important;
+      color: #8b93b5;
+    }
+
+    @keyframes pop {
+      50% { transform: scale(1.08); }
+    }
+
+    /* Tastatur */
+    .keyboard {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .keyboard-row {
+      display: flex;
+      justify-content: center;
+      gap: 5px;
+    }
+
+    .key-btn {
+      flex: 1;
+      height: 48px;
+      max-width: 42px;
+      background: rgba(28, 32, 68, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #fff;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .key-btn.wide {
+      flex: 1.5;
+      max-width: 64px;
+      font-size: 0.8rem;
+    }
+
+    .key-btn:active {
+      transform: scale(0.95);
+    }
+
+    .key-btn.correct { background: var(--neon-green); color: #000; }
+    .key-btn.present { background: var(--neon-gold); color: #000; }
+    .key-btn.absent { background: #181a30; color: #555c7a; opacity: 0.6; }
+    .screen#screen-wordle { min-height: calc(100vh - 64px); }
+    .screen#screen-wordle .wordle-container { justify-content:flex-start; gap:10px; padding-top:4px; }
+    @media(max-width:600px){header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw)}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
+
+    /* ==========================================================================
+       6. KONTEXTO SCREEN
+       ========================================================================== */
+    .kontexto-wrap {
+      max-width: 520px;
+      width: 100%;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .model-loader {
+      background: rgba(18, 20, 44, 0.9);
+      border: 1px solid var(--border-glow);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .model-loader-bar {
+      height: 8px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .model-loader-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
+      transition: width 0.3s ease;
+    }
+
+    .input-box {
+      display: flex;
+      gap: 8px;
+      direction: ltr;
+    }
+
+    .game-input {
+      flex: 1;
+      background: rgba(18, 20, 44, 0.9);
+      border: 1px solid rgba(0, 240, 255, 0.3);
+      border-radius: 10px;
+      padding: 12px 16px;
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .game-input:focus {
+      border-color: var(--neon-cyan);
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+    }
+
+    #pir-input-group .game-input { min-width:0; flex:1 1 0; }
+    #pir-input-group #pir-submit {
+      flex: 0 0 48px;
+      width: 48px;
+      min-width: 48px;
+      height: 48px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      line-height: 1;
+      border-radius: 12px;
+    }
+    #pir-input-group #pir-submit:focus-visible {
+      outline: 2px solid var(--neon-green);
+      outline-offset: 3px;
+    }
+
+    .btn-action {
+      background: linear-gradient(135deg, var(--neon-cyan), #0077ff);
+      color: #000;
+      font-weight: 800;
+      border: none;
+      border-radius: 10px;
+      padding: 0 20px;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-action:hover {
+      box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .guesses-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 10px;
+      direction: ltr;
+    }
+
+    .guess-row {
+      position: relative;
+      background: rgba(18, 20, 44, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      padding: 12px 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+      direction: ltr;
+      text-align: left;
+    }
+
+    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
+    .guess-legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+    .legend-red{background:#ff3b5c;box-shadow:0 0 8px rgba(255,59,92,.55)}
+    .legend-orange{background:#ff9f1c;box-shadow:0 0 8px rgba(255,159,28,.55)}
+    .legend-green{background:#00ff9d;box-shadow:0 0 8px rgba(0,255,157,.55)}
+    .guess-bar {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      opacity: 0.38;
+      z-index: 1;
+      transition: width 0.4s ease;
+    }
+
+    .guess-word {
+      font-weight: 700;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .guess-rank {
+      font-weight: 800;
+      z-index: 2;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* ==========================================================================
+       7. SIZE IT UP SCREEN
+       ========================================================================== */
+    .size-stage-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .size-viewport {
+      height: 340px;
+      position: relative;
+      background: rgba(7, 8, 20, 0.8);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      overflow: hidden;
+    }
+
+    .size-ground-line {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+      box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+      z-index: 10;
+    }
+
+    .size-slot {
+      flex: 1;
+      height: 100%;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+      padding-bottom: 40px;
+    }
+
+    .silhouette-svg {
+      transform-origin: bottom center;
+      transition: transform 0.05s linear;
+      filter: drop-shadow(0 0 10px rgba(0, 240, 255, 0.3));
+    }
+
+    .silhouette-svg.target {
+      filter: drop-shadow(0 0 10px rgba(255, 0, 127, 0.4));
+    }
+
+    .size-meta-label {
+      position: absolute;
+      bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-align: center;
+      width: 100%;
+    }
+
+    .size-controls {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .slider-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .neon-slider {
+      flex: 1;
+      height: 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.1);
+      outline: none;
+      -webkit-appearance: none;
+      accent-color: var(--neon-pink);
+    }
+
+    /* ==========================================================================
+       8. PRICE IS RIGHT SCREEN
+       ========================================================================== */
+    .pir-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .pir-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .pir-category-badge {
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--neon-gold);
+      background: rgba(255, 208, 0, 0.12);
+      border: 1px solid rgba(255, 208, 0, 0.3);
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    .pir-progress-count {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .pir-question {
+      font-size: 1.35rem;
+      font-weight: 800;
+      line-height: 1.4;
+      color: #fff;
+    }
+
+    .pir-result-box {
+      display: none;
+      background: rgba(10, 12, 28, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 16px;
+      flex-direction: column;
+      gap: 10px;
+      animation: fadeIn 0.2s ease-out;
+    }
+
+    .pir-answer-reveal {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: var(--neon-green);
+    }
+
+    .pir-fact {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    .round-result{display:none;width:100%;margin:12px auto 0;padding:16px;border:1px solid rgba(0,255,157,.35);border-radius:12px;background:rgba(0,255,157,.07);text-align:center;flex-direction:column;gap:8px}.round-result.visible{display:flex}.round-result-title{color:var(--neon-green);font-weight:900;font-size:1.1rem}.round-result-answer{color:#fff;font-size:1.45rem;font-weight:900;overflow-wrap:anywhere}.community-board{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1);text-align:left}.community-board h4{color:var(--neon-gold);font-size:.8rem;margin-bottom:6px}.community-board ol{padding-left:22px;color:var(--text-muted);font-size:.8rem}.community-board li{padding:2px 0}.community-note{color:var(--text-muted);font-size:.68rem;margin-top:6px}
+    .pir-live-guesses{display:flex;flex-direction:column;gap:6px;margin-top:10px}.pir-live-guess{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:8px 12px;border-radius:8px;background:rgba(18,20,44,.72);border:1px solid rgba(255,255,255,.08);font-size:.85rem}.pir-live-guess-name{font-weight:700;color:var(--text-main);overflow-wrap:anywhere}.pir-live-guess-value{font-weight:800;color:var(--neon-cyan);white-space:nowrap}
+
+    /* ==========================================================================
+       9. MODALE & FEEDBACK
+       ========================================================================== */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+      padding: 20px;
+    }
+
+    .modal-overlay.active {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--bg-card);
+      border: 1px solid var(--neon-cyan);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+      border-radius: 16px;
+      padding: 24px;
+      max-width: 440px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .modal-title {
+      font-size: 1.5rem;
+      font-weight: 900;
+      color: #fff;
+    }
+
+    .btn-block {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+    }
+      @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
+
+</style>
+</head>
+
+<body>
+
+  <!-- STICKY HEADER -->
+  <header>
+    <div class="brand" id="brand-home">
+      <div class="logo-text">PLAYFINITY</div>
+    </div>
+    <button class="btn-nav-back" id="btn-back">
+      <span>‹ Zurück zum Hub</span>
+    </button>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
+  </header>
+  <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
+    <button data-menu-action="home">⌂ &nbsp; Startseite</button>
+    <button data-menu-action="leaderboard">🏆 &nbsp; Community-Ranglisten</button>
+    <button data-menu-action="connect">🔴 &nbsp; TikTok / TikFinity verbinden</button>
+    <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
+    <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
+    <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
+    <div class="menu-status" id="menu-connection-status"><span class="status-dot" id="ws-indicator"></span><span id="ws-label">TikFinity wird geprüft …</span></div>
+  </nav>
+
+  <main>
+    <!-- SCREEN 1: ARCADE HUB (HAUPTMENÜ) -->
+    <section class="screen active" id="screen-menu">
+      <div class="hero-title">
+        <h1>TIKTOK LIVE ARCADE</h1>
+        <p>Spiele direkt im Browser oder interaktiv im Live-Stream</p>
+      </div>
+
+      <div class="arcade-grid">
+        <!-- Wordle Card -->
+        <div class="game-card" onclick="PlayfinityRouter.go('wordle')">
+          <div>
+            <div class="card-badge" style="color: var(--neon-green)">Worträtsel</div>
+            <div class="card-title">Wordle DE</div>
+            <div class="card-desc">Rate das deutsche 5-Buchstaben-Wort mit unbegrenzten Versuchen und Farbhilfen.</div>
+          </div>
+          <div class="card-footer">
+            <span class="btn-play-card">Starten ›</span>
+          </div>
+        </div>
+
+        <!-- Kontexto Card -->
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('kontexto')">
+          <div>
+            <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
+            <div class="card-title">Kontexto</div>
+            <div class="card-desc">Finde das geheime Wort über echte künstliche Intelligenz und Wortbedeutung.</div>
+          </div>
+          <div class="card-footer">
+            <span class="btn-play-card" style="color: var(--neon-purple)">Starten ›</span>
+          </div>
+        </div>
+
+        <!-- Size It Up Card -->
+        <div class="game-card card-pink" onclick="PlayfinityRouter.go('sizeitup')">
+          <div>
+            <div class="card-badge" style="color: var(--neon-pink)">Größenvergleich</div>
+            <div class="card-title">Size It Up</div>
+            <div class="card-desc">Skaliere die Silhouette millimetergenau an die reale Vergleichsgröße heran.</div>
+          </div>
+          <div class="card-footer">
+            <span class="btn-play-card" style="color: var(--neon-pink)">Starten ›</span>
+          </div>
+        </div>
+
+        <!-- Price Is Right Card -->
+        <div class="game-card card-gold" onclick="PlayfinityRouter.go('priceisright')">
+          <div>
+            <div class="card-badge" style="color: var(--neon-gold)">Zahlenschätzung</div>
+            <div class="card-title">Price Is Right</div>
+            <div class="card-desc">Schätze Fakten und Rekorde. Mit Anti-Repeat-Speicher und 217 Fragen mit Quellenangaben.</div>
+          </div>
+          <div class="card-footer">
+            <span class="btn-play-card" style="color: var(--neon-gold)">Starten ›</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: WORDLE -->
+    <section class="screen" id="screen-wordle">
+      <div class="wordle-container">
+        <div class="wordle-grid" id="wordle-board"></div>
+        <div class="keyboard" id="wordle-keyboard"></div>
+        <div class="round-result" id="wordle-round-result"></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: KONTEXTO -->
+    <section class="screen" id="screen-kontexto">
+      <div class="kontexto-wrap">
+        <div class="model-loader" id="kontexto-loader">
+          <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
+            <span id="model-status-text">Semantisches KI-Modell wird geladen...</span>
+            <span id="model-status-pct">0%</span>
+          </div>
+          <div class="model-loader-bar">
+            <div class="model-loader-fill" id="model-progress-fill"></div>
+          </div>
+        </div>
+
+        <div class="community-note">Die angezeigten Ränge sind Näherungswerte aus der semantischen Ähnlichkeit, keine globale Wörterbuch-Rangliste.</div>
+        <div class="input-box">
+          <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
+          <button class="btn-action" id="kontexto-submit">Tippen</button>
+        </div>
+
+        <div class="guess-legend" aria-label="Bedeutung der Farben">
+          <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
+          <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
+          <span><i class="legend-dot legend-green"></i> Sehr nah</span>
+        </div>
+        <div class="guesses-list" id="kontexto-guesses"></div>
+        <div class="round-result" id="kontexto-round-result"></div>
+      </div>
+    </section>
+
+    <!-- SCREEN 4: SIZE IT UP -->
+    <section class="screen" id="screen-sizeitup">
+      <div class="size-stage-card">
+        <div style="display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-weight:800; font-size:1.1rem;" id="size-round-label">Runde 1 / 5</span>
+          <span style="font-weight:800; color:var(--neon-green);" id="size-score-label">0 Punkte</span>
+        </div>
+
+        <div class="size-viewport">
+          <div class="size-ground-line"></div>
+          <!-- Referenz Links -->
+          <div class="size-slot" id="size-slot-ref">
+            <svg id="svg-ref" class="silhouette-svg" viewBox="0 0 100 100" width="120" height="120"></svg>
+            <div class="size-meta-label" id="ref-meta-text" style="color:var(--neon-cyan)">--</div>
+          </div>
+          <!-- Ziel Rechts -->
+          <div class="size-slot" id="size-slot-target">
+            <svg id="svg-target" class="silhouette-svg target" viewBox="0 0 100 100" width="120" height="120"></svg>
+            <div class="size-meta-label" id="target-meta-text" style="color:var(--neon-pink)">??</div>
+          </div>
+        </div>
+
+        <div class="size-controls">
+          <div class="size-drag-hint" style="text-align:center;color:var(--text-muted);font-size:.82rem;padding:4px 0;">⬆ Nach oben ziehen = größer · ⬇ Nach unten ziehen = kleiner</div>
+          <button class="btn-action btn-block" id="btn-size-submit">Größe einloggen</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 5: PRICE IS RIGHT -->
+    <section class="screen" id="screen-priceisright">
+      <div class="pir-card">
+        <div class="pir-header">
+          <span class="pir-category-badge" id="pir-badge">Kategorie</span>
+          <span class="pir-progress-count" id="pir-counter">Frage -- von --</span>
+        </div>
+        <div class="pir-question" id="pir-question-text">Frage lädt...</div>
+
+        <div class="input-box" id="pir-input-group">
+          <input type="number" class="game-input" id="pir-input" placeholder="Deine Zahlenschätzung..." inputmode="numeric">
+          <button class="btn-action" id="pir-submit" type="button" aria-label="Tipp absenden" title="Tipp absenden">➤</button>
+        </div>
+        <div class="pir-live-guesses" id="pir-live-guesses" aria-live="polite"></div>
+
+        <div class="pir-result-box" id="pir-result">
+          <div style="font-size:0.85rem; color:var(--text-muted);">Tatsächliche Lösung:</div>
+          <div class="pir-answer-reveal" id="pir-answer">--</div>
+          <div class="pir-fact" id="pir-explanation">--</div>
+          <button class="btn-action btn-block" id="pir-next-btn" style="margin-top:10px;">Nächste Frage ›</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MODAL FÜR ERGEBNISSE & GAME OVER -->
+  <div class="modal-overlay" id="app-modal">
+    <div class="modal-box">
+      <div class="modal-title" id="modal-title">Runde beendet!</div>
+      <div id="modal-content" style="color: var(--text-muted); font-size: 0.95rem;"></div>
+      <button class="btn-action btn-block" id="modal-btn-action">Neues Spiel</button>
+    </div>
+  </div>
+
+  <!-- HIER BEGINNT DAS SCRIPT (TEIL 2 DIREKT HIER EINFÜGEN) -->
+  <script>/* ==========================================================================
+       1. ROUTER & BROWSER-HISTORY (ZURÜCK-BUTTON GARANTIE)
+       ========================================================================== */
+    const PlayfinityRouter = {
+      currentScreen: 'menu',
+
+      init() {
+        // PopState-Event fängt die Browser- und Android-Zurück-Taste ab
+        window.addEventListener('popstate', (e) => {
+          const targetScreen = (e.state && e.state.screen) ? e.state.screen : 'menu';
+          this.renderScreen(targetScreen, false);
+        });
+
+        // Klicks auf Logo & Back-Button
+        document.getElementById('brand-home').addEventListener('click', () => this.go('menu'));
+        document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
+
+        const menu = document.getElementById('app-menu');
+        const toggle = document.getElementById('menu-toggle');
+        toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
+        menu.addEventListener('click', (event) => {
+          const action = event.target.closest('[data-menu-action]')?.dataset.menuAction;
+          if (!action) return;
+          menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
+          if (action === 'home') this.go('menu');
+          if (action === 'leaderboard') CommunityBoard.showAll();
+          if (action === 'connect') showModal('TikTok / TikFinity verbinden', 'PLAYFINITY verbindet sich über TikFinity auf demselben Computer. Öffne TikFinity, starte die Verbindung und lasse diese PLAYFINITY-Seite geöffnet. Der Status oben zeigt die lokale Verbindung. Ein separater TikTok-Konto-Login ist derzeit nicht eingerichtet.');
+          if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
+          if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>Price Is Right: eine Zahl. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
+        });
+        history.replaceState({ screen: 'menu' }, '', '#menu');
+      },
+
+      go(screenId) {
+        if (screenId === this.currentScreen) return;
+        history.pushState({ screen: screenId }, '', '#' + screenId);
+        this.renderScreen(screenId, true);
+      },
+
+      renderScreen(screenId, isForwardNav) {
+        document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        const target = document.getElementById('screen-' + screenId);
+        if (target) {
+          target.classList.add('active');
+          this.currentScreen = screenId;
+        }
+
+        const backBtn = document.getElementById('btn-back');
+        if (screenId === 'menu') {
+          backBtn.style.display = 'none';
+        } else {
+          backBtn.style.display = 'inline-flex';
+          this.onEnterGame(screenId);
+        }
+      },
+
+      onEnterGame(screenId) {
+        if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
+        if (screenId === 'kontexto' && !KontextoGame.initialized) KontextoGame.init();
+        if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
+        if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
+      }
+    };
+
+    /* ==========================================================================
+       2. TIKFINITY LIVE-CHAT WEBSOCKET ENGINE
+       ========================================================================== */
+    const TikFinity = {
+      ws: null,
+      statusDot: document.getElementById('ws-indicator'),
+      statusLabel: document.getElementById('ws-label'),
+      reconnectTimer: null,
+      connected: false,
+      lastUserName: '',
+
+      init() {
+        this.connect();
+      },
+
+      connect() {
+        try {
+          this.setStatus('connecting', 'Verbinde TikFinity...');
+          this.ws = new WebSocket('ws://localhost:21213/');
+
+          this.ws.onopen = () => {
+            this.connected = true;
+            this.setStatus('connected', 'TikFinity Live');
+            console.log('[TikFinity] Verbunden mit Port 21213');
+          };
+
+          this.ws.onmessage = (event) => {
+            try {
+              const msg = JSON.parse(event.data);
+              if (msg.event === 'chat' && msg.data) {
+                const user = { id: String(msg.data.uniqueId || msg.data.userId || msg.data.nickname || 'unknown'), name: String(msg.data.nickname || msg.data.uniqueId || 'Zuschauer') };
+                this.lastUserName = user.name;
+                const text = (msg.data.comment || '').trim();
+                this.routeLiveChat(user, text);
+              }
+            } catch (err) {
+              console.warn('[TikFinity] Paket-Fehler:', err);
+            }
+          };
+
+          this.ws.onclose = () => {
+            this.connected = false;
+            this.setStatus('disconnected', 'TikFinity Offline');
+            this.scheduleReconnect();
+          };
+
+          this.ws.onerror = () => {
+            this.ws.close();
+          };
+        } catch (e) {
+          this.setStatus('disconnected', 'TikFinity Offline');
+          this.scheduleReconnect();
+        }
+      },
+
+      setStatus(state, label) {
+        this.connected = state === 'connected';
+        if (this.statusDot) this.statusDot.className = 'status-dot ' + (state === 'connected' ? 'connected' : state === 'connecting' ? 'connecting' : '');
+        if (this.statusLabel) this.statusLabel.innerText = label;
+        const labelNode = document.getElementById('ws-label');
+        if (labelNode) labelNode.innerText = state === 'connected' ? 'TikFinity verbunden' : state === 'connecting' ? 'TikFinity verbindet …' : 'TikFinity nicht verbunden';
+      },
+
+      scheduleReconnect() {
+        clearTimeout(this.reconnectTimer);
+        this.reconnectTimer = setTimeout(() => this.connect(), 4000);
+      },
+
+      routeLiveChat(user, text) {
+        const screen = PlayfinityRouter.currentScreen;
+        if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
+          WordleGame.submitGuess(text.toUpperCase(), user);
+        } else if (screen === 'kontexto' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
+          KontextoGame.submitGuess(text, user);
+        } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
+          PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
+        }
+      }
+    };
+
+    /* ==========================================================================
+       COMMUNITY-RANGLISTEN (LETZTE 24 STUNDEN, STREAMER-BROWSER)
+       ========================================================================== */
+    const CommunityBoard = {
+      key: 'playfinity_community_scores_v1', windowMs: 86400000,
+      read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
+      record(game, player) { if (!player || !player.id || player.id === 'unknown') return; const rows = this.read(); rows.push({game, id:player.id, name:player.name || 'Zuschauer', at:Date.now(), points:1}); localStorage.setItem(this.key, JSON.stringify(rows)); },
+      top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
+      escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
+      render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
+      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['Price Is Right','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
+    };
+
+    /* ==========================================================================
+       3. WORDLE ENGINE (DEUTSCH, 5 BUCHSTABEN, UNBEGRENZT)
+       ========================================================================== */
+    const WordleGame = {
+      initialized: false,
+      targetWord: '',
+      currentGuess: '',
+      guesses: [],
+      maxCols: 5,
+      roundLocked: false,
+      roundTimer: null,
+
+      // Ausgewählte deutsche 5-Buchstaben-Wörter
+      wordPool: [
+        'TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER',
+        'VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD',
+        'BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE',
+        'KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE',
+        'MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'
+      ],
+
+      init() {
+        if (this.initialized) return;
+        this.buildKeyboard();
+        window.addEventListener('keydown', (e) => this.handlePhysicalKey(e));
+        this.initialized = true;
+      },
+
+      startNewGame() {
+        clearTimeout(this.roundTimer);
+        this.init();
+        this.roundLocked = false;
+        this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
+        this.guesses = [];
+        this.currentGuess = '';
+        const result = document.getElementById('wordle-round-result');
+        if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
+        this.renderBoard();
+        this.resetKeyboardColors();
+      },
+
+      renderBoard() {
+        const board = document.getElementById('wordle-board');
+        board.innerHTML = '';
+        const rowsToShow = Math.max(6, this.guesses.length + 1);
+
+        for (let r = 0; r < rowsToShow; r++) {
+          const rowDiv = document.createElement('div');
+          rowDiv.className = 'wordle-row';
+
+          const guess = this.guesses[r];
+          const isCurrentRow = (r === this.guesses.length);
+
+          for (let c = 0; c < 5; c++) {
+            const cell = document.createElement('div');
+            cell.className = 'wordle-cell';
+
+            if (guess) {
+              const letter = guess.word[c];
+              cell.innerText = letter;
+              cell.classList.add(guess.result[c]);
+            } else if (isCurrentRow && this.currentGuess[c]) {
+              cell.innerText = this.currentGuess[c];
+              cell.classList.add('filled');
+            }
+            rowDiv.appendChild(cell);
+          }
+          board.appendChild(rowDiv);
+        }
+      },
+
+      handlePhysicalKey(e) {
+        if (PlayfinityRouter.currentScreen !== 'wordle') return;
+        if (e.key === 'Enter') {
+          this.submitCurrentGuess();
+        } else if (e.key === 'Backspace') {
+          this.backspace();
+        } else if (/^[a-zA-ZäöüÄÖÜ]$/.test(e.key)) {
+          this.typeLetter(e.key.toUpperCase());
+        }
+      },
+
+      typeLetter(char) {
+        if (this.currentGuess.length < 5) {
+          this.currentGuess += char;
+          this.renderBoard();
+        }
+      },
+
+      backspace() {
+        if (this.currentGuess.length > 0) {
+          this.currentGuess = this.currentGuess.slice(0, -1);
+          this.renderBoard();
+        }
+      },
+
+      submitCurrentGuess() {
+        if (this.currentGuess.length === 5) {
+          this.submitGuess(this.currentGuess);
+          this.currentGuess = '';
+        }
+      },
+
+      submitGuess(word, player = null) {
+        if (this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        if (this.guesses.some(item => item.word === word)) return;
+        // Exakte Auswertung mit Berücksichtigung doppelter Buchstaben
+        const targetArr = this.targetWord.split('');
+        const guessArr = word.split('');
+        const result = Array(5).fill('absent');
+        const remainingTarget = {};
+
+        // Pass 1: Richtige Buchstaben an richtiger Position
+        for (let i = 0; i < 5; i++) {
+          if (guessArr[i] === targetArr[i]) {
+            result[i] = 'correct';
+          } else {
+            const char = targetArr[i];
+            remainingTarget[char] = (remainingTarget[char] || 0) + 1;
+          }
+        }
+
+        // Pass 2: Richtige Buchstaben an falscher Position
+        for (let i = 0; i < 5; i++) {
+          if (result[i] !== 'correct') {
+            const char = guessArr[i];
+            if (remainingTarget[char] && remainingTarget[char] > 0) {
+              result[i] = 'present';
+              remainingTarget[char]--;
+            }
+          }
+        }
+
+        this.guesses.push({ word, result });
+        this.updateKeyboardColors(word, result);
+        this.renderBoard();
+
+        // Gewinnprüfung
+        if (word === this.targetWord) {
+          this.roundLocked = true;
+          CommunityBoard.record('wordle', player);
+          const resultBox = document.getElementById('wordle-round-result');
+          resultBox.innerHTML = '<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">' + this.targetWord + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="wordle-community-list"></div>';
+          resultBox.classList.add('visible');
+          CommunityBoard.render('wordle', 'wordle-community-list');
+          this.roundTimer = setTimeout(() => this.startNewGame(), 5000);
+        }
+      },
+
+      buildKeyboard() {
+        const layout = [
+          ['Q','W','E','R','T','Z','U','I','O','P','Ü'],
+          ['A','S','D','F','G','H','J','K','L','Ö','Ä'],
+          ['ENTER','Y','X','C','V','B','N','M','⌫']
+        ];
+        const kbContainer = document.getElementById('wordle-keyboard');
+        kbContainer.innerHTML = '';
+
+        layout.forEach(row => {
+          const rowDiv = document.createElement('div');
+          rowDiv.className = 'keyboard-row';
+          row.forEach(key => {
+            const btn = document.createElement('button');
+            btn.className = 'key-btn' + (key.length > 1 ? ' wide' : '');
+            btn.innerText = key;
+            btn.id = 'key-' + key;
+            btn.onclick = () => {
+              if (key === 'ENTER') this.submitCurrentGuess();
+              else if (key === '⌫') this.backspace();
+              else this.typeLetter(key);
+            };
+            rowDiv.appendChild(btn);
+          });
+          kbContainer.appendChild(rowDiv);
+        });
+      },
+
+      updateKeyboardColors(word, result) {
+        for (let i = 0; i < 5; i++) {
+          const keyBtn = document.getElementById('key-' + word[i]);
+          if (!keyBtn) continue;
+          const status = result[i];
+          if (status === 'correct') {
+            keyBtn.className = 'key-btn correct';
+          } else if (status === 'present' && !keyBtn.classList.contains('correct')) {
+            keyBtn.className = 'key-btn present';
+          } else if (status === 'absent' && !keyBtn.classList.contains('correct') && !keyBtn.classList.contains('present')) {
+            keyBtn.className = 'key-btn absent';
+          }
+        }
+      },
+
+      resetKeyboardColors() {
+        document.querySelectorAll('.key-btn').forEach(b => {
+          b.className = 'key-btn' + (b.innerText.length > 1 ? ' wide' : '');
+        });
+      }
+    };
+
+    /* ==========================================================================
+       4. KONTEXTO ENGINE (ECHTE SEMANTISCHE KI MIT TRANSFORMERS.JS)
+       ========================================================================== */
+    const KontextoGame = {
+      initialized: false,
+      pipeline: null,
+      targetWord: '',
+      targetEmbedding: null,
+      guesses: [],
+      roundLocked: false,
+      roundTimer: null,
+      pendingGuesses: new Set(),
+      roundId: 0,
+
+      // 20 deutsche Zielwörter
+      targets: [
+        'Hund','Kaffee','Schloss','Gitarre','Sommer','Flugzeug','Ozean','Roboter',
+        'Zauberer','Kamera','Sonne','Kuchen','Winter','Rakete','Wald','Insel',
+        'Musik','Pferd','Telefon','Schmetterling'
+      ],
+
+      init() {
+        this.initialized = true;
+        this.pickNewTarget();
+        this.initModel();
+
+        document.getElementById('kontexto-submit').onclick = () => {
+          const inp = document.getElementById('kontexto-input');
+          if (inp.value.trim()) {
+            this.submitGuess(inp.value.trim());
+            inp.value = '';
+          }
+        };
+
+        document.getElementById('kontexto-input').addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
+        });
+      },
+
+      async pickNewTarget() {
+        clearTimeout(this.roundTimer);
+        this.roundId++;
+        this.roundLocked = !!this.pipeline;
+        this.pendingGuesses.clear();
+        this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
+        this.guesses = [];
+        this.targetEmbedding = null;
+        if (this.pipeline) this.targetEmbedding = await this.getEmbedding(this.targetWord);
+        this.roundLocked = false;
+        const result = document.getElementById('kontexto-round-result');
+        if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
+        this.renderGuesses();
+      },
+
+      async initModel() {
+        const loader = document.getElementById('kontexto-loader');
+        const statusText = document.getElementById('model-status-text');
+        const statusPct = document.getElementById('model-status-pct');
+        const fill = document.getElementById('model-progress-fill');
+
+        try {
+          if (window.transformersPipeline) {
+            this.roundLocked = true;
+            this.pipeline = await window.transformersPipeline('feature-extraction', 'Xenova/paraphrase-multilingual-MiniLM-L12-v2', {
+              progress_callback: (p) => {
+                if (p.status === 'progress') {
+                  const pct = Math.round(p.progress || 0);
+                  statusPct.innerText = pct + '%';
+                  fill.style.width = pct + '%';
+                }
+              }
+            });
+
+            // Target-Embedding vorberechnen
+            this.targetEmbedding = await this.getEmbedding(this.targetWord);
+            this.roundLocked = false;
+            loader.style.display = 'none';
+          } else {
+            statusText.innerText = 'Lokaler Modus aktiv (vereinfachte Näherung)';
+            this.roundLocked = false;
+            loader.style.display = 'none';
+          }
+        } catch (err) {
+          console.warn('[Kontexto] Fallback aktiv:', err);
+          statusText.innerText = 'KI-Modell nicht verfügbar – vereinfachte Näherung aktiv.';
+          this.roundLocked = false;
+          loader.style.display = 'none';
+        }
+      },
+
+      async getEmbedding(text) {
+        if (!this.pipeline) return null;
+        const out = await this.pipeline(text.toLowerCase(), { pooling: 'mean', normalize: true });
+        return Array.from(out.data);
+      },
+
+      cosineSimilarity(vecA, vecB) {
+        let dot = 0, normA = 0, normB = 0;
+        for (let i = 0; i < vecA.length; i++) {
+          dot += vecA[i] * vecB[i];
+          normA += vecA[i] * vecA[i];
+          normB += vecB[i] * vecB[i];
+        }
+        return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+      },
+
+      async submitGuess(word, player = null) {
+        const cleanWord = String(word || '').trim().normalize('NFC');
+        if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
+        const key = cleanWord.toLocaleLowerCase('de-DE');
+        if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
+        this.pendingGuesses.add(key);
+        const submittedRoundId = this.roundId;
+        if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
+          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0 });
+          this.renderGuesses();
+          this.roundLocked = true;
+          CommunityBoard.record('kontexto', player);
+          const resultBox = document.getElementById('kontexto-round-result');
+          resultBox.innerHTML = '<div class="round-result-title">🎯 Geheimwort gefunden!</div><div class="round-result-answer">' + CommunityBoard.escape(this.targetWord) + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="kontexto-community-list"></div>';
+          resultBox.classList.add('visible');
+          CommunityBoard.render('kontexto', 'kontexto-community-list');
+          this.roundTimer = setTimeout(() => this.pickNewTarget(), 5000);
+          return;
+        }
+        let sim = 0;
+        if (this.pipeline) {
+          if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(this.targetWord);
+          const emb = await this.getEmbedding(cleanWord);
+          if (this.targetEmbedding && emb) sim = this.cosineSimilarity(this.targetEmbedding, emb);
+        } else {
+          // Fallback unterscheidet Wörter anhand gemeinsamer Buchstaben und Buchstabenpaare,
+          // statt allen Wörtern gleicher Länge denselben Wert zu geben.
+          const makeBigrams = value => {
+            const normalized = value.toLocaleLowerCase('de-DE');
+            const pairs = new Set();
+            for (let i = 0; i < normalized.length - 1; i++) pairs.add(normalized.slice(i, i + 2));
+            return pairs;
+          };
+          const targetLetters = new Set([...this.targetWord.toLocaleLowerCase('de-DE')]);
+          const guessLetters = new Set([...cleanWord.toLocaleLowerCase('de-DE')]);
+          const letterUnion = new Set([...targetLetters, ...guessLetters]);
+          const letterOverlap = [...targetLetters].filter(ch => guessLetters.has(ch)).length / Math.max(1, letterUnion.size);
+          const targetPairs = makeBigrams(this.targetWord);
+          const guessPairs = makeBigrams(cleanWord);
+          const pairUnion = new Set([...targetPairs, ...guessPairs]);
+          const pairOverlap = [...targetPairs].filter(pair => guessPairs.has(pair)).length / Math.max(1, pairUnion.size);
+          sim = (letterOverlap * 0.35 + pairOverlap * 0.65) * 2 - 1;
+        }
+        if (submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
+        const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
+        const baseRank = Math.max(2, Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 1000000));
+        const tieBreak = [...key].reduce((sum, ch, i) => sum + ch.charCodeAt(0) * (i + 17), 0) % 97;
+        let calculatedRank = baseRank * 100 + tieBreak;
+        while (this.guesses.some(item => item.rank === calculatedRank)) calculatedRank++;
+        this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
+        this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
+        this.pendingGuesses.delete(key);
+        this.renderGuesses();
+      },
+
+      renderGuesses() {
+        const container = document.getElementById('kontexto-guesses');
+        container.innerHTML = '';
+
+        this.guesses.forEach(item => {
+          const row = document.createElement('div');
+          row.className = 'guess-row';
+
+          // Farbe und Balken richten sich nach der semantischen Ähnlichkeit,
+          // nicht nach der künstlich skalierten Rangnummer.
+          const similarityScore = Math.max(0, Math.min(1, (Number(item.similarity) + 1) / 2));
+          let color = '#ff3b5c'; // Rot: weit entfernt
+          let level = 'Weit entfernt';
+          if (similarityScore >= 0.72) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (similarityScore >= 0.48) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
+
+          const pct = Math.max(5, Math.round(similarityScore * 100));
+
+          row.innerHTML = `
+            <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
+            <span class="guess-word">${item.word}</span>
+            <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
+          `;
+          container.appendChild(row);
+        });
+      }
+    };
+
+    /* ==========================================================================
+       5. SIZE IT UP ENGINE (METRISCHE SVG-VEKTOREN & BODENLINIEN-SKALIERUNG)
+       ========================================================================== */
+    const SizeItUpGame = {
+      initialized: false,
+      round: 1,
+      score: 0,
+      currentScale: 1.0,
+      dragStartY: null,
+      dragStartScale: 1.0,
+      roundLocked: false,
+      refObject: null,
+      targetObject: null,
+
+      // Saubere Vektor-Silhouetten mit exakten Höhenwerten
+      objects: [
+        { id: 'mensch', name: 'Mensch', height: 1.75, path: 'M50,7 C42,7 38,13 39,21 C40,28 44,31 50,31 C56,31 60,27 61,20 C62,13 58,7 50,7 Z M43,33 C37,34 34,39 33,47 L29,65 L36,67 L42,51 L42,69 L38,98 L46,98 L50,74 L54,98 L62,98 L58,69 L58,51 L64,67 L71,65 L67,47 C66,39 63,34 57,33 Z' },
+        { id: 'elefant', name: 'Afrikanischer Elefant', height: 3.2, path: 'M13,57 C12,43 21,34 36,32 C49,24 70,29 79,39 C88,43 91,54 88,64 L84,72 L82,97 L73,97 L70,70 L60,72 L59,98 L50,98 L49,72 L36,72 L34,98 L25,98 L25,69 C17,68 13,64 13,57 Z M23,42 C13,34 10,47 14,58 C16,64 20,66 25,63 Z M80,43 C89,33 96,44 91,58 C89,64 86,67 82,64 Z M85,55 C91,61 91,72 86,79 C83,83 82,88 84,93 L78,93 C73,85 76,75 79,68 Z M74,61 C79,62 80,69 76,72 C72,73 70,68 70,65 Z M14,53 L9,50 L9,47 L17,49 Z' },
+        { id: 'giraffe', name: 'Giraffe', height: 5.5, path: 'M20,56 C20,47 29,42 42,43 L52,46 L57,37 L59,22 L65,18 L72,21 L72,29 L67,33 L66,50 L62,58 L59,98 L52,98 L51,69 L43,69 L40,98 L33,98 L34,67 L24,65 Z M57,22 L56,12 L59,7 L62,17 Z M68,20 L71,9 L75,8 L74,21 Z M22,52 C15,49 13,42 17,38 L20,43 L25,45 Z M29,51 L35,48 L38,53 L34,58 Z M43,54 L49,51 L52,57 L47,61 Z M28,65 L34,62 L36,68 L31,72 Z' },
+        { id: 'brandenburg', name: 'Brandenburger Tor', height: 26, path: 'M7,37 L93,37 L93,45 L88,45 L88,96 L79,96 L79,48 L69,48 L69,96 L61,96 L61,48 L54,48 L54,96 L46,96 L46,48 L39,48 L39,96 L31,96 L31,48 L21,48 L21,96 L12,96 L12,45 L7,45 Z M3,35 L50,20 L97,35 L97,39 L3,39 Z M40,19 L45,15 L50,12 L55,15 L60,19 L58,22 L42,22 Z M46,11 L48,5 L52,5 L54,11 L58,13 L42,13 Z' },
+        { id: 'eiffelturm', name: 'Eiffelturm', height: 330, path: 'M47,5 L53,5 L54,25 L59,43 L66,61 L78,96 L65,96 L57,69 L54,58 L46,58 L43,69 L35,96 L22,96 L34,61 L41,43 L46,25 Z M43,44 L57,44 L61,55 L39,55 Z M37,66 L63,66 L66,75 L34,75 Z M29,88 L71,88 L75,96 L25,96 Z M47,8 L53,8 L52,18 L48,18 Z M39,55 L61,55 L58,61 L42,61 Z' },
+        { id: 'burjkhalifa', name: 'Burj Khalifa', height: 828, path: 'M49,2 L51,2 L52,17 L55,28 L58,40 L62,53 L67,66 L72,80 L78,96 L22,96 L28,80 L33,66 L38,53 L42,40 L45,28 L48,17 Z M47,13 L53,13 L53,25 L47,25 Z M43,34 L57,34 L59,43 L41,43 Z M38,50 L62,50 L65,60 L35,60 Z M32,68 L68,68 L72,79 L28,79 Z' }
+      ],
+
+      init() {
+        if (!this.initialized) {
+          this.setupControls();
+          this.initialized = true;
+        }
+        this.round = 1;
+        this.score = 0;
+        this.roundLocked = false;
+        this.loadRound();
+      },
+
+      setupControls() {
+        const target = document.getElementById('svg-target');
+        target.style.cursor = 'ns-resize';
+        target.style.touchAction = 'none';
+        target.addEventListener('pointerdown', (event) => {
+          if (this.roundLocked) return;
+          this.dragStartY = event.clientY;
+          this.dragStartScale = this.currentScale;
+          target.setPointerCapture(event.pointerId);
+        });
+        target.addEventListener('pointermove', (event) => {
+          if (this.dragStartY === null || !target.hasPointerCapture(event.pointerId)) return;
+          const delta = this.dragStartY - event.clientY;
+          this.currentScale = Math.max(0.08, Math.min(12, this.dragStartScale * Math.exp(delta * 0.018)));
+          this.updateTargetVisual();
+        });
+        const stopDrag = () => { this.dragStartY = null; };
+        target.addEventListener('pointerup', stopDrag);
+        target.addEventListener('pointercancel', stopDrag);
+        document.getElementById('btn-size-submit').onclick = () => this.evaluateRound();
+      },
+
+      loadRound() {
+        document.getElementById('size-round-label').innerText = `Runde ${this.round} / 5`;
+        document.getElementById('size-score-label').innerText = `${this.score} Punkte`;
+
+        // Zwei unterschiedliche Objekte auswählen
+        const validPairs = [];
+        for (let i = 0; i < this.objects.length; i++) {
+          for (let j = 0; j < this.objects.length; j++) {
+            if (i === j) continue;
+            const ratio = this.objects[i].height / this.objects[j].height;
+            if (ratio >= 0.08 && ratio <= 12) validPairs.push([this.objects[i], this.objects[j]]);
+          }
+        }
+        const pair = validPairs[Math.floor(Math.random() * validPairs.length)];
+        this.refObject = pair[0];
+        this.targetObject = pair[1];
+
+        // Referenz anzeigen (Cyan)
+        const refSvg = document.getElementById('svg-ref');
+        refSvg.innerHTML = `<path d="${this.refObject.path}" fill="var(--neon-cyan)" />`;
+        document.getElementById('ref-meta-text').innerText = `${this.refObject.name} (${this.refObject.height}m)`;
+
+        // Beide Silhouetten proportional zur echten Objektgröße skalieren.
+        const targetSvg = document.getElementById('svg-target');
+        targetSvg.innerHTML = `<path d="${this.targetObject.path}" fill="var(--neon-pink)" />`;
+        const maxObjectHeight = Math.max(this.refObject.height, this.targetObject.height);
+        const maxVisualHeight = 250;
+        const refVisualHeight = Math.max(18, maxVisualHeight * this.refObject.height / maxObjectHeight);
+        const targetVisualHeight = Math.max(18, maxVisualHeight * this.targetObject.height / maxObjectHeight);
+        refSvg.style.width = refVisualHeight + 'px';
+        refSvg.style.height = refVisualHeight + 'px';
+        targetSvg.style.width = targetVisualHeight + 'px';
+        targetSvg.style.height = targetVisualHeight + 'px';
+        document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (?? m)`;
+
+        // Zielgröße für die neue Runde zurücksetzen.
+        this.currentScale = 1.0;
+        this.dragStartY = null;
+        this.roundLocked = false;
+        document.getElementById('btn-size-submit').disabled = false;
+        this.updateTargetVisual();
+      },
+
+      updateTargetVisual() {
+        const targetSvg = document.getElementById('svg-target');
+        targetSvg.style.transform = `scale(${this.currentScale})`;
+      },
+
+      evaluateRound() {
+        if (this.roundLocked) return;
+        this.roundLocked = true;
+        const actualRatio = this.refObject.height / this.targetObject.height;
+        const guessedRatio = this.currentScale;
+        const deviationPct = Math.abs(guessedRatio - actualRatio) / actualRatio;
+        
+        // Bis zu 100 Punkte pro Runde
+        const roundScore = Math.max(0, Math.round(100 - (deviationPct * 100)));
+        this.score += roundScore;
+
+        document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (${this.targetObject.height}m)`;
+        document.getElementById('btn-size-submit').disabled = true;
+
+        if (this.round >= 5) {
+          showModal('Spiel beendet! 🏆', `Du hast insgesamt <b>${this.score} / 500 Punkten</b> erzielt!`, () => {
+            SizeItUpGame.init();
+          });
+        } else {
+          this.round++;
+          setTimeout(() => this.loadRound(), 1800);
+        }
+      }
+    };
+
+    /* ==========================================================================
+       6. PRICE IS RIGHT (ZAHLSCHÄTZUNGEN MIT ANTI-REPEAT-SPEICHER)
+       ========================================================================== */
+    const PriceIsRightGame = {
+      initialized: false,
+      currentQuestion: null,
+      playedKey: 'playfinity_pir_history',
+      guesses: [],
+      roundTimer: null,
+      revealTimer: null,
+      roundOpen: false,
+
+      // Fakten-Pool aus Rekorden, Natur, Geschichte, Gaming und Technik
+      questions: [
+        { id: 'p1', cat: 'Geschichte', q: 'In welchem Jahr landete Apollo 11 auf dem Mond?', a: 1969, u: 'Jahr', exp: 'Am 20. Juli 1969 setzte die Mondlandefähre Eagle auf.' },
+        { id: 'p2', cat: 'Geografie', q: 'Wie viele Bundesländer hat die Bundesrepublik Deutschland?', a: 16, u: 'Bundesländer', exp: 'Berlin, Hamburg und Bremen sind dabei Stadtstaaten.' },
+        { id: 'p3', cat: 'Biologie', q: 'Wie viele Knochen besitzt das Skelett eines erwachsenen Menschen?', a: 206, u: 'Knochen', exp: 'Babys werden mit rund 300 Knochen geboren, die später zusammenwachsen.' },
+        { id: 'p4', cat: 'Natur & Rekorde', q: 'Wie schnell kann ein Gepard beim Sprinten werden (in km/h)?', a: 120, u: 'km/h', exp: 'Er beschleunigt in 3 Sekunden von 0 auf 100 km/h.' },
+        { id: 'p5', cat: 'Gaming', q: 'In welchem Jahr erschien der Klassiker Super Mario 64 in Europa?', a: 1997, u: 'Jahr', exp: 'Das Spiel revolutionierte die 3D-Kamerasteuerung auf dem N64.' },
+        { id: 'p6', cat: 'Bauwerke', q: 'Wie hoch ist der Eiffelturm in Paris inklusive Antennenspitze (in Metern)?', a: 330, u: 'Meter', exp: 'Durch eine neue Radioantenne wuchs er 2022 auf 330 Meter.' },
+        { id: 'p7', cat: 'Astronomie', q: 'Wie viele Tage benötigt die Erde für eine vollständige Sonnenumkreisung?', a: 365, u: 'Tage', exp: 'Genau 365,24 Tage – daher gibt es alle 4 Jahre ein Schaltjahr.' },
+        { id: 'p8', cat: 'Gaming', q: 'Wie viele Pokémon gehörten zur allerersten Generation (Kanto)?', a: 151, u: 'Pokémon', exp: 'Mew war Nummer 151 und als geheimes Event-Monster codiert.' },
+        { id: 'p9', cat: 'Weltall', q: 'In welcher Höhe umkreist die Internationale Raumstation ISS die Erde (in km)?', a: 400, u: 'km', exp: 'Sie umrundet die Erde alle 90 Minuten mit etwa 28.000 km/h.' },
+        { id: 'p10', cat: 'Technik', q: 'In welchem Jahr wurde das erste Apple iPhone vorgestellt?', a: 2007, u: 'Jahr', exp: 'Steve Jobs präsentierte es am 9. Januar 2007 auf der Macworld.' }
+      ],
+
+      async init() {
+        if (this.initialized) return;
+        this.initialized = true;
+        document.getElementById('pir-submit').onclick = () => {
+          const val = parseFloat(document.getElementById('pir-input').value);
+          if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
+        };
+        document.getElementById('pir-input').addEventListener('keydown', event => {
+          if (event.key === 'Enter') document.getElementById('pir-submit').click();
+        });
+        document.getElementById('pir-next-btn').style.display = 'none';
+        await this.loadQuestionPool();
+        this.nextQuestion();
+      },
+
+      async loadQuestionPool() {
+        try {
+          const response = await fetch('./price-questions.json', { cache: 'no-store' });
+          if (!response.ok) throw new Error('Fragen-Datei konnte nicht geladen werden');
+          const data = await response.json();
+          const valid = Array.isArray(data.questions) ? data.questions.filter(q => q && typeof q.id === 'string' && typeof q.q === 'string' && Number.isFinite(Number(q.a)) && typeof q.u === 'string' && typeof q.exp === 'string' && typeof q.source === 'string') : [];
+          const unique = [...new Map(valid.map(q => [q.id, { ...q, a: Number(q.a) }])).values()];
+          if (unique.length < 20) throw new Error('Fragenpool ist zu klein oder ungültig');
+          this.questions = unique;
+        } catch (error) {
+          console.warn('[Price Is Right] Externe Fragen nicht geladen, verwende eingebauten Pool:', error);
+        }
+      },
+
+      getPlayedIds() {
+        try {
+          return JSON.parse(localStorage.getItem(this.playedKey)) || [];
+        } catch (e) {
+          return [];
+        }
+      },
+
+      savePlayedId(id) {
+        const list = this.getPlayedIds();
+        if (!list.includes(id)) {
+          list.push(id);
+          localStorage.setItem(this.playedKey, JSON.stringify(list));
+        }
+      },
+
+      nextQuestion() {
+        clearTimeout(this.roundTimer);
+        clearTimeout(this.revealTimer);
+        this.roundOpen = false;
+        this.guesses = [];
+        const liveList = document.getElementById('pir-live-guesses');
+        if (liveList) liveList.innerHTML = '';
+        const played = this.getPlayedIds();
+        let available = this.questions.filter(q => !played.includes(q.id));
+
+        // Anti-Repeat Reset wenn alles beantwortet wurde
+        if (available.length === 0) {
+          localStorage.removeItem(this.playedKey);
+          available = this.questions;
+        }
+
+        this.currentQuestion = available[Math.floor(Math.random() * available.length)];
+        
+        // UI aktualisieren
+        document.getElementById('pir-badge').innerText = this.currentQuestion.cat;
+        document.getElementById('pir-counter').innerText = `Frage ${played.length + 1} von ${this.questions.length}`;
+        document.getElementById('pir-question-text').innerText = this.currentQuestion.q;
+        document.getElementById('pir-input').value = '';
+        document.getElementById('pir-result').style.display = 'none';
+        document.getElementById('pir-input-group').style.display = 'flex';
+      },
+
+      submitGuess(val, player = null) {
+        if (!Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (!this.roundOpen) {
+          this.roundOpen = true;
+          this.guesses = [];
+          this.roundTimer = setTimeout(() => this.finishRound(), 15000);
+        }
+        const identity = player || { id: 'local-player', name: 'Lokaler Spieler' };
+        if (this.guesses.some(item => item.player.id === identity.id)) return;
+        this.guesses.push({ value: val, player: identity });
+        this.renderLiveGuesses();
+        document.getElementById('pir-input').value = '';
+      },
+
+      renderLiveGuesses() {
+        const container = document.getElementById('pir-live-guesses');
+        if (!container) return;
+        container.innerHTML = '';
+        [...this.guesses].reverse().forEach(item => {
+          const row = document.createElement('div');
+          row.className = 'pir-live-guess';
+          const name = document.createElement('span');
+          name.className = 'pir-live-guess-name';
+          name.textContent = item.player.name || 'Zuschauer';
+          const value = document.createElement('span');
+          value.className = 'pir-live-guess-value';
+          value.textContent = String(item.value);
+          row.append(name, value);
+          container.appendChild(row);
+        });
+      },
+
+      finishRound() {
+        if (!this.roundOpen || !this.guesses.length) return;
+        this.roundOpen = false;
+        this.savePlayedId(this.currentQuestion.id);
+        const ordered = [...this.guesses].sort((a,b) => Math.abs(a.value - this.currentQuestion.a) - Math.abs(b.value - this.currentQuestion.a));
+        const winner = ordered[0];
+        const diff = Math.abs(winner.value - this.currentQuestion.a);
+        CommunityBoard.record('priceisright', winner.player);
+        document.getElementById('pir-input-group').style.display = 'none';
+        document.getElementById('pir-result').style.display = 'flex';
+        document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
+        const feedback = (diff === 0 ? '🎯 <b>Volltreffer!</b> ' : '') + 'Gewinner: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
+        const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
+        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
+        const sourceUrl = String(this.currentQuestion.source || '');
+        if (/^https:\/\//i.test(sourceUrl)) {
+          const sourceLink = document.createElement('a');
+          sourceLink.href = sourceUrl;
+          sourceLink.target = '_blank';
+          sourceLink.rel = 'noopener noreferrer';
+          sourceLink.textContent = 'Quelle öffnen';
+          sourceLink.style.color = 'var(--neon-cyan)';
+          document.getElementById('pir-source-link').appendChild(sourceLink);
+        }
+        CommunityBoard.render('priceisright', 'pir-community-list');
+        this.revealTimer = setTimeout(() => this.nextQuestion(), 5000);
+      }
+    };
+
+    /* ==========================================================================
+       7. GLOBAL MODAL HELPER
+       ========================================================================== */
+    function showModal(title, text, callback) {
+      const modal = document.getElementById('app-modal');
+      document.getElementById('modal-title').innerText = title;
+      document.getElementById('modal-content').innerHTML = text;
+      const btn = document.getElementById('modal-btn-action');
+      btn.onclick = () => {
+        modal.classList.remove('active');
+        if (callback) callback();
+      };
+      modal.classList.add('active');
+    }
+
+    // Beim Laden der Plattform initialisieren
+    window.addEventListener('DOMContentLoaded', () => {
+      PlayfinityRouter.init();
+      TikFinity.init();
+    });
+  </script>
+</body>
+</html>
