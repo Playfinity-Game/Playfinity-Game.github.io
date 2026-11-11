@@ -172,6 +172,13 @@ header{background:#070914dc;border-bottom:1px solid #263b60}
 .k-load-track{height:4px;background:#263653;border-radius:99px;overflow:hidden}
 .k-load-track i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan));transition:width .25s}
 button:disabled{opacity:.55;cursor:wait}
+
+/* Kontexto: force a normal left-to-right reading and progress direction. */
+#kontexto{direction:ltr;transform:none!important}
+#kontexto *{unicode-bidi:plaintext}
+#kontexto .row,#kontexto .guesses,#kontexto .guess-card{direction:ltr;transform:none!important}
+#kontexto .guess-card{flex-direction:row; text-align:left}
+#kontexto .guess-card .progress-bar{left:0;right:auto}
 </style>
 </head>
 <body>
@@ -227,7 +234,7 @@ button:disabled{opacity:.55;cursor:wait}
     <div class="grid">
       <button class="game" onclick="openView('wordle')"><div class="emoji">🔤</div><h3>Wordle</h3><p>Errate das geheime Wort mit unendlichen Versuchen & Chat-Support.</p><small>WORT-RÄTSEL →</small></button>
       <button class="game" onclick="openView('size')"><div class="emoji">📐</div><h3>Size It Up</h3><p>Vergleiche echte Größen im direkten Silhouetten-Duell.</p><small>GRÖSSEN SCHÄTZEN →</small></button>
-      <button class="game" onclick="openView('kontexto')"><div class="emoji">🧠</div><h3>Kontexto</h3><p>Finde das geheime Wort.</p><small>BEDEUTUNG KNACKEN →</small></button>
+      <button class="game" onclick="openView('kontexto')"><div class="emoji" aria-hidden="true">⌕</div><h3>Kontexto</h3><p>Finde das geheime Wort.</p><small>BEDEUTUNG KNACKEN →</small></button>
       <button class="game" onclick="openView('price')"><div class="emoji">🎯</div><h3>The Price Is Right</h3><p>Schätze Fakten und Zahlen im einstellbaren Live-Timer.</p><small>ZAHLEN RATEN →</small></button>
     </div>
   </div>
@@ -308,7 +315,7 @@ button:disabled{opacity:.55;cursor:wait}
 <!-- KONTEXTO VIEW -->
 <section id="kontexto" class="view">
   <div class="viewhead">
-    <h2>🧠 Kontexto</h2>
+    <h2>Kontexto</h2>
     <div style="display:flex;gap:10px;align-items:center">
       <select id="kModeSelect" class="field" style="padding:6px 10px;font-size:0.85rem">
         <option value="auto">Auto-Weiter (5s)</option>
@@ -369,10 +376,16 @@ button:disabled{opacity:.55;cursor:wait}
 <footer class="footer wrap">PLAYFINITY · Play beyond limits</footer>
 
 <script>
-// Browser History Management
-window.addEventListener('popstate', (e) => {
-  if (e.state && e.state.view) {
-    showView(e.state.view, false);
+// Browser History Management: every game returns to the main menu with one browser-back action.
+if (!history.state || !history.state.view) {
+  history.replaceState({view:'home'}, '', location.pathname + location.search + '#home');
+}
+window.addEventListener('popstate', () => {
+  const activeGame = [...document.querySelectorAll('.view')].some(v => v.classList.contains('active'));
+  if (activeGame) {
+    showView('home', false);
+    // Keep the main menu as the current in-app history entry.
+    history.replaceState({view:'home'}, '', location.pathname + location.search + '#home');
   } else {
     showView('home', false);
   }
