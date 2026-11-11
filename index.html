@@ -1527,9 +1527,18 @@
         refSvg.innerHTML = `<path d="${this.refObject.path}" fill="var(--neon-cyan)" />`;
         document.getElementById('ref-meta-text').innerText = `${this.refObject.name} (${this.refObject.height}m)`;
 
-        // Ziel-Objekt vorbereiten (Pink)
+        // Beide Silhouetten proportional zur echten Objektgröße skalieren.
         const targetSvg = document.getElementById('svg-target');
         targetSvg.innerHTML = `<path d="${this.targetObject.path}" fill="var(--neon-pink)" />`;
+        const maxObjectHeight = Math.max(this.refObject.height, this.targetObject.height);
+        const maxVisualHeight = 250;
+        const refVisualHeight = Math.max(18, maxVisualHeight * this.refObject.height / maxObjectHeight);
+        const targetVisualHeight = Math.max(18, maxVisualHeight * this.targetObject.height / maxObjectHeight);
+        const refSvg = document.getElementById('svg-ref');
+        refSvg.style.width = refVisualHeight + 'px';
+        refSvg.style.height = refVisualHeight + 'px';
+        targetSvg.style.width = targetVisualHeight + 'px';
+        targetSvg.style.height = targetVisualHeight + 'px';
         document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (?? m)`;
 
         // Zielgröße für die neue Runde zurücksetzen.
