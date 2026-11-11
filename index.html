@@ -837,12 +837,12 @@
           </div>
         </div>
 
-        <!-- Price Is Right Card -->
+        <!-- Zahlen schätzen Card -->
         <div class="game-card card-gold" onclick="PlayfinityRouter.go('priceisright')">
           <div>
             <div class="card-badge" style="color: var(--neon-gold)">Zahlenschätzung</div>
-            <div class="card-title">Price Is Right</div>
-            <div class="card-desc">Schätze Fakten und Rekorde. Mit Anti-Repeat-Speicher und 217 Fragen mit Quellenangaben.</div>
+            <div class="card-title">Zahlen schätzen</div>
+            <div class="card-desc">Schätze Fakten, Rekorde und Gaming-Wissen. Mit Anti-Repeat-Speicher und 242 Fragen mit Quellenangaben.</div>
           </div>
           <div class="card-footer">
             <span class="btn-play-card" style="color: var(--neon-gold)">Starten ›</span>
@@ -920,12 +920,11 @@
       </div>
     </section>
 
-    <!-- SCREEN 5: PRICE IS RIGHT -->
+    <!-- SCREEN 5: ZAHLEN SCHÄTZEN -->
     <section class="screen" id="screen-priceisright">
       <div class="pir-card">
         <div class="pir-header">
           <span class="pir-category-badge" id="pir-badge">Kategorie</span>
-          <span class="pir-progress-count" id="pir-counter">Frage -- von --</span>
         </div>
         <div class="pir-question" id="pir-question-text">Frage lädt...</div>
 
@@ -984,7 +983,7 @@
           if (action === 'connect') showModal('TikTok / TikFinity verbinden', 'PLAYFINITY verbindet sich über TikFinity auf demselben Computer. Öffne TikFinity, starte die Verbindung und lasse diese PLAYFINITY-Seite geöffnet. Der Status oben zeigt die lokale Verbindung. Ein separater TikTok-Konto-Login ist derzeit nicht eingerichtet.');
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
-          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>Price Is Right: eine Zahl. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>Zahlen schätzen: eine Zahl. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
       },
@@ -1111,7 +1110,7 @@
       top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
       escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
       render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
-      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['Price Is Right','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
+      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['Zahlen schätzen','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
     };
 
     /* ==========================================================================
@@ -1781,7 +1780,6 @@
         
         // UI aktualisieren
         document.getElementById('pir-badge').innerText = this.currentQuestion.cat;
-        document.getElementById('pir-counter').innerText = `Frage ${played.length + 1} von ${this.questions.length}`;
         document.getElementById('pir-question-text').innerText = this.currentQuestion.q;
         document.getElementById('pir-input').value = '';
         document.getElementById('pir-result').style.display = 'none';
