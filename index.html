@@ -1090,6 +1090,8 @@
       currentGuess: '',
       guesses: [],
       maxCols: 5,
+      roundLocked: false,
+      roundTimer: null,
 
       // Ausgewählte deutsche 5-Buchstaben-Wörter
       wordPool: [
@@ -1101,16 +1103,21 @@
       ],
 
       init() {
+        if (this.initialized) return;
         this.buildKeyboard();
         window.addEventListener('keydown', (e) => this.handlePhysicalKey(e));
         this.initialized = true;
       },
 
       startNewGame() {
+        clearTimeout(this.roundTimer);
         this.init();
+        this.roundLocked = false;
         this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
         this.guesses = [];
         this.currentGuess = '';
+        const result = document.getElementById('wordle-round-result');
+        if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
         this.renderBoard();
         this.resetKeyboardColors();
       },
@@ -1177,7 +1184,9 @@
         }
       },
 
-      submitGuess(word) {
+      submitGuess(word, player = null) {
+        if (this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        if (this.guesses.some(item => item.word === word)) return;
         // Exakte Auswertung mit Berücksichtigung doppelter Buchstaben
         const targetArr = this.targetWord.split('');
         const guessArr = word.split('');
@@ -1211,7 +1220,13 @@
 
         // Gewinnprüfung
         if (word === this.targetWord) {
-          showModal('Rätsel gelöst! 🎉', `Glückwunsch! Du hast das Wort <b>${this.targetWord}</b> in ${this.guesses.length} Versuchen gefunden.`, () => WordleGame.startNewGame());
+          this.roundLocked = true;
+          CommunityBoard.record('wordle', player);
+          const resultBox = document.getElementById('wordle-round-result');
+          resultBox.innerHTML = '<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">' + this.targetWord + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="wordle-community-list"></div>';
+          resultBox.classList.add('visible');
+          CommunityBoard.render('wordle', 'wordle-community-list');
+          this.roundTimer = setTimeout(() => this.startNewGame(), 5000);
         }
       },
 
@@ -1274,6 +1289,9 @@
       targetWord: '',
       targetEmbedding: null,
       guesses: [],
+      roundLocked: false,
+      roundTimer: null,
+      pendingGuesses: new Set(),
 
       // 20 deutsche Zielwörter
       targets: [
@@ -1300,10 +1318,15 @@
         });
       },
 
-      pickNewTarget() {
+      async pickNewTarget() {
+        clearTimeout(this.roundTimer);
+        this.roundLocked = false;
+        this.pendingGuesses.clear();
         this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
         this.guesses = [];
-        this.targetEmbedding = null;
+        this.targetEmbedding = this.pipeline ? await this.getEmbedding(this.targetWord) : null;
+        const result = document.getElementById('kontexto-round-result');
+        if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
         this.renderGuesses();
       },
 
@@ -1355,31 +1378,38 @@
         return dot / (Math.sqrt(normA) * Math.sqrt(normB));
       },
 
-      async submitGuess(word) {
-        const cleanWord = word.trim();
-        if (cleanWord.toLowerCase() === this.targetWord.toLowerCase()) {
+      async submitGuess(word, player = null) {
+        const cleanWord = String(word || '').trim().normalize('NFC');
+        if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
+        const key = cleanWord.toLocaleLowerCase('de-DE');
+        if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
+        this.pendingGuesses.add(key);
+        if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
           this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0 });
           this.renderGuesses();
-          showModal('Glückwunsch! 🎯', `Du hast das geheime Wort <b>${this.targetWord}</b> in ${this.guesses.length} Versuchen gefunden!`, () => {
-            KontextoGame.pickNewTarget();
-          });
+          this.roundLocked = true;
+          CommunityBoard.record('kontexto', player);
+          const resultBox = document.getElementById('kontexto-round-result');
+          resultBox.innerHTML = '<div class="round-result-title">🎯 Geheimwort gefunden!</div><div class="round-result-answer">' + CommunityBoard.escape(this.targetWord) + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="kontexto-community-list"></div>';
+          resultBox.classList.add('visible');
+          CommunityBoard.render('kontexto', 'kontexto-community-list');
+          this.roundTimer = setTimeout(() => this.pickNewTarget(), 5000);
           return;
         }
-
         let sim = 0;
-        if (this.pipeline && this.targetEmbedding) {
+        if (this.pipeline) {
+          if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(this.targetWord);
           const emb = await this.getEmbedding(cleanWord);
-          sim = this.cosineSimilarity(this.targetEmbedding, emb);
+          if (this.targetEmbedding && emb) sim = this.cosineSimilarity(this.targetEmbedding, emb);
         } else {
-          // Heuristischer Annäherungsfallback
-          sim = Math.max(0.1, 0.7 - (Math.abs(cleanWord.length - this.targetWord.length) * 0.08));
+          sim = Math.max(0.01, 0.35 - Math.abs(cleanWord.length - this.targetWord.length) * 0.015);
         }
-
-        // Semantischer Rang 2 bis 10.000
-        const calculatedRank = Math.max(2, Math.round(Math.pow(1 - Math.max(0, sim), 2.5) * 8000));
-
+        const baseRank = Math.max(2, Math.round(Math.pow(1 - Math.max(0, sim), 2.5) * 1000000));
+        const tieBreak = [...key].reduce((sum, ch, i) => sum + ch.charCodeAt(0) * (i + 17), 0) % 97;
+        const calculatedRank = baseRank * 100 + tieBreak;
         this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
         this.guesses.sort((a, b) => a.rank - b.rank);
+        this.pendingGuesses.delete(key);
         this.renderGuesses();
       },
 
@@ -1394,8 +1424,8 @@
           // Farbliche Einordnung
           let color = 'var(--neon-purple)';
           if (item.rank === 1) color = 'var(--neon-green)';
-          else if (item.rank <= 300) color = 'var(--neon-cyan)';
-          else if (item.rank <= 1500) color = 'var(--neon-gold)';
+          else if (item.rank <= 3000000) color = 'var(--neon-cyan)';
+          else if (item.rank <= 15000000) color = 'var(--neon-gold)';
 
           const pct = Math.max(5, Math.min(100, Math.round((1 - (item.rank / 8000)) * 100)));
 
