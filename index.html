@@ -1412,7 +1412,23 @@
           const emb = await this.getEmbedding(cleanWord);
           if (this.targetEmbedding && emb) sim = this.cosineSimilarity(this.targetEmbedding, emb);
         } else {
-          sim = Math.max(0.01, 0.35 - Math.abs(cleanWord.length - this.targetWord.length) * 0.015);
+          // Fallback unterscheidet Wörter anhand gemeinsamer Buchstaben und Buchstabenpaare,
+          // statt allen Wörtern gleicher Länge denselben Wert zu geben.
+          const makeBigrams = value => {
+            const normalized = value.toLocaleLowerCase('de-DE');
+            const pairs = new Set();
+            for (let i = 0; i < normalized.length - 1; i++) pairs.add(normalized.slice(i, i + 2));
+            return pairs;
+          };
+          const targetLetters = new Set([...this.targetWord.toLocaleLowerCase('de-DE')]);
+          const guessLetters = new Set([...cleanWord.toLocaleLowerCase('de-DE')]);
+          const letterUnion = new Set([...targetLetters, ...guessLetters]);
+          const letterOverlap = [...targetLetters].filter(ch => guessLetters.has(ch)).length / Math.max(1, letterUnion.size);
+          const targetPairs = makeBigrams(this.targetWord);
+          const guessPairs = makeBigrams(cleanWord);
+          const pairUnion = new Set([...targetPairs, ...guessPairs]);
+          const pairOverlap = [...targetPairs].filter(pair => guessPairs.has(pair)).length / Math.max(1, pairUnion.size);
+          sim = (letterOverlap * 0.35 + pairOverlap * 0.65) * 2 - 1;
         }
         if (submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
