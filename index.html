@@ -1447,6 +1447,9 @@
       round: 1,
       score: 0,
       currentScale: 1.0,
+      dragStartY: null,
+      dragStartScale: 1.0,
+      roundLocked: false,
       refObject: null,
       targetObject: null,
 
@@ -1469,12 +1472,24 @@
       },
 
       setupControls() {
-        const slider = document.getElementById('size-scale-slider');
-        slider.oninput = (e) => {
-          this.currentScale = e.target.value / 100;
+        const target = document.getElementById('svg-target');
+        target.style.cursor = 'ns-resize';
+        target.style.touchAction = 'none';
+        target.addEventListener('pointerdown', (event) => {
+          if (this.roundLocked) return;
+          this.dragStartY = event.clientY;
+          this.dragStartScale = this.currentScale;
+          target.setPointerCapture(event.pointerId);
+        });
+        target.addEventListener('pointermove', (event) => {
+          if (this.dragStartY === null || !target.hasPointerCapture(event.pointerId)) return;
+          const delta = this.dragStartY - event.clientY;
+          this.currentScale = Math.max(0.08, Math.min(12, this.dragStartScale * Math.exp(delta * 0.018)));
           this.updateTargetVisual();
-        };
-
+        });
+        const stopDrag = () => { this.dragStartY = null; };
+        target.addEventListener('pointerup', stopDrag);
+        target.addEventListener('pointercancel', stopDrag);
         document.getElementById('btn-size-submit').onclick = () => this.evaluateRound();
       },
 
@@ -1497,9 +1512,11 @@
         targetSvg.innerHTML = `<path d="${this.targetObject.path}" fill="var(--neon-pink)" />`;
         document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (?? m)`;
 
-        // Slider zurücksetzen
+        // Zielgröße für die neue Runde zurücksetzen.
         this.currentScale = 1.0;
-        document.getElementById('size-scale-slider').value = 100;
+        this.dragStartY = null;
+        this.roundLocked = false;
+        document.getElementById('btn-size-submit').disabled = false;
         this.updateTargetVisual();
       },
 
@@ -1509,6 +1526,8 @@
       },
 
       evaluateRound() {
+        if (this.roundLocked) return;
+        this.roundLocked = true;
         const actualRatio = this.targetObject.height / this.refObject.height;
         const guessedRatio = this.currentScale;
         const deviationPct = Math.abs(guessedRatio - actualRatio) / actualRatio;
@@ -1518,6 +1537,7 @@
         this.score += roundScore;
 
         document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (${this.targetObject.height}m)`;
+        document.getElementById('btn-size-submit').disabled = true;
 
         if (this.round >= 5) {
           showModal('Spiel beendet! 🏆', `Du hast insgesamt <b>${this.score} / 500 Punkten</b> erzielt!`, () => {
@@ -1537,6 +1557,10 @@
       initialized: false,
       currentQuestion: null,
       playedKey: 'playfinity_pir_history',
+      guesses: [],
+      roundTimer: null,
+      revealTimer: null,
+      roundOpen: false,
 
       // Fakten-Pool aus Rekorden, Natur, Geschichte, Gaming und Technik
       questions: [
@@ -1556,9 +1580,9 @@
         this.initialized = true;
         document.getElementById('pir-submit').onclick = () => {
           const val = parseFloat(document.getElementById('pir-input').value);
-          if (!isNaN(val)) this.submitGuess(val);
+          if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
         };
-        document.getElementById('pir-next-btn').onclick = () => this.nextQuestion();
+        document.getElementById('pir-next-btn').style.display = 'none';
         this.nextQuestion();
       },
 
@@ -1579,6 +1603,10 @@
       },
 
       nextQuestion() {
+        clearTimeout(this.roundTimer);
+        clearTimeout(this.revealTimer);
+        this.roundOpen = false;
+        this.guesses = [];
         const played = this.getPlayedIds();
         let available = this.questions.filter(q => !played.includes(q.id));
 
@@ -1599,19 +1627,35 @@
         document.getElementById('pir-input-group').style.display = 'flex';
       },
 
-      submitGuess(val) {
+      submitGuess(val, player = null) {
+        if (!Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (!this.roundOpen) {
+          this.roundOpen = true;
+          this.guesses = [];
+          this.roundTimer = setTimeout(() => this.finishRound(), 15000);
+        }
+        const identity = player || { id: 'local-player', name: 'Lokaler Spieler' };
+        if (this.guesses.some(item => item.player.id === identity.id)) return;
+        this.guesses.push({ value: val, player: identity });
+        document.getElementById('pir-input').value = '';
+      },
+
+      finishRound() {
+        if (!this.roundOpen || !this.guesses.length) return;
+        this.roundOpen = false;
         this.savePlayedId(this.currentQuestion.id);
-        const diff = Math.abs(val - this.currentQuestion.a);
-        
+        const ordered = [...this.guesses].sort((a,b) => Math.abs(a.value - this.currentQuestion.a) - Math.abs(b.value - this.currentQuestion.a));
+        const winner = ordered[0];
+        const diff = Math.abs(winner.value - this.currentQuestion.a);
+        CommunityBoard.record('priceisright', winner.player);
         document.getElementById('pir-input-group').style.display = 'none';
         document.getElementById('pir-result').style.display = 'flex';
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
-        
-        const feedback = diff === 0 
-          ? '🎯 <b>Volltreffer!</b> Exakt richtig geschätzt!' 
-          : `Deine Schätzung: ${val} (Abweichung: ${diff} ${this.currentQuestion.u})`;
-        
-        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${this.currentQuestion.exp}`;
+        const feedback = diff === 0 ? '🎯 <b>Volltreffer!</b> Exakt richtig geschätzt!' : `Gewinner: <b>${CommunityBoard.escape(winner.player.name)}</b> · Schätzung: ${winner.value} (Abweichung: ${diff} ${this.currentQuestion.u})`;
+        const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
+        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-community-list"></div>`;
+        CommunityBoard.render('priceisright', 'pir-community-list');
+        this.revealTimer = setTimeout(() => this.nextQuestion(), 5000);
       }
     };
 
