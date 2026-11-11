@@ -108,6 +108,9 @@
       color: #fff;
     }
 
+    .menu-toggle{border:1px solid rgba(0,240,255,.28);background:rgba(0,240,255,.08);color:var(--neon-cyan);border-radius:9px;width:38px;height:36px;font-size:1.2rem;cursor:pointer}
+    .app-menu{display:none;position:fixed;top:68px;right:14px;z-index:180;width:min(300px,calc(100vw - 28px));padding:12px;background:rgba(10,12,28,.98);border:1px solid var(--border-glow);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(16px);flex-direction:column;gap:6px}
+    .app-menu.open{display:flex}.app-menu button{width:100%;border:0;border-radius:9px;padding:12px;color:var(--text-main);background:rgba(255,255,255,.045);text-align:left;font:700 .9rem var(--font-main);cursor:pointer}.app-menu button:hover{background:rgba(0,240,255,.1);color:var(--neon-cyan)}.menu-status{color:var(--text-muted);font-size:.75rem;padding:5px 10px 2px}
     .tikfinity-status {
       display: flex;
       align-items: center;
@@ -417,6 +420,7 @@
     .key-btn.correct { background: var(--neon-green); color: #000; }
     .key-btn.present { background: var(--neon-gold); color: #000; }
     .key-btn.absent { background: #181a30; color: #555c7a; opacity: 0.6; }
+    @media(max-width:600px){.screen#screen-wordle{padding:10px 12px 18px}.wordle-container{justify-content:flex-start;gap:12px;padding-top:2px}.wordle-grid{margin:2px auto 0;gap:5px;max-width:min(320px,88vw)}.wordle-row{gap:5px}.wordle-cell{border-radius:6px;font-size:1.25rem}.keyboard{margin-top:0;gap:5px}.keyboard-row{gap:4px}.key-btn{height:43px;font-size:.92rem}}
 
     /* ==========================================================================
        6. KONTEXTO SCREEN
@@ -690,6 +694,8 @@
       line-height: 1.4;
     }
 
+    .round-result{display:none;width:100%;margin:12px auto 0;padding:16px;border:1px solid rgba(0,255,157,.35);border-radius:12px;background:rgba(0,255,157,.07);text-align:center;flex-direction:column;gap:8px}.round-result.visible{display:flex}.round-result-title{color:var(--neon-green);font-weight:900;font-size:1.1rem}.round-result-answer{color:#fff;font-size:1.45rem;font-weight:900;overflow-wrap:anywhere}.community-board{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.1);text-align:left}.community-board h4{color:var(--neon-gold);font-size:.8rem;margin-bottom:6px}.community-board ol{padding-left:22px;color:var(--text-muted);font-size:.8rem}.community-board li{padding:2px 0}.community-note{color:var(--text-muted);font-size:.68rem;margin-top:6px}
+
     /* ==========================================================================
        9. MODALE & FEEDBACK
        ========================================================================== */
@@ -751,7 +757,17 @@
       <span class="status-dot" id="ws-indicator"></span>
       <span id="ws-label">TikFinity Offline</span>
     </div>
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
+  <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
+    <button data-menu-action="home">⌂ &nbsp; Startseite</button>
+    <button data-menu-action="leaderboard">🏆 &nbsp; Community-Ranglisten</button>
+    <button data-menu-action="connect">🔴 &nbsp; TikTok / TikFinity verbinden</button>
+    <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
+    <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
+    <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
+    <div class="menu-status" id="menu-connection-status">TikFinity wird geprüft …</div>
+  </nav>
 
   <main>
     <!-- SCREEN 1: ARCADE HUB (HAUPTMENÜ) -->
@@ -817,6 +833,7 @@
       <div class="wordle-container">
         <div class="wordle-grid" id="wordle-board"></div>
         <div class="keyboard" id="wordle-keyboard"></div>
+        <div class="round-result" id="wordle-round-result"></div>
       </div>
     </section>
 
@@ -839,6 +856,7 @@
         </div>
 
         <div class="guesses-list" id="kontexto-guesses"></div>
+        <div class="round-result" id="kontexto-round-result"></div>
       </div>
     </section>
 
@@ -865,11 +883,7 @@
         </div>
 
         <div class="size-controls">
-          <div class="slider-row">
-            <span style="font-size:0.8rem; color:var(--text-muted);">Klein</span>
-            <input type="range" class="neon-slider" id="size-scale-slider" min="10" max="300" value="100">
-            <span style="font-size:0.8rem; color:var(--text-muted);">Groß</span>
-          </div>
+          <div class="size-drag-hint" style="text-align:center;color:var(--text-muted);font-size:.82rem;padding:4px 0;">⬆ Nach oben ziehen = größer · ⬇ Nach unten ziehen = kleiner</div>
           <button class="btn-action btn-block" id="btn-size-submit">Größe einloggen</button>
         </div>
       </div>
