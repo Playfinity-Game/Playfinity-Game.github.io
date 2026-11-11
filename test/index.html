@@ -532,6 +532,12 @@
       text-align: left;
     }
 
+    .kontexto-hints{display:flex;gap:8px;flex-wrap:wrap}
+    .kontexto-hint-btn{flex:1 1 180px;min-height:42px;padding:9px 12px;border:1px solid rgba(0,240,255,.32);border-radius:10px;background:rgba(0,240,255,.07);color:var(--neon-cyan);font:700 .82rem var(--font-main);cursor:pointer;transition:all .2s}
+    .kontexto-hint-btn:hover:not(:disabled){background:rgba(0,240,255,.14);box-shadow:0 0 12px rgba(0,240,255,.16)}
+    .kontexto-hint-btn:disabled{opacity:.45;cursor:default}
+    .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
+    .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
     .guess-legend span{display:inline-flex;align-items:center;gap:6px}
     .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
@@ -869,6 +875,12 @@
           <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
+
+        <div class="kontexto-hints">
+          <button type="button" class="kontexto-hint-btn" id="kontexto-category-hint">🏷️ Kategorie anzeigen</button>
+          <button type="button" class="kontexto-hint-btn" id="kontexto-word-hint">💡 Wort-Tipp holen</button>
+        </div>
+        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
 
         <div class="guess-legend" aria-label="Bedeutung der Farben">
           <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
@@ -1314,6 +1326,30 @@
       roundTimer: null,
       pendingGuesses: new Set(),
       roundId: 0,
+      categoryHintUsed: false,
+      wordHintUsed: false,
+      targetHints: {
+        Hund: { category: 'Tier', word: 'Leine' },
+        Kaffee: { category: 'Getränk', word: 'Tasse' },
+        Schloss: { category: 'Gebäude oder Bauwerk', word: 'Burg' },
+        Gitarre: { category: 'Musikinstrument', word: 'Musik' },
+        Sommer: { category: 'Jahreszeit', word: 'Sonne' },
+        Flugzeug: { category: 'Verkehrsmittel', word: 'Flughafen' },
+        Ozean: { category: 'Natur und Gewässer', word: 'Meer' },
+        Roboter: { category: 'Technik', word: 'Maschine' },
+        Zauberer: { category: 'Figur aus der Fantasywelt', word: 'Magie' },
+        Kamera: { category: 'Technik und Geräte', word: 'Foto' },
+        Sonne: { category: 'Himmelskörper', word: 'Stern' },
+        Kuchen: { category: 'Essen und Süßspeisen', word: 'Torte' },
+        Winter: { category: 'Jahreszeit', word: 'Schnee' },
+        Rakete: { category: 'Raumfahrt', word: 'Weltraum' },
+        Wald: { category: 'Natur und Landschaft', word: 'Bäume' },
+        Insel: { category: 'Geografie und Orte', word: 'Strand' },
+        Musik: { category: 'Kunst und Unterhaltung', word: 'Lied' },
+        Pferd: { category: 'Tier', word: 'Reiten' },
+        Telefon: { category: 'Technik und Kommunikation', word: 'Anruf' },
+        Schmetterling: { category: 'Tier', word: 'Flügel' }
+      },
 
       // 20 deutsche Zielwörter
       targets: [
@@ -1338,6 +1374,32 @@
         document.getElementById('kontexto-input').addEventListener('keydown', (e) => {
           if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
         });
+        document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
+        document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
+      },
+
+      showCategoryHint() {
+        if (this.roundLocked || this.categoryHintUsed) return;
+        const hint = this.targetHints[this.targetWord];
+        if (!hint) return;
+        this.categoryHintUsed = true;
+        const display = document.getElementById('kontexto-category-display');
+        display.textContent = 'Kategorie: ' + hint.category;
+        display.hidden = false;
+        const button = document.getElementById('kontexto-category-hint');
+        button.disabled = true;
+        button.textContent = '🏷️ Kategorie angezeigt';
+      },
+
+      showWordHint() {
+        if (this.roundLocked || this.wordHintUsed) return;
+        const hint = this.targetHints[this.targetWord];
+        if (!hint) return;
+        this.wordHintUsed = true;
+        const button = document.getElementById('kontexto-word-hint');
+        button.disabled = true;
+        button.textContent = '💡 Wort-Tipp verwendet';
+        this.submitGuess(hint.word, null, { isHint: true });
       },
 
       async pickNewTarget() {
@@ -1346,6 +1408,14 @@
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
         this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
+        this.categoryHintUsed = false;
+        this.wordHintUsed = false;
+        const categoryButton = document.getElementById('kontexto-category-hint');
+        const wordButton = document.getElementById('kontexto-word-hint');
+        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️ Kategorie anzeigen'; }
+        if (wordButton) { wordButton.disabled = false; wordButton.textContent = '💡 Wort-Tipp holen'; }
+        const categoryDisplay = document.getElementById('kontexto-category-display');
+        if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
         this.guesses = [];
         this.targetEmbedding = null;
         if (this.pipeline) this.targetEmbedding = await this.getEmbedding(this.targetWord);
@@ -1407,7 +1477,7 @@
         return dot / (Math.sqrt(normA) * Math.sqrt(normB));
       },
 
-      async submitGuess(word, player = null) {
+      async submitGuess(word, player = null, options = {}) {
         const cleanWord = String(word || '').trim().normalize('NFC');
         if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
@@ -1415,7 +1485,7 @@
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
         if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
-          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0 });
+          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint });
           this.renderGuesses();
           this.roundLocked = true;
           CommunityBoard.record('kontexto', player);
@@ -1460,7 +1530,7 @@
           calculatedRank = Math.max(1, calculatedRank - 1);
           while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
         }
-        this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
+        this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim, isHint: !!options.isHint });
         this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
         this.pendingGuesses.delete(key);
         this.renderGuesses();
@@ -1486,7 +1556,7 @@
 
           row.innerHTML = `
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
-            <span class="guess-word">${item.word}</span>
+            <span class="guess-word">${CommunityBoard.escape(item.word)}${item.isHint ? '<span class="guess-hint-tag">💡 TIPP</span>' : ''}</span>
             <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
           `;
           container.appendChild(row);
