@@ -1155,8 +1155,9 @@
 
       setStatus(message, state = 'idle') {
         if (this.statusNode) this.statusNode.textContent = message;
-        if (this.connectButton) this.connectButton.disabled = state === 'connecting' || state === 'connected';
-        if (this.disconnectButton) this.disconnectButton.hidden = state !== 'connected';
+        const isConnected = state === 'connected' || state === 'error-connected';
+        if (this.connectButton) this.connectButton.disabled = state === 'connecting' || isConnected;
+        if (this.disconnectButton) this.disconnectButton.hidden = !isConnected;
         if (activeLiveSource === 'tiktok' || state === 'connecting') {
           const dot = document.getElementById('ws-indicator');
           const label = document.getElementById('ws-label');
@@ -1210,14 +1211,14 @@
                 TikFinity.lastUserName = user.name;
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
               } else if (message.type === 'connector_error') {
-                this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error');
+                this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
               }
             } catch (error) {
               console.warn('[PLAYFINITY] TikTok-Paket konnte nicht gelesen werden:', error);
             }
           };
 
-          socket.onerror = () => this.setStatus('WebSocket-Verbindung zu TikTok konnte nicht hergestellt werden.', 'error');
+          socket.onerror = () => this.setStatus('WebSocket-Verbindung zu TikTok konnte nicht hergestellt werden.', this.connected ? 'error-connected' : 'error');
 
           socket.onclose = () => {
             const wasActive = activeLiveSource === 'tiktok';
