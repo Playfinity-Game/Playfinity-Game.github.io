@@ -106,6 +106,67 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
 .footer{border-top:1px solid var(--line);padding:22px 0 35px;color:var(--muted);font-size:.8rem;text-align:center}
 @media(min-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game{min-height:220px}}
 @media(max-width:420px){.top{height:62px}.logo{font-size:1.2rem}.panel{padding:15px}.size-stage{height:250px}}
+
+/* PLAYFINITY NEON ARCADE REFRESH */
+:root{--bg:#070914;--panel:#10172a;--panel2:#151f36;--line:#263b60;--pink:#ff4da6;--violet:#8b5cf6;--cyan:#39d9ff;--text:#f5f8ff;--muted:#9baac5;--green:#20d99a;--yellow:#ffc45c;--red:#ff5478}
+body{background:radial-gradient(ellipse at 12% -8%,#34206c 0,transparent 36%),radial-gradient(ellipse at 95% 18%,#0d4562 0,transparent 30%),#070914}
+header{background:#070914dc;border-bottom:1px solid #263b60}
+.logo span{background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+.arcade-frame{max-width:1040px;background:linear-gradient(145deg,#111a30ed,#0a1020f5);border:1px solid #36527d;border-radius:28px;box-shadow:0 22px 80px #0008, inset 0 1px #ffffff12}
+.arcade-title{letter-spacing:1px;text-shadow:0 0 30px #39d9ff30}
+.arcade-subtitle{text-transform:none;letter-spacing:.2px;font-size:1rem}
+.grid{gap:16px}
+.game{background:linear-gradient(145deg,#172440,#0d1528);border:1px solid #2c4269;border-radius:20px;min-height:190px;box-shadow:inset 0 1px #ffffff0a}
+.game:hover{border-color:var(--cyan);box-shadow:0 14px 38px #39d9ff1e;transform:translateY(-3px)}
+.game .emoji{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:16px;background:linear-gradient(145deg,#263c66,#171f3a);box-shadow:inset 0 1px #ffffff20}
+.game h3{font-size:1.3rem}
+.game p{max-width:38ch}
+.game small{color:var(--cyan)}
+.view{max-width:980px;margin:26px auto 70px}
+.viewhead{padding:0 2px 12px;border-bottom:1px solid #263b60}
+.viewhead h2{font-size:clamp(1.45rem,3vw,2rem);letter-spacing:-.5px}
+.panel{background:linear-gradient(145deg,#121d33f5,#0d1426f5);border:1px solid #2b4168;border-radius:22px;padding:clamp(16px,3vw,26px);box-shadow:0 18px 55px #0005,inset 0 1px #ffffff0b}
+.field{background:#080f1e;border:1px solid #31496f;border-radius:14px;padding:15px 16px}
+.field:focus{outline:2px solid #39d9ff66;border-color:var(--cyan)}
+.action{background:linear-gradient(110deg,#ff4da6,#8b5cf6 58%,#398cff);border-radius:14px;box-shadow:0 8px 24px #8b5cf633}
+.btn{background:#172440;border-color:#30486f;border-radius:13px}
+.notice{background:#0b2132;border-color:#39d9ff55}
+.guesses{gap:9px;max-height: min(58vh,620px);padding-right:3px}
+.guess-card{min-height:52px;padding:12px 16px;background:#111b2e;border:1px solid #2b4162;border-radius:13px}
+.guess-card .word-title{font-size:1rem;letter-spacing:.1px}
+.guess-card .rank-badge{min-width:62px;text-align:center;border-radius:9px;font-size:.95rem}
+.guess-card .progress-bar{opacity:.26}
+.rank-top{border-color:#20d99a88}.rank-mid{border-color:#ffc45c77}.rank-far{border-color:#ff547866}
+#kontexto .panel>p.muted{display:none}
+#kontexto .row{gap:10px}
+#kontexto .row .field{font-size:1.05rem;min-height:56px}
+#kontexto .row .action{min-width:112px}
+#kmessage{font-size:.82rem;color:#8fa3c3}
+#size .panel{overflow:hidden}
+.size-stage{height:clamp(290px,42vw,420px);padding:28px 5% 54px;border:1px solid #38547e;border-radius:20px;background-color:#091327;background-image:linear-gradient(#31456838 1px,transparent 1px),linear-gradient(90deg,#31456838 1px,transparent 1px);background-size:34px 34px;box-shadow:inset 0 0 55px #0005}
+.size-object{width:44%;height:100%;align-items:end}
+.silhouette{max-height:100%;width:auto;max-width:90%;filter:drop-shadow(0 0 14px #39d9ff35)}
+.silhouette.target{filter:drop-shadow(0 0 14px #ff4da644)}
+.objcaption{bottom:-10px;font-weight:800;color:#d7e6ff;font-size:.88rem}
+#srange{height:10px;cursor:ew-resize}
+.result{background:#0a1427;border-color:#36517a;border-radius:14px;line-height:1.8}
+.score-row{background:#101b30;border-color:#2c4266;border-radius:12px;padding:12px}
+.score-bar-bg{height:10px}
+.timer{color:var(--cyan);text-shadow:0 0 24px #39d9ff55}
+.qtext{font-size:clamp(1.15rem,2.5vw,1.55rem)}
+.footer{border-color:#263b60}
+@media(max-width:600px){
+ .wrap{padding:0 12px}.top{height:64px}.arcade-frame{padding:22px 14px;margin:18px auto;border-radius:20px}
+ .grid{grid-template-columns:1fr;gap:11px}.game{min-height:140px;padding:17px}.game .emoji{width:44px;height:44px;font-size:1.8rem}
+ .game h3{margin:8px 0 4px}.game p{font-size:.82rem}
+ .view{padding:0 12px;margin-top:18px}.viewhead{align-items:center}.viewhead h2{font-size:1.35rem}
+ .panel{padding:15px;border-radius:17px}
+ #kontexto .row{flex-wrap:nowrap}#kontexto .row .action{min-width:82px;padding:12px 10px}
+ .guess-card{padding:10px 12px;min-height:48px}.guess-card .word-title{font-size:.9rem}
+ .size-stage{height:280px;padding:20px 2% 48px;background-size:26px 26px}
+ .size-object{width:47%}.objcaption{font-size:.76rem}
+}
+
 </style>
 </head>
 <body>
@@ -160,8 +221,8 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
     </div>
     <div class="grid">
       <button class="game" onclick="openView('wordle')"><div class="emoji">🔤</div><h3>Wordle</h3><p>Errate das geheime Wort mit unendlichen Versuchen & Chat-Support.</p><small>WORT-RÄTSEL →</small></button>
-      <button class="game" onclick="openView('size')"><div class="emoji">📐</div><h3>Size It Up</h3><p>Vergleiche 500+ Objekte, Länder & Gaming-Daten mit Live-Zoom.</p><small>GRÖSSEN SCHÄTZEN →</small></button>
-      <button class="game" onclick="openView('kontexto')"><div class="emoji">🧠</div><h3>Kontexto</h3><p>Finde das geheime Wort über die semantische Nähe & Ränge[span_9](start_span)[span_9](end_span).</p><small>BEDEUTUNG KNACKEN →</small></button>
+      <button class="game" onclick="openView('size')"><div class="emoji">📐</div><h3>Size It Up</h3><p>Vergleiche echte Größen im direkten Silhouetten-Duell.</p><small>GRÖSSEN SCHÄTZEN →</small></button>
+      <button class="game" onclick="openView('kontexto')"><div class="emoji">🧠</div><h3>Kontexto</h3><p>Finde das geheime Wort.</p><small>BEDEUTUNG KNACKEN →</small></button>
       <button class="game" onclick="openView('price')"><div class="emoji">🎯</div><h3>The Price Is Right</h3><p>Schätze Fakten und Zahlen im einstellbaren Live-Timer.</p><small>ZAHLEN RATEN →</small></button>
     </div>
   </div>
@@ -191,7 +252,7 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
   <div class="viewhead"><h2>📐 Size It Up</h2><button class="btn" onclick="startSizeGame()">Kategorien</button></div>
   
   <div id="size-cat-screen" class="panel">
-    <div class="section-title" style="text-align:center;margin-bottom:15px">Wähle eine Kategorie (5 Runden mit Zufallsvergleich & 500+ Daten)</div>
+    <div class="section-title" style="text-align:center;margin-bottom:15px">Kategorie wählen · 5 Runden</div>
     <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr))">
       <button class="game" onclick="selectCategory('geo')" style="min-height:130px;padding:15px"><div class="emoji">🌍</div><h3>Geografie</h3><p>Länder, Flüsse, Berge</p></button>
       <button class="game" onclick="selectCategory('sight')" style="min-height:130px;padding:15px"><div class="emoji">🏛️</div><h3>Wahrzeichen</h3><p>Türme, Gebäude, Brücken</p></button>
@@ -252,7 +313,7 @@ header{position:sticky;top:0;z-index:50;background:#090713ee;backdrop-filter:blu
     </div>
   </div>
   <div class="panel">
-    <p class="muted">Finde das geheime Wort über seine Bedeutung[span_12](start_span)[span_12](end_span). Kleinster Rang (Rang 1) gewinnt!</p>
+    
     <div class="row">
       <input id="kinput" class="field" placeholder="Wort eingeben…" maxlength="40" autocomplete="off">
       <button class="action" onclick="submitKontexto()">Raten</button>
@@ -552,6 +613,32 @@ function getSvgMarkup(type, color){
   return '<svg viewBox="0 0 200 100" width="100%" height="100%"><path fill="'+color+'" d="M20,50 Q40,20 70,35 Q100,10 130,40 Q160,20 180,50 Q160,80 130,70 Q100,90 70,65 Q40,80 20,50Z"/></svg>';
 }
 
+
+function svgForObject(name,color){
+  const n=String(name||'').toLowerCase();
+  let body='';
+  if(/mensch|person|körper|mario|sonic|master chief|doom|link|lara|pikachu|kirby|freiheit/.test(n)){
+    body='<circle cx="50" cy="16" r="10"/><path d="M39 30 Q50 24 61 30 L67 69 L59 72 L57 49 L62 94 L53 94 L50 65 L47 94 L38 94 L43 49 L41 72 L33 69Z"/><path d="M38 34 L22 56 L27 61 L43 46 M62 34 L78 56 L73 61 L57 46" />';
+  }else if(/eiffel|turm|münster|dom|burj|empire|hochhaus|brücke/.test(n)){
+    body='<path d="M47 4h6l2 24 8 18-5 3 8 43h-9l-7-31-7 31h-9l8-43-5-3 8-18z"/><path d="M32 48h36M38 63h24M25 92h50v6H25z"/>';
+  }else if(/berg|zugspitze|mont blanc|alpen|pyrenäen/.test(n)){
+    body='<path d="M5 91L34 35l13 22L64 12l31 79z"/><path fill="#fff" d="M56 27l8-15 9 27-9-5-6 5-7-3z"/>';
+  }else if(/auto|golf|bus|lkw|transporter|fahrrad|motorrad|scooter/.test(n)){
+    body='<path d="M9 63l8-23q3-8 12-8h36q8 0 13 9l8 22v16H9z"/><path d="M27 35l-8 20h62L71 35z" fill="#0a1427"/><circle cx="27" cy="78" r="10" fill="#0a1427" stroke="currentColor" stroke-width="5"/><circle cx="73" cy="78" r="10" fill="#0a1427" stroke="currentColor" stroke-width="5"/>';
+  }else if(/flugzeug|passagier|helikopter|flug/.test(n)){
+    body='<path d="M48 4h5l5 39 34 22v8L58 64l-2 24 12 8v5L51 96 34 101v-5l12-8-2-24L4 73v-8l35-22z"/>';
+  }else if(/smartphone|telefon|game boy|switch|monitor|fernseher|kreditkarte|gerät/.test(n)){
+    body='<rect x="27" y="4" width="46" height="92" rx="8"/><rect x="33" y="13" width="34" height="68" rx="3" fill="#0a1427"/><circle cx="50" cy="88" r="3" fill="#0a1427"/>';
+  }else if(/fluss|rhein|donau/.test(n)){
+    body='<path d="M24 4C74 19 13 34 52 49S22 75 70 96" fill="none" stroke="currentColor" stroke-width="17" stroke-linecap="round"/>';
+  }else if(/land|deutschland|frankreich|kanada|australien|brasilien|indien|nordsee|ostsee/.test(n)){
+    body='<path d="M17 22l15-12 17 5 9-8 18 13-4 15 13 10-8 15 7 13-18 16-17-8-13 8-16-14 4-16-13-12z"/>';
+  }else{
+    body='<path d="M50 5L88 25 88 75 50 95 12 75 12 25z"/><path d="M12 25l38 21 38-21M50 46v49" fill="none" stroke="#0a1427" stroke-width="4"/>';
+  }
+  return '<svg viewBox="0 0 100 104" width="100%" height="100%" preserveAspectRatio="xMidYMax meet" style="display:block;color:'+color+'" aria-hidden="true"><g fill="'+color+'" stroke="'+color+'" stroke-linejoin="round" stroke-linecap="round">'+body+'</g></svg>';
+}
+
 let currentCat='geo', sround=1, spoints=0, roundScores=[], sdata=null, slocked=false, scale=50;
 
 function startSizeGame(){
@@ -587,9 +674,9 @@ function loadSizeRound(){
   let refEl=document.getElementById('refshape');
   let targetEl=document.getElementById('targetshape');
   
-  refEl.innerHTML=getSvgMarkup(sdata.svg, '#35e5ff');
+  refEl.innerHTML=svgForObject(sdata.a, '#39d9ff');
   refEl.style.height=refH+'px';
-  targetEl.innerHTML=getSvgMarkup(sdata.svg, '#ff3ca6');
+  targetEl.innerHTML=svgForObject(sdata.b, '#ff4da6');
   targetEl.style.height=Math.round(refH*scale/100)+'px';
   
   let stage=document.getElementById('size-stage');
