@@ -1498,15 +1498,6 @@
       "source": "https://oceanservice.noaa.gov/facts/octopus.html"
     },
     {
-      "id": "pf-167",
-      "cat": "Biologie",
-      "q": "Wie viele Stunden pro Tag wächst menschliches Haar ungefähr nicht messbar, sondern kontinuierlich?",
-      "a": 24,
-      "u": "Stunden",
-      "exp": "Haar wächst kontinuierlich; der Wachstumsprozess läuft nicht nur tagsüber ab.",
-      "source": "https://www.aad.org/public/everyday-care/hair-scalp-care/hair/hair-growth"
-    },
-    {
       "id": "pf-168",
       "cat": "Natur",
       "q": "Wie viel Prozent der trockenen Erdatmosphäre besteht aus Sauerstoff ungefähr?",
@@ -1946,15 +1937,6 @@
       "u": "Beine",
       "exp": "Hummer gehören zu den Zehnfußkrebsen und haben fünf Beinpaare.",
       "source": "https://www.fisheries.noaa.gov/species/american-lobster"
-    },
-    {
-      "id": "pf-217",
-      "cat": "Tiere",
-      "q": "Wie viele Zähne hat ein erwachsener Hai ungefähr?",
-      "a": 300,
-      "u": "Zähne",
-      "exp": "Viele Haiarten besitzen mehrere Reihen von Zähnen; die Gesamtzahl kann mehrere hundert betragen.",
-      "source": "https://ocean.si.edu/ocean-life/sharks-rays/shark-teeth"
     },
     {
       "id": "pf-218",
