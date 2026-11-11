@@ -167,6 +167,11 @@ header{background:#070914dc;border-bottom:1px solid #263b60}
  .size-object{width:47%}.objcaption{font-size:.76rem}
 }
 
+
+.k-model-status{width:100%;flex-basis:100%;font-size:.78rem;color:var(--muted);margin:0 0 14px;display:flex;flex-direction:column;gap:7px}
+.k-load-track{height:4px;background:#263653;border-radius:99px;overflow:hidden}
+.k-load-track i{display:block;height:100%;background:linear-gradient(90deg,var(--pink),var(--violet),var(--cyan));transition:width .25s}
+button:disabled{opacity:.55;cursor:wait}
 </style>
 </head>
 <body>
@@ -315,7 +320,7 @@ header{background:#070914dc;border-bottom:1px solid #263b60}
   <div class="panel">
     
     <div class="row">
-      <input id="kinput" class="field" placeholder="Wort eingeben…" maxlength="40" autocomplete="off">
+      <div id="k-model-status" class="k-model-status"><span>Semantische KI wird beim Start geladen …</span><div class="k-load-track"><i style="width:3%"></i></div></div><input id="kinput" class="field" placeholder="Wort eingeben…" maxlength="40" autocomplete="off">
       <button class="action" onclick="submitKontexto()">Raten</button>
     </div>
     <div id="kmessage" class="muted" style="margin:10px 0">Versuche: 0</div>
@@ -905,6 +910,144 @@ function endPrice(){
 document.getElementById('pinput').addEventListener('keydown',e=>{if(e.key==='Enter') submitPrice()});
 
 function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+/* Navigation fix: the initial menu is a real history entry. */
+if (!history.state || !history.state.view) {
+  history.replaceState({view:'home'}, '', location.pathname + location.search + '#home');
+}
+window.addEventListener('pageshow', () => {
+  if (!history.state || !history.state.view) history.replaceState({view:'home'}, '', location.pathname + location.search + '#home');
+});
+const originalOpenView = openView;
+function openView(id){
+  showView(id, true);
+  if(id==='wordle') newWordle();
+  if(id==='size') startSizeGame();
+  if(id==='kontexto') newKontexto();
+  if(id==='price') newPrice();
+}
+function goHome(){
+  if(document.getElementById('menu-overlay').classList.contains('open')) toggleMenu();
+  showView('home', true);
+}
+
+/* Real semantic ranking via Transformers.js. The model is downloaded once by the browser cache. */
+const K_SEMANTIC_CANDIDATES = [...new Set((
+'auto fahrzeug wagen motor lenkrad reifen straße verkehr fahrrad zug flugzeug schiff bus bahn' +
+' hund katze wolf fuchs tier haustier fell pfote bellen maus pferd vogel fisch' +
+' apfel birne banane obst gemüse tomate kartoffel brot käse milch wasser kaffee tee' +
+' haus wohnung gebäude zimmer küche bad fenster tür dach wand möbel tisch stuhl bett' +
+' computer laptop smartphone telefon tablet tastatur maus bildschirm internet software' +
+' musik lied instrument gitarre klavier trommel konzert ton radio kopfhörer' +
+' sport fußball ball tor stadion spieler mannschaft laufen schwimmen tennis basketball' +
+' baum wald blatt blume gras pflanze wurzel ast holz natur garten park' +
+' sonne mond stern planet welt erde himmel wolke regen schnee wind feuer wasser' +
+' arzt medizin krankenhaus gesundheit körper herz blut gehirn hand fuß kopf auge' +
+' schule lernen buch papier stift bleistift schreiben lesen sprache wort satz' +
+' geld preis kaufen laden markt arbeit beruf büro chef kollege kunde' +
+' liebe freund familie kind eltern mensch frau mann baby hochzeit geburt' +
+' sommer winter frühling herbst tag nacht morgen abend zeit uhr kalender' +
+' meer strand ozean fluss see berg tal insel wüste land stadt dorf' +
+' könig königin regierung politik gesetz gericht polizei feuerwehr rettung' +
+' film kino serie schauspieler theater kunst bild malerei foto kamera' +
+' essen kochen küche restaurant hunger geschmack süß salzig sauer bitter' +
+' schlüssel schloss tasche kleidung schuh hose jacke hemd kleid hut' +
+' werkzeug hammer schraube säge zange leiter maschine fabrik produktion' +
+' computerprogramm daten code algorithmus künstliche intelligenz roboter' +
+' freundschaft streit angst freude glück trauer wut hoffnung mut' +
+' energie strom batterie akku licht lampe kabel steckdose solar' +
+' flasche glas tasse teller schüssel messer gabel löffel topf pfanne'
+).trim().split(/\s+/))];
+let kModel=null, kModelPromise=null, kSemanticReady=false, kTargetVector=null, kCandidateVectors=[];
+function setKModelStatus(message, progress){
+  let el=document.getElementById('k-model-status');
+  if(el) el.innerHTML='<span>'+escapeHtml(message)+'</span><div class="k-load-track"><i style="width:'+Math.max(0,Math.min(100,progress||0))+'%"></i></div>';
+}
+async function loadKontextoModel(){
+  if(kModelPromise) return kModelPromise;
+  kModelPromise=(async()=>{
+    setKModelStatus('KI-Modell wird geladen … (beim ersten Start kann es etwas dauern)',4);
+    const mod=await import('https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2');
+    mod.env.allowLocalModels=false;
+    mod.env.useBrowserCache=true;
+    const extractor=await mod.pipeline('feature-extraction','Xenova/paraphrase-multilingual-MiniLM-L12-v2',{progress_callback:p=>{
+      if(p && p.status==='progress') setKModelStatus('KI-Modell lädt … '+Math.round(p.progress||0)+'%',p.progress||8);
+      else setKModelStatus('KI-Modell wird vorbereitet …',12);
+    }});
+    kModel=extractor;
+    setKModelStatus('Wortvektoren werden vorbereitet …',55);
+    const vectors=await extractor(K_SEMANTIC_CANDIDATES,{pooling:'mean',normalize:true});
+    kCandidateVectors=K_SEMANTIC_CANDIDATES.map((word,i)=>({word,vec:Array.from(vectors.data.slice(i*vectors.dims[1],(i+1)*vectors.dims[1]))}));
+    kSemanticReady=true;
+    setKModelStatus('Semantische KI bereit',100);
+    return extractor;
+  })().catch(err=>{
+    console.error('Kontexto model error',err);
+    setKModelStatus('KI konnte nicht geladen werden. Internetverbindung prüfen und erneut laden.',0);
+    kModelPromise=null;
+    throw err;
+  });
+  return kModelPromise;
+}
+function cosine(a,b){
+  let dot=0,aa=0,bb=0;
+  for(let i=0;i<a.length;i++){dot+=a[i]*b[i];aa+=a[i]*a[i];bb+=b[i]*b[i];}
+  return dot/(Math.sqrt(aa)*Math.sqrt(bb)||1);
+}
+async function embedKontexto(text){
+  const model=await loadKontextoModel();
+  const out=await model(text,{pooling:'mean',normalize:true});
+  return Array.from(out.data.slice(0,out.dims[1]));
+}
+async function newKontexto(){
+  const item=KONTEXTO_WORDS[Math.floor(Math.random()*KONTEXTO_WORDS.length)];
+  kTarget=item.word.toLocaleLowerCase('de');
+  kGuesses=[];kAttempts=0;
+  document.getElementById('klist').innerHTML='';
+  document.getElementById('kinput').value='';
+  document.getElementById('kmessage').textContent='Versuche: 0 | Gib ein Wort ein!';
+  document.getElementById('k-win-modal').classList.remove('open');
+  kTargetVector=null;
+  try{
+    await loadKontextoModel();
+    kTargetVector=await embedKontexto(kTarget);
+    setKModelStatus('Semantische KI bereit',100);
+  }catch(e){}
+}
+async function processKontextoGuess(user, word){
+  const w=word.toLocaleLowerCase('de').trim();
+  if(!w || kGuesses.some(g=>g.word===w) || document.getElementById('k-win-modal').classList.contains('open')) return;
+  if(!kSemanticReady || !kTargetVector){
+    setKModelStatus('Die KI lädt noch – bitte gleich erneut versuchen.',0);
+    try{await loadKontextoModel();kTargetVector=await embedKontexto(kTarget);}catch(e){return;}
+  }
+  const input=document.getElementById('kinput');
+  const submit=document.querySelector('#kontexto .action');
+  if(submit) submit.disabled=true;
+  setKModelStatus('Bedeutung wird verglichen …',100);
+  try{
+    const vec=await embedKontexto(w);
+    const similarity=cosine(kTargetVector,vec);
+    const scores=kCandidateVectors.map(x=>cosine(kTargetVector,x.vec)).sort((a,b)=>b-a);
+    let rank=1+scores.filter(s=>s>similarity+1e-7).length;
+    if(w===kTarget) rank=1;
+    kAttempts++;
+    kGuesses.push({word:w,rank,user,similarity});
+    kGuesses.sort((a,b)=>a.rank-b.rank || b.similarity-a.similarity);
+    renderKontextoList();
+    document.getElementById('kmessage').textContent='Versuche: '+kAttempts+' · semantischer Rang';
+    if(rank===1){
+      document.getElementById('k-win-word').textContent=kTarget;
+      document.getElementById('k-win-user').textContent=user;
+      document.getElementById('k-win-meta').textContent='Nach '+kAttempts+' Versuchen gelöst!';
+      document.getElementById('k-win-modal').classList.add('open');
+    }
+  }catch(e){
+    console.error(e);
+    setKModelStatus('Fehler beim Berechnen. Bitte erneut versuchen.',0);
+  }finally{if(submit)submit.disabled=false;}
+}
+
 </script>
 </body>
 </html>
