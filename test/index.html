@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>PLAYFINITY – TikTok Live Arcade</title>
+  <title>PLAYFINITY</title>
   <meta name="theme-color" content="#070814">
 
   <!-- Transformers.js für Kontexto (semantische KI direkt im Browser) -->
@@ -173,10 +173,13 @@
     }
 
     .hero-title h1 {
-      font-size: 2.1rem;
+      font-size: clamp(2.6rem, 8vw, 4.5rem);
       font-weight: 900;
-      letter-spacing: 1.5px;
-      color: #fff;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
     }
 
     .hero-title p {
@@ -786,8 +789,7 @@
     <!-- SCREEN 1: ARCADE HUB (HAUPTMENÜ) -->
     <section class="screen active" id="screen-menu">
       <div class="hero-title">
-        <h1>TIKTOK LIVE ARCADE</h1>
-        <p>Spiele direkt im Browser oder interaktiv im Live-Stream</p>
+        <h1>PLAYFINITY</h1>
       </div>
 
       <div class="arcade-grid">
