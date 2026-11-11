@@ -865,7 +865,6 @@
           </div>
         </div>
 
-        <div class="community-note">Die angezeigten Ränge sind Näherungswerte aus der semantischen Ähnlichkeit, keine globale Wörterbuch-Rangliste.</div>
         <div class="input-box">
           <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
@@ -1453,10 +1452,14 @@
         }
         if (submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
-        const baseRank = Math.max(2, Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 1000000));
-        const tieBreak = [...key].reduce((sum, ch, i) => sum + ch.charCodeAt(0) * (i + 17), 0) % 97;
-        let calculatedRank = baseRank * 100 + tieBreak;
-        while (this.guesses.some(item => item.rank === calculatedRank)) calculatedRank++;
+        // PLAYFINITY-Modellrang: feste, nachvollziehbare Skala statt künstlicher Millionenwerte.
+        // Dies ist eine Ähnlichkeitsschätzung, noch kein exakter Platz in einem vollständigen Wörterbuch.
+        let calculatedRank = 1 + Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 15499);
+        while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank < 15500) calculatedRank++;
+        if (this.guesses.some(item => item.rank === calculatedRank)) {
+          calculatedRank = Math.max(1, calculatedRank - 1);
+          while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
+        }
         this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
         this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
         this.pendingGuesses.delete(key);
