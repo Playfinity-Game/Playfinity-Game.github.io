@@ -420,7 +420,7 @@
     .key-btn.correct { background: var(--neon-green); color: #000; }
     .key-btn.present { background: var(--neon-gold); color: #000; }
     .key-btn.absent { background: #181a30; color: #555c7a; opacity: 0.6; }
-    @media(max-width:600px){.screen#screen-wordle{padding:10px 12px 18px}.wordle-container{justify-content:flex-start;gap:12px;padding-top:2px}.wordle-grid{margin:2px auto 0;gap:5px;max-width:min(320px,88vw)}.wordle-row{gap:5px}.wordle-cell{border-radius:6px;font-size:1.25rem}.keyboard{margin-top:0;gap:5px}.keyboard-row{gap:4px}.key-btn{height:43px;font-size:.92rem}}
+    @media(max-width:600px){header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.tikfinity-status{padding:5px 7px;font-size:.63rem;gap:5px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:10px 12px 18px}.wordle-container{justify-content:flex-start;gap:12px;padding-top:2px}.wordle-grid{margin:2px auto 0;gap:5px;max-width:min(320px,88vw)}.wordle-row{gap:5px}.wordle-cell{border-radius:6px;font-size:1.25rem}.keyboard{margin-top:0;gap:5px}.keyboard-row{gap:4px}.key-btn{height:43px;font-size:.92rem}}
 
     /* ==========================================================================
        6. KONTEXTO SCREEN
@@ -850,6 +850,7 @@
           </div>
         </div>
 
+        <div class="community-note">Die angezeigten Ränge sind Näherungswerte aus der semantischen Ähnlichkeit, keine globale Wörterbuch-Rangliste.</div>
         <div class="input-box">
           <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
