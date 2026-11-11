@@ -940,7 +940,20 @@
         document.getElementById('brand-home').addEventListener('click', () => this.go('menu'));
         document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
 
-        // Startscreen registrieren
+        const menu = document.getElementById('app-menu');
+        const toggle = document.getElementById('menu-toggle');
+        toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
+        menu.addEventListener('click', (event) => {
+          const action = event.target.closest('[data-menu-action]')?.dataset.menuAction;
+          if (!action) return;
+          menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
+          if (action === 'home') this.go('menu');
+          if (action === 'leaderboard') CommunityBoard.showAll();
+          if (action === 'connect') showModal('TikTok / TikFinity verbinden', 'PLAYFINITY verbindet sich über TikFinity auf demselben Computer. Öffne TikFinity, starte die Verbindung und lasse diese PLAYFINITY-Seite geöffnet. Der Status oben zeigt die lokale Verbindung. Ein separater TikTok-Konto-Login ist derzeit nicht eingerichtet.');
+          if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
+          if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>Price Is Right: eine Zahl. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
+        });
         history.replaceState({ screen: 'menu' }, '', '#menu');
       },
 
@@ -983,6 +996,8 @@
       statusDot: document.getElementById('ws-indicator'),
       statusLabel: document.getElementById('ws-label'),
       reconnectTimer: null,
+      connected: false,
+      lastUserName: '',
 
       init() {
         this.connect();
@@ -994,6 +1009,7 @@
           this.ws = new WebSocket('ws://localhost:21213/');
 
           this.ws.onopen = () => {
+            this.connected = true;
             this.setStatus('connected', 'TikFinity Live');
             console.log('[TikFinity] Verbunden mit Port 21213');
           };
@@ -1002,7 +1018,8 @@
             try {
               const msg = JSON.parse(event.data);
               if (msg.event === 'chat' && msg.data) {
-                const user = msg.data.nickname || msg.data.uniqueId || 'Zuschauer';
+                const user = { id: String(msg.data.uniqueId || msg.data.userId || msg.data.nickname || 'unknown'), name: String(msg.data.nickname || msg.data.uniqueId || 'Zuschauer') };
+                this.lastUserName = user.name;
                 const text = (msg.data.comment || '').trim();
                 this.routeLiveChat(user, text);
               }
@@ -1012,6 +1029,7 @@
           };
 
           this.ws.onclose = () => {
+            this.connected = false;
             this.setStatus('disconnected', 'TikFinity Offline');
             this.scheduleReconnect();
           };
@@ -1026,8 +1044,11 @@
       },
 
       setStatus(state, label) {
+        this.connected = state === 'connected';
         this.statusDot.className = 'status-dot ' + (state === 'connected' ? 'connected' : state === 'connecting' ? 'connecting' : '');
         this.statusLabel.innerText = label;
+        const menuStatus = document.getElementById('menu-connection-status');
+        if (menuStatus) menuStatus.innerText = state === 'connected' ? 'TikFinity verbunden' : state === 'connecting' ? 'TikFinity verbindet …' : 'TikFinity nicht verbunden';
       },
 
       scheduleReconnect() {
@@ -1036,17 +1057,28 @@
       },
 
       routeLiveChat(user, text) {
-        // Leitet Chat-Kommentare automatisch an das aktive Spiel weiter
         const screen = PlayfinityRouter.currentScreen;
-        if (screen === 'wordle' && text.length === 5) {
-          WordleGame.submitGuess(text.toUpperCase());
-        } else if (screen === 'kontexto' && text.length >= 2 && !text.startsWith('!')) {
-          KontextoGame.submitGuess(text);
-        } else if (screen === 'priceisright') {
-          const num = parseInt(text.replace(/[^0-9-]/g, ''), 10);
-          if (!isNaN(num)) PriceIsRightGame.submitGuess(num);
+        if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
+          WordleGame.submitGuess(text.toUpperCase(), user);
+        } else if (screen === 'kontexto' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
+          KontextoGame.submitGuess(text, user);
+        } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
+          PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
         }
       }
+    };
+
+    /* ==========================================================================
+       COMMUNITY-RANGLISTEN (LETZTE 24 STUNDEN, STREAMER-BROWSER)
+       ========================================================================== */
+    const CommunityBoard = {
+      key: 'playfinity_community_scores_v1', windowMs: 86400000,
+      read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
+      record(game, player) { if (!player || !player.id || player.id === 'unknown') return; const rows = this.read(); rows.push({game, id:player.id, name:player.name || 'Zuschauer', at:Date.now(), points:1}); localStorage.setItem(this.key, JSON.stringify(rows)); },
+      top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
+      escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
+      render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
+      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['Price Is Right','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
     };
 
     /* ==========================================================================
