@@ -532,10 +532,11 @@
       text-align: left;
     }
 
-    .kontexto-hints{display:flex;gap:8px;flex-wrap:wrap}
-    .kontexto-hint-btn{flex:1 1 180px;min-height:42px;padding:9px 12px;border:1px solid rgba(0,240,255,.32);border-radius:10px;background:rgba(0,240,255,.07);color:var(--neon-cyan);font:700 .82rem var(--font-main);cursor:pointer;transition:all .2s}
-    .kontexto-hint-btn:hover:not(:disabled){background:rgba(0,240,255,.14);box-shadow:0 0 12px rgba(0,240,255,.16)}
-    .kontexto-hint-btn:disabled{opacity:.45;cursor:default}
+    .kontexto-header-hints{display:none;align-items:center;gap:6px;margin-left:auto}
+    .kontexto-header-hint{width:38px;height:36px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.15rem;cursor:pointer;transition:all .2s}
+    .kontexto-header-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
+    .kontexto-header-hint:disabled{opacity:.4;cursor:default}
+    body.kontexto-active .kontexto-header-hints{display:flex}
     .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
@@ -779,6 +780,7 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
+    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
@@ -876,10 +878,6 @@
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
 
-        <div class="kontexto-hints">
-          <button type="button" class="kontexto-hint-btn" id="kontexto-category-hint">🏷️ Kategorie anzeigen</button>
-          <button type="button" class="kontexto-hint-btn" id="kontexto-word-hint">💡 Wort-Tipp holen</button>
-        </div>
         <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
 
         <div class="guess-legend" aria-label="Bedeutung der Farben">
@@ -998,6 +996,7 @@
 
       renderScreen(screenId, isForwardNav) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
           target.classList.add('active');
@@ -1392,13 +1391,9 @@
       },
 
       showWordHint() {
-        if (this.roundLocked || this.wordHintUsed) return;
+        if (this.roundLocked) return;
         const hint = this.targetHints[this.targetWord];
         if (!hint) return;
-        this.wordHintUsed = true;
-        const button = document.getElementById('kontexto-word-hint');
-        button.disabled = true;
-        button.textContent = '💡 Wort-Tipp verwendet';
         this.submitGuess(hint.word, null, { isHint: true });
       },
 
@@ -1413,7 +1408,7 @@
         const categoryButton = document.getElementById('kontexto-category-hint');
         const wordButton = document.getElementById('kontexto-word-hint');
         if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️ Kategorie anzeigen'; }
-        if (wordButton) { wordButton.disabled = false; wordButton.textContent = '💡 Wort-Tipp holen'; }
+        if (wordButton) { wordButton.disabled = false; wordButton.title = 'Wort-Tipp – beliebig oft'; }
         const categoryDisplay = document.getElementById('kontexto-category-display');
         if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
         this.guesses = [];
