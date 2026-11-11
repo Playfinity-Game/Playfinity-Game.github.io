@@ -1476,10 +1476,13 @@
       ],
 
       init() {
-        this.initialized = true;
+        if (!this.initialized) {
+          this.setupControls();
+          this.initialized = true;
+        }
         this.round = 1;
         this.score = 0;
-        this.setupControls();
+        this.roundLocked = false;
         this.loadRound();
       },
 
