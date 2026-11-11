@@ -806,7 +806,7 @@
           <div>
             <div class="card-badge" style="color: var(--neon-gold)">Zahlenschätzung</div>
             <div class="card-title">Price Is Right</div>
-            <div class="card-desc">Schätze Fakten und Rekorde. Mit Anti-Repeat-Speicher und 150 verifizierten Fragen.</div>
+            <div class="card-desc">Schätze Fakten und Rekorde. Mit Anti-Repeat-Speicher und 135 Fragen mit Quellenangaben.</div>
           </div>
           <div class="card-footer">
             <span class="btn-play-card" style="color: var(--neon-gold)">Starten ›</span>
@@ -1726,7 +1726,17 @@
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
         const feedback = (diff === 0 ? '🎯 <b>Volltreffer!</b> ' : '') + 'Gewinner: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
-        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-community-list"></div>`;
+        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
+        const sourceUrl = String(this.currentQuestion.source || '');
+        if (/^https:\/\//i.test(sourceUrl)) {
+          const sourceLink = document.createElement('a');
+          sourceLink.href = sourceUrl;
+          sourceLink.target = '_blank';
+          sourceLink.rel = 'noopener noreferrer';
+          sourceLink.textContent = 'Quelle öffnen';
+          sourceLink.style.color = 'var(--neon-cyan)';
+          document.getElementById('pir-source-link').appendChild(sourceLink);
+        }
         CommunityBoard.render('priceisright', 'pir-community-list');
         this.revealTimer = setTimeout(() => this.nextQuestion(), 5000);
       }
