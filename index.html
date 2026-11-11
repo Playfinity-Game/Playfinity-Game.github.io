@@ -1293,6 +1293,7 @@
       roundLocked: false,
       roundTimer: null,
       pendingGuesses: new Set(),
+      roundId: 0,
 
       // 20 deutsche Zielwörter
       targets: [
@@ -1321,11 +1322,14 @@
 
       async pickNewTarget() {
         clearTimeout(this.roundTimer);
-        this.roundLocked = false;
+        this.roundId++;
+        this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
         this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
         this.guesses = [];
-        this.targetEmbedding = this.pipeline ? await this.getEmbedding(this.targetWord) : null;
+        this.targetEmbedding = null;
+        if (this.pipeline) this.targetEmbedding = await this.getEmbedding(this.targetWord);
+        this.roundLocked = false;
         const result = document.getElementById('kontexto-round-result');
         if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
         this.renderGuesses();
@@ -1339,6 +1343,7 @@
 
         try {
           if (window.transformersPipeline) {
+            this.roundLocked = true;
             this.pipeline = await window.transformersPipeline('feature-extraction', 'Xenova/paraphrase-multilingual-MiniLM-L12-v2', {
               progress_callback: (p) => {
                 if (p.status === 'progress') {
@@ -1351,14 +1356,17 @@
 
             // Target-Embedding vorberechnen
             this.targetEmbedding = await this.getEmbedding(this.targetWord);
+            this.roundLocked = false;
             loader.style.display = 'none';
           } else {
-            statusText.innerText = 'Lokaler Modus aktiv (heuristischer Wortabstand)';
+            statusText.innerText = 'Lokaler Modus aktiv (vereinfachte Näherung)';
+            this.roundLocked = false;
             loader.style.display = 'none';
           }
         } catch (err) {
           console.warn('[Kontexto] Fallback aktiv:', err);
           statusText.innerText = 'KI-Modell nicht verfügbar – vereinfachte Näherung aktiv.';
+          this.roundLocked = false;
           loader.style.display = 'none';
         }
       },
@@ -1385,6 +1393,7 @@
         const key = cleanWord.toLocaleLowerCase('de-DE');
         if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
         this.pendingGuesses.add(key);
+        const submittedRoundId = this.roundId;
         if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
           this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0 });
           this.renderGuesses();
@@ -1405,6 +1414,7 @@
         } else {
           sim = Math.max(0.01, 0.35 - Math.abs(cleanWord.length - this.targetWord.length) * 0.015);
         }
+        if (submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
         const baseRank = Math.max(2, Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 1000000));
         const tieBreak = [...key].reduce((sum, ch, i) => sum + ch.charCodeAt(0) * (i + 17), 0) % 97;
