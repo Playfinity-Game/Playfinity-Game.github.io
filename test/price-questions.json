@@ -1955,6 +1955,231 @@
       "u": "Jahre",
       "exp": "Elefanten können etwa 60 bis 70 Jahre alt werden.",
       "source": "https://www.nationalgeographic.com/animals/mammals/facts/african-elephant"
+    },
+    {
+      "id": "pf-220",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien das Arcade-Spiel Donkey Kong erstmals?",
+      "a": 1981,
+      "u": "Jahr",
+      "exp": "Nintendo nennt 1981 als Jahr, in dem Donkey Kong veröffentlicht wurde.",
+      "source": "https://press.nintendo.com/CompanyHistory"
+    },
+    {
+      "id": "pf-221",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien das erste Spiel der The-Legend-of-Zelda-Reihe in Japan?",
+      "a": 1986,
+      "u": "Jahr",
+      "exp": "The Legend of Zelda erschien 1986 in Japan für das Famicom Disk System.",
+      "source": "https://www.nintendo.com/de-at/Hardware/Unternehmensgeschichte/Nintendo-Geschichte-625945.html"
+    },
+    {
+      "id": "pf-222",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr kam der Nintendo 64 in Nordamerika auf den Markt?",
+      "a": 1996,
+      "u": "Jahr",
+      "exp": "Nintendo führte den Nintendo 64 in Nordamerika am 29. September 1996 ein.",
+      "source": "https://press.nintendo.com/CompanyHistory"
+    },
+    {
+      "id": "pf-223",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien die Nintendo GameCube-Konsole in den USA?",
+      "a": 2001,
+      "u": "Jahr",
+      "exp": "Der GameCube startete in den USA im November 2001.",
+      "source": "https://press.nintendo.com/CompanyHistory"
+    },
+    {
+      "id": "pf-224",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde der Game Boy in Japan eingeführt?",
+      "a": 1989,
+      "u": "Jahr",
+      "exp": "Nintendo brachte den Game Boy 1989 in Japan heraus.",
+      "source": "https://www.nintendo.co.jp/corporate/en/history/index.html"
+    },
+    {
+      "id": "pf-225",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien der Nintendo DS in den USA?",
+      "a": 2004,
+      "u": "Jahr",
+      "exp": "Nintendo nennt 2004 als Jahr der US-Einführung des Nintendo DS.",
+      "source": "https://press.nintendo.com/CompanyHistory"
+    },
+    {
+      "id": "pf-226",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr kam die Nintendo Wii auf den Markt?",
+      "a": 2006,
+      "u": "Jahr",
+      "exp": "Nintendo führte die Wii 2006 als Heimkonsole ein.",
+      "source": "https://www.nintendo.co.jp/corporate/en/history/index.html"
+    },
+    {
+      "id": "pf-227",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Super Mario 64?",
+      "a": 1996,
+      "u": "Jahr",
+      "exp": "Super Mario 64 erschien 1996 als einer der Starttitel des Nintendo 64.",
+      "source": "https://press.nintendo.com/CompanyHistory"
+    },
+    {
+      "id": "pf-228",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Super Mario Galaxy für die Wii?",
+      "a": 2007,
+      "u": "Jahr",
+      "exp": "Nintendo führt Super Mario Galaxy in seiner Mario-Zeitleiste für 2007.",
+      "source": "https://www.nintendo.com/us/explore/characters/mario/history/"
+    },
+    {
+      "id": "pf-229",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien das erste Super-Mario-Kart-Spiel?",
+      "a": 1992,
+      "u": "Jahr",
+      "exp": "Super Mario Kart erschien 1992 für das Super Nintendo Entertainment System.",
+      "source": "https://www.nintendo.com/us/explore/characters/mario/history/"
+    },
+    {
+      "id": "pf-230",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Kirby's Dream Land, das erste Spiel mit Kirby?",
+      "a": 1992,
+      "u": "Jahr",
+      "exp": "Kirby debütierte 1992 im Spiel Kirby's Dream Land für den Game Boy.",
+      "source": "https://careers.nintendo.com/our-history/"
+    },
+    {
+      "id": "pf-231",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien die PlayStation 4 in Europa?",
+      "a": 2013,
+      "u": "Jahr",
+      "exp": "Sony nennt den 29. November 2013 als Europa-Start der PS4.",
+      "source": "https://www.playstation.com/de-de/playstation-history/2013-ps4-ps-vr/"
+    },
+    {
+      "id": "pf-232",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien die PlayStation 5?",
+      "a": 2020,
+      "u": "Jahr",
+      "exp": "Die PlayStation 5 wurde im November 2020 veröffentlicht.",
+      "source": "https://sonyinteractive.com/en/our-company/expanded-company-timeline/"
+    },
+    {
+      "id": "pf-233",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde Fortnite Battle Royale kostenlos veröffentlicht?",
+      "a": 2017,
+      "u": "Jahr",
+      "exp": "Epic Games kündigte den kostenlosen Start von Fortnite Battle Royale für den 26. September 2017 an.",
+      "source": "https://www.fortnite.com/news/fortnite-battle-royale-goes-free?lang=de"
+    },
+    {
+      "id": "pf-234",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Spieler treten im klassischen Fortnite-Battle-Royale-Modus laut der ursprünglichen Ankündigung gegeneinander an?",
+      "a": 100,
+      "u": "Spieler",
+      "exp": "Epic Games beschrieb den Modus 2017 als PvP-Spiel mit 100 Spielern.",
+      "source": "https://www.fortnite.com/news/fortnite-battle-royale-goes-free?lang=de"
+    },
+    {
+      "id": "pf-235",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde die Xbox 360 veröffentlicht?",
+      "a": 2005,
+      "u": "Jahr",
+      "exp": "Die Xbox 360 kam 2005 auf den Markt.",
+      "source": "https://www.game.de/wp-content/uploads/2023/01/230413_GME_Marktdaten_23-018_Deutscher_Markt_Entwicklung_seit_1995_Zeitstrahl_16x9_EN.pdf"
+    },
+    {
+      "id": "pf-236",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien die PlayStation Portable (PSP) erstmals?",
+      "a": 2004,
+      "u": "Jahr",
+      "exp": "Sony brachte die PSP 2004 in Japan auf den Markt.",
+      "source": "https://sonyinteractive.com/en/our-company/expanded-company-timeline/"
+    },
+    {
+      "id": "pf-237",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien das erste Doom-Spiel?",
+      "a": 1993,
+      "u": "Jahr",
+      "exp": "Das ursprüngliche Doom wurde 1993 veröffentlicht.",
+      "source": "https://www.britannica.com/topic/Doom-video-game"
+    },
+    {
+      "id": "pf-238",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Pac-Man erstmals als Arcade-Spiel?",
+      "a": 1980,
+      "u": "Jahr",
+      "exp": "Pac-Man debütierte 1980 in Spielhallen.",
+      "source": "https://www.britannica.com/topic/Pac-Man"
+    },
+    {
+      "id": "pf-239",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde World of Warcraft veröffentlicht?",
+      "a": 2004,
+      "u": "Jahr",
+      "exp": "Blizzards Online-Rollenspiel World of Warcraft startete 2004.",
+      "source": "https://worldofwarcraft.blizzard.com/"
+    },
+    {
+      "id": "pf-240",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Grand Theft Auto V erstmals?",
+      "a": 2013,
+      "u": "Jahr",
+      "exp": "Grand Theft Auto V erschien erstmals im September 2013.",
+      "source": "https://www.rockstargames.com/gta-v"
+    },
+    {
+      "id": "pf-241",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde League of Legends veröffentlicht?",
+      "a": 2009,
+      "u": "Jahr",
+      "exp": "League of Legends wurde 2009 veröffentlicht.",
+      "source": "https://www.leagueoflegends.com/"
+    },
+    {
+      "id": "pf-242",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Overwatch erstmals?",
+      "a": 2016,
+      "u": "Jahr",
+      "exp": "Blizzards teambasierter Shooter Overwatch erschien 2016.",
+      "source": "https://overwatch.blizzard.com/"
+    },
+    {
+      "id": "pf-243",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde Among Us veröffentlicht?",
+      "a": 2018,
+      "u": "Jahr",
+      "exp": "Among Us erschien 2018 zunächst für Mobilgeräte.",
+      "source": "https://www.innersloth.com/games/among-us/"
+    },
+    {
+      "id": "pf-244",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Apex Legends?",
+      "a": 2019,
+      "u": "Jahr",
+      "exp": "Apex Legends wurde im Februar 2019 veröffentlicht.",
+      "source": "https://www.ea.com/games/apex-legends"
     }
   ]
 }
