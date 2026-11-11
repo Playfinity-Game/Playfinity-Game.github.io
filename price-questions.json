@@ -60,16 +60,16 @@
     {
       "id": "pf-007",
       "cat": "Astronomie",
-      "q": "Wie viele Erden passen vom Durchmesser her ungefähr nebeneinander in den Jupiter?",
+      "q": "Wie oft passt der Durchmesser der Erde nebeneinander in den Durchmesser des Jupiter?",
       "a": 11,
-      "u": "Erden",
+      "u": "Mal",
       "exp": "Jupiter hat etwa den elffachen Erddurchmesser.",
       "source": "https://science.nasa.gov/jupiter/facts/"
     },
     {
       "id": "pf-008",
       "cat": "Astronomie",
-      "q": "Wie viele Kilometer ist der mittlere Abstand zwischen Erde und Sonne ungefähr?",
+      "q": "Wie groß ist die mittlere Entfernung zwischen Erde und Sonne in Kilometern?",
       "a": 150000000,
       "u": "km",
       "exp": "Eine Astronomische Einheit entspricht rund 150 Millionen Kilometern.",
@@ -114,7 +114,7 @@
     {
       "id": "pf-013",
       "cat": "Deutschland",
-      "q": "Wie viele Einwohner hatte Deutschland ungefähr Ende 2023?",
+      "q": "Wie viele Einwohner hatte Deutschland Ende 2023 ungefähr?",
       "a": 84000000,
       "u": "Einwohner",
       "exp": "Die Bevölkerungszahl lag Ende 2023 bei rund 84,7 Millionen.",
@@ -150,7 +150,7 @@
     {
       "id": "pf-017",
       "cat": "Deutschland",
-      "q": "Wie viele Sitze hat der Bundesrat regulär mindestens?",
+      "q": "Wie viele Stimmen hat der Bundesrat insgesamt?",
       "a": 69,
       "u": "Stimmen",
       "exp": "Der Bundesrat hat 69 Stimmen, die von den Ländern entsprechend ihrer Einwohnerzahl gestellt werden.",
@@ -177,7 +177,7 @@
     {
       "id": "pf-020",
       "cat": "Deutschland",
-      "q": "Wie lang ist die Berliner Mauer ungefähr in Kilometern gewesen?",
+      "q": "Wie viele Kilometer lang war die Berliner Mauer insgesamt?",
       "a": 155,
       "u": "km",
       "exp": "Die Berliner Mauer umschloss West-Berlin auf rund 155 Kilometern.",
@@ -195,7 +195,7 @@
     {
       "id": "pf-022",
       "cat": "Deutschland",
-      "q": "Wie viele Tore hat das Brandenburger Tor?",
+      "q": "Wie viele Durchfahrten hat das Brandenburger Tor?",
       "a": 5,
       "u": "Durchfahrten",
       "exp": "Das Brandenburger Tor besitzt fünf Durchfahrten.",
@@ -276,7 +276,7 @@
     {
       "id": "pf-031",
       "cat": "Biologie",
-      "q": "Wie viele Sinnesorgane werden im klassischen Schulmodell genannt?",
+      "q": "Wie viele klassische Sinne unterscheidet das traditionelle Schulmodell?",
       "a": 5,
       "u": "Sinne",
       "exp": "Sehen, Hören, Riechen, Schmecken und Tasten sind die fünf klassischen Sinne.",
@@ -366,10 +366,10 @@
     {
       "id": "pf-041",
       "cat": "Tiere",
-      "q": "Wie viele Beine hat ein Tausendfüßer tatsächlich maximal pro Körpersegment?",
+      "q": "Wie viele Beinpaare trägt ein typisches Rumpfsegment der meisten Doppelfüßer?",
       "a": 2,
-      "u": "Beine",
-      "exp": "Bei den meisten Doppelfüßern tragen die meisten Rumpfsegmente zwei Beinpaare; die Zahl variiert stark.",
+      "u": "Beinpaare",
+      "exp": "Bei den meisten Doppelfüßern tragen die typischen Rumpfsegmente zwei Beinpaare.",
       "source": "https://www.britannica.com/animal/millipede"
     },
     {
@@ -573,7 +573,7 @@
     {
       "id": "pf-064",
       "cat": "Technik",
-      "q": "Wie viele Tasten hat ein Standard-PC-Tastaturlayout mit deutschem QWERTZ meist ungefähr?",
+      "q": "Wie viele Tasten hat eine deutsche Standard-PC-Tastatur mit vollständigem Layout ungefähr?",
       "a": 105,
       "u": "Tasten",
       "exp": "Viele deutsche Standardtastaturen besitzen 105 Tasten; Layouts unterscheiden sich.",
@@ -870,7 +870,7 @@
     {
       "id": "pf-097",
       "cat": "Essen",
-      "q": "Wie viele Kammern hat ein typischer Eierkarton in Deutschland?",
+      "q": "Wie viele Eier passen in einen klassischen Zehner-Eierkarton?",
       "a": 10,
       "u": "Eier",
       "exp": "Der klassische deutsche Eierkarton enthält oft zehn Eier; es gibt weitere Packungsgrößen.",
@@ -915,7 +915,7 @@
     {
       "id": "pf-102",
       "cat": "Essen",
-      "q": "Wie viele Minuten dauert es ungefähr, bis Licht von einer Kerze einen Kilometer zurücklegt?",
+      "q": "Wie viele Sekunden benötigt Licht ungefähr, um einen Kilometer zurückzulegen?",
       "a": 0.0000033,
       "u": "Sekunden",
       "exp": "Licht legt einen Kilometer in rund 3,3 Mikrosekunden zurück.",
@@ -933,7 +933,7 @@
     {
       "id": "pf-104",
       "cat": "Natur",
-      "q": "Wie viele Prozent der Atmosphäre besteht ungefähr aus Stickstoff?",
+      "q": "Wie viel Prozent der Erdatmosphäre bestehen ungefähr aus Stickstoff?",
       "a": 78,
       "u": "Prozent",
       "exp": "Trockene Luft besteht zu rund 78 Prozent aus Stickstoff.",
@@ -969,7 +969,7 @@
     {
       "id": "pf-108",
       "cat": "Natur",
-      "q": "Wie viele Kilometer pro Stunde erreicht Schall in Luft bei Raumtemperatur ungefähr?",
+      "q": "Wie schnell breitet sich Schall in Luft bei Raumtemperatur ungefähr aus?",
       "a": 1235,
       "u": "km/h",
       "exp": "Die Schallgeschwindigkeit beträgt bei 20 Grad Celsius etwa 343 Meter pro Sekunde.",
@@ -1248,7 +1248,7 @@
     {
       "id": "pf-139",
       "cat": "Astronomie",
-      "q": "Wie viele Tage dauert ein Jahr auf dem Merkur ungefähr?",
+      "q": "Wie viele Erdentage benötigt Merkur für einen Umlauf um die Sonne?",
       "a": 88,
       "u": "Tage",
       "exp": "Merkur benötigt rund 88 Erdentage für einen Umlauf um die Sonne.",
@@ -1347,7 +1347,7 @@
     {
       "id": "pf-150",
       "cat": "Deutschland",
-      "q": "Wie viele Kilometer beträgt die Fläche Deutschlands ungefähr in Quadratkilometern?",
+      "q": "Wie groß ist die Fläche Deutschlands ungefähr in Quadratkilometern?",
       "a": 357600,
       "u": "Quadratkilometer",
       "exp": "Die Fläche Deutschlands beträgt rund 357.600 Quadratkilometer.",
@@ -1356,7 +1356,7 @@
     {
       "id": "pf-151",
       "cat": "Deutschland",
-      "q": "Wie viele Tage nach dem 1. Januar ist der Tag der Deutschen Einheit im Kalenderjahr?",
+      "q": "Wie viele Tage liegen zwischen dem 1. Januar und dem Tag der Deutschen Einheit am 3. Oktober eines normalen Jahres?",
       "a": 275,
       "u": "Tage",
       "exp": "Der 3. Oktober ist der Tag der Deutschen Einheit; in einem normalen Jahr liegt er 275 Tage nach dem 1. Januar, wenn der 1. Januar als Tag null gerechnet wird.",
@@ -1410,7 +1410,7 @@
     {
       "id": "pf-157",
       "cat": "Geografie",
-      "q": "Wie viele Meter über dem Meeresspiegel liegt der tiefste Punkt an Land, das Ufer des Toten Meeres, ungefähr?",
+      "q": "Wie tief liegt das Ufer des Toten Meeres ungefähr unter dem Meeresspiegel?",
       "a": 430,
       "u": "Meter unter Meeresspiegel",
       "exp": "Das Ufer des Toten Meeres liegt mehr als 400 Meter unter dem Meeresspiegel; die Höhe ändert sich laufend.",
@@ -1464,7 +1464,7 @@
     {
       "id": "pf-163",
       "cat": "Biologie",
-      "q": "Wie viele Tage dauert eine Schwangerschaft beim Menschen ab dem ersten Tag der letzten Periode ungefähr?",
+      "q": "Wie viele Tage dauert eine menschliche Schwangerschaft gerechnet ab dem ersten Tag der letzten Periode durchschnittlich?",
       "a": 280,
       "u": "Tage",
       "exp": "Als durchschnittlicher Geburtstermin werden rund 40 Wochen beziehungsweise 280 Tage angesetzt.",
@@ -1491,16 +1491,16 @@
     {
       "id": "pf-166",
       "cat": "Biologie",
-      "q": "Wie viele Kammern hat das Herz eines Oktopus?",
-      "a": 3,
-      "u": "Kammern/Herzen",
-      "exp": "Zwei Herzen pumpen Blut zu den Kiemen, ein drittes zum übrigen Körper.",
+      "q": "Wie viele der drei Herzen eines Oktopus pumpen Blut zu den Kiemen?",
+      "a": 2,
+      "u": "Herzen",
+      "exp": "Zwei Herzen pumpen das Blut zu den Kiemen; das dritte versorgt den übrigen Körper.",
       "source": "https://oceanservice.noaa.gov/facts/octopus.html"
     },
     {
       "id": "pf-168",
       "cat": "Natur",
-      "q": "Wie viel Prozent der trockenen Erdatmosphäre besteht aus Sauerstoff ungefähr?",
+      "q": "Wie viel Prozent der trockenen Erdatmosphäre bestehen ungefähr aus Sauerstoff?",
       "a": 21,
       "u": "Prozent",
       "exp": "Sauerstoff macht etwa 21 Prozent der trockenen Atmosphäre aus.",
@@ -1536,7 +1536,7 @@
     {
       "id": "pf-172",
       "cat": "Natur",
-      "q": "Welche Ordnungszahl hat Sauerstoff im Periodensystem?",
+      "q": "Welche Ordnungszahl hat das Element Sauerstoff im Periodensystem?",
       "a": 8,
       "u": "Ordnungszahl",
       "exp": "Sauerstoff besitzt die Ordnungszahl 8.",
@@ -1545,7 +1545,7 @@
     {
       "id": "pf-173",
       "cat": "Natur",
-      "q": "Welche Ordnungszahl hat Kohlenstoff im Periodensystem?",
+      "q": "Welche Ordnungszahl hat das Element Kohlenstoff im Periodensystem?",
       "a": 6,
       "u": "Ordnungszahl",
       "exp": "Kohlenstoff besitzt die Ordnungszahl 6.",
@@ -1554,7 +1554,7 @@
     {
       "id": "pf-174",
       "cat": "Natur",
-      "q": "Welche Ordnungszahl hat Gold im Periodensystem?",
+      "q": "Welche Ordnungszahl hat das Element Gold im Periodensystem?",
       "a": 79,
       "u": "Ordnungszahl",
       "exp": "Gold besitzt die Ordnungszahl 79.",
@@ -1590,7 +1590,7 @@
     {
       "id": "pf-178",
       "cat": "Technik",
-      "q": "Wie viele Elemente hatte das ursprüngliche Periodensystem von Mendelejew 1869 ungefähr?",
+      "q": "Wie viele Elemente waren 1869 im ersten Periodensystem von Mendelejew aufgeführt?",
       "a": 63,
       "u": "Elemente",
       "exp": "Mendelejews erste Periodentafel enthielt 63 damals bekannte Elemente.",
@@ -1671,7 +1671,7 @@
     {
       "id": "pf-187",
       "cat": "Sport",
-      "q": "Wie viele Meter ist ein olympisches 100-Meter-Rennen lang?",
+      "q": "Wie lang ist die Strecke beim 100-Meter-Lauf?",
       "a": 100,
       "u": "Meter",
       "exp": "Der Sprint wird über genau 100 Meter ausgetragen.",
@@ -1833,7 +1833,7 @@
     {
       "id": "pf-205",
       "cat": "Essen",
-      "q": "Wie viele Gramm Eiweiß liefert ein Gramm Protein ungefähr an Energie?",
+      "q": "Wie viele Kilokalorien liefert ein Gramm Eiweiß ungefähr?",
       "a": 4,
       "u": "Kilokalorien",
       "exp": "Protein liefert ungefähr vier Kilokalorien pro Gramm.",
@@ -1941,7 +1941,7 @@
     {
       "id": "pf-218",
       "cat": "Tiere",
-      "q": "Wie viele Stunden kann ein Wanderfalke im Sturzflug ungefähr 320 km/h erreichen?",
+      "q": "Welche Geschwindigkeit kann ein Wanderfalke im Sturzflug ungefähr erreichen?",
       "a": 320,
       "u": "km/h",
       "exp": "Wanderfalken erreichen im Sturzflug Geschwindigkeiten von über 300 km/h.",
