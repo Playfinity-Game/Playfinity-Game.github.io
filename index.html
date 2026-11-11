@@ -473,6 +473,7 @@
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
     }
 
+    #pir-input-group .game-input { min-width:0; flex:1 1 0; }
     #pir-input-group #pir-submit {
       flex: 0 0 48px;
       width: 48px;
@@ -528,10 +529,16 @@
       text-align: left;
     }
 
+    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
+    .guess-legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+    .legend-red{background:#ff3b5c;box-shadow:0 0 8px rgba(255,59,92,.55)}
+    .legend-orange{background:#ff9f1c;box-shadow:0 0 8px rgba(255,159,28,.55)}
+    .legend-green{background:#00ff9d;box-shadow:0 0 8px rgba(0,255,157,.55)}
     .guess-bar {
       position: absolute;
       top: 0; left: 0; bottom: 0;
-      opacity: 0.25;
+      opacity: 0.38;
       z-index: 1;
       transition: width 0.4s ease;
     }
@@ -748,7 +755,9 @@
       padding: 14px;
       font-size: 1rem;
     }
-  </style>
+      @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
+
+</style>
 </head>
 
 <body>
@@ -860,6 +869,11 @@
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
 
+        <div class="guess-legend" aria-label="Bedeutung der Farben">
+          <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
+          <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
+          <span><i class="legend-dot legend-green"></i> Sehr nah</span>
+        </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
