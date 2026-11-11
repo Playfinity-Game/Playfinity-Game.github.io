@@ -1538,7 +1538,7 @@
       "cat": "Natur",
       "q": "Welche Ordnungszahl hat Sauerstoff im Periodensystem?",
       "a": 8,
-      "u": "",
+      "u": "Ordnungszahl",
       "exp": "Sauerstoff besitzt die Ordnungszahl 8.",
       "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
     },
@@ -1547,7 +1547,7 @@
       "cat": "Natur",
       "q": "Welche Ordnungszahl hat Kohlenstoff im Periodensystem?",
       "a": 6,
-      "u": "",
+      "u": "Ordnungszahl",
       "exp": "Kohlenstoff besitzt die Ordnungszahl 6.",
       "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
     },
@@ -1556,7 +1556,7 @@
       "cat": "Natur",
       "q": "Welche Ordnungszahl hat Gold im Periodensystem?",
       "a": 79,
-      "u": "",
+      "u": "Ordnungszahl",
       "exp": "Gold besitzt die Ordnungszahl 79.",
       "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
     },
