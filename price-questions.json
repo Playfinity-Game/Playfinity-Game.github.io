@@ -1217,6 +1217,762 @@
       "u": "Staffeln",
       "exp": "Game of Thrones lief über acht Staffeln.",
       "source": "https://www.hbo.com/game-of-thrones"
+    },
+    {
+      "id": "pf-136",
+      "cat": "Astronomie",
+      "q": "Wie viele Kilometer beträgt die mittlere Entfernung des Mondes von der Erde?",
+      "a": 384400,
+      "u": "km",
+      "exp": "Der mittlere Abstand zwischen Erde und Mond beträgt rund 384.400 Kilometer.",
+      "source": "https://science.nasa.gov/moon/facts/"
+    },
+    {
+      "id": "pf-137",
+      "cat": "Astronomie",
+      "q": "Wie viele Tage braucht der Mond ungefähr für einen Umlauf um die Erde relativ zu den Sternen?",
+      "a": 27.3,
+      "u": "Tage",
+      "exp": "Der siderische Monat dauert etwa 27,3 Tage.",
+      "source": "https://science.nasa.gov/moon/facts/"
+    },
+    {
+      "id": "pf-138",
+      "cat": "Astronomie",
+      "q": "Wie viele natürliche Monde hat der Mars?",
+      "a": 2,
+      "u": "Monde",
+      "exp": "Mars besitzt die beiden kleinen Monde Phobos und Deimos.",
+      "source": "https://science.nasa.gov/mars/moons/"
+    },
+    {
+      "id": "pf-139",
+      "cat": "Astronomie",
+      "q": "Wie viele Tage dauert ein Jahr auf dem Merkur ungefähr?",
+      "a": 88,
+      "u": "Tage",
+      "exp": "Merkur benötigt rund 88 Erdentage für einen Umlauf um die Sonne.",
+      "source": "https://science.nasa.gov/mercury/facts/"
+    },
+    {
+      "id": "pf-140",
+      "cat": "Astronomie",
+      "q": "Wie viele Erdenjahre dauert ein Umlauf des Neptun um die Sonne ungefähr?",
+      "a": 165,
+      "u": "Jahre",
+      "exp": "Neptun benötigt etwa 165 Erdenjahre für eine Sonnenumrundung.",
+      "source": "https://science.nasa.gov/neptune/facts/"
+    },
+    {
+      "id": "pf-141",
+      "cat": "Astronomie",
+      "q": "Wie viele Kilometer beträgt der Durchmesser des Mondes ungefähr?",
+      "a": 3474,
+      "u": "km",
+      "exp": "Der Monddurchmesser beträgt etwa 3.474 Kilometer.",
+      "source": "https://science.nasa.gov/moon/facts/"
+    },
+    {
+      "id": "pf-142",
+      "cat": "Astronomie",
+      "q": "Wie viele Kilometer legt Licht in einer Sekunde ungefähr zurück?",
+      "a": 300000,
+      "u": "km",
+      "exp": "Die Lichtgeschwindigkeit im Vakuum beträgt rund 299.792 Kilometer pro Sekunde.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-length"
+    },
+    {
+      "id": "pf-143",
+      "cat": "Astronomie",
+      "q": "Wie viele Jahre ist die Erde ungefähr alt?",
+      "a": 4540000000,
+      "u": "Jahre",
+      "exp": "Das Alter der Erde wird auf etwa 4,54 Milliarden Jahre geschätzt.",
+      "source": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "id": "pf-144",
+      "cat": "Astronomie",
+      "q": "In welchem Jahr flog Juri Gagarin als erster Mensch ins All?",
+      "a": 1961,
+      "u": "Jahr",
+      "exp": "Juri Gagarin absolvierte am 12. April 1961 den ersten bemannten Raumflug.",
+      "source": "https://www.nasa.gov/history/"
+    },
+    {
+      "id": "pf-145",
+      "cat": "Astronomie",
+      "q": "Wie viele Minuten dauerte Juri Gagarins erster Raumflug ungefähr?",
+      "a": 108,
+      "u": "Minuten",
+      "exp": "Der Flug von Wostok 1 dauerte 108 Minuten.",
+      "source": "https://www.nasa.gov/history/"
+    },
+    {
+      "id": "pf-146",
+      "cat": "Deutschland",
+      "q": "Wie hoch ist die Zugspitze, Deutschlands höchster Berg?",
+      "a": 2962,
+      "u": "Meter",
+      "exp": "Die Zugspitze ist 2.962 Meter hoch.",
+      "source": "https://www.zugspitze.de/"
+    },
+    {
+      "id": "pf-147",
+      "cat": "Deutschland",
+      "q": "Wie viele Kilometer lang ist der Rhein ungefähr?",
+      "a": 1230,
+      "u": "km",
+      "exp": "Der Rhein ist ungefähr 1.230 Kilometer lang.",
+      "source": "https://www.britannica.com/place/Rhine-River"
+    },
+    {
+      "id": "pf-148",
+      "cat": "Deutschland",
+      "q": "In welchem Jahr wurde das Brandenburger Tor fertiggestellt?",
+      "a": 1791,
+      "u": "Jahr",
+      "exp": "Das Brandenburger Tor wurde 1791 eingeweiht.",
+      "source": "https://www.berlin.de/sehenswuerdigkeiten/3560266-3558930-brandenburger-tor.html"
+    },
+    {
+      "id": "pf-149",
+      "cat": "Deutschland",
+      "q": "In welchem Jahr wurde das Reichstagsgebäude in Berlin eröffnet?",
+      "a": 1894,
+      "u": "Jahr",
+      "exp": "Das Reichstagsgebäude wurde 1894 fertiggestellt und eröffnet.",
+      "source": "https://www.bundestag.de/architektur/geschichte"
+    },
+    {
+      "id": "pf-150",
+      "cat": "Deutschland",
+      "q": "Wie viele Kilometer beträgt die Fläche Deutschlands ungefähr in Quadratkilometern?",
+      "a": 357600,
+      "u": "Quadratkilometer",
+      "exp": "Die Fläche Deutschlands beträgt rund 357.600 Quadratkilometer.",
+      "source": "https://www.destatis.de/DE/Themen/Laender-Regionen/Regionales/Gemeindeverzeichnis/_inhalt.html"
+    },
+    {
+      "id": "pf-151",
+      "cat": "Deutschland",
+      "q": "Wie viele Tage nach dem 1. Januar ist der Tag der Deutschen Einheit im Kalenderjahr?",
+      "a": 275,
+      "u": "Tage",
+      "exp": "Der 3. Oktober ist der Tag der Deutschen Einheit; in einem normalen Jahr liegt er 275 Tage nach dem 1. Januar, wenn der 1. Januar als Tag null gerechnet wird.",
+      "source": "https://www.bundesregierung.de/breg-de/themen/deutsche-einheit"
+    },
+    {
+      "id": "pf-152",
+      "cat": "Geografie",
+      "q": "Wie viele Kilometer beträgt der Erdumfang am Äquator ungefähr?",
+      "a": 40075,
+      "u": "km",
+      "exp": "Der Äquatorumfang der Erde beträgt ungefähr 40.075 Kilometer.",
+      "source": "https://oceanservice.noaa.gov/facts/earth-round.html"
+    },
+    {
+      "id": "pf-153",
+      "cat": "Geografie",
+      "q": "Wie viele Kilometer lang ist der Amazonas ungefähr?",
+      "a": 6400,
+      "u": "km",
+      "exp": "Der Amazonas wird je nach Messmethode mit rund 6.400 Kilometern Länge angegeben.",
+      "source": "https://www.britannica.com/place/Amazon-River"
+    },
+    {
+      "id": "pf-154",
+      "cat": "Geografie",
+      "q": "Wie viele Kilometer lang ist die Donau ungefähr?",
+      "a": 2850,
+      "u": "km",
+      "exp": "Die Donau ist mit etwa 2.850 Kilometern Europas zweitlängster Fluss.",
+      "source": "https://www.britannica.com/place/Danube-River"
+    },
+    {
+      "id": "pf-155",
+      "cat": "Geografie",
+      "q": "Wie viele Länder liegen in Afrika ungefähr?",
+      "a": 54,
+      "u": "Länder",
+      "exp": "Üblicherweise werden 54 souveräne Staaten in Afrika gezählt.",
+      "source": "https://www.un.org/africarenewal/"
+    },
+    {
+      "id": "pf-156",
+      "cat": "Geografie",
+      "q": "Wie viele Kilometer beträgt die Nord-Süd-Ausdehnung Afrikas ungefähr?",
+      "a": 8000,
+      "u": "km",
+      "exp": "Afrika erstreckt sich über ungefähr 8.000 Kilometer von Nord nach Süd.",
+      "source": "https://www.britannica.com/place/Africa"
+    },
+    {
+      "id": "pf-157",
+      "cat": "Geografie",
+      "q": "Wie viele Meter über dem Meeresspiegel liegt der tiefste Punkt an Land, das Ufer des Toten Meeres, ungefähr?",
+      "a": 430,
+      "u": "Meter unter Meeresspiegel",
+      "exp": "Das Ufer des Toten Meeres liegt mehr als 400 Meter unter dem Meeresspiegel; die Höhe ändert sich laufend.",
+      "source": "https://www.britannica.com/place/Dead-Sea"
+    },
+    {
+      "id": "pf-158",
+      "cat": "Biologie",
+      "q": "Wie viele Nieren hat ein Mensch normalerweise?",
+      "a": 2,
+      "u": "Nieren",
+      "exp": "Die meisten Menschen haben zwei Nieren.",
+      "source": "https://www.niddk.nih.gov/health-information/kidney-disease/kidneys-how-they-work"
+    },
+    {
+      "id": "pf-159",
+      "cat": "Biologie",
+      "q": "Wie viele Rippenpaare hat ein Mensch normalerweise?",
+      "a": 12,
+      "u": "Paare",
+      "exp": "Der menschliche Brustkorb hat normalerweise zwölf Rippenpaare.",
+      "source": "https://medlineplus.gov/ency/imagepages/19520.htm"
+    },
+    {
+      "id": "pf-160",
+      "cat": "Biologie",
+      "q": "Wie viele Knochen befinden sich im Mittelohr eines Menschen insgesamt?",
+      "a": 6,
+      "u": "Knochen",
+      "exp": "Jedes Ohr hat drei Gehörknöchelchen: Hammer, Amboss und Steigbügel.",
+      "source": "https://www.nidcd.nih.gov/health/how-do-we-hear"
+    },
+    {
+      "id": "pf-161",
+      "cat": "Biologie",
+      "q": "Wie viele Lappen hat die rechte menschliche Lunge?",
+      "a": 3,
+      "u": "Lappen",
+      "exp": "Die rechte Lunge besitzt drei Lappen; die linke hat zwei.",
+      "source": "https://www.nhlbi.nih.gov/health/lungs"
+    },
+    {
+      "id": "pf-162",
+      "cat": "Biologie",
+      "q": "Wie viele Lappen hat die linke menschliche Lunge?",
+      "a": 2,
+      "u": "Lappen",
+      "exp": "Die linke Lunge hat zwei Lappen, damit das Herz Platz hat.",
+      "source": "https://www.nhlbi.nih.gov/health/lungs"
+    },
+    {
+      "id": "pf-163",
+      "cat": "Biologie",
+      "q": "Wie viele Tage dauert eine Schwangerschaft beim Menschen ab dem ersten Tag der letzten Periode ungefähr?",
+      "a": 280,
+      "u": "Tage",
+      "exp": "Als durchschnittlicher Geburtstermin werden rund 40 Wochen beziehungsweise 280 Tage angesetzt.",
+      "source": "https://www.acog.org/womens-health/faqs/how-your-fetus-grows-during-pregnancy"
+    },
+    {
+      "id": "pf-164",
+      "cat": "Biologie",
+      "q": "Wie viele Prozent Wasser enthält der menschliche Körper ungefähr?",
+      "a": 60,
+      "u": "Prozent",
+      "exp": "Bei Erwachsenen liegt der Wasseranteil grob um 60 Prozent und variiert mit Alter und Körperzusammensetzung.",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/water-you-water-and-human-body"
+    },
+    {
+      "id": "pf-165",
+      "cat": "Biologie",
+      "q": "Wie viele Grad Celsius beträgt die normale Körpertemperatur ungefähr?",
+      "a": 37,
+      "u": "°C",
+      "exp": "37 Grad Celsius ist ein traditioneller Richtwert; normale Werte schwanken individuell und im Tagesverlauf.",
+      "source": "https://medlineplus.gov/ency/article/001982.htm"
+    },
+    {
+      "id": "pf-166",
+      "cat": "Biologie",
+      "q": "Wie viele Kammern hat das Herz eines Oktopus?",
+      "a": 3,
+      "u": "Kammern/Herzen",
+      "exp": "Zwei Herzen pumpen Blut zu den Kiemen, ein drittes zum übrigen Körper.",
+      "source": "https://oceanservice.noaa.gov/facts/octopus.html"
+    },
+    {
+      "id": "pf-167",
+      "cat": "Biologie",
+      "q": "Wie viele Stunden pro Tag wächst menschliches Haar ungefähr nicht messbar, sondern kontinuierlich?",
+      "a": 24,
+      "u": "Stunden",
+      "exp": "Haar wächst kontinuierlich; der Wachstumsprozess läuft nicht nur tagsüber ab.",
+      "source": "https://www.aad.org/public/everyday-care/hair-scalp-care/hair/hair-growth"
+    },
+    {
+      "id": "pf-168",
+      "cat": "Natur",
+      "q": "Wie viel Prozent der trockenen Erdatmosphäre besteht aus Sauerstoff ungefähr?",
+      "a": 21,
+      "u": "Prozent",
+      "exp": "Sauerstoff macht etwa 21 Prozent der trockenen Atmosphäre aus.",
+      "source": "https://www.noaa.gov/jetstream/atmosphere"
+    },
+    {
+      "id": "pf-169",
+      "cat": "Natur",
+      "q": "Bei wie vielen Grad Celsius gefriert reines Wasser bei Normaldruck?",
+      "a": 0,
+      "u": "°C",
+      "exp": "Der Gefrierpunkt von reinem Wasser liegt bei Normaldruck bei null Grad Celsius.",
+      "source": "https://www.nist.gov/pml/owm/si-units-temperature"
+    },
+    {
+      "id": "pf-170",
+      "cat": "Natur",
+      "q": "Welchen pH-Wert hat neutrales reines Wasser bei 25 Grad Celsius ungefähr?",
+      "a": 7,
+      "u": "pH",
+      "exp": "Bei 25 Grad Celsius liegt der pH-Wert von neutralem Wasser ungefähr bei sieben.",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/ph-and-water"
+    },
+    {
+      "id": "pf-171",
+      "cat": "Natur",
+      "q": "Wie viele chemische Elemente sind derzeit offiziell anerkannt?",
+      "a": 118,
+      "u": "Elemente",
+      "exp": "Die IUPAC führt derzeit 118 anerkannte chemische Elemente.",
+      "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+    },
+    {
+      "id": "pf-172",
+      "cat": "Natur",
+      "q": "Welche Ordnungszahl hat Sauerstoff im Periodensystem?",
+      "a": 8,
+      "u": "",
+      "exp": "Sauerstoff besitzt die Ordnungszahl 8.",
+      "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+    },
+    {
+      "id": "pf-173",
+      "cat": "Natur",
+      "q": "Welche Ordnungszahl hat Kohlenstoff im Periodensystem?",
+      "a": 6,
+      "u": "",
+      "exp": "Kohlenstoff besitzt die Ordnungszahl 6.",
+      "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+    },
+    {
+      "id": "pf-174",
+      "cat": "Natur",
+      "q": "Welche Ordnungszahl hat Gold im Periodensystem?",
+      "a": 79,
+      "u": "",
+      "exp": "Gold besitzt die Ordnungszahl 79.",
+      "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
+    },
+    {
+      "id": "pf-175",
+      "cat": "Natur",
+      "q": "Wie viele Stunden dauert ein mittlerer Sonnentag auf der Erde?",
+      "a": 24,
+      "u": "Stunden",
+      "exp": "Ein mittlerer Sonnentag dauert 24 Stunden.",
+      "source": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "id": "pf-176",
+      "cat": "Technik",
+      "q": "In welchem Jahr wurde das Telefon von Alexander Graham Bell patentiert?",
+      "a": 1876,
+      "u": "Jahr",
+      "exp": "Bell erhielt 1876 ein Patent für eine frühe Form des Telefons.",
+      "source": "https://www.loc.gov/collections/alexander-graham-bell-papers/"
+    },
+    {
+      "id": "pf-177",
+      "cat": "Technik",
+      "q": "In welchem Jahr fand der erste erfolgreiche Motorflug der Gebrüder Wright statt?",
+      "a": 1903,
+      "u": "Jahr",
+      "exp": "Der erste kontrollierte Motorflug fand am 17. Dezember 1903 statt.",
+      "source": "https://www.nps.gov/wrbr/learn/historyculture/the-first-flight.htm"
+    },
+    {
+      "id": "pf-178",
+      "cat": "Technik",
+      "q": "Wie viele Elemente hatte das ursprüngliche Periodensystem von Mendelejew 1869 ungefähr?",
+      "a": 63,
+      "u": "Elemente",
+      "exp": "Mendelejews erste Periodentafel enthielt 63 damals bekannte Elemente.",
+      "source": "https://www.rsc.org/periodic-table/history/about"
+    },
+    {
+      "id": "pf-179",
+      "cat": "Technik",
+      "q": "Wie viele Ziffern hat eine deutsche Postleitzahl?",
+      "a": 5,
+      "u": "Ziffern",
+      "exp": "Deutsche Postleitzahlen bestehen aus fünf Ziffern.",
+      "source": "https://www.deutschepost.de/de/p/plz.html"
+    },
+    {
+      "id": "pf-180",
+      "cat": "Technik",
+      "q": "Wie viele Zeichen hat ein klassischer ASCII-Zeichensatz im 7-Bit-Format?",
+      "a": 128,
+      "u": "Zeichen",
+      "exp": "7 Bit erlauben 128 verschiedene Codes im ASCII-Standard.",
+      "source": "https://www.rfc-editor.org/rfc/rfc20"
+    },
+    {
+      "id": "pf-181",
+      "cat": "Technik",
+      "q": "Wie viele Millisekunden hat eine Sekunde?",
+      "a": 1000,
+      "u": "Millisekunden",
+      "exp": "Eine Sekunde entspricht 1.000 Millisekunden.",
+      "source": "https://www.nist.gov/pml/owm/si-units-time"
+    },
+    {
+      "id": "pf-182",
+      "cat": "Technik",
+      "q": "Wie viele Zentimeter hat ein Meter?",
+      "a": 100,
+      "u": "Zentimeter",
+      "exp": "Ein Meter entspricht 100 Zentimetern.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-length"
+    },
+    {
+      "id": "pf-183",
+      "cat": "Technik",
+      "q": "Wie viele Meter hat ein Kilometer?",
+      "a": 1000,
+      "u": "Meter",
+      "exp": "Ein Kilometer entspricht 1.000 Metern.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-length"
+    },
+    {
+      "id": "pf-184",
+      "cat": "Technik",
+      "q": "Wie viele Grad hat ein rechter Winkel?",
+      "a": 90,
+      "u": "Grad",
+      "exp": "Ein rechter Winkel misst 90 Grad.",
+      "source": "https://www.britannica.com/science/right-angle"
+    },
+    {
+      "id": "pf-185",
+      "cat": "Technik",
+      "q": "Wie viele Seiten hat ein Würfel?",
+      "a": 6,
+      "u": "Seiten",
+      "exp": "Ein Würfel besitzt sechs quadratische Flächen.",
+      "source": "https://www.britannica.com/science/cube"
+    },
+    {
+      "id": "pf-186",
+      "cat": "Sport",
+      "q": "Wie viele Minuten dauert eine Halbzeit im Fußball regulär?",
+      "a": 45,
+      "u": "Minuten",
+      "exp": "Eine reguläre Halbzeit dauert 45 Minuten.",
+      "source": "https://www.theifab.com/laws/latest/the-duration-of-the-match/"
+    },
+    {
+      "id": "pf-187",
+      "cat": "Sport",
+      "q": "Wie viele Meter ist ein olympisches 100-Meter-Rennen lang?",
+      "a": 100,
+      "u": "Meter",
+      "exp": "Der Sprint wird über genau 100 Meter ausgetragen.",
+      "source": "https://worldathletics.org/disciplines/sprints/100-metres"
+    },
+    {
+      "id": "pf-188",
+      "cat": "Sport",
+      "q": "Wie viele Spieler stehen bei einer Basketballmannschaft gleichzeitig auf dem Feld?",
+      "a": 5,
+      "u": "Spieler",
+      "exp": "Im Basketball spielen pro Team fünf Spieler gleichzeitig.",
+      "source": "https://www.nba.com/rulebook"
+    },
+    {
+      "id": "pf-189",
+      "cat": "Sport",
+      "q": "Wie viele Spieler stehen bei einem Handballteam inklusive Torwart auf dem Feld?",
+      "a": 7,
+      "u": "Spieler",
+      "exp": "Ein Handballteam besteht auf dem Feld aus sechs Feldspielern und einem Torwart.",
+      "source": "https://www.ihf.info/"
+    },
+    {
+      "id": "pf-190",
+      "cat": "Sport",
+      "q": "Wie viele Runden umfasst ein olympischer Boxkampf der Männer im aktuellen Format?",
+      "a": 3,
+      "u": "Runden",
+      "exp": "Olympische Boxkämpfe werden in drei Runden ausgetragen.",
+      "source": "https://olympics.com/en/sports/boxing/"
+    },
+    {
+      "id": "pf-191",
+      "cat": "Sport",
+      "q": "Wie viele Punkte gibt ein Touchdown im American Football?",
+      "a": 6,
+      "u": "Punkte",
+      "exp": "Ein Touchdown zählt sechs Punkte; Zusatzversuche folgen danach.",
+      "source": "https://operations.nfl.com/the-rules/nfl-rules-digest/"
+    },
+    {
+      "id": "pf-192",
+      "cat": "Sport",
+      "q": "Wie viele Felder hat ein Schachbrett?",
+      "a": 64,
+      "u": "Felder",
+      "exp": "Ein Schachbrett besteht aus acht mal acht Feldern.",
+      "source": "https://www.fide.com/FIDE/handbook/LawsOfChess.pdf"
+    },
+    {
+      "id": "pf-193",
+      "cat": "Sport",
+      "q": "Wie viele Minuten dauert ein reguläres Eishockeyspiel ohne Verlängerung?",
+      "a": 60,
+      "u": "Minuten",
+      "exp": "Ein reguläres Eishockeyspiel dauert drei Drittel zu je 20 Minuten.",
+      "source": "https://www.iihf.com/en/static/5456/rules-and-regulations"
+    },
+    {
+      "id": "pf-194",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde die erste PlayStation in Europa veröffentlicht?",
+      "a": 1995,
+      "u": "Jahr",
+      "exp": "Die PlayStation kam 1995 in Europa auf den Markt.",
+      "source": "https://www.sie.com/en/corporate/history/"
+    },
+    {
+      "id": "pf-195",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Pokémon Go?",
+      "a": 2016,
+      "u": "Jahr",
+      "exp": "Pokémon Go wurde im Juli 2016 veröffentlicht.",
+      "source": "https://pokemongolive.com/"
+    },
+    {
+      "id": "pf-196",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr kam der erste Kinofilm der Star-Wars-Reihe heraus?",
+      "a": 1977,
+      "u": "Jahr",
+      "exp": "Star Wars: Episode IV – Eine neue Hoffnung erschien 1977.",
+      "source": "https://www.starwars.com/films/star-wars-episode-iv-a-new-hope"
+    },
+    {
+      "id": "pf-197",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Bücher umfasst die ursprüngliche Harry-Potter-Hauptreihe?",
+      "a": 7,
+      "u": "Bücher",
+      "exp": "Die Hauptreihe besteht aus sieben Romanen.",
+      "source": "https://www.bloomsbury.com/uk/discover/harry-potter/"
+    },
+    {
+      "id": "pf-198",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Staffeln hat die US-Serie Breaking Bad?",
+      "a": 5,
+      "u": "Staffeln",
+      "exp": "Breaking Bad umfasst fünf Staffeln.",
+      "source": "https://www.amc.com/shows/breaking-bad"
+    },
+    {
+      "id": "pf-199",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde YouTube gegründet?",
+      "a": 2005,
+      "u": "Jahr",
+      "exp": "YouTube wurde im Februar 2005 gegründet.",
+      "source": "https://blog.youtube/"
+    },
+    {
+      "id": "pf-200",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde Instagram gestartet?",
+      "a": 2010,
+      "u": "Jahr",
+      "exp": "Instagram startete im Oktober 2010.",
+      "source": "https://about.instagram.com/"
+    },
+    {
+      "id": "pf-201",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde Netflix als Streamingdienst gestartet?",
+      "a": 2007,
+      "u": "Jahr",
+      "exp": "Netflix startete seinen Streamingdienst 2007 in den USA.",
+      "source": "https://about.netflix.com/en"
+    },
+    {
+      "id": "pf-202",
+      "cat": "Essen",
+      "q": "Wie viele Gramm hat ein Pfund im deutschen metrischen Sprachgebrauch?",
+      "a": 500,
+      "u": "Gramm",
+      "exp": "Ein Pfund entspricht im Alltag 500 Gramm.",
+      "source": "https://www.duden.de/rechtschreibung/Pfund"
+    },
+    {
+      "id": "pf-203",
+      "cat": "Essen",
+      "q": "Wie viele Milliliter enthält ein deutscher Esslöffel als Küchenmaß ungefähr?",
+      "a": 15,
+      "u": "Milliliter",
+      "exp": "Ein Esslöffel wird häufig mit etwa 15 Millilitern angesetzt.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-204",
+      "cat": "Essen",
+      "q": "Wie viele Milliliter enthält ein Teelöffel als Küchenmaß ungefähr?",
+      "a": 5,
+      "u": "Milliliter",
+      "exp": "Ein Teelöffel entspricht als Küchenmaß ungefähr fünf Millilitern.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-205",
+      "cat": "Essen",
+      "q": "Wie viele Gramm Eiweiß liefert ein Gramm Protein ungefähr an Energie?",
+      "a": 4,
+      "u": "Kilokalorien",
+      "exp": "Protein liefert ungefähr vier Kilokalorien pro Gramm.",
+      "source": "https://www.nutrition.gov/topics/whats-food"
+    },
+    {
+      "id": "pf-206",
+      "cat": "Essen",
+      "q": "Wie viele Gramm Kohlenhydrate liefern ungefähr vier Kilokalorien?",
+      "a": 1,
+      "u": "Gramm",
+      "exp": "Ein Gramm Kohlenhydrate liefert ungefähr vier Kilokalorien.",
+      "source": "https://www.nutrition.gov/topics/whats-food"
+    },
+    {
+      "id": "pf-207",
+      "cat": "Essen",
+      "q": "Wie viele Liter Milch gibt eine Milchkuh in einer modernen Milchviehhaltung pro Tag ungefähr?",
+      "a": 30,
+      "u": "Liter",
+      "exp": "Die tägliche Milchleistung variiert stark; moderne Milchkühe können im Mittel um 30 Liter täglich geben.",
+      "source": "https://www.fao.org/dairy-production-products/production/en/"
+    },
+    {
+      "id": "pf-208",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter hoch ist der höchste Baum der Welt, Hyperion, ungefähr?",
+      "a": 116,
+      "u": "Meter",
+      "exp": "Der Küstenmammutbaum Hyperion ist etwas mehr als 115 Meter hoch.",
+      "source": "https://www.nps.gov/redw/learn/nature/tall-trees.htm"
+    },
+    {
+      "id": "pf-209",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter hoch ist der höchste bekannte Berg vom Fuß bis zum Gipfel, Mauna Kea, ungefähr?",
+      "a": 10200,
+      "u": "Meter",
+      "exp": "Vom Meeresboden gemessen ist Mauna Kea mehr als 10.000 Meter hoch.",
+      "source": "https://www.britannica.com/place/Mauna-Kea"
+    },
+    {
+      "id": "pf-210",
+      "cat": "Rekorde",
+      "q": "Wie viele Kilometer lang ist die Chinesische Mauer laut offizieller Gesamterhebung ungefähr?",
+      "a": 21196,
+      "u": "Kilometer",
+      "exp": "Die Gesamtlänge aller Abschnitte wird mit etwa 21.196 Kilometern angegeben.",
+      "source": "https://www.britannica.com/topic/Great-Wall-of-China"
+    },
+    {
+      "id": "pf-211",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter beträgt die Spannweite der Golden Gate Bridge ungefähr?",
+      "a": 1280,
+      "u": "Meter",
+      "exp": "Die Hauptspannweite beträgt rund 1.280 Meter.",
+      "source": "https://www.goldengate.org/bridge/"
+    },
+    {
+      "id": "pf-212",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter hoch ist der höchste Wolkenkratzer Europas, der Lakhta Center, ungefähr?",
+      "a": 462,
+      "u": "Meter",
+      "exp": "Das Lakhta Center in Sankt Petersburg ist rund 462 Meter hoch.",
+      "source": "https://www.lakhta.center/en/"
+    },
+    {
+      "id": "pf-213",
+      "cat": "Tiere",
+      "q": "Wie viele Zähne hat eine erwachsene Katze normalerweise?",
+      "a": 30,
+      "u": "Zähne",
+      "exp": "Das bleibende Gebiss einer Katze umfasst normalerweise 30 Zähne.",
+      "source": "https://www.vet.cornell.edu/departments-centers-and-institutes/cornell-feline-health-center"
+    },
+    {
+      "id": "pf-214",
+      "cat": "Tiere",
+      "q": "Wie viele Beine hat ein Krebs typischerweise?",
+      "a": 10,
+      "u": "Beine",
+      "exp": "Zehnfußkrebse besitzen fünf Beinpaare; das vordere Paar kann Scheren tragen.",
+      "source": "https://oceanservice.noaa.gov/facts/crab.html"
+    },
+    {
+      "id": "pf-215",
+      "cat": "Tiere",
+      "q": "Wie viele Flügel hat ein Schmetterling?",
+      "a": 4,
+      "u": "Flügel",
+      "exp": "Schmetterlinge besitzen zwei Vorder- und zwei Hinterflügel.",
+      "source": "https://www.britannica.com/animal/butterfly-insect"
+    },
+    {
+      "id": "pf-216",
+      "cat": "Tiere",
+      "q": "Wie viele Beine hat ein Hummer?",
+      "a": 10,
+      "u": "Beine",
+      "exp": "Hummer gehören zu den Zehnfußkrebsen und haben fünf Beinpaare.",
+      "source": "https://www.fisheries.noaa.gov/species/american-lobster"
+    },
+    {
+      "id": "pf-217",
+      "cat": "Tiere",
+      "q": "Wie viele Zähne hat ein erwachsener Hai ungefähr?",
+      "a": 300,
+      "u": "Zähne",
+      "exp": "Viele Haiarten besitzen mehrere Reihen von Zähnen; die Gesamtzahl kann mehrere hundert betragen.",
+      "source": "https://ocean.si.edu/ocean-life/sharks-rays/shark-teeth"
+    },
+    {
+      "id": "pf-218",
+      "cat": "Tiere",
+      "q": "Wie viele Stunden kann ein Wanderfalke im Sturzflug ungefähr 320 km/h erreichen?",
+      "a": 320,
+      "u": "km/h",
+      "exp": "Wanderfalken erreichen im Sturzflug Geschwindigkeiten von über 300 km/h.",
+      "source": "https://www.britannica.com/animal/peregrine-falcon"
+    },
+    {
+      "id": "pf-219",
+      "cat": "Tiere",
+      "q": "Wie viele Jahre kann ein Elefant ungefähr alt werden?",
+      "a": 70,
+      "u": "Jahre",
+      "exp": "Elefanten können etwa 60 bis 70 Jahre alt werden.",
+      "source": "https://www.nationalgeographic.com/animals/mammals/facts/african-elephant"
     }
   ]
 }
