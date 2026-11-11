@@ -473,6 +473,24 @@
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
     }
 
+    #pir-input-group .game-input { min-width:0; flex:1 1 0; }
+    #pir-input-group #pir-submit {
+      flex: 0 0 48px;
+      width: 48px;
+      min-width: 48px;
+      height: 48px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      line-height: 1;
+      border-radius: 12px;
+    }
+    #pir-input-group #pir-submit:focus-visible {
+      outline: 2px solid var(--neon-green);
+      outline-offset: 3px;
+    }
+
     .btn-action {
       background: linear-gradient(135deg, var(--neon-cyan), #0077ff);
       color: #000;
@@ -511,10 +529,16 @@
       text-align: left;
     }
 
+    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
+    .guess-legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+    .legend-red{background:#ff3b5c;box-shadow:0 0 8px rgba(255,59,92,.55)}
+    .legend-orange{background:#ff9f1c;box-shadow:0 0 8px rgba(255,159,28,.55)}
+    .legend-green{background:#00ff9d;box-shadow:0 0 8px rgba(0,255,157,.55)}
     .guess-bar {
       position: absolute;
       top: 0; left: 0; bottom: 0;
-      opacity: 0.25;
+      opacity: 0.38;
       z-index: 1;
       transition: width 0.4s ease;
     }
@@ -731,7 +755,9 @@
       padding: 14px;
       font-size: 1rem;
     }
-  </style>
+      @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
+
+</style>
 </head>
 
 <body>
@@ -843,6 +869,11 @@
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
 
+        <div class="guess-legend" aria-label="Bedeutung der Farben">
+          <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
+          <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
+          <span><i class="legend-dot legend-green"></i> Sehr nah</span>
+        </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
@@ -888,7 +919,7 @@
 
         <div class="input-box" id="pir-input-group">
           <input type="number" class="game-input" id="pir-input" placeholder="Deine Zahlenschätzung..." inputmode="numeric">
-          <button class="btn-action" id="pir-submit">Einloggen</button>
+          <button class="btn-action" id="pir-submit" type="button" aria-label="Tipp absenden" title="Tipp absenden">➤</button>
         </div>
         <div class="pir-live-guesses" id="pir-live-guesses" aria-live="polite"></div>
 
@@ -1425,7 +1456,7 @@
         let calculatedRank = baseRank * 100 + tieBreak;
         while (this.guesses.some(item => item.rank === calculatedRank)) calculatedRank++;
         this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
-        this.guesses.sort((a, b) => a.rank - b.rank);
+        this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
         this.pendingGuesses.delete(key);
         this.renderGuesses();
       },
@@ -1438,18 +1469,20 @@
           const row = document.createElement('div');
           row.className = 'guess-row';
 
-          // Farbliche Einordnung
-          let color = 'var(--neon-purple)';
-          if (item.rank === 1) color = 'var(--neon-green)';
-          else if (item.rank <= 3000000) color = 'var(--neon-cyan)';
-          else if (item.rank <= 15000000) color = 'var(--neon-gold)';
+          // Farbe und Balken richten sich nach der semantischen Ähnlichkeit,
+          // nicht nach der künstlich skalierten Rangnummer.
+          const similarityScore = Math.max(0, Math.min(1, (Number(item.similarity) + 1) / 2));
+          let color = '#ff3b5c'; // Rot: weit entfernt
+          let level = 'Weit entfernt';
+          if (similarityScore >= 0.72) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (similarityScore >= 0.48) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
 
-          const pct = Math.max(5, Math.min(100, Math.round((1 - (item.rank / 100000000)) * 100)));
+          const pct = Math.max(5, Math.round(similarityScore * 100));
 
           row.innerHTML = `
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
             <span class="guess-word">${item.word}</span>
-            <span class="guess-rank" style="color: ${color}">#${item.rank}</span>
+            <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
           `;
           container.appendChild(row);
         });
@@ -1619,6 +1652,9 @@
           const val = parseFloat(document.getElementById('pir-input').value);
           if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
         };
+        document.getElementById('pir-input').addEventListener('keydown', event => {
+          if (event.key === 'Enter') document.getElementById('pir-submit').click();
+        });
         document.getElementById('pir-next-btn').style.display = 'none';
         await this.loadQuestionPool();
         this.nextQuestion();
