@@ -1,0 +1,1222 @@
+{
+  "version": 1,
+  "updated": "2026-11-11",
+  "description": "PLAYFINITY Price Is Right question pool. Each question includes a source URL.",
+  "questions": [
+    {
+      "id": "pf-001",
+      "cat": "Astronomie",
+      "q": "In welchem Jahr startete die erste bemannte Mondlandemission Apollo 11?",
+      "a": 1969,
+      "u": "Jahr",
+      "exp": "Apollo 11 landete am 20. Juli 1969 auf dem Mond.",
+      "source": "https://www.nasa.gov/mission/apollo-11/"
+    },
+    {
+      "id": "pf-002",
+      "cat": "Astronomie",
+      "q": "Wie viele Minuten braucht das Licht der Sonne ungefähr bis zur Erde?",
+      "a": 8,
+      "u": "Minuten",
+      "exp": "Licht benötigt im Mittel rund 8 Minuten und 20 Sekunden von der Sonne zur Erde.",
+      "source": "https://science.nasa.gov/sun/"
+    },
+    {
+      "id": "pf-003",
+      "cat": "Astronomie",
+      "q": "Wie viele natürliche Monde hat die Erde?",
+      "a": 1,
+      "u": "Mond",
+      "exp": "Die Erde besitzt einen natürlichen Satelliten: den Mond.",
+      "source": "https://science.nasa.gov/moon/"
+    },
+    {
+      "id": "pf-004",
+      "cat": "Astronomie",
+      "q": "Wie viele Planeten hat unser Sonnensystem?",
+      "a": 8,
+      "u": "Planeten",
+      "exp": "Seit der Neueinstufung Plutos als Zwergplanet zählt das Sonnensystem acht Planeten.",
+      "source": "https://science.nasa.gov/solar-system/planets/"
+    },
+    {
+      "id": "pf-005",
+      "cat": "Astronomie",
+      "q": "Wie lange braucht die Erde ungefähr für einen Umlauf um die Sonne?",
+      "a": 365,
+      "u": "Tage",
+      "exp": "Ein Umlauf dauert etwa 365,24 Tage; daraus ergibt sich die Schaltjahrregel.",
+      "source": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "id": "pf-006",
+      "cat": "Astronomie",
+      "q": "Wie lange dauert ein Tag auf dem Mars ungefähr?",
+      "a": 24.6,
+      "u": "Stunden",
+      "exp": "Ein Marstag, Sol genannt, dauert etwa 24 Stunden und 39 Minuten.",
+      "source": "https://science.nasa.gov/mars/facts/"
+    },
+    {
+      "id": "pf-007",
+      "cat": "Astronomie",
+      "q": "Wie viele Erden passen vom Durchmesser her ungefähr nebeneinander in den Jupiter?",
+      "a": 11,
+      "u": "Erden",
+      "exp": "Jupiter hat etwa den elffachen Erddurchmesser.",
+      "source": "https://science.nasa.gov/jupiter/facts/"
+    },
+    {
+      "id": "pf-008",
+      "cat": "Astronomie",
+      "q": "Wie viele Kilometer ist der mittlere Abstand zwischen Erde und Sonne ungefähr?",
+      "a": 150000000,
+      "u": "km",
+      "exp": "Eine Astronomische Einheit entspricht rund 150 Millionen Kilometern.",
+      "source": "https://science.nasa.gov/solar-system/"
+    },
+    {
+      "id": "pf-009",
+      "cat": "Astronomie",
+      "q": "Wie viele Minuten benötigt die ISS ungefähr für einen Erdumlauf?",
+      "a": 90,
+      "u": "Minuten",
+      "exp": "Die Internationale Raumstation umrundet die Erde ungefähr alle 90 Minuten.",
+      "source": "https://www.nasa.gov/international-space-station/"
+    },
+    {
+      "id": "pf-010",
+      "cat": "Astronomie",
+      "q": "Wie viele Astronauten waren bei Apollo 11 Teil der Besatzung?",
+      "a": 3,
+      "u": "Personen",
+      "exp": "Neil Armstrong, Buzz Aldrin und Michael Collins bildeten die Besatzung.",
+      "source": "https://www.nasa.gov/mission/apollo-11/"
+    },
+    {
+      "id": "pf-011",
+      "cat": "Astronomie",
+      "q": "In welchem Jahr wurde der erste künstliche Satellit Sputnik 1 gestartet?",
+      "a": 1957,
+      "u": "Jahr",
+      "exp": "Sputnik 1 startete am 4. Oktober 1957.",
+      "source": "https://www.nasa.gov/history/"
+    },
+    {
+      "id": "pf-012",
+      "cat": "Deutschland",
+      "q": "Wie viele Bundesländer hat Deutschland?",
+      "a": 16,
+      "u": "Bundesländer",
+      "exp": "Deutschland ist ein Bundesstaat aus 16 Ländern.",
+      "source": "https://www.bundesrat.de/DE/bundesrat/laender/laender-node.html"
+    },
+    {
+      "id": "pf-013",
+      "cat": "Deutschland",
+      "q": "Wie viele Einwohner hatte Deutschland ungefähr Ende 2023?",
+      "a": 84000000,
+      "u": "Einwohner",
+      "exp": "Die Bevölkerungszahl lag Ende 2023 bei rund 84,7 Millionen.",
+      "source": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/_inhalt.html"
+    },
+    {
+      "id": "pf-014",
+      "cat": "Deutschland",
+      "q": "Wie viele Stadtstaaten gibt es in Deutschland?",
+      "a": 3,
+      "u": "Stadtstaaten",
+      "exp": "Berlin, Hamburg und Bremen sind Stadtstaaten.",
+      "source": "https://www.bundesrat.de/DE/bundesrat/laender/laender-node.html"
+    },
+    {
+      "id": "pf-015",
+      "cat": "Deutschland",
+      "q": "Wie viele Sterne hat die deutsche Flagge?",
+      "a": 0,
+      "u": "Sterne",
+      "exp": "Die deutsche Nationalflagge besteht aus drei horizontalen Farbstreifen und hat keine Sterne.",
+      "source": "https://www.bund.de/DE/themen/deutschland/deutsche-flagge/deutsche-flagge-node.html"
+    },
+    {
+      "id": "pf-016",
+      "cat": "Deutschland",
+      "q": "In welchem Jahr trat das Grundgesetz in Kraft?",
+      "a": 1949,
+      "u": "Jahr",
+      "exp": "Das Grundgesetz wurde am 23. Mai 1949 verkündet.",
+      "source": "https://www.bundestag.de/parlament/aufgaben/rechtsgrundlagen/grundgesetz"
+    },
+    {
+      "id": "pf-017",
+      "cat": "Deutschland",
+      "q": "Wie viele Sitze hat der Bundesrat regulär mindestens?",
+      "a": 69,
+      "u": "Stimmen",
+      "exp": "Der Bundesrat hat 69 Stimmen, die von den Ländern entsprechend ihrer Einwohnerzahl gestellt werden.",
+      "source": "https://www.bundesrat.de/DE/bundesrat/stimmen/stimmen-node.html"
+    },
+    {
+      "id": "pf-018",
+      "cat": "Deutschland",
+      "q": "Wie viele Buchstaben hat das deutsche Alphabet ohne Umlaute und ß?",
+      "a": 26,
+      "u": "Buchstaben",
+      "exp": "Das Grundalphabet umfasst 26 Buchstaben; Ä, Ö, Ü und ß kommen hinzu.",
+      "source": "https://www.duden.de/sprachwissen/sprachratgeber/Das-deutsche-Alphabet"
+    },
+    {
+      "id": "pf-019",
+      "cat": "Deutschland",
+      "q": "Wie hoch ist der Kölner Dom ungefähr?",
+      "a": 157,
+      "u": "Meter",
+      "exp": "Die beiden Türme des Kölner Doms sind rund 157 Meter hoch.",
+      "source": "https://www.koelner-dom.de/"
+    },
+    {
+      "id": "pf-020",
+      "cat": "Deutschland",
+      "q": "Wie lang ist die Berliner Mauer ungefähr in Kilometern gewesen?",
+      "a": 155,
+      "u": "km",
+      "exp": "Die Berliner Mauer umschloss West-Berlin auf rund 155 Kilometern.",
+      "source": "https://www.chronik-der-mauer.de/"
+    },
+    {
+      "id": "pf-021",
+      "cat": "Deutschland",
+      "q": "In welchem Jahr fiel die Berliner Mauer?",
+      "a": 1989,
+      "u": "Jahr",
+      "exp": "Am 9. November 1989 wurden die Grenzübergänge geöffnet.",
+      "source": "https://www.chronik-der-mauer.de/"
+    },
+    {
+      "id": "pf-022",
+      "cat": "Deutschland",
+      "q": "Wie viele Tore hat das Brandenburger Tor?",
+      "a": 5,
+      "u": "Durchfahrten",
+      "exp": "Das Brandenburger Tor besitzt fünf Durchfahrten.",
+      "source": "https://www.berlin.de/sehenswuerdigkeiten/3560266-3558930-brandenburger-tor.html"
+    },
+    {
+      "id": "pf-023",
+      "cat": "Biologie",
+      "q": "Wie viele Knochen hat ein erwachsener Mensch normalerweise?",
+      "a": 206,
+      "u": "Knochen",
+      "exp": "Ein erwachsenes menschliches Skelett besteht typischerweise aus 206 Knochen.",
+      "source": "https://medlineplus.gov/ency/article/002305.htm"
+    },
+    {
+      "id": "pf-024",
+      "cat": "Biologie",
+      "q": "Wie viele Zähne hat ein Erwachsener normalerweise inklusive Weisheitszähne?",
+      "a": 32,
+      "u": "Zähne",
+      "exp": "Ein vollständiges bleibendes Gebiss umfasst normalerweise 32 Zähne.",
+      "source": "https://www.nidcr.nih.gov/health-info/tooth-decay"
+    },
+    {
+      "id": "pf-025",
+      "cat": "Biologie",
+      "q": "Wie viele Kammern hat das menschliche Herz?",
+      "a": 4,
+      "u": "Kammern",
+      "exp": "Das Herz besteht aus zwei Vorhöfen und zwei Herzkammern.",
+      "source": "https://www.nhlbi.nih.gov/health/heart"
+    },
+    {
+      "id": "pf-026",
+      "cat": "Biologie",
+      "q": "Wie viele Chromosomen hat ein Mensch normalerweise in einer Körperzelle?",
+      "a": 46,
+      "u": "Chromosomen",
+      "exp": "Die meisten menschlichen Körperzellen enthalten 46 Chromosomen.",
+      "source": "https://medlineplus.gov/genetics/understanding/basics/chromosome/"
+    },
+    {
+      "id": "pf-027",
+      "cat": "Biologie",
+      "q": "Wie viele Liter Blut hat ein erwachsener Mensch ungefähr?",
+      "a": 5,
+      "u": "Liter",
+      "exp": "Ein durchschnittlicher Erwachsener hat etwa fünf Liter Blut; Körpergröße und Geschlecht beeinflussen den Wert.",
+      "source": "https://www.nhlbi.nih.gov/health/blood"
+    },
+    {
+      "id": "pf-028",
+      "cat": "Biologie",
+      "q": "Wie viele Lungenflügel hat ein Mensch?",
+      "a": 2,
+      "u": "Lungenflügel",
+      "exp": "Der Mensch besitzt eine rechte und eine linke Lunge.",
+      "source": "https://www.nhlbi.nih.gov/health/lungs"
+    },
+    {
+      "id": "pf-029",
+      "cat": "Biologie",
+      "q": "Wie viele Muskeln hat der menschliche Körper ungefähr?",
+      "a": 600,
+      "u": "Muskeln",
+      "exp": "Je nach Zählweise werden rund 600 bis 650 Skelettmuskeln angegeben.",
+      "source": "https://my.clevelandclinic.org/health/body/21887-muscular-system"
+    },
+    {
+      "id": "pf-030",
+      "cat": "Biologie",
+      "q": "Wie viele Halswirbel hat der Mensch normalerweise?",
+      "a": 7,
+      "u": "Wirbel",
+      "exp": "Die Halswirbelsäule besteht bei Menschen üblicherweise aus sieben Wirbeln.",
+      "source": "https://www.ncbi.nlm.nih.gov/books/NBK525969/"
+    },
+    {
+      "id": "pf-031",
+      "cat": "Biologie",
+      "q": "Wie viele Sinnesorgane werden im klassischen Schulmodell genannt?",
+      "a": 5,
+      "u": "Sinne",
+      "exp": "Sehen, Hören, Riechen, Schmecken und Tasten sind die fünf klassischen Sinne.",
+      "source": "https://www.britannica.com/science/sense"
+    },
+    {
+      "id": "pf-032",
+      "cat": "Biologie",
+      "q": "Wie viele Liter Speichel produziert ein Mensch ungefähr pro Tag?",
+      "a": 1,
+      "u": "Liter",
+      "exp": "Die Speichelproduktion liegt grob zwischen 0,5 und 1,5 Litern täglich.",
+      "source": "https://www.nidcr.nih.gov/health-info/saliva"
+    },
+    {
+      "id": "pf-033",
+      "cat": "Biologie",
+      "q": "Wie viele Blutgruppen gibt es im AB0-System?",
+      "a": 4,
+      "u": "Blutgruppen",
+      "exp": "Das AB0-System kennt A, B, AB und 0.",
+      "source": "https://www.drk-blutspende.de/blutspende/blutgruppen"
+    },
+    {
+      "id": "pf-034",
+      "cat": "Tiere",
+      "q": "Wie viele Beine hat eine Spinne?",
+      "a": 8,
+      "u": "Beine",
+      "exp": "Spinnen gehören zu den Spinnentieren und besitzen acht Beine.",
+      "source": "https://www.britannica.com/animal/spider-arachnid"
+    },
+    {
+      "id": "pf-035",
+      "cat": "Tiere",
+      "q": "Wie viele Beine hat ein Insekt?",
+      "a": 6,
+      "u": "Beine",
+      "exp": "Insekten besitzen drei Beinpaare.",
+      "source": "https://www.britannica.com/animal/insect"
+    },
+    {
+      "id": "pf-036",
+      "cat": "Tiere",
+      "q": "Wie viele Herzen hat ein Oktopus?",
+      "a": 3,
+      "u": "Herzen",
+      "exp": "Ein Oktopus besitzt drei Herzen.",
+      "source": "https://oceanservice.noaa.gov/facts/octopus.html"
+    },
+    {
+      "id": "pf-037",
+      "cat": "Tiere",
+      "q": "Wie viele Höcker hat ein Dromedar?",
+      "a": 1,
+      "u": "Höcker",
+      "exp": "Das Dromedar hat einen Höcker; das Trampeltier hat zwei.",
+      "source": "https://www.britannica.com/animal/dromedary"
+    },
+    {
+      "id": "pf-038",
+      "cat": "Tiere",
+      "q": "Wie viele Höcker hat ein Trampeltier?",
+      "a": 2,
+      "u": "Höcker",
+      "exp": "Das zweihöckrige Trampeltier ist an das Leben in Zentralasien angepasst.",
+      "source": "https://www.britannica.com/animal/Bactrian-camel"
+    },
+    {
+      "id": "pf-039",
+      "cat": "Tiere",
+      "q": "Wie viele Stunden schläft ein Koala ungefähr pro Tag?",
+      "a": 20,
+      "u": "Stunden",
+      "exp": "Koalas schlafen und ruhen häufig 18 bis 20 Stunden täglich.",
+      "source": "https://www.australiazoo.com.au/animals/koala/"
+    },
+    {
+      "id": "pf-040",
+      "cat": "Tiere",
+      "q": "Wie viele Zähne hat ein erwachsener Hund normalerweise?",
+      "a": 42,
+      "u": "Zähne",
+      "exp": "Das bleibende Gebiss eines Hundes umfasst normalerweise 42 Zähne.",
+      "source": "https://www.akc.org/expert-advice/health/puppy-teeth/"
+    },
+    {
+      "id": "pf-041",
+      "cat": "Tiere",
+      "q": "Wie viele Beine hat ein Tausendfüßer tatsächlich maximal pro Körpersegment?",
+      "a": 2,
+      "u": "Beine",
+      "exp": "Bei den meisten Doppelfüßern tragen die meisten Rumpfsegmente zwei Beinpaare; die Zahl variiert stark.",
+      "source": "https://www.britannica.com/animal/millipede"
+    },
+    {
+      "id": "pf-042",
+      "cat": "Tiere",
+      "q": "Wie viele Flügel hat eine Biene?",
+      "a": 4,
+      "u": "Flügel",
+      "exp": "Honigbienen haben zwei Flügelpaare, also vier Flügel.",
+      "source": "https://www.britannica.com/animal/honeybee"
+    },
+    {
+      "id": "pf-043",
+      "cat": "Tiere",
+      "q": "Wie viele Mägen hat eine Kuh?",
+      "a": 4,
+      "u": "Magenabschnitte",
+      "exp": "Wiederkäuer wie Kühe haben vier Magenabschnitte.",
+      "source": "https://www.britannica.com/animal/cow"
+    },
+    {
+      "id": "pf-044",
+      "cat": "Tiere",
+      "q": "Wie viele Jahre kann ein Grönlandhai ungefähr alt werden?",
+      "a": 400,
+      "u": "Jahre",
+      "exp": "Untersuchungen legen nahe, dass Grönlandhaie mehrere Jahrhunderte alt werden können.",
+      "source": "https://www.science.org/doi/10.1126/science.aaf1703"
+    },
+    {
+      "id": "pf-045",
+      "cat": "Tiere",
+      "q": "Wie viele Meter kann eine Giraffe ungefähr hoch werden?",
+      "a": 5.5,
+      "u": "Meter",
+      "exp": "Giraffen erreichen eine Höhe von etwa fünf bis sechs Metern.",
+      "source": "https://www.nationalgeographic.com/animals/mammals/facts/giraffe"
+    },
+    {
+      "id": "pf-046",
+      "cat": "Geografie",
+      "q": "Wie viele Kontinente werden im in Deutschland üblichen Modell gezählt?",
+      "a": 7,
+      "u": "Kontinente",
+      "exp": "Das verbreitete Modell unterscheidet Europa, Asien, Afrika, Nordamerika, Südamerika, Australien/Ozeanien und Antarktika.",
+      "source": "https://www.britannica.com/science/continent"
+    },
+    {
+      "id": "pf-047",
+      "cat": "Geografie",
+      "q": "Wie viele Länder grenzen an Deutschland?",
+      "a": 9,
+      "u": "Länder",
+      "exp": "Deutschland hat neun Nachbarstaaten.",
+      "source": "https://www.auswaertiges-amt.de/de/aussenpolitik/laender"
+    },
+    {
+      "id": "pf-048",
+      "cat": "Geografie",
+      "q": "Wie viele Länder gehören zur Europäischen Union (Stand 2026)?",
+      "a": 27,
+      "u": "Mitgliedstaaten",
+      "exp": "Die EU besteht seit dem Austritt des Vereinigten Königreichs aus 27 Mitgliedstaaten.",
+      "source": "https://european-union.europa.eu/principles-countries-history/country-profiles_de"
+    },
+    {
+      "id": "pf-049",
+      "cat": "Geografie",
+      "q": "Wie hoch ist der Mount Everest ungefähr?",
+      "a": 8849,
+      "u": "Meter",
+      "exp": "Die offiziell gemeinsam bekanntgegebene Höhe beträgt 8.848,86 Meter.",
+      "source": "https://www.britannica.com/place/Mount-Everest"
+    },
+    {
+      "id": "pf-050",
+      "cat": "Geografie",
+      "q": "Wie lang ist der Äquator ungefähr?",
+      "a": 40075,
+      "u": "Kilometer",
+      "exp": "Der Erdumfang am Äquator beträgt rund 40.075 Kilometer.",
+      "source": "https://oceanservice.noaa.gov/facts/earth-round.html"
+    },
+    {
+      "id": "pf-051",
+      "cat": "Geografie",
+      "q": "Wie viele Zeitzonen hat Russland offiziell?",
+      "a": 11,
+      "u": "Zeitzonen",
+      "exp": "Russland erstreckt sich über elf Zeitzonen.",
+      "source": "https://www.britannica.com/place/Russia/Climate"
+    },
+    {
+      "id": "pf-052",
+      "cat": "Geografie",
+      "q": "Wie viele Länder liegen vollständig in Südamerika?",
+      "a": 12,
+      "u": "Länder",
+      "exp": "Südamerika umfasst zwölf souveräne Staaten.",
+      "source": "https://www.britannica.com/place/South-America"
+    },
+    {
+      "id": "pf-053",
+      "cat": "Geografie",
+      "q": "Wie viele Inseln gehören ungefähr zu Indonesien laut offizieller Zählung?",
+      "a": 17000,
+      "u": "Inseln",
+      "exp": "Indonesien besteht aus mehr als 17.000 Inseln; genaue Zählungen variieren.",
+      "source": "https://www.britannica.com/place/Indonesia"
+    },
+    {
+      "id": "pf-054",
+      "cat": "Geografie",
+      "q": "Wie tief ist der Marianengraben an seiner tiefsten bekannten Stelle ungefähr?",
+      "a": 11000,
+      "u": "Meter",
+      "exp": "Der Challenger Deep liegt ungefähr elf Kilometer unter dem Meeresspiegel.",
+      "source": "https://oceanexplorer.noaa.gov/facts/mariana.html"
+    },
+    {
+      "id": "pf-055",
+      "cat": "Geografie",
+      "q": "Wie viele Länder grenzen an Brasilien?",
+      "a": 10,
+      "u": "Länder",
+      "exp": "Brasilien grenzt an zehn südamerikanische Staaten; nur Chile und Ecuador nicht.",
+      "source": "https://www.britannica.com/place/Brazil"
+    },
+    {
+      "id": "pf-056",
+      "cat": "Geografie",
+      "q": "Wie hoch liegt das Tote Meer ungefähr unter dem Meeresspiegel?",
+      "a": 430,
+      "u": "Meter",
+      "exp": "Die Oberfläche des Toten Meeres liegt mehr als 400 Meter unter dem Meeresspiegel; der Wert schwankt.",
+      "source": "https://www.britannica.com/place/Dead-Sea"
+    },
+    {
+      "id": "pf-057",
+      "cat": "Technik",
+      "q": "In welchem Jahr wurde das erste iPhone vorgestellt?",
+      "a": 2007,
+      "u": "Jahr",
+      "exp": "Steve Jobs stellte das erste iPhone am 9. Januar 2007 vor.",
+      "source": "https://www.apple.com/newsroom/2007/01/09Apple-Reinvents-the-Phone-with-iPhone/"
+    },
+    {
+      "id": "pf-058",
+      "cat": "Technik",
+      "q": "In welchem Jahr wurde das World Wide Web öffentlich vorgestellt?",
+      "a": 1991,
+      "u": "Jahr",
+      "exp": "Das Web wurde 1991 außerhalb von CERN verfügbar gemacht.",
+      "source": "https://home.cern/science/computing/birth-web"
+    },
+    {
+      "id": "pf-059",
+      "cat": "Technik",
+      "q": "Wie viele Bits hat ein Byte?",
+      "a": 8,
+      "u": "Bits",
+      "exp": "Ein Byte besteht aus acht Bits.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-information"
+    },
+    {
+      "id": "pf-060",
+      "cat": "Technik",
+      "q": "Wie viele Tasten hat eine klassische Klavier- oder Flügelklaviatur?",
+      "a": 88,
+      "u": "Tasten",
+      "exp": "Ein modernes Standardklavier hat 88 Tasten.",
+      "source": "https://www.britannica.com/art/piano"
+    },
+    {
+      "id": "pf-061",
+      "cat": "Technik",
+      "q": "In welchem Jahr wurde die erste PlayStation in Japan veröffentlicht?",
+      "a": 1994,
+      "u": "Jahr",
+      "exp": "Sony brachte die erste PlayStation in Japan im Dezember 1994 auf den Markt.",
+      "source": "https://www.sie.com/en/corporate/history/"
+    },
+    {
+      "id": "pf-062",
+      "cat": "Technik",
+      "q": "In welchem Jahr wurde Wikipedia gestartet?",
+      "a": 2001,
+      "u": "Jahr",
+      "exp": "Wikipedia ging am 15. Januar 2001 online.",
+      "source": "https://wikimediafoundation.org/about/"
+    },
+    {
+      "id": "pf-063",
+      "cat": "Technik",
+      "q": "Wie viele Farben kann ein 24-Bit-RGB-Bild theoretisch darstellen?",
+      "a": 16777216,
+      "u": "Farben",
+      "exp": "24 Bit ergeben 8 Bit pro Farbkanal und damit 2 hoch 24 mögliche Farben.",
+      "source": "https://www.adobe.com/creativecloud/photography/discover/rgb-color.html"
+    },
+    {
+      "id": "pf-064",
+      "cat": "Technik",
+      "q": "Wie viele Tasten hat ein Standard-PC-Tastaturlayout mit deutschem QWERTZ meist ungefähr?",
+      "a": 105,
+      "u": "Tasten",
+      "exp": "Viele deutsche Standardtastaturen besitzen 105 Tasten; Layouts unterscheiden sich.",
+      "source": "https://www.iso.org/standard/"
+    },
+    {
+      "id": "pf-065",
+      "cat": "Technik",
+      "q": "In welchem Jahr wurde Bluetooth erstmals vorgestellt?",
+      "a": 1998,
+      "u": "Jahr",
+      "exp": "Die Bluetooth Special Interest Group wurde 1998 gegründet.",
+      "source": "https://www.bluetooth.com/about-us/"
+    },
+    {
+      "id": "pf-066",
+      "cat": "Technik",
+      "q": "Wie viele Megapixel hat ein Bild mit 4000 mal 3000 Pixeln?",
+      "a": 12,
+      "u": "Megapixel",
+      "exp": "4.000 mal 3.000 Pixel ergeben zwölf Millionen Pixel.",
+      "source": "https://www.adobe.com/creativecloud/photography/discover/megapixel.html"
+    },
+    {
+      "id": "pf-067",
+      "cat": "Technik",
+      "q": "Wie viele Ziffern hat eine übliche ISBN-13?",
+      "a": 13,
+      "u": "Ziffern",
+      "exp": "Die ISBN-13 besteht aus 13 Ziffern.",
+      "source": "https://www.isbn-international.org/content/what-isbn"
+    },
+    {
+      "id": "pf-068",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr endete der Zweite Weltkrieg in Europa?",
+      "a": 1945,
+      "u": "Jahr",
+      "exp": "Die deutsche Kapitulation trat im Mai 1945 in Kraft.",
+      "source": "https://www.bpb.de/themen/nationalsozialismus-zweiter-weltkrieg/"
+    },
+    {
+      "id": "pf-069",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr begann die Französische Revolution?",
+      "a": 1789,
+      "u": "Jahr",
+      "exp": "Als Beginn gilt üblicherweise das Jahr 1789.",
+      "source": "https://www.britannica.com/event/French-Revolution"
+    },
+    {
+      "id": "pf-070",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die Titanic auf ihrer Jungfernfahrt versenkt?",
+      "a": 1912,
+      "u": "Jahr",
+      "exp": "Die Titanic sank in der Nacht vom 14. auf den 15. April 1912.",
+      "source": "https://www.britannica.com/topic/Titanic"
+    },
+    {
+      "id": "pf-071",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die erste Mondlandung durchgeführt?",
+      "a": 1969,
+      "u": "Jahr",
+      "exp": "Apollo 11 brachte die ersten Menschen auf die Mondoberfläche.",
+      "source": "https://www.nasa.gov/mission/apollo-11/"
+    },
+    {
+      "id": "pf-072",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die Unabhängigkeitserklärung der USA verabschiedet?",
+      "a": 1776,
+      "u": "Jahr",
+      "exp": "Der Kontinentalkongress verabschiedete die Erklärung am 4. Juli 1776.",
+      "source": "https://www.archives.gov/founding-docs/declaration-transcript"
+    },
+    {
+      "id": "pf-073",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die erste moderne Olympiade in Athen eröffnet?",
+      "a": 1896,
+      "u": "Jahr",
+      "exp": "Die ersten Olympischen Spiele der Neuzeit fanden 1896 in Athen statt.",
+      "source": "https://olympics.com/ioc/ancient-olympic-games"
+    },
+    {
+      "id": "pf-074",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die Magna Carta besiegelt?",
+      "a": 1215,
+      "u": "Jahr",
+      "exp": "König Johann besiegelte die Magna Carta im Jahr 1215.",
+      "source": "https://www.bl.uk/magna-carta"
+    },
+    {
+      "id": "pf-075",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die Druckerpresse mit beweglichen Metalllettern in Europa bekannt?",
+      "a": 1450,
+      "u": "Jahr",
+      "exp": "Gutenbergs Drucktechnik verbreitete sich in Europa um die Mitte des 15. Jahrhunderts.",
+      "source": "https://www.britannica.com/technology/printing-press"
+    },
+    {
+      "id": "pf-076",
+      "cat": "Geschichte",
+      "q": "Wie viele Pyramiden von Gizeh bilden die berühmte Hauptgruppe?",
+      "a": 3,
+      "u": "Pyramiden",
+      "exp": "Die Hauptgruppe besteht aus den Pyramiden von Cheops, Chephren und Mykerinos.",
+      "source": "https://www.britannica.com/place/Pyramids-of-Giza"
+    },
+    {
+      "id": "pf-077",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die Berliner Mauer geöffnet?",
+      "a": 1989,
+      "u": "Jahr",
+      "exp": "Die Grenzübergänge wurden am 9. November 1989 geöffnet.",
+      "source": "https://www.chronik-der-mauer.de/"
+    },
+    {
+      "id": "pf-078",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die erste Fußball-Weltmeisterschaft der Männer ausgetragen?",
+      "a": 1930,
+      "u": "Jahr",
+      "exp": "Das erste Turnier fand 1930 in Uruguay statt.",
+      "source": "https://www.fifa.com/tournaments/mens/worldcup/1930uruguay"
+    },
+    {
+      "id": "pf-079",
+      "cat": "Geschichte",
+      "q": "In welchem Jahr wurde die UN gegründet?",
+      "a": 1945,
+      "u": "Jahr",
+      "exp": "Die Charta der Vereinten Nationen trat am 24. Oktober 1945 in Kraft.",
+      "source": "https://www.un.org/en/about-us/history-of-the-un"
+    },
+    {
+      "id": "pf-080",
+      "cat": "Sport",
+      "q": "Wie viele Spieler einer Fußballmannschaft stehen zu Spielbeginn auf dem Feld?",
+      "a": 11,
+      "u": "Spieler",
+      "exp": "Eine Mannschaft besteht auf dem Feld aus elf Spielern inklusive Torwart.",
+      "source": "https://www.theifab.com/laws/latest/the-players/"
+    },
+    {
+      "id": "pf-081",
+      "cat": "Sport",
+      "q": "Wie lang ist ein Marathon in Kilometern?",
+      "a": 42.195,
+      "u": "Kilometer",
+      "exp": "Die offizielle Marathondistanz beträgt 42,195 Kilometer.",
+      "source": "https://worldathletics.org/disciplines/road-running/marathon"
+    },
+    {
+      "id": "pf-082",
+      "cat": "Sport",
+      "q": "Wie viele Ringe hat das olympische Symbol?",
+      "a": 5,
+      "u": "Ringe",
+      "exp": "Das olympische Symbol besteht aus fünf ineinander verschlungenen Ringen.",
+      "source": "https://olympics.com/ioc/olympic-rings"
+    },
+    {
+      "id": "pf-083",
+      "cat": "Sport",
+      "q": "Wie viele Punkte zählt ein Treffer beim Basketball innerhalb der Dreipunktelinie?",
+      "a": 2,
+      "u": "Punkte",
+      "exp": "Ein normaler Feldkorb innerhalb der Dreipunktelinie zählt zwei Punkte.",
+      "source": "https://www.nba.com/rulebook"
+    },
+    {
+      "id": "pf-084",
+      "cat": "Sport",
+      "q": "Wie viele Löcher hat eine reguläre Golfrunde?",
+      "a": 18,
+      "u": "Löcher",
+      "exp": "Eine Standardrunde im Golf umfasst 18 Löcher.",
+      "source": "https://www.randa.org/en/rog/the-rules-of-golf"
+    },
+    {
+      "id": "pf-085",
+      "cat": "Sport",
+      "q": "Wie viele Sätze muss man im Herreneinzel eines Grand-Slam-Tennisturniers gewinnen?",
+      "a": 3,
+      "u": "Sätze",
+      "exp": "Im Herreneinzel bei Grand-Slam-Turnieren wird üblicherweise Best-of-Five gespielt.",
+      "source": "https://www.itftennis.com/en/about-us/governance/rules-and-regulations/"
+    },
+    {
+      "id": "pf-086",
+      "cat": "Sport",
+      "q": "Wie viele Meter beträgt die olympische Schwimmbeckenlänge?",
+      "a": 50,
+      "u": "Meter",
+      "exp": "Olympische Wettkampfbecken sind 50 Meter lang.",
+      "source": "https://www.worldaquatics.com/"
+    },
+    {
+      "id": "pf-087",
+      "cat": "Sport",
+      "q": "Wie viele Minuten dauert ein reguläres Fußballspiel ohne Nachspielzeit?",
+      "a": 90,
+      "u": "Minuten",
+      "exp": "Ein Spiel besteht aus zwei Halbzeiten zu je 45 Minuten.",
+      "source": "https://www.theifab.com/laws/latest/the-duration-of-the-match/"
+    },
+    {
+      "id": "pf-088",
+      "cat": "Sport",
+      "q": "Wie viele Spieler stehen bei einem Volleyballteam gleichzeitig auf dem Feld?",
+      "a": 6,
+      "u": "Spieler",
+      "exp": "Ein Volleyballteam spielt mit sechs Spielern auf dem Feld.",
+      "source": "https://www.fivb.com/"
+    },
+    {
+      "id": "pf-089",
+      "cat": "Sport",
+      "q": "Wie hoch hängt ein Basketballkorb über dem Boden?",
+      "a": 3.05,
+      "u": "Meter",
+      "exp": "Die Korbhöhe beträgt zehn Fuß, also 3,05 Meter.",
+      "source": "https://www.nba.com/rulebook"
+    },
+    {
+      "id": "pf-090",
+      "cat": "Sport",
+      "q": "In welchem Jahr fanden die ersten FIFA-Frauen-Weltmeisterschaften statt?",
+      "a": 1991,
+      "u": "Jahr",
+      "exp": "Die erste Frauen-WM wurde 1991 in China ausgetragen.",
+      "source": "https://www.fifa.com/tournaments/womens/womensworldcup"
+    },
+    {
+      "id": "pf-091",
+      "cat": "Sport",
+      "q": "Wie viele Figuren hat jeder Spieler zu Beginn einer Schachpartie?",
+      "a": 16,
+      "u": "Figuren",
+      "exp": "Jede Seite beginnt mit 16 Figuren: König, Dame, zwei Türme, zwei Läufer, zwei Springer und acht Bauern.",
+      "source": "https://www.fide.com/FIDE/handbook/LawsOfChess.pdf"
+    },
+    {
+      "id": "pf-092",
+      "cat": "Essen",
+      "q": "Wie viele Milliliter enthält ein Liter?",
+      "a": 1000,
+      "u": "Milliliter",
+      "exp": "Ein Liter entspricht 1.000 Millilitern.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-volume"
+    },
+    {
+      "id": "pf-093",
+      "cat": "Essen",
+      "q": "Wie viele Gramm hat ein Kilogramm?",
+      "a": 1000,
+      "u": "Gramm",
+      "exp": "Ein Kilogramm entspricht 1.000 Gramm.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-mass"
+    },
+    {
+      "id": "pf-094",
+      "cat": "Essen",
+      "q": "Bei welcher Temperatur kocht Wasser auf Meereshöhe ungefähr?",
+      "a": 100,
+      "u": "°C",
+      "exp": "Reines Wasser siedet bei normalem Luftdruck bei etwa 100 Grad Celsius.",
+      "source": "https://www.nist.gov/pml/owm/si-units-temperature"
+    },
+    {
+      "id": "pf-095",
+      "cat": "Essen",
+      "q": "Wie viele Kalorien hat ein Gramm Fett ungefähr?",
+      "a": 9,
+      "u": "Kilokalorien",
+      "exp": "Fett liefert rund neun Kilokalorien pro Gramm.",
+      "source": "https://www.nutrition.gov/topics/whats-food"
+    },
+    {
+      "id": "pf-096",
+      "cat": "Essen",
+      "q": "Wie viele Gramm Zucker stecken in einem Würfelzucker ungefähr?",
+      "a": 3,
+      "u": "Gramm",
+      "exp": "Ein typischer Würfelzucker wiegt ungefähr drei Gramm; Größen variieren je nach Land.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-097",
+      "cat": "Essen",
+      "q": "Wie viele Kammern hat ein typischer Eierkarton in Deutschland?",
+      "a": 10,
+      "u": "Eier",
+      "exp": "Der klassische deutsche Eierkarton enthält oft zehn Eier; es gibt weitere Packungsgrößen.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-098",
+      "cat": "Essen",
+      "q": "Wie viele Minuten braucht ein weich gekochtes Ei ungefähr?",
+      "a": 6,
+      "u": "Minuten",
+      "exp": "Ein Ei der Größe M wird häufig etwa sechs Minuten weich gekocht; Größe und Starttemperatur beeinflussen das Ergebnis.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-099",
+      "cat": "Essen",
+      "q": "Wie viele Prozent Wasser enthält eine Gurke ungefähr?",
+      "a": 96,
+      "u": "Prozent",
+      "exp": "Gurken bestehen zu rund 95 bis 96 Prozent aus Wasser.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-100",
+      "cat": "Essen",
+      "q": "Wie viele Gramm wiegt ein durchschnittliches Hühnerei der Größe M ungefähr?",
+      "a": 58,
+      "u": "Gramm",
+      "exp": "Die Gewichtsklasse M umfasst Eier von 53 bis unter 63 Gramm.",
+      "source": "https://www.ble.de/"
+    },
+    {
+      "id": "pf-101",
+      "cat": "Essen",
+      "q": "Wie viele Milliliter fasst ein deutsches Standardglas für Bier oft?",
+      "a": 500,
+      "u": "Milliliter",
+      "exp": "Ein halber Liter ist eine verbreitete Ausschankgröße; Gläser variieren regional.",
+      "source": "https://www.bzfe.de/"
+    },
+    {
+      "id": "pf-102",
+      "cat": "Essen",
+      "q": "Wie viele Minuten dauert es ungefähr, bis Licht von einer Kerze einen Kilometer zurücklegt?",
+      "a": 0.0000033,
+      "u": "Sekunden",
+      "exp": "Licht legt einen Kilometer in rund 3,3 Mikrosekunden zurück.",
+      "source": "https://www.nist.gov/pml/owm/metric-si/si-units-time"
+    },
+    {
+      "id": "pf-103",
+      "cat": "Natur",
+      "q": "Wie viele Prozent der Erdoberfläche sind ungefähr von Wasser bedeckt?",
+      "a": 71,
+      "u": "Prozent",
+      "exp": "Etwa 71 Prozent der Erdoberfläche sind von Wasser bedeckt.",
+      "source": "https://oceanservice.noaa.gov/facts/earth.html"
+    },
+    {
+      "id": "pf-104",
+      "cat": "Natur",
+      "q": "Wie viele Prozent der Atmosphäre besteht ungefähr aus Stickstoff?",
+      "a": 78,
+      "u": "Prozent",
+      "exp": "Trockene Luft besteht zu rund 78 Prozent aus Stickstoff.",
+      "source": "https://www.noaa.gov/jetstream/atmosphere"
+    },
+    {
+      "id": "pf-105",
+      "cat": "Natur",
+      "q": "Wie viele Tage dauert die Trächtigkeit eines Elefanten ungefähr?",
+      "a": 660,
+      "u": "Tage",
+      "exp": "Die Tragzeit afrikanischer Elefanten liegt bei etwa 22 Monaten.",
+      "source": "https://www.nationalgeographic.com/animals/mammals/facts/african-elephant"
+    },
+    {
+      "id": "pf-106",
+      "cat": "Natur",
+      "q": "Wie viele Meter hoch kann ein Mammutbaum ungefähr werden?",
+      "a": 100,
+      "u": "Meter",
+      "exp": "Küstenmammutbäume können Höhen von über 100 Metern erreichen.",
+      "source": "https://www.nps.gov/redw/learn/nature/tall-trees.htm"
+    },
+    {
+      "id": "pf-107",
+      "cat": "Natur",
+      "q": "Wie viele Jahre kann eine Riesenschildkröte ungefähr alt werden?",
+      "a": 150,
+      "u": "Jahre",
+      "exp": "Riesenschildkröten können weit über 100 Jahre alt werden.",
+      "source": "https://www.britannica.com/animal/giant-tortoise"
+    },
+    {
+      "id": "pf-108",
+      "cat": "Natur",
+      "q": "Wie viele Kilometer pro Stunde erreicht Schall in Luft bei Raumtemperatur ungefähr?",
+      "a": 1235,
+      "u": "km/h",
+      "exp": "Die Schallgeschwindigkeit beträgt bei 20 Grad Celsius etwa 343 Meter pro Sekunde.",
+      "source": "https://www.nist.gov/pml/sound"
+    },
+    {
+      "id": "pf-109",
+      "cat": "Natur",
+      "q": "Wie viele Stunden dauert es ungefähr, bis die Erde sich einmal um die eigene Achse dreht?",
+      "a": 24,
+      "u": "Stunden",
+      "exp": "Der Sonnentag dauert im Mittel 24 Stunden; der Sterntag ist etwas kürzer.",
+      "source": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "id": "pf-110",
+      "cat": "Natur",
+      "q": "Wie viele Prozent der globalen Eis- und Süßwasservorräte sind ungefähr in Gletschern und Eisschilden gebunden?",
+      "a": 69,
+      "u": "Prozent",
+      "exp": "Rund 69 Prozent des Süßwassers der Erde sind in Eis und Gletschern gespeichert.",
+      "source": "https://www.usgs.gov/special-topics/water-science-school/science/how-much-water-there-earth"
+    },
+    {
+      "id": "pf-111",
+      "cat": "Natur",
+      "q": "Wie viele Meter kann ein Blitzkanal lang sein?",
+      "a": 5,
+      "u": "Kilometer",
+      "exp": "Blitze können mehrere Kilometer lang sein; einzelne Entladungen reichen noch weiter.",
+      "source": "https://www.noaa.gov/jetstream/lightning"
+    },
+    {
+      "id": "pf-112",
+      "cat": "Natur",
+      "q": "Wie viele Kilometer Durchmesser hat die Erde ungefähr?",
+      "a": 12742,
+      "u": "Kilometer",
+      "exp": "Der mittlere Erddurchmesser beträgt etwa 12.742 Kilometer.",
+      "source": "https://science.nasa.gov/earth/facts/"
+    },
+    {
+      "id": "pf-113",
+      "cat": "Natur",
+      "q": "Wie viele Monate dauert eine Jahreszeit im üblichen Kalender ungefähr?",
+      "a": 3,
+      "u": "Monate",
+      "exp": "Ein Jahr wird in vier Jahreszeiten von jeweils ungefähr drei Monaten eingeteilt.",
+      "source": "https://www.britannica.com/science/season"
+    },
+    {
+      "id": "pf-114",
+      "cat": "Rekorde",
+      "q": "Wie hoch ist der Eiffelturm inklusive Antenne ungefähr?",
+      "a": 330,
+      "u": "Meter",
+      "exp": "Der Eiffelturm misst seit der Installation einer neuen Antenne 330 Meter.",
+      "source": "https://www.toureiffel.paris/en/the-monument/figures-and-facts"
+    },
+    {
+      "id": "pf-115",
+      "cat": "Rekorde",
+      "q": "Wie hoch ist der Burj Khalifa in Dubai?",
+      "a": 828,
+      "u": "Meter",
+      "exp": "Der Burj Khalifa ist 828 Meter hoch und gilt als höchstes Gebäude.",
+      "source": "https://www.burjkhalifa.ae/en/the-tower/facts-figures/"
+    },
+    {
+      "id": "pf-116",
+      "cat": "Rekorde",
+      "q": "Wie lang ist die Golden Gate Bridge ungefähr?",
+      "a": 2737,
+      "u": "Meter",
+      "exp": "Die gesamte Brücke ist einschließlich Zufahrten etwa 2.737 Meter lang.",
+      "source": "https://www.goldengate.org/bridge/"
+    },
+    {
+      "id": "pf-117",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter hoch ist die Freiheitsstatue inklusive Sockel ungefähr?",
+      "a": 93,
+      "u": "Meter",
+      "exp": "Vom Boden bis zur Fackelspitze misst das Monument rund 93 Meter.",
+      "source": "https://www.nps.gov/stli/learn/historyculture/statue-of-liberty-facts.htm"
+    },
+    {
+      "id": "pf-118",
+      "cat": "Rekorde",
+      "q": "Wie schnell kann ein Gepard in kurzen Sprints ungefähr laufen?",
+      "a": 100,
+      "u": "km/h",
+      "exp": "Geparde erreichen in kurzen Sprints Geschwindigkeiten um 100 km/h; konkrete Spitzenwerte schwanken.",
+      "source": "https://www.nationalgeographic.com/animals/mammals/facts/cheetah"
+    },
+    {
+      "id": "pf-119",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter lang war das längste jemals gemessene Blauwal-Exemplar ungefähr?",
+      "a": 30,
+      "u": "Meter",
+      "exp": "Blauwale können Längen um 30 Meter erreichen.",
+      "source": "https://www.fisheries.noaa.gov/species/blue-whale"
+    },
+    {
+      "id": "pf-120",
+      "cat": "Rekorde",
+      "q": "Wie viele Tonnen kann ein ausgewachsener Blauwal ungefähr wiegen?",
+      "a": 180,
+      "u": "Tonnen",
+      "exp": "Blauwale können bis zu etwa 180 Tonnen wiegen.",
+      "source": "https://www.fisheries.noaa.gov/species/blue-whale"
+    },
+    {
+      "id": "pf-121",
+      "cat": "Rekorde",
+      "q": "Wie viele Kilometer beträgt die Länge des Great Barrier Reef ungefähr?",
+      "a": 2300,
+      "u": "Kilometer",
+      "exp": "Das Great Barrier Reef erstreckt sich über ungefähr 2.300 Kilometer.",
+      "source": "https://www.gbrmpa.gov.au/the-reef"
+    },
+    {
+      "id": "pf-122",
+      "cat": "Rekorde",
+      "q": "Wie viele Meter hoch ist der höchste bekannte Wasserfall der Welt ungefähr?",
+      "a": 979,
+      "u": "Meter",
+      "exp": "Der Salto Ángel in Venezuela hat eine Fallhöhe von rund 979 Metern.",
+      "source": "https://www.britannica.com/place/Angel-Falls"
+    },
+    {
+      "id": "pf-123",
+      "cat": "Rekorde",
+      "q": "Wie viele Kilometer lang ist der Nil ungefähr?",
+      "a": 6650,
+      "u": "Kilometer",
+      "exp": "Der Nil wird häufig mit rund 6.650 Kilometern Länge angegeben; Messweisen können variieren.",
+      "source": "https://www.britannica.com/place/Nile-River"
+    },
+    {
+      "id": "pf-124",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien Super Mario Bros. in Japan?",
+      "a": 1985,
+      "u": "Jahr",
+      "exp": "Super Mario Bros. erschien 1985 für das Famicom in Japan.",
+      "source": "https://www.nintendo.com/"
+    },
+    {
+      "id": "pf-125",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Pokémon umfasste der ursprüngliche Kanto-Pokédex?",
+      "a": 151,
+      "u": "Pokémon",
+      "exp": "Die erste Generation umfasste 151 Pokémon inklusive Mew.",
+      "source": "https://www.pokemon.com/us/pokedex"
+    },
+    {
+      "id": "pf-126",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr wurde Minecraft erstmals öffentlich veröffentlicht?",
+      "a": 2009,
+      "u": "Jahr",
+      "exp": "Die erste öffentliche Version von Minecraft erschien 2009.",
+      "source": "https://www.minecraft.net/"
+    },
+    {
+      "id": "pf-127",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien die erste Pokémon-Edition in Japan?",
+      "a": 1996,
+      "u": "Jahr",
+      "exp": "Pokémon Rot und Grün erschienen in Japan 1996.",
+      "source": "https://www.pokemon.com/us/pokemon-video-games/"
+    },
+    {
+      "id": "pf-128",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Spieler können bei klassischem Tetris gleichzeitig am selben Einzelspieler-Spiel teilnehmen?",
+      "a": 1,
+      "u": "Spieler",
+      "exp": "Das ursprüngliche Tetris ist ein Einzelspieler-Puzzlespiel.",
+      "source": "https://tetris.com/about-us"
+    },
+    {
+      "id": "pf-129",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr erschien die erste Xbox?",
+      "a": 2001,
+      "u": "Jahr",
+      "exp": "Microsoft veröffentlichte die erste Xbox 2001.",
+      "source": "https://news.xbox.com/en-us/"
+    },
+    {
+      "id": "pf-130",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr kam die Nintendo Switch auf den Markt?",
+      "a": 2017,
+      "u": "Jahr",
+      "exp": "Die Nintendo Switch erschien weltweit im März 2017.",
+      "source": "https://www.nintendo.com/us/switch/"
+    },
+    {
+      "id": "pf-131",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Hauptfilme umfasst die ursprüngliche Star-Wars-Trilogie?",
+      "a": 3,
+      "u": "Filme",
+      "exp": "Die ursprüngliche Trilogie besteht aus Episode IV, V und VI.",
+      "source": "https://www.starwars.com/films"
+    },
+    {
+      "id": "pf-132",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr kam der erste Harry-Potter-Roman heraus?",
+      "a": 1997,
+      "u": "Jahr",
+      "exp": "Harry Potter und der Stein der Weisen wurde 1997 veröffentlicht.",
+      "source": "https://www.bloomsbury.com/uk/discover/harry-potter/"
+    },
+    {
+      "id": "pf-133",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Oscars gewann der Film Titanic bei der Verleihung 1998?",
+      "a": 11,
+      "u": "Oscars",
+      "exp": "Titanic gewann elf Academy Awards.",
+      "source": "https://www.oscars.org/oscars/ceremonies/1998"
+    },
+    {
+      "id": "pf-134",
+      "cat": "Gaming & Popkultur",
+      "q": "In welchem Jahr startete die erste Folge der Simpsons im US-Fernsehen als Serie?",
+      "a": 1989,
+      "u": "Jahr",
+      "exp": "Die Simpsons starteten als eigenständige Serie im Dezember 1989.",
+      "source": "https://www.fox.com/the-simpsons/"
+    },
+    {
+      "id": "pf-135",
+      "cat": "Gaming & Popkultur",
+      "q": "Wie viele Staffeln hatte die Serie Game of Thrones?",
+      "a": 8,
+      "u": "Staffeln",
+      "exp": "Game of Thrones lief über acht Staffeln.",
+      "source": "https://www.hbo.com/game-of-thrones"
+    }
+  ]
+}
