@@ -1387,7 +1387,7 @@
         display.hidden = false;
         const button = document.getElementById('kontexto-category-hint');
         button.disabled = true;
-        button.textContent = '🏷️ Kategorie angezeigt';
+        button.textContent = '🏷️';
       },
 
       showWordHint() {
@@ -1407,7 +1407,7 @@
         this.wordHintUsed = false;
         const categoryButton = document.getElementById('kontexto-category-hint');
         const wordButton = document.getElementById('kontexto-word-hint');
-        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️ Kategorie anzeigen'; }
+        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
         if (wordButton) { wordButton.disabled = false; wordButton.title = 'Wort-Tipp – beliebig oft'; }
         const categoryDisplay = document.getElementById('kontexto-category-display');
         if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
