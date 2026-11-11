@@ -1096,10 +1096,10 @@
       // Ausgewählte deutsche 5-Buchstaben-Wörter
       wordPool: [
         'TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER',
-        'VOGEL','FEUER','WATER','INSEL','WALD','KREIS','LICHT','GLUECK','PFERD',
+        'VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD',
         'BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE',
         'KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE',
-        'MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TURM','WAGEN','ZWEIG'
+        'MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'
       ],
 
       init() {
@@ -1357,7 +1357,7 @@
           }
         } catch (err) {
           console.warn('[Kontexto] Fallback aktiv:', err);
-          statusText.innerText = 'KI-Modell bereit.';
+          statusText.innerText = 'KI-Modell nicht verfügbar – vereinfachte Näherung aktiv.';
           loader.style.display = 'none';
         }
       },
@@ -1404,7 +1404,8 @@
         } else {
           sim = Math.max(0.01, 0.35 - Math.abs(cleanWord.length - this.targetWord.length) * 0.015);
         }
-        const baseRank = Math.max(2, Math.round(Math.pow(1 - Math.max(0, sim), 2.5) * 1000000));
+        const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
+        const baseRank = Math.max(2, Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 1000000));
         const tieBreak = [...key].reduce((sum, ch, i) => sum + ch.charCodeAt(0) * (i + 17), 0) % 97;
         const calculatedRank = baseRank * 100 + tieBreak;
         this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim });
@@ -1427,7 +1428,7 @@
           else if (item.rank <= 3000000) color = 'var(--neon-cyan)';
           else if (item.rank <= 15000000) color = 'var(--neon-gold)';
 
-          const pct = Math.max(5, Math.min(100, Math.round((1 - (item.rank / 8000)) * 100)));
+          const pct = Math.max(5, Math.min(100, Math.round((1 - (item.rank / 100000000)) * 100)));
 
           row.innerHTML = `
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
@@ -1498,9 +1499,17 @@
         document.getElementById('size-score-label').innerText = `${this.score} Punkte`;
 
         // Zwei unterschiedliche Objekte auswählen
-        const shuffled = [...this.objects].sort(() => 0.5 - Math.random());
-        this.refObject = shuffled[0];
-        this.targetObject = shuffled[1];
+        const validPairs = [];
+        for (let i = 0; i < this.objects.length; i++) {
+          for (let j = 0; j < this.objects.length; j++) {
+            if (i === j) continue;
+            const ratio = this.objects[i].height / this.objects[j].height;
+            if (ratio >= 0.08 && ratio <= 12) validPairs.push([this.objects[i], this.objects[j]]);
+          }
+        }
+        const pair = validPairs[Math.floor(Math.random() * validPairs.length)];
+        this.refObject = pair[0];
+        this.targetObject = pair[1];
 
         // Referenz anzeigen (Cyan)
         const refSvg = document.getElementById('svg-ref');
@@ -1528,7 +1537,7 @@
       evaluateRound() {
         if (this.roundLocked) return;
         this.roundLocked = true;
-        const actualRatio = this.targetObject.height / this.refObject.height;
+        const actualRatio = this.refObject.height / this.targetObject.height;
         const guessedRatio = this.currentScale;
         const deviationPct = Math.abs(guessedRatio - actualRatio) / actualRatio;
         
@@ -1651,7 +1660,7 @@
         document.getElementById('pir-input-group').style.display = 'none';
         document.getElementById('pir-result').style.display = 'flex';
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
-        const feedback = diff === 0 ? '🎯 <b>Volltreffer!</b> Exakt richtig geschätzt!' : `Gewinner: <b>${CommunityBoard.escape(winner.player.name)}</b> · Schätzung: ${winner.value} (Abweichung: ${diff} ${this.currentQuestion.u})`;
+        const feedback = (diff === 0 ? '🎯 <b>Volltreffer!</b> ' : '') + 'Gewinner: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
         document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-community-list"></div>`;
         CommunityBoard.render('priceisright', 'pir-community-list');
