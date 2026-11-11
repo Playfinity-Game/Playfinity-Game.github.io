@@ -173,10 +173,13 @@
     }
 
     .hero-title h1 {
-      font-size: 2.1rem;
+      font-size: clamp(2.6rem, 8vw, 4.5rem);
       font-weight: 900;
-      letter-spacing: 1.5px;
-      color: #fff;
+      letter-spacing: 2px;
+      background: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.35);
     }
 
     .hero-title p {
@@ -473,6 +476,24 @@
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
     }
 
+    #pir-input-group .game-input { min-width:0; flex:1 1 0; }
+    #pir-input-group #pir-submit {
+      flex: 0 0 48px;
+      width: 48px;
+      min-width: 48px;
+      height: 48px;
+      padding: 0;
+      display: grid;
+      place-items: center;
+      font-size: 1.35rem;
+      line-height: 1;
+      border-radius: 12px;
+    }
+    #pir-input-group #pir-submit:focus-visible {
+      outline: 2px solid var(--neon-green);
+      outline-offset: 3px;
+    }
+
     .btn-action {
       background: linear-gradient(135deg, var(--neon-cyan), #0077ff);
       color: #000;
@@ -497,12 +518,6 @@
       direction: ltr;
     }
 
-    .kontexto-header-hints{display:none;align-items:center;gap:6px;margin-left:auto}
-    .kontexto-header-hint{width:38px;height:36px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.15rem;cursor:pointer;transition:all .2s}
-    .kontexto-header-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
-    .kontexto-header-hint:disabled{opacity:.4;cursor:default}
-    body.kontexto-active .kontexto-header-hints{display:flex}
-    .kontexto-category-hint{margin:10px 0;padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
     .guess-row {
       position: relative;
       background: rgba(18, 20, 44, 0.85);
@@ -517,10 +532,23 @@
       text-align: left;
     }
 
+    .kontexto-header-hints{display:none;align-items:center;gap:6px;margin-left:auto}
+    .kontexto-header-hint{width:38px;height:36px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.15rem;cursor:pointer;transition:all .2s}
+    .kontexto-header-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
+    .kontexto-header-hint:disabled{opacity:.4;cursor:default}
+    body.kontexto-active .kontexto-header-hints{display:flex}
+    .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
+    .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
+    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
+    .guess-legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+    .legend-red{background:#ff3b5c;box-shadow:0 0 8px rgba(255,59,92,.55)}
+    .legend-orange{background:#ff9f1c;box-shadow:0 0 8px rgba(255,159,28,.55)}
+    .legend-green{background:#00ff9d;box-shadow:0 0 8px rgba(0,255,157,.55)}
     .guess-bar {
       position: absolute;
       top: 0; left: 0; bottom: 0;
-      opacity: 0.25;
+      opacity: 0.38;
       z-index: 1;
       transition: width 0.4s ease;
     }
@@ -531,8 +559,6 @@
       color: #fff;
     }
 
-    .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
-    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
     .guess-rank {
       font-weight: 800;
       z-index: 2;
@@ -739,7 +765,9 @@
       padding: 14px;
       font-size: 1rem;
     }
-  </style>
+      @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
+
+</style>
 </head>
 
 <body>
@@ -752,7 +780,7 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
-    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – einmal pro Runde">💡</button></div>
+    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
@@ -845,19 +873,20 @@
           </div>
         </div>
 
-        <div class="community-note">Die angezeigten Ränge sind Näherungswerte aus der semantischen Ähnlichkeit, keine globale Wörterbuch-Rangliste.</div>
         <div class="input-box">
           <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
 
         <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
+
         <div class="guess-legend" aria-label="Bedeutung der Farben">
           <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
           <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
         </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
+        <div class="community-note">Die angezeigten Ränge sind Näherungswerte aus der semantischen Ähnlichkeit, keine globale Wörterbuch-Rangliste.</div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
     </section>
@@ -902,7 +931,7 @@
 
         <div class="input-box" id="pir-input-group">
           <input type="number" class="game-input" id="pir-input" placeholder="Deine Zahlenschätzung..." inputmode="numeric">
-          <button class="btn-action" id="pir-submit">Einloggen</button>
+          <button class="btn-action" id="pir-submit" type="button" aria-label="Tipp absenden" title="Tipp absenden">➤</button>
         </div>
         <div class="pir-live-guesses" id="pir-live-guesses" aria-live="polite"></div>
 
@@ -968,13 +997,13 @@
 
       renderScreen(screenId, isForwardNav) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+        document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
           target.classList.add('active');
           this.currentScreen = screenId;
         }
 
-        document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
         const backBtn = document.getElementById('btn-back');
         if (screenId === 'menu') {
           backBtn.style.display = 'none';
@@ -1298,17 +1327,28 @@
       pendingGuesses: new Set(),
       roundId: 0,
       categoryHintUsed: false,
+      wordHintUsed: false,
       targetHints: {
-        Hund: { category: 'Tier', word: 'Leine' }, Kaffee: { category: 'Getränk', word: 'Tasse' },
-        Schloss: { category: 'Gebäude oder Bauwerk', word: 'Burg' }, Gitarre: { category: 'Musikinstrument', word: 'Musik' },
-        Sommer: { category: 'Jahreszeit', word: 'Sonne' }, Flugzeug: { category: 'Verkehrsmittel', word: 'Flughafen' },
-        Ozean: { category: 'Natur und Gewässer', word: 'Meer' }, Roboter: { category: 'Technik', word: 'Maschine' },
-        Zauberer: { category: 'Figur aus der Fantasywelt', word: 'Magie' }, Kamera: { category: 'Technik und Geräte', word: 'Foto' },
-        Sonne: { category: 'Himmelskörper', word: 'Stern' }, Kuchen: { category: 'Essen und Süßspeisen', word: 'Torte' },
-        Winter: { category: 'Jahreszeit', word: 'Schnee' }, Rakete: { category: 'Raumfahrt', word: 'Weltraum' },
-        Wald: { category: 'Natur und Landschaft', word: 'Bäume' }, Insel: { category: 'Geografie und Orte', word: 'Strand' },
-        Musik: { category: 'Kunst und Unterhaltung', word: 'Lied' }, Pferd: { category: 'Tier', word: 'Reiten' },
-        Telefon: { category: 'Technik und Kommunikation', word: 'Anruf' }, Schmetterling: { category: 'Tier', word: 'Flügel' }
+        Hund: { category: 'Tier', word: 'Leine' },
+        Kaffee: { category: 'Getränk', word: 'Tasse' },
+        Schloss: { category: 'Gebäude oder Bauwerk', word: 'Burg' },
+        Gitarre: { category: 'Musikinstrument', word: 'Musik' },
+        Sommer: { category: 'Jahreszeit', word: 'Sonne' },
+        Flugzeug: { category: 'Verkehrsmittel', word: 'Flughafen' },
+        Ozean: { category: 'Natur und Gewässer', word: 'Meer' },
+        Roboter: { category: 'Technik', word: 'Maschine' },
+        Zauberer: { category: 'Figur aus der Fantasywelt', word: 'Magie' },
+        Kamera: { category: 'Technik und Geräte', word: 'Foto' },
+        Sonne: { category: 'Himmelskörper', word: 'Stern' },
+        Kuchen: { category: 'Essen und Süßspeisen', word: 'Torte' },
+        Winter: { category: 'Jahreszeit', word: 'Schnee' },
+        Rakete: { category: 'Raumfahrt', word: 'Weltraum' },
+        Wald: { category: 'Natur und Landschaft', word: 'Bäume' },
+        Insel: { category: 'Geografie und Orte', word: 'Strand' },
+        Musik: { category: 'Kunst und Unterhaltung', word: 'Lied' },
+        Pferd: { category: 'Tier', word: 'Reiten' },
+        Telefon: { category: 'Technik und Kommunikation', word: 'Anruf' },
+        Schmetterling: { category: 'Tier', word: 'Flügel' }
       },
 
       // 20 deutsche Zielwörter
@@ -1355,7 +1395,7 @@
         if (this.roundLocked) return;
         const hint = this.targetHints[this.targetWord];
         if (!hint) return;
-        this.submitGuess(hint.word);
+        this.submitGuess(hint.word, null, { isHint: true });
       },
 
       async pickNewTarget() {
@@ -1365,10 +1405,11 @@
         this.pendingGuesses.clear();
         this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
         this.categoryHintUsed = false;
+        this.wordHintUsed = false;
         const categoryButton = document.getElementById('kontexto-category-hint');
-        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
         const wordButton = document.getElementById('kontexto-word-hint');
-        if (wordButton) wordButton.textContent = '💡';
+        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
+        if (wordButton) { wordButton.disabled = false; wordButton.title = 'Wort-Tipp – beliebig oft'; }
         const categoryDisplay = document.getElementById('kontexto-category-display');
         if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
         this.guesses = [];
@@ -1440,7 +1481,7 @@
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
         if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
-          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0 });
+          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint });
           this.renderGuesses();
           this.roundLocked = true;
           CommunityBoard.record('kontexto', player);
@@ -1682,6 +1723,9 @@
           const val = parseFloat(document.getElementById('pir-input').value);
           if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
         };
+        document.getElementById('pir-input').addEventListener('keydown', event => {
+          if (event.key === 'Enter') document.getElementById('pir-submit').click();
+        });
         document.getElementById('pir-next-btn').style.display = 'none';
         await this.loadQuestionPool();
         this.nextQuestion();
