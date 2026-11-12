@@ -558,11 +558,10 @@
       text-align: left;
     }
 
-    .kontexto-header-hints{display:none;align-items:center;gap:6px;margin-left:auto}
-    .kontexto-header-hint{width:38px;height:36px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.15rem;cursor:pointer;transition:all .2s}
-    .kontexto-header-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
-    .kontexto-header-hint:disabled{opacity:.4;cursor:default}
-    body.kontexto-active .kontexto-header-hints{display:flex}
+    .kontexto-inline-hints{display:inline-flex;align-items:center;gap:6px;margin-left:4px}
+    .kontexto-inline-hint{width:32px;height:30px;border:1px solid rgba(0,240,255,.28);border-radius:8px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1rem;cursor:pointer;transition:all .2s}
+    .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
+    .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
     .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
@@ -834,7 +833,6 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
-    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Wordfinity-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
     <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
@@ -948,6 +946,7 @@
           <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
           <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
+          <span class="kontexto-inline-hints" aria-label="Wordfinity-Tipps"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></span>
         </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
@@ -1760,7 +1759,7 @@
         const cleanWord = String(word || '').trim().normalize('NFC');
         if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
-        if (!this.dictionaryReady || !this.dictionaryWords.has(key)) {
+        if (!options.isHint && (!this.dictionaryReady || !this.dictionaryWords.has(key))) {
           const statusText = document.getElementById('model-status-text');
           if (statusText && this.dictionaryReady) statusText.innerText = 'Dieses Wort steht nicht in der WORDFINITY-Wortliste.';
           return;
