@@ -776,6 +776,23 @@
     }
       @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
 
+    .pause-toggle{border:1px solid var(--neon-cyan);background:rgba(0,240,255,.1);color:var(--neon-cyan);border-radius:9px;padding:8px 11px;font-weight:900;cursor:pointer;min-width:38px}
+    .pause-toggle[aria-pressed="true"]{border-color:var(--neon-gold);color:var(--neon-gold)}
+    .pause-overlay{position:fixed;inset:0;z-index:500;background:rgba(4,5,18,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px}
+    .pause-overlay[hidden]{display:none}
+    .pause-overlay-card{width:min(420px,100%);padding:28px;border:1px solid var(--neon-cyan);border-radius:18px;background:var(--bg-card);box-shadow:0 0 36px rgba(0,240,255,.25);text-align:center;display:flex;flex-direction:column;gap:16px}
+    .pause-overlay-title{font-size:1.5rem;font-weight:950;letter-spacing:2px;color:var(--neon-cyan)}
+    .pause-overlay-card p{color:var(--text-muted)}
+    .menu-setting{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;color:var(--text-main);font-size:.88rem;line-height:1.4;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+    .menu-setting input{accent-color:var(--neon-cyan);margin-top:3px;flex-shrink:0}
+    .round-result .round-result-answer{font-size:clamp(2rem,8vw,3.5rem);font-weight:950;color:var(--neon-cyan);letter-spacing:2px;text-shadow:0 0 22px rgba(0,240,255,.35);margin:10px 0}
+    .kontexto-guess-player{margin-left:auto;padding-left:10px;color:var(--text-muted);font-size:.78rem;white-space:nowrap}
+    .kontexto-stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:var(--text-muted);font-size:.82rem;margin:8px 0}
+    .kontexto-next-round{margin-top:12px;padding:10px 16px;border:1px solid var(--neon-cyan);border-radius:9px;background:rgba(0,240,255,.1);color:var(--neon-cyan);font-weight:800;cursor:pointer}
+    .wordle-result-guesses{margin:10px auto;max-width:360px;text-align:left;font-size:.85rem;display:grid;gap:5px}
+    .wordle-result-guess{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 0}
+    .pir-correct-winners{margin:10px 0;padding:10px;border:1px solid rgba(0,255,157,.35);border-radius:10px;color:var(--neon-green)}
+    .screen#screen-wordle .round-result.visible{max-height:45vh;overflow:auto}
 </style>
 </head>
 
@@ -790,6 +807,7 @@
       <span>‹ Zurück zum Hub</span>
     </button>
     <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
+    <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
@@ -804,6 +822,7 @@
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
+    <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Kontexto: Nach Gewinn automatisch nächstes Wort starten</span></label>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -965,6 +984,8 @@
     </section>
   </main>
 
+  <div id="pause-overlay" class="pause-overlay" hidden><div class="pause-overlay-card"><div class="pause-overlay-title">SPIEL PAUSIERT</div><p>Chat-Eingaben und Rundentimer sind angehalten.</p><button type="button" id="pause-resume" class="btn-action">Fortsetzen</button></div></div>
+
   <!-- MODAL FÜR ERGEBNISSE & GAME OVER -->
   <div class="modal-overlay" id="app-modal">
     <div class="modal-box">
@@ -978,6 +999,15 @@
   <script>/* ==========================================================================
        1. ROUTER & BROWSER-HISTORY (ZURÜCK-BUTTON GARANTIE)
        ========================================================================== */
+    const PauseController = {
+      paused:false,timers:new Map(),
+      schedule(owner,key,callback,delay){this.clear(owner,key);const r={owner,key,callback,remaining:Math.max(0,delay),startedAt:0,id:null};this.timers.set(owner+':'+key,r);if(!this.paused)this.arm(r);},
+      arm(r){r.startedAt=Date.now();r.id=setTimeout(()=>{this.timers.delete(r.owner+':'+r.key);if(!this.paused)r.callback();},r.remaining);},
+      clear(owner,key){const k=owner+':'+key,r=this.timers.get(k);if(r){if(r.id!==null)clearTimeout(r.id);this.timers.delete(k);}},
+      setPaused(value){if(this.paused===value)return;this.paused=value;if(value){for(const r of this.timers.values()){if(r.id!==null){clearTimeout(r.id);r.remaining=Math.max(0,r.remaining-(Date.now()-r.startedAt));r.id=null;}}}else{for(const r of this.timers.values())if(r.id===null)this.arm(r);}const b=document.getElementById('pause-toggle'),o=document.getElementById('pause-overlay');if(b){b.setAttribute('aria-pressed',value?'true':'false');b.textContent=value?'▶':'Ⅱ';b.setAttribute('aria-label',value?'Spiel fortsetzen':'Spiel pausieren');}if(o)o.hidden=!value;},
+      toggle(){this.setPaused(!this.paused);}
+    };
+
     const PlayfinityRouter = {
       currentScreen: 'menu',
 
@@ -992,6 +1022,11 @@
         document.getElementById('brand-home').addEventListener('click', () => this.go('menu'));
         document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
 
+        document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
+        document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
+        const autoNext=document.getElementById('kontexto-auto-next');
+        autoNext.checked=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
+        autoNext.addEventListener('change',()=>localStorage.setItem('playfinity_kontexto_auto_next',String(autoNext.checked)));
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
         toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
@@ -1122,7 +1157,7 @@
       },
 
       routeLiveChat(user, text, source = 'tikfinity') {
-        if (activeLiveSource !== source) return;
+        if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
@@ -1272,6 +1307,7 @@
       maxCols: 5,
       roundLocked: false,
       roundTimer: null,
+      solvedRounds: 0,
 
       // Ausgewählte deutsche 5-Buchstaben-Wörter
       wordPool: [
@@ -1290,7 +1326,7 @@
       },
 
       startNewGame() {
-        clearTimeout(this.roundTimer);
+        PauseController.clear('wordle','roundTimer');
         this.init();
         this.roundLocked = false;
         this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
@@ -1333,7 +1369,7 @@
       },
 
       handlePhysicalKey(e) {
-        if (PlayfinityRouter.currentScreen !== 'wordle') return;
+        if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
         if (e.key === 'Enter') {
           this.submitCurrentGuess();
         } else if (e.key === 'Backspace') {
@@ -1344,6 +1380,7 @@
       },
 
       typeLetter(char) {
+        if (PauseController.paused) return;
         if (this.currentGuess.length < 5) {
           this.currentGuess += char;
           this.renderBoard();
@@ -1351,6 +1388,7 @@
       },
 
       backspace() {
+        if (PauseController.paused) return;
         if (this.currentGuess.length > 0) {
           this.currentGuess = this.currentGuess.slice(0, -1);
           this.renderBoard();
@@ -1365,7 +1403,7 @@
       },
 
       submitGuess(word, player = null) {
-        if (this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        if (PauseController.paused || this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
         if (this.guesses.some(item => item.word === word)) return;
         // Exakte Auswertung mit Berücksichtigung doppelter Buchstaben
         const targetArr = this.targetWord.split('');
@@ -1394,19 +1432,20 @@
           }
         }
 
-        this.guesses.push({ word, result });
+        this.guesses.push({ word, result, player: player || null });
         this.updateKeyboardColors(word, result);
         this.renderBoard();
 
         // Gewinnprüfung
         if (word === this.targetWord) {
           this.roundLocked = true;
-          CommunityBoard.record('wordle', player);
-          const resultBox = document.getElementById('wordle-round-result');
-          resultBox.innerHTML = '<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">' + this.targetWord + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="wordle-community-list"></div>';
-          resultBox.classList.add('visible');
-          CommunityBoard.render('wordle', 'wordle-community-list');
-          this.roundTimer = setTimeout(() => this.startNewGame(), 5000);
+          this.solvedRounds++;
+          CommunityBoard.record('wordle',player);
+          const resultBox=document.getElementById('wordle-round-result');
+          const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
+          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div><div class="result-countdown">Nächste Runde in 7 Sekunden</div>';
+          resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
+          PauseController.schedule('wordle','roundTimer',()=>this.startNewGame(),7000);
         }
       },
 
@@ -1471,6 +1510,7 @@
       guesses: [],
       roundLocked: false,
       roundTimer: null,
+      solvedRounds: 0,
       pendingGuesses: new Set(),
       roundId: 0,
       categoryHintUsed: false,
@@ -1511,6 +1551,7 @@
         this.initModel();
 
         document.getElementById('kontexto-submit').onclick = () => {
+          if(PauseController.paused)return;
           const inp = document.getElementById('kontexto-input');
           if (inp.value.trim()) {
             this.submitGuess(inp.value.trim());
@@ -1546,7 +1587,7 @@
       },
 
       async pickNewTarget() {
-        clearTimeout(this.roundTimer);
+        PauseController.clear('kontexto','roundTimer');
         this.roundId++;
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
@@ -1621,6 +1662,7 @@
       },
 
       async submitGuess(word, player = null, options = {}) {
+        if (PauseController.paused) return;
         const cleanWord = String(word || '').trim().normalize('NFC');
         if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
@@ -1628,15 +1670,17 @@
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
         if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
-          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint });
+          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint, player: player || null });
+          this.solvedRounds++;
           this.renderGuesses();
           this.roundLocked = true;
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
-          resultBox.innerHTML = '<div class="round-result-title">🎯 Geheimwort gefunden!</div><div class="round-result-answer">' + CommunityBoard.escape(this.targetWord) + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="kontexto-community-list"></div>';
-          resultBox.classList.add('visible');
-          CommunityBoard.render('kontexto', 'kontexto-community-list');
-          this.roundTimer = setTimeout(() => this.pickNewTarget(), 5000);
+          const autoAdvance=document.getElementById('kontexto-auto-next').checked;
+          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'<div class="result-countdown">Nächstes Wort in 7 Sekunden</div>':'<button type="button" class="kontexto-next-round" id="kontexto-next-round">Nächstes Wort ›</button>');
+          resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
+          if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>this.pickNewTarget(),7000);
+          else document.getElementById('kontexto-next-round').addEventListener('click',()=>this.pickNewTarget());
           return;
         }
         let sim = 0;
@@ -1673,7 +1717,8 @@
           calculatedRank = Math.max(1, calculatedRank - 1);
           while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
         }
-        this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim, isHint: !!options.isHint });
+        if(options.isHint){const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);if(calculatedRank>=bestRank){this.pendingGuesses.delete(key);return;}}
+        this.guesses.push({word:cleanWord,rank:calculatedRank,similarity:sim,isHint:!!options.isHint,player:player||null});
         this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
         this.pendingGuesses.delete(key);
         this.renderGuesses();
@@ -1701,6 +1746,7 @@
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
             <span class="guess-word">${CommunityBoard.escape(item.word)}${item.isHint ? '<span class="guess-hint-tag">💡 TIPP</span>' : ''}</span>
             <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
+            <span class="kontexto-guess-player">${item.player ? CommunityBoard.escape(item.player.name) : "—"}</span>
           `;
           container.appendChild(row);
         });
@@ -1867,6 +1913,7 @@
         if (this.initialized) return;
         this.initialized = true;
         document.getElementById('pir-submit').onclick = () => {
+          if(PauseController.paused)return;
           const val = parseFloat(document.getElementById('pir-input').value);
           if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
         };
@@ -1909,8 +1956,8 @@
       },
 
       nextQuestion() {
-        clearTimeout(this.roundTimer);
-        clearTimeout(this.revealTimer);
+        PauseController.clear('guesswhat','roundTimer');
+        PauseController.clear('guesswhat','revealTimer');
         this.roundOpen = false;
         this.guesses = [];
         const liveList = document.getElementById('pir-live-guesses');
@@ -1935,11 +1982,11 @@
       },
 
       submitGuess(val, player = null) {
-        if (!Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
         if (!this.roundOpen) {
           this.roundOpen = true;
           this.guesses = [];
-          this.roundTimer = setTimeout(() => this.finishRound(), 15000);
+          PauseController.schedule('guesswhat','roundTimer',()=>this.finishRound(),15000);
         }
         const identity = player || { id: 'local-player', name: 'Lokaler Spieler' };
         if (this.guesses.some(item => item.player.id === identity.id)) return;
@@ -1972,14 +2019,16 @@
         this.savePlayedId(this.currentQuestion.id);
         const ordered = [...this.guesses].sort((a,b) => Math.abs(a.value - this.currentQuestion.a) - Math.abs(b.value - this.currentQuestion.a));
         const winner = ordered[0];
+        const correctPlayers = ordered.filter(item => item.value === this.currentQuestion.a);
         const diff = Math.abs(winner.value - this.currentQuestion.a);
         CommunityBoard.record('priceisright', winner.player);
         document.getElementById('pir-input-group').style.display = 'none';
         document.getElementById('pir-result').style.display = 'flex';
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
-        const feedback = (diff === 0 ? '🎯 <b>Volltreffer!</b> ' : '🏆 <b>GUESSWHAT!</b> ') + 'Gewonnen hat <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
+        const feedback = correctPlayers.length ? '🎯 <b>Volltreffer!</b> ' + correctPlayers.length + ' richtige Antwort(en).' : '🏆 <b>GUESSWHAT!</b> Am nächsten dran: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
+        const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name)).join('<br>') + '</div>' : '';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
-        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
+        document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div><div class="result-countdown">Nächste Frage in 7 Sekunden</div>`;
         const sourceUrl = String(this.currentQuestion.source || '');
         if (/^https:\/\//i.test(sourceUrl)) {
           const sourceLink = document.createElement('a');
@@ -1991,7 +2040,7 @@
           document.getElementById('pir-source-link').appendChild(sourceLink);
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
-        this.revealTimer = setTimeout(() => this.nextQuestion(), 5000);
+        PauseController.schedule('guesswhat','revealTimer',()=>this.nextQuestion(),7000);
       }
     };
 
