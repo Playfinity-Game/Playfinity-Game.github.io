@@ -1612,6 +1612,7 @@
       dictionaryWords: new Set(),
       dictionaryTargetWords: [],
       usedTargets: new Set(),
+      wordHintCandidatesTried: new Set(),
       categoryEmbeddingCache: null,
       categoryProfiles: [
         { name: 'Tiere', description: 'Tiere, Säugetiere, Vögel, Fische, Insekten, Reptilien, Amphibien, Haustiere und Wildtiere' },
@@ -1745,20 +1746,96 @@
 
       async showWordHint() {
         if (PauseController.paused) return;
-        const hint = this.targetHints[String(this.targetWord || '').normalize('NFC')];
+        const button = document.getElementById('kontexto-word-hint');
         const statusText = document.getElementById('model-status-text');
-        const candidates = hint ? (Array.isArray(hint.words) ? hint.words : [hint.word].filter(Boolean)) : [];
-        if (!candidates.length) {
-          if (statusText) statusText.textContent = 'Für dieses Wort ist kein Wort-Tipp hinterlegt.';
-          return;
+        const requestedRoundId = this.roundId;
+        const requestedTarget = this.targetWord;
+        if (button) button.disabled = true;
+        if (statusText) statusText.textContent = 'Wort-Tipp wird gesucht …';
+
+        try {
+          // Für die ursprünglichen Zielwörter zuerst die redaktionell gepflegten Tipps nutzen.
+          const curated = this.targetHints[String(requestedTarget || '').normalize('NFC')];
+          const curatedCandidates = curated
+            ? (Array.isArray(curated.words) ? curated.words : [curated.word].filter(Boolean))
+            : [];
+          for (const candidate of curatedCandidates) {
+            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+            const key = String(candidate).toLocaleLowerCase('de-DE');
+            if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) continue;
+            const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
+            if (added) {
+              if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
+              return;
+            }
+          }
+
+          // Für alle übrigen Wörter eine Stichprobe aus dem vollständigen Wörterbuch
+          // per semantischem Modell bewerten. Bereits geprüfte Kandidaten werden
+          // innerhalb der Runde nicht erneut verarbeitet.
+          if (!this.pipeline || !this.dictionaryTargetWords.length) {
+            if (statusText) statusText.textContent = 'Das KI-Modell ist für dynamische Wort-Tipps gerade nicht verfügbar.';
+            return;
+          }
+          if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(requestedTarget);
+          if (!this.targetEmbedding) {
+            if (statusText) statusText.textContent = 'Das Zielwort konnte nicht bewertet werden. Bitte erneut versuchen.';
+            return;
+          }
+
+          const candidates = [];
+          const pool = this.dictionaryTargetWords;
+          const maxCandidates = Math.min(64, pool.length);
+          let attempts = 0;
+          while (candidates.length < maxCandidates && attempts < pool.length * 2) {
+            attempts++;
+            const candidate = pool[Math.floor(Math.random() * pool.length)];
+            const key = candidate.toLocaleLowerCase('de-DE');
+            if (key === requestedTarget.toLocaleLowerCase('de-DE') ||
+                this.wordHintCandidatesTried.has(key) ||
+                this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) ||
+                this.pendingGuesses.has(key)) continue;
+            this.wordHintCandidatesTried.add(key);
+            candidates.push(candidate);
+          }
+
+          if (!candidates.length) {
+            if (statusText) statusText.textContent = 'Für diese Runde wurden bereits alle Tipp-Kandidaten geprüft.';
+            return;
+          }
+
+          const output = await this.pipeline(candidates, { pooling: 'mean', normalize: true });
+          const dims = output && output.dims ? output.dims : [];
+          const width = dims[dims.length - 1];
+          if (!width || output.data.length < candidates.length * width) {
+            throw new Error('Unerwartetes Format der Wort-Embeddings');
+          }
+
+          const rankedCandidates = candidates.map((candidate, index) => {
+            const start = index * width;
+            const embedding = Array.from(output.data.slice(start, start + width));
+            return { word: candidate, similarity: this.cosineSimilarity(this.targetEmbedding, embedding) };
+          }).sort((a, b) => b.similarity - a.similarity);
+
+          for (const candidate of rankedCandidates) {
+            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+            const added = await this.submitGuess(candidate.word, null, {
+              isHint: true,
+              requireBetterRank: true,
+              precomputedSimilarity: candidate.similarity
+            });
+            if (added) {
+              if (statusText) statusText.textContent = 'Dynamischer Wort-Tipp wurde hinzugefügt.';
+              return;
+            }
+          }
+          if (statusText) statusText.textContent = 'In dieser Stichprobe war kein besserer Tipp dabei. Klicke erneut für weitere Vorschläge.';
+        } catch (error) {
+          console.warn('[WORDFINITY] Dynamischer Wort-Tipp fehlgeschlagen:', error);
+          if (statusText) statusText.textContent = 'Wort-Tipp konnte gerade nicht ermittelt werden. Bitte erneut versuchen.';
+        } finally {
+          if (requestedRoundId === this.roundId && button) button.disabled = false;
         }
-        for (const candidate of candidates) {
-          const key = String(candidate).toLocaleLowerCase('de-DE');
-          if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) continue;
-          const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
-          if (added) return;
-        }
-        if (statusText) statusText.textContent = 'Es ist aktuell kein weiterer Tipp verfügbar, der deinen besten Rang verbessert.';
       },
 
       async pickNewTarget() {
@@ -1776,6 +1853,7 @@
         this.usedTargets.add(this.targetWord.toLocaleLowerCase('de-DE'));
         this.categoryHintUsed = false;
         this.wordHintUsed = false;
+        this.wordHintCandidatesTried.clear();
         const categoryButton = document.getElementById('kontexto-category-hint');
         const wordButton = document.getElementById('kontexto-word-hint');
         if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
@@ -1871,7 +1949,9 @@
           return true;
         }
         let sim = 0;
-        if (this.pipeline) {
+        if (Number.isFinite(options.precomputedSimilarity)) {
+          sim = options.precomputedSimilarity;
+        } else if (this.pipeline) {
           if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(this.targetWord);
           const emb = await this.getEmbedding(cleanWord);
           if (this.targetEmbedding && emb) sim = this.cosineSimilarity(this.targetEmbedding, emb);
