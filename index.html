@@ -1492,7 +1492,7 @@
           CommunityBoard.record('wordle',player);
           const resultBox=document.getElementById('wordle-round-result');
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
-          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div><div class="result-countdown">Nächste Runde in 7 Sekunden</div>';
+          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
           showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
           PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
@@ -1763,7 +1763,7 @@
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
           const autoAdvance=document.getElementById('kontexto-auto-next').checked;
-          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'<div class="result-countdown">Nächstes Wort in 7 Sekunden</div>':'');
+          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
           resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
           showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance);
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
@@ -2120,7 +2120,7 @@
         const feedback = correctPlayers.length ? '🎯 <b>Volltreffer!</b> ' + correctPlayers.length + ' richtige Antwort(en).' : '🏆 <b>GUESSWHAT!</b> Am nächsten dran: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
         const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name)).join('<br>') + '</div>' : '';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
-        document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div><div class="result-countdown">Nächste Frage in 7 Sekunden</div>`;
+        document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
         const sourceUrl = String(this.currentQuestion.source || '');
         if (/^https:\/\//i.test(sourceUrl)) {
           const sourceLink = document.createElement('a');
