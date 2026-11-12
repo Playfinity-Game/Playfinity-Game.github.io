@@ -1219,12 +1219,20 @@
       connectButton: document.getElementById('tiktok-connect-button'),
       disconnectButton: document.getElementById('tiktok-disconnect-button'),
 
+      savedUsernameKey: 'playfinity_tiktok_username_v1',
+
       init() {
+        const input = document.getElementById('tiktok-username');
+        let savedUsername = '';
+        try { savedUsername = localStorage.getItem(this.savedUsernameKey) || ''; } catch (error) {}
+        if (input && savedUsername) input.value = savedUsername;
         this.connectButton?.addEventListener('click', () => this.connect());
         this.disconnectButton?.addEventListener('click', () => this.disconnect());
-        document.getElementById('tiktok-username')?.addEventListener('keydown', (event) => {
+        input?.addEventListener('keydown', (event) => {
           if (event.key === 'Enter') this.connect();
         });
+        // Eine zuvor verbundene TikTok-Quelle nach einem Seiten-Reload automatisch wiederherstellen.
+        if (savedUsername) this.connect();
       },
 
       setStatus(message, state = 'idle') {
@@ -1251,6 +1259,10 @@
         }
 
         this.setStatus('Verbinde mit dem PLAYFINITY-Server …', 'connecting');
+        try {
+          // Der öffentliche TikTok-Benutzername ist keine Zugangsinformation und wird lokal gemerkt.
+          localStorage.setItem(this.savedUsernameKey, username);
+        } catch (error) {}
         try {
           const response = await fetch(this.baseUrl + '/api/connect', {
             method: 'POST',
@@ -1314,6 +1326,7 @@
       },
 
       disconnect() {
+        try { localStorage.removeItem(this.savedUsernameKey); } catch (error) {}
         const socket = this.ws;
         this.ws = null;
         this.connected = false;
