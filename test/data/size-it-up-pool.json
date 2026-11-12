@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "description": "Datenpool fuer SIZE IT UP. Neue Vergleichsobjekte werden hier gepflegt; die Spielmechanik bleibt getrennt davon.",
+  "measurementRules": {
+    "canonicalUnit": "m",
+    "meaning": "height_or_length",
+    "note": "measurement ist der Vergleichswert in Metern. Fuer jedes Objekt muss klar sein, welche Dimension gemeint ist (z. B. Hoehe, Laenge oder Spannweite). Keine Schaetzwerte eintragen; Quellen pruefen."
+  },
+  "categories": [
+    {
+      "id": "geografie",
+      "name": "Geografie",
+      "description": "Laender, Kontinente, Staedte, Berge, Fluesse, Inseln, Seen und Bauwerke.",
+      "objects": []
+    },
+    {
+      "id": "games",
+      "name": "Games",
+      "description": "Konsolen, Controller, Gaming-Zubehoer und weitere Dinge rund ums Gaming.",
+      "objects": []
+    },
+    {
+      "id": "alltagsgegenstaende",
+      "name": "Alltagsgegenstaende",
+      "description": "Handys, Waschmaschinen, Besen, Schippen, Moebel und Haushaltsgeraete.",
+      "objects": []
+    },
+    {
+      "id": "transport_fahrzeuge",
+      "name": "Transport & Fahrzeuge",
+      "description": "Autos, Motorraeder, Fahrraeder, LKWs, Busse, Zuege, Flugzeuge, Schiffe und Raumfahrzeuge.",
+      "objects": []
+    },
+    {
+      "id": "natur_tiere",
+      "name": "Natur & Tiere",
+      "description": "Tiere, Pflanzen, Baeume, Insekten und Naturphaenomene.",
+      "objects": []
+    }
+  ],
+  "_objectTemplate": {
+    "id": "eindeutige-id",
+    "name": "Anzeigename",
+    "measurement": null,
+    "dimension": "height",
+    "unitLabel": "m",
+    "silhouette": "assets/size-it-up/beispiel.svg",
+    "source": "URL oder Quellenangabe zur Messung"
+  }
+}
