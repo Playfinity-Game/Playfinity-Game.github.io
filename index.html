@@ -1764,7 +1764,10 @@
             const key = String(candidate).toLocaleLowerCase('de-DE');
             if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) continue;
             const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
-            if (added) return;
+            if (added) {
+              if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
+              return;
+            }
           }
 
           // Für alle übrigen Wörter eine Stichprobe aus dem vollständigen Wörterbuch
