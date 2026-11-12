@@ -1341,6 +1341,7 @@
       key: 'playfinity_community_scores_v1', windowMs: 86400000,
       read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
       record(game, player) { if (!player || !player.id || player.id === 'unknown') return; const rows = this.read(); rows.push({game, id:player.id, name:player.name || 'Zuschauer', at:Date.now(), points:1}); localStorage.setItem(this.key, JSON.stringify(rows)); },
+      winsForPlayer(game, player) { if (!player || !player.id || player.id === 'unknown') return 0; return this.read().filter(e => e.game === game && e.id === player.id).length; },
       top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
       escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
       render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
@@ -1419,7 +1420,7 @@
           if (guess && guess.word === this.targetWord) {
             const winnerLabel = document.createElement('div');
             winnerLabel.className = 'wordle-winner-label';
-            winnerLabel.textContent = '🏆 Erraten von: ' + (guess.player?.name || 'Lokaler Spieler');
+            winnerLabel.textContent = '🏆 Erraten von: ' + (guess.player?.name || 'Lokaler Spieler') + (guess.player ? ' · ' + (CommunityBoard.winsForPlayer('wordle', guess.player) + 1) + '× richtig' : '');
             rowDiv.appendChild(winnerLabel);
           }
 
@@ -1504,7 +1505,7 @@
           CommunityBoard.record('wordle',player);
           const resultBox=document.getElementById('wordle-round-result');
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
-          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
+          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
           showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
           PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
@@ -1775,7 +1776,7 @@
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
           const autoAdvance=document.getElementById('kontexto-auto-next').checked;
-          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
+          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('kontexto',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
           resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
           showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance);
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
@@ -1843,8 +1844,8 @@
           row.innerHTML = `
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
             <span class="guess-word">${CommunityBoard.escape(item.word)}${item.isHint ? '<span class="guess-hint-tag">💡 TIPP</span>' : ''}</span>
-            <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
             <span class="kontexto-guess-player">${item.player ? CommunityBoard.escape(item.player.name) : "—"}</span>
+            <span class="guess-rank" style="color: ${color}; margin-left:auto" title="${level}">#${item.rank}</span>
           `;
           container.appendChild(row);
         });
@@ -2125,12 +2126,12 @@
         const winner = ordered[0];
         const correctPlayers = ordered.filter(item => item.value === this.currentQuestion.a);
         const diff = Math.abs(winner.value - this.currentQuestion.a);
-        CommunityBoard.record('priceisright', winner.player);
+        correctPlayers.forEach(item => CommunityBoard.record('priceisright', item.player));
         document.getElementById('pir-input-group').style.display = 'none';
         document.getElementById('pir-result').style.display = 'flex';
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
         const feedback = correctPlayers.length ? '🎯 <b>Volltreffer!</b> ' + correctPlayers.length + ' richtige Antwort(en).' : '🏆 <b>GUESSWHAT!</b> Am nächsten dran: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
-        const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name)).join('<br>') + '</div>' : '';
+        const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name) + ' · bereits ' + CommunityBoard.winsForPlayer('priceisright', item.player) + '× richtig').join('<br>') + '</div>' : '';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
         document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
         const sourceUrl = String(this.currentQuestion.source || '');
