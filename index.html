@@ -1619,7 +1619,7 @@
           if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
           const words = await response.json();
           if (!Array.isArray(words) || words.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
-          this.targets = words;
+          // Keep the curated target pool: category and word hints are defined for these words.
           this.dictionaryWords = new Set(words.map(word => String(word).toLocaleLowerCase('de-DE')));
           this.dictionaryReady = true;
           return true;
