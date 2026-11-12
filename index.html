@@ -1610,7 +1610,31 @@
 
       dictionaryReady: false,
       dictionaryWords: new Set(),
+      dictionaryTargetWords: [],
       usedTargets: new Set(),
+      categoryEmbeddingCache: null,
+      categoryProfiles: [
+        { name: 'Tiere', description: 'Tiere, Säugetiere, Vögel, Fische, Insekten, Reptilien, Amphibien, Haustiere und Wildtiere' },
+        { name: 'Pflanzen und Pilze', description: 'Pflanzen, Bäume, Blumen, Gräser, Kräuter, Gemüse, Obstpflanzen, Pilze und botanische Begriffe' },
+        { name: 'Essen und Getränke', description: 'Lebensmittel, Speisen, Zutaten, Obst, Gemüse, Süßigkeiten, Backwaren und Getränke' },
+        { name: 'Körper und Gesundheit', description: 'Menschlicher Körper, Organe, Körperteile, Krankheiten, Medizin, Gesundheit und Pflege' },
+        { name: 'Kleidung und Accessoires', description: 'Kleidung, Schuhe, Stoffe, Schmuck, Taschen und modische Accessoires' },
+        { name: 'Haushalt und Wohnen', description: 'Möbel, Haushaltsgegenstände, Räume, Küche, Bad, Einrichtung und Wohnen' },
+        { name: 'Werkzeuge und Materialien', description: 'Werkzeuge, Geräte zum Bauen, Handwerk, Baustoffe, Werkstoffe und Materialien' },
+        { name: 'Technik und Elektronik', description: 'Technische Geräte, Computer, Elektronik, Maschinen, Software und digitale Technik' },
+        { name: 'Fahrzeuge und Verkehr', description: 'Fahrzeuge, Autos, Fahrräder, Schiffe, Flugzeuge, Verkehrsmittel und Verkehr' },
+        { name: 'Berufe und Menschen', description: 'Berufe, Tätigkeiten, Berufsgruppen, Personen und menschliche Rollen' },
+        { name: 'Orte und Gebäude', description: 'Gebäude, Bauwerke, Städte, Einrichtungen, Räume und von Menschen geschaffene Orte' },
+        { name: 'Geografie und Landschaften', description: 'Länder, Regionen, Landschaften, Gewässer, Berge, Inseln und geografische Orte' },
+        { name: 'Wetter und Jahreszeiten', description: 'Wetter, Klima, Jahreszeiten, Naturereignisse und atmosphärische Erscheinungen' },
+        { name: 'Weltraum und Himmelskörper', description: 'Weltraum, Sterne, Planeten, Monde, Galaxien, Astronomie und Raumfahrt' },
+        { name: 'Sport und Freizeit', description: 'Sportarten, Spiele, Hobbys, Freizeitaktivitäten, Spielzeug und Erholung' },
+        { name: 'Kunst und Unterhaltung', description: 'Kunst, Musik, Instrumente, Film, Theater, Literatur, Medien und Unterhaltung' },
+        { name: 'Sprache und Kommunikation', description: 'Sprache, Wörter, Schrift, Kommunikation, Nachrichten und Informationsaustausch' },
+        { name: 'Wissenschaft und Bildung', description: 'Wissenschaft, Forschung, Mathematik, Physik, Chemie, Schule und Bildung' },
+        { name: 'Gefühle und Eigenschaften', description: 'Gefühle, Emotionen, Charaktereigenschaften, Zustände und abstrakte Eigenschaften' },
+        { name: 'Gesellschaft und Geschichte', description: 'Gesellschaft, Politik, Geschichte, Kultur, Religion, Recht und Wirtschaft' }
+      ],
 
       async loadDictionary() {
         const statusText = document.getElementById('model-status-text');
@@ -1619,8 +1643,13 @@
           if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
           const words = await response.json();
           if (!Array.isArray(words) || words.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
-          // Keep the curated target pool: category and word hints are defined for these words.
-          this.dictionaryWords = new Set(words.map(word => String(word).toLocaleLowerCase('de-DE')));
+          const uniqueWords = [...new Set(words
+            .map(word => String(word).trim().normalize('NFC'))
+            .filter(word => /^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word))
+          )];
+          this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
+          // Every valid noun in the dictionary can become a target, not just the curated examples.
+          this.dictionaryTargetWords = uniqueWords;
           this.dictionaryReady = true;
           return true;
         } catch (error) {
@@ -1654,24 +1683,47 @@
         document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
-      showCategoryHint() {
-        if (PauseController.paused || this.categoryHintUsed) return;
-        const targetKey = String(this.targetWord || '').normalize('NFC');
-        const hint = this.targetHints[targetKey];
-        const display = document.getElementById('kontexto-category-display');
-        if (!display) return;
-        if (!hint || !hint.category) {
-          display.textContent = 'Für dieses Wort ist kein Kategorie-Tipp hinterlegt.';
-          display.hidden = false;
-          return;
+      async inferCategory(word) {
+        const key = String(word || '').normalize('NFC');
+        const curated = this.targetHints[key];
+        if (curated && curated.category) return curated.category;
+        if (!this.pipeline) return 'Allgemeiner Begriff';
+        if (!this.categoryEmbeddingCache) {
+          this.categoryEmbeddingCache = Promise.all(this.categoryProfiles.map(async profile => ({
+            name: profile.name,
+            embedding: await this.getEmbedding(profile.description)
+          })));
         }
-        this.categoryHintUsed = true;
-        display.textContent = 'Kategorie: ' + hint.category;
-        display.hidden = false;
+        const profiles = await this.categoryEmbeddingCache;
+        const wordEmbedding = this.targetEmbedding || await this.getEmbedding(key);
+        if (!wordEmbedding) return 'Allgemeiner Begriff';
+        let best = null;
+        for (const profile of profiles) {
+          if (!profile.embedding) continue;
+          const score = this.cosineSimilarity(wordEmbedding, profile.embedding);
+          if (!best || score > best.score) best = { name: profile.name, score };
+        }
+        return best ? best.name : 'Allgemeiner Begriff';
+      },
+
+      async showCategoryHint() {
+        if (PauseController.paused || this.categoryHintUsed) return;
+        const display = document.getElementById('kontexto-category-display');
         const button = document.getElementById('kontexto-category-hint');
-        if (button) {
-          button.disabled = true;
-          button.title = 'Kategorie-Tipp wurde bereits angezeigt';
+        if (!display) return;
+        if (button) button.disabled = true;
+        display.textContent = 'Kategorie wird ermittelt …';
+        display.hidden = false;
+        try {
+          const category = await this.inferCategory(this.targetWord);
+          if (PauseController.paused) return;
+          this.categoryHintUsed = true;
+          display.textContent = 'Kategorie: ' + category;
+          if (button) button.title = 'Kategorie-Tipp wurde bereits angezeigt';
+        } catch (error) {
+          console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
+          display.textContent = 'Kategorie konnte gerade nicht ermittelt werden. Bitte erneut versuchen.';
+          if (button) button.disabled = false;
         }
       },
 
@@ -1698,13 +1750,14 @@
         this.roundId++;
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
-        let availableTargets = this.targets.filter(word => !this.usedTargets.has(word));
+        const targetPool = this.dictionaryTargetWords.length ? this.dictionaryTargetWords : this.targets;
+        let availableTargets = targetPool.filter(word => !this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
         if (!availableTargets.length) {
           this.usedTargets.clear();
-          availableTargets = this.targets.slice();
+          availableTargets = targetPool.slice();
         }
         this.targetWord = availableTargets[Math.floor(Math.random() * availableTargets.length)];
-        this.usedTargets.add(this.targetWord);
+        this.usedTargets.add(this.targetWord.toLocaleLowerCase('de-DE'));
         this.categoryHintUsed = false;
         this.wordHintUsed = false;
         const categoryButton = document.getElementById('kontexto-category-hint');
