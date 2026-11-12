@@ -333,6 +333,22 @@
       gap: 6px;
     }
 
+    .wordle-winner-label {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 100%;
+      margin-top: 2px;
+      padding: 3px 10px;
+      border: 1px solid rgba(0, 255, 157, .55);
+      border-radius: 999px;
+      background: rgba(0, 255, 157, .12);
+      color: var(--neon-green);
+      font-size: .72rem;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
     .wordle-cell {
       aspect-ratio: 1;
       border: 2px solid rgba(255, 255, 255, 0.15);
@@ -1387,6 +1403,14 @@
             }
             rowDiv.appendChild(cell);
           }
+
+          if (guess && guess.word === this.targetWord) {
+            const winnerLabel = document.createElement('div');
+            winnerLabel.className = 'wordle-winner-label';
+            winnerLabel.textContent = '🏆 Erraten von: ' + (guess.player?.name || 'Lokaler Spieler');
+            rowDiv.appendChild(winnerLabel);
+          }
+
           board.appendChild(rowDiv);
         }
       },
@@ -1456,7 +1480,8 @@
           }
         }
 
-        this.guesses.push({ word, result, player: player || null });
+        // Neueste Eingabe steht immer oben; ältere Versuche rutschen nach unten.
+        this.guesses.unshift({ word, result, player: player || null });
         this.updateKeyboardColors(word, result);
         this.renderBoard();
 
