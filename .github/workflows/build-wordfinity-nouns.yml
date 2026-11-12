@@ -1,0 +1,35 @@
+name: Build WORDFINITY noun list
+
+on:
+  push:
+    branches:
+      - feature/wordfinity-noun-dictionary
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: feature/wordfinity-noun-dictionary
+      - name: Download source dictionary
+        run: |
+          curl --fail --location --retry 3 \
+            https://raw.githubusercontent.com/gambolputty/german-nouns/main/german_nouns/nouns.csv \
+            --output nouns.csv
+      - name: Generate compact noun allow-list
+        run: python3 scripts/build-wordfinity-nouns.py
+      - name: Commit generated word list
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/wordfinity-nouns.json
+          if git diff --cached --quiet; then
+            echo "Wortliste ist bereits aktuell."
+          else
+            git commit -m "WORDFINITY: deutsche Nomen-Wortliste erzeugen"
+            git push
+          fi
