@@ -1578,7 +1578,7 @@
           if (!response.ok) throw new Error('Wortdatenbank HTTP ' + response.status);
           const data = await response.json();
           if (!Array.isArray(data.words) || data.words.length < 1000) throw new Error('Wortdatenbank unvollständig');
-          this.targets = [...new Set(data.words.filter(word => typeof word === 'string' && /^[\\p{L}]+(?:-[\\p{L}]+)*$/u.test(word)))];
+          this.targets = [...new Set(data.words.filter(word => typeof word === 'string' && /^[\p{L}]+(?:-[\p{L}]+)*$/u.test(word)))];
           const saved = localStorage.getItem('playfinity_wordfinity_word_bag_v1');
           if (saved) {
             const parsed = JSON.parse(saved);
