@@ -1703,7 +1703,9 @@
           });
         }
         const profiles = await this.categoryEmbeddingCache;
-        const wordEmbedding = this.targetEmbedding || await this.getEmbedding(key);
+        const wordEmbedding = this.targetWord === key && this.targetEmbedding
+          ? this.targetEmbedding
+          : await this.getEmbedding(key);
         if (!wordEmbedding) return 'Allgemeiner Begriff';
         let best = null;
         for (const profile of profiles) {
@@ -1719,12 +1721,18 @@
         const display = document.getElementById('kontexto-category-display');
         const button = document.getElementById('kontexto-category-hint');
         if (!display) return;
+        const requestedRoundId = this.roundId;
+        const requestedTarget = this.targetWord;
         if (button) button.disabled = true;
         display.textContent = 'Kategorie wird ermittelt …';
         display.hidden = false;
         try {
-          const category = await this.inferCategory(this.targetWord);
-          if (PauseController.paused) return;
+          const category = await this.inferCategory(requestedTarget);
+          if (requestedRoundId !== this.roundId) return;
+          if (PauseController.paused) {
+            if (button) button.disabled = false;
+            return;
+          }
           this.categoryHintUsed = true;
           display.textContent = 'Kategorie: ' + category;
           if (button) button.title = 'Kategorie-Tipp wurde bereits angezeigt';
