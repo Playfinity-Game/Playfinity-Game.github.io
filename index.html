@@ -948,6 +948,13 @@
           </div>
         </div>
 
+        <div id="size-comparison-text" style="text-align:center;font-weight:700;color:var(--text-muted);padding:4px 0;">Vergleich: -- vs. --</div>
+        <div id="size-result-panel" style="display:none;background:rgba(7,8,20,.8);border:1px solid var(--border-glow);border-radius:12px;padding:16px;line-height:1.7;">
+          <div style="font-size:1.5rem;font-weight:900;color:var(--neon-gold);" id="size-result-score">--</div>
+          <div id="size-result-guess">Dein Tipp: --</div>
+          <div id="size-result-actual">Tatsächliche Größe: --</div>
+          <div id="size-result-both" style="margin-top:10px;"></div>
+        </div>
         <div class="size-controls">
           <div class="size-drag-hint" style="text-align:center;color:var(--text-muted);font-size:.82rem;padding:4px 0;">⬆ Nach oben ziehen = größer · ⬇ Nach unten ziehen = kleiner</div>
           <button class="btn-action btn-block" id="btn-size-submit">Größe einloggen</button>
@@ -1815,27 +1822,25 @@
         document.getElementById('size-round-label').innerText = `Runde ${this.round} / 5`;
         document.getElementById('size-score-label').innerText = `${this.score} Punkte`;
 
-        // Zwei unterschiedliche Objekte auswählen
-        const validPairs = [];
-        for (let i = 0; i < this.objects.length; i++) {
-          for (let j = 0; j < this.objects.length; j++) {
-            if (i === j) continue;
-            const ratio = this.objects[i].height / this.objects[j].height;
-            if (ratio >= 0.08 && ratio <= 12) validPairs.push([this.objects[i], this.objects[j]]);
-          }
-        }
-        const pair = validPairs[Math.floor(Math.random() * validPairs.length)];
-        this.refObject = pair[0];
-        this.targetObject = pair[1];
+        // Feste, nachvollziehbare Größen-Reihenfolge statt zufälliger Paare.
+        const orderedPairs = [
+          ['elefant', 'mensch'],
+          ['mensch', 'giraffe'],
+          ['giraffe', 'brandenburg'],
+          ['brandenburg', 'eiffelturm'],
+          ['eiffelturm', 'burjkhalifa']
+        ];
+        const pairIds = orderedPairs[this.round - 1] || orderedPairs[0];
+        this.refObject = this.objects.find(item => item.id === pairIds[0]);
+        this.targetObject = this.objects.find(item => item.id === pairIds[1]);
 
-        // Referenz anzeigen (Cyan)
+        // Vor dem Lock-in werden ausschließlich die Namen, niemals Maße gezeigt.
         const refSvg = document.getElementById('svg-ref');
-        refSvg.innerHTML = `<path d="${this.refObject.path}" fill="var(--neon-cyan)" />`;
-        document.getElementById('ref-meta-text').innerText = `${this.refObject.name} (${this.refObject.height}m)`;
+        refSvg.innerHTML = `<path d="${this.refObject.path}" fill="#2788ff" />`;
+        document.getElementById('ref-meta-text').innerText = '';
 
-        // Beide Silhouetten proportional zur echten Objektgröße skalieren.
         const targetSvg = document.getElementById('svg-target');
-        targetSvg.innerHTML = `<path d="${this.targetObject.path}" fill="var(--neon-pink)" />`;
+        targetSvg.innerHTML = `<path d="${this.targetObject.path}" fill="#ff3038" />`;
         const maxObjectHeight = Math.max(this.refObject.height, this.targetObject.height);
         const maxVisualHeight = 250;
         const refVisualHeight = Math.max(18, maxVisualHeight * this.refObject.height / maxObjectHeight);
@@ -1844,14 +1849,23 @@
         refSvg.style.height = refVisualHeight + 'px';
         targetSvg.style.width = targetVisualHeight + 'px';
         targetSvg.style.height = targetVisualHeight + 'px';
-        document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (?? m)`;
+        document.getElementById('target-meta-text').innerText = '';
+        document.getElementById('size-comparison-text').innerText = `Vergleich: ${this.refObject.name} vs. ${this.targetObject.name}`;
+        document.getElementById('size-result-panel').style.display = 'none';
 
-        // Zielgröße für die neue Runde zurücksetzen.
         this.currentScale = 1.0;
         this.dragStartY = null;
         this.roundLocked = false;
         document.getElementById('btn-size-submit').disabled = false;
+        document.getElementById('btn-size-submit').innerText = 'Größe einloggen';
         this.updateTargetVisual();
+      },
+
+      formatSize(value) {
+        if (value < 0.01) return `${(value * 1000).toLocaleString('de-DE', { maximumFractionDigits: 2 })} mm`;
+        if (value < 1) return `${(value * 100).toLocaleString('de-DE', { maximumFractionDigits: 2 })} cm`;
+        if (value < 1000) return `${value.toLocaleString('de-DE', { maximumFractionDigits: 2 })} m`;
+        return `${(value / 1000).toLocaleString('de-DE', { maximumFractionDigits: 2 })} km`;
       },
 
       updateTargetVisual() {
@@ -1870,16 +1884,27 @@
         const roundScore = Math.max(0, Math.round(100 - (deviationPct * 100)));
         this.score += roundScore;
 
-        document.getElementById('target-meta-text').innerText = `${this.targetObject.name} (${this.targetObject.height}m)`;
+        const guessedHeight = this.refObject.height / guessedRatio;
         document.getElementById('btn-size-submit').disabled = true;
+        document.getElementById('size-result-score').innerText = `+${roundScore} / 100 Punkte`;
+        document.getElementById('size-result-guess').innerText = `Dein Tipp für ${this.targetObject.name}: ${this.formatSize(guessedHeight)}`;
+        document.getElementById('size-result-actual').innerText = `Tatsächlich: ${this.formatSize(this.targetObject.height)}`;
+        document.getElementById('size-result-both').innerHTML =
+          `<div style="color:#2788ff">Blau · ${this.refObject.name}: <b>${this.formatSize(this.refObject.height)}</b></div>` +
+          `<div style="color:#ff5058">Rot · ${this.targetObject.name}: <b>${this.formatSize(this.targetObject.height)}</b></div>`;
+        document.getElementById('size-result-panel').style.display = 'block';
+        document.getElementById('ref-meta-text').innerText = this.formatSize(this.refObject.height);
+        document.getElementById('target-meta-text').innerText = this.formatSize(this.targetObject.height);
 
         if (this.round >= 5) {
-          showModal('Spiel beendet! 🏆', `Du hast insgesamt <b>${this.score} / 500 Punkten</b> erzielt!`, () => {
+          document.getElementById('btn-size-submit').innerText = 'Ergebnis ansehen';
+          setTimeout(() => showModal('Spiel beendet! 🏆', `Du hast insgesamt <b>${this.score} / 500 Punkten</b> erzielt!`, () => {
             SizeItUpGame.init();
-          });
+          }), 7000);
         } else {
+          document.getElementById('btn-size-submit').innerText = 'Nächste Runde';
           this.round++;
-          setTimeout(() => this.loadRound(), 1800);
+          setTimeout(() => this.loadRound(), 7000);
         }
       }
     };
