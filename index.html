@@ -1643,10 +1643,15 @@
           if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
           const words = await response.json();
           if (!Array.isArray(words) || words.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
-          const uniqueWords = [...new Set(words
+          const uniqueWordsByKey = new Map();
+          words
             .map(word => String(word).trim().normalize('NFC'))
             .filter(word => /^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word))
-          )];
+            .forEach(word => {
+              const key = word.toLocaleLowerCase('de-DE');
+              if (!uniqueWordsByKey.has(key)) uniqueWordsByKey.set(key, word);
+            });
+          const uniqueWords = [...uniqueWordsByKey.values()];
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
           // Every valid noun in the dictionary can become a target, not just the curated examples.
           this.dictionaryTargetWords = uniqueWords;
@@ -1692,7 +1697,10 @@
           this.categoryEmbeddingCache = Promise.all(this.categoryProfiles.map(async profile => ({
             name: profile.name,
             embedding: await this.getEmbedding(profile.description)
-          })));
+          }))).catch(error => {
+            this.categoryEmbeddingCache = null;
+            throw error;
+          });
         }
         const profiles = await this.categoryEmbeddingCache;
         const wordEmbedding = this.targetEmbedding || await this.getEmbedding(key);
