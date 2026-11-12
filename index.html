@@ -1818,7 +1818,7 @@
           const pairOverlap = [...targetPairs].filter(pair => guessPairs.has(pair)).length / Math.max(1, pairUnion.size);
           sim = (letterOverlap * 0.35 + pairOverlap * 0.65) * 2 - 1;
         }
-        if (PauseController.paused || submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
+        if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
         // PLAYFINITY-Modellrang: feste, nachvollziehbare Skala statt künstlicher Millionenwerte.
         // Dies ist eine Ähnlichkeitsschätzung, noch kein exakter Platz in einem vollständigen Wörterbuch.
