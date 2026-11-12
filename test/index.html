@@ -1563,17 +1563,58 @@
         Schmetterling: { category: 'Tier', word: 'Flügel' }
       },
 
-      // 20 deutsche Zielwörter
-      targets: [
+      // Fallback-Liste, falls die lokale Wortdatenbank nicht geladen werden kann.
+      fallbackTargets: [
         'Hund','Kaffee','Schloss','Gitarre','Sommer','Flugzeug','Ozean','Roboter',
         'Zauberer','Kamera','Sonne','Kuchen','Winter','Rakete','Wald','Insel',
         'Musik','Pferd','Telefon','Schmetterling'
       ],
+      targets: [],
+      wordOrder: [],
+      wordIndex: 0,
+
+      async loadTargetPool() {
+        try {
+          const response = await fetch(new URL('data/wordfinity-nouns.json', document.baseURI), { cache: 'force-cache' });
+          if (!response.ok) throw new Error('Wortdatenbank HTTP ' + response.status);
+          const data = await response.json();
+          if (!Array.isArray(data.words) || data.words.length < 1000) throw new Error('Wortdatenbank unvollständig');
+          this.targets = [...new Set(data.words.filter(word => typeof word === 'string' && /^[\p{L}]+(?:-[\p{L}]+)*$/u.test(word)))];
+          try {
+            const savedOrder = localStorage.getItem('playfinity_wordfinity_order_v1');
+            const savedIndex = Number.parseInt(localStorage.getItem('playfinity_wordfinity_index_v1') || '0', 10);
+            if (savedOrder) {
+              const parsed = JSON.parse(savedOrder);
+              if (Array.isArray(parsed)) {
+                const valid = new Set(this.targets);
+                const restored = parsed.filter(word => valid.has(word));
+                if (restored.length >= 1000) {
+                  this.wordOrder = restored;
+                  this.wordIndex = Number.isInteger(savedIndex) && savedIndex >= 0 ? Math.min(savedIndex, restored.length) : 0;
+                }
+              }
+            }
+          } catch (storageError) {
+            console.warn('[WORDFINITY] Gespeicherter Wortvorrat nicht verfügbar; starte einen neuen Durchlauf:', storageError);
+          }
+          const status = document.getElementById('model-status-text');
+          if (status) status.textContent = this.targets.length.toLocaleString('de-DE') + ' deutsche Nomen geladen.';
+        } catch (error) {
+          console.warn('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
+          this.targets = [...this.fallbackTargets];
+          this.wordOrder = [];
+          this.wordIndex = 0;
+          const status = document.getElementById('model-status-text');
+          if (status) status.textContent = 'Wörterbuch nicht geladen – Ersatzwortliste aktiv.';
+        }
+      },
 
       init() {
         this.initialized = true;
-        this.pickNewTarget();
-        this.initModel();
+        this.loadTargetPool().then(() => {
+          this.pickNewTarget();
+          this.initModel();
+        });
 
         document.getElementById('kontexto-submit').onclick = () => {
           if(PauseController.paused)return;
@@ -1594,10 +1635,9 @@
       showCategoryHint() {
         if (PauseController.paused || this.roundLocked || this.categoryHintUsed) return;
         const hint = this.targetHints[this.targetWord];
-        if (!hint) return;
         this.categoryHintUsed = true;
         const display = document.getElementById('kontexto-category-display');
-        display.textContent = 'Kategorie: ' + hint.category;
+        display.textContent = 'Kategorie: ' + (hint ? hint.category : 'Deutsches Substantiv');
         display.hidden = false;
         const button = document.getElementById('kontexto-category-hint');
         button.disabled = true;
@@ -1616,13 +1656,26 @@
         this.roundId++;
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
-        this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
+        if (!this.wordOrder.length || this.wordIndex >= this.wordOrder.length) {
+          this.wordOrder = [...this.targets];
+          for (let i = this.wordOrder.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [this.wordOrder[i], this.wordOrder[j]] = [this.wordOrder[j], this.wordOrder[i]];
+          }
+          if (this.wordOrder.length > 1 && this.wordOrder[0] === this.targetWord) {
+            [this.wordOrder[0], this.wordOrder[1]] = [this.wordOrder[1], this.wordOrder[0]];
+          }
+          this.wordIndex = 0;
+          try { localStorage.setItem('playfinity_wordfinity_order_v1', JSON.stringify(this.wordOrder)); } catch (error) { console.warn('[WORDFINITY] Wortreihenfolge konnte nicht gespeichert werden:', error); }
+        }
+        this.targetWord = this.wordOrder[this.wordIndex++];
+        try { localStorage.setItem('playfinity_wordfinity_index_v1', String(this.wordIndex)); } catch (error) { console.warn('[WORDFINITY] Wortposition konnte nicht gespeichert werden:', error); }
         this.categoryHintUsed = false;
         this.wordHintUsed = false;
         const categoryButton = document.getElementById('kontexto-category-hint');
         const wordButton = document.getElementById('kontexto-word-hint');
         if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
-        if (wordButton) { wordButton.disabled = false; wordButton.title = 'Wort-Tipp – beliebig oft'; }
+        if (wordButton) { wordButton.disabled = !this.targetHints[this.targetWord]; wordButton.title = this.targetHints[this.targetWord] ? 'Wort-Tipp – beliebig oft' : 'Für dieses Wort ist kein zusätzlicher Wort-Tipp hinterlegt'; }
         const categoryDisplay = document.getElementById('kontexto-category-display');
         if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
         this.guesses = [];
@@ -1689,7 +1742,7 @@
       async submitGuess(word, player = null, options = {}) {
         if (PauseController.paused) return;
         const cleanWord = String(word || '').trim().normalize('NFC');
-        if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
+        if (this.roundLocked || !/^[\p{L}]+(?:-[\p{L}]+)*$/u.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
         if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
         this.pendingGuesses.add(key);
