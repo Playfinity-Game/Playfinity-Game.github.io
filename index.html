@@ -777,6 +777,7 @@
       @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
 
     .pause-toggle{border:1px solid var(--neon-cyan);background:rgba(0,240,255,.1);color:var(--neon-cyan);border-radius:9px;padding:8px 11px;font-weight:900;cursor:pointer;min-width:38px}
+    body:not(.game-active) #pause-toggle{display:none}
     .pause-toggle[aria-pressed="true"]{border-color:var(--neon-gold);color:var(--neon-gold)}
     .pause-overlay{position:fixed;inset:0;z-index:500;background:rgba(4,5,18,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px}
     .pause-overlay[hidden]{display:none}
@@ -806,7 +807,7 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
-    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
+    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Wordfinity-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
     <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
@@ -822,7 +823,7 @@
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
-    <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Kontexto: Nach Gewinn automatisch nächstes Wort starten</span></label>
+    <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity: Nach Gewinn automatisch nächstes Wort starten</span></label>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -841,7 +842,7 @@
         <div class="game-card" onclick="PlayfinityRouter.go('wordle')">
           <div>
             <div class="card-badge" style="color: var(--neon-green)">Worträtsel</div>
-            <div class="card-title">Wordle DE</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">FIVE</span><span style="color:var(--neon-pink)">X</span></div>
             <div class="card-desc">Rate das deutsche 5-Buchstaben-Wort mit unbegrenzten Versuchen und Farbhilfen.</div>
           </div>
           <div class="card-footer">
@@ -853,7 +854,7 @@
         <div class="game-card card-purple" onclick="PlayfinityRouter.go('kontexto')">
           <div>
             <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
-            <div class="card-title">Kontexto</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
             <div class="card-desc">Finde das geheime Wort über echte künstliche Intelligenz und Wortbedeutung.</div>
           </div>
           <div class="card-footer">
@@ -865,7 +866,7 @@
         <div class="game-card card-pink" aria-disabled="true" style="cursor:default">
           <div>
             <div class="card-badge" style="color: var(--neon-pink)">Bald verfügbar</div>
-            <div class="card-title">Size It Up</div>
+            <div class="card-title"><span style="color:var(--neon-pink)">MEGA</span><span style="color:var(--neon-gold)">SIZE</span></div>
             <div class="card-desc">Wir überarbeiten das Spiel, damit es deinen Vorstellungen entspricht.</div>
           </div>
           <div class="card-footer">
@@ -1044,7 +1045,7 @@
           if (action === 'leaderboard') CommunityBoard.showAll();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
-          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>Wordfinity: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
       },
@@ -1058,6 +1059,7 @@
       renderScreen(screenId, isForwardNav) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
+        document.body.classList.toggle('game-active', screenId !== 'menu');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
           target.classList.add('active');
