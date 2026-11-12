@@ -1580,18 +1580,22 @@
           const data = await response.json();
           if (!Array.isArray(data.words) || data.words.length < 1000) throw new Error('Wortdatenbank unvollständig');
           this.targets = [...new Set(data.words.filter(word => typeof word === 'string' && /^[\p{L}]+(?:-[\p{L}]+)*$/u.test(word)))];
-          const savedOrder = localStorage.getItem('playfinity_wordfinity_order_v1');
-          const savedIndex = Number.parseInt(localStorage.getItem('playfinity_wordfinity_index_v1') || '0', 10);
-          if (savedOrder) {
-            const parsed = JSON.parse(savedOrder);
-            if (Array.isArray(parsed)) {
-              const valid = new Set(this.targets);
-              const restored = parsed.filter(word => valid.has(word));
-              if (restored.length >= 1000) {
-                this.wordOrder = restored;
-                this.wordIndex = Number.isInteger(savedIndex) && savedIndex >= 0 ? Math.min(savedIndex, restored.length) : 0;
+          try {
+            const savedOrder = localStorage.getItem('playfinity_wordfinity_order_v1');
+            const savedIndex = Number.parseInt(localStorage.getItem('playfinity_wordfinity_index_v1') || '0', 10);
+            if (savedOrder) {
+              const parsed = JSON.parse(savedOrder);
+              if (Array.isArray(parsed)) {
+                const valid = new Set(this.targets);
+                const restored = parsed.filter(word => valid.has(word));
+                if (restored.length >= 1000) {
+                  this.wordOrder = restored;
+                  this.wordIndex = Number.isInteger(savedIndex) && savedIndex >= 0 ? Math.min(savedIndex, restored.length) : 0;
+                }
               }
             }
+          } catch (storageError) {
+            console.warn('[WORDFINITY] Gespeicherter Wortvorrat nicht verfügbar; starte einen neuen Durchlauf:', storageError);
           }
           const status = document.getElementById('model-status-text');
           if (status) status.textContent = this.targets.length.toLocaleString('de-DE') + ' deutsche Nomen geladen.';
