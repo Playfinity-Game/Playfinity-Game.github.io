@@ -111,6 +111,16 @@
     .menu-toggle{border:1px solid rgba(0,240,255,.28);background:rgba(0,240,255,.08);color:var(--neon-cyan);border-radius:9px;width:38px;height:36px;font-size:1.2rem;cursor:pointer}
     .app-menu{display:none;position:fixed;top:68px;right:14px;z-index:180;width:min(300px,calc(100vw - 28px));padding:12px;background:rgba(10,12,28,.98);border:1px solid var(--border-glow);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(16px);flex-direction:column;gap:6px}
     .app-menu.open{display:flex}.app-menu button{width:100%;border:0;border-radius:9px;padding:12px;color:var(--text-main);background:rgba(255,255,255,.045);text-align:left;font:700 .9rem var(--font-main);cursor:pointer}.app-menu button:hover{background:rgba(0,240,255,.1);color:var(--neon-cyan)}.menu-status{color:var(--text-muted);font-size:.75rem;padding:8px 10px 4px;display:flex;align-items:center;gap:9px}.menu-status .status-dot{flex:none}
+    .tiktok-connector-panel{padding:10px;border:1px solid rgba(0,240,255,.2);border-radius:10px;background:rgba(0,240,255,.045);display:flex;flex-direction:column;gap:8px}
+    .tiktok-connector-panel[hidden]{display:none}
+    .tiktok-connector-panel label{font-size:.78rem;font-weight:700;color:var(--text-muted)}
+    .tiktok-connector-panel input{width:100%;min-width:0;padding:11px 12px;border:1px solid rgba(0,240,255,.3);border-radius:8px;background:rgba(7,8,20,.9);color:#fff;font:600 .95rem var(--font-main);outline:none}
+    .tiktok-connector-panel input:focus{border-color:var(--neon-cyan);box-shadow:0 0 10px rgba(0,240,255,.18)}
+    .app-menu .tiktok-connector-panel button{padding:10px;text-align:center;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#000;font-weight:800}
+    .app-menu .tiktok-connector-panel button:hover{color:#000;filter:brightness(1.08)}
+    .app-menu .tiktok-connector-panel #tiktok-disconnect-button{background:rgba(255,0,127,.12);border:1px solid rgba(255,0,127,.35);color:#ff8cbd}
+    #tiktok-connector-status{font-size:.78rem;line-height:1.4;color:var(--text-muted);overflow-wrap:anywhere}
+    .tiktok-connector-note{font-size:.68rem;line-height:1.4;color:var(--text-muted)}
     .status-dot {
       width: 8px;
       height: 8px;
@@ -651,8 +661,15 @@
     }
 
     /* ==========================================================================
-       8. PRICE IS RIGHT SCREEN
+       8. GUESSWHAT SCREEN
        ========================================================================== */
+    .guesswhat-brand { text-align:center; padding:2px 0 4px; }
+    .guesswhat-title { font-size:clamp(1.8rem,6vw,2.5rem); line-height:1.05; font-weight:1000; letter-spacing:.12em; text-shadow:0 0 10px rgba(255,208,0,.25),0 0 26px rgba(255,208,0,.12); }
+    .guesswhat-title .guesswhat-word { color:var(--neon-cyan); text-shadow:0 0 10px rgba(0,229,255,.45),0 0 26px rgba(0,229,255,.18); }
+    .guesswhat-title .guesswhat-what { color:var(--neon-gold); text-shadow:0 0 10px rgba(255,208,0,.45),0 0 26px rgba(255,208,0,.18); }
+    .guesswhat-subtitle { margin-top:7px; color:var(--text-muted); font-size:.9rem; font-weight:600; }
+    .guesswhat-result-title { color:var(--neon-gold); font-weight:900; letter-spacing:.08em; font-size:.85rem; }
+
     .pir-card {
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
@@ -680,12 +697,6 @@
       border: 1px solid rgba(255, 208, 0, 0.3);
       padding: 4px 12px;
       border-radius: 20px;
-    }
-
-    .pir-progress-count {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      font-variant-numeric: tabular-nums;
     }
 
     .pir-question {
@@ -767,6 +778,33 @@
     }
       @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
 
+    .correct-answer-overlay{position:fixed;inset:0;z-index:650;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,5,18,.88);backdrop-filter:blur(12px)}
+    .correct-answer-overlay.active{display:flex}
+    .correct-answer-card{width:min(520px,100%);padding:clamp(26px,6vw,42px);border:2px solid var(--neon-green);border-radius:22px;background:linear-gradient(145deg,rgba(12,25,38,.98),rgba(18,20,44,.98));box-shadow:0 0 55px rgba(0,255,157,.28);text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;animation:correctAnswerPop .28s ease-out}
+    .correct-answer-kicker{font-size:.85rem;font-weight:900;letter-spacing:.16em;color:var(--neon-green);text-transform:uppercase}
+    .correct-answer-message{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:950;color:#fff;line-height:1.15}
+    .correct-answer-word{font-size:clamp(2rem,9vw,3.5rem);font-weight:1000;color:var(--neon-cyan);letter-spacing:.05em;text-shadow:0 0 24px rgba(0,240,255,.4);overflow-wrap:anywhere}
+    .correct-answer-timer{color:var(--text-muted);font-size:.9rem}
+    .correct-answer-continue{width:100%;padding:14px 18px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#001018;font-weight:950;font-size:1rem;cursor:pointer}
+    @keyframes correctAnswerPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
+    .pause-toggle{border:1px solid var(--neon-cyan);background:rgba(0,240,255,.1);color:var(--neon-cyan);border-radius:9px;padding:8px 11px;font-weight:900;cursor:pointer;min-width:38px}
+    body:not(.game-active) #pause-toggle{display:none}
+    .pause-toggle[aria-pressed="true"]{border-color:var(--neon-gold);color:var(--neon-gold)}
+    .pause-overlay{position:fixed;inset:0;z-index:500;background:rgba(4,5,18,.88);backdrop-filter:blur(10px);display:flex;align-items:center;justify-content:center;padding:20px}
+    .pause-overlay[hidden]{display:none}
+    .pause-overlay-card{width:min(420px,100%);padding:28px;border:1px solid var(--neon-cyan);border-radius:18px;background:var(--bg-card);box-shadow:0 0 36px rgba(0,240,255,.25);text-align:center;display:flex;flex-direction:column;gap:16px}
+    .pause-overlay-title{font-size:1.5rem;font-weight:950;letter-spacing:2px;color:var(--neon-cyan)}
+    .pause-overlay-card p{color:var(--text-muted)}
+    .menu-setting{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;color:var(--text-main);font-size:.88rem;line-height:1.4;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
+    .menu-setting input{accent-color:var(--neon-cyan);margin-top:3px;flex-shrink:0}
+    .round-result .round-result-answer{font-size:clamp(2rem,8vw,3.5rem);font-weight:950;color:var(--neon-cyan);letter-spacing:2px;text-shadow:0 0 22px rgba(0,240,255,.35);margin:10px 0}
+    .kontexto-guess-player{margin-left:auto;padding-left:10px;color:var(--text-muted);font-size:.78rem;white-space:nowrap}
+    .kontexto-stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:var(--text-muted);font-size:.82rem;margin:8px 0}
+    .kontexto-next-round{margin-top:12px;padding:10px 16px;border:1px solid var(--neon-cyan);border-radius:9px;background:rgba(0,240,255,.1);color:var(--neon-cyan);font-weight:800;cursor:pointer}
+    .wordle-result-guesses{margin:10px auto;max-width:360px;text-align:left;font-size:.85rem;display:grid;gap:5px}
+    .wordle-result-guess{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 0}
+    .pir-correct-winners{margin:10px 0;padding:10px;border:1px solid rgba(0,255,157,.35);border-radius:10px;color:var(--neon-green)}
+    .screen#screen-wordle .round-result.visible{max-height:45vh;overflow:auto}
 </style>
 </head>
 
@@ -780,13 +818,23 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
-    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Kontexto-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
+    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Wordfinity-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
+    <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
     <button data-menu-action="home">⌂ &nbsp; Startseite</button>
     <button data-menu-action="leaderboard">🏆 &nbsp; Community-Ranglisten</button>
-    <button data-menu-action="connect">🔴 &nbsp; TikTok / TikFinity verbinden</button>
+    <button data-menu-action="connect" aria-expanded="false" aria-controls="tiktok-connector-panel">🔴 &nbsp; TikTok LIVE verbinden</button>
+    <div id="tiktok-connector-panel" class="tiktok-connector-panel" hidden>
+      <label for="tiktok-username">TikTok-Benutzername</label>
+      <input id="tiktok-username" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@deinname" maxlength="25">
+      <button type="button" id="tiktok-connect-button">Mit TikTok LIVE verbinden</button>
+      <button type="button" id="tiktok-disconnect-button" hidden>Verbindung trennen</button>
+      <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
+      <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
+    </div>
+    <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity: Nach Gewinn automatisch nächstes Wort starten</span></label>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -805,7 +853,7 @@
         <div class="game-card" onclick="PlayfinityRouter.go('wordle')">
           <div>
             <div class="card-badge" style="color: var(--neon-green)">Worträtsel</div>
-            <div class="card-title">Wordle DE</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">FIVE</span><span style="color:var(--neon-pink)">X</span></div>
             <div class="card-desc">Rate das deutsche 5-Buchstaben-Wort mit unbegrenzten Versuchen und Farbhilfen.</div>
           </div>
           <div class="card-footer">
@@ -817,7 +865,7 @@
         <div class="game-card card-purple" onclick="PlayfinityRouter.go('kontexto')">
           <div>
             <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
-            <div class="card-title">Kontexto</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
             <div class="card-desc">Finde das geheime Wort über echte künstliche Intelligenz und Wortbedeutung.</div>
           </div>
           <div class="card-footer">
@@ -826,23 +874,23 @@
         </div>
 
         <!-- Size It Up Card -->
-        <div class="game-card card-pink" onclick="PlayfinityRouter.go('sizeitup')">
+        <div class="game-card card-pink" aria-disabled="true" style="cursor:default">
           <div>
-            <div class="card-badge" style="color: var(--neon-pink)">Größenvergleich</div>
-            <div class="card-title">Size It Up</div>
-            <div class="card-desc">Skaliere die Silhouette millimetergenau an die reale Vergleichsgröße heran.</div>
+            <div class="card-badge" style="color: var(--neon-pink)">Bald verfügbar</div>
+            <div class="card-title"><span style="color:var(--neon-pink)">MEGA</span><span style="color:var(--neon-gold)">SIZE</span></div>
+            <div class="card-desc">Wir überarbeiten das Spiel, damit es deinen Vorstellungen entspricht.</div>
           </div>
           <div class="card-footer">
-            <span class="btn-play-card" style="color: var(--neon-pink)">Starten ›</span>
+            <span class="btn-play-card" style="color: var(--neon-pink); cursor:default">Bald verfügbar</span>
           </div>
         </div>
 
-        <!-- Price Is Right Card -->
+        <!-- Zahlen schätzen Card -->
         <div class="game-card card-gold" onclick="PlayfinityRouter.go('priceisright')">
           <div>
-            <div class="card-badge" style="color: var(--neon-gold)">Zahlenschätzung</div>
-            <div class="card-title">Price Is Right</div>
-            <div class="card-desc">Schätze Fakten und Rekorde. Mit Anti-Repeat-Speicher und 217 Fragen mit Quellenangaben.</div>
+            <div class="card-badge" style="color: var(--neon-gold)">ARCADE QUIZ</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">GUESS</span><span style="color:var(--neon-gold)">WHAT</span></div>
+            <div class="card-desc">Wie gut kannst du schätzen? Schätze Fakten, Rekorde und Gaming-Wissen. Wer liegt am nächsten?</div>
           </div>
           <div class="card-footer">
             <span class="btn-play-card" style="color: var(--neon-gold)">Starten ›</span>
@@ -919,12 +967,15 @@
       </div>
     </section>
 
-    <!-- SCREEN 5: PRICE IS RIGHT -->
+    <!-- SCREEN 5: GUESSWHAT -->
     <section class="screen" id="screen-priceisright">
       <div class="pir-card">
+        <div class="guesswhat-brand">
+          <div class="guesswhat-title"><span class="guesswhat-word">GUESS</span><span class="guesswhat-what">WHAT</span></div>
+          <div class="guesswhat-subtitle">Wie gut kannst du schätzen?</div>
+        </div>
         <div class="pir-header">
           <span class="pir-category-badge" id="pir-badge">Kategorie</span>
-          <span class="pir-progress-count" id="pir-counter">Frage -- von --</span>
         </div>
         <div class="pir-question" id="pir-question-text">Frage lädt...</div>
 
@@ -935,7 +986,8 @@
         <div class="pir-live-guesses" id="pir-live-guesses" aria-live="polite"></div>
 
         <div class="pir-result-box" id="pir-result">
-          <div style="font-size:0.85rem; color:var(--text-muted);">Tatsächliche Lösung:</div>
+          <div class="guesswhat-result-title">GUESSWHAT · AUFLÖSUNG</div>
+          <div style="font-size:0.85rem; color:var(--text-muted);">Die richtige Antwort:</div>
           <div class="pir-answer-reveal" id="pir-answer">--</div>
           <div class="pir-fact" id="pir-explanation">--</div>
           <button class="btn-action btn-block" id="pir-next-btn" style="margin-top:10px;">Nächste Frage ›</button>
@@ -943,6 +995,18 @@
       </div>
     </section>
   </main>
+
+  <div id="pause-overlay" class="pause-overlay" hidden><div class="pause-overlay-card"><div class="pause-overlay-title">SPIEL PAUSIERT</div><p>Chat-Eingaben und Rundentimer sind angehalten.</p><button type="button" id="pause-resume" class="btn-action">Fortsetzen</button></div></div>
+
+  <div id="correct-answer-overlay" class="correct-answer-overlay" role="alertdialog" aria-modal="true" aria-labelledby="correct-answer-message">
+    <div class="correct-answer-card">
+      <div class="correct-answer-kicker">🎉 RICHTIG!</div>
+      <div class="correct-answer-message" id="correct-answer-message">Du hast das Wort erraten!</div>
+      <div class="correct-answer-word" id="correct-answer-word"></div>
+      <div class="correct-answer-timer" id="correct-answer-timer">Die nächste Runde startet gleich …</div>
+      <button type="button" class="correct-answer-continue" id="correct-answer-continue" hidden>Fortfahren ›</button>
+    </div>
+  </div>
 
   <!-- MODAL FÜR ERGEBNISSE & GAME OVER -->
   <div class="modal-overlay" id="app-modal">
@@ -957,6 +1021,15 @@
   <script>/* ==========================================================================
        1. ROUTER & BROWSER-HISTORY (ZURÜCK-BUTTON GARANTIE)
        ========================================================================== */
+    const PauseController = {
+      paused:false,timers:new Map(),
+      schedule(owner,key,callback,delay){this.clear(owner,key);const r={owner,key,callback,remaining:Math.max(0,delay),startedAt:0,id:null};this.timers.set(owner+':'+key,r);if(!this.paused)this.arm(r);},
+      arm(r){r.startedAt=Date.now();r.id=setTimeout(()=>{this.timers.delete(r.owner+':'+r.key);if(!this.paused)r.callback();},r.remaining);},
+      clear(owner,key){const k=owner+':'+key,r=this.timers.get(k);if(r){if(r.id!==null)clearTimeout(r.id);this.timers.delete(k);}},
+      setPaused(value){if(this.paused===value)return;this.paused=value;if(value){for(const r of this.timers.values()){if(r.id!==null){clearTimeout(r.id);r.remaining=Math.max(0,r.remaining-(Date.now()-r.startedAt));r.id=null;}}}else{for(const r of this.timers.values())if(r.id===null)this.arm(r);}const b=document.getElementById('pause-toggle'),o=document.getElementById('pause-overlay');if(b){b.setAttribute('aria-pressed',value?'true':'false');b.textContent=value?'▶':'Ⅱ';b.setAttribute('aria-label',value?'Spiel fortsetzen':'Spiel pausieren');}if(o)o.hidden=!value;},
+      toggle(){this.setPaused(!this.paused);}
+    };
+
     const PlayfinityRouter = {
       currentScreen: 'menu',
 
@@ -971,19 +1044,29 @@
         document.getElementById('brand-home').addEventListener('click', () => this.go('menu'));
         document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
 
+        document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
+        document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
+        const autoNext=document.getElementById('kontexto-auto-next');
+        autoNext.checked=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
+        autoNext.addEventListener('change',()=>localStorage.setItem('playfinity_kontexto_auto_next',String(autoNext.checked)));
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
         toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
         menu.addEventListener('click', (event) => {
           const action = event.target.closest('[data-menu-action]')?.dataset.menuAction;
           if (!action) return;
+          if (action === 'connect') {
+            const panel = document.getElementById('tiktok-connector-panel');
+            panel.hidden = !panel.hidden;
+            event.target.closest('[data-menu-action]').setAttribute('aria-expanded', panel.hidden ? 'false' : 'true');
+            return;
+          }
           menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
           if (action === 'home') this.go('menu');
           if (action === 'leaderboard') CommunityBoard.showAll();
-          if (action === 'connect') showModal('TikTok / TikFinity verbinden', 'PLAYFINITY verbindet sich über TikFinity auf demselben Computer. Öffne TikFinity, starte die Verbindung und lasse diese PLAYFINITY-Seite geöffnet. Der Status oben zeigt die lokale Verbindung. Ein separater TikTok-Konto-Login ist derzeit nicht eingerichtet.');
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
-          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'Wordle: ein Wort mit genau fünf Buchstaben.<br>Kontexto: ein einzelnes Wort ohne Leerzeichen.<br>Price Is Right: eine Zahl. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>Wordfinity: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
       },
@@ -997,6 +1080,7 @@
       renderScreen(screenId, isForwardNav) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
+        document.body.classList.toggle('game-active', screenId !== 'menu');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
           target.classList.add('active');
@@ -1023,8 +1107,11 @@
     /* ==========================================================================
        2. TIKFINITY LIVE-CHAT WEBSOCKET ENGINE
        ========================================================================== */
+    let activeLiveSource = 'none';
+
     const TikFinity = {
       ws: null,
+      pausedForTikTok: false,
       statusDot: document.getElementById('ws-indicator'),
       statusLabel: document.getElementById('ws-label'),
       reconnectTimer: null,
@@ -1036,12 +1123,14 @@
       },
 
       connect() {
+        if (this.pausedForTikTok) return;
         try {
           this.setStatus('connecting', 'Verbinde TikFinity...');
           this.ws = new WebSocket('ws://localhost:21213/');
 
           this.ws.onopen = () => {
             this.connected = true;
+            if (activeLiveSource !== 'tiktok') activeLiveSource = 'tikfinity';
             this.setStatus('connected', 'TikFinity Live');
             console.log('[TikFinity] Verbunden mit Port 21213');
           };
@@ -1077,6 +1166,7 @@
 
       setStatus(state, label) {
         this.connected = state === 'connected';
+        if (activeLiveSource === 'tiktok') return;
         if (this.statusDot) this.statusDot.className = 'status-dot ' + (state === 'connected' ? 'connected' : state === 'connecting' ? 'connecting' : '');
         if (this.statusLabel) this.statusLabel.innerText = label;
         const labelNode = document.getElementById('ws-label');
@@ -1085,10 +1175,12 @@
 
       scheduleReconnect() {
         clearTimeout(this.reconnectTimer);
+        if (this.pausedForTikTok) return;
         this.reconnectTimer = setTimeout(() => this.connect(), 4000);
       },
 
-      routeLiveChat(user, text) {
+      routeLiveChat(user, text, source = 'tikfinity') {
+        if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
@@ -1103,6 +1195,120 @@
     /* ==========================================================================
        COMMUNITY-RANGLISTEN (LETZTE 24 STUNDEN, STREAMER-BROWSER)
        ========================================================================== */
+    const TikTokConnector = {
+      baseUrl: 'https://playfinity-game-github-io.onrender.com',
+      ws: null,
+      connected: false,
+      statusNode: document.getElementById('tiktok-connector-status'),
+      connectButton: document.getElementById('tiktok-connect-button'),
+      disconnectButton: document.getElementById('tiktok-disconnect-button'),
+
+      init() {
+        this.connectButton?.addEventListener('click', () => this.connect());
+        this.disconnectButton?.addEventListener('click', () => this.disconnect());
+        document.getElementById('tiktok-username')?.addEventListener('keydown', (event) => {
+          if (event.key === 'Enter') this.connect();
+        });
+      },
+
+      setStatus(message, state = 'idle') {
+        if (this.statusNode) this.statusNode.textContent = message;
+        const isConnected = state === 'connected' || state === 'error-connected';
+        if (this.connectButton) this.connectButton.disabled = state === 'connecting' || isConnected;
+        if (this.disconnectButton) this.disconnectButton.hidden = !isConnected;
+        if (activeLiveSource === 'tiktok' || state === 'connecting') {
+          const dot = document.getElementById('ws-indicator');
+          const label = document.getElementById('ws-label');
+          if (dot) dot.className = 'status-dot ' + (state === 'connected' ? 'connected' : state === 'connecting' ? 'connecting' : '');
+          if (label) label.textContent = message;
+        }
+      },
+
+      async connect() {
+        if (this.connected) return;
+        const input = document.getElementById('tiktok-username');
+        const username = (input?.value || '').trim().replace(/^@/, '');
+        if (!/^[A-Za-z0-9._]{2,24}$/.test(username)) {
+          this.setStatus('Bitte gib einen gültigen TikTok-@Namen ein.', 'error');
+          input?.focus();
+          return;
+        }
+
+        this.setStatus('Verbinde mit dem PLAYFINITY-Server …', 'connecting');
+        try {
+          const response = await fetch(this.baseUrl + '/api/connect', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username })
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.websocketPath) throw new Error(data.error || 'Verbindung konnte nicht gestartet werden.');
+
+          const socketUrl = this.baseUrl.replace(/^https:/, 'wss:') + data.websocketPath;
+          const socket = new WebSocket(socketUrl);
+          this.ws = socket;
+
+          socket.onopen = () => {
+            this.connected = true;
+            activeLiveSource = 'tiktok';
+            TikFinity.pausedForTikTok = true;
+            clearTimeout(TikFinity.reconnectTimer);
+            if (TikFinity.ws && TikFinity.ws.readyState < WebSocket.CLOSING) TikFinity.ws.close();
+            this.setStatus('TikTok LIVE verbunden: @' + data.username, 'connected');
+            console.log('[PLAYFINITY] TikTok LIVE verbunden:', data.username);
+          };
+
+          socket.onmessage = (event) => {
+            try {
+              const message = JSON.parse(event.data);
+              if (message.type === 'chat') {
+                const user = {
+                  id: String(message.user?.username || message.user?.nickname || 'unknown'),
+                  name: String(message.user?.nickname || message.user?.username || 'Zuschauer')
+                };
+                TikFinity.lastUserName = user.name;
+                TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
+              } else if (message.type === 'connector_error') {
+                this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
+              }
+            } catch (error) {
+              console.warn('[PLAYFINITY] TikTok-Paket konnte nicht gelesen werden:', error);
+            }
+          };
+
+          socket.onerror = () => this.setStatus('WebSocket-Verbindung zu TikTok konnte nicht hergestellt werden.', this.connected ? 'error-connected' : 'error');
+
+          socket.onclose = () => {
+            const wasActive = activeLiveSource === 'tiktok';
+            this.connected = false;
+            this.ws = null;
+            if (wasActive) {
+              activeLiveSource = 'none';
+              this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
+              TikFinity.pausedForTikTok = false;
+              TikFinity.connect();
+            }
+          };
+        } catch (error) {
+          this.connected = false;
+          this.setStatus(error.message || 'TikTok LIVE konnte nicht verbunden werden.', 'error');
+          TikFinity.pausedForTikTok = false;
+          if (!TikFinity.connected) TikFinity.connect();
+        }
+      },
+
+      disconnect() {
+        const socket = this.ws;
+        this.ws = null;
+        this.connected = false;
+        activeLiveSource = 'none';
+        this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
+        if (socket) socket.close(1000, 'Vom Streamer getrennt');
+        TikFinity.pausedForTikTok = false;
+        if (!TikFinity.connected) TikFinity.connect();
+      }
+    };
+
     const CommunityBoard = {
       key: 'playfinity_community_scores_v1', windowMs: 86400000,
       read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
@@ -1110,7 +1316,7 @@
       top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
       escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
       render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
-      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['Price Is Right','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
+      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['GUESSWHAT','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
     };
 
     /* ==========================================================================
@@ -1124,6 +1330,7 @@
       maxCols: 5,
       roundLocked: false,
       roundTimer: null,
+      solvedRounds: 0,
 
       // Ausgewählte deutsche 5-Buchstaben-Wörter
       wordPool: [
@@ -1142,7 +1349,7 @@
       },
 
       startNewGame() {
-        clearTimeout(this.roundTimer);
+        PauseController.clear('wordle','roundTimer');
         this.init();
         this.roundLocked = false;
         this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
@@ -1185,7 +1392,7 @@
       },
 
       handlePhysicalKey(e) {
-        if (PlayfinityRouter.currentScreen !== 'wordle') return;
+        if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
         if (e.key === 'Enter') {
           this.submitCurrentGuess();
         } else if (e.key === 'Backspace') {
@@ -1196,6 +1403,7 @@
       },
 
       typeLetter(char) {
+        if (PauseController.paused) return;
         if (this.currentGuess.length < 5) {
           this.currentGuess += char;
           this.renderBoard();
@@ -1203,6 +1411,7 @@
       },
 
       backspace() {
+        if (PauseController.paused) return;
         if (this.currentGuess.length > 0) {
           this.currentGuess = this.currentGuess.slice(0, -1);
           this.renderBoard();
@@ -1210,6 +1419,7 @@
       },
 
       submitCurrentGuess() {
+        if (PauseController.paused) return;
         if (this.currentGuess.length === 5) {
           this.submitGuess(this.currentGuess);
           this.currentGuess = '';
@@ -1217,7 +1427,7 @@
       },
 
       submitGuess(word, player = null) {
-        if (this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        if (PauseController.paused || this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
         if (this.guesses.some(item => item.word === word)) return;
         // Exakte Auswertung mit Berücksichtigung doppelter Buchstaben
         const targetArr = this.targetWord.split('');
@@ -1246,19 +1456,21 @@
           }
         }
 
-        this.guesses.push({ word, result });
+        this.guesses.push({ word, result, player: player || null });
         this.updateKeyboardColors(word, result);
         this.renderBoard();
 
         // Gewinnprüfung
         if (word === this.targetWord) {
           this.roundLocked = true;
-          CommunityBoard.record('wordle', player);
-          const resultBox = document.getElementById('wordle-round-result');
-          resultBox.innerHTML = '<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">' + this.targetWord + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="wordle-community-list"></div>';
-          resultBox.classList.add('visible');
-          CommunityBoard.render('wordle', 'wordle-community-list');
-          this.roundTimer = setTimeout(() => this.startNewGame(), 5000);
+          this.solvedRounds++;
+          CommunityBoard.record('wordle',player);
+          const resultBox=document.getElementById('wordle-round-result');
+          const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
+          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div><div class="result-countdown">Nächste Runde in 7 Sekunden</div>';
+          resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
+          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
+          PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
         }
       },
 
@@ -1323,6 +1535,7 @@
       guesses: [],
       roundLocked: false,
       roundTimer: null,
+      solvedRounds: 0,
       pendingGuesses: new Set(),
       roundId: 0,
       categoryHintUsed: false,
@@ -1363,6 +1576,7 @@
         this.initModel();
 
         document.getElementById('kontexto-submit').onclick = () => {
+          if(PauseController.paused)return;
           const inp = document.getElementById('kontexto-input');
           if (inp.value.trim()) {
             this.submitGuess(inp.value.trim());
@@ -1378,7 +1592,7 @@
       },
 
       showCategoryHint() {
-        if (this.roundLocked || this.categoryHintUsed) return;
+        if (PauseController.paused || this.roundLocked || this.categoryHintUsed) return;
         const hint = this.targetHints[this.targetWord];
         if (!hint) return;
         this.categoryHintUsed = true;
@@ -1391,14 +1605,14 @@
       },
 
       showWordHint() {
-        if (this.roundLocked) return;
+        if (PauseController.paused || this.roundLocked) return;
         const hint = this.targetHints[this.targetWord];
         if (!hint) return;
         this.submitGuess(hint.word, null, { isHint: true });
       },
 
       async pickNewTarget() {
-        clearTimeout(this.roundTimer);
+        PauseController.clear('kontexto','roundTimer');
         this.roundId++;
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
@@ -1473,6 +1687,7 @@
       },
 
       async submitGuess(word, player = null, options = {}) {
+        if (PauseController.paused) return;
         const cleanWord = String(word || '').trim().normalize('NFC');
         if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
@@ -1480,15 +1695,17 @@
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
         if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
-          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint });
+          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint, player: player || null });
+          this.solvedRounds++;
           this.renderGuesses();
           this.roundLocked = true;
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
-          resultBox.innerHTML = '<div class="round-result-title">🎯 Geheimwort gefunden!</div><div class="round-result-answer">' + CommunityBoard.escape(this.targetWord) + '</div><div>' + (player ? 'Gewonnen von <b>' + CommunityBoard.escape(player.name) + '</b>' : 'Rätsel gelöst!') + '</div><div id="kontexto-community-list"></div>';
-          resultBox.classList.add('visible');
-          CommunityBoard.render('kontexto', 'kontexto-community-list');
-          this.roundTimer = setTimeout(() => this.pickNewTarget(), 5000);
+          const autoAdvance=document.getElementById('kontexto-auto-next').checked;
+          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'<div class="result-countdown">Nächstes Wort in 7 Sekunden</div>':'');
+          resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
+          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance);
+          if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
           return;
         }
         let sim = 0;
@@ -1515,7 +1732,7 @@
           const pairOverlap = [...targetPairs].filter(pair => guessPairs.has(pair)).length / Math.max(1, pairUnion.size);
           sim = (letterOverlap * 0.35 + pairOverlap * 0.65) * 2 - 1;
         }
-        if (submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
+        if (PauseController.paused || submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
         // PLAYFINITY-Modellrang: feste, nachvollziehbare Skala statt künstlicher Millionenwerte.
         // Dies ist eine Ähnlichkeitsschätzung, noch kein exakter Platz in einem vollständigen Wörterbuch.
@@ -1525,7 +1742,8 @@
           calculatedRank = Math.max(1, calculatedRank - 1);
           while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
         }
-        this.guesses.push({ word: cleanWord, rank: calculatedRank, similarity: sim, isHint: !!options.isHint });
+        if(options.isHint){const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);if(calculatedRank>=bestRank){this.pendingGuesses.delete(key);return;}}
+        this.guesses.push({word:cleanWord,rank:calculatedRank,similarity:sim,isHint:!!options.isHint,player:player||null});
         this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
         this.pendingGuesses.delete(key);
         this.renderGuesses();
@@ -1553,6 +1771,7 @@
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
             <span class="guess-word">${CommunityBoard.escape(item.word)}${item.isHint ? '<span class="guess-hint-tag">💡 TIPP</span>' : ''}</span>
             <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
+            <span class="kontexto-guess-player">${item.player ? CommunityBoard.escape(item.player.name) : "—"}</span>
           `;
           container.appendChild(row);
         });
@@ -1690,7 +1909,7 @@
     };
 
     /* ==========================================================================
-       6. PRICE IS RIGHT (ZAHLSCHÄTZUNGEN MIT ANTI-REPEAT-SPEICHER)
+       6. GUESSWHAT (ZAHLENSCHÄTZUNGEN MIT ANTI-REPEAT-SPEICHER)
        ========================================================================== */
     const PriceIsRightGame = {
       initialized: false,
@@ -1719,6 +1938,7 @@
         if (this.initialized) return;
         this.initialized = true;
         document.getElementById('pir-submit').onclick = () => {
+          if(PauseController.paused)return;
           const val = parseFloat(document.getElementById('pir-input').value);
           if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
         };
@@ -1740,7 +1960,7 @@
           if (unique.length < 20) throw new Error('Fragenpool ist zu klein oder ungültig');
           this.questions = unique;
         } catch (error) {
-          console.warn('[Price Is Right] Externe Fragen nicht geladen, verwende eingebauten Pool:', error);
+          console.warn('[GUESSWHAT] Externe Fragen nicht geladen, verwende eingebauten Pool:', error);
         }
       },
 
@@ -1761,8 +1981,8 @@
       },
 
       nextQuestion() {
-        clearTimeout(this.roundTimer);
-        clearTimeout(this.revealTimer);
+        PauseController.clear('guesswhat','roundTimer');
+        PauseController.clear('guesswhat','revealTimer');
         this.roundOpen = false;
         this.guesses = [];
         const liveList = document.getElementById('pir-live-guesses');
@@ -1780,7 +2000,6 @@
         
         // UI aktualisieren
         document.getElementById('pir-badge').innerText = this.currentQuestion.cat;
-        document.getElementById('pir-counter').innerText = `Frage ${played.length + 1} von ${this.questions.length}`;
         document.getElementById('pir-question-text').innerText = this.currentQuestion.q;
         document.getElementById('pir-input').value = '';
         document.getElementById('pir-result').style.display = 'none';
@@ -1788,15 +2007,21 @@
       },
 
       submitGuess(val, player = null) {
-        if (!Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
         if (!this.roundOpen) {
           this.roundOpen = true;
           this.guesses = [];
-          this.roundTimer = setTimeout(() => this.finishRound(), 15000);
+          PauseController.schedule('guesswhat','roundTimer',()=>this.finishRound(),15000);
         }
         const identity = player || { id: 'local-player', name: 'Lokaler Spieler' };
-        if (this.guesses.some(item => item.player.id === identity.id)) return;
-        this.guesses.push({ value: val, player: identity });
+        const existingIndex = this.guesses.findIndex(item => String(item.player.id) === String(identity.id));
+        if (existingIndex >= 0) {
+          const existing = this.guesses[existingIndex];
+          if ((existing.attempts || 1) >= 2) return;
+          this.guesses[existingIndex] = { value: val, player: identity, attempts: (existing.attempts || 1) + 1 };
+        } else {
+          this.guesses.push({ value: val, player: identity, attempts: 1 });
+        }
         this.renderLiveGuesses();
         document.getElementById('pir-input').value = '';
       },
@@ -1820,19 +2045,21 @@
       },
 
       finishRound() {
-        if (!this.roundOpen || !this.guesses.length) return;
+        if (PauseController.paused || !this.roundOpen || !this.guesses.length) return;
         this.roundOpen = false;
         this.savePlayedId(this.currentQuestion.id);
         const ordered = [...this.guesses].sort((a,b) => Math.abs(a.value - this.currentQuestion.a) - Math.abs(b.value - this.currentQuestion.a));
         const winner = ordered[0];
+        const correctPlayers = ordered.filter(item => item.value === this.currentQuestion.a);
         const diff = Math.abs(winner.value - this.currentQuestion.a);
         CommunityBoard.record('priceisright', winner.player);
         document.getElementById('pir-input-group').style.display = 'none';
         document.getElementById('pir-result').style.display = 'flex';
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
-        const feedback = (diff === 0 ? '🎯 <b>Volltreffer!</b> ' : '') + 'Gewinner: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
+        const feedback = correctPlayers.length ? '🎯 <b>Volltreffer!</b> ' + correctPlayers.length + ' richtige Antwort(en).' : '🏆 <b>GUESSWHAT!</b> Am nächsten dran: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
+        const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name)).join('<br>') + '</div>' : '';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
-        document.getElementById('pir-explanation').innerHTML = `${feedback}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
+        document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div><div class="result-countdown">Nächste Frage in 7 Sekunden</div>`;
         const sourceUrl = String(this.currentQuestion.source || '');
         if (/^https:\/\//i.test(sourceUrl)) {
           const sourceLink = document.createElement('a');
@@ -1844,13 +2071,48 @@
           document.getElementById('pir-source-link').appendChild(sourceLink);
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
-        this.revealTimer = setTimeout(() => this.nextQuestion(), 5000);
+        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), false, 'Richtig geraten!');
+        PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
       }
     };
 
     /* ==========================================================================
        7. GLOBAL MODAL HELPER
        ========================================================================== */
+    function hideCorrectAnswerOverlay() {
+      const overlay = document.getElementById('correct-answer-overlay');
+      if (overlay) overlay.classList.remove('active');
+      const button = document.getElementById('correct-answer-continue');
+      if (button) { button.hidden = true; button.onclick = null; }
+    }
+
+    function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!') {
+      const overlay = document.getElementById('correct-answer-overlay');
+      const title = document.getElementById('correct-answer-message');
+      const word = document.getElementById('correct-answer-word');
+      const timer = document.getElementById('correct-answer-timer');
+      const button = document.getElementById('correct-answer-continue');
+      if (!overlay || !title || !word || !timer || !button) return;
+      PauseController.clear('correct-answer', 'display');
+      title.textContent = message;
+      word.textContent = 'Das Wort war: ' + answer;
+      timer.textContent = '';
+      button.hidden = true;
+      button.onclick = null;
+      overlay.classList.add('active');
+      if (manualContinue) {
+        PauseController.schedule('correct-answer', 'display', () => {
+          timer.textContent = 'Du kannst jetzt weiterspielen.';
+          button.hidden = false;
+          button.onclick = () => {
+            PauseController.clear('correct-answer', 'display');
+            hideCorrectAnswerOverlay();
+            if (onContinue) onContinue();
+          };
+        }, 7000);
+      }
+    }
+
     function showModal(title, text, callback) {
       const modal = document.getElementById('app-modal');
       document.getElementById('modal-title').innerText = title;
@@ -1867,6 +2129,7 @@
     window.addEventListener('DOMContentLoaded', () => {
       PlayfinityRouter.init();
       TikFinity.init();
+      TikTokConnector.init();
     });
   </script>
 </body>
