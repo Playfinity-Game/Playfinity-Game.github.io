@@ -1570,7 +1570,8 @@
         'Musik','Pferd','Telefon','Schmetterling'
       ],
       targets: [],
-      wordBag: [],
+      wordOrder: [],
+      wordIndex: 0,
 
       async loadTargetPool() {
         try {
@@ -1579,12 +1580,17 @@
           const data = await response.json();
           if (!Array.isArray(data.words) || data.words.length < 1000) throw new Error('Wortdatenbank unvollständig');
           this.targets = [...new Set(data.words.filter(word => typeof word === 'string' && /^[\p{L}]+(?:-[\p{L}]+)*$/u.test(word)))];
-          const saved = localStorage.getItem('playfinity_wordfinity_word_bag_v1');
-          if (saved) {
-            const parsed = JSON.parse(saved);
+          const savedOrder = localStorage.getItem('playfinity_wordfinity_order_v1');
+          const savedIndex = Number.parseInt(localStorage.getItem('playfinity_wordfinity_index_v1') || '0', 10);
+          if (savedOrder) {
+            const parsed = JSON.parse(savedOrder);
             if (Array.isArray(parsed)) {
               const valid = new Set(this.targets);
-              this.wordBag = parsed.filter(word => valid.has(word));
+              const restored = parsed.filter(word => valid.has(word));
+              if (restored.length >= 1000) {
+                this.wordOrder = restored;
+                this.wordIndex = Number.isInteger(savedIndex) && savedIndex >= 0 ? Math.min(savedIndex, restored.length) : 0;
+              }
             }
           }
           const status = document.getElementById('model-status-text');
@@ -1592,7 +1598,8 @@
         } catch (error) {
           console.warn('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
           this.targets = [...this.fallbackTargets];
-          this.wordBag = [];
+          this.wordOrder = [];
+          this.wordIndex = 0;
           const status = document.getElementById('model-status-text');
           if (status) status.textContent = 'Wörterbuch nicht geladen – Ersatzwortliste aktiv.';
         }
@@ -1645,18 +1652,20 @@
         this.roundId++;
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
-        if (!this.wordBag.length) {
-          this.wordBag = [...this.targets];
-          for (let i = this.wordBag.length - 1; i > 0; i--) {
+        if (!this.wordOrder.length || this.wordIndex >= this.wordOrder.length) {
+          this.wordOrder = [...this.targets];
+          for (let i = this.wordOrder.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
-            [this.wordBag[i], this.wordBag[j]] = [this.wordBag[j], this.wordBag[i]];
+            [this.wordOrder[i], this.wordOrder[j]] = [this.wordOrder[j], this.wordOrder[i]];
           }
-          if (this.wordBag.length > 1 && this.wordBag[this.wordBag.length - 1] === this.targetWord) {
-            [this.wordBag[0], this.wordBag[this.wordBag.length - 1]] = [this.wordBag[this.wordBag.length - 1], this.wordBag[0]];
+          if (this.wordOrder.length > 1 && this.wordOrder[0] === this.targetWord) {
+            [this.wordOrder[0], this.wordOrder[1]] = [this.wordOrder[1], this.wordOrder[0]];
           }
+          this.wordIndex = 0;
+          try { localStorage.setItem('playfinity_wordfinity_order_v1', JSON.stringify(this.wordOrder)); } catch (error) { console.warn('[WORDFINITY] Wortreihenfolge konnte nicht gespeichert werden:', error); }
         }
-        this.targetWord = this.wordBag.pop();
-        try { localStorage.setItem('playfinity_wordfinity_word_bag_v1', JSON.stringify(this.wordBag)); } catch (error) { console.warn('[WORDFINITY] Wortvorrat konnte nicht gespeichert werden:', error); }
+        this.targetWord = this.wordOrder[this.wordIndex++];
+        try { localStorage.setItem('playfinity_wordfinity_index_v1', String(this.wordIndex)); } catch (error) { console.warn('[WORDFINITY] Wortposition konnte nicht gespeichert werden:', error); }
         this.categoryHintUsed = false;
         this.wordHintUsed = false;
         const categoryButton = document.getElementById('kontexto-category-hint');
