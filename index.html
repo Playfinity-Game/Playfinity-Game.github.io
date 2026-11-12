@@ -1393,7 +1393,7 @@
       renderBoard() {
         const board = document.getElementById('wordle-board');
         board.innerHTML = '';
-        const rowsToShow = Math.max(6, this.guesses.length + 1);
+        const rowsToShow = 5;
 
         for (let r = 0; r < rowsToShow; r++) {
           const rowDiv = document.createElement('div');
@@ -1441,7 +1441,7 @@
 
       typeLetter(char) {
         if (PauseController.paused) return;
-        if (this.currentGuess.length < 5) {
+        if (!this.roundLocked && this.guesses.length < 5 && this.currentGuess.length < 5) {
           this.currentGuess += char;
           this.renderBoard();
         }
@@ -1449,7 +1449,7 @@
 
       backspace() {
         if (PauseController.paused) return;
-        if (this.currentGuess.length > 0) {
+        if (!this.roundLocked && this.guesses.length < 5 && this.currentGuess.length > 0) {
           this.currentGuess = this.currentGuess.slice(0, -1);
           this.renderBoard();
         }
@@ -1464,7 +1464,7 @@
       },
 
       submitGuess(word, player = null) {
-        if (PauseController.paused || this.roundLocked || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        if (PauseController.paused || this.roundLocked || this.guesses.length >= 5 || !/^[A-ZÄÖÜ]{5}$/.test(word)) return;
         if (this.guesses.some(item => item.word === word)) return;
         // Exakte Auswertung mit Berücksichtigung doppelter Buchstaben
         const targetArr = this.targetWord.split('');
@@ -1509,6 +1509,13 @@
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
           showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
           PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
+        } else if (this.guesses.length >= 5) {
+          this.roundLocked = true;
+          const resultBox=document.getElementById('wordle-round-result');
+          const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
+          resultBox.innerHTML='<div class="round-result-title">⏱️ Keine Versuche mehr!</div><div class="round-result-answer">'+this.targetWord+'</div><div>Das richtige Wort war:</div><div class="kontexto-stats"><span>Versuche: 5 / 5</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
+          resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
+          PauseController.schedule('wordle','roundTimer',()=>this.startNewGame(),7000);
         }
       },
 
