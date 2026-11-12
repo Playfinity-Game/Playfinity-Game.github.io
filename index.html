@@ -778,6 +778,15 @@
     }
       @media(max-width:600px){#pir-input-group{width:100%;gap:8px}#pir-input-group .game-input{min-width:0;padding:12px 10px;font-size:16px}#pir-input-group #pir-submit{flex-basis:44px;width:44px;min-width:44px;height:46px}}
 
+    .correct-answer-overlay{position:fixed;inset:0;z-index:650;display:none;align-items:center;justify-content:center;padding:20px;background:rgba(3,5,18,.88);backdrop-filter:blur(12px)}
+    .correct-answer-overlay.active{display:flex}
+    .correct-answer-card{width:min(520px,100%);padding:clamp(26px,6vw,42px);border:2px solid var(--neon-green);border-radius:22px;background:linear-gradient(145deg,rgba(12,25,38,.98),rgba(18,20,44,.98));box-shadow:0 0 55px rgba(0,255,157,.28);text-align:center;display:flex;flex-direction:column;align-items:center;gap:18px;animation:correctAnswerPop .28s ease-out}
+    .correct-answer-kicker{font-size:.85rem;font-weight:900;letter-spacing:.16em;color:var(--neon-green);text-transform:uppercase}
+    .correct-answer-message{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:950;color:#fff;line-height:1.15}
+    .correct-answer-word{font-size:clamp(2rem,9vw,3.5rem);font-weight:1000;color:var(--neon-cyan);letter-spacing:.05em;text-shadow:0 0 24px rgba(0,240,255,.4);overflow-wrap:anywhere}
+    .correct-answer-timer{color:var(--text-muted);font-size:.9rem}
+    .correct-answer-continue{width:100%;padding:14px 18px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#001018;font-weight:950;font-size:1rem;cursor:pointer}
+    @keyframes correctAnswerPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
     .pause-toggle{border:1px solid var(--neon-cyan);background:rgba(0,240,255,.1);color:var(--neon-cyan);border-radius:9px;padding:8px 11px;font-weight:900;cursor:pointer;min-width:38px}
     body:not(.game-active) #pause-toggle{display:none}
     .pause-toggle[aria-pressed="true"]{border-color:var(--neon-gold);color:var(--neon-gold)}
@@ -988,6 +997,16 @@
   </main>
 
   <div id="pause-overlay" class="pause-overlay" hidden><div class="pause-overlay-card"><div class="pause-overlay-title">SPIEL PAUSIERT</div><p>Chat-Eingaben und Rundentimer sind angehalten.</p><button type="button" id="pause-resume" class="btn-action">Fortsetzen</button></div></div>
+
+  <div id="correct-answer-overlay" class="correct-answer-overlay" role="alertdialog" aria-modal="true" aria-labelledby="correct-answer-message">
+    <div class="correct-answer-card">
+      <div class="correct-answer-kicker">🎉 RICHTIG!</div>
+      <div class="correct-answer-message" id="correct-answer-message">Du hast das Wort erraten!</div>
+      <div class="correct-answer-word" id="correct-answer-word"></div>
+      <div class="correct-answer-timer" id="correct-answer-timer">Die nächste Runde startet gleich …</div>
+      <button type="button" class="correct-answer-continue" id="correct-answer-continue" hidden>Fortfahren ›</button>
+    </div>
+  </div>
 
   <!-- MODAL FÜR ERGEBNISSE & GAME OVER -->
   <div class="modal-overlay" id="app-modal">
@@ -1450,7 +1469,8 @@
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
           resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div><div class="result-countdown">Nächste Runde in 7 Sekunden</div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
-          PauseController.schedule('wordle','roundTimer',()=>this.startNewGame(),7000);
+          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
+          PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
         }
       },
 
@@ -1682,10 +1702,10 @@
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
           const autoAdvance=document.getElementById('kontexto-auto-next').checked;
-          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'<div class="result-countdown">Nächstes Wort in 7 Sekunden</div>':'<button type="button" class="kontexto-next-round" id="kontexto-next-round">Nächstes Wort ›</button>');
+          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'<div class="result-countdown">Nächstes Wort in 7 Sekunden</div>':'');
           resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
-          if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>this.pickNewTarget(),7000);
-          else document.getElementById('kontexto-next-round').addEventListener('click',()=>this.pickNewTarget());
+          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance);
+          if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
           return;
         }
         let sim = 0;
@@ -2051,13 +2071,48 @@
           document.getElementById('pir-source-link').appendChild(sourceLink);
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
-        PauseController.schedule('guesswhat','revealTimer',()=>this.nextQuestion(),7000);
+        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), false, 'Richtig geraten!');
+        PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
       }
     };
 
     /* ==========================================================================
        7. GLOBAL MODAL HELPER
        ========================================================================== */
+    function hideCorrectAnswerOverlay() {
+      const overlay = document.getElementById('correct-answer-overlay');
+      if (overlay) overlay.classList.remove('active');
+      const button = document.getElementById('correct-answer-continue');
+      if (button) { button.hidden = true; button.onclick = null; }
+    }
+
+    function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!') {
+      const overlay = document.getElementById('correct-answer-overlay');
+      const title = document.getElementById('correct-answer-message');
+      const word = document.getElementById('correct-answer-word');
+      const timer = document.getElementById('correct-answer-timer');
+      const button = document.getElementById('correct-answer-continue');
+      if (!overlay || !title || !word || !timer || !button) return;
+      PauseController.clear('correct-answer', 'display');
+      title.textContent = message;
+      word.textContent = 'Das Wort war: ' + answer;
+      timer.textContent = '7 Sekunden';
+      button.hidden = true;
+      button.onclick = null;
+      overlay.classList.add('active');
+      if (manualContinue) {
+        PauseController.schedule('correct-answer', 'display', () => {
+          timer.textContent = 'Du kannst jetzt weiterspielen.';
+          button.hidden = false;
+          button.onclick = () => {
+            PauseController.clear('correct-answer', 'display');
+            hideCorrectAnswerOverlay();
+            if (onContinue) onContinue();
+          };
+        }, 7000);
+      }
+    }
+
     function showModal(title, text, callback) {
       const modal = document.getElementById('app-modal');
       document.getElementById('modal-title').innerText = title;
