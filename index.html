@@ -1990,8 +1990,14 @@
           PauseController.schedule('guesswhat','roundTimer',()=>this.finishRound(),15000);
         }
         const identity = player || { id: 'local-player', name: 'Lokaler Spieler' };
-        if (this.guesses.some(item => item.player.id === identity.id)) return;
-        this.guesses.push({ value: val, player: identity });
+        const existingIndex = this.guesses.findIndex(item => String(item.player.id) === String(identity.id));
+        if (existingIndex >= 0) {
+          const existing = this.guesses[existingIndex];
+          if ((existing.attempts || 1) >= 2) return;
+          this.guesses[existingIndex] = { value: val, player: identity, attempts: (existing.attempts || 1) + 1 };
+        } else {
+          this.guesses.push({ value: val, player: identity, attempts: 1 });
+        }
         this.renderLiveGuesses();
         document.getElementById('pir-input').value = '';
       },
