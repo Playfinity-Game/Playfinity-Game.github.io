@@ -1570,10 +1570,35 @@
         'Musik','Pferd','Telefon','Schmetterling'
       ],
 
+      dictionaryReady: false,
+      dictionaryWords: new Set(),
+      usedTargets: new Set(),
+
+      async loadDictionary() {
+        const statusText = document.getElementById('model-status-text');
+        try {
+          const response = await fetch('data/wordfinity-nouns.json', { cache: 'no-store' });
+          if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
+          const words = await response.json();
+          if (!Array.isArray(words) || words.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
+          this.targets = words;
+          this.dictionaryWords = new Set(words.map(word => String(word).toLocaleLowerCase('de-DE')));
+          this.dictionaryReady = true;
+          return true;
+        } catch (error) {
+          console.error('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
+          if (statusText) statusText.innerText = 'Wörterbuch nicht verfügbar – bitte Seite neu laden.';
+          return false;
+        }
+      },
+
       init() {
         this.initialized = true;
-        this.pickNewTarget();
-        this.initModel();
+        this.loadDictionary().then(ready => {
+          if (!ready) return;
+          this.pickNewTarget();
+          this.initModel();
+        });
 
         document.getElementById('kontexto-submit').onclick = () => {
           if(PauseController.paused)return;
@@ -1616,7 +1641,13 @@
         this.roundId++;
         this.roundLocked = !!this.pipeline;
         this.pendingGuesses.clear();
-        this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
+        let availableTargets = this.targets.filter(word => !this.usedTargets.has(word));
+        if (!availableTargets.length) {
+          this.usedTargets.clear();
+          availableTargets = this.targets.slice();
+        }
+        this.targetWord = availableTargets[Math.floor(Math.random() * availableTargets.length)];
+        this.usedTargets.add(this.targetWord);
         this.categoryHintUsed = false;
         this.wordHintUsed = false;
         const categoryButton = document.getElementById('kontexto-category-hint');
@@ -1691,6 +1722,11 @@
         const cleanWord = String(word || '').trim().normalize('NFC');
         if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
+        if (!this.dictionaryReady || !this.dictionaryWords.has(key)) {
+          const statusText = document.getElementById('model-status-text');
+          if (statusText && this.dictionaryReady) statusText.innerText = 'Dieses Wort steht nicht in der WORDFINITY-Wortliste.';
+          return;
+        }
         if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
