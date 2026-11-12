@@ -3,7 +3,8 @@ name: Build WORDFINITY noun list
 on:
   push:
     branches:
-      - feature/wordfinity-noun-dictionary
+      - main
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -14,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: feature/wordfinity-noun-dictionary
+          ref: ${{ github.ref }}
       - name: Download source dictionary
         run: |
           curl --fail --location --retry 3 \
@@ -31,5 +32,5 @@ jobs:
             echo "Wortliste ist bereits aktuell."
           else
             git commit -m "WORDFINITY: deutsche Nomen-Wortliste erzeugen"
-            git push
+            git push origin "HEAD:${GITHUB_REF_NAME}"
           fi
