@@ -1729,7 +1729,7 @@
       async submitGuess(word, player = null, options = {}) {
         if (PauseController.paused) return;
         const cleanWord = String(word || '').trim().normalize('NFC');
-        if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
+        if (this.roundLocked || !/^[\p{L}]+(?:-[\p{L}]+)*$/u.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
         if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
         this.pendingGuesses.add(key);
