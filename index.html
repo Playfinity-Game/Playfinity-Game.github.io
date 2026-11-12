@@ -1420,7 +1420,7 @@
           if (guess && guess.word === this.targetWord) {
             const winnerLabel = document.createElement('div');
             winnerLabel.className = 'wordle-winner-label';
-            winnerLabel.textContent = '🏆 Erraten von: ' + (guess.player?.name || 'Lokaler Spieler') + (guess.player ? ' · ' + CommunityBoard.winsForPlayer('wordle', guess.player) + '× richtig' : '');
+            winnerLabel.textContent = '🏆 Erraten von: ' + (guess.player?.name || 'Lokaler Spieler') + (guess.player ? ' · ' + (CommunityBoard.winsForPlayer('wordle', guess.player) + 1) + '× richtig' : '');
             rowDiv.appendChild(winnerLabel);
           }
 
