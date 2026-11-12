@@ -1655,22 +1655,34 @@
       },
 
       showCategoryHint() {
-        if (PauseController.paused || this.roundLocked || this.categoryHintUsed) return;
-        const hint = this.targetHints[this.targetWord];
-        if (!hint) return;
-        this.categoryHintUsed = true;
+        if (PauseController.paused || this.categoryHintUsed) return;
+        const targetKey = String(this.targetWord || '').normalize('NFC');
+        const hint = this.targetHints[targetKey];
         const display = document.getElementById('kontexto-category-display');
+        if (!display) return;
+        if (!hint || !hint.category) {
+          display.textContent = 'Für dieses Wort ist kein Kategorie-Tipp hinterlegt.';
+          display.hidden = false;
+          return;
+        }
+        this.categoryHintUsed = true;
         display.textContent = 'Kategorie: ' + hint.category;
         display.hidden = false;
         const button = document.getElementById('kontexto-category-hint');
-        button.disabled = true;
-        button.textContent = '🏷️';
+        if (button) {
+          button.disabled = true;
+          button.title = 'Kategorie-Tipp wurde bereits angezeigt';
+        }
       },
 
       showWordHint() {
-        if (PauseController.paused || this.roundLocked) return;
-        const hint = this.targetHints[this.targetWord];
-        if (!hint) return;
+        if (PauseController.paused) return;
+        const hint = this.targetHints[String(this.targetWord || '').normalize('NFC')];
+        if (!hint || !hint.word) {
+          const statusText = document.getElementById('model-status-text');
+          if (statusText) statusText.textContent = 'Für dieses Wort ist kein Wort-Tipp hinterlegt.';
+          return;
+        }
         this.submitGuess(hint.word, null, { isHint: true });
       },
 
@@ -1758,7 +1770,7 @@
       async submitGuess(word, player = null, options = {}) {
         if (PauseController.paused) return;
         const cleanWord = String(word || '').trim().normalize('NFC');
-        if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
+        if ((this.roundLocked && !options.isHint) || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
         const key = cleanWord.toLocaleLowerCase('de-DE');
         if (!options.isHint && (!this.dictionaryReady || !this.dictionaryWords.has(key))) {
           const statusText = document.getElementById('model-status-text');
@@ -1816,7 +1828,8 @@
           calculatedRank = Math.max(1, calculatedRank - 1);
           while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
         }
-        if(options.isHint){const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);if(calculatedRank>=bestRank){this.pendingGuesses.delete(key);return;}}
+        // Einen explizit angeforderten Wort-Tipp immer anzeigen, auch wenn seine
+        // berechnete Rangnummer nicht besser als ein bereits geratenes Wort ist.
         this.guesses.push({word:cleanWord,rank:calculatedRank,similarity:sim,isHint:!!options.isHint,player:player||null});
         this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
         this.pendingGuesses.delete(key);
