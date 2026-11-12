@@ -664,7 +664,9 @@
        8. GUESSWHAT SCREEN
        ========================================================================== */
     .guesswhat-brand { text-align:center; padding:2px 0 4px; }
-    .guesswhat-title { font-size:clamp(1.8rem,6vw,2.5rem); line-height:1.05; font-weight:1000; letter-spacing:.12em; color:var(--neon-gold); text-shadow:0 0 10px rgba(255,208,0,.45),0 0 26px rgba(255,208,0,.18); }
+    .guesswhat-title { font-size:clamp(1.8rem,6vw,2.5rem); line-height:1.05; font-weight:1000; letter-spacing:.12em; text-shadow:0 0 10px rgba(255,208,0,.25),0 0 26px rgba(255,208,0,.12); }
+    .guesswhat-title .guesswhat-word { color:var(--neon-cyan); text-shadow:0 0 10px rgba(0,229,255,.45),0 0 26px rgba(0,229,255,.18); }
+    .guesswhat-title .guesswhat-what { color:var(--neon-gold); text-shadow:0 0 10px rgba(255,208,0,.45),0 0 26px rgba(255,208,0,.18); }
     .guesswhat-subtitle { margin-top:7px; color:var(--text-muted); font-size:.9rem; font-weight:600; }
     .guesswhat-result-title { color:var(--neon-gold); font-weight:900; letter-spacing:.08em; font-size:.85rem; }
 
@@ -960,7 +962,7 @@
     <section class="screen" id="screen-priceisright">
       <div class="pir-card">
         <div class="guesswhat-brand">
-          <div class="guesswhat-title">GUESSWHAT</div>
+          <div class="guesswhat-title"><span class="guesswhat-word">GUESS</span><span class="guesswhat-what">WHAT</span></div>
           <div class="guesswhat-subtitle">Wie gut kannst du schätzen?</div>
         </div>
         <div class="pir-header">
