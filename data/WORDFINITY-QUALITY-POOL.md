@@ -16,7 +16,8 @@ and is not connected to live game selection.
 ## Selection rules
 
 - Keep only Universal POS tags `NOUN` and `VERB`; proper nouns (`PROPN`)
-  and all other word classes are excluded.
+  and all other word classes are excluded. If UD17 tags are absent, use a
+  conservative fallback for common German noun and verb POS tags.
 - Use the corpus base form (lemma), aggregating frequencies of inflected forms.
 - Keep German alphabetic words only; reject punctuation, digits, multiword entries,
   hyphenated entries and all-uppercase entries.
