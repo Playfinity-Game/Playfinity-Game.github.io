@@ -104,13 +104,14 @@ def build_word_lists_from_sentences(lines, nlp, excluded_words=None):
     """Use contextual German POS tagging when the corpus has no POS word list."""
     excluded = {word.casefold() for word in (excluded_words or set())}
     totals = {"NOUN": defaultdict(int), "VERB": defaultdict(int)}
-    texts = []
-    for raw_line in lines:
-        fields = raw_line.rstrip("\\r\\n").split("\\t", 1)
-        if len(fields) == 2 and fields[1].strip():
-            texts.append(fields[1].strip())
 
-    for doc in nlp.pipe(texts, batch_size=500):
+    def sentence_texts():
+        for raw_line in lines:
+            fields = raw_line.rstrip("\r\n").split("\t", 1)
+            if len(fields) == 2 and fields[1].strip():
+                yield fields[1].strip()
+
+    for doc in nlp.pipe(sentence_texts(), batch_size=500):
         for token in doc:
             if token.pos_ not in totals or token.is_punct or token.is_space:
                 continue
