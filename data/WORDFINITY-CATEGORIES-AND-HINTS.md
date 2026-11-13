@@ -2,29 +2,29 @@
 
 ## Kategorie-Katalog
 
-Die semantische Zuordnung verwendet aktuell diese 21 Kategorien:
+Die semantische Zuordnung verwendet aktuell diese 21 Kategorien. Die Definitionen legen bewusst fest, welche Art von Begriff Vorrang hat, wenn Themen überlappen:
 
-1. **Tiere** – Säugetiere, Vögel, Fische, Insekten, Reptilien, Amphibien, Haustiere und Wildtiere
-2. **Pflanzen und Pilze** – Bäume, Blumen, Gräser, Kräuter, Gemüse, Obstpflanzen und Pilze
-3. **Essen und Getränke** – Lebensmittel, Speisen, Zutaten, Obst, Gemüse, Süßigkeiten, Backwaren und Getränke
-4. **Körper und Gesundheit** – Körperteile, Organe, Krankheiten, Medizin, Gesundheit und Pflege
-5. **Kleidung und Accessoires** – Kleidung, Schuhe, Stoffe, Schmuck und Taschen
-6. **Haushalt und Wohnen** – Möbel, Haushaltsgegenstände, Räume, Küche, Bad und Einrichtung
-7. **Werkzeuge und Materialien** – Werkzeuge, Handwerk, Baustoffe und Werkstoffe
-8. **Technik und Elektronik** – technische Geräte, Computer, Elektronik, Maschinen und Software
-9. **Fahrzeuge und Verkehr** – Autos, Fahrräder, Schiffe, Flugzeuge und Verkehrsmittel
-10. **Berufe und Menschen** – Berufe, Tätigkeiten, Berufsgruppen und menschliche Rollen
-11. **Orte und Gebäude** – Gebäude, Bauwerke, Städte und Einrichtungen
-12. **Geografie und Landschaften** – Länder, Regionen, Landschaften, Gewässer, Berge und Inseln
-13. **Wetter und Jahreszeiten** – Wetter, Klima, Jahreszeiten und Naturereignisse
-14. **Weltraum und Himmelskörper** – Sterne, Planeten, Monde, Galaxien, Astronomie und Raumfahrt
-15. **Sport und Freizeit** – Sportarten, Spiele, Hobbys, Spielzeug und Erholung
-16. **Kunst und Unterhaltung** – Kunst, Musik, Film, Theater, Literatur und Medien
-17. **Sprache und Kommunikation** – Sprache, Wörter, Schrift, Nachrichten und Informationsaustausch
-18. **Wissenschaft und Bildung** – Forschung, Mathematik, Physik, Chemie, Schule und Bildung
-19. **Gefühle und Eigenschaften** – Emotionen, Charaktereigenschaften und Zustände
-20. **Gesellschaft und Geschichte** – Gesellschaft, Politik, Geschichte, Kultur, Religion, Recht und Wirtschaft
-21. **Fantasie und Fabelwesen** – Zauberer, Hexen, Drachen, Fabelwesen, Märchenfiguren und erfundene magische Figuren
+1. **Tiere** – Reale Lebewesen aus dem Tierreich; keine Fabelwesen.
+2. **Pflanzen und Pilze** – Botanische Lebewesen und Pflanzenteile; essbare Produkte als Lebensmittel gehören zu Essen und Getränke.
+3. **Essen und Getränke** – Essbare Lebensmittel, Zutaten, Speisen und Trinkbares; botanische Arten als Lebewesen gehören zu Pflanzen und Pilze.
+4. **Körper und Gesundheit** – Körperteile, Organe, Krankheiten, Symptome, Medizin, Behandlung und Pflege.
+5. **Kleidung und Accessoires** – Getragene Kleidung, Schuhe, Schmuck, Taschen und Modeartikel.
+6. **Haushalt und Wohnen** – Möbel, Geschirr, Haushaltsgeräte, Wohnräume und Dinge des täglichen Wohnens.
+7. **Werkzeuge und Materialien** – Handwerkzeuge, Baugeräte und Werkstoffe zur Herstellung, Reparatur oder Konstruktion.
+8. **Technik und Elektronik** – Elektronische und digitale Geräte, Computer, Software, Maschinen und technische Systeme.
+9. **Fahrzeuge und Verkehr** – Fortbewegungsmittel, Verkehrsanlagen und Verkehrsbegriffe.
+10. **Berufe und Menschen** – Reale Menschen, Personengruppen, Rollen, Berufe und berufliche Tätigkeiten.
+11. **Orte und Gebäude** – Von Menschen geschaffene oder genutzte konkrete Bauwerke und Einrichtungen; keine natürlichen Landschaften.
+12. **Geografie und Landschaften** – Natürliche und politische geografische Räume, Länder, Regionen, Gewässer, Berge und Inseln.
+13. **Wetter und Jahreszeiten** – Atmosphärische Zustände, Wetterereignisse, Jahreszeiten und Klimaerscheinungen.
+14. **Weltraum und Himmelskörper** – Objekte und Phänomene außerhalb der Erde sowie Astronomie und Raumfahrt.
+15. **Sport und Freizeit** – Sportarten, Wettkämpfe, Freizeitaktivitäten, Hobbys, Spiele und Spielzeug.
+16. **Kunst und Unterhaltung** – Künstlerische Werke und Ausdrucksformen sowie Kultur- und Unterhaltungsmedien.
+17. **Sprache und Kommunikation** – Wörter, Schrift, Grammatik, Sprachen und Informationsaustausch.
+18. **Wissenschaft und Bildung** – Wissenschaftliche Fachgebiete, Forschung, Lehrinhalte, Schule und Unterricht.
+19. **Gefühle und Eigenschaften** – Abstrakte Emotionen, Stimmungen, Charakterzüge, Bewertungen und Zustände.
+20. **Gesellschaft und Geschichte** – Gesellschaftliche Systeme, Politik, Recht, Religion, Wirtschaft, Kultur und historische Ereignisse.
+21. **Fantasie und Fabelwesen** – Erfundenes Übernatürliches, magische Figuren und Märchenwesen; reale Tiere gehören zu Tiere.
 
 ## Redaktionell festgelegte Beispiel-Zuordnungen
 
