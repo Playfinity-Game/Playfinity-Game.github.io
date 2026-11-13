@@ -22,7 +22,6 @@ jobs:
         run: python3 -m unittest discover -s tests -p 'test_wordfinity_quality_pool.py'
 
   build:
-    if: github.event_name == 'workflow_dispatch'
     needs: test
     runs-on: ubuntu-latest
     steps:
