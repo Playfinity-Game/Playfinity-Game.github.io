@@ -1,6 +1,6 @@
 # WORDFINITY – streng geprüfte Nomen-Wortliste
 
-Diese strenge Nomenliste ist als **aktive WORDFINITY-Wortliste** vorgesehen. Der Workflow erstellt sie aus der Leipzig Corpora Collection, testet die Filterregeln und veröffentlicht die erzeugte JSON-Liste als `data/wordfinity-nouns.json`. Genau diese Datei lädt Wordfinity beim Start.
+Diese strenge Nomenliste ist die **aktive WORDFINITY-Wortliste**. Die bisherige große Liste wird beim nächsten erfolgreichen Build einmalig unter `data/archive/wordfinity-nouns-legacy.json` archiviert und danach nicht mehr vom Spiel geladen. Der Workflow erstellt sie aus der Leipzig Corpora Collection, testet die Filterregeln und veröffentlicht die erzeugte JSON-Liste als `data/wordfinity-nouns.json`. Genau diese Datei lädt Wordfinity beim Start.
 
 ## Qualitätsregeln
 
