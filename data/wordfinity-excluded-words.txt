@@ -1,0 +1,3 @@
+# Ein Wort pro Zeile; Groß-/Kleinschreibung wird ignoriert.
+# Beispiele, die ausdrücklich nicht als WORDFINITY-Zielwörter erscheinen sollen:
+Brötchentaste
