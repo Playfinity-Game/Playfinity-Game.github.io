@@ -1656,6 +1656,7 @@
       usedTargets: new Set(),
       wordHintCandidatesTried: new Set(),
       categoryEmbeddingCache: null,
+      categoryAssignments: new Map(),
       categoryProfiles: [
         { name: 'Tiere', description: 'Reale Lebewesen aus dem Tierreich: Säugetiere, Vögel, Fische, Insekten, Reptilien, Amphibien, Haustiere und Wildtiere. Beispiele Hund, Pferd, Adler, Biene. Keine Pflanzen oder erfundenen Fabelwesen.' },
         { name: 'Pflanzen und Pilze', description: 'Botanische Lebewesen und ihre Teile: Bäume, Blumen, Gräser, Kräuter, Moose, Farne, Pilze, Wurzeln und Blätter. Beispiele Eiche, Rose, Moos, Champignon. Obst und Gemüse als Lebensmittel gehören zu Essen und Getränke.' },
@@ -1698,6 +1699,18 @@
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
           // Every valid noun in the dictionary can become a target, not just the curated examples.
           this.dictionaryTargetWords = uniqueWords;
+          // Vorberechnete Kategorien für das gesamte Wörterbuch laden, falls der Batch-Job sie erzeugt hat.
+          try {
+            const categoryResponse = await fetch('data/wordfinity-categories.json', { cache: 'no-store' });
+            if (categoryResponse.ok) {
+              const categoryData = await categoryResponse.json();
+              if (categoryData && categoryData.categories && typeof categoryData.categories === 'object') {
+                this.categoryAssignments = new Map(Object.entries(categoryData.categories));
+              }
+            }
+          } catch (categoryError) {
+            console.warn('[WORDFINITY] Vorberechnete Kategorien nicht verfügbar; nutze Live-Zuordnung:', categoryError);
+          }
           this.dictionaryReady = true;
           return true;
         } catch (error) {
@@ -1739,6 +1752,8 @@
         const key = String(word || '').normalize('NFC');
         const curated = this.targetHints[key];
         if (curated && curated.category) return curated.category;
+        const storedCategory = this.categoryAssignments.get(key.toLocaleLowerCase('de-DE'));
+        if (storedCategory) return storedCategory;
         if (!this.pipeline) return 'Allgemeiner Begriff';
         const profiles = await this.getCategoryEmbeddings();
         const wordEmbedding = this.targetWord === key && this.targetEmbedding
