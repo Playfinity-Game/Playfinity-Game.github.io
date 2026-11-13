@@ -321,15 +321,17 @@
     .wordle-grid {
       display: flex;
       flex-direction: column;
+      flex: 0 0 auto;
       gap: 6px;
       width: 100%;
       max-width: 320px;
-      max-height: 55vh;
-      overflow-y: auto;
-      overscroll-behavior: contain;
+      overflow: hidden;
+      overscroll-behavior: none;
       margin: 10px auto;
       padding-right: 4px;
     }
+
+    .wordle-row { flex: 0 0 auto; }
 
     .wordle-row {
       display: grid;
@@ -443,7 +445,7 @@
     .key-btn.absent { background: #181a30; color: #555c7a; opacity: 0.6; }
     .screen#screen-wordle { min-height: calc(100vh - 64px); }
     .screen#screen-wordle .wordle-container { justify-content:flex-start; gap:10px; padding-top:4px; }
-    @media(max-width:600px){header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw)}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
+    @media(max-width:600px){header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw);overflow:hidden}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
 
     /* ==========================================================================
        6. KONTEXTO SCREEN
@@ -1420,7 +1422,9 @@
         const board = document.getElementById('wordle-board');
         board.innerHTML = '';
         const visibleGuesses = this.guesses;
-        const totalRows = visibleGuesses.length + (this.roundLocked ? 0 : 1);
+        // Mindestens sechs Rasterzeilen reservieren; weitere Versuche bleiben im DOM,
+        // werden aber unterhalb des festen sichtbaren Bereichs abgeschnitten.
+        const totalRows = Math.max(6, visibleGuesses.length + (this.roundLocked ? 0 : 1));
 
         for (let r = 0; r < totalRows; r++) {
           const rowDiv = document.createElement('div');
@@ -1452,6 +1456,14 @@
           }
 
           board.appendChild(rowDiv);
+        }
+
+        // Die Höhe des Boards entspricht immer exakt sechs Wortraster-Zeilen.
+        const firstRow = board.querySelector('.wordle-row');
+        if (firstRow) {
+          const rowHeight = firstRow.getBoundingClientRect().height;
+          const rowGap = parseFloat(getComputedStyle(board).rowGap) || 0;
+          board.style.height = (rowHeight * 6 + rowGap * 5) + 'px';
         }
       },
 
