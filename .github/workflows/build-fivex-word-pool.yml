@@ -1,0 +1,32 @@
+name: Build FiveX word pool
+
+on:
+  push:
+    branches:
+      - fivex-5000-wortpool
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+        with:
+          ref: fivex-5000-wortpool
+      - name: Python einrichten
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: 5.000 Wörter zusammenstellen und prüfen
+        run: python scripts/build_fivex_word_pool.py
+      - name: Wortliste in den Branch übernehmen
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/fivex-words.json
+          git commit -m "Generate FiveX 5-letter German word pool [skip ci]"
+          git push
