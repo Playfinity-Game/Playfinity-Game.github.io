@@ -145,7 +145,7 @@ def read_leipzig_archive(archive_path: Path):
     with tarfile.open(archive_path, "r:gz") as archive:
         members = [member for member in archive.getmembers() if member.isfile()]
         # POS/baseform files are preferred where the corpus provides them.
-        pos_members = [m for m in members if m.name.endswith("_words_pos_base.txt")]
+        pos_members = [m for m in members if m.name.endswith(("_words_pos_base.txt", "-words-pos-base.txt"))]
         if pos_members:
             member = next(
                 (item for item in pos_members if Path(item.name).name.startswith(CORPUS_ID)),
@@ -157,8 +157,8 @@ def read_leipzig_archive(archive_path: Path):
             with io.TextIOWrapper(extracted, encoding="utf-8") as handle:
                 return build_word_lists(handle, load_exclusions(DEFAULT_EXCLUSIONS))
 
-        # The current 2023 news archive provides sentences but no POS word list.
-        sentence_members = [m for m in members if m.name.endswith("_sentences.txt")]
+        # The current 2023 news archive provides sentences but no POS word list. Leipzig filenames use hyphens; older variants may use underscores.
+        sentence_members = [m for m in members if m.name.endswith(("_sentences.txt", "-sentences.txt"))]
         if not sentence_members:
             raise SystemExit("Im Leipzig-Archiv fehlt sowohl *_words_pos_base.txt als auch *_sentences.txt.")
         member = next(
