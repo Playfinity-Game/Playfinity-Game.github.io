@@ -47,6 +47,15 @@ jobs:
         run: |
           python3 scripts/build_wordfinity_quality_pool.py \
             /tmp/deu_news_2023_1M.tar.gz
+      - name: Archive the previous large WORDFINITY dictionary
+        run: |
+          mkdir -p data/archive
+          if [ -f data/wordfinity-nouns.json ] && [ ! -f data/archive/wordfinity-nouns-legacy.json ]; then
+            cp data/wordfinity-nouns.json data/archive/wordfinity-nouns-legacy.json
+            echo "Bisherige aktive Wortliste wurde außerhalb des Spielpfads archiviert."
+          else
+            echo "Keine neue Archivkopie erforderlich."
+          fi
       - name: Publish strict nouns as the active WORDFINITY dictionary
         run: |
           python3 - <<'PY'
@@ -76,7 +85,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/wordfinity-nouns.json
+          git add data/wordfinity-nouns.json data/archive/wordfinity-nouns-legacy.json
           if ! git diff --cached --quiet; then
             git commit -m "Update WORDFINITY with strictly filtered nouns"
             git push
