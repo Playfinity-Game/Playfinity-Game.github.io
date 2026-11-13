@@ -1361,14 +1361,23 @@
       roundTimer: null,
       solvedRounds: 0,
 
-      // Ausgewählte deutsche 5-Buchstaben-Wörter
-      wordPool: [
-        'TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER',
-        'VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD',
-        'BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE',
-        'KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE',
-        'MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'
-      ],
+      // Die geprüfte FIVE-X-Wortliste wird aus data/fivex-words.json geladen.
+      wordPool: ['TRAUM','STERN','APFEL','BLUME','SONNE'],
+      wordPoolLoadPromise: null,
+
+      async loadWordPool() {
+        if (!this.wordPoolLoadPromise) {
+          this.wordPoolLoadPromise = fetch('data/fivex-words.json', { cache: 'no-store' })
+            .then(response => { if (!response.ok) throw new Error('FIVE-X-Wortliste konnte nicht geladen werden'); return response.json(); })
+            .then(words => {
+              if (!Array.isArray(words) || words.length < 1000 || words.some(word => !/^[A-ZÄÖÜ]{5}$/.test(word))) throw new Error('FIVE-X-Wortliste ist ungültig');
+              this.wordPool = [...new Set(words)];
+              return true;
+            })
+            .catch(error => { console.error('[FIVE X] Wortliste konnte nicht geladen werden:', error); return false; });
+        }
+        return this.wordPoolLoadPromise;
+      },
 
       init() {
         if (this.initialized) return;
@@ -1377,9 +1386,10 @@
         this.initialized = true;
       },
 
-      startNewGame() {
+      async startNewGame() {
         PauseController.clear('wordle','roundTimer');
         this.init();
+        await this.loadWordPool();
         this.roundLocked = false;
         this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
         this.guesses = [];
@@ -1393,14 +1403,15 @@
       renderBoard() {
         const board = document.getElementById('wordle-board');
         board.innerHTML = '';
-        const visibleGuesses = this.guesses.slice(0, 4);
+        const visibleGuesses = this.guesses;
+        const totalRows = visibleGuesses.length + (this.roundLocked ? 0 : 1);
 
-        for (let r = 0; r < 5; r++) {
+        for (let r = 0; r < totalRows; r++) {
           const rowDiv = document.createElement('div');
           rowDiv.className = 'wordle-row';
 
           const guess = visibleGuesses[r];
-          const isCurrentRow = (r === visibleGuesses.length);
+          const isCurrentRow = (r === visibleGuesses.length && !this.roundLocked);
 
           for (let c = 0; c < 5; c++) {
             const cell = document.createElement('div');
@@ -1493,8 +1504,8 @@
           }
         }
 
-        // Neueste Eingabe steht immer oben; ältere Versuche rutschen nach unten.
-        this.guesses.unshift({ word, result, player: player || null });
+        // Chronologische Reihenfolge: jeder neue Versuch erscheint unter dem vorherigen.
+        this.guesses.push({ word, result, player: player || null });
         this.updateKeyboardColors(word, result);
         this.renderBoard();
 
