@@ -122,9 +122,6 @@ def build_word_lists(lines, excluded_words=None, noun_limit=MAX_NOUNS, verb_limi
     totals["NOUN"] = merge_spelling_variants(totals["NOUN"])
     totals["VERB"] = merge_spelling_variants(totals["VERB"])
 
-    totals["NOUN"] = merge_spelling_variants(totals["NOUN"])
-    totals["VERB"] = merge_spelling_variants(totals["VERB"])
-
     nouns = sorted(
         ((word, count) for word, count in totals["NOUN"].items() if count >= MIN_FREQUENCY),
         key=lambda item: (-item[1], item[0].casefold()),
@@ -166,6 +163,9 @@ def build_word_lists_from_sentences(lines, nlp, excluded_words=None):
                 if not lemma.endswith(("en", "n")) or len(lemma) > 22:
                     continue
             totals[token.pos_][lemma] += 1
+
+    totals["NOUN"] = merge_spelling_variants(totals["NOUN"])
+    totals["VERB"] = merge_spelling_variants(totals["VERB"])
 
     nouns = sorted(
         ((word, count) for word, count in totals["NOUN"].items() if count >= MIN_FREQUENCY),
