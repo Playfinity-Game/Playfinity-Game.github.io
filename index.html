@@ -1592,14 +1592,14 @@
         Kamera: { category: 'Technik und Elektronik', word: 'Foto', words: ['Foto','Fotografie','Objektiv','Linse','Blende','Auslöser','Bild','Videokamera'] },
         Sonne: { category: 'Weltraum und Himmelskörper', word: 'Stern', words: ['Stern','Licht','Wärme','Planet','Sonnensystem','Strahlung','Himmel','Sonnenlicht'] },
         Kuchen: { category: 'Essen und Getränke', word: 'Torte', words: ['Torte','Backen','Teig','Gebäck','Zucker','Mehl','Sahne','Dessert'] },
-        Winter: { category: 'Jahreszeit', word: 'Schnee', words: ['Schnee','Kälte','Frost','Eis','Weihnachten','Winterjacke','Schlitten','Dezember'] },
+        Winter: { category: 'Wetter und Jahreszeiten', word: 'Schnee', words: ['Schnee','Kälte','Frost','Eis','Weihnachten','Winterjacke','Schlitten','Dezember'] },
         Rakete: { category: 'Weltraum und Himmelskörper', word: 'Weltraum', words: ['Weltraum','Astronaut','Start','Triebwerk','Mond','Raumfahrt','Satellit','Raketenstart'] },
         Wald: { category: 'Pflanzen und Pilze', word: 'Bäume', words: ['Bäume','Forst','Holz','Rehe','Pilze','Moos','Lichtung','Waldboden'] },
         Insel: { category: 'Geografie und Landschaften', word: 'Strand', words: ['Strand','Meer','Küste','Palme','Atoll','Archipel','Urlaub','Eiland'] },
         Musik: { category: 'Kunst und Unterhaltung', word: 'Lied', words: ['Lied','Melodie','Rhythmus','Klang','Instrument','Gesang','Konzert','Noten'] },
-        Pferd: { category: 'Tier', word: 'Reiten', words: ['Reiten','Stute','Hengst','Fohlen','Pferdestall','Hufe','Mähne','Koppel'] },
+        Pferd: { category: 'Tiere', word: 'Reiten', words: ['Reiten','Stute','Hengst','Fohlen','Pferdestall','Hufe','Mähne','Koppel'] },
         Telefon: { category: 'Technik und Elektronik', word: 'Anruf', words: ['Anruf','Handy','Smartphone','Telefonat','Hörer','Wählen','Nachricht','Kommunikation'] },
-        Schmetterling: { category: 'Tier', word: 'Flügel', words: ['Flügel','Raupe','Puppe','Falter','Schmetterlingsflügel','Blüte','Nektar','Insekt'] }
+        Schmetterling: { category: 'Tiere', word: 'Flügel', words: ['Flügel','Raupe','Puppe','Falter','Schmetterlingsflügel','Blüte','Nektar','Insekt'] }
       },
 
       // 20 deutsche Zielwörter
@@ -1752,19 +1752,44 @@
         if (statusText) statusText.textContent = 'Wort-Tipp wird gesucht …';
 
         try {
-          // Für die ursprünglichen Zielwörter zuerst die redaktionell gepflegten Tipps nutzen.
+          // Redaktionelle Tipps als Batch bewerten, statt jeden Tipp einzeln durch das Modell zu schicken.
           const curated = this.targetHints[String(requestedTarget || '').normalize('NFC')];
           const curatedCandidates = curated
             ? (Array.isArray(curated.words) ? curated.words : [curated.word].filter(Boolean))
             : [];
-          for (const candidate of curatedCandidates) {
-            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+          const usableCurated = curatedCandidates.filter(candidate => {
             const key = String(candidate).toLocaleLowerCase('de-DE');
-            if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) continue;
-            const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
-            if (added) {
-              if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
-              return;
+            return !this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) && !this.pendingGuesses.has(key);
+          });
+
+          if (usableCurated.length && this.pipeline) {
+            if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(requestedTarget);
+            const embeddings = await this.getEmbeddings(usableCurated);
+            const ranked = usableCurated.map((word, index) => ({
+              word,
+              similarity: this.cosineSimilarity(this.targetEmbedding, embeddings[index])
+            })).sort((a, b) => b.similarity - a.similarity);
+            for (const candidate of ranked) {
+              if (requestedRoundId !== this.roundId || PauseController.paused) return;
+              const added = await this.submitGuess(candidate.word, null, {
+                isHint: true,
+                requireBetterRank: true,
+                precomputedSimilarity: candidate.similarity
+              });
+              if (added) {
+                if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
+                return;
+              }
+            }
+          } else {
+            // Im lokalen Fallback die redaktionellen Tipps weiterhin einzeln prüfen.
+            for (const candidate of usableCurated) {
+              if (requestedRoundId !== this.roundId || PauseController.paused) return;
+              const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
+              if (added) {
+                if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
+                return;
+              }
             }
           }
 
@@ -1808,18 +1833,12 @@
             return;
           }
 
-          const output = await this.pipeline(candidates, { pooling: 'mean', normalize: true });
-          const dims = output && output.dims ? output.dims : [];
-          const width = dims[dims.length - 1];
-          if (!width || output.data.length < candidates.length * width) {
-            throw new Error('Unerwartetes Format der Wort-Embeddings');
-          }
-
-          const rankedCandidates = candidates.map((candidate, index) => {
-            const start = index * width;
-            const embedding = Array.from(output.data.slice(start, start + width));
-            return { word: candidate, similarity: this.cosineSimilarity(this.targetEmbedding, embedding) };
-          }).sort((a, b) => b.similarity - a.similarity);
+          if (statusText) statusText.textContent = 'Prüfe ' + candidates.length + ' Tipp-Kandidaten …';
+          const candidateEmbeddings = await this.getEmbeddings(candidates);
+          const rankedCandidates = candidates.map((candidate, index) => ({
+            word: candidate,
+            similarity: this.cosineSimilarity(this.targetEmbedding, candidateEmbeddings[index])
+          })).sort((a, b) => b.similarity - a.similarity);
 
           for (const candidate of rankedCandidates) {
             if (requestedRoundId !== this.roundId || PauseController.paused) return;
