@@ -43,6 +43,7 @@ SPELLING_FIXES = {
     "ausschliessen": "ausschließen", "begrüssen": "begrüßen",
     "schiessen": "schießen", "fliessen": "fließen", "reissen": "reißen",
     "vergrössern": "vergrößern", "büssen": "büßen", "versüssen": "versüßen",
+    "äusseren": "äußeren",
 }
 
 
