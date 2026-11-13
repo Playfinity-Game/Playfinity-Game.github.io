@@ -319,12 +319,16 @@
     }
 
     .wordle-grid {
-      display: grid;
-      grid-template-rows: repeat(6, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 6px;
       width: 100%;
       max-width: 320px;
+      max-height: 55vh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
       margin: 10px auto;
+      padding-right: 4px;
     }
 
     .wordle-row {
