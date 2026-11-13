@@ -1,0 +1,54 @@
+name: Build WORDFINITY quality candidate pool
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/build-wordfinity-quality-pool.yml"
+      - "scripts/build_wordfinity_quality_pool.py"
+      - "tests/test_wordfinity_quality_pool.py"
+      - "data/wordfinity-excluded-words.txt"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run filter tests
+        run: python3 -m unittest discover -s tests -p 'test_wordfinity_quality_pool.py'
+
+  build:
+    if: github.event_name == 'workflow_dispatch'
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Leipzig frequency corpus
+        run: |
+          curl --fail --location --retry 3 \
+            https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz \
+            --output /tmp/deu_news_2023_1M.tar.gz
+      - name: Build candidate pool
+        run: |
+          python3 scripts/build_wordfinity_quality_pool.py \
+            /tmp/deu_news_2023_1M.tar.gz
+      - name: Show generated summary
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          data = json.loads(Path("data/wordfinity-quality-candidates.json").read_text(encoding="utf-8"))
+          print(json.dumps(data["counts"], ensure_ascii=False, indent=2))
+          print("Nomen-Beispiele:", ", ".join(data["nouns"][:20]))
+          print("Verb-Beispiele:", ", ".join(data["verbs"][:20]))
+          PY
+      - name: Upload candidate pool for review
+        uses: actions/upload-artifact@v4
+        with:
+          name: wordfinity-quality-candidates
+          path: data/wordfinity-quality-candidates.json
+          if-no-files-found: error
+          retention-days: 30
