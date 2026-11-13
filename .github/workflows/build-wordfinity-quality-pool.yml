@@ -1,13 +1,28 @@
 name: Build WORDFINITY quality candidate pool
 
 on:
+  pull_request:
+    paths:
+      - ".github/workflows/build-wordfinity-quality-pool.yml"
+      - "scripts/build_wordfinity_quality_pool.py"
+      - "tests/test_wordfinity_quality_pool.py"
+      - "data/wordfinity-excluded-words.txt"
   workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run filter tests
+        run: python3 -m unittest discover -s tests -p 'test_wordfinity_quality_pool.py'
+
   build:
+    if: github.event_name == 'workflow_dispatch'
+    needs: test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -20,8 +35,6 @@ jobs:
         run: |
           python3 scripts/build_wordfinity_quality_pool.py \
             /tmp/deu_news_2023_1M.tar.gz
-      - name: Run filter tests
-        run: python3 -m unittest discover -s tests -p 'test_wordfinity_quality_pool.py'
       - name: Show generated summary
         run: |
           python3 - <<'PY'
