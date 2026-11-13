@@ -18,10 +18,10 @@ jobs:
             --output /tmp/deu_news_2023_1M.tar.gz
       - name: Build candidate pool
         run: |
-          python3 scripts/build-wordfinity-quality-pool.py \
+          python3 scripts/build_wordfinity_quality_pool.py \
             /tmp/deu_news_2023_1M.tar.gz
       - name: Run filter tests
-        run: python3 -m unittest tests.test_wordfinity_quality_pool
+        run: python3 -m unittest discover -s tests -p 'test_wordfinity_quality_pool.py'
       - name: Show generated summary
         run: |
           python3 - <<'PY'
