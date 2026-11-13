@@ -23,6 +23,37 @@ def normalize_word(value: str) -> str:
     return unicodedata.normalize("NFC", value.strip())
 
 
+
+# Alte Schreibweisen werden auf die heutige deutsche Rechtschreibung vereinheitlicht.
+# Bedeutungsverschiedene Wörter wie „Masse“ und „Maße“ bleiben ausdrücklich getrennt.
+SPELLING_FIXES = {
+    "Strasse": "Straße", "Massnahme": "Maßnahme", "Fuss": "Fuß",
+    "Prozeß": "Prozess", "Abschluß": "Abschluss", "Fussball": "Fußball",
+    "Anlaß": "Anlass", "Einfluß": "Einfluss", "Grossteil": "Großteil",
+    "Schloß": "Schloss", "Schuß": "Schuss", "Aussenminister": "Außenminister",
+    "Ausmass": "Ausmaß", "Mass": "Maß", "Schliessung": "Schließung",
+    "Haß": "Hass", "Paß": "Pass", "Fluß": "Fluss",
+    "Kompromiß": "Kompromiss", "Beschluß": "Beschluss",
+    "Zuschuß": "Zuschuss", "Kongreß": "Kongress", "Erdgeschoß": "Erdgeschoss",
+    "Riß": "Riss", "Ausschuß": "Ausschuss", "Grossbank": "Großbank",
+    "Untersuchungsausschuß": "Untersuchungsausschuss", "Boß": "Boss",
+    "Engpaß": "Engpass", "Überschuß": "Überschuss", "Beschuß": "Beschuss",
+    "heissen": "heißen", "schliessen": "schließen", "äussern": "äußern",
+    "abschliessen": "abschließen", "stossen": "stoßen", "geniessen": "genießen",
+    "ausschliessen": "ausschließen", "begrüssen": "begrüßen",
+    "schiessen": "schießen", "fliessen": "fließen", "reissen": "reißen",
+    "vergrössern": "vergrößern", "büssen": "büßen", "versüssen": "versüßen",
+}
+
+
+def merge_spelling_variants(totals):
+    """Combine known old/new spellings before applying the word-count limits."""
+    merged = defaultdict(int)
+    for word, frequency in totals.items():
+        merged[SPELLING_FIXES.get(word, word)] += frequency
+    return merged
+
+
 def load_exclusions(path: Path) -> set[str]:
     if not path.exists():
         return set()
@@ -87,6 +118,12 @@ def build_word_lists(lines, excluded_words=None, noun_limit=MAX_NOUNS, verb_limi
                 continue
 
         totals[word_class][lemma] += frequency
+
+    totals["NOUN"] = merge_spelling_variants(totals["NOUN"])
+    totals["VERB"] = merge_spelling_variants(totals["VERB"])
+
+    totals["NOUN"] = merge_spelling_variants(totals["NOUN"])
+    totals["VERB"] = merge_spelling_variants(totals["VERB"])
 
     nouns = sorted(
         ((word, count) for word, count in totals["NOUN"].items() if count >= MIN_FREQUENCY),
