@@ -15,10 +15,10 @@ env.useBrowserCache = false;
 
 const source = await fs.readFile(INDEX, 'utf8');
 const profileStart = source.indexOf('categoryProfiles: [');
-const profileEnd = source.indexOf('\\n      ],\\n      async loadDictionary', profileStart);
+const profileEnd = source.indexOf('\n      ],\n      async loadDictionary', profileStart);
 if (profileStart < 0 || profileEnd < 0) throw new Error('categoryProfiles konnten nicht aus index.html gelesen werden');
 const profileText = source.slice(profileStart, profileEnd);
-const profiles = [...profileText.matchAll(/\\{\\s*name: '([^']+)', description: '([^']*)' \\}/g)]
+const profiles = [...profileText.matchAll(/\{\s*name: '([^']+)', description: '([^']*)' \}/g)]
   .map(match => ({ name: match[1], description: match[2] }));
 if (profiles.length < 15) throw new Error(`Zu wenige Kategorien erkannt: ${profiles.length}`);
 
