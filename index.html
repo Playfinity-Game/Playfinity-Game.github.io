@@ -1611,6 +1611,7 @@
       modelReadyPromise: null,
       targetWord: '',
       targetEmbedding: null,
+      embeddingCache: new Map(),
       guesses: [],
       roundLocked: false,
       roundTimer: null,
@@ -1709,11 +1710,15 @@
 
       init() {
         this.initialized = true;
-        this.loadDictionary().then(ready => {
-          if (!ready) return;
-          this.pickNewTarget();
-          this.modelReadyPromise = this.initModel();
-        });
+        // Ein einziges, sofort verfügbares Promise verhindert Klick-Rennen,
+        // während Wörterbuch und KI-Modell initialisiert werden.
+        this.modelReadyPromise = (async () => {
+          const ready = await this.loadDictionary();
+          if (!ready) return false;
+          await this.pickNewTarget();
+          await this.initModel();
+          return true;
+        })();
 
         document.getElementById('kontexto-submit').onclick = () => {
           if(PauseController.paused)return;
@@ -1805,7 +1810,10 @@
 
           if (usableCurated.length && this.pipeline) {
             if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(requestedTarget);
+            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+            if (!this.targetEmbedding) throw new Error('Zielwort-Embedding fehlt');
             const embeddings = await this.getEmbeddings(usableCurated);
+            if (requestedRoundId !== this.roundId || PauseController.paused) return;
             const ranked = usableCurated.map((word, index) => ({
               word,
               similarity: this.cosineSimilarity(this.targetEmbedding, embeddings[index])
@@ -1855,7 +1863,8 @@
           const candidates = [];
           const pool = this.dictionaryTargetWords;
           // Kleinere Batches reagieren schneller; weitere Klicks prüfen neue Kandidaten.
-          const maxCandidates = Math.min(24, pool.length);
+          const maxCandidates = Math.min(16, pool.length);
+          const selectedKeys = new Set();
           let attempts = 0;
           while (candidates.length < maxCandidates && attempts < pool.length * 2) {
             attempts++;
@@ -1863,9 +1872,10 @@
             const key = candidate.toLocaleLowerCase('de-DE');
             if (key === requestedTarget.toLocaleLowerCase('de-DE') ||
                 this.wordHintCandidatesTried.has(key) ||
+                selectedKeys.has(key) ||
                 this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) ||
                 this.pendingGuesses.has(key)) continue;
-            this.wordHintCandidatesTried.add(key);
+            selectedKeys.add(key);
             candidates.push(candidate);
           }
 
@@ -1876,6 +1886,10 @@
 
           if (statusText) statusText.textContent = 'Prüfe ' + candidates.length + ' Tipp-Kandidaten …';
           const candidateEmbeddings = await this.getEmbeddings(candidates);
+          if (requestedRoundId !== this.roundId || PauseController.paused) return;
+          // Erst nach erfolgreicher Berechnung als geprüft markieren. Bei Fehlern
+          // bleiben die Kandidaten für einen erneuten Klick verfügbar.
+          candidates.forEach(candidate => this.wordHintCandidatesTried.add(candidate.toLocaleLowerCase('de-DE')));
           const rankedCandidates = candidates.map((candidate, index) => ({
             word: candidate,
             similarity: this.cosineSimilarity(this.targetEmbedding, candidateEmbeddings[index])
@@ -1926,7 +1940,15 @@
         if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
         this.guesses = [];
         this.targetEmbedding = null;
-        if (this.pipeline) this.targetEmbedding = await this.getEmbedding(this.targetWord);
+        const targetForEmbedding = this.targetWord;
+        const targetRoundId = this.roundId;
+        // Die neue Runde sofort freigeben; das Zielwort-Embedding wird parallel
+        // vorbereitet und bei Bedarf vom Tipp-/Ratepfad nachgeladen.
+        if (this.pipeline) {
+          this.getEmbedding(targetForEmbedding).then(embedding => {
+            if (targetRoundId === this.roundId) this.targetEmbedding = embedding;
+          }).catch(error => console.warn('[WORDFINITY] Zielwort-Embedding konnte nicht vorbereitet werden:', error));
+        }
         this.roundLocked = false;
         const result = document.getElementById('kontexto-round-result');
         if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
@@ -1973,11 +1995,18 @@
 
       async getEmbeddings(texts) {
         if (!this.pipeline || !texts.length) return [];
-        const output = await this.pipeline(texts.map(value => String(value).toLowerCase()), { pooling: 'mean', normalize: true });
-        const dims = output && output.dims ? output.dims : [];
-        const width = dims[dims.length - 1];
-        if (!width || output.data.length < texts.length * width) throw new Error('Unerwartetes Format der Embeddings');
-        return texts.map((_, index) => Array.from(output.data.slice(index * width, (index + 1) * width)));
+        const keys = texts.map(value => String(value).normalize('NFC').toLocaleLowerCase('de-DE'));
+        const missing = [...new Set(keys.filter(key => !this.embeddingCache.has(key)))];
+        if (missing.length) {
+          const output = await this.pipeline(missing, { pooling: 'mean', normalize: true });
+          const dims = output && output.dims ? output.dims : [];
+          const width = dims[dims.length - 1];
+          if (!width || output.data.length < missing.length * width) throw new Error('Unerwartetes Format der Embeddings');
+          missing.forEach((key, index) => {
+            this.embeddingCache.set(key, Array.from(output.data.slice(index * width, (index + 1) * width)));
+          });
+        }
+        return keys.map(key => this.embeddingCache.get(key));
       },
 
       async getCategoryEmbeddings() {
