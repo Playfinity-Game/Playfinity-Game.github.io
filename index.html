@@ -1368,6 +1368,15 @@
       // Die geprüfte FIVE-X-Wortliste wird aus data/fivex-words.json geladen.
       wordPool: ['TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER','VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD','BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE','KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE','MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'],
       wordPoolLoadPromise: null,
+      wordPoolIndex: 0,
+
+      shuffleWordPool() {
+        for (let i = this.wordPool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [this.wordPool[i], this.wordPool[j]] = [this.wordPool[j], this.wordPool[i]];
+        }
+        this.wordPoolIndex = 0;
+      },
 
       async loadWordPool() {
         if (!this.wordPoolLoadPromise) {
@@ -1376,6 +1385,7 @@
             .then(words => {
               if (!Array.isArray(words) || words.length < 1000 || words.some(word => !/^[A-ZÄÖÜ]{5}$/.test(word))) throw new Error('FIVE-X-Wortliste ist ungültig');
               this.wordPool = [...new Set(words)];
+              this.shuffleWordPool();
               return true;
             })
             .catch(error => { console.error('[FIVE X] Wortliste konnte nicht geladen werden:', error); return false; });
@@ -1395,7 +1405,9 @@
         this.init();
         await this.loadWordPool();
         this.roundLocked = false;
-        this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
+        // Zufällige Reihenfolge ohne Wiederholung, bis der komplette Pool einmal gespielt wurde.
+        if (this.wordPoolIndex >= this.wordPool.length) this.shuffleWordPool();
+        this.targetWord = this.wordPool[this.wordPoolIndex++];
         this.guesses = [];
         this.currentGuess = '';
         const result = document.getElementById('wordle-round-result');
