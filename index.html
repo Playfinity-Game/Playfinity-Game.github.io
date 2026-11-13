@@ -2052,11 +2052,9 @@
         const cleanWord = String(word || '').trim().normalize('NFC');
         if ((this.roundLocked && !options.isHint) || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return false;
         const key = cleanWord.toLocaleLowerCase('de-DE');
-        if (!options.isHint && (!this.dictionaryReady || !this.dictionaryWords.has(key))) {
-          const statusText = document.getElementById('model-status-text');
-          if (statusText && this.dictionaryReady) statusText.innerText = 'Dieses Wort steht nicht in der WORDFINITY-Wortliste.';
-          return false;
-        }
+        // Semantische Bewertung ist unabhängig von der kuratierten Zielwortliste:
+        // Auch gültige deutsche Wörter außerhalb des Wörterbuchs dürfen geraten werden.
+        // Die Wortliste bleibt für Zielwörter und kuratierte Inhalte bestehen.
         if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return false;
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
