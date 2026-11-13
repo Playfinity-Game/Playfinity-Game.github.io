@@ -7,7 +7,6 @@ import urllib.request
 from pathlib import Path
 
 SOURCE_URL = "https://raw.githubusercontent.com/marekventur/spielwoerter/main/wordlist_accepted.jsonl"
-TARGET_COUNT = 5000
 OUTPUT = Path("data/fivex-words.json")
 WORD_RE = re.compile(r"^[a-zäöüß]{5}$")
 
@@ -51,14 +50,8 @@ def main():
             best_by_word[word] = entry
 
     candidates = sorted(best_by_word.values(), key=rank)
-    if len(candidates) < TARGET_COUNT:
-        raise SystemExit(
-            f"Nur {len(candidates)} passende Fünf-Buchstaben-Wörter gefunden; "
-            f"{TARGET_COUNT} werden benötigt. Es wird keine unvollständige Liste erzeugt."
-        )
-
-    words = [entry["word"].upper() for entry in candidates[:TARGET_COUNT]]
-    if len(set(words)) != TARGET_COUNT or any(len(word) != 5 for word in words):
+    words = [entry["word"].upper() for entry in candidates]
+    if len(set(words)) != len(words) or any(len(word) != 5 for word in words):
         raise SystemExit("Interne Prüfung fehlgeschlagen: Duplikate oder falsche Länge.")
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
@@ -67,7 +60,7 @@ def main():
         encoding="utf-8",
     )
     print(f"Quellkandidaten mit genau 5 Buchstaben: {len(candidates)}")
-    print(f"Ausgewählte, eindeutige Wörter: {len(words)}")
+    print(f"Übernommene, eindeutige Wörter: {len(words)}")
     print(f"Datei erstellt: {OUTPUT}")
 
 
