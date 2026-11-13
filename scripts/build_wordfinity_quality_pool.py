@@ -100,27 +100,80 @@ def build_word_lists(lines, excluded_words=None, noun_limit=MAX_NOUNS, verb_limi
     return [word for word, _ in nouns], [word for word, _ in verbs]
 
 
+def build_word_lists_from_sentences(lines, nlp, excluded_words=None):
+    """Use contextual German POS tagging when the corpus has no POS word list."""
+    excluded = {word.casefold() for word in (excluded_words or set())}
+    totals = {"NOUN": defaultdict(int), "VERB": defaultdict(int)}
+    texts = []
+    for raw_line in lines:
+        fields = raw_line.rstrip("\\r\\n").split("\\t", 1)
+        if len(fields) == 2 and fields[1].strip():
+            texts.append(fields[1].strip())
+
+    for doc in nlp.pipe(texts, batch_size=500):
+        for token in doc:
+            if token.pos_ not in totals or token.is_punct or token.is_space:
+                continue
+            lemma = normalize_word(token.lemma_)
+            if len(lemma) < 3 or not WORD_RE.fullmatch(lemma):
+                continue
+            if lemma.casefold() in excluded:
+                continue
+            if token.pos_ == "NOUN":
+                lemma = lemma[0].upper() + lemma[1:]
+                if lemma.isupper() or len(lemma) > 24:
+                    continue
+            else:
+                lemma = lemma.lower()
+                if not lemma.endswith(("en", "n")) or len(lemma) > 22:
+                    continue
+            totals[token.pos_][lemma] += 1
+
+    nouns = sorted(
+        ((word, count) for word, count in totals["NOUN"].items() if count >= MIN_FREQUENCY),
+        key=lambda item: (-item[1], item[0].casefold()),
+    )[:MAX_NOUNS]
+    verbs = sorted(
+        ((word, count) for word, count in totals["VERB"].items() if count >= MIN_FREQUENCY),
+        key=lambda item: (-item[1], item[0].casefold()),
+    )[:MAX_VERBS]
+    return [word for word, _ in nouns], [word for word, _ in verbs]
+
+
 def read_leipzig_archive(archive_path: Path):
     with tarfile.open(archive_path, "r:gz") as archive:
-        members = [
-            member for member in archive.getmembers()
-            if member.isfile() and member.name.endswith("_words_pos_base.txt")
-        ]
-        if not members:
-            raise SystemExit(
-                "Im Leipzig-Archiv fehlt *_words_pos_base.txt. "
-                "Bitte ein Korpus mit POS-Tags und Grundformen verwenden."
+        members = [member for member in archive.getmembers() if member.isfile()]
+        # POS/baseform files are preferred where the corpus provides them.
+        pos_members = [m for m in members if m.name.endswith("_words_pos_base.txt")]
+        if pos_members:
+            member = next(
+                (item for item in pos_members if Path(item.name).name.startswith(CORPUS_ID)),
+                pos_members[0],
             )
-        # Prefer the expected corpus member if the archive contains more than one.
+            extracted = archive.extractfile(member)
+            if extracted is None:
+                raise SystemExit("Die Leipzig-Wortdatei konnte nicht gelesen werden.")
+            with io.TextIOWrapper(extracted, encoding="utf-8") as handle:
+                return build_word_lists(handle, load_exclusions(DEFAULT_EXCLUSIONS))
+
+        # The current 2023 news archive provides sentences but no POS word list.
+        sentence_members = [m for m in members if m.name.endswith("_sentences.txt")]
+        if not sentence_members:
+            raise SystemExit("Im Leipzig-Archiv fehlt sowohl *_words_pos_base.txt als auch *_sentences.txt.")
         member = next(
-            (item for item in members if Path(item.name).name.startswith(CORPUS_ID)),
-            members[0],
+            (item for item in sentence_members if Path(item.name).name.startswith(CORPUS_ID)),
+            sentence_members[0],
         )
         extracted = archive.extractfile(member)
         if extracted is None:
-            raise SystemExit("Die Leipzig-Wortdatei konnte nicht gelesen werden.")
+            raise SystemExit("Die Leipzig-Satzdatei konnte nicht gelesen werden.")
+        try:
+            import spacy
+        except ImportError as exc:
+            raise SystemExit("spaCy fehlt. Bitte den deutschen Sprachbaustein im Workflow installieren.") from exc
+        nlp = spacy.load("de_core_news_sm", disable=["ner"])
         with io.TextIOWrapper(extracted, encoding="utf-8") as handle:
-            return build_word_lists(handle, load_exclusions(DEFAULT_EXCLUSIONS))
+            return build_word_lists_from_sentences(handle, nlp, load_exclusions(DEFAULT_EXCLUSIONS))
 
 
 def main():
