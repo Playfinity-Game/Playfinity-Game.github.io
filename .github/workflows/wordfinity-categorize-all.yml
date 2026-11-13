@@ -29,6 +29,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git checkout -B automated/wordfinity-category-assignments
           git add data/wordfinity-categories.json data/wordfinity-category-review.json
-          git commit -m "WORDFINITY: alle Wörter automatisch kategorisieren"
+          if ! git diff --cached --quiet; then
+            git commit -m "WORDFINITY: alle Wörter automatisch kategorisieren"
+          fi
           git push --force origin automated/wordfinity-category-assignments
-          gh pr create --repo "${{ github.repository }}" --base main --head automated/wordfinity-category-assignments --title "WORDFINITY: alle Wörter Kategorien zuordnen" --body "Automatisch erzeugte Kategorien für das vollständige Wörterbuch mit dem im Spiel verwendeten mehrsprachigen Embedding-Modell. Mehrdeutige oder schwach zugeordnete Wörter stehen zusätzlich in data/wordfinity-category-review.json zur manuellen Kontrolle."
+          gh pr view automated/wordfinity-category-assignments --repo "${{ github.repository }}" >/dev/null 2>&1 || gh pr create --repo "${{ github.repository }}" --base main --head automated/wordfinity-category-assignments --title "WORDFINITY: alle Wörter Kategorien zuordnen" --body "Automatisch erzeugte Kategorien für das vollständige Wörterbuch mit dem im Spiel verwendeten mehrsprachigen Embedding-Modell. Mehrdeutige oder schwach zugeordnete Wörter stehen zusätzlich in data/wordfinity-category-review.json zur manuellen Kontrolle."
