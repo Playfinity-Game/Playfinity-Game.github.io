@@ -1568,6 +1568,7 @@
     const KontextoGame = {
       initialized: false,
       pipeline: null,
+      modelReadyPromise: null,
       targetWord: '',
       targetEmbedding: null,
       guesses: [],
@@ -1579,26 +1580,26 @@
       categoryHintUsed: false,
       wordHintUsed: false,
       targetHints: {
-        Hund: { category: 'Tier', word: 'Leine', words: ['Leine','Bellen','Pfote','Welpe','Hundehütte','Haustier','Hundeknochen','Gassi'] },
-        Kaffee: { category: 'Getränk', word: 'Tasse', words: ['Tasse','Bohne','Espresso','Koffein','Kaffeemaschine','Röstung','Cappuccino','Filter'] },
-        Schloss: { category: 'Gebäude oder Bauwerk', word: 'Burg', words: ['Burg','Ritter','Turm','Mauer','Festung','König','Zugbrücke','Schlüssel'] },
-        Gitarre: { category: 'Musikinstrument', word: 'Musik', words: ['Musik','Saite','Akkord','Rock','Konzert','Verstärker','Lied','Instrument'] },
-        Sommer: { category: 'Jahreszeit', word: 'Sonne', words: ['Sonne','Hitze','Urlaub','Strand','Ferien','Schwimmen','Eis','Juni'] },
-        Flugzeug: { category: 'Verkehrsmittel', word: 'Flughafen', words: ['Flughafen','Pilot','Fliegen','Landung','Triebwerk','Passagier','Cockpit','Luftfahrt'] },
-        Ozean: { category: 'Natur und Gewässer', word: 'Meer', words: ['Meer','Welle','Salzwasser','Atlantik','Tiefe','Wal','Koralle','Küste'] },
-        Roboter: { category: 'Technik', word: 'Maschine', words: ['Maschine','Automat','Computer','Sensor','Programmierung','Technik','Android','KünstlicheIntelligenz'] },
-        Zauberer: { category: 'Figur aus der Fantasywelt', word: 'Magie', words: ['Magie','Zauberei','Hexe','Zauberstab','Zauberspruch','Hexenmeister','Trank','Zauberkunst'] },
-        Kamera: { category: 'Technik und Geräte', word: 'Foto', words: ['Foto','Fotografie','Objektiv','Linse','Blende','Auslöser','Bild','Videokamera'] },
-        Sonne: { category: 'Himmelskörper', word: 'Stern', words: ['Stern','Licht','Wärme','Planet','Sonnensystem','Strahlung','Himmel','Sonnenlicht'] },
-        Kuchen: { category: 'Essen und Süßspeisen', word: 'Torte', words: ['Torte','Backen','Teig','Gebäck','Zucker','Mehl','Sahne','Dessert'] },
-        Winter: { category: 'Jahreszeit', word: 'Schnee', words: ['Schnee','Kälte','Frost','Eis','Weihnachten','Winterjacke','Schlitten','Dezember'] },
-        Rakete: { category: 'Raumfahrt', word: 'Weltraum', words: ['Weltraum','Astronaut','Start','Triebwerk','Mond','Raumfahrt','Satellit','Raketenstart'] },
-        Wald: { category: 'Natur und Landschaft', word: 'Bäume', words: ['Bäume','Forst','Holz','Rehe','Pilze','Moos','Lichtung','Waldboden'] },
-        Insel: { category: 'Geografie und Orte', word: 'Strand', words: ['Strand','Meer','Küste','Palme','Atoll','Archipel','Urlaub','Eiland'] },
+        Hund: { category: 'Tiere', word: 'Leine', words: ['Leine','Bellen','Pfote','Welpe','Hundehütte','Haustier','Hundeknochen','Gassi'] },
+        Kaffee: { category: 'Essen und Getränke', word: 'Tasse', words: ['Tasse','Bohne','Espresso','Koffein','Kaffeemaschine','Röstung','Cappuccino','Filter'] },
+        Schloss: { category: 'Orte und Gebäude', word: 'Burg', words: ['Burg','Ritter','Turm','Mauer','Festung','König','Zugbrücke','Schlüssel'] },
+        Gitarre: { category: 'Kunst und Unterhaltung', word: 'Musik', words: ['Musik','Saite','Akkord','Rock','Konzert','Verstärker','Lied','Instrument'] },
+        Sommer: { category: 'Wetter und Jahreszeiten', word: 'Sonne', words: ['Sonne','Hitze','Urlaub','Strand','Ferien','Schwimmen','Eis','Juni'] },
+        Flugzeug: { category: 'Fahrzeuge und Verkehr', word: 'Flughafen', words: ['Flughafen','Pilot','Fliegen','Landung','Triebwerk','Passagier','Cockpit','Luftfahrt'] },
+        Ozean: { category: 'Geografie und Landschaften', word: 'Meer', words: ['Meer','Welle','Salzwasser','Atlantik','Tiefe','Wal','Koralle','Küste'] },
+        Roboter: { category: 'Technik und Elektronik', word: 'Maschine', words: ['Maschine','Automat','Computer','Sensor','Programmierung','Technik','Android','KünstlicheIntelligenz'] },
+        Zauberer: { category: 'Fantasie und Fabelwesen', word: 'Magie', words: ['Magie','Zauberei','Hexe','Zauberstab','Zauberspruch','Hexenmeister','Trank','Zauberkunst'] },
+        Kamera: { category: 'Technik und Elektronik', word: 'Foto', words: ['Foto','Fotografie','Objektiv','Linse','Blende','Auslöser','Bild','Videokamera'] },
+        Sonne: { category: 'Weltraum und Himmelskörper', word: 'Stern', words: ['Stern','Licht','Wärme','Planet','Sonnensystem','Strahlung','Himmel','Sonnenlicht'] },
+        Kuchen: { category: 'Essen und Getränke', word: 'Torte', words: ['Torte','Backen','Teig','Gebäck','Zucker','Mehl','Sahne','Dessert'] },
+        Winter: { category: 'Wetter und Jahreszeiten', word: 'Schnee', words: ['Schnee','Kälte','Frost','Eis','Weihnachten','Winterjacke','Schlitten','Dezember'] },
+        Rakete: { category: 'Weltraum und Himmelskörper', word: 'Weltraum', words: ['Weltraum','Astronaut','Start','Triebwerk','Mond','Raumfahrt','Satellit','Raketenstart'] },
+        Wald: { category: 'Pflanzen und Pilze', word: 'Bäume', words: ['Bäume','Forst','Holz','Rehe','Pilze','Moos','Lichtung','Waldboden'] },
+        Insel: { category: 'Geografie und Landschaften', word: 'Strand', words: ['Strand','Meer','Küste','Palme','Atoll','Archipel','Urlaub','Eiland'] },
         Musik: { category: 'Kunst und Unterhaltung', word: 'Lied', words: ['Lied','Melodie','Rhythmus','Klang','Instrument','Gesang','Konzert','Noten'] },
-        Pferd: { category: 'Tier', word: 'Reiten', words: ['Reiten','Stute','Hengst','Fohlen','Pferdestall','Hufe','Mähne','Koppel'] },
-        Telefon: { category: 'Technik und Kommunikation', word: 'Anruf', words: ['Anruf','Handy','Smartphone','Telefonat','Hörer','Wählen','Nachricht','Kommunikation'] },
-        Schmetterling: { category: 'Tier', word: 'Flügel', words: ['Flügel','Raupe','Puppe','Falter','Schmetterlingsflügel','Blüte','Nektar','Insekt'] }
+        Pferd: { category: 'Tiere', word: 'Reiten', words: ['Reiten','Stute','Hengst','Fohlen','Pferdestall','Hufe','Mähne','Koppel'] },
+        Telefon: { category: 'Technik und Elektronik', word: 'Anruf', words: ['Anruf','Handy','Smartphone','Telefonat','Hörer','Wählen','Nachricht','Kommunikation'] },
+        Schmetterling: { category: 'Tiere', word: 'Flügel', words: ['Flügel','Raupe','Puppe','Falter','Schmetterlingsflügel','Blüte','Nektar','Insekt'] }
       },
 
       // 20 deutsche Zielwörter
@@ -1634,7 +1635,8 @@
         { name: 'Sprache und Kommunikation', description: 'Sprache, Wörter, Schrift, Kommunikation, Nachrichten und Informationsaustausch' },
         { name: 'Wissenschaft und Bildung', description: 'Wissenschaft, Forschung, Mathematik, Physik, Chemie, Schule und Bildung' },
         { name: 'Gefühle und Eigenschaften', description: 'Gefühle, Emotionen, Charaktereigenschaften, Zustände und abstrakte Eigenschaften' },
-        { name: 'Gesellschaft und Geschichte', description: 'Gesellschaft, Politik, Geschichte, Kultur, Religion, Recht und Wirtschaft' }
+        { name: 'Gesellschaft und Geschichte', description: 'Gesellschaft, Politik, Geschichte, Kultur, Religion, Recht und Wirtschaft' },
+        { name: 'Fantasie und Fabelwesen', description: 'Fantasiewesen, Zauberer, Hexen, Drachen, Fabelwesen, Märchenfiguren und erfundene magische Figuren' }
       ],
 
       async loadDictionary() {
@@ -1670,7 +1672,7 @@
         this.loadDictionary().then(ready => {
           if (!ready) return;
           this.pickNewTarget();
-          this.initModel();
+          this.modelReadyPromise = this.initModel();
         });
 
         document.getElementById('kontexto-submit').onclick = () => {
@@ -1694,16 +1696,7 @@
         const curated = this.targetHints[key];
         if (curated && curated.category) return curated.category;
         if (!this.pipeline) return 'Allgemeiner Begriff';
-        if (!this.categoryEmbeddingCache) {
-          this.categoryEmbeddingCache = Promise.all(this.categoryProfiles.map(async profile => ({
-            name: profile.name,
-            embedding: await this.getEmbedding(profile.description)
-          }))).catch(error => {
-            this.categoryEmbeddingCache = null;
-            throw error;
-          });
-        }
-        const profiles = await this.categoryEmbeddingCache;
+        const profiles = await this.getCategoryEmbeddings();
         const wordEmbedding = this.targetWord === key && this.targetEmbedding
           ? this.targetEmbedding
           : await this.getEmbedding(key);
@@ -1728,6 +1721,11 @@
         display.textContent = 'Kategorie wird ermittelt …';
         display.hidden = false;
         try {
+          if (!this.pipeline && this.modelReadyPromise) {
+            display.textContent = 'KI-Modell wird noch geladen …';
+            await this.modelReadyPromise;
+          }
+          if (requestedRoundId !== this.roundId || PauseController.paused) return;
           const category = await this.inferCategory(requestedTarget);
           if (requestedRoundId !== this.roundId) return;
           if (PauseController.paused) {
@@ -1740,7 +1738,8 @@
         } catch (error) {
           console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
           display.textContent = 'Kategorie konnte gerade nicht ermittelt werden. Bitte erneut versuchen.';
-          if (button) button.disabled = false;
+        } finally {
+          if (requestedRoundId === this.roundId && !this.categoryHintUsed && button) button.disabled = false;
         }
       },
 
@@ -1754,25 +1753,55 @@
         if (statusText) statusText.textContent = 'Wort-Tipp wird gesucht …';
 
         try {
-          // Für die ursprünglichen Zielwörter zuerst die redaktionell gepflegten Tipps nutzen.
+          // Redaktionelle Tipps als Batch bewerten, statt jeden Tipp einzeln durch das Modell zu schicken.
           const curated = this.targetHints[String(requestedTarget || '').normalize('NFC')];
           const curatedCandidates = curated
             ? (Array.isArray(curated.words) ? curated.words : [curated.word].filter(Boolean))
             : [];
-          for (const candidate of curatedCandidates) {
-            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+          const usableCurated = curatedCandidates.filter(candidate => {
             const key = String(candidate).toLocaleLowerCase('de-DE');
-            if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) continue;
-            const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
-            if (added) {
-              if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
-              return;
+            return !this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) && !this.pendingGuesses.has(key);
+          });
+
+          if (usableCurated.length && this.pipeline) {
+            if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(requestedTarget);
+            const embeddings = await this.getEmbeddings(usableCurated);
+            const ranked = usableCurated.map((word, index) => ({
+              word,
+              similarity: this.cosineSimilarity(this.targetEmbedding, embeddings[index])
+            })).sort((a, b) => b.similarity - a.similarity);
+            for (const candidate of ranked) {
+              if (requestedRoundId !== this.roundId || PauseController.paused) return;
+              const added = await this.submitGuess(candidate.word, null, {
+                isHint: true,
+                requireBetterRank: true,
+                precomputedSimilarity: candidate.similarity
+              });
+              if (added) {
+                if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
+                return;
+              }
+            }
+          } else {
+            // Im lokalen Fallback die redaktionellen Tipps weiterhin einzeln prüfen.
+            for (const candidate of usableCurated) {
+              if (requestedRoundId !== this.roundId || PauseController.paused) return;
+              const added = await this.submitGuess(candidate, null, { isHint: true, requireBetterRank: true });
+              if (added) {
+                if (statusText) statusText.textContent = 'Wort-Tipp wurde hinzugefügt.';
+                return;
+              }
             }
           }
 
           // Für alle übrigen Wörter eine Stichprobe aus dem vollständigen Wörterbuch
           // per semantischem Modell bewerten. Bereits geprüfte Kandidaten werden
           // innerhalb der Runde nicht erneut verarbeitet.
+          if (!this.pipeline && this.modelReadyPromise) {
+            if (statusText) statusText.textContent = 'KI-Modell wird noch geladen – Wort-Tipp wartet …';
+            await this.modelReadyPromise;
+            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+          }
           if (!this.pipeline || !this.dictionaryTargetWords.length) {
             if (statusText) statusText.textContent = 'Das KI-Modell ist für dynamische Wort-Tipps gerade nicht verfügbar.';
             return;
@@ -1785,7 +1814,8 @@
 
           const candidates = [];
           const pool = this.dictionaryTargetWords;
-          const maxCandidates = Math.min(64, pool.length);
+          // Kleinere Batches reagieren schneller; weitere Klicks prüfen neue Kandidaten.
+          const maxCandidates = Math.min(24, pool.length);
           let attempts = 0;
           while (candidates.length < maxCandidates && attempts < pool.length * 2) {
             attempts++;
@@ -1804,18 +1834,12 @@
             return;
           }
 
-          const output = await this.pipeline(candidates, { pooling: 'mean', normalize: true });
-          const dims = output && output.dims ? output.dims : [];
-          const width = dims[dims.length - 1];
-          if (!width || output.data.length < candidates.length * width) {
-            throw new Error('Unerwartetes Format der Wort-Embeddings');
-          }
-
-          const rankedCandidates = candidates.map((candidate, index) => {
-            const start = index * width;
-            const embedding = Array.from(output.data.slice(start, start + width));
-            return { word: candidate, similarity: this.cosineSimilarity(this.targetEmbedding, embedding) };
-          }).sort((a, b) => b.similarity - a.similarity);
+          if (statusText) statusText.textContent = 'Prüfe ' + candidates.length + ' Tipp-Kandidaten …';
+          const candidateEmbeddings = await this.getEmbeddings(candidates);
+          const rankedCandidates = candidates.map((candidate, index) => ({
+            word: candidate,
+            similarity: this.cosineSimilarity(this.targetEmbedding, candidateEmbeddings[index])
+          })).sort((a, b) => b.similarity - a.similarity);
 
           for (const candidate of rankedCandidates) {
             if (requestedRoundId !== this.roundId || PauseController.paused) return;
@@ -1890,6 +1914,8 @@
 
             // Target-Embedding vorberechnen
             this.targetEmbedding = await this.getEmbedding(this.targetWord);
+            // Kategorien im Hintergrund als einen Batch vorberechnen.
+            this.getCategoryEmbeddings().catch(error => console.warn('[WORDFINITY] Kategorien konnten nicht vorab geladen werden:', error));
             this.roundLocked = false;
             loader.style.display = 'none';
           } else {
@@ -1905,10 +1931,27 @@
         }
       },
 
+      async getEmbeddings(texts) {
+        if (!this.pipeline || !texts.length) return [];
+        const output = await this.pipeline(texts.map(value => String(value).toLowerCase()), { pooling: 'mean', normalize: true });
+        const dims = output && output.dims ? output.dims : [];
+        const width = dims[dims.length - 1];
+        if (!width || output.data.length < texts.length * width) throw new Error('Unerwartetes Format der Embeddings');
+        return texts.map((_, index) => Array.from(output.data.slice(index * width, (index + 1) * width)));
+      },
+
+      async getCategoryEmbeddings() {
+        if (!this.categoryEmbeddingCache) {
+          this.categoryEmbeddingCache = this.getEmbeddings(this.categoryProfiles.map(profile => profile.description))
+            .then(embeddings => this.categoryProfiles.map((profile, index) => ({ name: profile.name, embedding: embeddings[index] })))
+            .catch(error => { this.categoryEmbeddingCache = null; throw error; });
+        }
+        return this.categoryEmbeddingCache;
+      },
+
       async getEmbedding(text) {
-        if (!this.pipeline) return null;
-        const out = await this.pipeline(text.toLowerCase(), { pooling: 'mean', normalize: true });
-        return Array.from(out.data);
+        const embeddings = await this.getEmbeddings([text]);
+        return embeddings[0] || null;
       },
 
       cosineSimilarity(vecA, vecB) {
