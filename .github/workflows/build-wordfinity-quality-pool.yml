@@ -57,7 +57,7 @@ jobs:
           if len(nouns) < 1000:
               raise SystemExit(f"Abbruch: nur {len(nouns)} Nomen; aktive Wortliste bleibt unverändert.")
           Path("data/wordfinity-nouns.json").write_text(
-              json.dumps(nouns, ensure_ascii=False, separators=(",", ":")) + "\\n",
+              json.dumps(nouns, ensure_ascii=False, separators=(",", ":")) + "\n",
               encoding="utf-8"
           )
           print(f"Aktive WORDFINITY-Wortliste: {len(nouns)} streng gefilterte Nomen.")
