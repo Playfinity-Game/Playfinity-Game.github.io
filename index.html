@@ -1815,7 +1815,7 @@
           const candidates = [];
           const pool = this.dictionaryTargetWords;
           // Kleinere Batches reagieren schneller; weitere Klicks prüfen neue Kandidaten.
-          const maxCandidates = Math.min(32, pool.length);
+          const maxCandidates = Math.min(24, pool.length);
           let attempts = 0;
           while (candidates.length < maxCandidates && attempts < pool.length * 2) {
             attempts++;
