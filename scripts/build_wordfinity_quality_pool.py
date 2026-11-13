@@ -40,13 +40,28 @@ def build_word_lists(lines, excluded_words=None, noun_limit=MAX_NOUNS, verb_limi
 
     for raw_line in lines:
         fields = raw_line.rstrip("\r\n").split("\t")
-        if len(fields) < 6:
+        if len(fields) < 5:
             continue
 
-        # Leipzig format: ID, word form, POS, UD17 POS, base form, frequency.
-        _, _surface, _pos, ud_pos, base_form, raw_frequency = fields[:6]
-        if ud_pos not in totals:
-            continue
+        # Leipzig format may include UD17 POS or only the corpus-specific POS:
+        # ID, word form, POS, [UD17 POS,] base form, frequency.
+        _, _surface, pos, *tail = fields
+        if len(tail) == 3:
+            ud_pos, base_form, raw_frequency = tail
+        else:
+            ud_pos = ""
+            base_form, raw_frequency = tail
+
+        if ud_pos in totals:
+            word_class = ud_pos
+        else:
+            tag = pos.upper()
+            if tag in {"N", "NN", "NOUN", "SUBSTANTIV"}:
+                word_class = "NOUN"
+            elif tag in {"V", "VERB"} or tag.startswith(("VV", "VA", "VM")):
+                word_class = "VERB"
+            else:
+                continue
 
         lemma = normalize_word(base_form)
         if len(lemma) < 3 or not WORD_RE.fullmatch(lemma):
@@ -61,7 +76,7 @@ def build_word_lists(lines, excluded_words=None, noun_limit=MAX_NOUNS, verb_limi
         if frequency < MIN_FREQUENCY:
             continue
 
-        if ud_pos == "NOUN":
+        if word_class == "NOUN":
             # German common nouns are capitalized; PROPN is excluded above.
             if not lemma[0].isupper() or lemma.isupper() or len(lemma) > 24:
                 continue
@@ -71,7 +86,7 @@ def build_word_lists(lines, excluded_words=None, noun_limit=MAX_NOUNS, verb_limi
             if not lemma.endswith(("en", "n")) or len(lemma) > 22:
                 continue
 
-        totals[ud_pos][lemma] += frequency
+        totals[word_class][lemma] += frequency
 
     nouns = sorted(
         ((word, count) for word, count in totals["NOUN"].items() if count >= MIN_FREQUENCY),
