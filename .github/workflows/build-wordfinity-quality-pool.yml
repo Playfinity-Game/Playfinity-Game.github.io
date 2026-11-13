@@ -31,6 +31,10 @@ jobs:
           curl --fail --location --retry 3 \
             https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz \
             --output /tmp/deu_news_2023_1M.tar.gz
+      - name: Install German POS tagger
+        run: |
+          python3 -m pip install --upgrade pip spacy
+          python3 -m spacy download de_core_news_sm
       - name: Build candidate pool
         run: |
           python3 scripts/build_wordfinity_quality_pool.py \
