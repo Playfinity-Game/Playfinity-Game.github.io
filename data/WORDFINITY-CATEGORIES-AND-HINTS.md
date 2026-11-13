@@ -47,10 +47,13 @@ Die semantische Zuordnung verwendet aktuell diese 21 Kategorien:
 - Die 21 Kategorie-Beschreibungen werden mit einem einzigen Batch-Modellaufruf vorbereitet und zwischengespeichert.
 - Die vorberechneten Kategorie-Embeddings werden nach dem Modellstart im Hintergrund geladen.
 - Redaktionelle Wort-Tipp-Kandidaten werden gemeinsam bewertet statt nacheinander einzeln.
-- Dynamische Wort-Tipps prüfen 32 statt 64 zufällige Kandidaten pro Klick, damit die Antwort schneller kommt; weitere Klicks prüfen neue Kandidaten.
-- Wenn das KI-Modell noch lädt, warten Kategorie- und Wort-Tipp auf den laufenden Ladevorgang statt sofort abzubrechen.
+- Dynamische Wort-Tipps prüfen höchstens 16 neue Kandidaten pro Klick; weitere Klicks prüfen neue Kandidaten. Bereits berechnete Wort-Embeddings werden zwischengespeichert.
+- Das Initialisierungs-Promise für Wörterbuch und KI-Modell steht direkt beim Spielstart bereit, damit Tipp-Klicks während des Ladens nicht ins Leere laufen.
 - Der Kategorie-Button wird nach einer Unterbrechung (z. B. Pause) wieder freigegeben.
 
 ## Grenzen
 
 Die automatische Zuordnung bleibt eine semantische Schätzung des Embedding-Modells. Besonders bei mehrdeutigen oder abstrakten Begriffen können mehrere Kategorien passen. Die 20 redaktionellen Beispiel-Zuordnungen sind festgelegt; die übrigen Wörter werden weiterhin automatisch klassifiziert. Eine vollständige menschliche Einzelprüfung des gesamten Wörterbuchs ist damit nicht behauptet.
+
+- Das Zielwort-Embedding wird beim Rundenwechsel im Hintergrund vorbereitet, damit die neue Runde sofort spielbar ist.
+- Kandidaten werden erst nach erfolgreicher Embedding-Berechnung als geprüft markiert; fehlgeschlagene Berechnungen können erneut versucht werden.
