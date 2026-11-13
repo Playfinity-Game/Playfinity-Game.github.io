@@ -1366,7 +1366,7 @@
       solvedRounds: 0,
 
       // Die geprüfte FIVE-X-Wortliste wird aus data/fivex-words.json geladen.
-      wordPool: ['TRAUM','STERN','APFEL','BLUME','SONNE'],
+      wordPool: ['TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER','VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD','BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE','KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE','MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'],
       wordPoolLoadPromise: null,
 
       async loadWordPool() {
@@ -1522,7 +1522,7 @@
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
           resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
-          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
+          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false, player ? '🏆 Gewonnen von: ' + player.name : '🏆 Gewonnen von: Lokaler Spieler');
           PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
         }
       },
