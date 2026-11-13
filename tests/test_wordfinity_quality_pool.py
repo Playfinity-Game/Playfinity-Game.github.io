@@ -18,6 +18,16 @@ class WordfinityQualityPoolTests(unittest.TestCase):
         self.assertEqual(nouns, ["Auto"])
         self.assertEqual(verbs, ["laufen"])
 
+    def test_supports_leipzig_files_without_ud17_column(self):
+        rows = [
+            "1\tHäuser\tNN\tHaus\t80",
+            "2\tging\tVVFIN\tgehen\t60",
+            "3\tMüller\tNE\tMüller\t50",
+        ]
+        nouns, verbs = build_word_lists(rows)
+        self.assertEqual(nouns, ["Haus"])
+        self.assertEqual(verbs, ["gehen"])
+
     def test_excludes_manual_words_and_unusual_forms(self):
         rows = [
             "1\tBrötchentaste\tN\tNOUN\tBrötchentaste\t100",
