@@ -1399,6 +1399,7 @@
         if (this.initialized) return;
         this.buildKeyboard();
         window.addEventListener('keydown', (e) => this.handlePhysicalKey(e));
+        window.addEventListener('resize', () => this.renderBoard());
         this.initialized = true;
       },
 
