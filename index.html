@@ -1388,7 +1388,7 @@
               this.shuffleWordPool();
               return true;
             })
-            .catch(error => { console.error('[FIVE X] Wortliste konnte nicht geladen werden:', error); return false; });
+            .catch(error => { console.error('[FIVE X] Wortliste konnte nicht geladen werden:', error); this.shuffleWordPool(); return false; });
         }
         return this.wordPoolLoadPromise;
       },
