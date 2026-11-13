@@ -1,6 +1,14 @@
-name: Build WORDFINITY quality candidate pool
+name: Build WORDFINITY strict noun list
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/build-wordfinity-quality-pool.yml"
+      - "scripts/build_wordfinity_quality_pool.py"
+      - "tests/test_wordfinity_quality_pool.py"
+      - "data/wordfinity-excluded-words.txt"
+      - "data/WORDFINITY-QUALITY-POOL.md"
   pull_request:
     paths:
       - ".github/workflows/build-wordfinity-quality-pool.yml"
@@ -11,7 +19,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   test:
@@ -39,19 +47,39 @@ jobs:
         run: |
           python3 scripts/build_wordfinity_quality_pool.py \
             /tmp/deu_news_2023_1M.tar.gz
-      - name: Show generated summary
+      - name: Publish strict nouns as the active WORDFINITY dictionary
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          data = json.loads(Path("data/wordfinity-quality-candidates.json").read_text(encoding="utf-8"))
-          print(json.dumps(data["counts"], ensure_ascii=False, indent=2))
-          print("Nomen-Beispiele:", ", ".join(data["nouns"][:30]))
+          candidates = json.loads(Path("data/wordfinity-quality-candidates.json").read_text(encoding="utf-8"))
+          nouns = candidates["nouns"]
+          if len(nouns) < 1000:
+              raise SystemExit(f"Abbruch: nur {len(nouns)} Nomen; aktive Wortliste bleibt unverändert.")
+          Path("data/wordfinity-nouns.json").write_text(
+              json.dumps(nouns, ensure_ascii=False, separators=(",", ":")) + "\n",
+              encoding="utf-8"
+          )
+          print(f"Aktive WORDFINITY-Wortliste: {len(nouns)} streng gefilterte Nomen.")
           PY
-      - name: Upload noun candidate pool for review
+      - name: Upload strict noun lists and count for review
         uses: actions/upload-artifact@v4
         with:
           name: wordfinity-strict-nouns
-          path: data/wordfinity-quality-candidates.json
+          path: |
+            data/wordfinity-quality-candidates.json
+            data/wordfinity-nouns.json
           if-no-files-found: error
           retention-days: 30
+      - name: Commit active dictionary to main
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/wordfinity-nouns.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Update WORDFINITY with strictly filtered nouns"
+            git push
+          else
+            echo "Die aktive Nomenliste ist bereits aktuell."
+          fi
