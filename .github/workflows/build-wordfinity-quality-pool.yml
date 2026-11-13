@@ -7,6 +7,7 @@ on:
       - "scripts/build_wordfinity_quality_pool.py"
       - "tests/test_wordfinity_quality_pool.py"
       - "data/wordfinity-excluded-words.txt"
+      - "data/WORDFINITY-QUALITY-POOL.md"
   workflow_dispatch:
 
 permissions:
@@ -17,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Run filter tests
+      - name: Run strict noun filter tests
         run: python3 -m unittest discover -s tests -p 'test_wordfinity_quality_pool.py'
 
   build:
@@ -35,7 +36,7 @@ jobs:
         run: |
           python3 -m pip install --upgrade pip spacy
           python3 -m spacy download de_core_news_sm
-      - name: Build candidate pool
+      - name: Build strict noun candidate pool
         run: |
           python3 scripts/build_wordfinity_quality_pool.py \
             /tmp/deu_news_2023_1M.tar.gz
@@ -46,13 +47,12 @@ jobs:
           from pathlib import Path
           data = json.loads(Path("data/wordfinity-quality-candidates.json").read_text(encoding="utf-8"))
           print(json.dumps(data["counts"], ensure_ascii=False, indent=2))
-          print("Nomen-Beispiele:", ", ".join(data["nouns"][:20]))
-          print("Verb-Beispiele:", ", ".join(data["verbs"][:20]))
+          print("Nomen-Beispiele:", ", ".join(data["nouns"][:30]))
           PY
-      - name: Upload candidate pool for review
+      - name: Upload noun candidate pool for review
         uses: actions/upload-artifact@v4
         with:
-          name: wordfinity-quality-candidates
+          name: wordfinity-strict-nouns
           path: data/wordfinity-quality-candidates.json
           if-no-files-found: error
           retention-days: 30

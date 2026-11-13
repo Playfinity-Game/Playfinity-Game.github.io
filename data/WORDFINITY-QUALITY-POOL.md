@@ -1,42 +1,49 @@
-# WORDFINITY – Qualitäts-Wortpool
+# WORDFINITY – strenger Nomen-Kandidatenpool
 
-This is a separate review candidate. It does **not** replace `wordfinity-nouns.json`
-and is not connected to live game selection.
+Diese Datei beschreibt einen separaten Prüfpool. Er ersetzt **nicht** die aktive
+Datei `wordfinity-nouns.json` und ist nicht mit der Spielauswahl verbunden.
 
-## Source
+## Qualitätsziel
 
-- Leipzig Corpora Collection, corpus `deu_news_2023_1M`
+Es gilt bewusst eine strenge Auswahl: lieber weniger Wörter als zweifelhafte
+Einträge. Der Generator übernimmt ausschließlich als `NOUN` markierte
+Gattungsnomen. Verben, Adjektive, andere Wortarten und Eigennamen werden
+ausgeschlossen.
+
+## Quelle
+
+- Leipzig Corpora Collection, Korpus `deu_news_2023_1M`
 - Download: https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz
-- Data format: `*_words_pos_base.txt` with word form, Universal POS tag,
-  base form and frequency.
-- Attribution: Leipzig Corpora Collection, Universität Leipzig.
-- License noted by the Leipzig web-service documentation: CC BY 4.0.
-  Verify the current download terms and retain attribution when redistributing.
+- Zuordnung über Grundform/Lemma und Wortart; falls keine POS-Wortliste vorliegt,
+  erfolgt die Erkennung mit dem deutschen spaCy-Modell.
+- Namensnennung: Leipzig Corpora Collection, Universität Leipzig.
+- Angegebene Lizenz: CC BY 4.0. Vor Weitergabe die aktuellen Downloadbedingungen
+  prüfen und die Namensnennung beibehalten.
 
-## Selection rules
+## Strenge Filter
 
-- Keep only Universal POS tags `NOUN` and `VERB`; proper nouns (`PROPN`)
-  and all other word classes are excluded. If UD17 tags are absent, use a
-  conservative fallback for common German noun and verb POS tags.
-- Use the corpus base form (lemma), aggregating frequencies of inflected forms.
-- Keep German alphabetic words only; reject punctuation, digits, multiword entries,
-  hyphenated entries and all-uppercase entries.
-- Nouns must be capitalized and no longer than 24 characters.
-- Verbs are normalized to lowercase infinitive-like lemmas and limited to 22 characters.
-- Require at least two corpus occurrences.
-- Keep the most frequent 15,000 nouns and 5,000 verbs when available.
-- Apply the manually maintained exclusions in `wordfinity-excluded-words.txt`.
+- Ausschließlich `NOUN`; niemals Verben.
+- Eigennamen (`PROPN`) und alle anderen Wortarten ausschließen.
+- Nur alphabetische deutsche Einzelwörter; keine Bindestriche, Ziffern,
+  Satzzeichen oder Leerzeichen.
+- Nomen müssen großgeschrieben sein, mindestens 3 und höchstens 24 Zeichen
+  enthalten und dürfen nicht vollständig in Großbuchstaben stehen.
+- Mindestens 5 Korpusbelege; danach Begrenzung auf die häufigsten 15.000 Nomen.
+- Bekannte alte Schreibweisen werden vereinheitlicht. Bedeutungsunterschiede
+  wie „Masse“ und „Maße“ bleiben getrennt.
+- Manuelle Ausschlüsse stehen in `wordfinity-excluded-words.txt`.
 
-## Important quality limitation
+## Grenzen und Freigabe
 
-Frequency is only a proxy for familiarity. A news corpus can contain specialist
-vocabulary, regional words, spelling errors and unusual compounds. This process
-reduces low-frequency noise and excludes known unwanted entries, but it cannot
-guarantee that every retained word is familiar to every player. The generated file
-must be reviewed before any game integration.
+Häufigkeit und automatische Wortarterkennung sind keine Garantie für korrekte,
+kindgerechte oder allgemein bekannte Wörter. Auch ein häufiges Zeitungssubstantiv
+kann ein Fachwort, ein ungewöhnliches Kompositum oder ein Fehler sein. Deshalb
+bleibt der Kandidatenpool eine Prüfliste: Vor einer Übernahme in das Spiel müssen
+die Wörter zusätzlich manuell kontrolliert werden. Die aktive Wortliste wird
+durch diesen Workflow nicht verändert.
 
-## Build and review
+## Erstellen
 
-Run the GitHub Actions workflow **Build WORDFINITY quality candidate pool**
-manually. It downloads the corpus, builds the candidate JSON and uploads it as a
-30-day workflow artifact. The existing dictionary and game code are untouched.
+Den GitHub-Actions-Workflow **Build WORDFINITY quality candidate pool**
+manuell starten. Er führt zuerst die Tests aus, erstellt danach den Nomen-Pool
+und lädt die JSON-Datei als 30 Tage verfügbares Artefakt hoch.
