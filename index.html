@@ -1738,7 +1738,8 @@
         } catch (error) {
           console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
           display.textContent = 'Kategorie konnte gerade nicht ermittelt werden. Bitte erneut versuchen.';
-          if (button) button.disabled = false;
+        } finally {
+          if (requestedRoundId === this.roundId && !this.categoryHintUsed && button) button.disabled = false;
         }
       },
 
