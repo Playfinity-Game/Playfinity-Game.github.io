@@ -14,10 +14,10 @@ env.allowLocalModels = false;
 env.useBrowserCache = false;
 
 const source = await fs.readFile(INDEX, 'utf8');
-const profileBlock = source.match(/categoryProfiles:\s*\\[([\\s\\S]*?)\\n\s*\\],\s*\\n\s*async loadDictionary/);
+const profileBlock = source.match(/categoryProfiles:\\s*\\[([\\s\\S]*?)\\n\\s*\\],\\s*\\n\\s*async loadDictionary/);
 if (!profileBlock) throw new Error('categoryProfiles konnten nicht aus index.html gelesen werden');
-const profiles = [...profileBlock[1].matchAll(/\{\s*name:\s*'([^']+)',\s*description:\s*'((?:\\\\.|[^'])*)'\s*\}/g)]
-  .map(match => ({ name: match[1], description: match[2].replace(/\\\\'/g, "'").replace(/\\\\\\\\/g, '\\\\') }));
+const profiles = [...profileBlock[1].matchAll(/\{\s*name:\s*'([^']+)',\s*description:\s*'((?:\\.|[^'])*)'\s*\}/g)]
+  .map(match => ({ name: match[1], description: match[2].replace(/\\'/g, "'").replace(/\\\\/g, '\\') }));
 if (profiles.length < 15) throw new Error(`Zu wenige Kategorien erkannt: ${profiles.length}`);
 
 const rawWords = JSON.parse(await fs.readFile(DICTIONARY, 'utf8'));
