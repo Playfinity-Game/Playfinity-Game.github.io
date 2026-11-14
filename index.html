@@ -939,7 +939,7 @@
         <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
 
         <div class="input-box">
-          <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
+          <input type="text" class="game-input" id="kontexto-input" placeholder="Dein Wort..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
 
@@ -1782,15 +1782,12 @@
 
       async showWordHint() {
         if(PauseController.paused)return;
-        const button=document.getElementById('kontexto-word-hint'),statusText=document.getElementById('kontexto-category-display');
+        const button=document.getElementById('kontexto-word-hint');
         const requestedRoundId=this.roundId,requestedTarget=this.targetWord;
-        if(statusText)statusText.hidden=false;
         if(!requestedTarget){
-          if(statusText)statusText.textContent='Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
           return;
         }
         if(button)button.disabled=true;
-        if(statusText)statusText.textContent='KI erstellt passende Wort-Tipps …';
         try{
           if(!this.aiReady&&this.modelReadyPromise)await this.modelReadyPromise;
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
@@ -1838,27 +1835,20 @@
             .sort((a,b)=>b.similarity-a.similarity);
 
           if(!ranked.length){
-            if(statusText)statusText.textContent='Keine neuen passenden KI-Tipps gefunden. Klicke erneut.';
             return;
           }
 
-          if(statusText)statusText.textContent='KI hat '+ranked.length+' mögliche Wort-Tipps gefunden …';
 
           for(const candidate of ranked){
             if(requestedRoundId!==this.roundId||PauseController.paused)return;
             const candidateKey=candidate.word.toLocaleLowerCase('de-DE');
             this.wordHintCandidatesTried.add(candidateKey);
             const added=await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity});
-            if(added){if(statusText)statusText.textContent='KI-Wort-Tipp wurde hinzugefügt.';return;}
+            if(added)return;
           }
-          if(statusText)statusText.textContent='Die KI-Tipps waren diesmal nicht besser. Klicke erneut.';
         }catch(error){
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
-          if (requestedRoundId === this.roundId && !PauseController.paused && statusText) {
-            statusText.textContent = error && error.name === 'AbortError'
-              ? 'Die Tipp-KI braucht zu lange. Bitte versuche es erneut.'
-              : 'KI-Wort-Tipp-Fehler: ' + (error && error.message ? error.message : 'Unbekannter Fehler');
-          }
+
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
