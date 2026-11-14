@@ -2,22 +2,20 @@
 
 Die Listen sind eine Prüfgrundlage. Die aktive Datei `data/wordfinity-nouns.json` wurde nicht verändert; die neuen Listen werden vom Spiel nicht geladen.
 
-## Aktueller Stand nach strengem Namensabgleich
-- Sehr bekannt: 1740 Wörter
-- Eher bekannt: 4699 Wörter
+## Aktueller Stand
+- Sehr bekannt: 1730 Wörter
+- Eher bekannt: 4698 Wörter
 - Seltene/fachliche/unpassende Einträge: 90.295 (unverändert)
-- Aus den beiden bekannten Gruppen ausgeschlossene unterschiedliche Namensformen: 416
+- Aus den beiden bekannten Gruppen ausgeschlossene unterschiedliche Namensformen: 427
 
-## Sortiermethode
-Die ursprüngliche Einteilung beruht auf `hermitdave/FrequencyWords`, deutscher OpenSubtitles-2018-Liste (50.000 Einträge): sehr bekannt = Rang 1–5.000, eher bekannt = Rang 5.001–20.000. Das ist nur ein Näherungswert für Bekanntheit.
+## Sortierung
+Ursprüngliche Häufigkeitseinteilung anhand der deutschen OpenSubtitles-2018-FrequencyWords-Liste (50.000 Einträge): sehr bekannt = Rang 1–5.000, eher bekannt = Rang 5.001–20.000. Die Häufigkeit ist nur ein Näherungswert für allgemeine Bekanntheit.
 
 ## Namensfilter
-Abgleich mit einer historischen/deutschen Vornamenliste (2.488 Einträge), einer zusätzlichen deutschen Vor- und Nachnamen-Sammlung sowie häufigen Vor- und Familiennamen. Alle Treffer werden entfernt – auch dann, wenn eine Form zugleich als normales Wort vorkommen kann. Dadurch können einzelne gültige Sachwörter verloren gehen.
-
-Die entfernten Formen stehen in `wordfinity-ausgeschlossene-personennamen.json`.
+Abgleich mit einer deutschen Vornamenliste (2.488 Einträge), einer zusätzlichen deutschen Vor-/Nachnamen-Sammlung, häufigen Familiennamen und einer ergänzenden Liste internationaler Vornamen. Alle erkannten Treffer werden entfernt, auch wenn die Form zugleich ein gewöhnliches Wort sein kann. Die entfernten Formen stehen in `wordfinity-ausgeschlossene-personennamen.json`.
 
 ## Grenzen
-Der Abgleich ist umfangreicher, aber nicht vollständig. Seltene, internationale, regionale und neue Namen können weiterhin übrig bleiben. Orts-, Marken-, Figuren- und Firmennamen sind nicht systematisch erfasst. Eine redaktionelle Prüfung der verbleibenden Wörter ist weiterhin nötig.
+Der Filter ist deutlich erweitert, aber nicht vollständig: seltene, regionale, neue und internationale Namen können weiterhin vorkommen. Orts-, Marken-, Figuren- und Firmennamen sind nicht systematisch erfasst. Mehrdeutige Formen können versehentlich entfernt werden. Eine redaktionelle Endkontrolle bleibt erforderlich.
 
 ## Dateien
 - `wordfinity-sehr-bekannt.json`
