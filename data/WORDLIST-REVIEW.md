@@ -57,3 +57,14 @@ Der Abgleich deckt die Vornamenliste und die 100 häufigsten deutschen Nachnamen
 
 ## Präzisierung des Namensabgleichs
 Beim Abgleich wurden Einträge, die zugleich geläufige deutsche Sachwörter oder Berufs-/Bezeichnungen sind (z. B. „Bär“, „Burg“, „Engel“, „Fischer“, „Koch“, „Tor“), wieder in die Wortlisten aufgenommen. Die Ausschlussdatei enthält nur die verbleibenden Treffer aus der verwendeten Vornamenliste und den 100 häufigen Nachnamen. Das ist weiterhin kein vollständiger Eigennamenfilter; Orts- und Markennamen sowie seltene/internationale Personennamen sind damit nicht zuverlässig abgedeckt.
+
+
+## Aktualisierte Namensbereinigung
+
+Der erste Namensabgleich war zu klein. Die beiden Listen wurden deshalb erneut mit einer erweiterten Sammlung abgeglichen: 2.488 historische/deutsche Vornamen, eine weitere aktuelle deutsche Vor- und Nachnamen-Sammlung, plus zusätzliche häufige Vornamen und Familiennamen.
+
+- Sehr bekannt: jetzt 1821 Wörter (in diesem Durchgang 68 weitere Namen entfernt).
+- Eher bekannt: jetzt 4743 Wörter (in diesem Durchgang 74 weitere Namen entfernt).
+- Ausschlussdatei: 291 unterschiedliche Namen insgesamt.
+
+Mehrdeutige Einträge, die zugleich normale deutsche Sachwörter sind (z. B. Bauer, Fischer, Koch, Engel, Stein), wurden nicht automatisch entfernt. Der Abgleich kann weiterhin nicht jeden internationalen, seltenen oder regionalen Namen erkennen; die Listen sollten vor dem Spieleinsatz redaktionell geprüft werden.
