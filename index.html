@@ -1800,7 +1800,7 @@
           this.pendingGuesses.forEach(word=>excluded.push(word));
 
           const hintController = new AbortController();
-          const hintTimeout = setTimeout(() => hintController.abort(), 10000);
+          const hintTimeout = setTimeout(() => hintController.abort(), 30000);
           let response;
           try {
             response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
