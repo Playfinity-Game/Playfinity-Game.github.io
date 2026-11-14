@@ -53,3 +53,7 @@ Die entfernten Einträge stehen zur Nachvollziehbarkeit in `wordfinity-ausgeschl
 
 ## Grenzen
 Der Abgleich deckt die Vornamenliste und die 100 häufigsten deutschen Nachnamen dieser Quelle ab. Er erkennt nicht alle internationalen oder seltenen Vor-/Nachnamen und entfernt keine Orts-, Marken- oder sonstigen Eigennamen systematisch. Wörter, die zugleich ein gewöhnliches deutsches Wort und ein Name sind, können ebenfalls entfernt worden sein. Die Listen bleiben eine Prüfgrundlage und sind nicht im Spiel aktiviert.
+
+
+## Präzisierung des Namensabgleichs
+Beim Abgleich wurden Einträge, die zugleich geläufige deutsche Sachwörter oder Berufs-/Bezeichnungen sind (z. B. „Bär“, „Burg“, „Engel“, „Fischer“, „Koch“, „Tor“), wieder in die Wortlisten aufgenommen. Die Ausschlussdatei enthält nur die verbleibenden Treffer aus der verwendeten Vornamenliste und den 100 häufigen Nachnamen. Das ist weiterhin kein vollständiger Eigennamenfilter; Orts- und Markennamen sowie seltene/internationale Personennamen sind damit nicht zuverlässig abgedeckt.
