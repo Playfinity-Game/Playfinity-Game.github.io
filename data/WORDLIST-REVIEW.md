@@ -32,3 +32,24 @@ Die ursprüngliche Wordfinity-Wortliste stammt laut `data/WORDLIST-SOURCE.md` au
 - `wordfinity-selten-fachlich.json`
 
 Alle Dateien enthalten einfache JSON-Arrays aus Wörtern.
+
+
+# Wordfinity – Ausschluss erkannter Personennamen
+
+Die Listen „sehr bekannt“ und „eher bekannt“ wurden um erkannte Vor- und Nachnamen bereinigt.
+
+## Abgleich
+- Quelle: [PenTestical/german_names](https://github.com/PenTestical/german_names)
+- Enthalten sind dort 2.488 Vornamen und 100 häufige deutsche Nachnamen.
+- Lizenzangabe der Quelle: siehe deren Repository.
+- Verglichen wurde ohne Beachtung der Groß-/Kleinschreibung und nach Unicode-Normalisierung.
+
+## Ergebnis
+- Sehr bekannt: vorher 1920, entfernt 70, verbleiben 1850.
+- Eher bekannt: vorher 4935, entfernt 135, verbleiben 4800.
+- Insgesamt aus diesen beiden Listen entfernt: 205 unterschiedliche Einträge.
+
+Die entfernten Einträge stehen zur Nachvollziehbarkeit in `wordfinity-ausgeschlossene-personennamen.json`.
+
+## Grenzen
+Der Abgleich deckt die Vornamenliste und die 100 häufigsten deutschen Nachnamen dieser Quelle ab. Er erkennt nicht alle internationalen oder seltenen Vor-/Nachnamen und entfernt keine Orts-, Marken- oder sonstigen Eigennamen systematisch. Wörter, die zugleich ein gewöhnliches deutsches Wort und ein Name sind, können ebenfalls entfernt worden sein. Die Listen bleiben eine Prüfgrundlage und sind nicht im Spiel aktiviert.
