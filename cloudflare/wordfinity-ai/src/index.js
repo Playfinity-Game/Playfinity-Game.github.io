@@ -125,9 +125,9 @@ async function handleHints(env, body) {
 
   const text = await generate(
     env,
-    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 18 unterschiedliche, gebräuchliche deutsche Einzelwörter, die inhaltlich eng mit dem Zielwort verwandt sind. Keine Umschreibungen, keine Wortgruppen, keine Sätze, keine Fantasiewörter und keine seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
+    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge höchstens 8 unterschiedliche, gebräuchliche deutsche Einzelwörter, die inhaltlich eng mit dem Zielwort verwandt sind. Keine Umschreibungen, keine Wortgruppen, keine Sätze, keine Fantasiewörter und keine seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
     "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 18 passende, verschiedene Wörter, eins pro Zeile.",
-    220
+    100
   );
 
   let candidates = [];
@@ -152,7 +152,7 @@ async function handleHints(env, body) {
       seen.add(key);
       return true;
     })
-    .slice(0, 18);
+    .slice(0, 8);
 
   if (!candidates.length) throw new Error("Die Tipp-KI hat keine gültigen Wörter geliefert");
   const embedded = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
@@ -162,7 +162,7 @@ async function handleHints(env, body) {
   const hints = candidates
     .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
     .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, 8);
+    .slice(0, 5);
   return json({ hints, model: EMBEDDING_MODEL });
 }
 
