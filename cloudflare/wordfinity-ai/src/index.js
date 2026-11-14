@@ -126,6 +126,7 @@ async function handleCategory(env, body) {
 async function handleHints(env, body) {
   const target = String(body.target || "").trim();
   if (!target) return json({ error: "target ist erforderlich" }, 400);
+  const bestGuess = String(body.bestGuess || "").trim();
   const excluded = new Set(
     (Array.isArray(body.excluded) ? body.excluded : [])
       .map(x => String(x).trim().toLocaleLowerCase("de-DE"))
@@ -135,8 +136,8 @@ async function handleHints(env, body) {
 
   const text = await generate(
     env,
-    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 24 unterschiedliche, gebräuchliche deutsche Einzelwörter als indirekte Denkanstöße zum Zielwort. Die Wörter sollen thematisch oder über typische Situationen, Orte, Tätigkeiten und Zusammenhänge passen, aber NICHT die Lösung verraten. Wähle bewusst eine mittlere gedankliche Distanz: keine Synonyme, keine direkten Oberbegriffe, keine offensichtlichsten Unterarten, Bestandteile oder unmittelbaren Erscheinungsformen. Beispiel Zielwort 'Schnee': gute Denkanstöße sind 'Winter', 'Skifahren', 'Gebirge' oder 'Schlitten'; zu offensichtlich bzw. zu nah sind 'Schneemann', 'Schneeflocke', 'Schneesturm' oder 'Frost'. WICHTIG: Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Kein Kandidat darf ein ausgeschlossenes Wort als Bestandteil enthalten oder selbst Bestandteil eines ausgeschlossenen Wortes sein. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
-    "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 24 unterschiedliche, indirekte aber thematisch passende Denkanstöße, eins pro Zeile.",
+    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 30 unterschiedliche, gebräuchliche deutsche Einzelwörter als hilfreiche Tipps zum Zielwort. Wenn ein bester bisheriger Versuch angegeben ist, müssen deine Vorschläge semantisch näher am Zielwort liegen als dieser Versuch. Die Tipps sollen wirklich weiterhelfen und dürfen konkrete, erkennbare Zusammenhänge nennen. Verrate NICHT das Zielwort. Keine Synonyme, direkten Oberbegriffe, offensichtlichen Unterarten, Bestandteile oder Wortvarianten des Zielworts. Beispiel Zielwort 'Schnee': brauchbare Hinweise können 'Winter', 'Skifahren', 'Gebirge', 'Schlitten' oder 'Lawine' sein; vermeide Zusammensetzungen wie 'Schneemann' oder 'Schneeflocke'. Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Kein Kandidat darf ein ausgeschlossenes Wort als Bestandteil enthalten oder selbst Bestandteil eines ausgeschlossenen Wortes sein. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus.",
+    "Zielwort: " + target + (bestGuess ? "\nBester bisheriger Versuch (Tipps müssen semantisch näher sein): " + bestGuess : "") + "\nBereits ausgeschlossen: " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 30 hilfreiche Tipps, die den besten Versuch übertreffen, eins pro Zeile.",
     240
   );
 
@@ -165,15 +166,18 @@ async function handleHints(env, body) {
       seen.add(x.toLocaleLowerCase("de-DE"));
       return true;
     })
-    .slice(0, 24);
+    .slice(0, 30);
 
   if (!candidates.length) throw new Error("Die Tipp-KI hat keine gültigen Wörter geliefert");
-  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
-  if (!Array.isArray(embedded?.data) || embedded.data.length < candidates.length + 1) {
+  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...(bestGuess ? [bestGuess] : []), ...candidates] });
+  if (!Array.isArray(embedded?.data) || embedded.data.length < candidates.length + (bestGuess ? 2 : 1)) {
     throw new Error("Das Embedding-Modell konnte die Tipps nicht bewerten");
   }
+  const bestGuessSimilarity = bestGuess ? cosine(embedded.data[0], embedded.data[1]) : -Infinity;
+  const candidateOffset = bestGuess ? 2 : 1;
   const hints = candidates
-    .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
+    .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + candidateOffset]) }))
+    .filter(item => item.similarity > bestGuessSimilarity + 0.001)
     .sort((a, b) => b.similarity - a.similarity)
     .slice(0, 15);
   return json({ hints, model: EMBEDDING_MODEL });
