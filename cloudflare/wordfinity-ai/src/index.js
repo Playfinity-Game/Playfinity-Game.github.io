@@ -24,7 +24,16 @@ function cosine(a, b) {
 
 function generatedText(result) {
   if (typeof result === "string") return result;
-  return result?.response ?? result?.output_text ?? result?.text ?? "";
+  const content = result?.choices?.[0]?.message?.content ?? result?.content;
+  if (Array.isArray(content)) {
+    return content.map(part => typeof part === "string" ? part : part?.text || "").join("\\n");
+  }
+  return result?.response
+    ?? result?.output_text
+    ?? result?.text
+    ?? result?.result?.response
+    ?? result?.result?.output_text
+    ?? (typeof content === "string" ? content : "");
 }
 
 function cleanSingleLine(value, maxLength = 60) {
@@ -43,8 +52,9 @@ async function generate(env, system, user, maxTokens = 80) {
       { role: "system", content: system },
       { role: "user", content: user }
     ],
-    max_tokens: maxTokens,
-    temperature: 0.7
+    max_completion_tokens: maxTokens,
+    temperature: 0.7,
+    chat_template_kwargs: { enable_thinking: false }
   });
   return generatedText(result);
 }
