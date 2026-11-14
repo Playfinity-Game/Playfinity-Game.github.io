@@ -1750,6 +1750,11 @@
         if (!display) return;
         const requestedRoundId = this.roundId;
         const requestedTarget = this.targetWord;
+        if (!requestedTarget) {
+          display.textContent = 'Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
+          display.hidden = false;
+          return;
+        }
         if (button) button.disabled = true;
         display.textContent = 'Kategorie wird ermittelt …';
         display.hidden = false;
@@ -1780,6 +1785,10 @@
         if(PauseController.paused)return;
         const button=document.getElementById('kontexto-word-hint'),statusText=document.getElementById('model-status-text');
         const requestedRoundId=this.roundId,requestedTarget=this.targetWord;
+        if(!requestedTarget){
+          if(statusText)statusText.textContent='Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
+          return;
+        }
         if(button)button.disabled=true;
         if(statusText)statusText.textContent='KI erstellt passende Wort-Tipps …';
         try{
@@ -1929,6 +1938,11 @@
 
       async submitGuess(word, player = null, options = {}) {
         if (PauseController.paused) return;
+        if (!this.targetWord) {
+          const status = document.getElementById('model-status-text');
+          if (status) status.textContent = 'Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
+          return false;
+        }
         const cleanWord = String(word || '').trim().normalize('NFC');
         if ((this.roundLocked && !options.isHint) || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return false;
         const key = cleanWord.toLocaleLowerCase('de-DE');
