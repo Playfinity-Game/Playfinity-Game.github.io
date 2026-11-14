@@ -1747,9 +1747,16 @@
         if (curated && curated.category) return curated.category;
         const storedCategory = this.categoryAssignments.get(key.toLocaleLowerCase('de-DE'));
         if (storedCategory) return storedCategory;
-        const scored = await Promise.all(this.categoryProfiles.map(async profile => ({name:profile.name,score:await this.getSimilarity(key,profile.description)})));
+        // Kategorien nacheinander bewerten: 21 parallele Worker-AI-Aufrufe können Rate-Limits auslösen.
+        const scored = [];
+        for (const profile of this.categoryProfiles) {
+          const score = await this.getSimilarity(key, profile.description);
+          scored.push({ name: profile.name, score });
+        }
         scored.sort((a,b)=>b.score-a.score);
-        return scored[0] ? scored[0].name : 'Allgemeiner Begriff';
+        const bestCategory = scored[0] ? scored[0].name : 'Allgemeiner Begriff';
+        this.categoryAssignments.set(key.toLocaleLowerCase('de-DE'), bestCategory);
+        return bestCategory;
       },
 
       async showCategoryHint() {
