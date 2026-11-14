@@ -26,7 +26,7 @@ function generatedText(result) {
   if (typeof result === "string") return result;
   const content = result?.choices?.[0]?.message?.content ?? result?.content;
   if (Array.isArray(content)) {
-    return content.map(part => typeof part === "string" ? part : part?.text || "").join("\\n");
+    return content.map(part => typeof part === "string" ? part : part?.text || "").join("\n");
   }
   return result?.response
     ?? result?.output_text
@@ -93,16 +93,23 @@ async function handleWord(env, body) {
 async function handleCategory(env, body) {
   const target = String(body.target || "").trim();
   if (!target) return json({ error: "target ist erforderlich" }, 400);
+  const allowed = [
+    "Tiere", "Pflanzen & Natur", "Lebensmittel & Getränke", "Kleidung & Schuhe",
+    "Sport & Freizeit", "Werkzeuge & Handwerk", "Fahrzeuge & Verkehr",
+    "Technik & Elektronik", "Haushalt & Möbel", "Gebäude & Architektur",
+    "Orte & Geografie", "Berufe", "Körper & Gesundheit", "Musik & Instrumente",
+    "Kunst & Kultur", "Spiele & Spielzeug", "Schule & Wissen",
+    "Wetter & Jahreszeiten", "Weltraum & Astronomie", "Materialien & Rohstoffe"
+  ];
   const text = await generate(
     env,
-    "Du formulierst kurze, natürliche deutsche Kategorien für ein Wort-Ratespiel. Die Kategorie soll das Wort sinnvoll einordnen, aber nicht einfach das Wort wiederholen. Gib ausschließlich eine kurze Kategorie mit höchstens vier Wörtern aus. Keine Erklärung und keinen Punkt.",
-    "Wort: " + target + "\nNenne eine passende, möglichst konkrete Oberkategorie.",
-    32
+    "Du ordnest deutsche Substantive für ein Wort-Ratespiel EINER Oberkategorie zu. Wähle ausschließlich exakt eine Kategorie aus dieser Liste: " + allowed.join("; ") + ". Die Kategorie beschreibt WAS das Ding ist, nicht wofür oder wo man es benutzt. Niemals Formulierungen wie 'beim Wandern', 'für den Garten', 'zum Kochen' oder eine Tätigkeit. Keine Unterkategorie, kein Beispielsatz, keine Erklärung. Antworte nur mit dem exakten Kategorienamen.",
+    "Wort: " + target + "\nPassende Oberkategorie aus der Liste:",
+    40
   );
-  const category = cleanSingleLine(text, 48).replace(/[.!?,;:]+$/g, "").trim();
-  if (!category || !/^[A-Za-zÄÖÜäöüß0-9 &+()/,-]+$/.test(category)) {
-    throw new Error("Die Kategorie-KI hat keine gültige Kategorie geliefert");
-  }
+  const raw = cleanSingleLine(text, 60).replace(/[.!?,;:]+$/g, "").trim();
+  const category = allowed.find(item => item.toLocaleLowerCase("de-DE") === raw.toLocaleLowerCase("de-DE"));
+  if (!category) throw new Error("Die KI hat keine Kategorie aus der erlaubten Liste geliefert");
   return json({ category });
 }
 
@@ -118,9 +125,9 @@ async function handleHints(env, body) {
 
   const text = await generate(
     env,
-    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge ausschließlich eine JSON-Liste mit genau 18 unterschiedlichen, gebräuchlichen deutschen Einzelwörtern. Die Wörter sollen semantisch eng mit dem Zielwort verwandt sein, aber nicht das Zielwort selbst. Keine Erklärungen, keine Sätze, keine Fantasiewörter und möglichst keine seltenen Fachbegriffe.",
-    "Zielwort: " + target + "\nBereits ausgeschlossen: " + [...excluded].slice(0, 100).join(", ") + "\nGib nur ein JSON-Array von Wörtern zurück.",
-    180
+    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 18 unterschiedliche, gebräuchliche deutsche Einzelwörter, die inhaltlich eng mit dem Zielwort verwandt sind. Keine Umschreibungen, keine Wortgruppen, keine Sätze, keine Fantasiewörter und keine seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
+    "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 18 passende, verschiedene Wörter, eins pro Zeile.",
+    220
   );
 
   let candidates = [];
@@ -132,7 +139,7 @@ async function handleHints(env, body) {
     }
   } catch (_) {}
   if (!candidates.length) {
-    candidates = text.split(/[\n,;]/).map(x => x.replace(/^\s*[-*\d."]+|["']\s*$/g, "").trim());
+    candidates = text.split(/[\n,;]/).map(x => x.replace(/^\s*[-*\d.)"]+|["']\s*$/g, "").trim());
   }
 
   const seen = new Set(excluded);
