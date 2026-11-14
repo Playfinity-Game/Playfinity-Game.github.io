@@ -936,6 +936,18 @@
           </div>
         </div>
 
+        <details class="kontexto-rules" style="background:rgba(18,20,44,.75);border:1px solid rgba(176,38,255,.28);border-radius:10px;padding:11px 14px;color:var(--text-muted);font-size:.82rem;line-height:1.55;">
+          <summary style="color:var(--neon-purple);font-weight:800;cursor:pointer;">📖 WORDFINITY-Spielregeln</summary>
+          <p style="margin-top:9px;color:var(--text-main);font-weight:700;">Das Lösungswort wird vor jeder Runde von der KI neu ausgewählt.</p>
+          <ul style="padding-left:20px;margin-top:6px;">
+            <li>Erlaubt sind Nomen, Verben und Adjektive.</li>
+            <li>Nomen stehen in der Einzahl, Verben im Infinitiv und Adjektive in der Grundform.</li>
+            <li>Keine Eigennamen wie Vor- oder Städtenamen.</li>
+            <li>Keine Artikel, Präpositionen, Bindewörter oder Füllwörter.</li>
+            <li>Gesucht werden gebräuchliche, verständliche deutsche Wörter – keine seltenen Fachbegriffe oder erfundenen Wörter.</li>
+          </ul>
+        </details>
+
         <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
 
         <div class="input-box">
@@ -1686,11 +1698,9 @@
         // Ein einziges, sofort verfügbares Promise verhindert Klick-Rennen,
         // während Wörterbuch und KI-Modell initialisiert werden.
         this.modelReadyPromise = (async () => {
-          const ready = await this.loadDictionary();
-          if (!ready) return false;
           await this.pickNewTarget();
-          await this.initModel();
-          return true;
+          if (this.targetWord) await this.initModel();
+          return !!this.targetWord;
         })();
 
         document.getElementById('kontexto-submit').onclick = () => {
@@ -1859,26 +1869,6 @@
               ? profile.words.find(word => !excludedKeys.has(word.toLocaleLowerCase('de-DE')))
               : '';
             let fallbackScore = 0.08;
-            if (!fallbackWord && Array.isArray(this.dictionaryTargetWords) && this.dictionaryTargetWords.length) {
-              const pairs = value => {
-                const normalized = value.toLocaleLowerCase('de-DE');
-                const result = new Set();
-                for (let i = 0; i < normalized.length - 1; i++) result.add(normalized.slice(i, i + 2));
-                return result;
-              };
-              const targetPairs = pairs(requestedTarget);
-              let best = null;
-              for (const word of this.dictionaryTargetWords) {
-                const key = word.toLocaleLowerCase('de-DE');
-                if (excludedKeys.has(key)) continue;
-                const candidatePairs = pairs(word);
-                let overlap = 0;
-                for (const pair of targetPairs) if (candidatePairs.has(pair)) overlap++;
-                const score = overlap / Math.max(1, new Set([...targetPairs, ...candidatePairs]).size);
-                if (!best || score > best.score) best = { word, score };
-              }
-              if (best) { fallbackWord = best.word; fallbackScore = Math.max(0.01, best.score); }
-            }
             if (fallbackWord) {
               this.wordHintCandidatesTried.add(fallbackWord.toLocaleLowerCase('de-DE'));
               const added = await this.submitGuess(fallbackWord, null, {
@@ -1906,30 +1896,40 @@
         const previousTarget=this.targetWord.toLocaleLowerCase('de-DE');
         this.targetWord='';
         const statusText=document.getElementById('model-status-text');
-        if(!this.dictionaryReady || !Array.isArray(this.dictionaryTargetWords) || !this.dictionaryTargetWords.length) {
-          if(statusText)statusText.textContent='Wortliste nicht verfügbar – bitte Seite neu laden.';
+        if(statusText)statusText.textContent='KI sucht ein neues Lösungswort …';
+        const excluded=[...this.usedTargets].slice(-300);
+        if(previousTarget && !excluded.includes(previousTarget)) excluded.push(previousTarget);
+        let selectedWord='';
+        try {
+          const controller=new AbortController();
+          const timeout=setTimeout(()=>controller.abort(),30000);
+          let response;
+          try {
+            response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/word',{
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({exclude:excluded}),
+              signal:controller.signal
+            });
+          } finally { clearTimeout(timeout); }
+          let result;
+          try { result=await response.json(); } catch (_) { throw new Error('Ungültige Antwort von der Wort-KI'); }
+          if(!response.ok) throw new Error(result.error || 'Wort-KI Fehler '+response.status);
+          selectedWord=String(result.word || '').normalize('NFC').trim();
+          if(!/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(selectedWord) || selectedWord.length<3 || selectedWord.length>40) {
+            throw new Error('Die KI hat kein gültiges Lösungswort geliefert');
+          }
+          if(excluded.includes(selectedWord.toLocaleLowerCase('de-DE'))) throw new Error('Die KI hat ein bereits verwendetes Wort geliefert');
+        } catch(error) {
+          console.error('[WORDFINITY] Lösungswort konnte nicht erstellt werden:',error);
+          if(statusText)statusText.textContent='Neues Lösungswort konnte nicht geladen werden. Bitte erneut versuchen.';
           return;
         }
-
-        // Zielwörter werden gleichverteilt direkt aus der lokalen Wortliste gezogen.
-        // Erst wenn alle Wörter einmal benutzt wurden, beginnt ein neuer Durchlauf.
-        let availableWords=this.dictionaryTargetWords.filter(word => {
-          const key=word.toLocaleLowerCase('de-DE');
-          return !this.usedTargets.has(key) && key!==previousTarget;
-        });
-        if(!availableWords.length) {
-          this.usedTargets.clear();
-          availableWords=this.dictionaryTargetWords.filter(word => word.toLocaleLowerCase('de-DE')!==previousTarget);
-        }
-        if(!availableWords.length) availableWords=this.dictionaryTargetWords.slice();
-
-        const randomIndex=Math.floor(Math.random()*availableWords.length);
-        const selectedWord=availableWords[randomIndex];
         if(requestedRoundId!==this.roundId)return;
         this.targetWord=selectedWord;
         this.usedTargets.add(selectedWord.toLocaleLowerCase('de-DE'));
-        try { localStorage.setItem('wordfinity-used-targets', JSON.stringify([...this.usedTargets])); } catch (_) {}
-        if(statusText)statusText.textContent='Zufallswort aus der Wortliste geladen';
+        try { localStorage.setItem('wordfinity-used-targets', JSON.stringify([...this.usedTargets].slice(-1000))); } catch (_) {}
+        if(statusText)statusText.textContent='Neues KI-Lösungswort geladen';
 
         this.categoryHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
         const categoryButton=document.getElementById('kontexto-category-hint'),wordButton=document.getElementById('kontexto-word-hint');
