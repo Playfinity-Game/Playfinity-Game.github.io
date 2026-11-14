@@ -1859,8 +1859,29 @@
             }
           }
         }catch(error){
-          // Absichtlich keine Meldung im Spiel; Details bleiben nur in der Entwicklerkonsole.
+          // Bei Serverfehler oder Zeitüberschreitung den lokalen Ersatz still versuchen.
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
+          const targetKey=requestedTarget.toLocaleLowerCase('de-DE');
+          const fallbackWords=(this.targetHints[requestedTarget]?.words||[]).filter(word=>{
+            const key=word.toLocaleLowerCase('de-DE');
+            return key!==targetKey&&!this.wordHintCandidatesTried.has(key)&&
+              !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&!this.pendingGuesses.has(key);
+          }).slice(0,8);
+          if(fallbackWords.length&&requestedRoundId===this.roundId&&!PauseController.paused){
+            try{
+              const scored=await Promise.all(fallbackWords.map(async word=>{
+                try{return {word,similarity:await this.getSimilarity(requestedTarget,word)};}
+                catch(_){return null;}
+              }));
+              for(const candidate of scored.filter(Boolean).sort((a,b)=>b.similarity-a.similarity)){
+                if(requestedRoundId!==this.roundId||PauseController.paused)return;
+                this.wordHintCandidatesTried.add(candidate.word.toLocaleLowerCase('de-DE'));
+                if(await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity}))return;
+              }
+            }catch(fallbackError){
+              console.warn('[WORDFINITY] Lokaler Tipp-Ersatz fehlgeschlagen:',fallbackError);
+            }
+          }
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
