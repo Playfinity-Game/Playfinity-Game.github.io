@@ -1,26 +1,23 @@
 # Wordfinity – vorläufige Wortlisten nach Bekanntheitsgrad
 
-Die drei Listen sind eine Prüfgrundlage. Die aktive Datei `data/wordfinity-nouns.json` wurde nicht verändert; die neuen Listen werden vom Spiel nicht geladen.
+Die Listen sind eine Prüfgrundlage. Die aktive Datei `data/wordfinity-nouns.json` wurde nicht verändert; die neuen Listen werden vom Spiel nicht geladen.
 
-## Aktueller Stand nach erweitertem Namensabgleich
-- Sehr bekannt: 1818 Wörter
-- Eher bekannt: 4715 Wörter
+## Aktueller Stand nach strengem Namensabgleich
+- Sehr bekannt: 1740 Wörter
+- Eher bekannt: 4699 Wörter
 - Seltene/fachliche/unpassende Einträge: 90.295 (unverändert)
-- Aus den beiden bekannten Gruppen ausgeschlossene unterschiedliche Personennamen: 322
+- Aus den beiden bekannten Gruppen ausgeschlossene unterschiedliche Namensformen: 416
 
 ## Sortiermethode
-Die ursprüngliche Einteilung beruht auf `hermitdave/FrequencyWords`, deutscher OpenSubtitles-2018-Liste (50.000 Einträge): sehr bekannt = Rang 1–5.000, eher bekannt = Rang 5.001–20.000. Das ist nur ein Näherungswert und keine repräsentative Befragung zur Bekanntheit.
+Die ursprüngliche Einteilung beruht auf `hermitdave/FrequencyWords`, deutscher OpenSubtitles-2018-Liste (50.000 Einträge): sehr bekannt = Rang 1–5.000, eher bekannt = Rang 5.001–20.000. Das ist nur ein Näherungswert für Bekanntheit.
 
 ## Namensfilter
-Der Abgleich kombiniert:
-- 2.488 Einträge aus `PenTestical/german_names`
-- eine zusätzliche deutsche Vornamenliste aus `AlessandroMinoccheri/human-names`
-- ergänzende häufige Vor- und Familiennamen, die beim Durchsehen der Listen auffielen.
+Abgleich mit einer historischen/deutschen Vornamenliste (2.488 Einträge), einer zusätzlichen deutschen Vor- und Nachnamen-Sammlung sowie häufigen Vor- und Familiennamen. Alle Treffer werden entfernt – auch dann, wenn eine Form zugleich als normales Wort vorkommen kann. Dadurch können einzelne gültige Sachwörter verloren gehen.
 
-Die Ausschlussliste liegt in `data/wordfinity-ausgeschlossene-personennamen.json`.
+Die entfernten Formen stehen in `wordfinity-ausgeschlossene-personennamen.json`.
 
 ## Grenzen
-Auch ein erweiterter Namensabgleich ist nicht vollständig: seltene, internationale, regionale und neuere Namen können übrig bleiben. Mehrdeutige Wörter, die zugleich normale deutsche Sachwörter sind (z. B. Bauer, Fischer, Koch, Stein, Bach), bleiben bewusst erhalten. Orts-, Marken-, Figuren- und Firmennamen sind nicht systematisch geprüft. Vor dem Einsatz im Spiel ist deshalb weiterhin eine redaktionelle Prüfung sinnvoll.
+Der Abgleich ist umfangreicher, aber nicht vollständig. Seltene, internationale, regionale und neue Namen können weiterhin übrig bleiben. Orts-, Marken-, Figuren- und Firmennamen sind nicht systematisch erfasst. Eine redaktionelle Prüfung der verbleibenden Wörter ist weiterhin nötig.
 
 ## Dateien
 - `wordfinity-sehr-bekannt.json`
