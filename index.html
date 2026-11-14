@@ -558,8 +558,9 @@
       text-align: left;
     }
 
-    .kontexto-inline-hints{display:inline-flex;align-items:center;gap:6px;margin-left:4px}
-    .kontexto-inline-hint{width:32px;height:30px;border:1px solid rgba(0,240,255,.28);border-radius:8px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1rem;cursor:pointer;transition:all .2s}
+    .kontexto-hint-controls{display:flex;justify-content:flex-end;align-items:center;gap:8px;width:100%;margin:8px 0 4px}
+    .kontexto-inline-hints{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:0}
+    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.1rem;cursor:pointer;transition:all .2s}
     .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
     .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
     .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
@@ -946,7 +947,9 @@
           <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
           <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
-          <span class="kontexto-inline-hints" aria-label="Wordfinity-Tipps"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></span>
+        </div>
+        <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
+          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></span>
         </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
