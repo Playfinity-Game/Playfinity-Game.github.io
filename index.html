@@ -1789,7 +1789,8 @@
         }
         if(button)button.disabled=true;
         try{
-          if(!this.aiReady&&this.modelReadyPromise)await this.modelReadyPromise;
+          // Die Tipp-KI arbeitet unabhängig vom lokalen Modell-Start der Spielrunde.
+          // Dadurch wartet der Tipp nicht mehr auf den möglicherweise langsamen Modell-Download.
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
 
           const excluded=[...this.wordHintCandidatesTried];
@@ -1797,7 +1798,7 @@
           this.pendingGuesses.forEach(word=>excluded.push(word));
 
           const hintController = new AbortController();
-          const hintTimeout = setTimeout(() => hintController.abort(), 30000);
+          const hintTimeout = setTimeout(() => hintController.abort(), 10000);
           let response;
           try {
             response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
@@ -1823,21 +1824,16 @@
               .filter(word=>word.length>=4);
             return blocked.some(word=>key===word||key.includes(word)||word.includes(key));
           };
+          const isUsable = word => {
+            const key=word.toLocaleLowerCase('de-DE');
+            return key&&key!==targetKey&&!relatedToExistingWord(word)&&!this.wordHintCandidatesTried.has(key)&&
+              !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&!this.pendingGuesses.has(key);
+          };
           const ranked=result.hints
             .filter(item=>item&&typeof item.word==='string'&&Number.isFinite(Number(item.similarity)))
             .map(item=>({word:item.word.trim(),similarity:Number(item.similarity)}))
-            .filter(item=>{
-              const key=item.word.toLocaleLowerCase('de-DE');
-              return key&&key!==targetKey&&!relatedToExistingWord(item.word)&&!this.wordHintCandidatesTried.has(key)&&
-                !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&
-                !this.pendingGuesses.has(key);
-            })
+            .filter(item=>isUsable(item.word))
             .sort((a,b)=>b.similarity-a.similarity);
-
-          if(!ranked.length){
-            return;
-          }
-
 
           for(const candidate of ranked){
             if(requestedRoundId!==this.roundId||PauseController.paused)return;
@@ -1846,9 +1842,46 @@
             const added=await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity});
             if(added)return;
           }
-        }catch(error){
-          console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
 
+          // Stiller lokaler Ersatz für die kuratierten Standard-Zielwörter:
+          // Ähnlichkeiten parallel ermitteln und nur einen tatsächlich besseren Tipp einsetzen.
+          const localFallback=this.targetHints[requestedTarget]?.words||[];
+          const fallbackWords=localFallback.filter(isUsable).slice(0,8);
+          if(fallbackWords.length&&requestedRoundId===this.roundId&&!PauseController.paused){
+            const scored=await Promise.all(fallbackWords.map(async word=>{
+              try{return {word,similarity:await this.getSimilarity(requestedTarget,word)};}
+              catch(_){return null;}
+            }));
+            for(const candidate of scored.filter(Boolean).sort((a,b)=>b.similarity-a.similarity)){
+              if(requestedRoundId!==this.roundId||PauseController.paused)return;
+              this.wordHintCandidatesTried.add(candidate.word.toLocaleLowerCase('de-DE'));
+              if(await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity}))return;
+            }
+          }
+        }catch(error){
+          // Bei Serverfehler oder Zeitüberschreitung den lokalen Ersatz still versuchen.
+          console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
+          const targetKey=requestedTarget.toLocaleLowerCase('de-DE');
+          const fallbackWords=(this.targetHints[requestedTarget]?.words||[]).filter(word=>{
+            const key=word.toLocaleLowerCase('de-DE');
+            return key!==targetKey&&!this.wordHintCandidatesTried.has(key)&&
+              !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&!this.pendingGuesses.has(key);
+          }).slice(0,8);
+          if(fallbackWords.length&&requestedRoundId===this.roundId&&!PauseController.paused){
+            try{
+              const scored=await Promise.all(fallbackWords.map(async word=>{
+                try{return {word,similarity:await this.getSimilarity(requestedTarget,word)};}
+                catch(_){return null;}
+              }));
+              for(const candidate of scored.filter(Boolean).sort((a,b)=>b.similarity-a.similarity)){
+                if(requestedRoundId!==this.roundId||PauseController.paused)return;
+                this.wordHintCandidatesTried.add(candidate.word.toLocaleLowerCase('de-DE'));
+                if(await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity}))return;
+              }
+            }catch(fallbackError){
+              console.warn('[WORDFINITY] Lokaler Tipp-Ersatz fehlgeschlagen:',fallbackError);
+            }
+          }
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
