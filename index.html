@@ -1790,42 +1790,55 @@
         const button=document.getElementById('kontexto-word-hint'),statusText=document.getElementById('model-status-text');
         const requestedRoundId=this.roundId,requestedTarget=this.targetWord;
         if(button)button.disabled=true;
-        if(statusText)statusText.textContent='Wort-Tipp wird gesucht …';
+        if(statusText)statusText.textContent='KI erstellt passende Wort-Tipps …';
         try{
           if(!this.aiReady&&this.modelReadyPromise)await this.modelReadyPromise;
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
-          const curated=this.targetHints[String(requestedTarget||'').normalize('NFC')];
-          const curatedCandidates=curated?(Array.isArray(curated.words)?curated.words:[curated.word].filter(Boolean)):[];
-          const candidates=curatedCandidates.filter(candidate=>{
-            const key=candidate.toLocaleLowerCase('de-DE');
-            return !this.guesses.some(item=>item.word.toLocaleLowerCase('de-DE')===key)&&!this.pendingGuesses.has(key);
+
+          const excluded=[...this.wordHintCandidatesTried];
+          this.guesses.forEach(item=>excluded.push(item.word));
+          this.pendingGuesses.forEach(word=>excluded.push(word));
+
+          const response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({target:requestedTarget,excluded})
           });
-          if(candidates.length<8&&this.dictionaryTargetWords.length){
-            const pool=this.dictionaryTargetWords,selected=new Set(candidates.map(w=>w.toLocaleLowerCase('de-DE')));
-            let attempts=0;
-            while(candidates.length<16&&attempts<pool.length*2){
-              attempts++;
-              const candidate=pool[Math.floor(Math.random()*pool.length)],key=candidate.toLocaleLowerCase('de-DE');
-              if(key===requestedTarget.toLocaleLowerCase('de-DE')||selected.has(key)||this.wordHintCandidatesTried.has(key)||
-                this.guesses.some(item=>item.word.toLocaleLowerCase('de-DE')===key)||this.pendingGuesses.has(key))continue;
-              selected.add(key);candidates.push(candidate);
-            }
-          }
-          if(!candidates.length){if(statusText)statusText.textContent='Keine weiteren Tipp-Kandidaten verfügbar.';return;}
-          if(statusText)statusText.textContent='Cloudflare KI bewertet '+candidates.length+' Tipp-Kandidaten …';
-          const ranked=await Promise.all(candidates.map(async word=>({word,similarity:await this.getSimilarity(requestedTarget,word)})));
+          let result;
+          try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom Tipp-Server');}
+          if(!response.ok)throw new Error(result.error||'Tipp-Server Fehler '+response.status);
+          if(!Array.isArray(result.hints))throw new Error('Keine gültige Tipp-Liste erhalten');
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
-          candidates.forEach(word=>this.wordHintCandidatesTried.add(word.toLocaleLowerCase('de-DE')));
-          ranked.sort((a,b)=>b.similarity-a.similarity);
+
+          const targetKey=requestedTarget.toLocaleLowerCase('de-DE');
+          const ranked=result.hints
+            .filter(item=>item&&typeof item.word==='string'&&Number.isFinite(Number(item.similarity)))
+            .map(item=>({word:item.word.trim(),similarity:Number(item.similarity)}))
+            .filter(item=>{
+              const key=item.word.toLocaleLowerCase('de-DE');
+              return key&&key!==targetKey&&!this.wordHintCandidatesTried.has(key)&&
+                !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&
+                !this.pendingGuesses.has(key);
+            })
+            .sort((a,b)=>b.similarity-a.similarity);
+
+          if(!ranked.length){
+            if(statusText)statusText.textContent='Keine neuen passenden KI-Tipps gefunden. Klicke erneut.';
+            return;
+          }
+
+          ranked.forEach(item=>this.wordHintCandidatesTried.add(item.word.toLocaleLowerCase('de-DE')));
+          if(statusText)statusText.textContent='KI hat '+ranked.length+' passende Wort-Tipps gefunden …';
+
           for(const candidate of ranked){
             if(requestedRoundId!==this.roundId||PauseController.paused)return;
             const added=await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity});
-            if(added){if(statusText)statusText.textContent='Wort-Tipp wurde hinzugefügt.';return;}
+            if(added){if(statusText)statusText.textContent='KI-Wort-Tipp wurde hinzugefügt.';return;}
           }
-          if(statusText)statusText.textContent='In dieser Stichprobe war kein besserer Tipp dabei. Klicke erneut.';
+          if(statusText)statusText.textContent='Die KI-Tipps waren diesmal nicht besser. Klicke erneut.';
         }catch(error){
-          console.warn('[WORDFINITY] Wort-Tipp fehlgeschlagen:',error);
-          if(statusText)statusText.textContent='Wort-Tipp gerade nicht verfügbar. Bitte erneut versuchen.';
+          console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
+          if(statusText)statusText.textContent='KI-Wort-Tipp gerade nicht verfügbar. Bitte erneut versuchen.';
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
