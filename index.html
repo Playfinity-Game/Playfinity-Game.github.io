@@ -1839,7 +1839,7 @@
             if(requestedRoundId!==this.roundId||PauseController.paused)return;
             const candidateKey=candidate.word.toLocaleLowerCase('de-DE');
             this.wordHintCandidatesTried.add(candidateKey);
-            const added=await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity});
+            const added=await this.submitGuess(candidate.word,null,{isHint:true,precomputedSimilarity:candidate.similarity});
             if(added)return;
           }
 
@@ -1855,7 +1855,7 @@
             for(const candidate of scored.filter(Boolean).sort((a,b)=>b.similarity-a.similarity)){
               if(requestedRoundId!==this.roundId||PauseController.paused)return;
               this.wordHintCandidatesTried.add(candidate.word.toLocaleLowerCase('de-DE'));
-              if(await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity}))return;
+              if(await this.submitGuess(candidate.word,null,{isHint:true,precomputedSimilarity:candidate.similarity}))return;
             }
           }
         }catch(error){
@@ -1876,7 +1876,7 @@
               for(const candidate of scored.filter(Boolean).sort((a,b)=>b.similarity-a.similarity)){
                 if(requestedRoundId!==this.roundId||PauseController.paused)return;
                 this.wordHintCandidatesTried.add(candidate.word.toLocaleLowerCase('de-DE'));
-                if(await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity}))return;
+                if(await this.submitGuess(candidate.word,null,{isHint:true,precomputedSimilarity:candidate.similarity}))return;
               }
             }catch(fallbackError){
               console.warn('[WORDFINITY] Lokaler Tipp-Ersatz fehlgeschlagen:',fallbackError);
