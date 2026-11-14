@@ -76,17 +76,25 @@ def read_pos_corpus(archive_path: Path, corpus_id: str) -> tuple[dict[str, int],
         with io.TextIOWrapper(stream, encoding="utf-8") as handle:
             for line in handle:
                 fields = line.rstrip("\r\n").split("\t")
-                # Expected Leipzig schema: rank, surface, legacy-POS, UD-POS, lemma, frequency.
-                if len(fields) < 6:
+                if len(fields) < 5:
                     continue
-                ud_pos, lemma, raw_freq = fields[-3], norm(fields[-2]), fields[-1]
+                # Leipzig POS/base files exist in two schemas. Prefer UD-POS
+                # when present; otherwise accept the legacy POS column.
+                if len(fields) >= 6 and fields[-3] in {"NOUN", "PROPN"}:
+                    pos, lemma, raw_freq = fields[-3], norm(fields[-2]), fields[-1]
+                else:
+                    legacy_pos = fields[2].upper()
+                    pos = "NOUN" if legacy_pos in {"N", "NN", "NOUN", "SUBSTANTIV"} else (
+                        "PROPN" if legacy_pos in {"NE", "PROPN", "PROPER_NOUN"} else ""
+                    )
+                    lemma, raw_freq = norm(fields[-2]), fields[-1]
                 if not lemma:
                     continue
                 try:
                     freq = int(raw_freq)
                 except ValueError:
                     continue
-                target = noun_freq if ud_pos == "NOUN" else propn_freq if ud_pos == "PROPN" else None
+                target = noun_freq if pos == "NOUN" else propn_freq if pos == "PROPN" else None
                 if target is not None:
                     target[key(lemma)] += freq
     if not noun_freq:
