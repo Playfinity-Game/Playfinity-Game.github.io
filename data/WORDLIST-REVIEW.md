@@ -3,10 +3,10 @@
 Die Listen sind eine Prüfgrundlage. Die aktive Datei `data/wordfinity-nouns.json` wurde nicht verändert; die neuen Listen werden vom Spiel nicht geladen.
 
 ## Aktueller Stand
-- Sehr bekannt: 1703 Wörter
-- Eher bekannt: 4669 Wörter
+- Sehr bekannt: 1701 Wörter
+- Eher bekannt: 4657 Wörter
 - Seltene/fachliche/unpassende Einträge: 90.295 (unverändert)
-- Ausgeschlossene unterschiedliche Personen-, Orts- und weitere Eigennamen: 483
+- Ausgeschlossene unterschiedliche Personen-, Orts- und weitere Eigennamen: 497
 
 ## Sortierung
 Ursprüngliche Häufigkeitseinteilung anhand der deutschen OpenSubtitles-2018-FrequencyWords-Liste (50.000 Einträge): sehr bekannt = Rang 1–5.000, eher bekannt = Rang 5.001–20.000. Die Häufigkeit ist nur ein Näherungswert für allgemeine Bekanntheit.
