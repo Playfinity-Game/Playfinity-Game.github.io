@@ -1745,12 +1745,41 @@
       },
 
       async inferCategory(word) {
-        const key = String(word || '').normalize('NFC');
+        const key = String(word || '').normalize('NFC').trim();
+        const normalizedKey = key.toLocaleLowerCase('de-DE');
         const curated = this.targetHints[key];
         if (curated && curated.category) return curated.category;
-        const storedCategory = this.categoryAssignments.get(key.toLocaleLowerCase('de-DE'));
+        const storedCategory = this.categoryAssignments.get(normalizedKey);
         if (storedCategory) return storedCategory;
-        // Kategorien nacheinander bewerten: 21 parallele Worker-AI-Aufrufe können Rate-Limits auslösen.
+
+        // Die KI darf eine neue, passende Kategorie formulieren – nicht nur aus 21 festen Gruppen wählen.
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 25000);
+          let response;
+          try {
+            response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/category', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ target: key }),
+              signal: controller.signal
+            });
+          } finally {
+            clearTimeout(timeout);
+          }
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || 'Kategorie-KI Fehler ' + response.status);
+          const generatedCategory = typeof result.category === 'string' ? result.category.trim() : '';
+          if (!generatedCategory || generatedCategory.length > 48 || !/^[A-Za-zÄÖÜäöüß0-9 &+()/,-]+$/.test(generatedCategory)) {
+            throw new Error('Die KI hat keine gültige Kategorie geliefert');
+          }
+          this.categoryAssignments.set(normalizedKey, generatedCategory);
+          return generatedCategory;
+        } catch (error) {
+          console.warn('[WORDFINITY] Dynamische Kategorie nicht verfügbar; nutze Kategorien-Fallback:', error);
+        }
+
+        // Rückfallebene für den Fall, dass der Worker-Endpunkt nicht verfügbar ist.
         const scored = [];
         const errors = [];
         for (const profile of this.categoryProfiles) {
@@ -1764,11 +1793,11 @@
         }
         if (!scored.length) {
           const detail = errors[0] && errors[0].message ? errors[0].message : 'Unbekannter KI-Fehler';
-          throw new Error('Alle Kategorie-Abfragen fehlgeschlagen: ' + detail);
+          throw new Error('Dynamische Kategorie und alle Fallback-Abfragen fehlgeschlagen: ' + detail);
         }
         scored.sort((a,b)=>b.score-a.score);
         const bestCategory = scored[0].name;
-        this.categoryAssignments.set(key.toLocaleLowerCase('de-DE'), bestCategory);
+        this.categoryAssignments.set(normalizedKey, bestCategory);
         return bestCategory;
       },
 
