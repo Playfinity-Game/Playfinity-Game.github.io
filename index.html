@@ -1418,10 +1418,12 @@
 
       renderBoard() {
         const board = document.getElementById('wordle-board');
+        if (!board) return;
         board.innerHTML = '';
-        const visibleGuesses = this.guesses;
-        // Mindestens sechs Rasterzeilen reservieren; weitere Versuche bleiben im DOM,
-        // werden aber unterhalb des festen sichtbaren Bereichs abgeschnitten.
+
+        // Neueste Versuche stehen oben. Das Board behält exakt sechs sichtbare Zeilen;
+        // ältere Versuche laufen unten aus dem festen Anzeigefenster heraus.
+        const visibleGuesses = [...this.guesses].reverse();
         const totalRows = Math.max(6, visibleGuesses.length + (this.roundLocked ? 0 : 1));
 
         for (let r = 0; r < totalRows; r++) {
@@ -1436,8 +1438,7 @@
             cell.className = 'wordle-cell';
 
             if (guess) {
-              const letter = guess.word[c];
-              cell.innerText = letter;
+              cell.innerText = guess.word[c];
               cell.classList.add(guess.result[c]);
             } else if (isCurrentRow && this.currentGuess[c]) {
               cell.innerText = this.currentGuess[c];
