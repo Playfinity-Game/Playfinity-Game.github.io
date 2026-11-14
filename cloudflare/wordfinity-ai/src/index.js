@@ -76,13 +76,13 @@ async function handleWord(env, body) {
     : [];
   const text = await generate(
     env,
-    "Du bist ein Generator für ein deutsches Wort-Ratespiel. Gib ausschließlich genau EIN bekanntes, konkretes deutsches Substantiv im Singular aus. Bevorzuge alltägliche Dinge, Tiere, Lebensmittel, Orte oder Gegenstände. Erlaubt sind gebräuchliche zusammengesetzte Wörter. Keine Fantasiewörter, Fachbegriffe, Eigennamen, Erklärungen oder Satzzeichen.",
-    "Erzeuge ein neues, abwechslungsreiches deutsches Substantiv. Nicht verwenden: " + excluded.join(", ") + ". Antworte nur mit dem Wort.",
+    "Du wählst das geheime Lösungswort für ein deutsches Wort-Ratespiel. Gib ausschließlich genau EIN gebräuchliches, allgemein verständliches deutsches Wort aus. Erlaubt sind NUR diese Wortarten: (1) Gattungsnamen/Nomen im Singular, (2) Verben im Infinitiv, (3) Adjektive in der ungebeugten Grundform. Wähle abwechslungsreich aus allen Alltagsthemen und Kategorien, zum Beispiel Tiere, Natur, Essen, Trinken, Berufe, Gegenstände, Orte (aber keine Ortsnamen), Sport, Technik, Haushalt, Kleidung, Gefühle, Tätigkeiten und Eigenschaften. Nur Wörter, die normale deutschsprachige Spieler wahrscheinlich kennen. VERBOTEN: Eigennamen, Vor- und Nachnamen, Städte- und Ländernamen, seltene oder veraltete Wörter, Fachbegriffe, Fremdwörter die kaum jemand kennt, Fantasiewörter, Abkürzungen, Artikel, Präpositionen, Bindewörter, Pronomen, Füllwörter, Wortgruppen, Erklärungen und Satzzeichen. Bei Nomen immer Einzahl, bei Verben Infinitiv, bei Adjektiven Grundform.",
+    "Wähle ein zufälliges, neues und möglichst abwechslungsreiches deutsches Lösungswort aus deinem gesamten Wortschatz. Es muss ein bekanntes Alltagswort sein und genau eine der erlaubten Wortarten haben. Nicht verwenden: " + excluded.join(", ") + ". Antworte ausschließlich mit dem einzelnen Wort.",
     24
   );
   const word = cleanSingleLine(text, 40).replace(/[.!?,;:]+$/g, "").trim();
-  if (!/^[A-Za-zÄÖÜäöüß]+(?:[ -][A-Za-zÄÖÜäöüß]+)*$/.test(word) || word.length < 3) {
-    throw new Error("Die Wort-KI hat kein gültiges deutsches Substantiv geliefert");
+  if (!/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(word) || word.length < 3 || word.length > 40) {
+    throw new Error("Die Wort-KI hat kein gültiges deutsches Lösungswort geliefert");
   }
   if (excluded.includes(word.toLocaleLowerCase("de-DE"))) {
     throw new Error("Die Wort-KI hat ein bereits verwendetes Wort geliefert");
