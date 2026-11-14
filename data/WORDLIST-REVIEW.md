@@ -4,8 +4,8 @@ Diese drei Dateien sind eine **Prüfgrundlage**, keine endgültig redaktionell f
 
 ## Ergebnis
 
-- Sehr bekannt: 1920 Wörter
-- Eher bekannt: 4935 Wörter
+- Sehr bekannt: 1889 Wörter (nach Namensabgleich)
+- Eher bekannt: 4817 Wörter (nach Namensabgleich)
 - Selten / fachlich / nicht in der Häufigkeitsquelle belegt: 90295 Wörter
 - Ausgangsdatei: 97206 Einträge; nach Normalisierung auf Kleinschreibung 97150 eindeutige Wörter (56 Schreibvarianten/Dubletten zusammengeführt).
 
@@ -45,9 +45,9 @@ Die Listen „sehr bekannt“ und „eher bekannt“ wurden um erkannte Vor- und
 - Verglichen wurde ohne Beachtung der Groß-/Kleinschreibung und nach Unicode-Normalisierung.
 
 ## Ergebnis
-- Sehr bekannt: vorher 1920, entfernt 70, verbleiben 1850.
-- Eher bekannt: vorher 4935, entfernt 135, verbleiben 4800.
-- Insgesamt aus diesen beiden Listen entfernt: 205 unterschiedliche Einträge.
+- Sehr bekannt: vorher 1920, entfernt 31 Personennamen, verbleiben 1889.
+- Eher bekannt: vorher 4935, entfernt 118 Personennamen, verbleiben 4817.
+- Insgesamt entfernt: 149 unterschiedliche Personennamen.
 
 Die entfernten Einträge stehen zur Nachvollziehbarkeit in `wordfinity-ausgeschlossene-personennamen.json`.
 
