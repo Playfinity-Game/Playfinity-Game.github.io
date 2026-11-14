@@ -135,9 +135,9 @@ async function handleHints(env, body) {
 
   const text = await generate(
     env,
-    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 12 unterschiedliche, gebräuchliche deutsche Einzelwörter als indirekte Denkanstöße zum Zielwort. Die Wörter sollen thematisch oder über typische Situationen, Orte, Tätigkeiten und Zusammenhänge passen, aber NICHT die Lösung verraten. Wähle mittlere gedankliche Distanz: keine Synonyme, direkten Oberbegriffe, offensichtlichsten Unterarten, Bestandteile oder unmittelbaren Erscheinungsformen. Beispiel Zielwort 'Schnee': gute Denkanstöße sind 'Winter', 'Skifahren', 'Gebirge' oder 'Schlitten'; zu nah sind 'Schneemann', 'Schneeflocke' oder 'Frost'. Niemals Zielwort, Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Keine Wortgruppen, Sätze, Erklärungen oder seltenen Fachbegriffe. Ein Wort pro Zeile, ohne Nummerierung oder Zusatztext.",
-    "Zielwort: " + target + "\nAusgeschlossen: " + [...excluded].slice(0, 60).join(", ") + "\nErzeuge 12 indirekte, passende Denkanstöße, eins pro Zeile.",
-    120
+    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 24 unterschiedliche, gebräuchliche deutsche Einzelwörter als indirekte Denkanstöße zum Zielwort. Die Wörter sollen thematisch oder über typische Situationen, Orte, Tätigkeiten und Zusammenhänge passen, aber NICHT die Lösung verraten. Wähle bewusst eine mittlere gedankliche Distanz: keine Synonyme, keine direkten Oberbegriffe, keine offensichtlichsten Unterarten, Bestandteile oder unmittelbaren Erscheinungsformen. Beispiel Zielwort 'Schnee': gute Denkanstöße sind 'Winter', 'Skifahren', 'Gebirge' oder 'Schlitten'; zu offensichtlich bzw. zu nah sind 'Schneemann', 'Schneeflocke', 'Schneesturm' oder 'Frost'. WICHTIG: Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Kein Kandidat darf ein ausgeschlossenes Wort als Bestandteil enthalten oder selbst Bestandteil eines ausgeschlossenen Wortes sein. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
+    "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 24 unterschiedliche, indirekte aber thematisch passende Denkanstöße, eins pro Zeile.",
+    240
   );
 
   let candidates = [];
