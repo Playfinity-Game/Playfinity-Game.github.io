@@ -1845,13 +1845,46 @@
       async pickNewTarget() {
         PauseController.clear('kontexto','roundTimer');
         this.roundId++;
+        const requestedRoundId=this.roundId;
         this.roundLocked=false;
         this.pendingGuesses.clear();
-        const targetPool=this.dictionaryTargetWords.length?this.dictionaryTargetWords:this.targets;
-        let availableTargets=targetPool.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
-        if(!availableTargets.length){this.usedTargets.clear();availableTargets=targetPool.slice();}
-        this.targetWord=availableTargets[Math.floor(Math.random()*availableTargets.length)];
-        this.usedTargets.add(this.targetWord.toLocaleLowerCase('de-DE'));
+        this.targetWord='';
+        const statusText=document.getElementById('model-status-text');
+        if(statusText)statusText.textContent='Cloudflare-KI erstellt ein neues geheimes Wort …';
+        let generatedWord='';
+        try {
+          const controller=new AbortController();
+          const timeout=setTimeout(()=>controller.abort(),30000);
+          let response;
+          try {
+            response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/word',{
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({language:'de',type:'common_noun',exclude:[...this.usedTargets]}),
+              signal:controller.signal
+            });
+          } finally {
+            clearTimeout(timeout);
+          }
+          const result=await response.json().catch(()=>({}));
+          if(!response.ok)throw new Error(result.error||'Wort-KI Fehler '+response.status);
+          generatedWord=typeof result.word==='string'?result.word.normalize('NFC').trim():'';
+          if(!generatedWord||generatedWord.length>40||!/[A-Za-zÄÖÜäöüß]/.test(generatedWord)||!/^[A-Za-zÄÖÜäöüß -]+$/.test(generatedWord)) {
+            throw new Error('Die KI hat kein gültiges deutsches Wort geliefert');
+          }
+          const wordKey=generatedWord.toLocaleLowerCase('de-DE');
+          if(this.usedTargets.has(wordKey))throw new Error('Die KI hat ein bereits verwendetes Wort geliefert. Bitte neue Runde starten.');
+          if(requestedRoundId!==this.roundId)return;
+          this.targetWord=generatedWord;
+          this.usedTargets.add(wordKey);
+          if(statusText)statusText.textContent='Cloudflare-KI verbunden · neues Zielwort erstellt';
+        } catch(error) {
+          if(requestedRoundId!==this.roundId)return;
+          const detail=error&&error.name==='AbortError'?'Zeitüberschreitung bei der Wort-KI':(error&&error.message?error.message:'Unbekannter KI-Fehler');
+          if(statusText)statusText.textContent='Neues Zielwort konnte nicht erstellt werden: '+detail;
+          console.error('[WORDFINITY] Zielwort-KI fehlgeschlagen:',error);
+          return;
+        }
         this.categoryHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
         const categoryButton=document.getElementById('kontexto-category-hint'),wordButton=document.getElementById('kontexto-word-hint');
         if(categoryButton){categoryButton.disabled=false;categoryButton.textContent='🏷️';}
