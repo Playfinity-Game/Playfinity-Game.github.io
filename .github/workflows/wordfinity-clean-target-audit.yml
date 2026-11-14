@@ -1,0 +1,61 @@
+name: Wordfinity clean target audit
+
+on:
+  push:
+    branches:
+      - wordfinity-clean-target-filter-2026-11-15
+    paths:
+      - ".github/workflows/wordfinity-clean-target-audit.yml"
+      - "scripts/build_wordfinity_clean_targets.py"
+      - "data/wordfinity-nouns.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out review branch
+        uses: actions/checkout@v4
+        with:
+          ref: wordfinity-clean-target-filter-2026-11-15
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Download Leipzig POS corpus
+        run: |
+          curl --fail --location --retry 3 --retry-delay 5 \
+            https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz \
+            --output /tmp/deu_news_2023_1M.tar.gz
+
+      - name: Download OpenThesaurus text data
+        run: |
+          curl --fail --location --retry 3 --retry-delay 5 \
+            https://www.openthesaurus.de/export/OpenThesaurus-Textversion.zip \
+            --output /tmp/openthesaurus.zip
+          mkdir -p /tmp/openthesaurus
+          unzip -o /tmp/openthesaurus.zip -d /tmp/openthesaurus
+          find /tmp/openthesaurus -type f -name 'openthesaurus.txt' -exec cp {} ./openthesaurus.txt \;
+
+      - name: Build separate candidate, exclusion and audit files
+        run: |
+          python scripts/build_wordfinity_clean_targets.py /tmp/deu_news_2023_1M.tar.gz \
+            --base data/wordfinity-nouns.json \
+            --thesaurus openthesaurus.txt
+
+      - name: Upload results for review (no repository writes)
+        uses: actions/upload-artifact@v4
+        with:
+          name: wordfinity-clean-target-audit
+          path: |
+            data/wordfinity-zielwoerter.json
+            data/wordfinity-ausgeschlossen.json
+            data/wordfinity-pruefbericht.json
+          if-no-files-found: error
+          retention-days: 30
