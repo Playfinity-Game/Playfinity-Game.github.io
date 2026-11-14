@@ -1749,12 +1749,22 @@
         if (storedCategory) return storedCategory;
         // Kategorien nacheinander bewerten: 21 parallele Worker-AI-Aufrufe können Rate-Limits auslösen.
         const scored = [];
+        const errors = [];
         for (const profile of this.categoryProfiles) {
-          const score = await this.getSimilarity(key, profile.description);
-          scored.push({ name: profile.name, score });
+          try {
+            const score = await this.getSimilarity(key, profile.description);
+            scored.push({ name: profile.name, score });
+          } catch (error) {
+            errors.push(error);
+            console.warn('[WORDFINITY] Kategorieprofil fehlgeschlagen:', profile.name, error);
+          }
+        }
+        if (!scored.length) {
+          const detail = errors[0] && errors[0].message ? errors[0].message : 'Unbekannter KI-Fehler';
+          throw new Error('Alle Kategorie-Abfragen fehlgeschlagen: ' + detail);
         }
         scored.sort((a,b)=>b.score-a.score);
-        const bestCategory = scored[0] ? scored[0].name : 'Allgemeiner Begriff';
+        const bestCategory = scored[0].name;
         this.categoryAssignments.set(key.toLocaleLowerCase('de-DE'), bestCategory);
         return bestCategory;
       },
@@ -1786,7 +1796,7 @@
           if (button) button.title = 'Kategorie-Tipp wurde bereits angezeigt';
         } catch (error) {
           console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
-          display.textContent = 'Kategorie konnte gerade nicht ermittelt werden. Bitte erneut versuchen.';
+          display.textContent = 'Kategorie-Fehler: ' + (error && error.message ? error.message : 'Unbekannter Fehler');
         } finally {
           if (requestedRoundId === this.roundId && !this.categoryHintUsed && button) button.disabled = false;
         }
@@ -1806,11 +1816,19 @@
           this.guesses.forEach(item=>excluded.push(item.word));
           this.pendingGuesses.forEach(word=>excluded.push(word));
 
-          const response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
-            method:'POST',
-            headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({target:requestedTarget,excluded})
-          });
+          const hintController = new AbortController();
+          const hintTimeout = setTimeout(() => hintController.abort(), 30000);
+          let response;
+          try {
+            response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
+              method:'POST',
+              headers:{'Content-Type':'application/json'},
+              body:JSON.stringify({target:requestedTarget,excluded}),
+              signal:hintController.signal
+            });
+          } finally {
+            clearTimeout(hintTimeout);
+          }
           let result;
           try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom Tipp-Server');}
           if(!response.ok)throw new Error(result.error||'Tipp-Server Fehler '+response.status);
@@ -1834,18 +1852,19 @@
             return;
           }
 
-          ranked.forEach(item=>this.wordHintCandidatesTried.add(item.word.toLocaleLowerCase('de-DE')));
-          if(statusText)statusText.textContent='KI hat '+ranked.length+' passende Wort-Tipps gefunden …';
+          if(statusText)statusText.textContent='KI hat '+ranked.length+' mögliche Wort-Tipps gefunden …';
 
           for(const candidate of ranked){
             if(requestedRoundId!==this.roundId||PauseController.paused)return;
+            const candidateKey=candidate.word.toLocaleLowerCase('de-DE');
+            this.wordHintCandidatesTried.add(candidateKey);
             const added=await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity});
             if(added){if(statusText)statusText.textContent='KI-Wort-Tipp wurde hinzugefügt.';return;}
           }
           if(statusText)statusText.textContent='Die KI-Tipps waren diesmal nicht besser. Klicke erneut.';
         }catch(error){
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
-          if(statusText)statusText.textContent='KI-Wort-Tipp gerade nicht verfügbar. Bitte erneut versuchen.';
+          if(statusText)statusText.textContent=(error && error.name==='AbortError')?'KI-Wort-Tipp: Server antwortet zu langsam. Bitte erneut versuchen.':'KI-Wort-Tipp-Fehler: '+(error && error.message ? error.message : 'Unbekannter Fehler');
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
