@@ -1653,29 +1653,6 @@
       wordHintCandidatesTried: new Set(),
       categoryEmbeddingCache: null,
       categoryAssignments: new Map(),
-      categoryProfiles: [
-        { name: 'Tiere', description: 'Reale Lebewesen aus dem Tierreich: Säugetiere, Vögel, Fische, Insekten, Reptilien, Amphibien, Haustiere und Wildtiere. Beispiele Hund, Pferd, Adler, Biene. Keine Pflanzen oder erfundenen Fabelwesen.' },
-        { name: 'Pflanzen und Pilze', description: 'Botanische Lebewesen und ihre Teile: Bäume, Blumen, Gräser, Kräuter, Moose, Farne, Pilze, Wurzeln und Blätter. Beispiele Eiche, Rose, Moos, Champignon. Obst und Gemüse als Lebensmittel gehören zu Essen und Getränke.' },
-        { name: 'Essen und Getränke', description: 'Essbare Lebensmittel und Trinkbares sowie Speisen, Zutaten, Obst, Gemüse, Gewürze, Süßigkeiten, Backwaren und Gerichte. Beispiele Apfel, Brot, Käse, Wasser, Suppe. Pflanzenarten als botanische Lebewesen gehören zu Pflanzen und Pilze.' },
-        { name: 'Körper und Gesundheit', description: 'Der menschliche oder tierische Körper, Körperteile, Organe, Knochen, Muskeln, Krankheiten, Symptome, Medizin, Behandlung, Gesundheit und Körperpflege. Beispiele Herz, Auge, Grippe, Verband.' },
-        { name: 'Kleidung und Accessoires', description: 'Am Körper getragene Kleidung und Modeartikel: Schuhe, Hosen, Hemden, Mäntel, Hüte, Schmuck, Taschen und textile Accessoires. Beispiele Jacke, Socke, Gürtel, Halskette.' },
-        { name: 'Haushalt und Wohnen', description: 'Gegenstände und Dinge des täglichen Wohnens: Möbel, Geschirr, Besteck, Haushaltsgeräte, Wohnräume, Küche, Bad, Bett und Einrichtung. Beispiele Sofa, Lampe, Teller, Kühlschrank.' },
-        { name: 'Werkzeuge und Materialien', description: 'Handwerkzeuge, Baugeräte und Werkstoffe zur Herstellung, Reparatur oder Konstruktion: Hammer, Zange, Säge, Schraube, Holz, Stahl, Beton und Glas als Material.' },
-        { name: 'Technik und Elektronik', description: 'Technische und digitale Geräte, elektronische Bauteile, Computer, Smartphones, Maschinen, Software, Programme, Netzwerke und technische Systeme. Beispiele Sensor, Laptop, Roboter, Prozessor.' },
-        { name: 'Fahrzeuge und Verkehr', description: 'Fortbewegungsmittel und Verkehrsinfrastruktur oder Verkehrsbegriffe: Auto, Fahrrad, Zug, Schiff, Flugzeug, Bus, Motor, Straße, Ampel und Bahnhof als Verkehrsanlage.' },
-        { name: 'Berufe und Menschen', description: 'Menschen, Personengruppen, Rollen und Berufe sowie typische berufliche Tätigkeiten. Beispiele Ärztin, Lehrer, Bäcker, Feuerwehrmann, Nachbar. Keine Körperteile oder abstrakten Eigenschaften.' },
-        { name: 'Orte und Gebäude', description: 'Von Menschen geschaffene oder genutzte konkrete Orte und Bauwerke: Haus, Schule, Burg, Brücke, Kirche, Museum, Stadion und Flughafen. Natürliche Landschaften und Länder gehören zu Geografie und Landschaften.' },
-        { name: 'Geografie und Landschaften', description: 'Natürliche und politische geografische Räume: Länder, Regionen, Kontinente, Inseln, Meere, Flüsse, Seen, Berge, Täler und Landschaften. Keine einzelnen Gebäude.' },
-        { name: 'Wetter und Jahreszeiten', description: 'Atmosphärische Zustände und Wetterereignisse sowie Jahreszeiten und typische Klimaerscheinungen: Regen, Schnee, Wind, Sturm, Nebel, Frost, Sommer und Winter. Himmelskörper gehören zum Weltraum.' },
-        { name: 'Weltraum und Himmelskörper', description: 'Objekte und Phänomene außerhalb der Erde sowie Astronomie und Raumfahrt: Sterne, Sonne, Planeten, Monde, Galaxien, Asteroiden, Kometen, Raketen und Satelliten.' },
-        { name: 'Sport und Freizeit', description: 'Sportarten, körperliche Freizeitaktivitäten, Wettkämpfe, Spiele, Hobbys, Spielzeug und Erholung. Beispiele Fußball, Tennis, Schach, Angeln, Puzzle und Skateboardfahren.' },
-        { name: 'Kunst und Unterhaltung', description: 'Künstlerische Werke und Ausdrucksformen sowie Kultur- und Unterhaltungsmedien: Musik, Instrumente, Lieder, Gemälde, Film, Theater, Tanz, Literatur und Fotografie als Kunstform.' },
-        { name: 'Sprache und Kommunikation', description: 'Sprachliche Einheiten und der Austausch von Informationen: Wörter, Buchstaben, Grammatik, Schrift, Sprachen, Briefe, Gespräche, Nachrichten und Kommunikationsformen.' },
-        { name: 'Wissenschaft und Bildung', description: 'Wissenschaftliche Fachgebiete, Forschung, Erkenntnisse, Lehrinhalte und Bildung: Mathematik, Physik, Chemie, Biologie als Fach, Zahlen, Formeln, Experimente, Schule und Unterricht.' },
-        { name: 'Gefühle und Eigenschaften', description: 'Abstrakte Emotionen, Stimmungen, Charakterzüge, Bewertungen und Zustände: Freude, Angst, Mut, Neid, Geduld, Schönheit, Stärke und Müdigkeit. Konkrete Personen gehören zu Berufe und Menschen.' },
-        { name: 'Gesellschaft und Geschichte', description: 'Gesellschaftliche Systeme, Institutionen, historische Ereignisse und Epochen sowie Politik, Recht, Religion, Wirtschaft und kulturelle Praktiken. Beispiele Demokratie, Gesetz, Mittelalter, Währung.' },
-        { name: 'Fantasie und Fabelwesen', description: 'Erfundene übernatürliche Wesen, magische Figuren und Märchenfiguren: Drache, Einhorn, Hexe, Zauberer, Geist und Troll. Reale Tiere gehören zu Tiere.' }
-      ],
       async loadDictionary() {
         const statusText = document.getElementById('model-status-text');
         try {
@@ -1695,18 +1672,6 @@
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
           // Every valid noun in the dictionary can become a target, not just the curated examples.
           this.dictionaryTargetWords = uniqueWords;
-          // Vorberechnete Kategorien für das gesamte Wörterbuch laden, falls der Batch-Job sie erzeugt hat.
-          try {
-            const categoryResponse = await fetch('data/wordfinity-categories.json', { cache: 'no-store' });
-            if (categoryResponse.ok) {
-              const categoryData = await categoryResponse.json();
-              if (categoryData && categoryData.categories && typeof categoryData.categories === 'object') {
-                this.categoryAssignments = new Map(Object.entries(categoryData.categories));
-              }
-            }
-          } catch (categoryError) {
-            console.warn('[WORDFINITY] Vorberechnete Kategorien nicht verfügbar; nutze Live-Zuordnung:', categoryError);
-          }
           this.dictionaryReady = true;
           return true;
         } catch (error) {
@@ -1745,31 +1710,37 @@
       },
 
       async inferCategory(word) {
-        const key = String(word || '').normalize('NFC');
-        const curated = this.targetHints[key];
-        if (curated && curated.category) return curated.category;
-        const storedCategory = this.categoryAssignments.get(key.toLocaleLowerCase('de-DE'));
-        if (storedCategory) return storedCategory;
-        // Kategorien nacheinander bewerten: 21 parallele Worker-AI-Aufrufe können Rate-Limits auslösen.
-        const scored = [];
-        const errors = [];
-        for (const profile of this.categoryProfiles) {
+        const key = String(word || '').normalize('NFC').trim();
+        const normalizedKey = key.toLocaleLowerCase('de-DE');
+        // Die KI darf eine neue, passende Kategorie formulieren – nicht nur aus 21 festen Gruppen wählen.
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 25000);
+          let response;
           try {
-            const score = await this.getSimilarity(key, profile.description);
-            scored.push({ name: profile.name, score });
-          } catch (error) {
-            errors.push(error);
-            console.warn('[WORDFINITY] Kategorieprofil fehlgeschlagen:', profile.name, error);
+            response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/category', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ target: key }),
+              signal: controller.signal
+            });
+          } finally {
+            clearTimeout(timeout);
           }
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || 'Kategorie-KI Fehler ' + response.status);
+          const generatedCategory = typeof result.category === 'string' ? result.category.trim() : '';
+          if (!generatedCategory || generatedCategory.length > 48 || !/^[A-Za-zÄÖÜäöüß0-9 &+()/,-]+$/.test(generatedCategory)) {
+            throw new Error('Die KI hat keine gültige Kategorie geliefert');
+          }
+          this.categoryAssignments.set(normalizedKey, generatedCategory);
+          return generatedCategory;
+        } catch (error) {
+          const detail = error && error.name === 'AbortError'
+            ? 'Die Kategorie-KI antwortet zu langsam.'
+            : (error && error.message ? error.message : 'Unbekannter KI-Fehler');
+          throw new Error('Kategorie konnte nicht erstellt werden: ' + detail);
         }
-        if (!scored.length) {
-          const detail = errors[0] && errors[0].message ? errors[0].message : 'Unbekannter KI-Fehler';
-          throw new Error('Alle Kategorie-Abfragen fehlgeschlagen: ' + detail);
-        }
-        scored.sort((a,b)=>b.score-a.score);
-        const bestCategory = scored[0].name;
-        this.categoryAssignments.set(key.toLocaleLowerCase('de-DE'), bestCategory);
-        return bestCategory;
       },
 
       async showCategoryHint() {
