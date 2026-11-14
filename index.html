@@ -951,6 +951,7 @@
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
           <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></span>
         </div>
+        <div class="kontexto-category-hint" id="kontexto-word-hint-status" aria-live="polite" hidden></div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
@@ -1783,15 +1784,17 @@
       async showWordHint() {
         if(PauseController.paused)return;
         const button=document.getElementById('kontexto-word-hint');
+        const status=document.getElementById('kontexto-word-hint-status');
+        const setStatus=message=>{if(status){status.textContent=message;status.hidden=!message;}};
         const requestedRoundId=this.roundId,requestedTarget=this.targetWord;
-        if(!requestedTarget){
-          return;
-        }
+        if(!requestedTarget){setStatus('Das Lösungswort wird noch geladen. Bitte gleich erneut tippen.');return;}
         if(button)button.disabled=true;
+        setStatus('KI sucht einen Tipp, der deinen besten Treffer verbessert …');
         try{
           if(!this.aiReady&&this.modelReadyPromise)await this.modelReadyPromise;
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
 
+          const bestGuess=this.guesses.reduce((best,item)=>!best||item.rank<best.rank?item:best,null);
           const excluded=[...this.wordHintCandidatesTried];
           this.guesses.forEach(item=>excluded.push(item.word));
           this.pendingGuesses.forEach(word=>excluded.push(word));
@@ -1803,7 +1806,7 @@
             response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
               method:'POST',
               headers:{'Content-Type':'application/json'},
-              body:JSON.stringify({target:requestedTarget,excluded}),
+              body:JSON.stringify({target:requestedTarget,excluded,bestGuess:bestGuess?bestGuess.word:''}),
               signal:hintController.signal
             });
           } finally {
@@ -1835,20 +1838,21 @@
             .sort((a,b)=>b.similarity-a.similarity);
 
           if(!ranked.length){
+            setStatus('Ich finde gerade keinen Tipp, der deinen besten Treffer verbessert. Rate noch ein Wort und versuche es erneut.');
             return;
           }
-
 
           for(const candidate of ranked){
             if(requestedRoundId!==this.roundId||PauseController.paused)return;
             const candidateKey=candidate.word.toLocaleLowerCase('de-DE');
             this.wordHintCandidatesTried.add(candidateKey);
             const added=await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,precomputedSimilarity:candidate.similarity});
-            if(added)return;
+            if(added){setStatus('Neuer Tipp hinzugefügt – er ist näher an der Lösung als dein bisher bester Treffer.');return;}
           }
+          setStatus('Kein besserer Tipp gefunden. Rate noch ein Wort und versuche es erneut.');
         }catch(error){
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
-
+          if(requestedRoundId===this.roundId)setStatus('Der KI-Tipp ist gerade fehlgeschlagen. Bitte erneut versuchen.');
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
@@ -1902,6 +1906,8 @@
         if(wordButton){wordButton.disabled=false;wordButton.title='Wort-Tipp – beliebig oft';}
         const categoryDisplay=document.getElementById('kontexto-category-display');
         if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
+        const wordHintStatus=document.getElementById('kontexto-word-hint-status');
+        if(wordHintStatus){wordHintStatus.hidden=true;wordHintStatus.textContent='';}
         this.guesses=[];
         const result=document.getElementById('kontexto-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
