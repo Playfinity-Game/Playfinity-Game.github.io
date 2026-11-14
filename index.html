@@ -1672,18 +1672,6 @@
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
           // Every valid noun in the dictionary can become a target, not just the curated examples.
           this.dictionaryTargetWords = uniqueWords;
-          // Vorberechnete Kategorien für das gesamte Wörterbuch laden, falls der Batch-Job sie erzeugt hat.
-          try {
-            const categoryResponse = await fetch('data/wordfinity-categories.json', { cache: 'no-store' });
-            if (categoryResponse.ok) {
-              const categoryData = await categoryResponse.json();
-              if (categoryData && categoryData.categories && typeof categoryData.categories === 'object') {
-                this.categoryAssignments = new Map(Object.entries(categoryData.categories));
-              }
-            }
-          } catch (categoryError) {
-            console.warn('[WORDFINITY] Vorberechnete Kategorien nicht verfügbar; nutze Live-Zuordnung:', categoryError);
-          }
           this.dictionaryReady = true;
           return true;
         } catch (error) {
@@ -1724,11 +1712,6 @@
       async inferCategory(word) {
         const key = String(word || '').normalize('NFC').trim();
         const normalizedKey = key.toLocaleLowerCase('de-DE');
-        const curated = this.targetHints[key];
-        if (curated && curated.category) return curated.category;
-        const storedCategory = this.categoryAssignments.get(normalizedKey);
-        if (storedCategory) return storedCategory;
-
         // Die KI darf eine neue, passende Kategorie formulieren – nicht nur aus 21 festen Gruppen wählen.
         try {
           const controller = new AbortController();
