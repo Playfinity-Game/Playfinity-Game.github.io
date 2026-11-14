@@ -1800,7 +1800,7 @@
           this.pendingGuesses.forEach(word=>excluded.push(word));
 
           const hintController = new AbortController();
-          const hintTimeout = setTimeout(() => hintController.abort(), 45000);
+          const hintTimeout = setTimeout(() => hintController.abort(), 10000);
           let response;
           try {
             response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
@@ -1847,7 +1847,53 @@
           if(statusText)statusText.textContent='Die KI-Tipps waren diesmal nicht besser. Klicke erneut.';
         }catch(error){
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
-          if(statusText)statusText.textContent=(error && error.name==='AbortError')?'KI-Wort-Tipp: Server antwortet zu langsam. Bitte erneut versuchen.':'KI-Wort-Tipp-Fehler: '+(error && error.message ? error.message : 'Unbekannter Fehler');
+          if (requestedRoundId === this.roundId && !PauseController.paused && error && error.name === 'AbortError') {
+            const profile = this.targetHints[requestedTarget];
+            const excludedKeys = new Set([
+              requestedTarget.toLocaleLowerCase('de-DE'),
+              ...this.wordHintCandidatesTried,
+              ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')),
+              ...[...this.pendingGuesses]
+            ]);
+            let fallbackWord = profile && Array.isArray(profile.words)
+              ? profile.words.find(word => !excludedKeys.has(word.toLocaleLowerCase('de-DE')))
+              : '';
+            let fallbackScore = 0.08;
+            if (!fallbackWord && Array.isArray(this.dictionaryTargetWords) && this.dictionaryTargetWords.length) {
+              const pairs = value => {
+                const normalized = value.toLocaleLowerCase('de-DE');
+                const result = new Set();
+                for (let i = 0; i < normalized.length - 1; i++) result.add(normalized.slice(i, i + 2));
+                return result;
+              };
+              const targetPairs = pairs(requestedTarget);
+              let best = null;
+              for (const word of this.dictionaryTargetWords) {
+                const key = word.toLocaleLowerCase('de-DE');
+                if (excludedKeys.has(key)) continue;
+                const candidatePairs = pairs(word);
+                let overlap = 0;
+                for (const pair of targetPairs) if (candidatePairs.has(pair)) overlap++;
+                const score = overlap / Math.max(1, new Set([...targetPairs, ...candidatePairs]).size);
+                if (!best || score > best.score) best = { word, score };
+              }
+              if (best) { fallbackWord = best.word; fallbackScore = Math.max(0.01, best.score); }
+            }
+            if (fallbackWord) {
+              this.wordHintCandidatesTried.add(fallbackWord.toLocaleLowerCase('de-DE'));
+              const added = await this.submitGuess(fallbackWord, null, {
+                isHint: true,
+                requireBetterRank: false,
+                precomputedSimilarity: fallbackScore
+              });
+              if (added && statusText) statusText.textContent = 'Schneller Ersatz-Tipp: ' + fallbackWord;
+              else if (statusText) statusText.textContent = 'KI-Tipp dauert zu lange. Bitte versuche es erneut.';
+            } else if (statusText) {
+              statusText.textContent = 'KI-Tipp dauert zu lange. Bitte versuche es erneut.';
+            }
+          } else if (statusText) {
+            statusText.textContent = 'KI-Wort-Tipp-Fehler: ' + (error && error.message ? error.message : 'Unbekannter Fehler');
+          }
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
