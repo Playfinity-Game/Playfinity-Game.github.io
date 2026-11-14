@@ -1649,7 +1649,7 @@
       dictionaryReady: false,
       dictionaryWords: new Set(),
       dictionaryTargetWords: [],
-      usedTargets: new Set(),
+      usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
       wordHintCandidatesTried: new Set(),
       categoryEmbeddingCache: null,
       categoryAssignments: new Map(),
@@ -1800,7 +1800,7 @@
           this.pendingGuesses.forEach(word=>excluded.push(word));
 
           const hintController = new AbortController();
-          const hintTimeout = setTimeout(() => hintController.abort(), 30000);
+          const hintTimeout = setTimeout(() => hintController.abort(), 45000);
           let response;
           try {
             response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
@@ -1886,6 +1886,7 @@
           if(requestedRoundId!==this.roundId)return;
           this.targetWord=generatedWord;
           this.usedTargets.add(wordKey);
+          try { localStorage.setItem('wordfinity-used-targets', JSON.stringify([...this.usedTargets])); } catch (_) {}
           if(statusText)statusText.textContent='Cloudflare-KI verbunden · neues Zielwort erstellt';
         } catch(error) {
           if(requestedRoundId!==this.roundId)return;
@@ -1981,7 +1982,7 @@
           }
         }
         if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
-        const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
+        const normalizedSimilarity = Math.max(0, Math.min(1, sim));
         // PLAYFINITY-Modellrang: feste, nachvollziehbare Skala statt künstlicher Millionenwerte.
         // Dies ist eine Ähnlichkeitsschätzung, noch kein exakter Platz in einem vollständigen Wörterbuch.
         let calculatedRank = 1 + Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 15499);
@@ -2013,7 +2014,7 @@
 
           // Farbe und Balken richten sich nach der semantischen Ähnlichkeit,
           // nicht nach der künstlich skalierten Rangnummer.
-          const similarityScore = Math.max(0, Math.min(1, (Number(item.similarity) + 1) / 2));
+          const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
           let color = '#ff3b5c'; // Rot: weit entfernt
           let level = 'Weit entfernt';
           if (similarityScore >= 0.72) { color = '#00ff9d'; level = 'Sehr nah'; }
