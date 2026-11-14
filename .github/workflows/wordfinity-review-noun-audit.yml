@@ -1,0 +1,33 @@
+name: Audit Wordfinity review lists for nouns only
+
+on:
+  push:
+    branches: [wordfinity-wordlists-review-2026-11-14]
+    paths:
+      - "scripts/audit_wordfinity_review_nouns.py"
+      - ".github/workflows/wordfinity-review-noun-audit.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref_name }}
+      - name: Download Leipzig tagged corpus
+        run: |
+          curl --fail --location --retry 3 https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz --output /tmp/deu_news_2023_1M.tar.gz
+      - name: Filter review lists to nouns only
+        run: python3 scripts/audit_wordfinity_review_nouns.py /tmp/deu_news_2023_1M.tar.gz
+      - name: Commit audit results to review branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+users.noreply.github.com"
+          git add data/wordfinity-sehr-bekannt.json data/wordfinity-eher-bekannt.json data/WORDLIST-POS-AUDIT.json
+          if ! git diff --cached --quiet; then
+            git commit -m "Wordfinity: restrict review lists to nouns only"
+            git push origin HEAD:wordfinity-wordlists-review-2026-11-14
+          fi
