@@ -1978,7 +1978,7 @@
             const union=new Set([...a,...b]),overlap=[...a].filter(ch=>b.has(ch)).length/Math.max(1,union.size);
             const pa=bigrams(this.targetWord),pb=bigrams(cleanWord),pu=new Set([...pa,...pb]);
             const pairOverlap=[...pa].filter(pair=>pb.has(pair)).length/Math.max(1,pu.size);
-            sim=(overlap*.35+pairOverlap*.65)*2-1;
+            sim=(overlap*.35+pairOverlap*.65);
           }
         }
         if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
