@@ -936,18 +936,6 @@
           </div>
         </div>
 
-        <details class="kontexto-rules" style="background:rgba(18,20,44,.75);border:1px solid rgba(176,38,255,.28);border-radius:10px;padding:11px 14px;color:var(--text-muted);font-size:.82rem;line-height:1.55;">
-          <summary style="color:var(--neon-purple);font-weight:800;cursor:pointer;">📖 WORDFINITY-Spielregeln</summary>
-          <p style="margin-top:9px;color:var(--text-main);font-weight:700;">Das Lösungswort wird vor jeder Runde von der KI neu ausgewählt.</p>
-          <ul style="padding-left:20px;margin-top:6px;">
-            <li>Erlaubt sind Nomen, Verben und Adjektive.</li>
-            <li>Nomen stehen in der Einzahl, Verben im Infinitiv und Adjektive in der Grundform.</li>
-            <li>Keine Eigennamen wie Vor- oder Städtenamen.</li>
-            <li>Keine Artikel, Präpositionen, Bindewörter oder Füllwörter.</li>
-            <li>Gesucht werden gebräuchliche, verständliche deutsche Wörter – keine seltenen Fachbegriffe oder erfundenen Wörter.</li>
-          </ul>
-        </details>
-
         <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
 
         <div class="input-box">
@@ -1793,8 +1781,9 @@
 
       async showWordHint() {
         if(PauseController.paused)return;
-        const button=document.getElementById('kontexto-word-hint'),statusText=document.getElementById('model-status-text');
+        const button=document.getElementById('kontexto-word-hint'),statusText=document.getElementById('kontexto-category-display');
         const requestedRoundId=this.roundId,requestedTarget=this.targetWord;
+        if(statusText)statusText.hidden=false;
         if(!requestedTarget){
           if(statusText)statusText.textContent='Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
           return;
@@ -1829,12 +1818,19 @@
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
 
           const targetKey=requestedTarget.toLocaleLowerCase('de-DE');
+          const relatedToExistingWord = candidate => {
+            const key=candidate.toLocaleLowerCase('de-DE').replace(/[^a-zäöüß]/g,'');
+            const blocked=[requestedTarget,...this.guesses.map(item=>item.word),...this.pendingGuesses]
+              .map(word=>String(word).toLocaleLowerCase('de-DE').replace(/[^a-zäöüß]/g,''))
+              .filter(word=>word.length>=4);
+            return blocked.some(word=>key===word||key.includes(word)||word.includes(key));
+          };
           const ranked=result.hints
             .filter(item=>item&&typeof item.word==='string'&&Number.isFinite(Number(item.similarity)))
             .map(item=>({word:item.word.trim(),similarity:Number(item.similarity)}))
             .filter(item=>{
               const key=item.word.toLocaleLowerCase('de-DE');
-              return key&&key!==targetKey&&!this.wordHintCandidatesTried.has(key)&&
+              return key&&key!==targetKey&&!relatedToExistingWord(item.word)&&!this.wordHintCandidatesTried.has(key)&&
                 !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&
                 !this.pendingGuesses.has(key);
             })
@@ -1857,32 +1853,10 @@
           if(statusText)statusText.textContent='Die KI-Tipps waren diesmal nicht besser. Klicke erneut.';
         }catch(error){
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
-          if (requestedRoundId === this.roundId && !PauseController.paused && error && error.name === 'AbortError') {
-            const profile = this.targetHints[requestedTarget];
-            const excludedKeys = new Set([
-              requestedTarget.toLocaleLowerCase('de-DE'),
-              ...this.wordHintCandidatesTried,
-              ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')),
-              ...[...this.pendingGuesses]
-            ]);
-            let fallbackWord = profile && Array.isArray(profile.words)
-              ? profile.words.find(word => !excludedKeys.has(word.toLocaleLowerCase('de-DE')))
-              : '';
-            let fallbackScore = 0.08;
-            if (fallbackWord) {
-              this.wordHintCandidatesTried.add(fallbackWord.toLocaleLowerCase('de-DE'));
-              const added = await this.submitGuess(fallbackWord, null, {
-                isHint: true,
-                requireBetterRank: false,
-                precomputedSimilarity: fallbackScore
-              });
-              if (added && statusText) statusText.textContent = 'Schneller Ersatz-Tipp: ' + fallbackWord;
-              else if (statusText) statusText.textContent = 'KI-Tipp dauert zu lange. Bitte versuche es erneut.';
-            } else if (statusText) {
-              statusText.textContent = 'KI-Tipp dauert zu lange. Bitte versuche es erneut.';
-            }
-          } else if (statusText) {
-            statusText.textContent = 'KI-Wort-Tipp-Fehler: ' + (error && error.message ? error.message : 'Unbekannter Fehler');
+          if (requestedRoundId === this.roundId && !PauseController.paused && statusText) {
+            statusText.textContent = error && error.name === 'AbortError'
+              ? 'Die Tipp-KI braucht zu lange. Bitte versuche es erneut.'
+              : 'KI-Wort-Tipp-Fehler: ' + (error && error.message ? error.message : 'Unbekannter Fehler');
           }
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },

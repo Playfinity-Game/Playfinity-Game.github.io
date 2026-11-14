@@ -125,7 +125,7 @@ async function handleHints(env, body) {
 
   const text = await generate(
     env,
-    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge höchstens 8 unterschiedliche, gebräuchliche deutsche Einzelwörter, die inhaltlich eng mit dem Zielwort verwandt sind. Keine Umschreibungen, keine Wortgruppen, keine Sätze, keine Fantasiewörter und keine seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
+    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge höchstens 8 unterschiedliche, gebräuchliche deutsche Einzelwörter, die inhaltlich eng mit dem Zielwort verwandt sind. WICHTIG: Erzeuge KEINE Zusammensetzungen, Ableitungen, Beugungsformen oder bloßen Schreibvarianten des Zielworts oder der ausgeschlossenen Wörter. Wenn das Zielwort zum Beispiel 'Schlüssel' ist, sind 'Schlüsselbund' und 'Schlüsselloch' verboten. Vermeide jedes Kandidatenwort, das ein ausgeschlossenes Wort als Bestandteil enthält oder selbst Bestandteil eines ausgeschlossenen Wortes ist. Keine Umschreibungen, keine Wortgruppen, keine Sätze, keine Fantasiewörter und keine seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
     "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 18 passende, verschiedene Wörter, eins pro Zeile.",
     100
   );
@@ -147,9 +147,12 @@ async function handleHints(env, body) {
     .map(x => String(x || "").normalize("NFC").trim())
     .filter(x => /^[A-Za-zÄÖÜäöüß-]{3,32}$/.test(x))
     .filter(x => {
-      const key = x.toLocaleLowerCase("de-DE");
-      if (seen.has(key)) return false;
-      seen.add(key);
+      const key = x.toLocaleLowerCase("de-DE").replace(/[^a-zäöüß]/g, "");
+      if ([...seen].some(existing => {
+        const blocked = existing.replace(/[^a-zäöüß]/g, "");
+        return blocked.length >= 4 && (key === blocked || key.includes(blocked) || blocked.includes(key));
+      })) return false;
+      seen.add(x.toLocaleLowerCase("de-DE"));
       return true;
     })
     .slice(0, 8);
