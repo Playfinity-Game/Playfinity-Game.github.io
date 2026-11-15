@@ -9,9 +9,8 @@ const BATCH_SIZE = 48;
 const REVIEW_MARGIN = 0.025;
 const REVIEW_SCORE = 0.30;
 
-// Fester WORDFINITY-Katalog: exakt 26 vom Nutzer bestätigte Kategorien.
-// Diese Liste ist die verbindliche Quelle für die automatische Sortierung.
-// Datenbasis: exakt 8.213 geprüfte Zielwörter.
+// Der Kategoriekatalog entspricht den 38 Kategorien der aktiven, gruppierten Wortliste.
+// Die automatische Embedding-Zuordnung dient nur als Prüfvorschlag; sie ändert die aktive Liste nicht.
 const categoryDescriptions = {
   "Tiere": "Tierarten, Säugetiere, Vögel, Fische, Insekten und andere Tiere.",
   "Pflanzen & Garten": "Pflanzen, Bäume, Blumen, Gartenpflanzen, Gartenarbeit und Gartenbedarf.",
