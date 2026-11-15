@@ -826,7 +826,35 @@
     .wordle-result-guess{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 0}
     .pir-correct-winners{margin:10px 0;padding:10px;border:1px solid rgba(0,255,157,.35);border-radius:10px;color:var(--neon-green)}
     .screen#screen-wordle .round-result.visible{max-height:45vh;overflow:auto}
-</style>
+
+    /* HANGMANN */
+    .hangmann-wrap{width:100%;max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+    .hangmann-title{text-align:center;font-size:clamp(2rem,7vw,3rem);font-weight:950;letter-spacing:1px}
+    .hangmann-title .hang{color:var(--neon-cyan);text-shadow:0 0 16px rgba(0,240,255,.28)}
+    .hangmann-title .mann{color:var(--neon-pink);text-shadow:0 0 16px rgba(255,0,127,.25)}
+    .hangmann-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    .hangmann-pill{padding:7px 11px;border:1px solid rgba(0,240,255,.24);border-radius:999px;background:rgba(0,240,255,.07);color:var(--neon-cyan);font-size:.8rem;font-weight:800}
+    .hangmann-stage{border:1px solid var(--border-glow);border-radius:16px;background:rgba(12,14,32,.72);padding:12px;display:flex;justify-content:center;align-items:center;min-height:220px}
+    .hangmann-svg{width:min(100%,330px);height:220px;overflow:visible}
+    .hangmann-gallows{fill:none;stroke:var(--neon-cyan);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(0,240,255,.35))}
+    .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
+    .hangmann-part{opacity:0;transition:opacity .2s}
+    .hangmann-part.shown{opacity:1}
+    .hangmann-word{display:flex;justify-content:center;gap:clamp(4px,1.4vw,10px);flex-wrap:wrap;min-height:54px}
+    .hangmann-slot{width:clamp(22px,6vw,38px);height:48px;border-bottom:3px solid var(--neon-cyan);display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:900;text-transform:uppercase;color:#fff}
+    .hangmann-category{padding:10px 13px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.1);color:#e5c7ff;font-weight:750;text-align:center}
+    .hangmann-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .hangmann-keyboard{display:flex;flex-direction:column;gap:6px;width:100%}
+    .hangmann-keyrow{display:flex;justify-content:center;gap:5px}
+    .hangmann-key{flex:1;max-width:46px;min-width:0;height:46px;border-radius:8px;border:1px solid rgba(255,255,255,.13);background:rgba(28,32,68,.92);color:#fff;font-weight:850;font-size:1rem;cursor:pointer}
+    .hangmann-key:disabled{opacity:.32;cursor:default}
+    .hangmann-key.hit{background:var(--neon-green);border-color:var(--neon-green);color:#06130e}
+    .hangmann-key.miss{background:#44203a;border-color:#8e315f;color:#ff9bc9}
+    .hangmann-status{min-height:24px;text-align:center;color:var(--text-muted);font-size:.9rem}
+    .hangmann-status strong{color:var(--neon-green)}
+    @media(max-width:480px){.hangmann-stage{min-height:190px}.hangmann-svg{height:190px}.hangmann-key{height:42px;font-size:.9rem}.hangmann-slot{height:42px}}
+
+  </style>
 </head>
 
 <body>
@@ -903,6 +931,16 @@
           <div class="card-footer">
             <span class="btn-play-card" style="color: var(--neon-pink); cursor:default">Bald verfügbar</span>
           </div>
+        </div>
+
+        <!-- Hangmann Card -->
+        <div class="game-card card-gold" onclick="PlayfinityRouter.go('hangmann')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-gold)">Buchstaben-Rätsel</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">Hang</span><span style="color:var(--neon-pink)">mann</span></div>
+            <div class="card-desc">Errate das gesuchte Nomen Buchstabe für Buchstabe – mit Kategorie-Tipp und Galgenfigur.</div>
+          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
         </div>
 
         <!-- Zahlen schätzen Card -->
@@ -990,6 +1028,38 @@
         <div class="size-controls">
           <div class="size-drag-hint" style="text-align:center;color:var(--text-muted);font-size:.82rem;padding:4px 0;">⬆ Nach oben ziehen = größer · ⬇ Nach unten ziehen = kleiner</div>
           <button class="btn-action btn-block" id="btn-size-submit">Größe einloggen</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN: HANGMANN -->
+    <section class="screen" id="screen-hangmann">
+      <div class="hangmann-wrap">
+        <div class="hangmann-title"><span class="hang">Hang</span><span class="mann">mann</span></div>
+        <div class="hangmann-top">
+          <span class="hangmann-pill" id="hangmann-round">3.000 Nomen</span>
+          <span class="hangmann-pill" id="hangmann-errors">Fehler: 0 / 6</span>
+        </div>
+        <div class="hangmann-stage" role="img" aria-label="Galgenfigur, die sich mit falschen Buchstaben aufbaut">
+          <svg class="hangmann-svg" viewBox="0 0 240 210" aria-hidden="true">
+            <g class="hangmann-gallows"><path d="M28 190H150M58 190V18H160V38M58 48L28 78"/></g>
+            <g class="hangmann-person">
+              <circle class="hangmann-part" data-part="1" cx="160" cy="58" r="19"/>
+              <path class="hangmann-part" data-part="2" d="M160 77V127"/>
+              <path class="hangmann-part" data-part="3" d="M160 91L132 111"/>
+              <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
+              <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
+              <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hangmann-category" id="hangmann-category">Kategorie-Tipp: Noch verborgen</div>
+        <div class="hangmann-word" id="hangmann-word" aria-live="polite"></div>
+        <div class="hangmann-status" id="hangmann-status" aria-live="polite">Wähle einen Buchstaben.</div>
+        <div class="hangmann-keyboard" id="hangmann-keyboard" aria-label="Buchstabentastatur"></div>
+        <div class="hangmann-actions">
+          <button class="btn-action" id="hangmann-hint" type="button">🏷 Kategorie zeigen</button>
+          <button class="btn-action" id="hangmann-new" type="button">Neues Wort</button>
         </div>
       </div>
     </section>
@@ -1125,9 +1195,89 @@
 
       onEnterGame(screenId) {
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
+        if (screenId === 'hangmann') HangmannGame.init();
         if (screenId === 'kontexto' && !KontextoGame.initialized) KontextoGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
+      }
+    };
+
+    /* ==========================================================================
+       HANGMANN GAME
+       ========================================================================== */
+    const HangmannGame = {
+      initialized:false, words:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false,
+      normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
+      async init(){
+        if(!this.initialized){
+          document.getElementById('hangmann-new').addEventListener('click',()=>this.newRound());
+          document.getElementById('hangmann-hint').addEventListener('click',()=>this.showHint());
+          window.addEventListener('keydown',e=>{if(PlayfinityRouter.currentScreen==='hangmann'&&/^[a-zäöüß]$/i.test(e.key))this.guess(e.key);});
+          this.buildKeyboard();this.initialized=true;
+        }
+        if(!this.words.length){
+          const status=document.getElementById('hangmann-status');status.textContent='Wortliste wird geladen …';
+          try{
+            const response=await fetch('data/hangmann-nouns.json',{cache:'no-cache'});
+            if(!response.ok)throw new Error('Wortliste nicht erreichbar');
+            const payload=await response.json();this.words=payload.words.filter(item=>item&&item.word&&item.category);
+            if(this.words.length!==3000)throw new Error('Die Wortliste enthält nicht genau 3.000 Einträge.');
+          }catch(error){status.textContent='Die Wortliste konnte nicht geladen werden. Bitte später erneut versuchen.';return;}
+        }
+        if(!this.target)this.newRound();
+      },
+      buildKeyboard(){
+        const root=document.getElementById('hangmann-keyboard');
+        const rows=['QWERTZUIOP','ASDFGHJKL','ÄÖÜẞYXCVBNM'];
+        root.innerHTML=rows.map(row=>'<div class="hangmann-keyrow">'+Array.from(row).map(letter=>'<button type="button" class="hangmann-key" data-letter="'+letter+'" aria-label="Buchstabe '+letter+'">'+letter+'</button>').join('')+'</div>').join('');
+        root.addEventListener('click',e=>{const button=e.target.closest('[data-letter]');if(button)this.guess(button.dataset.letter);});
+      },
+      newRound(){
+        if(!this.words.length)return;
+        this.target=this.words[Math.floor(Math.random()*this.words.length)];
+        this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
+        document.getElementById('hangmann-category').textContent='Kategorie-Tipp: Noch verborgen';
+        document.getElementById('hangmann-hint').disabled=false;
+        document.getElementById('hangmann-status').textContent='Wähle einen Buchstaben.';
+        document.querySelectorAll('.hangmann-part').forEach(part=>part.classList.remove('shown'));
+        document.getElementById('hangmann-errors').textContent='Fehler: 0 / 6';
+        this.renderWord();this.renderKeyboard();
+      },
+      guess(letter){
+        if(!this.target||this.locked)return;
+        const key=this.normalize(letter);
+        if(!/^[A-ZÄÖÜẞ]$/.test(key)||this.guessed.has(key))return;
+        this.guessed.add(key);
+        if(this.normalize(this.target.word).includes(key)){
+          this.renderWord();
+          if(Array.from(this.normalize(this.target.word)).every(ch=>this.guessed.has(ch)))this.finish(true);
+        }else{
+          this.errors++;const part=document.querySelector('[data-part="'+this.errors+'"]');if(part)part.classList.add('shown');
+          document.getElementById('hangmann-errors').textContent='Fehler: '+this.errors+' / 6';
+          if(this.errors>=6)this.finish(false);
+        }
+        this.renderKeyboard();
+      },
+      renderWord(){
+        const word=this.normalize(this.target.word);
+        document.getElementById('hangmann-word').innerHTML=Array.from(word).map(ch=>'<span class="hangmann-slot">'+(this.guessed.has(ch)?ch:'')+'</span>').join('');
+      },
+      renderKeyboard(){
+        document.querySelectorAll('#hangmann-keyboard [data-letter]').forEach(button=>{
+          const letter=button.dataset.letter;button.disabled=this.guessed.has(letter)||this.locked;
+          button.classList.toggle('hit',this.guessed.has(letter)&&this.normalize(this.target.word).includes(letter));
+          button.classList.toggle('miss',this.guessed.has(letter)&&!this.normalize(this.target.word).includes(letter));
+        });
+      },
+      showHint(){
+        if(!this.target||this.hintShown)return;
+        this.hintShown=true;document.getElementById('hangmann-category').textContent='Kategorie: '+this.target.category;
+        document.getElementById('hangmann-hint').disabled=true;
+      },
+      finish(won){
+        this.locked=true;this.renderWord();this.renderKeyboard();
+        document.getElementById('hangmann-status').innerHTML=won?'<strong>🎉 Richtig! Das Wort lautet '+this.target.word+'.</strong>':'Nicht ganz! Das gesuchte Wort war <strong>'+this.target.word+'</strong>.';
+        document.getElementById('hangmann-hint').disabled=true;
       }
     };
 
