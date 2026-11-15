@@ -1674,21 +1674,29 @@
         try {
           const response = await fetch('data/wordfinity-nouns.json', { cache: 'no-store' });
           if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
-          const words = await response.json();
-          if (!Array.isArray(words) || words.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
+          const groupedWords = await response.json();
+          if (!groupedWords || Array.isArray(groupedWords) || typeof groupedWords !== 'object') {
+            throw new Error('Wortliste muss ein Objekt mit Kategorien und Wortlisten sein');
+          }
           const uniqueWordsByKey = new Map();
-          words
-            .map(word => String(word).trim().normalize('NFC'))
-            .filter(word => /^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word))
-            .forEach(word => {
+          const assignments = new Map();
+          for (const [category, words] of Object.entries(groupedWords)) {
+            if (!Array.isArray(words)) throw new Error('Ungültige Wortliste in Kategorie: ' + category);
+            for (const value of words) {
+              const word = String(value).trim().normalize('NFC');
+              if (!/^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word)) continue;
               const key = word.toLocaleLowerCase('de-DE');
               if (!uniqueWordsByKey.has(key)) uniqueWordsByKey.set(key, word);
-            });
+              if (!assignments.has(key)) assignments.set(key, category);
+            }
+          }
           const uniqueWords = [...uniqueWordsByKey.values()];
+          if (uniqueWords.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
-          // Every valid noun in the dictionary can become a target, not just the curated examples.
           this.dictionaryTargetWords = uniqueWords;
+          this.categoryAssignments = assignments;
           this.dictionaryReady = true;
+          if (statusText) statusText.textContent = uniqueWords.length.toLocaleString('de-DE') + ' Wörter aus ' + Object.keys(groupedWords).length + ' Kategorien geladen';
           return true;
         } catch (error) {
           console.error('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
@@ -1728,7 +1736,10 @@
       async inferCategory(word, signal = null) {
         const key = String(word || '').normalize('NFC').trim();
         const normalizedKey = key.toLocaleLowerCase('de-DE');
-        // Die KI darf eine neue, passende Kategorie formulieren – nicht nur aus 21 festen Gruppen wählen.
+        // Die Kategorie aus der aktiven Wortliste hat Vorrang vor einer KI-Schätzung.
+        const assignedCategory = this.categoryAssignments.get(normalizedKey);
+        if (assignedCategory) return assignedCategory;
+        // Nur Wörter außerhalb der Wortliste werden ersatzweise von der KI kategorisiert.
         try {
           const controller = new AbortController();
           const timeout = setTimeout(() => controller.abort(), 25000);
@@ -1953,7 +1964,7 @@
         this.targetWord=selectedWord;
         this.usedTargets.add(selectedWord.toLocaleLowerCase('de-DE'));
         try { localStorage.setItem('wordfinity-used-targets', JSON.stringify([...this.usedTargets].slice(-1000))); } catch (_) {}
-        if(statusText)statusText.textContent='Neues KI-Lösungswort geladen';
+        if(statusText)statusText.textContent='Neues Lösungswort aus deiner Wortliste geladen';
 
         this.categoryHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
         const categoryButton=document.getElementById('kontexto-category-hint'),wordButton=document.getElementById('kontexto-word-hint');
