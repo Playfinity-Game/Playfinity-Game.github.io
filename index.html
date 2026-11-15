@@ -312,6 +312,7 @@
       width: 100%;
     }
 
+    .wordle-mobile-entry { display: none; }
     .wordle-grid {
       display: flex;
       flex-direction: column;
@@ -439,7 +440,11 @@
     .key-btn.absent { background: #181a30; color: #555c7a; opacity: 0.6; }
     .screen#screen-wordle { min-height: calc(100vh - 64px); }
     .screen#screen-wordle .wordle-container { justify-content:flex-start; gap:10px; padding-top:4px; }
-    @media(max-width:600px){header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw);overflow:hidden}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
+    @media(max-width:600px){
+      .wordle-mobile-entry{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;min-height:42px;color:var(--text-main);font-size:1rem;line-height:1.25;text-align:center}
+      .wordle-mobile-letters{min-height:1.25em;letter-spacing:.12em}
+      .wordle-mobile-word{min-height:1.25em;font-weight:800;color:var(--neon-cyan)}
+      header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw);overflow:hidden}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
 
     /* ==========================================================================
        6. KONTEXTO SCREEN
@@ -917,6 +922,10 @@
     <!-- SCREEN 2: WORDLE -->
     <section class="screen" id="screen-wordle">
       <div class="wordle-container">
+        <div class="wordle-mobile-entry" aria-live="polite" aria-label="Aktuelle Eingabe">
+          <div class="wordle-mobile-letters" id="wordle-mobile-letters"></div>
+          <div class="wordle-mobile-word" id="wordle-mobile-word"></div>
+        </div>
         <div class="wordle-grid" id="wordle-board"></div>
         <div class="keyboard" id="wordle-keyboard"></div>
         <div class="round-result" id="wordle-round-result"></div>
@@ -1420,6 +1429,10 @@
         const board = document.getElementById('wordle-board');
         if (!board) return;
         board.innerHTML = '';
+        const mobileLetters = document.getElementById('wordle-mobile-letters');
+        const mobileWord = document.getElementById('wordle-mobile-word');
+        if (mobileLetters) mobileLetters.textContent = this.currentGuess.split('').join(' ');
+        if (mobileWord) mobileWord.textContent = this.currentGuess;
 
         // Neueste Versuche stehen oben. Das Board behält exakt sechs sichtbare Zeilen;
         // ältere Versuche laufen unten aus dem festen Anzeigefenster heraus.
@@ -1498,6 +1511,7 @@
         if (this.currentGuess.length === 5) {
           this.submitGuess(this.currentGuess);
           this.currentGuess = '';
+          this.renderBoard();
         }
       },
 
