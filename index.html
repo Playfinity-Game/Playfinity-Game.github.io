@@ -1716,6 +1716,11 @@
           'Kleidung & Mode','Fahrzeuge & Reisen','Sport & Spiele','Kunst, Musik & Kultur',
           'Sprache & Medien','Körper & Gesundheit','Wissenschaft & Weltall','Geld, Recht & Gesellschaft'
         ];
+        if (result.needsReview) {
+          const review = 'Manuelle Prüfung nötig (' + (result.candidates || []).slice(0, 2).map(item => item.category).join(' / ') + ')';
+          this.categoryAssignments.set(normalizedKey, review);
+          return review;
+        }
         if (!allowed.includes(result.category)) throw new Error('Ungültige Kategorie-Antwort');
         this.categoryAssignments.set(normalizedKey, result.category);
         return result.category;
