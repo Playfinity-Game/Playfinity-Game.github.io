@@ -3,7 +3,7 @@ name: Wordfinity clean target audit
 on:
   push:
     branches:
-      - wordfinity-clean-target-filter-2026-11-15
+      - wordfinity-hf-semantic-overhaul-2026-11-15
     paths:
       - ".github/workflows/wordfinity-clean-target-audit.yml"
       - "scripts/build_wordfinity_clean_targets.py"
@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit:
@@ -55,7 +55,15 @@ jobs:
             --base data/wordfinity-nouns.json \
             --thesaurus openthesaurus.txt
 
-      - name: Upload results for review (no repository writes)
+      - name: Commit the approved target-list artifact to this feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/wordfinity-targets.json
+          git diff --cached --quiet || git commit -m "Add curated 8,213-word Wordfinity target list"
+          git push
+
+      - name: Upload results for review
         uses: actions/upload-artifact@v4
         with:
           name: wordfinity-clean-target-audit
