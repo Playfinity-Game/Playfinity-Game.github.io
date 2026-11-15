@@ -84,13 +84,22 @@ async function handleRanking(env, body) {
     return json({ error: "Es werden exakt 8.213 eindeutige Zielwörter erwartet" }, 400);
   }
   const targetVector = (await embed(env, [target]))[0];
-  const scores = [];
+  const scores = new Array(words.length);
   const batchSize = 96;
-  for (let offset = 0; offset < words.length; offset += batchSize) {
-    const batch = words.slice(offset, offset + batchSize).map(String);
-    const vectors = await embed(env, batch);
-    for (let i = 0; i < batch.length; i++) scores.push({ word: batch[i], similarity: cosine(targetVector, vectors[i]) });
+  const batches = [];
+  for (let offset = 0; offset < words.length; offset += batchSize) batches.push(offset);
+  let cursor = 0;
+  async function worker() {
+    while (true) {
+      const offset = cursor;
+      cursor += batchSize;
+      if (offset >= words.length) return;
+      const batch = words.slice(offset, offset + batchSize).map(String);
+      const vectors = await embed(env, batch);
+      for (let i = 0; i < batch.length; i++) scores[offset + i] = { word: batch[i], similarity: cosine(targetVector, vectors[i]) };
+    }
   }
+  await Promise.all(Array.from({ length: 3 }, () => worker()));
   scores.sort((a, b) => b.similarity - a.similarity || a.word.localeCompare(b.word, "de"));
   return json({ target, model: HF_MODEL, count: scores.length, ranking: scores });
 }
