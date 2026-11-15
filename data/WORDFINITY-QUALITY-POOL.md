@@ -1,28 +1,25 @@
-# WORDFINITY – streng geprüfte Nomen-Wortliste
+# WORDFINITY – zusätzlicher Nomen-Kandidatenpool
 
-Diese strenge Nomenliste ist die **aktive WORDFINITY-Wortliste**. Die bisherige große Liste wird beim nächsten erfolgreichen Build einmalig unter `data/archive/wordfinity-nouns-legacy.json` archiviert und danach nicht mehr vom Spiel geladen. Der Workflow erstellt sie aus der Leipzig Corpora Collection, testet die Filterregeln und veröffentlicht die erzeugte JSON-Liste als `data/wordfinity-nouns.json`. Genau diese Datei lädt Wordfinity beim Start.
+Dieses Skript erzeugt einen **separaten Kandidatenpool** aus der Leipzig Corpora Collection. Dieser Pool ist nicht die aktive WORDFINITY-Wortliste und wird nicht automatisch in das Spiel übernommen.
 
 ## Qualitätsregeln
 
-- Ausschließlich als `NOUN` erkannte Gattungsnomen; keine Verben, Adjektive oder Eigennamen.
-- Nur alphabetische deutsche Einzelwörter ohne Bindestriche, Ziffern, Satzzeichen oder Leerzeichen.
-- Nomen müssen großgeschrieben sein, mindestens 3 und höchstens 24 Zeichen enthalten und dürfen nicht vollständig in Großbuchstaben stehen.
-- Mindestens 5 Korpusbelege; maximal 15.000 Nomen, nach Häufigkeit sortiert.
-- Eindeutige alte Schreibweisen werden vereinheitlicht. Bedeutungsunterschiede wie „Masse“ und „Maße“ bleiben getrennt.
+- Kandidaten werden anhand von Wortart, Schreibweise und Korpus-Häufigkeit gefiltert.
+- Automatische POS-Erkennung und Häufigkeitsgrenzen sind Näherungen. Sie garantieren weder Kindgerechtheit noch, dass jedes Wort ein geeignetes Spielziel ist.
 - Manuelle Ausschlüsse stehen in `data/wordfinity-excluded-words.txt`.
+- Kandidaten müssen vor einer Übernahme redaktionell geprüft und in die passende der 38 aktiven Kategorien einsortiert werden.
 
 ## Quelle
 
 - Leipzig Corpora Collection, Korpus `deu_news_2023_1M`
 - Download: https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz
-- Zuordnung über Grundform/Lemma und Wortart; falls keine POS-Wortliste vorliegt, erfolgt die Erkennung mit dem deutschen spaCy-Modell.
 - Namensnennung: Leipzig Corpora Collection, Universität Leipzig.
-- Angegebene Lizenz: CC BY 4.0. Vor Weitergabe die aktuellen Downloadbedingungen prüfen und die Namensnennung beibehalten.
+- Die Lizenz- und Downloadbedingungen sind vor Weiterverwendung direkt bei der Quelle zu prüfen.
 
-## Erstellung und Veröffentlichung
+## Erstellung
 
-Der GitHub-Actions-Workflow **Build WORDFINITY strict noun list** läuft nach Änderungen an Generator, Tests, Ausschlussliste oder dieser Dokumentation auf `main`; er kann außerdem manuell gestartet werden. Zuerst laufen die Tests. Danach wird der Nomen-Pool erstellt und als JSON-Array in `data/wordfinity-nouns.json` geschrieben. Bei weniger als 1.000 Kandidaten bricht der Workflow ab und lässt die bisherige aktive Liste unverändert. Der Workflow lädt Kandidatenliste und aktive Liste als 30 Tage verfügbares Artefakt hoch und committet die aktive Wortliste anschließend nach `main`.
+Der Workflow führt zunächst die Tests aus, erzeugt anschließend den separaten Kandidatenpool und stellt ihn als GitHub-Actions-Artefakt bereit. **Er verändert niemals `data/wordfinity-nouns.json` und committet keine automatisch erzeugte Kandidatenliste in die aktive Spielliste.**
 
 ## Grenzen
 
-Automatische Wortarterkennung und Korpus-Häufigkeit garantieren nicht, dass jedes Wort kindgerecht oder allgemein bekannt ist. Die Liste ist streng nach Wortart und Form gefiltert, aber nicht jedes einzelne Wort ist redaktionell von Hand geprüft.
+Korpusbelege können Eigennamen, Fachwörter, seltene Formen und kontextabhängige Wortarten enthalten. Die POS-Erkennung kann Fehler machen. Der Kandidatenpool ist daher nur eine Prüfhilfe und darf nicht ungeprüft veröffentlicht werden.
