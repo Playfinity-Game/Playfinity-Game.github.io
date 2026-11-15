@@ -1812,9 +1812,10 @@
           this.guesses.forEach(item=>excluded.push(item.word));
           this.pendingGuesses.forEach(word=>excluded.push(word));
 
+          // Der Wort-Tipp hat ein hartes Gesamtlimit von 3 Sekunden.
           const hintController = new AbortController();
-          const hintTimeout = setTimeout(() => hintController.abort(), 30000);
-          let response;
+          const hintTimeout = setTimeout(() => hintController.abort(), 3000);
+          let response, result;
           try {
             response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints',{
               method:'POST',
@@ -1822,11 +1823,10 @@
               body:JSON.stringify({target:requestedTarget,excluded}),
               signal:hintController.signal
             });
+            try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom Tipp-Server');}
           } finally {
             clearTimeout(hintTimeout);
           }
-          let result;
-          try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom Tipp-Server');}
           if(!response.ok)throw new Error(result.error||'Tipp-Server Fehler '+response.status);
           if(!Array.isArray(result.hints))throw new Error('Keine gültige Tipp-Liste erhalten');
           if(requestedRoundId!==this.roundId||PauseController.paused)return;
@@ -1866,7 +1866,11 @@
           }
         }catch(error){
           console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:',error);
-
+          if(requestedRoundId===this.roundId&&button){
+            button.title=error&&error.name==='AbortError'
+              ?'Tipp nicht rechtzeitig – bitte erneut versuchen (Limit: 3 Sekunden)'
+              :'Tipp gerade nicht verfügbar – bitte erneut versuchen';
+          }
         }finally{if(requestedRoundId===this.roundId&&button)button.disabled=false;}
       },
 
