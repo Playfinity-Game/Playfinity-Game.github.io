@@ -74,7 +74,14 @@ async function handleCategory(env, body) {
   const vectors = await embed(env, [word, ...CATEGORIES.map(c => c.description)]);
   const ranked = CATEGORIES.map((c, i) => ({ category: c.name, score: cosine(vectors[0], vectors[i + 1]) }))
     .sort((a, b) => b.score - a.score);
-  return json({ category: ranked[0].category, scores: ranked, model: HF_MODEL });
+  const margin = ranked[0].score - ranked[1].score;
+  const needsReview = ranked[0].score < 0.20 || margin < 0.015;
+  return json({
+    category: needsReview ? null : ranked[0].category,
+    needsReview,
+    candidates: ranked.slice(0, 3),
+    model: HF_MODEL
+  });
 }
 async function handleRanking(env, body) {
   const target = String(body.target || "").trim();
