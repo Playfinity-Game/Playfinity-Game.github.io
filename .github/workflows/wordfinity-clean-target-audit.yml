@@ -64,5 +64,6 @@ jobs:
             data/wordfinity-ausgeschlossen.json
             data/wordfinity-pruefbericht.json
             data/wordfinity-manuell-pruefen.json
+            data/wordfinity-endungsfilter.json
           if-no-files-found: error
           retention-days: 30
