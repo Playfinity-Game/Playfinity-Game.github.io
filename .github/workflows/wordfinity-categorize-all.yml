@@ -2,6 +2,9 @@ name: WORDFINITY – alle Wörter kategorisieren
 
 on:
   workflow_dispatch:
+  push:
+    paths:
+      - 'scripts/categorize-wordfinity.mjs'
 
 permissions:
   contents: write
