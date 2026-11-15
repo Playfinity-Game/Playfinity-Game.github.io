@@ -247,6 +247,8 @@ def main() -> None:
         (args.report, report),
         (Path("data/wordfinity-manuell-pruefen.json"), sorted(manual_review, key=lambda item: key(str(item["word"])))),
         (Path("data/wordfinity-endungsfilter.json"), suffix_report),
+        # The active game target list is exactly the accepted cohort after the agreed suffix filter.
+        (Path("data/wordfinity-targets.json"), suffix_report["accepted_kept"]),
     ):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
