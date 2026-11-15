@@ -1258,6 +1258,13 @@
         document.getElementById('hangmann-errors').textContent='Fehler: 0 / 6';
         this.renderWord();this.renderKeyboard();
       },
+      submitChatGuess(player, text){
+        if(!this.target||this.locked)return;
+        const guess=this.normalize(String(text||'').trim());
+        const answer=this.normalize(this.target.word);
+        if(!guess||!player||guess!==answer)return;
+        this.finish(true,player);
+      },
       guess(letter){
         if(!this.target||this.locked)return;
         const key=this.normalize(letter);
@@ -1289,10 +1296,15 @@
         this.hintShown=true;document.getElementById('hangmann-category').textContent='Kategorie: '+this.target.category;
         document.getElementById('hangmann-hint').disabled=true;
       },
-      finish(won){
+      finish(won, player=null){
         this.locked=true;this.renderWord();this.renderKeyboard();
-        document.getElementById('hangmann-status').innerHTML=won?'<strong>🎉 Richtig! Das Wort lautet '+this.target.word+'.</strong>':'Nicht ganz! Das gesuchte Wort war <strong>'+this.target.word+'</strong>.';
+        document.getElementById('hangmann-status').innerHTML=won?'<strong>🎉 Richtig! Das Wort lautet '+CommunityBoard.escape(this.target.word)+'.</strong>':'Nicht ganz! Das gesuchte Wort war <strong>'+CommunityBoard.escape(this.target.word)+'</strong>.';
         document.getElementById('hangmann-hint').disabled=true;
+        if(won&&player){
+          CommunityBoard.record('hangmann',player);
+          showCorrectAnswerOverlay(this.target.word, null, false, '🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!');
+          PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
+        }
       }
     };
 
@@ -1380,8 +1392,8 @@
           KontextoGame.submitGuess(text, user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
-        } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && /^[A-Za-zÄÖÜäöüß]$/.test(text)) {
-          HangmannGame.guess(text);
+        } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
+          HangmannGame.submitChatGuess(user, text);
         }
       }
     };
