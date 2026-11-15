@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Eigenständige Hangmann-Wortliste. Schrittweiser Aufbau; keine Übernahme aus WORDFINITY.",
+  "description": "Kurze, geläufige deutsche Begriffe für Hangmann (maximal 10 Zeichen).",
   "words": [
     {
       "word": "Affe",
@@ -25,10 +25,6 @@
     },
     {
       "word": "Delfin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Eichhörnchen",
       "category": "Tiere"
     },
     {
@@ -120,10 +116,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Meerschweinchen",
-      "category": "Tiere"
-    },
-    {
       "word": "Nashorn",
       "category": "Tiere"
     },
@@ -172,10 +164,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Schildkröte",
-      "category": "Tiere"
-    },
-    {
       "word": "Schwein",
       "category": "Tiere"
     },
@@ -212,39 +200,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "GRAFIKKARTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ARBEITSSPEICHER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "FESTPLATTE",
       "category": "Technik & Digitales"
     },
     {
-      "word": "MAINBOARD",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "NETZTEIL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GEHAEUSE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KUEHLER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LUEFTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WAERMELEITPASTE",
       "category": "Technik & Digitales"
     },
     {
@@ -280,14 +240,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "LAUTSPRECHER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KOPFHOERER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "HEADSET",
       "category": "Technik & Digitales"
     },
@@ -312,47 +264,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "TOUCHSCREEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STYLUS",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DOCKINGSTATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SPEICHERKARTE",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "USBSTICK",
       "category": "Technik & Digitales"
     },
     {
       "word": "LAUFWERK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BRENNER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "CARDREADER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "NETZWERKKARTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SOUNDKARTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STECKPLATZ",
       "category": "Technik & Digitales"
     },
     {
@@ -368,79 +284,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "VERLAENGERUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STECKDOSENLEISTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "USV",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "SERVER",
       "category": "Technik & Digitales"
     },
     {
-      "word": "RECHENZENTRUM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GROSSRECHNER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WORKSTATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TERMINAL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RASPBERRY",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MIKROCONTROLLER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "PLATINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LOETKOLBEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TRANSISTOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KONDENSATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WIDERSTAND",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DIODE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HALBLEITER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MIKROCHIP",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SILIZIUM",
       "category": "Technik & Digitales"
     },
     {
@@ -452,59 +300,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "ANWENDUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BETRIEBSSYSTEM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WINDOWS",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LINUX",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ANDROID",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TREIBER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FIRMWARE",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "UPDATE",
       "category": "Technik & Digitales"
     },
     {
-      "word": "UPGRADE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "INSTALLATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DEINSTALLATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BENUTZEROBERFLAECHE",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "DESKTOP",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TASKLEISTE",
       "category": "Technik & Digitales"
     },
     {
@@ -520,23 +320,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "VERZEICHNIS",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DATEIENDUNG",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "DOKUMENT",
       "category": "Technik & Digitales"
     },
     {
       "word": "TABELLE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PRAESENTATION",
       "category": "Technik & Digitales"
     },
     {
@@ -548,51 +336,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "SUCHMASCHINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LESEZEICHEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VERLAUF",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "COOKIE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "CACHE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ZWISCHENABLAGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SCREENSHOT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BILDSCHIRMSCHONER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "PASSWORT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BENUTZERNAME",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ANMELDUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "REGISTRIERUNG",
       "category": "Technik & Digitales"
     },
     {
@@ -600,39 +344,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "FREEWARE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SHAREWARE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "OPENSOURCE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "QUELLE",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "EDITOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TEXTVERARBEITUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BILDPROGRAMM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VIDEOSCHNITT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ANTIVIRUS",
       "category": "Technik & Digitales"
     },
     {
@@ -644,43 +356,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "DATENSICHERUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WIEDERHERSTELLUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KOMPRIMIERUNG",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "ARCHIV",
       "category": "Technik & Digitales"
     },
     {
-      "word": "ENTPACKEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "EMULATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SIMULATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VIRTUELL",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "CLOUD",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SYNCHRONISATION",
       "category": "Technik & Digitales"
     },
     {
@@ -704,47 +384,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "REPEATER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "SWITCH",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ACCESSPOINT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ETHERNET",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "NETZWERKKABEL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GLASFASER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BREITBAND",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DATENRATE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BANDBREITE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PING",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LATENZ",
       "category": "Technik & Digitales"
     },
     {
@@ -776,46 +416,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "WEBADRESSE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HYPERLINK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SERVERHOSTING",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PROTOKOLL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "IPADRESSE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DNS",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VPN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PROXY",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VERSCHLUESSELUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ZERTIFIKAT",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "EMAIL",
       "category": "Technik & Digitales"
     },
@@ -840,10 +440,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "VIDEOANRUF",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "CHAT",
       "category": "Technik & Digitales"
     },
@@ -856,15 +452,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "SOZIALMEDIEN",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "HASHTAG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ALGORITHMUS",
       "category": "Technik & Digitales"
     },
     {
@@ -876,10 +464,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "CLOUDSTORAGE",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "HOTSPOT",
       "category": "Technik & Digitales"
     },
@@ -888,23 +472,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "NFC",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "INFRAROT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FUNKNETZ",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MOBILFUNK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SENDEMAST",
       "category": "Technik & Digitales"
     },
     {
@@ -912,263 +480,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "ROAMING",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "TARIF",
       "category": "Technik & Digitales"
     },
     {
-      "word": "DATENVOLUMEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PROGRAMMIERUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "QUELLCODE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SYNTAX",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VARIABLE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FUNKTION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SCHLEIFE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BEDINGUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ARRAY",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "OBJEKT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KLASSE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "METHODE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DATENTYP",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "INTEGER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STRING",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BOOLEAN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "COMPILER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "INTERPRETER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DEBUGGING",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FEHLERMELDUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ABSTURZ",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BLUESCREEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ENDLOSSCHLEIFE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SCHNITTSTELLE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FRAMEWORK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BIBLIOTHEK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FRONTEND",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BACKEND",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FULLSTACK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WEBDESIGN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HTML",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STYLESHEET",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "JAVASCRIPT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PYTHON",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DATENSTRUKTUR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SORTIERUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BINAERCODE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BIT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BYTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KILOBYTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MEGABYTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GIGABYTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TERABYTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HEXADEZIMAL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ALGORITHMIK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "CYBERSICHERHEIT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HACKER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PHISHING",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TROJANER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MALWARE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RANSOMWARE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SPYWARE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KEYLOGGER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BOTNETZ",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PASSWORTMANAGER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ZWEIFAKTOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BIOMETRIE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FINGERABDRUCK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GESICHTSERKENNUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SICHERHEITSLUECKE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PATCH",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "FERNSEHER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FLACHBILDSCHIRM",
       "category": "Technik & Digitales"
     },
     {
@@ -1192,26 +508,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "VERSTAERKER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SUBWOOFER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RECEIVER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FERNBEDIENUNG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SPIELKONSOLE",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "CONTROLLER",
       "category": "Technik & Digitales"
     },
@@ -1224,27 +520,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "VIRTUALREALITY",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "VRBRILLE",
       "category": "Technik & Digitales"
     },
     {
-      "word": "AUGMENTEDREALITY",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "KAMERA",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DIGITALKAMERA",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SPIEGELREFLEX",
       "category": "Technik & Digitales"
     },
     {
@@ -1256,31 +536,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "VERSCHLUSSZEIT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BELICHTUNG",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "STATIV",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BLITZLICHT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SUCHER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BILDSENSOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "AUFLOESUNG",
       "category": "Technik & Digitales"
     },
     {
@@ -1288,35 +544,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "MEGAPIXEL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VOLLFORMAT",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "ZOOM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WEITWINKEL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TELEOBJEKTIV",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MAKRO",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BILDSTABILISATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ACTIONCAM",
       "category": "Technik & Digitales"
     },
     {
@@ -1324,59 +552,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "QUADROCOPTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GIMBAL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SPEICHERMEDIUM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SDCARD",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MIKROFONARM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MISCHPULT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "AUDIOINTERFACE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SYNTHESIZER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PLATTENSPIELER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TONABNEHMER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RADIOWERK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DABPLUS",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "SMARTWATCH",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FITNESSTRACKER",
       "category": "Technik & Digitales"
     },
     {
@@ -1384,87 +560,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "NAVIGATIONSGERAET",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DASHCAM",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "UEBERWACHUNGSKAMERA",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SMARTTV",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STREAMINGSTICK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SMARTHOME",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SPRACHASSISTENT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SMARTPLUG",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "THERMOSTAT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BEWEGUNGSMELDER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RAUCHMELDER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TUERSCHLOSS",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VIDEOTUERKLINGEL",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STAUBSAUGROBOTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MAEHERROBOTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WASCHMASCHINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WAERMEPUMPENTROCKNER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GESCHIRRSPUELER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KUEHLSCHRANK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GEFRIERTRUHE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "INDUKTIONSHERD",
       "category": "Technik & Digitales"
     },
     {
@@ -1476,51 +572,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "DAMPFGARER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KAFFEEVOLLAUTOMAT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ESPRESSOMASCHINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WASSERKOCHER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "TOASTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KUECHENMASCHINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STABMIXER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ENTSAFTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HEISSLUFTFRITTEUSE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KLIMAANLAGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LUFTREINIGER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LUFTBEFEUCHTER",
       "category": "Technik & Digitales"
     },
     {
@@ -1528,127 +580,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "HEIZLUEFTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BUEGELEISEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DAMPFBUEGELSTATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HAARTROCKNER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GLATTEISEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RASIERAPPARAT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ZAHNBUERSTE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PERSONENWAAGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WETTERSTATION",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ELEKTROAUTO",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HYBRIDFAHRZEUG",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LADESAEULE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WALLBOX",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LADEKABEL",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "BATTERIE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "AKKUMULATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LITHIUMIONEN",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BRENNSTOFFZELLE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WASSERSTOFF",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SOLARANLAGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PHOTOVOLTAIK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WECHSELRICHTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STROMZAEHLER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SMARTMETER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "WINDKRAFTANLAGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TURBINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "GENERATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "TRANSFORMATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "UMSPANNWERK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STROMNETZ",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "HOCHSPANNUNG",
       "category": "Technik & Digitales"
     },
     {
@@ -1660,18 +592,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "SCHUTZSCHALTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ELEKTROMOTOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "VERBRENNUNGSMOTOR",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "GETRIEBE",
       "category": "Technik & Digitales"
     },
@@ -1680,23 +600,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "TURBOLADER",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "AUSPUFF",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KATALYSATOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BREMSANLAGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "STOSSDAEMPFER",
       "category": "Technik & Digitales"
     },
     {
@@ -1708,95 +612,11 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "SPURHALTEASSISTENT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "EINPARKHILFE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "RUECKFAHRKAMERA",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BORDCOMPUTER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "ELEKTROROLLER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "EBIKE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "PEDELEC",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "NABENMOTOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DREHMOMENT",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "ROBOTERARM",
       "category": "Technik & Digitales"
     },
     {
-      "word": "FLIESSBAND",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "AUTOMATISIERUNG",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "SENSOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "AKTOR",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "LASERSCHNEIDER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FRAESMASCHINE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "DREHBANK",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "FILAMENT",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "KREISSAEGE",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "AKKUSCHRAUBER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "BOHRHAMMER",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "SCHWEISSGERAET",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "MULTIMETER",
       "category": "Technik & Digitales"
     }
   ]
