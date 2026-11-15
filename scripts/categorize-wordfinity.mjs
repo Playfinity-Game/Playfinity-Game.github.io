@@ -11,6 +11,7 @@ const REVIEW_SCORE = 0.30;
 
 // Fester WORDFINITY-Katalog: exakt 26 vom Nutzer bestätigte Kategorien.
 // Diese Liste ist die verbindliche Quelle für die automatische Sortierung.
+// Datenbasis: exakt 8.213 geprüfte Zielwörter.
 const profiles = [
   { name: 'Essen und Getränke', description: 'Lebensmittel, Zutaten, Speisen und Getränke.' },
   { name: 'Haushalt und Wohnen', description: 'Wohnräume, Möbel, Haushaltsgegenstände und Dinge des täglichen Wohnens.' },
