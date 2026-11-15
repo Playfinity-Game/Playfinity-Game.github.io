@@ -1,6 +1,207 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Eigenständige Hangmann-Wortliste. Wird schrittweise neu aufgebaut; keine Übernahme aus WORDFINITY.",
-  "words": []
+  "description": "Eigenständige Hangmann-Wortliste. Schrittweiser Aufbau; keine Übernahme aus WORDFINITY.",
+  "words": [
+    {
+      "word": "Affe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Alpaka",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Biber",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dachs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Delfin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eichhörnchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eidechse",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eisbär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Elefant",
+      "category": "Tiere"
+    },
+    {
+      "word": "Elch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Esel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eule",
+      "category": "Tiere"
+    },
+    {
+      "word": "Falke",
+      "category": "Tiere"
+    },
+    {
+      "word": "Flamingo",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fuchs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gepard",
+      "category": "Tiere"
+    },
+    {
+      "word": "Giraffe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gorilla",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hase",
+      "category": "Tiere"
+    },
+    {
+      "word": "Igel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Jaguar",
+      "category": "Tiere"
+    },
+    {
+      "word": "Känguru",
+      "category": "Tiere"
+    },
+    {
+      "word": "Katze",
+      "category": "Tiere"
+    },
+    {
+      "word": "Koala",
+      "category": "Tiere"
+    },
+    {
+      "word": "Krokodil",
+      "category": "Tiere"
+    },
+    {
+      "word": "Löwe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Luchs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Maulwurf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Meerschweinchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nashorn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nilpferd",
+      "category": "Tiere"
+    },
+    {
+      "word": "Oktopus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Panda",
+      "category": "Tiere"
+    },
+    {
+      "word": "Papagei",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pinguin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pferd",
+      "category": "Tiere"
+    },
+    {
+      "word": "Puma",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rabe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Reh",
+      "category": "Tiere"
+    },
+    {
+      "word": "Robbe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schaf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schildkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Tiger",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Waschbär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wolf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wombat",
+      "category": "Tiere"
+    },
+    {
+      "word": "Zebra",
+      "category": "Tiere"
+    }
+  ]
 }
