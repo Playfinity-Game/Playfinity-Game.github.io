@@ -1701,6 +1701,8 @@
         // Ein einziges, sofort verfügbares Promise verhindert Klick-Rennen,
         // während Wörterbuch und KI-Modell initialisiert werden.
         this.modelReadyPromise = (async () => {
+          const dictionaryLoaded = await this.loadDictionary();
+          if (!dictionaryLoaded) return false;
           await this.pickNewTarget();
           if (this.targetWord) await this.initModel();
           return !!this.targetWord;
@@ -1842,7 +1844,9 @@
             .map(item=>({word:item.word.trim(),similarity:Number(item.similarity)}))
             .filter(item=>{
               const key=item.word.toLocaleLowerCase('de-DE');
-              return key&&key!==targetKey&&!relatedToExistingWord(item.word)&&!this.wordHintCandidatesTried.has(key)&&
+              return key&&this.dictionaryReady&&this.dictionaryWords.has(key)&&
+                /^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(item.word)&&
+                key!==targetKey&&!relatedToExistingWord(item.word)&&!this.wordHintCandidatesTried.has(key)&&
                 !this.guesses.some(guess=>guess.word.toLocaleLowerCase('de-DE')===key)&&
                 !this.pendingGuesses.has(key);
             })
@@ -1875,35 +1879,23 @@
         const previousTarget=this.targetWord.toLocaleLowerCase('de-DE');
         this.targetWord='';
         const statusText=document.getElementById('model-status-text');
-        if(statusText)statusText.textContent='KI sucht ein neues Lösungswort …';
-        const excluded=[...this.usedTargets].slice(-300);
-        if(previousTarget && !excluded.includes(previousTarget)) excluded.push(previousTarget);
-        let selectedWord='';
-        try {
-          const controller=new AbortController();
-          const timeout=setTimeout(()=>controller.abort(),55000);
-          let response;
-          try {
-            response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/word',{
-              method:'POST',
-              headers:{'Content-Type':'application/json'},
-              body:JSON.stringify({exclude:excluded}),
-              signal:controller.signal
-            });
-          } finally { clearTimeout(timeout); }
-          let result;
-          try { result=await response.json(); } catch (_) { throw new Error('Ungültige Antwort von der Wort-KI'); }
-          if(!response.ok) throw new Error(result.error || 'Wort-KI Fehler '+response.status);
-          selectedWord=String(result.word || '').normalize('NFC').trim();
-          if(!/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(selectedWord) || selectedWord.length<3 || selectedWord.length>40) {
-            throw new Error('Die KI hat kein gültiges Lösungswort geliefert');
-          }
-          if(excluded.includes(selectedWord.toLocaleLowerCase('de-DE'))) throw new Error('Die KI hat ein bereits verwendetes Wort geliefert');
-        } catch(error) {
-          console.error('[WORDFINITY] Lösungswort konnte nicht erstellt werden:',error);
-          if(statusText)statusText.textContent='Neues Lösungswort konnte nicht geladen werden. Bitte erneut versuchen.';
+        if(statusText)statusText.textContent='Prüfe Nomenliste und wähle ein Lösungswort …';
+        if(!this.dictionaryReady || !this.dictionaryTargetWords.length){
+          if(statusText)statusText.textContent='Nomenliste nicht verfügbar – bitte Seite neu laden.';
           return;
         }
+        const excluded=[...this.usedTargets].slice(-300);
+        if(previousTarget && !excluded.includes(previousTarget)) excluded.push(previousTarget);
+        let availableWords=this.dictionaryTargetWords.filter(word=>!excluded.includes(word.toLocaleLowerCase('de-DE')));
+        if(!availableWords.length){
+          // Nach einem vollständigen Durchlauf den Pool neu mischen, aber das vorige Ziel vermeiden.
+          availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==previousTarget);
+        }
+        if(!availableWords.length){
+          if(statusText)statusText.textContent='Keine gültigen Nomen für eine neue Runde vorhanden.';
+          return;
+        }
+        const selectedWord=availableWords[Math.floor(Math.random()*availableWords.length)];
         if(requestedRoundId!==this.roundId)return;
         this.targetWord=selectedWord;
         this.usedTargets.add(selectedWord.toLocaleLowerCase('de-DE'));
