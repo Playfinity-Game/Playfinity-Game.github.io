@@ -1393,7 +1393,12 @@
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
-          HangmannGame.submitChatGuess(user, text);
+          const chatMessage = text.trim();
+          if (/^[A-Za-zÄÖÜäöüß]$/.test(chatMessage)) {
+            HangmannGame.guess(chatMessage);
+          } else {
+            HangmannGame.submitChatGuess(user, chatMessage);
+          }
         }
       }
     };
