@@ -21,7 +21,7 @@ jobs:
       - name: Check out review branch
         uses: actions/checkout@v4
         with:
-          ref: wordfinity-clean-target-filter-2026-11-15
+          ref: wordfinity-hf-semantic-overhaul-2026-11-15
 
       - name: Set up Python
         uses: actions/setup-python@v5
