@@ -16,7 +16,7 @@ permissions:
 jobs:
   audit:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 60
     steps:
       - name: Check out review branch
         uses: actions/checkout@v4
@@ -27,6 +27,12 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+
+      - name: Install German POS analysis fallback
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "spacy==3.8.7"
+          python -m spacy download de_core_news_sm
 
       - name: Download Leipzig POS corpus
         run: |
@@ -57,5 +63,6 @@ jobs:
             data/wordfinity-zielwoerter.json
             data/wordfinity-ausgeschlossen.json
             data/wordfinity-pruefbericht.json
+            data/wordfinity-manuell-pruefen.json
           if-no-files-found: error
           retention-days: 30
