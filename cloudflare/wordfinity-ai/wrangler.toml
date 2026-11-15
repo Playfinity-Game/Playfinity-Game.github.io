@@ -1,7 +1,4 @@
-name = "wordfinity-ai"
+name = "wordfinity-ai-v2"
 main = "src/index.js"
 compatibility_date = "2026-11-14"
 workers_dev = true
-
-[ai]
-binding = "AI"

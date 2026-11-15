@@ -3,67 +3,56 @@ name: Wordfinity clean target audit
 on:
   push:
     branches:
-      - wordfinity-clean-target-filter-2026-11-15
+      - wordfinity-hf-semantic-overhaul-2026-11-15
     paths:
       - ".github/workflows/wordfinity-clean-target-audit.yml"
-      - "scripts/build_wordfinity_clean_targets.py"
-      - "data/wordfinity-nouns.json"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
+  actions: read
 
 jobs:
-  audit:
+  publish-existing-target-list:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
     steps:
       - name: Check out review branch
         uses: actions/checkout@v4
         with:
-          ref: wordfinity-clean-target-filter-2026-11-15
+          ref: wordfinity-hf-semantic-overhaul-2026-11-15
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Install German POS analysis fallback
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install "spacy==3.8.7" click
-          python -m spacy download de_core_news_sm
-
-      - name: Download Leipzig POS corpus
-        run: |
-          curl --fail --location --retry 3 --retry-delay 5 \
-            https://downloads.wortschatz-leipzig.de/corpora/deu_news_2023_1M.tar.gz \
-            --output /tmp/deu_news_2023_1M.tar.gz
-
-      - name: Download OpenThesaurus text data
-        run: |
-          curl --fail --location --retry 3 --retry-delay 5 \
-            https://www.openthesaurus.de/export/OpenThesaurus-Textversion.zip \
-            --output /tmp/openthesaurus.zip
-          mkdir -p /tmp/openthesaurus
-          unzip -o /tmp/openthesaurus.zip -d /tmp/openthesaurus
-          find /tmp/openthesaurus -type f -name 'openthesaurus.txt' -exec cp {} ./openthesaurus.txt \;
-
-      - name: Build separate candidate, exclusion and audit files
-        run: |
-          python scripts/build_wordfinity_clean_targets.py /tmp/deu_news_2023_1M.tar.gz \
-            --base data/wordfinity-nouns.json \
-            --thesaurus openthesaurus.txt
-
-      - name: Upload results for review (no repository writes)
-        uses: actions/upload-artifact@v4
+      # Reuse the already completed audit artifact. No spaCy, Leipzig corpus,
+      # OpenThesaurus, pip packages, or fresh analysis downloads.
+      - name: Download existing audit artifact
+        uses: actions/download-artifact@v4
         with:
           name: wordfinity-clean-target-audit
-          path: |
-            data/wordfinity-zielwoerter.json
-            data/wordfinity-ausgeschlossen.json
-            data/wordfinity-pruefbericht.json
-            data/wordfinity-manuell-pruefen.json
-            data/wordfinity-endungsfilter.json
-          if-no-files-found: error
-          retention-days: 30
+          path: /tmp/wordfinity-audit
+          repository: Playfinity-Game/Playfinity-Game.github.io
+          run-id: 43664715070
+          github-token: ${{ github.token }}
+
+      - name: Publish the existing 8,213-word accepted cohort
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          source = Path("/tmp/wordfinity-audit/wordfinity-endungsfilter.json")
+          report = json.loads(source.read_text(encoding="utf-8"))
+          words = report["accepted_kept"]
+          if len(words) != 8213 or len({word.casefold() for word in words}) != 8213:
+              raise SystemExit(f"Expected exactly 8,213 unique words, got {len(words)}")
+          target = Path("data/wordfinity-targets.json")
+          target.parent.mkdir(parents=True, exist_ok=True)
+          target.write_text(json.dumps(words, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+          print(f"Prepared {len(words)} existing target words.")
+          PY
+
+      - name: Commit target list to feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/wordfinity-targets.json
+          git diff --cached --quiet || git commit -m "Add existing curated 8,213-word Wordfinity target list"
+          git push
