@@ -45,7 +45,7 @@ jobs:
               raise SystemExit(f"Expected exactly 8,213 unique words, got {len(words)}")
           target = Path("data/wordfinity-targets.json")
           target.parent.mkdir(parents=True, exist_ok=True)
-          target.write_text(json.dumps(words, ensure_ascii=False, indent=2) + "\\n", encoding="utf-8")
+          target.write_text(json.dumps(words, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
           print(f"Prepared {len(words)} existing target words.")
           PY
 
