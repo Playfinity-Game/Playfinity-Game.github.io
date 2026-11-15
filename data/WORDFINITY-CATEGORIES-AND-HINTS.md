@@ -1,6 +1,6 @@
 # WORDFINITY – Kategorien und Wortzuordnung
 
-Die aktive Datei `data/wordfinity-nouns.json` enthält **38 Kategorien** und **4.500 eindeutige Wörter**. Jedes Wort ist genau einer Hauptkategorie zugeordnet. Die Kategorien bleiben erhalten; die Wortliste ist bewusst als gruppiertes JSON-Objekt gespeichert.
+Die aktive Datei `data/wordfinity-nouns.json` enthält **38 Kategorien** und **4.064 eindeutige Wörter**. Jedes Wort ist genau einer Hauptkategorie zugeordnet. Die Kategorien bleiben erhalten; die Wortliste ist bewusst als gruppiertes JSON-Objekt gespeichert.
 
 ## Aktive Kategorien
 
@@ -49,7 +49,9 @@ Die aktive Datei `data/wordfinity-nouns.json` enthält **38 Kategorien** und **4
 - Bei Überschneidungen entscheidet die typische, konkrete Bedeutung des Wortes.
 - Ein Wort wird nicht mehrfach in verschiedenen Kategorien geführt.
 - Ein gültiges Wort wird bei einer falschen Zuordnung verschoben, nicht gelöscht.
-- Ungewöhnliche, regionale oder fachsprachliche Wörter müssen im Einzelfall geprüft werden; die automatische oder strukturelle Bereinigung ist kein Ersatz für ein vollständiges Wörterbuchlektorat.
+- Eindeutig abstrakte Begriffe und weibliche Personen-/Berufsbezeichnungen wurden aus dem aktiven Spielwortschatz gefiltert.
+- Weibliche grammatische Formen konkreter Gegenstände und Lebewesen bleiben erlaubt.
+- Ungewöhnliche, regionale oder fachsprachliche Wörter müssen im Einzelfall geprüft werden; die Bereinigung ist kein Ersatz für ein vollständiges Wörterbuchlektorat.
 
 ## Technische Hinweise
 
