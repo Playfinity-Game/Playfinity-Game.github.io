@@ -1,7 +1,11 @@
-# WORDFINITY – feste Wortliste
+# WORDFINITY – aktive Wortliste
 
-`wordfinity-nouns.json` enthält den festgelegten, geprüften Wortbestand von exakt **8.213 Wörtern**.
+`wordfinity-nouns.json` ist die aktive, nach 38 Spielkategorien gruppierte WORDFINITY-Wortliste.
 
-Diese Liste ist die verbindliche Grundlage für WORDFINITY. Sie wird nicht mehr aus einem externen Wörterbuch oder einer großen Quelldatenbank neu erzeugt oder erweitert.
+- Stand nach der Bereinigung: **4.500 Einträge und 4.500 eindeutige Wörter**.
+- Jedes Wort steht genau einmal in genau einer Hauptkategorie. Mehrfachzuordnungen wurden entfernt, damit die Kategoriezuweisung im Spiel eindeutig bleibt.
+- Die Datei ist ein JSON-Objekt: Kategoriebezeichnungen sind die Schlüssel, die jeweiligen Wortlisten sind Arrays.
+- Änderungen am aktiven Wortbestand erfolgen kontrolliert und dürfen die gruppierte Struktur nicht in ein flaches Array umwandeln.
+- Die Liste wurde strukturell geprüft und offensichtliche Fehlzuordnungen wurden korrigiert. Sie ist keine zertifizierte Wörterbuch- oder vollständige redaktionelle Einzelprüfung jedes deutschen Lemmas.
 
-Änderungen am Wortbestand erfolgen ausschließlich durch eine ausdrücklich geprüfte und freigegebene Änderung dieser festen Liste.
+Vor jedem Commit müssen JSON-Syntax, 38 Kategorien, eindeutige Wörter und die erwartete Objektstruktur geprüft werden.
