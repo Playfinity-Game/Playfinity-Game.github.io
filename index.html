@@ -1253,7 +1253,8 @@
       },
       newRound(){
         if(!this.words.length)return;
-        if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}\n        this.target=this.wordQueue.pop();
+        if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}
+        this.target=this.wordQueue.pop();
         this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
         document.getElementById('hangmann-category').textContent='Kategorie-Tipp: Noch verborgen';
         document.getElementById('hangmann-hint').disabled=false;
