@@ -1,6 +1,8 @@
 const HF_MODEL = "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2";
 const HF_URL = "https://router.huggingface.co/hf-inference/models/" + HF_MODEL + "/pipeline/feature-extraction";
 const TARGET_COUNT = 8213;
+// Warm isolate cache: the 8,213 dictionary vectors are reused across puzzles.
+const EMBEDDING_CACHE = new Map();
 const CATEGORIES = [
   { name: "Menschen & Berufe", description: "Menschen, Personen, Berufe, Tätigkeiten und soziale Rollen" },
   { name: "Tiere & Pflanzen", description: "Tiere, Pflanzen, Bäume, Blumen und Pilze" },
@@ -37,30 +39,51 @@ function cosine(a, b) {
 }
 async function embed(env, inputs) {
   if (!env.HF_API_TOKEN) throw new Error("HF_API_TOKEN fehlt als Worker-Secret");
-  let lastError;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    const response = await fetch(HF_URL, {
-      method: "POST",
-      headers: { Authorization: "Bearer " + env.HF_API_TOKEN, "Content-Type": "application/json" },
-      body: JSON.stringify({ inputs, options: { wait_for_model: true } })
-    });
-    if (response.status === 503 && attempt < 2) {
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      continue;
+  const keys = inputs.map(value => String(value).normalize("NFC").trim().toLocaleLowerCase("de-DE"));
+  const missing = [];
+  const missingKeys = new Set();
+  for (let i = 0; i < keys.length; i++) {
+    if (!EMBEDDING_CACHE.has(keys[i]) && !missingKeys.has(keys[i])) {
+      missing.push(String(inputs[i]));
+      missingKeys.add(keys[i]);
     }
-    if (!response.ok) {
-      const detail = (await response.text()).slice(0, 500);
-      lastError = new Error("HuggingFace HTTP " + response.status + ": " + detail);
-      if (response.status >= 500 && attempt < 2) { await new Promise(resolve => setTimeout(resolve, 3000)); continue; }
-      throw lastError;
-    }
-    const data = await response.json();
-    if (!Array.isArray(data) || data.length !== inputs.length || !data.every(v => Array.isArray(v) && v.length)) {
-      throw new Error("HuggingFace lieferte ungültige Embeddings");
-    }
-    return data;
   }
-  throw lastError || new Error("HuggingFace nicht erreichbar");
+  if (missing.length) {
+    let lastError;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      const response = await fetch(HF_URL, {
+        method: "POST",
+        headers: { Authorization: "Bearer " + env.HF_API_TOKEN, "Content-Type": "application/json" },
+        body: JSON.stringify({ inputs: missing, options: { wait_for_model: true } })
+      });
+      if (response.status === 503 && attempt < 2) {
+        await new Promise(resolve => setTimeout(resolve, 3000));
+        continue;
+      }
+      if (!response.ok) {
+        const detail = (await response.text()).slice(0, 500);
+        lastError = new Error("HuggingFace HTTP " + response.status + ": " + detail);
+        if (response.status >= 500 && attempt < 2) { await new Promise(resolve => setTimeout(resolve, 3000)); continue; }
+        throw lastError;
+      }
+      const data = await response.json();
+      if (!Array.isArray(data) || data.length !== missing.length || !data.every(v => Array.isArray(v) && v.length)) {
+        throw new Error("HuggingFace lieferte ungültige Embeddings");
+      }
+      for (let i = 0; i < data.length; i++) {
+        const key = missingKeys.values().next().value;
+        // Preserve the original missing-input order, including duplicate spellings.
+        const originalKey = keys.find((candidate, index) => !EMBEDDING_CACHE.has(candidate) && String(inputs[index]).normalize("NFC").trim().toLocaleLowerCase("de-DE") === candidate);
+        EMBEDDING_CACHE.set(originalKey || key, data[i]);
+        missingKeys.delete(originalKey || key);
+      }
+      break;
+    }
+    if (missingKeys.size) throw lastError || new Error("HuggingFace-Inferenz nicht abgeschlossen");
+  }
+  // Bound memory use while keeping the entire target dictionary warm in a live isolate.
+  while (EMBEDDING_CACHE.size > 10000) EMBEDDING_CACHE.delete(EMBEDDING_CACHE.keys().next().value);
+  return keys.map(key => EMBEDDING_CACHE.get(key));
 }
 async function handleSimilarity(env, body) {
   const target = String(body.target || "").trim(), guess = String(body.guess || "").trim();
