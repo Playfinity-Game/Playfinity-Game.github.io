@@ -1,48 +1,59 @@
-# WORDFINITY – Kategorien und Tipps
+# WORDFINITY – Kategorien und Wortzuordnung
 
-## Verbindlicher Kategorie-Katalog
+Die aktive Datei `data/wordfinity-nouns.json` enthält **38 Kategorien** und **4.500 eindeutige Wörter**. Jedes Wort ist genau einer Hauptkategorie zugeordnet. Die Kategorien bleiben erhalten; die Wortliste ist bewusst als gruppiertes JSON-Objekt gespeichert.
 
-Für die 8.213 aktiven WORDFINITY-Zielwörter gelten verbindlich genau diese 26 Kategorien. Die Schreibweisen und Reihenfolge entsprechen dem festgelegten Katalog:
+## Aktive Kategorien
 
-1. **Essen und Getränke** – Lebensmittel, Zutaten, Speisen und Getränke.
-2. **Haushalt und Wohnen** – Wohnräume, Möbel, Haushaltsgegenstände und Dinge des täglichen Wohnens.
-3. **Kleidung und Accessoires** – Kleidung, Schuhe, Schmuck, Taschen und tragbare Accessoires.
-4. **Werkzeuge und Materialien** – Werkzeuge, Geräte und Materialien zum Bearbeiten, Reparieren und Herstellen.
-5. **Technik und Elektronik** – Elektronische Geräte, Computer, digitale Technik, Maschinen und technische Systeme.
-6. **Fahrzeuge und Verkehr** – Fahrzeuge, Verkehrsmittel, Verkehrswege und Verkehrseinrichtungen.
-7. **Orte und Gebäude** – Gebäude, Bauwerke, Räume und von Menschen geschaffene Orte.
-8. **Geografie und Landschaften** – Länder, Regionen, Kontinente, Gewässer, Berge und natürliche Landschaften.
-9. **Wetter und Klima** – Wetterlagen, Niederschlag, Temperatur, Klima und atmosphärische Erscheinungen.
-10. **Natur und Umwelt** – Natur, Umwelt, Ökosysteme, natürliche Phänomene und Umweltschutz.
-11. **Weltraum und Himmelskörper** – Sterne, Planeten, Monde, Galaxien, Astronomie und Raumfahrt.
-12. **Zeit und Jahreszeiten** – Zeitangaben, Zeiträume, Kalender, Tageszeiten, Monate und Jahreszeiten.
-13. **Sport und Bewegung** – Sportarten, Bewegung, Training, Wettkämpfe und sportliche Aktivitäten.
-14. **Kunst und Musik** – Bildende Kunst, Musik, Instrumente, musikalische Werke und künstlerischer Ausdruck.
-15. **Film, Bücher und Medien** – Filme, Bücher, Literatur, Fernsehen, Presse und digitale Medieninhalte.
-16. **Spiele und Freizeit** – Spiele, Spielzeug, Hobbys, Unterhaltung und Freizeitbeschäftigungen.
-17. **Schule und Wissenschaft** – Schule, Unterricht, Lernen, Forschung und wissenschaftliche Fachgebiete.
-18. **Sprache und Kommunikation** – Sprache, Wörter, Schrift, Texte, Gespräche und Informationsaustausch.
-19. **Gesellschaft und Zusammenleben** – Gemeinschaft, soziale Beziehungen, Institutionen, Politik und gesellschaftliches Leben.
-20. **Geschichte und Vergangenheit** – Historische Epochen, Ereignisse, Personenrollen und Dinge aus der Vergangenheit.
-21. **Wirtschaft und Geld** – Geld, Handel, Unternehmen, Märkte, Finanzen und wirtschaftliche Vorgänge.
-22. **Gefühle und Eigenschaften** – Emotionen, Stimmungen, Charakterzüge, Eigenschaften und abstrakte Zustände.
-23. **Religion und Mythologie** – Religionen, Glaubensvorstellungen, Gottheiten, Mythen und religiöse Gegenstände.
-24. **Fantasie und Fabelwesen** – Fabelwesen, Zauberwesen, Märchenfiguren und erfundene fantastische Dinge.
-25. **Landwirtschaft und Garten** – Landwirtschaft, Ackerbau, Nutztiere, Pflanzenanbau, Gartenarbeit und Gartengeräte.
-26. **Handwerk und Bauwesen** – Handwerksberufe, Bauarbeiten, Bauteile, Baustellen und Bauverfahren.
+1. **Tiere**
+2. **Pflanzen & Garten**
+3. **Essen & Trinken**
+4. **Haushalt & Wohnen**
+5. **Kleidung & Accessoires**
+6. **Körper & Gesundheit**
+7. **Familie & Menschen**
+8. **Berufe & Arbeit**
+9. **Schule & Bildung**
+10. **Sport & Bewegung**
+11. **Spiele & Freizeit**
+12. **Musik & Kunst**
+13. **Film, Bücher & Medien**
+14. **Technik & Elektronik**
+15. **Werkzeuge & Material**
+16. **Fahrzeuge & Verkehr**
+17. **Gebäude & Orte**
+18. **Natur & Landschaft**
+19. **Wetter & Klima**
+20. **Weltraum & Wissenschaft**
+21. **Zeit & Kalender**
+22. **Geld & Wirtschaft**
+23. **Gefühle & Eigenschaften**
+24. **Fantasie & Märchen**
+25. **Religion & Feste**
+26. **Geschichte & Gesellschaft**
+27. **Reisen & Urlaub**
+28. **Obst & Gemüse**
+29. **Getränke & Süßes**
+30. **Küche & Kochen**
+31. **Bauernhof & Landwirtschaft**
+32. **Meer & Wasser**
+33. **Internet & Handy**
+34. **Restaurant & Café**
+35. **Körperpflege & Bad**
+36. **Polizei, Feuerwehr & Rettung**
+37. **Zirkus & Jahrmarkt**
+38. **Camping & Outdoor**
 
 ## Zuordnungsregeln
 
-- Jedes der 8.213 eindeutigen Zielwörter erhält genau **eine** Hauptkategorie aus diesem Katalog.
-- Es werden keine Kategorien ergänzt, zusammengelegt oder umbenannt.
-- Bei Überschneidungen entscheidet die konkrete Bedeutung des Wortes im üblichen Sprachgebrauch. Beispielsweise gehört ein essbares Produkt zu **Essen und Getränke**, eine Pflanzenart als Lebewesen zu **Natur und Umwelt**; ein Gebäude zu **Orte und Gebäude**, ein Baustoff zu **Werkzeuge und Materialien** oder **Handwerk und Bauwesen** je nach Schwerpunkt.
-- Mehrdeutige oder schwach bewertete Zuordnungen werden zusätzlich in der Prüfliste festgehalten. Die Prüfliste ersetzt nicht die eindeutige Hauptkategorie.
+- Jedes Wort erhält genau eine Hauptkategorie.
+- Bei Überschneidungen entscheidet die typische, konkrete Bedeutung des Wortes.
+- Ein Wort wird nicht mehrfach in verschiedenen Kategorien geführt.
+- Ein gültiges Wort wird bei einer falschen Zuordnung verschoben, nicht gelöscht.
+- Ungewöhnliche, regionale oder fachsprachliche Wörter müssen im Einzelfall geprüft werden; die automatische oder strukturelle Bereinigung ist kein Ersatz für ein vollständiges Wörterbuchlektorat.
 
-## Automatische Zuordnung
+## Technische Hinweise
 
-Das Skript `scripts/categorize-wordfinity.mjs` ordnet die Wörter anhand mehrsprachiger semantischer Embeddings den 26 Kategorieprofilen zu. Es prüft vor dem Lauf, dass genau 8.213 eindeutige Wörter vorhanden sind, und erzeugt:
-
-- `data/wordfinity-categories.json`: Zuordnung jedes Wortes zu genau einer Kategorie.
-- `data/wordfinity-category-review.json`: Wörter mit geringer Sicherheit oder knapper Entscheidung zur manuellen Prüfung.
-
-Die automatische Zuordnung ist eine semantische Schätzung und keine behauptete vollständige menschliche Einzelprüfung. Die Prüfliste ist deshalb Bestandteil der Qualitätssicherung.
+- Die aktive Wortliste ist ein JSON-Objekt mit Kategorie-Schlüsseln und Wort-Arrays.
+- Änderungen müssen die Objektstruktur und alle 38 Kategorien erhalten.
+- Die Spiel- und Tippfunktionen müssen die gruppierte Struktur laden und die gespeicherte Hauptkategorie verwenden.
+- Die Skripte zur Kandidatenerzeugung dürfen die aktive Datei nicht automatisch durch ein flaches Array ersetzen.
