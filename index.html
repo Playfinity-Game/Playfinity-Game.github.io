@@ -1037,7 +1037,7 @@
       <div class="hangmann-wrap">
         <h1 class="hangmann-title"><span class="hang">Hang</span><span class="mann">mann</span></h1>
         <div class="hangmann-top">
-          <span class="hangmann-pill" id="hangmann-errors">Fehler: 0 / 6</span>
+          <span class="hangmann-pill" id="hangmann-errors">Fehler: 0 / 10</span>
         </div>
         <div class="hangmann-stage" role="img" aria-label="Galgenfigur, die sich mit falschen Buchstaben aufbaut">
           <svg class="hangmann-svg" viewBox="0 0 240 210" aria-hidden="true">
@@ -1049,6 +1049,10 @@
               <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
+              <circle class="hangmann-part" data-part="7" cx="153" cy="54" r="2.5"/>
+              <circle class="hangmann-part" data-part="8" cx="167" cy="54" r="2.5"/>
+              <path class="hangmann-part" data-part="9" d="M154 68Q160 73 166 68"/>
+              <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
             </g>
           </svg>
         </div>
@@ -1209,7 +1213,7 @@
        HANGMANN GAME
        ========================================================================== */
     const HangmannGame = {
-      initialized:false, words:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false,
+      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false,
       normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
       async init(){
         if(!this.initialized){
@@ -1227,7 +1231,7 @@
           try{
             const response=await fetch('data/hangmann-nouns.json',{cache:'no-cache'});
             if(!response.ok)throw new Error('Wortliste nicht erreichbar');
-            const payload=await response.json();this.words=(payload.words||[]).filter(item=>item&&item.word&&item.category);
+            const payload=await response.json();this.words=(payload.words||[]).filter(item=>item&&item.word&&item.category);this.wordQueue=[];
             if(!this.words.length){
               status.textContent='Unsere eigene Hangmann-Wortliste wird gerade gemeinsam aufgebaut.';
               document.getElementById('hangmann-category').textContent='Kategorie-Tipp: folgt bald';
@@ -1249,13 +1253,13 @@
       },
       newRound(){
         if(!this.words.length)return;
-        this.target=this.words[Math.floor(Math.random()*this.words.length)];
+        if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}\n        this.target=this.wordQueue.pop();
         this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
         document.getElementById('hangmann-category').textContent='Kategorie-Tipp: Noch verborgen';
         document.getElementById('hangmann-hint').disabled=false;
         document.getElementById('hangmann-status').textContent='Wähle einen Buchstaben.';
         document.querySelectorAll('.hangmann-part').forEach(part=>part.classList.remove('shown'));
-        document.getElementById('hangmann-errors').textContent='Fehler: 0 / 6';
+        document.getElementById('hangmann-errors').textContent='Fehler: 0 / 10';
         this.renderWord();this.renderKeyboard();
       },
       submitChatGuess(player, text){
@@ -1275,8 +1279,8 @@
           if(Array.from(this.normalize(this.target.word)).every(ch=>this.guessed.has(ch)))this.finish(true);
         }else{
           this.errors++;const part=document.querySelector('[data-part="'+this.errors+'"]');if(part)part.classList.add('shown');
-          document.getElementById('hangmann-errors').textContent='Fehler: '+this.errors+' / 6';
-          if(this.errors>=6)this.finish(false);
+          document.getElementById('hangmann-errors').textContent='Fehler: '+this.errors+' / 10';
+          if(this.errors>=10)this.finish(false);
         }
         this.renderKeyboard();
       },
