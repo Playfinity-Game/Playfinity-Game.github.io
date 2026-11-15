@@ -40,21 +40,21 @@ function cosine(a, b) {
 async function embed(env, inputs) {
   if (!env.HF_API_TOKEN) throw new Error("HF_API_TOKEN fehlt als Worker-Secret");
   const keys = inputs.map(value => String(value).normalize("NFC").trim().toLocaleLowerCase("de-DE"));
-  const missing = [];
+  const missingEntries = [];
   const missingKeys = new Set();
   for (let i = 0; i < keys.length; i++) {
     if (!EMBEDDING_CACHE.has(keys[i]) && !missingKeys.has(keys[i])) {
-      missing.push(String(inputs[i]));
+      missingEntries.push({ key: keys[i], text: String(inputs[i]) });
       missingKeys.add(keys[i]);
     }
   }
-  if (missing.length) {
+  if (missingEntries.length) {
     let lastError;
     for (let attempt = 0; attempt < 3; attempt++) {
       const response = await fetch(HF_URL, {
         method: "POST",
         headers: { Authorization: "Bearer " + env.HF_API_TOKEN, "Content-Type": "application/json" },
-        body: JSON.stringify({ inputs: missing, options: { wait_for_model: true } })
+        body: JSON.stringify({ inputs: missingEntries.map(entry => entry.text), options: { wait_for_model: true } })
       });
       if (response.status === 503 && attempt < 2) {
         await new Promise(resolve => setTimeout(resolve, 3000));
@@ -67,19 +67,15 @@ async function embed(env, inputs) {
         throw lastError;
       }
       const data = await response.json();
-      if (!Array.isArray(data) || data.length !== missing.length || !data.every(v => Array.isArray(v) && v.length)) {
+      if (!Array.isArray(data) || data.length !== missingEntries.length || !data.every(v => Array.isArray(v) && v.length)) {
         throw new Error("HuggingFace lieferte ungültige Embeddings");
       }
-      for (let i = 0; i < data.length; i++) {
-        const key = missingKeys.values().next().value;
-        // Preserve the original missing-input order, including duplicate spellings.
-        const originalKey = keys.find((candidate, index) => !EMBEDDING_CACHE.has(candidate) && String(inputs[index]).normalize("NFC").trim().toLocaleLowerCase("de-DE") === candidate);
-        EMBEDDING_CACHE.set(originalKey || key, data[i]);
-        missingKeys.delete(originalKey || key);
-      }
+      for (let i = 0; i < data.length; i++) EMBEDDING_CACHE.set(missingEntries[i].key, data[i]);
       break;
     }
-    if (missingKeys.size) throw lastError || new Error("HuggingFace-Inferenz nicht abgeschlossen");
+    if (missingEntries.some(entry => !EMBEDDING_CACHE.has(entry.key))) {
+      throw lastError || new Error("HuggingFace-Inferenz nicht abgeschlossen");
+    }
   }
   // Bound memory use while keeping the entire target dictionary warm in a live isolate.
   while (EMBEDDING_CACHE.size > 10000) EMBEDDING_CACHE.delete(EMBEDDING_CACHE.keys().next().value);
