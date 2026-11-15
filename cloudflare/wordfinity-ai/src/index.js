@@ -136,8 +136,8 @@ async function handleHints(env, body) {
   const text = await generate(
     env,
     "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 24 unterschiedliche, gebräuchliche deutsche Einzelwörter als indirekte Denkanstöße zum Zielwort. Die Wörter sollen thematisch oder über typische Situationen, Orte, Tätigkeiten und Zusammenhänge passen, aber NICHT die Lösung verraten. Wähle bewusst eine mittlere gedankliche Distanz: keine Synonyme, keine direkten Oberbegriffe, keine offensichtlichsten Unterarten, Bestandteile oder unmittelbaren Erscheinungsformen. Beispiel Zielwort 'Schnee': gute Denkanstöße sind 'Winter', 'Skifahren', 'Gebirge' oder 'Schlitten'; zu offensichtlich bzw. zu nah sind 'Schneemann', 'Schneeflocke', 'Schneesturm' oder 'Frost'. WICHTIG: Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Kein Kandidat darf ein ausgeschlossenes Wort als Bestandteil enthalten oder selbst Bestandteil eines ausgeschlossenen Wortes sein. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
-    "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 24 unterschiedliche, indirekte aber thematisch passende Denkanstöße, eins pro Zeile.",
-    240
+    "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 40 unterschiedliche, indirekte aber thematisch passende Denkanstöße, eins pro Zeile.",
+    400
   );
 
   let candidates = [];
@@ -165,7 +165,7 @@ async function handleHints(env, body) {
       seen.add(x.toLocaleLowerCase("de-DE"));
       return true;
     })
-    .slice(0, 24);
+    .slice(0, 40);
 
   if (!candidates.length) throw new Error("Die Tipp-KI hat keine gültigen Wörter geliefert");
   const embedded = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
@@ -175,7 +175,7 @@ async function handleHints(env, body) {
   const hints = candidates
     .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
     .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, 15);
+    .slice(0, 30);
   return json({ hints, model: EMBEDDING_MODEL });
 }
 
