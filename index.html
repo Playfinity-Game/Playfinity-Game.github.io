@@ -1825,10 +1825,10 @@
           hintTimeout = setTimeout(() => {
             timedOut = true;
             hintController.abort();
-            const error = new Error('Wort-Tipp überschritt das Zeitlimit von 3 Sekunden');
+            const error = new Error('Wort-Tipp überschritt das Zeitlimit von 20 Sekunden');
             error.name = 'AbortError';
             reject(error);
-          }, 3000);
+          }, 20000);
         });
 
         const hintOperation = (async () => {
@@ -1925,7 +1925,7 @@
           if (error && error.name !== 'AbortError') console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:', error);
           if (requestedRoundId === this.roundId && button) {
             button.title = error && error.name === 'AbortError'
-              ? 'Tipp nicht rechtzeitig – bitte erneut versuchen (Limit: 3 Sekunden)'
+              ? 'Tipp nicht rechtzeitig – bitte erneut versuchen (Limit: 20 Sekunden)'
               : 'Tipp gerade nicht verfügbar – bitte erneut versuchen';
           }
         } finally {
