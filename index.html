@@ -1055,6 +1055,10 @@
         <div class="hangmann-category" id="hangmann-category">Kategorie-Tipp: Noch verborgen</div>
         <div class="hangmann-word" id="hangmann-word" aria-live="polite"></div>
         <div class="hangmann-status" id="hangmann-status" aria-live="polite">Wähle einen Buchstaben.</div>
+        <label class="hangmann-chat-toggle" style="display:flex;align-items:center;justify-content:center;gap:10px;margin:10px auto 14px;color:var(--text-muted);font-size:.9rem;font-weight:700;">
+          <input type="checkbox" id="hangmann-chat-enabled" style="width:18px;height:18px;accent-color:var(--neon-cyan);">
+          Live-Chat darf mitraten
+        </label>
         <div class="hangmann-keyboard" id="hangmann-keyboard" aria-label="Buchstabentastatur"></div>
         <div class="hangmann-actions">
           <button class="btn-action" id="hangmann-hint" type="button">🏷 Kategorie zeigen</button>
@@ -1205,12 +1209,16 @@
        HANGMANN GAME
        ========================================================================== */
     const HangmannGame = {
-      initialized:false, words:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false,
+      initialized:false, words:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false,
       normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
       async init(){
         if(!this.initialized){
           document.getElementById('hangmann-new').addEventListener('click',()=>this.newRound());
           document.getElementById('hangmann-hint').addEventListener('click',()=>this.showHint());
+          const chatToggle=document.getElementById('hangmann-chat-enabled');
+          this.chatGuessEnabled=localStorage.getItem('hangmann-chat-enabled')==='true';
+          chatToggle.checked=this.chatGuessEnabled;
+          chatToggle.addEventListener('change',()=>{this.chatGuessEnabled=chatToggle.checked;localStorage.setItem('hangmann-chat-enabled',String(this.chatGuessEnabled));});
           window.addEventListener('keydown',e=>{if(PlayfinityRouter.currentScreen==='hangmann'&&/^[a-zäöüß]$/i.test(e.key))this.guess(e.key);});
           this.buildKeyboard();this.initialized=true;
         }
@@ -1372,6 +1380,8 @@
           KontextoGame.submitGuess(text, user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
+        } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && /^[A-Za-zÄÖÜäöüß]$/.test(text)) {
+          HangmannGame.guess(text);
         }
       }
     };
