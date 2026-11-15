@@ -60,47 +60,82 @@ def load_thesaurus(path: Path) -> set[str]:
     return terms
 
 
-def read_pos_corpus(archive_path: Path, corpus_id: str) -> tuple[dict[str, int], dict[str, int]]:
-    """Return NOUN and PROPN lemma frequencies from Leipzig *_words_pos_base.txt."""
+def read_corpus(archive_path: Path, corpus_id: str) -> tuple[dict[str, int], dict[str, int], str]:
+    """Read Leipzig lemma POS data, or infer POS from sentence context with spaCy."""
     noun_freq: dict[str, int] = defaultdict(int)
     propn_freq: dict[str, int] = defaultdict(int)
     with tarfile.open(archive_path, "r:gz") as archive:
-        members = [m for m in archive.getmembers() if m.isfile() and
-                   m.name.endswith(("_words_pos_base.txt", "-words-pos-base.txt"))]
-        if not members:
-            raise SystemExit("Im Leipzig-Archiv fehlt die POS-/Grundform-Wortdatei.")
-        member = next((m for m in members if Path(m.name).name.startswith(corpus_id)), members[0])
+        members = [m for m in archive.getmembers() if m.isfile()]
+        pos_members = [m for m in members if m.name.endswith(("_words_pos_base.txt", "-words-pos-base.txt"))]
+        if pos_members:
+            member = next((m for m in pos_members if Path(m.name).name.startswith(corpus_id)), pos_members[0])
+            stream = archive.extractfile(member)
+            if stream is None:
+                raise SystemExit("Leipzig-POS-Datei konnte nicht gelesen werden.")
+            with io.TextIOWrapper(stream, encoding="utf-8") as handle:
+                for line in handle:
+                    fields = line.rstrip("\r\n").split("\t")
+                    if len(fields) < 5:
+                        continue
+                    if len(fields) >= 6 and fields[-3].upper() in {"NOUN", "PROPN"}:
+                        pos, lemma, raw_freq = fields[-3].upper(), norm(fields[-2]), fields[-1]
+                    else:
+                        legacy_pos = fields[2].upper()
+                        pos = "NOUN" if legacy_pos in {"N", "NN", "NOUN", "SUBSTANTIV"} else (
+                            "PROPN" if legacy_pos in {"NE", "PROPN", "PROPER_NOUN"} else ""
+                        )
+                        lemma, raw_freq = norm(fields[-2]), fields[-1]
+                    try:
+                        freq = int(raw_freq)
+                    except (ValueError, IndexError):
+                        continue
+                    if not lemma:
+                        continue
+                    target = noun_freq if pos == "NOUN" else propn_freq if pos == "PROPN" else None
+                    if target is not None:
+                        target[key(lemma)] += freq
+            if not noun_freq and not propn_freq:
+                raise SystemExit("POS-Datei gefunden, aber keine NOUN-/PROPN-Lemmata erkannt.")
+            return noun_freq, propn_freq, "Leipzig POS-/Grundform-Wortdatei"
+
+        sentence_members = [m for m in members if m.name.endswith(("_sentences.txt", "-sentences.txt"))]
+        if not sentence_members:
+            available = ", ".join(Path(m.name).name for m in members[:30])
+            raise SystemExit(
+                "Leipzig-Archiv enthält weder POS-/Grundform-Wortdatei noch Satzdatei. "
+                f"Vorhandene Dateien (Auszug): {available}"
+            )
+        member = next((m for m in sentence_members if Path(m.name).name.startswith(corpus_id)), sentence_members[0])
         stream = archive.extractfile(member)
         if stream is None:
-            raise SystemExit("Leipzig-POS-Datei konnte nicht gelesen werden.")
-        with io.TextIOWrapper(stream, encoding="utf-8") as handle:
-            for line in handle:
-                fields = line.rstrip("\r\n").split("\t")
-                if len(fields) < 5:
-                    continue
-                # Leipzig POS/base files exist in two schemas. Prefer UD-POS
-                # when present; otherwise accept the legacy POS column.
-                if len(fields) >= 6 and fields[-3] in {"NOUN", "PROPN"}:
-                    pos, lemma, raw_freq = fields[-3], norm(fields[-2]), fields[-1]
-                else:
-                    legacy_pos = fields[2].upper()
-                    pos = "NOUN" if legacy_pos in {"N", "NN", "NOUN", "SUBSTANTIV"} else (
-                        "PROPN" if legacy_pos in {"NE", "PROPN", "PROPER_NOUN"} else ""
-                    )
-                    lemma, raw_freq = norm(fields[-2]), fields[-1]
-                if not lemma:
-                    continue
-                try:
-                    freq = int(raw_freq)
-                except ValueError:
-                    continue
-                target = noun_freq if pos == "NOUN" else propn_freq if pos == "PROPN" else None
-                if target is not None:
-                    target[key(lemma)] += freq
-    if not noun_freq:
-        raise SystemExit("Keine NOUN-Lemmata erkannt; Dateiformat prüfen. Keine Ausgabedateien geschrieben.")
-    return noun_freq, propn_freq
+            raise SystemExit("Leipzig-Satzdatei konnte nicht gelesen werden.")
+        try:
+            import spacy
+        except ImportError as exc:
+            raise SystemExit("spaCy fehlt; Workflow muss spaCy und de_core_news_sm installieren.") from exc
+        try:
+            nlp = spacy.load("de_core_news_sm", disable=["ner"])
+        except OSError as exc:
+            raise SystemExit("Deutsches spaCy-Modell de_core_news_sm fehlt.") from exc
 
+        def sentence_texts():
+            with io.TextIOWrapper(stream, encoding="utf-8") as handle:
+                for line in handle:
+                    fields = line.rstrip("\r\n").split("\t", 1)
+                    if len(fields) == 2 and fields[1].strip():
+                        yield fields[1].strip()
+
+        for doc in nlp.pipe(sentence_texts(), batch_size=500, n_process=2):
+            for token in doc:
+                if token.is_punct or token.is_space or token.pos_ not in {"NOUN", "PROPN"}:
+                    continue
+                lemma = norm(token.lemma_)
+                if lemma:
+                    target = noun_freq if token.pos_ == "NOUN" else propn_freq
+                    target[key(lemma)] += 1
+        if not noun_freq and not propn_freq:
+            raise SystemExit("spaCy konnte im Satzkorpus keine NOUN-/PROPN-Lemmata erkennen.")
+        return noun_freq, propn_freq, "Leipzig-Satzkorpus mit spaCy de_core_news_sm"
 
 def main() -> None:
     parser = argparse.ArgumentParser()
@@ -116,23 +151,28 @@ def main() -> None:
 
     base = load_base(args.base)
     thesaurus = load_thesaurus(args.thesaurus)
-    nouns, propns = read_pos_corpus(args.leipzig_archive, args.corpus)
+    nouns, propns, corpus_method = read_corpus(args.leipzig_archive, args.corpus)
 
     accepted: list[tuple[str, int, bool]] = []
     excluded: list[dict[str, str | int]] = []
+    manual_review: list[dict[str, str | int]] = []
     for folded, original in base.items():
         if not WORD_RE.fullmatch(original):
             excluded.append({"word": original, "reason": "nicht 4–11 Buchstaben oder kein alphabetisches Einzelwort"})
             continue
-        if folded in propns and folded not in nouns:
-            excluded.append({"word": original, "reason": "im Leipzig-Korpus als Eigenname (PROPN) erkannt"})
+        noun_frequency = nouns.get(folded, 0)
+        proper_frequency = propns.get(folded, 0)
+        if proper_frequency and not noun_frequency:
+            excluded.append({"word": original, "reason": "nur als Eigenname (PROPN) im Korpus belegt"})
             continue
-        frequency = nouns.get(folded, 0)
-        if frequency < args.min_frequency:
-            reason = "kein NOUN-Lemma im Leipzig-Korpus" if frequency == 0 else "zu geringe Korpusfrequenz"
-            excluded.append({"word": original, "reason": reason})
+        if proper_frequency and noun_frequency:
+            manual_review.append({"word": original, "reason": "mehrdeutig: sowohl NOUN als auch PROPN"})
             continue
-        accepted.append((original, frequency, folded in thesaurus))
+        if noun_frequency < args.min_frequency:
+            reason = "kein NOUN-Beleg im Korpus" if noun_frequency == 0 else "NOUN-Belege unter Mindesthäufigkeit"
+            manual_review.append({"word": original, "reason": reason})
+            continue
+        accepted.append((original, noun_frequency, folded in thesaurus))
 
     accepted.sort(key=lambda item: (-item[1], key(item[0])))
     output = {
@@ -141,10 +181,11 @@ def main() -> None:
             "base": str(args.base),
             "pos_corpus": "Leipzig Corpora Collection",
             "corpus": args.corpus,
+            "method": corpus_method,
             "thesaurus": str(args.thesaurus) if args.thesaurus.exists() else None,
         },
         "policy": {
-            "part_of_speech": "NOUN only; PROPN excluded unless independently tagged NOUN",
+            "part_of_speech": "NOUN only; PROPN-only excluded; NOUN/PROPN overlap sent to manual review",
             "lemma": "corpus base form",
             "length": "4–11 alphabetic characters",
             "minimum_corpus_frequency": args.min_frequency,
@@ -161,10 +202,14 @@ def main() -> None:
         "leipzig_proper_name_lemmas": len(propns),
         "accepted": len(accepted),
         "excluded": len(excluded_payload),
+        "manual_review": len(manual_review),
+        "classified_total": len(accepted) + len(excluded_payload) + len(manual_review),
         "openthesaurus_matches": sum(1 for _, _, match in accepted if match),
         "minimum_frequency": args.min_frequency,
         "manual_review_required": [
-            "NOUN/PROPN-Mehrdeutigkeiten können ohne Kontext nicht vollständig aufgelöst werden.",
+            "NOUN/PROPN-Mehrdeutigkeiten werden nicht automatisch zugelassen, sondern manuell markiert.",
+            "Wörter ohne ausreichenden Korpusbeleg bleiben manuell zu prüfen und gelten nicht automatisch als falsch.",
+            "Die Satzfallback-Analyse hängt von der Genauigkeit des spaCy-Modells ab.",
             "OpenThesaurus-Abdeckung ist unvollständig und entscheidet nicht allein über Aufnahme.",
             "Häufigkeit ist ein Maß für Korpusbelege, keine Garantie für kindgerechte oder allgemein bekannte Wörter."
         ],
@@ -174,10 +219,14 @@ def main() -> None:
         (args.output, output),
         (args.excluded, excluded_payload),
         (args.report, report),
+        (Path("data/wordfinity-manuell-pruefen.json"), sorted(manual_review, key=lambda item: key(str(item["word"])))),
     ):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(f"Prüfung abgeschlossen: {len(accepted)} zugelassen, {len(excluded_payload)} ausgeschlossen.")
+    classified = len(accepted) + len(excluded_payload) + len(manual_review)
+    if classified != len(base):
+        raise SystemExit(f"Interner Fehler: {classified} von {len(base)} Wörtern klassifiziert.")
+    print(f"Prüfung abgeschlossen: {len(accepted)} zugelassen, {len(excluded_payload)} ausgeschlossen, {len(manual_review)} manuell prüfen.")
 
 
 if __name__ == "__main__":
