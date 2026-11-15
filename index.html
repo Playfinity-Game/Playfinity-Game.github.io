@@ -1666,6 +1666,7 @@
       dictionaryTargetWords: [],
       usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
       wordHintCandidatesTried: new Set(),
+      wordHintInProgress: false,
       categoryEmbeddingCache: null,
       categoryAssignments: new Map(),
       async loadDictionary() {
@@ -1884,7 +1885,6 @@
               .map(item => ({ ...item, rank: this.calculateGuessRank(item.similarity) }))
               .sort((a, b) => a.rank - b.rank || b.similarity - a.similarity);
 
-            const bestExistingRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
             for (const candidate of candidates) {
               if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
               const candidateKey = normalize(candidate.word);
