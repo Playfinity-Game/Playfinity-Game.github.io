@@ -214,12 +214,39 @@ def main() -> None:
             "Häufigkeit ist ein Maß für Korpusbelege, keine Garantie für kindgerechte oder allgemein bekannte Wörter."
         ],
     }
+    # Apply the agreed suffix policy to BOTH candidate cohorts, without changing
+    # the underlying noun/POS audit outputs. This is a separate review artifact.
+    suffixes = ("ung", "ismus", "heit", "keit", "schaft", "tion", "ität", "ologie", "istik")
+
+    def suffix_reason(word: str) -> str | None:
+        folded_word = key(word)
+        matches = [suffix for suffix in suffixes if folded_word.endswith(suffix)]
+        return ", ".join("-" + suffix for suffix in matches) if matches else None
+
+    accepted_words = [word for word, _, _ in accepted]
+    manual_words = [str(item["word"]) for item in manual_review]
+    accepted_flagged = [{"word": word, "reason": "Endungsregel: " + suffix_reason(word)}
+                        for word in accepted_words if suffix_reason(word)]
+    manual_flagged = [{"word": word, "reason": "Endungsregel: " + suffix_reason(word)}
+                      for word in manual_words if suffix_reason(word)]
+    suffix_report = {
+        "policy": list("-" + suffix for suffix in suffixes),
+        "source_counts": {"accepted_9502_cohort": len(accepted_words), "manual_review_42881_cohort": len(manual_words)},
+        "flagged_counts": {"accepted_cohort": len(accepted_flagged), "manual_review_cohort": len(manual_flagged)},
+        "kept_counts": {"accepted_cohort": len(accepted_words) - len(accepted_flagged), "manual_review_cohort": len(manual_words) - len(manual_flagged)},
+        "accepted_flagged": accepted_flagged,
+        "accepted_kept": [word for word in accepted_words if not suffix_reason(word)],
+        "manual_flagged": manual_flagged,
+        "manual_kept": [item for item in manual_review if not suffix_reason(str(item["word"]))],
+        "note": "Endungs-Treffer sind zur Aussortierung markiert, nicht stillschweigend gelöscht. Beide Gruppen bleiben getrennt; Grenzfälle müssen vor endgültiger Aktivierung geprüft werden."
+    }
     # Write only after every input has been validated and parsed successfully.
     for path, payload in (
         (args.output, output),
         (args.excluded, excluded_payload),
         (args.report, report),
         (Path("data/wordfinity-manuell-pruefen.json"), sorted(manual_review, key=lambda item: key(str(item["word"])))),
+        (Path("data/wordfinity-endungsfilter.json"), suffix_report),
     ):
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
