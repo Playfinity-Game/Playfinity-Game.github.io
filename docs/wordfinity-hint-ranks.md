@@ -25,11 +25,11 @@ python scripts/build_wordfinity_hint_ranks.py
 
 Standardmäßig liest das Skript die vorhandene Datei
 `data/wordfinity-nouns.json` und schreibt
-`data/wordfinity-hint-ranks.json.gz`. Das Ergebnis enthält:
+`build/wordfinity-hint-ranks/manifest.json` und einzelne Dateien unter `build/wordfinity-hint-ranks/rankings/`. Das Ergebnis enthält:
 - den unveränderten Zielwortbestand als Prüfsumme und Anzahl,
 - einen separaten, häufigen deutschen Tipp-Wortschatz,
 - für jedes Zielwort die vollständige, nach Kosinus-Ähnlichkeit sortierte
-  Kandidatenliste (als Base64-kodierte UInt16-IDs).
+  Kandidatenliste als separate, gzip-komprimierte UInt16-Datei pro Zielwort. Im Spiel muss so nur die Rangliste des aktuellen Zielworts geladen werden.
 
 Die Kandidatenbasis wird aus der deutschen Häufigkeitsliste von `wordfreq`
 gebildet; vorhandene Zielwörter werden zusätzlich aufgenommen, falls sie nicht
@@ -38,7 +38,7 @@ Modell- und Paketversion.
 
 ## Geplante Laufzeitintegration
 
-Die generierte Datei ist zunächst nur ein Build-Artefakt. Sie wird bewusst noch
+Der generierte Ordner ist zunächst nur ein Build-Artefakt. Sie wird bewusst noch
 nicht vom Live-Worker geladen: Vorher müssen Hosting/Cache, Dateigröße,
 Ladeverhalten und die Worker-Ressourcengrenzen geprüft werden. Danach kann der
 Worker für **Leicht** ungefähr die halbe Rangposition des besten Versuchs und
