@@ -78,7 +78,7 @@ def build_candidates(targets: list[str], limit: int) -> list[str]:
         raise RuntimeError("Fehlendes Paket 'wordfreq'. Installiere scripts/requirements-hint-ranks.txt.") from exc
 
     # Oversample because punctuation, function words and duplicates are removed.
-    frequent = top_n_list("de", n_top=max(limit * 8, 100_000))
+    frequent = top_n_list("de", max(limit * 8, 100_000))
     candidates: dict[str, str] = {}
     for raw in frequent:
         word = str(raw).strip()
