@@ -80,7 +80,7 @@ function setObj(el,svg,s){el.innerHTML=svg;el.style.width=s.w+'px';el.style.heig
 function pos(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
 function render(){if(!rounds.length)return;const r=rounds[index],c=center();$('referenceName').textContent=r.reference.name;$('targetName').textContent=r.target.name;$('dimension').textContent=r.dimension.toUpperCase();$('dimensionNote').textContent=r.dimension==='Fläche'?'Flächenvergleich':'Größenvergleich';$('round').textContent=index+1;$('roundTotal').textContent=rounds.length;$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
 const rs=sizeFor(r.reference.svg,base),ts=sizeFor(r.target.svg,base);setObj(ref,r.reference.svg,rs);pos(ref,c.x-base-22,c.y-rs.h);
-setObj(guess,r.target.svg,ts);setObj(actual,r.target.svg,ts);guessScale=1;guessX=c.x+25;guessY=c.y-ts.h;locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false}
+setObj(guess,r.target.svg,ts);setObj(actual,r.target.svg,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false}
 function applyGuess(){const r=rounds[index],s=sizeFor(r.target.svg,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
 function applyZoom(){world.style.transform='scale('+zoom+')';}
 function point(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left)/zoom,y:(e.clientY-b.top)/zoom}}
