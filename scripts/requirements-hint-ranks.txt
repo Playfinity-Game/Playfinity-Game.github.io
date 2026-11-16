@@ -1,0 +1,4 @@
+# Reproducible dependencies for scripts/build_wordfinity_hint_ranks.py
+numpy>=1.26,<3
+sentence-transformers>=3.4,<6
+wordfreq>=3.1,<4
