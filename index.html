@@ -916,82 +916,7 @@
     .hangmann-reveal{display:none;margin:0 0 10px;padding:9px 14px;border:1px solid rgba(255,0,127,.42);border-radius:11px;background:rgba(255,0,127,.1);color:#fff;text-align:center;font-size:clamp(.95rem,3.5vw,1.2rem);font-weight:850;box-shadow:0 0 18px rgba(255,0,127,.12)}
     .hangmann-reveal.visible{display:block}
     .hangmann-reveal strong{color:var(--neon-cyan);letter-spacing:.04em}
-    .hangmann-stage.cleaning .hangmann-person{transform-box:fill-box;transform-origin:center;animation:hangmannFallAndSweep 10s ease-in-out forwards}
-    .hangmann-stage.cleaning .hangmann-person .hangmann-part{transform-box:fill-box;animation:hangmannBreak .55s ease-out 1.6s forwards}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(2){--break-x:-5px;--break-y:3px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(3){--break-x:-8px;--break-y:2px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(4){--break-x:8px;--break-y:3px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(5){--break-x:-6px;--break-y:4px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(6){--break-x:7px;--break-y:4px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(7){--break-x:-5px;--break-y:4px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(8){--break-x:5px;--break-y:4px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(9){--break-x:0px;--break-y:5px}
-    .hangmann-stage.cleaning .hangmann-part:nth-child(10){--break-x:0px;--break-y:3px}
-    .hangmann-cleaner{opacity:0;fill:none;stroke:var(--neon-green);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(0,255,157,.4))}
-    .hangmann-stage.cleaning .hangmann-cleaner{animation:hangmannCleanerSweep 10s linear forwards}
-    .hangmann-stage.cleaning .hangmann-broom{transform-box:fill-box;transform-origin:4px 0;animation:hangmannBroom .65s ease-in-out 3s 9}
     .hangmann-rope{stroke:var(--neon-gold);stroke-width:2.5;filter:drop-shadow(0 0 4px rgba(255,210,0,.5))}
-    .hangmann-stage.rescuing .hangmann-rope{animation:hangmannRescueRope 10s ease-in-out forwards}
-    .hangmann-stage.rescuing .hangmann-person{transform-box:view-box;transform-origin:160px 100px;animation:hangmannOntoStretcher 10s cubic-bezier(.35,.05,.25,1) forwards}
-    .hangmann-stage.rescuing .hangmann-stretcher{animation:hangmannStretcherIn 10s ease-in-out forwards}
-    .hangmann-stage.rescuing .hangmann-helper-left{animation:hangmannHelperLeft 10s cubic-bezier(.22,.75,.25,1) forwards}
-    .hangmann-stage.rescuing .hangmann-helper-right{animation:hangmannHelperRight 10s cubic-bezier(.22,.75,.25,1) forwards}
-    .hangmann-stage.rescuing .hangmann-helper-left .hangmann-carry-arm,
-    .hangmann-stage.rescuing .hangmann-helper-right .hangmann-carry-arm{animation:hangmannCarryGrip 10s ease-in-out forwards}
-    @keyframes hangmannRescueRope{0%,18%{opacity:1}25%,100%{opacity:0}}
-    @keyframes hangmannOntoStretcher{
-      0%,18%{opacity:1;transform:translate(0,0) rotate(0)}
-      29%{opacity:1;transform:translate(-5px,20px) rotate(15deg)}
-      40%,61%{opacity:1;transform:translate(-34px,52px) rotate(90deg)}
-      68%{opacity:1;transform:translate(-34px,48px) rotate(90deg)}
-      83%{opacity:1;transform:translate(-34px,43px) rotate(90deg)}
-      100%{opacity:0;transform:translate(-310px,43px) rotate(90deg)}
-    }
-    @keyframes hangmannStretcherIn{
-      0%,19%{opacity:0;transform:translateY(18px) scale(.92)}
-      28%,61%{opacity:1;transform:translateY(0) scale(1)}
-      68%{opacity:1;transform:translateY(-5px) scale(1)}
-      83%{opacity:1;transform:translate(0,-10px) scale(1)}
-      100%{opacity:0;transform:translate(-310px,-10px) scale(1)}
-    }
-    @keyframes hangmannHelperLeft{
-      0%,3%{opacity:0;transform:translate(-75px,0)}
-      17%{opacity:1;transform:translate(0,0)}
-      25%,61%{opacity:1;transform:translate(0,0)}
-      68%{opacity:1;transform:translate(0,-5px)}
-      83%{opacity:1;transform:translate(0,-10px)}
-      100%{opacity:0;transform:translate(-310px,-10px)}
-    }
-    @keyframes hangmannHelperRight{
-      0%,3%{opacity:0;transform:translate(75px,0)}
-      17%{opacity:1;transform:translate(0,0)}
-      25%,61%{opacity:1;transform:translate(0,0)}
-      68%{opacity:1;transform:translate(0,-5px)}
-      83%{opacity:1;transform:translate(0,-10px)}
-      100%{opacity:0;transform:translate(-310px,-10px)}
-    }
-    @keyframes hangmannCarryGrip{
-      0%,27%{transform:translateY(0)}
-      34%,61%{transform:translateY(7px)}
-      68%{transform:translateY(2px)}
-      83%{transform:translateY(0)}
-      100%{transform:translateY(0)}
-    }
-    @keyframes hangmannFallAndSweep{
-      0%{opacity:1;transform:translate(0,0) rotate(0)}
-      16%{opacity:1;transform:translate(-8px,28px) rotate(62deg)}
-      30%{opacity:1;transform:translate(-8px,28px) rotate(62deg)}
-      88%{opacity:1;transform:translate(-190px,28px) rotate(62deg)}
-      100%{opacity:0;transform:translate(-205px,28px) rotate(62deg)}
-    }
-    @keyframes hangmannBreak{to{opacity:1;transform:translate(var(--break-x,3px),var(--break-y,4px)) rotate(12deg)}}
-    @keyframes hangmannCleanerSweep{
-      0%,25%{opacity:0;transform:translate(265px,0)}
-      32%{opacity:1;transform:translate(245px,0)}
-      90%{opacity:1;transform:translate(-55px,0)}
-      100%{opacity:0;transform:translate(-85px,0)}
-    }
-    @keyframes hangmannBroom{0%,100%{transform:rotate(-32deg)}50%{transform:rotate(28deg)}}
     .hangmann-word{display:flex;justify-content:center;gap:clamp(4px,1.4vw,10px);flex-wrap:wrap;min-height:54px}
     .hangmann-slot{width:clamp(22px,6vw,38px);height:48px;border-bottom:3px solid var(--neon-cyan);display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:900;text-transform:uppercase;color:#fff}
     .hangmann-category{padding:10px 13px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.1);color:#e5c7ff;font-weight:750;text-align:center}
@@ -1207,28 +1132,6 @@
               <path class="hangmann-part" data-part="8" d="M167 56 C165.5 59 165.5 61 167 62 C168.5 61 168.5 59 167 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
               <path class="hangmann-part" data-part="9" d="M153 72 Q160 64 167 72"/>
               <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
-            </g>
-            <g class="hangmann-cleaner" aria-hidden="true">
-              <circle cx="20" cy="126" r="9"/><path d="M20 135V158M20 141L7 151M20 141L32 151M20 158L10 176M20 158L30 176"/>
-              <g class="hangmann-broom"><path d="M31 153L-3 184"/><path d="M-8 180L1 190L8 183L-1 174Z" stroke="var(--neon-gold)" fill="var(--neon-gold)"/></g>
-            </g>
-            <g class="hangmann-stretcher" aria-hidden="true" opacity="0">
-              <path d="M76 158H190" stroke="var(--neon-green)" stroke-width="5" stroke-linecap="round"/>
-              <path d="M86 158V168M180 158V168" stroke="var(--neon-green)" stroke-width="3" stroke-linecap="round"/>
-              <path d="M92 154H174" stroke="var(--neon-cyan)" stroke-width="9" stroke-linecap="round" opacity=".9"/>
-              <path d="M76 158H190" stroke="#d8fff2" stroke-width="1.5" stroke-linecap="round"/>
-            </g>
-            <g class="hangmann-helper-left" aria-hidden="true" opacity="0" fill="none" stroke="var(--neon-green)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="57" cy="132" r="8" fill="rgba(0,255,157,.16)"/>
-              <path d="M57 140V158L48 169M57 158L66 169M57 145L72 153"/>
-              <path class="hangmann-carry-arm" d="M57 146L76 158"/>
-              <path d="M48 169L43 178M66 169L71 178"/>
-            </g>
-            <g class="hangmann-helper-right" aria-hidden="true" opacity="0" fill="none" stroke="var(--neon-purple)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="207" cy="132" r="8" fill="rgba(176,38,255,.16)"/>
-              <path d="M207 140V158L198 169M207 158L216 169M207 145L190 153"/>
-              <path class="hangmann-carry-arm" d="M207 146L190 158"/>
-              <path d="M198 169L193 178M216 169L221 178"/>
             </g>
           </svg>
         </div>
@@ -1490,10 +1393,8 @@
           showCorrectAnswerOverlay(this.target.word, null, false, '🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!');
           PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
         }else if(!won){
-          document.getElementById('hangmann-status').textContent='😭 Oh nein! Der Rettungsdienst ist unterwegs …';
+          document.getElementById('hangmann-status').textContent='😭 Oh nein!';
           const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
-          const stage=document.getElementById('hangmann-stage');
-          if(stage)stage.classList.add(Math.random()<0.5?'cleaning':'rescuing');
           this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
         }
       }
