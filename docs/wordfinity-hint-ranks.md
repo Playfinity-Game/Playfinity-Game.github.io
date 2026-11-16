@@ -38,7 +38,7 @@ Modell- und Paketversion.
 
 ## Geplante Laufzeitintegration
 
-Der generierte Ordner ist zunächst nur ein Build-Artefakt. Sie wird bewusst noch
+Der generierte Ordner ist zunächst nur ein Build-Artefakt. Er wird bewusst noch
 nicht vom Live-Worker geladen: Vorher müssen Hosting/Cache, Dateigröße,
 Ladeverhalten und die Worker-Ressourcengrenzen geprüft werden. Danach kann der
 Worker für **Leicht** ungefähr die halbe Rangposition des besten Versuchs und
