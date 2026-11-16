@@ -993,8 +993,8 @@
           </div>
         </div>
 
-        <!-- Kontexto Card -->
-        <div class="game-card card-purple" onclick="PlayfinityRouter.go('kontexto')">
+        <!-- WORDFINITY Card -->
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
           <div>
             <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
@@ -1055,7 +1055,7 @@
     </section>
 
     <!-- SCREEN 3: KONTEXTO -->
-    <section class="screen" id="screen-kontexto">
+    <section class="screen" id="screen-wordfinity">
       <div class="kontexto-wrap">
         <div class="model-loader" id="kontexto-loader">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
@@ -1279,7 +1279,7 @@
 
       renderScreen(screenId, isForwardNav) {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
+        document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
         document.body.classList.toggle('game-active', screenId !== 'menu');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
@@ -1299,7 +1299,7 @@
       onEnterGame(screenId) {
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
         if (screenId === 'hangmann') HangmannGame.init();
-        if (screenId === 'kontexto' && !KontextoGame.initialized) KontextoGame.init();
+        if (screenId === 'wordfinity' && !KontextoGame.initialized) KontextoGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
       }
@@ -1497,7 +1497,7 @@
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
-        } else if (screen === 'kontexto' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
+        } else if (screen === 'wordfinity' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
           KontextoGame.submitGuess(text, user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
