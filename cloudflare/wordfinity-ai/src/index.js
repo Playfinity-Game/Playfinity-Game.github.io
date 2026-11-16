@@ -126,6 +126,7 @@ async function handleCategory(env, body) {
 async function handleHints(env, body) {
   const target = String(body.target || "").trim();
   if (!target) return json({ error: "target ist erforderlich" }, 400);
+  const level = body.level === "mittel" ? "mittel" : "leicht";
   const excluded = new Set(
     (Array.isArray(body.excluded) ? body.excluded : [])
       .map(x => String(x).trim().toLocaleLowerCase("de-DE"))
@@ -133,10 +134,14 @@ async function handleHints(env, body) {
   );
   excluded.add(target.toLocaleLowerCase("de-DE"));
 
+  const levelGuidance = level === "leicht"
+    ? "STUFE LEICHT: Wähle gut erkennbare, hilfreiche Assoziationen. Sie dürfen dem Ziel semantisch relativ nahe sein, sollen aber nicht die Lösung, ein Synonym, eine direkte Unterart, ein typisches Geräusch oder ein unmittelbares Merkmal verraten. Beispiel Zielwort 'Hund': passende Hinweise wären 'Haustier', 'Katze' oder 'Tier'; zu direkt wären 'Welpe', 'Bellen' oder 'Hundeleine'."
+    : "STUFE MITTEL: Wähle indirektere, aber weiterhin klar sinnvolle Assoziationen aus Alltag, Umfeld, Funktion, typischen Situationen oder Zusammenhängen. Der Zusammenhang soll einen kleinen Aha-Moment auslösen, nicht beliebig oder weit hergeholt sein. Beispiel Zielwort 'Hund': eher 'Spaziergang', 'Tierarzt' oder 'Futternapf' als 'Auto'; zu direkt wären 'Welpe', 'Bellen' oder 'Hundeleine'.";
+
   const text = await generate(
     env,
-    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge 24 unterschiedliche, gebräuchliche deutsche Einzelwörter als indirekte Denkanstöße zum Zielwort. Die Wörter sollen thematisch oder über typische Situationen, Orte, Tätigkeiten und Zusammenhänge passen, aber NICHT die Lösung verraten. Wähle bewusst eine mittlere gedankliche Distanz: keine Synonyme, keine direkten Oberbegriffe, keine offensichtlichsten Unterarten, Bestandteile oder unmittelbaren Erscheinungsformen. Beispiel Zielwort 'Schnee': gute Denkanstöße sind 'Winter', 'Skifahren', 'Gebirge' oder 'Schlitten'; zu offensichtlich bzw. zu nah sind 'Schneemann', 'Schneeflocke', 'Schneesturm' oder 'Frost'. WICHTIG: Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Kein Kandidat darf ein ausgeschlossenes Wort als Bestandteil enthalten oder selbst Bestandteil eines ausgeschlossenen Wortes sein. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
-    "Zielwort: " + target + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 40 unterschiedliche, indirekte aber thematisch passende Denkanstöße, eins pro Zeile.",
+    "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge gebräuchliche deutsche Einzelwörter als hilfreiche, indirekte Denkanstöße zum Zielwort. " + levelGuidance + " Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Die Wörter dürfen außerhalb einer vorgegebenen Spielwortliste liegen. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
+    "Zielwort: " + target + "\nTippstufe: " + level + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 40 unterschiedliche, passende Denkanstöße, eins pro Zeile.",
     400
   );
 
@@ -176,7 +181,7 @@ async function handleHints(env, body) {
     .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
     .sort((a, b) => b.similarity - a.similarity)
     .slice(0, 30);
-  return json({ hints, model: EMBEDDING_MODEL });
+  return json({ hints, level, model: EMBEDDING_MODEL });
 }
 
 export default {
