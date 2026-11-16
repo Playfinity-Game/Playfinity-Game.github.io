@@ -25,7 +25,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .ground{position:absolute;left:0;right:0;bottom:14%;height:2px;background:#627b9e88;box-shadow:0 0 9px #4b79c055}
 .world{position:absolute;inset:0;transform-origin:0 0;will-change:transform}
 .obj{position:absolute;display:flex;align-items:center;justify-content:center;user-select:none;pointer-events:none;touch-action:none}
-.obj svg{display:block;width:100%;height:100%;overflow:visible;fill:currentColor}
+.obj svg{display:block;width:100%;height:100%;overflow:visible;fill:currentColor}.obj.png{background-color:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
 .obj svg *{stroke:currentColor;stroke-linejoin:round;stroke-linecap:round}
 .reference{color:#168dff;filter:drop-shadow(0 0 7px #168dff66)}
 .guess{color:var(--pink);filter:drop-shadow(0 0 8px #ff477d66);cursor:grab;pointer-events:auto;touch-action:none}
@@ -75,23 +75,23 @@ const rounds=window.MEGASIZE_DATA||[];
 let index=0,total=0,zoom=1,panX=0,panY=0,locked=false,guessScale=1,guessX=0,guessY=0,base=142,drag=null;
 const $=id=>document.getElementById(id),board=$('board'),world=$('world'),ref=$('reference'),guess=$('guess'),actual=$('actual');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function box(svg){const m=svg.match(/viewBox=["']\s*([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)\s*["']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
-function sizeFor(svg,axisPx){const b=box(svg),ratio=b.w/b.h;return {w:axisPx*(ratio>=1?1:ratio),h:axisPx*(ratio>=1?1/ratio:1)}}
+function box(item){if(item.w&&item.h)return {w:item.w,h:item.h};const svg=item.svg||'';const m=svg.match(/viewBox=["']\s*([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)\s*["']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
+function sizeFor(item,axisPx){const z=box(item),ratio=z.w/z.h;return {w:axisPx*(ratio>=1?1:ratio),h:axisPx*(ratio>=1?1/ratio:1)}}
 function factor(r){const ratio=r.target.value/r.reference.value;return r.dimension==='Fläche'?Math.sqrt(ratio):ratio}
 function center(){return{x:board.clientWidth/2,y:board.clientHeight*.72}}
-function setObj(el,svg,s){el.innerHTML=svg;el.style.width=s.w+'px';el.style.height=s.h+'px'}
+function setObj(el,item,s){el.style.width=s.w+'px';el.style.height=s.h+'px';if(item.src){el.innerHTML='';el.classList.add('png');el.style.webkitMaskImage='url('+item.src+')';el.style.maskImage='url('+item.src+')';}else{el.classList.remove('png');el.style.webkitMaskImage='';el.style.maskImage='';el.innerHTML=item.svg||'';}}
 function pos(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
 function render(){
  if(!rounds.length)return;
- const r=rounds[index],c=center(),rs=sizeFor(r.reference.svg,base),ts=sizeFor(r.target.svg,base);
+ const r=rounds[index],c=center(),rs=sizeFor(r.reference,base),ts=sizeFor(r.target,base);
  $('referenceName').textContent=r.reference.name;$('targetName').textContent=r.target.name;
  $('dimension').textContent=r.dimension.toUpperCase();$('dimensionNote').textContent=r.dimension==='Fläche'?'Flächenvergleich':'Größenvergleich';
  $('round').textContent=index+1;$('roundTotal').textContent=rounds.length;$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
- setObj(ref,r.reference.svg,rs);pos(ref,c.x-base-22,c.y-rs.h);
- setObj(guess,r.target.svg,ts);setObj(actual,r.target.svg,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;
+ setObj(ref,r.reference,rs);pos(ref,c.x-base-22,c.y-rs.h);
+ setObj(guess,r.target,ts);setObj(actual,r.target,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;
  locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false;
 }
-function applyGuess(){const s=sizeFor(rounds[index].target.svg,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
+function applyGuess(){const s=sizeFor(rounds[index].target,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
 function applyZoom(){world.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')'}
 function boardPoint(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left-panX)/zoom,y:(e.clientY-b.top-panY)/zoom}}
 function changeObjectScale(mult){if(locked)return;guessScale=Math.max(.015,Math.min(80,guessScale*mult));applyGuess()}
