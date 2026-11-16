@@ -814,6 +814,3006 @@
     {
       "word": "Schneemobil",
       "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Handball",
+      "category": "Sport"
+    },
+    {
+      "word": "Basketball",
+      "category": "Sport"
+    },
+    {
+      "word": "Volleyball",
+      "category": "Sport"
+    },
+    {
+      "word": "Tennis",
+      "category": "Sport"
+    },
+    {
+      "word": "Tischtennis",
+      "category": "Sport"
+    },
+    {
+      "word": "Badminton",
+      "category": "Sport"
+    },
+    {
+      "word": "Federball",
+      "category": "Sport"
+    },
+    {
+      "word": "Golf",
+      "category": "Sport"
+    },
+    {
+      "word": "Minigolf",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Feldhockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Rugby",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseball",
+      "category": "Sport"
+    },
+    {
+      "word": "Softball",
+      "category": "Sport"
+    },
+    {
+      "word": "Cricket",
+      "category": "Sport"
+    },
+    {
+      "word": "Flagfootball",
+      "category": "Sport"
+    },
+    {
+      "word": "Schach",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kickboxen",
+      "category": "Sport"
+    },
+    {
+      "word": "Judo",
+      "category": "Sport"
+    },
+    {
+      "word": "Karate",
+      "category": "Sport"
+    },
+    {
+      "word": "Taekwondo",
+      "category": "Sport"
+    },
+    {
+      "word": "Ringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechten",
+      "category": "Sport"
+    },
+    {
+      "word": "Turnen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kunstturnen",
+      "category": "Sport"
+    },
+    {
+      "word": "Trampolinspringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Leichtathletik",
+      "category": "Sport"
+    },
+    {
+      "word": "Sprint",
+      "category": "Sport"
+    },
+    {
+      "word": "Marathon",
+      "category": "Sport"
+    },
+    {
+      "word": "Staffellauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Hürdenlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Hochsprung",
+      "category": "Sport"
+    },
+    {
+      "word": "Weitsprung",
+      "category": "Sport"
+    },
+    {
+      "word": "Stabhochsprung",
+      "category": "Sport"
+    },
+    {
+      "word": "Speerwurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Diskuswurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Kugelstoßen",
+      "category": "Sport"
+    },
+    {
+      "word": "Schwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Wasserspringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Synchronschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Wasserball",
+      "category": "Sport"
+    },
+    {
+      "word": "Rudern",
+      "category": "Sport"
+    },
+    {
+      "word": "Kanufahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Kajak",
+      "category": "Sport"
+    },
+    {
+      "word": "Segeln",
+      "category": "Sport"
+    },
+    {
+      "word": "Surfen",
+      "category": "Sport"
+    },
+    {
+      "word": "Windsurfen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kitesurfen",
+      "category": "Sport"
+    },
+    {
+      "word": "Wasserski",
+      "category": "Sport"
+    },
+    {
+      "word": "Wakeboard",
+      "category": "Sport"
+    },
+    {
+      "word": "Tauchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Schnorcheln",
+      "category": "Sport"
+    },
+    {
+      "word": "Radfahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Mountainbiken",
+      "category": "Sport"
+    },
+    {
+      "word": "Rennradfahren",
+      "category": "Sport"
+    },
+    {
+      "word": "BMX",
+      "category": "Sport"
+    },
+    {
+      "word": "Motorsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Rallye",
+      "category": "Sport"
+    },
+    {
+      "word": "Kartfahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Motocross",
+      "category": "Sport"
+    },
+    {
+      "word": "Skifahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Snowboarden",
+      "category": "Sport"
+    },
+    {
+      "word": "Skilanglauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Biathlon",
+      "category": "Sport"
+    },
+    {
+      "word": "Eiskunstlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Eisschnelllauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Bobfahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Rodeln",
+      "category": "Sport"
+    },
+    {
+      "word": "Skeleton",
+      "category": "Sport"
+    },
+    {
+      "word": "Curling",
+      "category": "Sport"
+    },
+    {
+      "word": "Klettern",
+      "category": "Sport"
+    },
+    {
+      "word": "Bouldern",
+      "category": "Sport"
+    },
+    {
+      "word": "Bergsteigen",
+      "category": "Sport"
+    },
+    {
+      "word": "Wandern",
+      "category": "Sport"
+    },
+    {
+      "word": "Trailrunning",
+      "category": "Sport"
+    },
+    {
+      "word": "Joggen",
+      "category": "Sport"
+    },
+    {
+      "word": "Nordicwalking",
+      "category": "Sport"
+    },
+    {
+      "word": "Fitness",
+      "category": "Sport"
+    },
+    {
+      "word": "Aerobic",
+      "category": "Sport"
+    },
+    {
+      "word": "Zumba",
+      "category": "Sport"
+    },
+    {
+      "word": "Yoga",
+      "category": "Sport"
+    },
+    {
+      "word": "Pilates",
+      "category": "Sport"
+    },
+    {
+      "word": "Krafttraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Gewichtheben",
+      "category": "Sport"
+    },
+    {
+      "word": "Powerlifting",
+      "category": "Sport"
+    },
+    {
+      "word": "Bodybuilding",
+      "category": "Sport"
+    },
+    {
+      "word": "Crossfit",
+      "category": "Sport"
+    },
+    {
+      "word": "Dart",
+      "category": "Sport"
+    },
+    {
+      "word": "Billard",
+      "category": "Sport"
+    },
+    {
+      "word": "Bowling",
+      "category": "Sport"
+    },
+    {
+      "word": "Kegeln",
+      "category": "Sport"
+    },
+    {
+      "word": "Boccia",
+      "category": "Sport"
+    },
+    {
+      "word": "Petanque",
+      "category": "Sport"
+    },
+    {
+      "word": "Polo",
+      "category": "Sport"
+    },
+    {
+      "word": "Reiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Dressurreiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Springreiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Voltigieren",
+      "category": "Sport"
+    },
+    {
+      "word": "Lacrosse",
+      "category": "Sport"
+    },
+    {
+      "word": "Netball",
+      "category": "Sport"
+    },
+    {
+      "word": "Squash",
+      "category": "Sport"
+    },
+    {
+      "word": "Padel",
+      "category": "Sport"
+    },
+    {
+      "word": "Pickleball",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachvolleyball",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachhandball",
+      "category": "Sport"
+    },
+    {
+      "word": "Ringtennis",
+      "category": "Sport"
+    },
+    {
+      "word": "Frisbee",
+      "category": "Sport"
+    },
+    {
+      "word": "Cheerleading",
+      "category": "Sport"
+    },
+    {
+      "word": "Tanzsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Breakdance",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballett",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportgymnastik",
+      "category": "Sport"
+    },
+    {
+      "word": "Rollkunstlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Skateboarden",
+      "category": "Sport"
+    },
+    {
+      "word": "Inlineskaten",
+      "category": "Sport"
+    },
+    {
+      "word": "Rollerderby",
+      "category": "Sport"
+    },
+    {
+      "word": "Parkour",
+      "category": "Sport"
+    },
+    {
+      "word": "Orientierungslauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Gehen",
+      "category": "Sport"
+    },
+    {
+      "word": "Bogenschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "Drachenboot",
+      "category": "Sport"
+    },
+    {
+      "word": "Hufeisenwerfen",
+      "category": "Sport"
+    },
+    {
+      "word": "Cornhole",
+      "category": "Sport"
+    },
+    {
+      "word": "Fünfkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Zehnkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Siebenkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Duathlon",
+      "category": "Sport"
+    },
+    {
+      "word": "Triathlon",
+      "category": "Sport"
+    },
+    {
+      "word": "Ironman",
+      "category": "Sport"
+    },
+    {
+      "word": "Rennrodeln",
+      "category": "Sport"
+    },
+    {
+      "word": "Pferderennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Hindernislauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Segelfliegen",
+      "category": "Sport"
+    },
+    {
+      "word": "Fallschirmspringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Wellenreiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Paddeln",
+      "category": "Sport"
+    },
+    {
+      "word": "Kanupolo",
+      "category": "Sport"
+    },
+    {
+      "word": "Streetball",
+      "category": "Sport"
+    },
+    {
+      "word": "Faustball",
+      "category": "Sport"
+    },
+    {
+      "word": "Prellball",
+      "category": "Sport"
+    },
+    {
+      "word": "Schlagball",
+      "category": "Sport"
+    },
+    {
+      "word": "Völkerball",
+      "category": "Sport"
+    },
+    {
+      "word": "Brennball",
+      "category": "Sport"
+    },
+    {
+      "word": "Rounders",
+      "category": "Sport"
+    },
+    {
+      "word": "Floorball",
+      "category": "Sport"
+    },
+    {
+      "word": "Rollhockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Klavier",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Flügel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Keyboard",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orgel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Akkordeon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Melodica",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cembalo",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Spinett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Synthesizer",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mundharmonika",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Harmonika",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Gitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Elektrogitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassgitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Akustikgitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Konzertgitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Westerngitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Ukulele",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Banjo",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mandoline",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Laute",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Harfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zither",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Balalaika",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sitar",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Koto",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Shamisen",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Geige",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Violine",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bratsche",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Viola",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cello",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Violoncello",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kontrabass",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Fidel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Erhu",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Rebec",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Nyckelharpa",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Gambe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Drehleier",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Psalter",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Hackbrett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sarangi",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sarod",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tabla",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Trommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schlagzeug",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Snare",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Basstrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Pauke",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kesselpauke",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bongos",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Conga",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Djembe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Timbales",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tamburin",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Triangel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Becken",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "HiHat",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Xylophon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Marimbaphon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Vibraphon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Glockenspiel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Celesta",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Röhrenglocken",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Steelpan",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Hang",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Handpan",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cajon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kastagnetten",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Claves",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Guiro",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Agogo",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Ratsche",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schellenring",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Maultrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Didgeridoo",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schlitztrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Gong",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "TamTam",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Shaker",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cabasa",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Regenmacher",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Rassel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Blockflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Querflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Piccoloflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Altflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Panflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Okarina",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Nasenflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bambusflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Klarinette",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassklarinette",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Oboe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Englischhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Fagott",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kontrafagott",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Saxofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sopranino",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sopransaxofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Altsaxofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tenorsaxofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Baritonsaxofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Basssaxofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Trompete",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kornett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Flügelhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Posaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Waldhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tuba",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Euphonium",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tenorhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Baritonhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sousaphon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mellophon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Dudelsack",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schalmei",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zurna",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Gaita",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Hirtenflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Jagdhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Signalhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Posthorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Fanfare",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Naturhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Ventilhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Trombone",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cornamuse",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Krummhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Rankett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Serpent",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Ophikleide",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kazoo",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Stimmgabel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Leier",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Lyra",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Guzheng",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Guqin",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Pipa",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Ruan",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Biwa",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kantele",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kora",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mbira",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kalimba",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Balafon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Berimbau",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sofa",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Couch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Sessel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Stuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Hocker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Tisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Esstisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Couchtisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schreibtisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Nachttisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Beistelltisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Regal",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bücherregal",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kleiderschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Vitrine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kommode",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Sideboard",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schuhschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Garderobe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Hochbett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Etagenbett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wiege",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Matratze",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Lattenrost",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kopfkissen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettdecke",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettwäsche",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Laken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Nachttischlampe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Stehlampe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Tischlampe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Deckenlampe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Lichterkette",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kerze",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kerzenständer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Teppich",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Läufer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fußmatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Vorhang",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gardine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Rollo",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Jalousie",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Spiegel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bilderrahmen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gemälde",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wanduhr",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wecker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kalender",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Vase",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Blumentopf",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Pflanzkübel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gießkanne",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Besen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handfeger",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kehrblech",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Staubsauger",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Saugroboter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wischmopp",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wischeimer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Putzeimer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schwamm",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Lappen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Staubtuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bürste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schrubber",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Mülleimer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Papierkorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Müllbeutel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wäschekorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wäscheleine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wäscheklammer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wäscheständer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bügeleisen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bügelbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Nähmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Nähkasten",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schere",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klebeband",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klebstoff",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Locher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Tacker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Heftgerät",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kugelschreiber",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bleistift",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Radiergummi",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Lineal",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Anspitzer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Filzstift",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Marker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Notizbuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Briefumschlag",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Brieföffner",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Briefwaage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Taschenlampe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Verlängerungskabel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Mehrfachstecker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Ladegerät",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fernbedienung",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Radio",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Lautsprecher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kopfhörer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Heizlüfter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Heizkörper",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klimagerät",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Luftbefeuchter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Luftreiniger",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Thermometer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Barometer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Waage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Personenwaage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenwaage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Uhr",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Türstopper",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Türklinke",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schlüssel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schlüsselbund",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schloss",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Vorhängeschloss",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Werkzeugkasten",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Hammer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schraubenzieher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schraubendreher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Zange",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schraubenschlüssel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Maßband",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Wasserwaage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bohrmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Akkuschrauber",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Säge",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Feile",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schleifpapier",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Nägel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schrauben",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Dübel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Leiter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Trittleiter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Werkbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eimer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kiste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aufbewahrungsbox",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Koffer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Rucksack",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Regenschirm",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schuhanzieher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Schuhbürste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kleiderbügel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handtuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badetuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Drache",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Einhorn",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberer",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hexe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Fee",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kobold",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zwerg",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Riese",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Troll",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Oger",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Goblin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Ork",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Elf",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Elfe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Nixe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Meerjungfrau",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Meerjungmann",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Wassermann",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zentaur",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Pegasus",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Greif",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Phönix",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Werwolf",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Vampir",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Geist",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Gespenst",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Dämon",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Engel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Teufel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zombie",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Skelett",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Golem",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Gargoyle",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hydra",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Minotaurus",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zyklop",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Medusa",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Basilisk",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Mantikor",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Prinz",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Prinzessin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "König",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Königin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kaiser",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kaiserin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Ritter",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Knappe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Burgfräulein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Königssohn",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Königstochter",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Müllerssohn",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Müllerstochter",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Bauer",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Bäuerin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Schneider",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Schneiderin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Königskind",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Stiefmutter",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Stiefschwester",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Stiefbruder",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Waldfee",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Waldgeist",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Waldschrat",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Waldkobold",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hausgeist",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Schutzgeist",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberlehrling",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Magier",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Magierin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hexenmeister",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hexenmeisterin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Druide",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Druidin",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Schamane",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Orakel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Seher",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Prophet",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Alchemist",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Barde",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Troubadour",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenreiter",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenbaby",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberstab",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberbuch",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zaubertrank",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberhut",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hexenkessel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kristallkugel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Wunschring",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Tarnkappe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Wunderlampe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberspiegel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberschwert",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberschlüssel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberbesen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Siebenmeilenstiefel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Goldesel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Tischlein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Wunschbrunnen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Feenstaub",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenblut",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Einhornhorn",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Phönixfeder",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenei",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenschuppe",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenzahn",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Amulett",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Talisman",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Runenstein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kristall",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Edelstein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberstein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Mondstein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Sonnenstein",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Runenschwert",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Elfenbogen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zwergenhammer",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenschild",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Ritterschwert",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Ritterhelm",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Ritterrüstung",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kettenhemd",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Königskrone",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zepter",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Thron",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Burg",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Turm",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Verlies",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Kerker",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Geheimgang",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Geheimtür",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Labyrinth",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Zauberwald",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Märchenwald",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Feenschloss",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Drachenhöhle",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Ritterburg",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Spukhaus",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Geisterschiff",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hexenhaus",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Lebkuchenhaus",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Hänsel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Gretel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Rotkäppchen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Aschenputtel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Schneewittchen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Dornröschen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Rapunzel",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Rumpelstilzchen",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Froschkönig",
+      "category": "Fantasy & Märchen"
+    },
+    {
+      "word": "Wald",
+      "category": "Natur"
+    },
+    {
+      "word": "Regenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Urwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Dschungel",
+      "category": "Natur"
+    },
+    {
+      "word": "Wiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Weide",
+      "category": "Natur"
+    },
+    {
+      "word": "Steppe",
+      "category": "Natur"
+    },
+    {
+      "word": "Savanne",
+      "category": "Natur"
+    },
+    {
+      "word": "Wüste",
+      "category": "Natur"
+    },
+    {
+      "word": "Halbwüste",
+      "category": "Natur"
+    },
+    {
+      "word": "Tundra",
+      "category": "Natur"
+    },
+    {
+      "word": "Taiga",
+      "category": "Natur"
+    },
+    {
+      "word": "Moor",
+      "category": "Natur"
+    },
+    {
+      "word": "Sumpf",
+      "category": "Natur"
+    },
+    {
+      "word": "Heide",
+      "category": "Natur"
+    },
+    {
+      "word": "Aue",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirge",
+      "category": "Natur"
+    },
+    {
+      "word": "Berg",
+      "category": "Natur"
+    },
+    {
+      "word": "Hügel",
+      "category": "Natur"
+    },
+    {
+      "word": "Tal",
+      "category": "Natur"
+    },
+    {
+      "word": "Schlucht",
+      "category": "Natur"
+    },
+    {
+      "word": "Fels",
+      "category": "Natur"
+    },
+    {
+      "word": "Klippe",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhle",
+      "category": "Natur"
+    },
+    {
+      "word": "Grotte",
+      "category": "Natur"
+    },
+    {
+      "word": "Gipfel",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletscher",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisberg",
+      "category": "Natur"
+    },
+    {
+      "word": "Schnee",
+      "category": "Natur"
+    },
+    {
+      "word": "Lawine",
+      "category": "Natur"
+    },
+    {
+      "word": "Vulkan",
+      "category": "Natur"
+    },
+    {
+      "word": "Krater",
+      "category": "Natur"
+    },
+    {
+      "word": "Insel",
+      "category": "Natur"
+    },
+    {
+      "word": "Halbinsel",
+      "category": "Natur"
+    },
+    {
+      "word": "Küste",
+      "category": "Natur"
+    },
+    {
+      "word": "Strand",
+      "category": "Natur"
+    },
+    {
+      "word": "Düne",
+      "category": "Natur"
+    },
+    {
+      "word": "Bucht",
+      "category": "Natur"
+    },
+    {
+      "word": "Lagune",
+      "category": "Natur"
+    },
+    {
+      "word": "Riff",
+      "category": "Natur"
+    },
+    {
+      "word": "Korallenriff",
+      "category": "Natur"
+    },
+    {
+      "word": "Atoll",
+      "category": "Natur"
+    },
+    {
+      "word": "Ozean",
+      "category": "Natur"
+    },
+    {
+      "word": "Meer",
+      "category": "Natur"
+    },
+    {
+      "word": "See",
+      "category": "Natur"
+    },
+    {
+      "word": "Teich",
+      "category": "Natur"
+    },
+    {
+      "word": "Tümpel",
+      "category": "Natur"
+    },
+    {
+      "word": "Weiher",
+      "category": "Natur"
+    },
+    {
+      "word": "Fluss",
+      "category": "Natur"
+    },
+    {
+      "word": "Bach",
+      "category": "Natur"
+    },
+    {
+      "word": "Strom",
+      "category": "Natur"
+    },
+    {
+      "word": "Quelle",
+      "category": "Natur"
+    },
+    {
+      "word": "Wasserfall",
+      "category": "Natur"
+    },
+    {
+      "word": "Stromschnelle",
+      "category": "Natur"
+    },
+    {
+      "word": "Delta",
+      "category": "Natur"
+    },
+    {
+      "word": "Mündung",
+      "category": "Natur"
+    },
+    {
+      "word": "Kanal",
+      "category": "Natur"
+    },
+    {
+      "word": "Polder",
+      "category": "Natur"
+    },
+    {
+      "word": "Salzsee",
+      "category": "Natur"
+    },
+    {
+      "word": "Kratersee",
+      "category": "Natur"
+    },
+    {
+      "word": "Grundwasser",
+      "category": "Natur"
+    },
+    {
+      "word": "Wolke",
+      "category": "Natur"
+    },
+    {
+      "word": "Nebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Dunst",
+      "category": "Natur"
+    },
+    {
+      "word": "Regen",
+      "category": "Natur"
+    },
+    {
+      "word": "Nieselregen",
+      "category": "Natur"
+    },
+    {
+      "word": "Schauer",
+      "category": "Natur"
+    },
+    {
+      "word": "Gewitter",
+      "category": "Natur"
+    },
+    {
+      "word": "Blitz",
+      "category": "Natur"
+    },
+    {
+      "word": "Donner",
+      "category": "Natur"
+    },
+    {
+      "word": "Hagel",
+      "category": "Natur"
+    },
+    {
+      "word": "Schneeflocke",
+      "category": "Natur"
+    },
+    {
+      "word": "Eiskristall",
+      "category": "Natur"
+    },
+    {
+      "word": "Frost",
+      "category": "Natur"
+    },
+    {
+      "word": "Raureif",
+      "category": "Natur"
+    },
+    {
+      "word": "Tau",
+      "category": "Natur"
+    },
+    {
+      "word": "Reif",
+      "category": "Natur"
+    },
+    {
+      "word": "Wind",
+      "category": "Natur"
+    },
+    {
+      "word": "Sturm",
+      "category": "Natur"
+    },
+    {
+      "word": "Orkan",
+      "category": "Natur"
+    },
+    {
+      "word": "Wirbelsturm",
+      "category": "Natur"
+    },
+    {
+      "word": "Tornado",
+      "category": "Natur"
+    },
+    {
+      "word": "Hurrikan",
+      "category": "Natur"
+    },
+    {
+      "word": "Zyklon",
+      "category": "Natur"
+    },
+    {
+      "word": "Brise",
+      "category": "Natur"
+    },
+    {
+      "word": "Böe",
+      "category": "Natur"
+    },
+    {
+      "word": "Luft",
+      "category": "Natur"
+    },
+    {
+      "word": "Sonne",
+      "category": "Natur"
+    },
+    {
+      "word": "Sonnenaufgang",
+      "category": "Natur"
+    },
+    {
+      "word": "Sonnenuntergang",
+      "category": "Natur"
+    },
+    {
+      "word": "Sonnenlicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Schatten",
+      "category": "Natur"
+    },
+    {
+      "word": "Mond",
+      "category": "Natur"
+    },
+    {
+      "word": "Vollmond",
+      "category": "Natur"
+    },
+    {
+      "word": "Neumond",
+      "category": "Natur"
+    },
+    {
+      "word": "Sichelmond",
+      "category": "Natur"
+    },
+    {
+      "word": "Stern",
+      "category": "Natur"
+    },
+    {
+      "word": "Sternbild",
+      "category": "Natur"
+    },
+    {
+      "word": "Planet",
+      "category": "Natur"
+    },
+    {
+      "word": "Komet",
+      "category": "Natur"
+    },
+    {
+      "word": "Meteor",
+      "category": "Natur"
+    },
+    {
+      "word": "Meteorit",
+      "category": "Natur"
+    },
+    {
+      "word": "Milchstraße",
+      "category": "Natur"
+    },
+    {
+      "word": "Galaxie",
+      "category": "Natur"
+    },
+    {
+      "word": "Universum",
+      "category": "Natur"
+    },
+    {
+      "word": "Kosmos",
+      "category": "Natur"
+    },
+    {
+      "word": "Polarlicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Regenbogen",
+      "category": "Natur"
+    },
+    {
+      "word": "Horizont",
+      "category": "Natur"
+    },
+    {
+      "word": "Jahreszeit",
+      "category": "Natur"
+    },
+    {
+      "word": "Frühling",
+      "category": "Natur"
+    },
+    {
+      "word": "Sommer",
+      "category": "Natur"
+    },
+    {
+      "word": "Herbst",
+      "category": "Natur"
+    },
+    {
+      "word": "Winter",
+      "category": "Natur"
+    },
+    {
+      "word": "Morgenrot",
+      "category": "Natur"
+    },
+    {
+      "word": "Abendrot",
+      "category": "Natur"
+    },
+    {
+      "word": "Dämmerung",
+      "category": "Natur"
+    },
+    {
+      "word": "Mitternacht",
+      "category": "Natur"
+    },
+    {
+      "word": "Landschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Naturpark",
+      "category": "Natur"
+    },
+    {
+      "word": "Nationalpark",
+      "category": "Natur"
+    },
+    {
+      "word": "Biosphäre",
+      "category": "Natur"
+    },
+    {
+      "word": "Ökosystem",
+      "category": "Natur"
+    },
+    {
+      "word": "Lebensraum",
+      "category": "Natur"
+    },
+    {
+      "word": "Boden",
+      "category": "Natur"
+    },
+    {
+      "word": "Erde",
+      "category": "Natur"
+    },
+    {
+      "word": "Sand",
+      "category": "Natur"
+    },
+    {
+      "word": "Lehm",
+      "category": "Natur"
+    },
+    {
+      "word": "Ton",
+      "category": "Natur"
+    },
+    {
+      "word": "Kies",
+      "category": "Natur"
+    },
+    {
+      "word": "Geröll",
+      "category": "Natur"
+    },
+    {
+      "word": "Stein",
+      "category": "Natur"
+    },
+    {
+      "word": "Felsen",
+      "category": "Natur"
+    },
+    {
+      "word": "Granit",
+      "category": "Natur"
+    },
+    {
+      "word": "Basalt",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkstein",
+      "category": "Natur"
+    },
+    {
+      "word": "Schiefer",
+      "category": "Natur"
+    },
+    {
+      "word": "Marmor",
+      "category": "Natur"
+    },
+    {
+      "word": "Quarz",
+      "category": "Natur"
+    },
+    {
+      "word": "Mineral",
+      "category": "Natur"
+    },
+    {
+      "word": "Erz",
+      "category": "Natur"
+    },
+    {
+      "word": "Kohle",
+      "category": "Natur"
+    },
+    {
+      "word": "Bernstein",
+      "category": "Natur"
+    },
+    {
+      "word": "Fossil",
+      "category": "Natur"
+    },
+    {
+      "word": "Muschel",
+      "category": "Natur"
+    },
+    {
+      "word": "Koralle",
+      "category": "Natur"
+    },
+    {
+      "word": "Perle",
+      "category": "Natur"
+    },
+    {
+      "word": "Baum",
+      "category": "Natur"
+    },
+    {
+      "word": "Eiche",
+      "category": "Natur"
+    },
+    {
+      "word": "Buche",
+      "category": "Natur"
     }
   ]
 }
