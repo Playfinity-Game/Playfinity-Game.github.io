@@ -896,33 +896,32 @@
     .hangmann-stage.cleaning .hangmann-cleaner{animation:hangmannCleanerSweep 10s linear forwards}
     .hangmann-stage.cleaning .hangmann-broom{transform-box:fill-box;transform-origin:4px 0;animation:hangmannBroom .65s ease-in-out 3s 9}
     .hangmann-kicker{opacity:0;fill:none;stroke:var(--neon-green);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(0,255,157,.55))}
-    .hangmann-stage.kicking .hangmann-kicker{animation:hangmannKicker 6.5s ease-in-out forwards}
-    .hangmann-stage.kicking .hangmann-person{transform-box:fill-box;transform-origin:center;animation:hangmannRescueKick 6.5s ease-in-out forwards}
-    .hangmann-stage.kicking .hangmann-kick-leg{transform-box:fill-box;transform-origin:3px 0;animation:hangmannKickLeg 6.5s ease-in-out forwards}
-    .hangmann-stage.kicking .hangmann-rope{animation:hangmannRope 6.5s ease-in-out forwards}
+    .hangmann-stage.kicking .hangmann-kicker{animation:hangmannKicker 7s ease-in-out forwards}
+    .hangmann-stage.kicking .hangmann-person{transform-box:fill-box;transform-origin:center;animation:hangmannRescueKick 7s cubic-bezier(.2,.75,.25,1) forwards}
+    .hangmann-stage.kicking .hangmann-kick-leg{transform-box:fill-box;transform-origin:3px 0;animation:hangmannKickLeg 7s ease-in-out forwards}
+    .hangmann-stage.kicking .hangmann-rope{animation:hangmannRope 7s ease-in-out forwards}
     .hangmann-rope{stroke:var(--neon-gold);stroke-width:2.5;filter:drop-shadow(0 0 4px rgba(255,210,0,.5))}
-    @keyframes hangmannRope{0%,28%{opacity:1}38%,100%{opacity:0}}
+    @keyframes hangmannRope{0%,22%{opacity:1}27%,100%{opacity:0}}
     @keyframes hangmannKicker{
-      0%,8%{opacity:0;transform:translate(-65px,0)}
-      18%{opacity:1;transform:translate(-12px,0)}
-      30%{opacity:1;transform:translate(-12px,0)}
-      45%{opacity:1;transform:translate(-12px,0)}
-      58%{opacity:1;transform:translate(-12px,0)}
-      68%,100%{opacity:0;transform:translate(-12px,0)}
+      0%,7%{opacity:0;transform:translate(-65px,0)}
+      19%{opacity:1;transform:translate(92px,0)}
+      43%{opacity:1;transform:translate(92px,0)}
+      51%{opacity:1;transform:translate(92px,0)}
+      60%,100%{opacity:0;transform:translate(92px,0)}
     }
     @keyframes hangmannRescueKick{
-      0%,24%{transform:translate(0,0) rotate(0)}
-      38%{transform:translate(0,42px) rotate(8deg)}
-      48%{transform:translate(-13px,42px) rotate(8deg)}
-      58%{transform:translate(-13px,42px) rotate(8deg)}
-      78%{transform:translate(210px,15px) rotate(430deg)}
-      100%{opacity:0;transform:translate(245px,-8px) rotate(560deg)}
+      0%,20%{transform:translate(0,0) rotate(0)}
+      28%{transform:translate(0,64px) rotate(4deg)}
+      43%,49%{transform:translate(0,64px) rotate(0)}
+      57%{transform:translate(0,64px) rotate(0)}
+      76%{transform:translate(205px,8px) rotate(390deg)}
+      100%{opacity:0;transform:translate(250px,-18px) rotate(540deg)}
     }
     @keyframes hangmannKickLeg{
       0%,48%,100%{transform:rotate(0)}
-      54%{transform:rotate(-48deg)}
-      61%{transform:rotate(42deg)}
-      68%{transform:rotate(0)}
+      53%{transform:rotate(-68deg)}
+      58%{transform:rotate(38deg)}
+      64%{transform:rotate(0)}
     }
     @keyframes hangmannFallAndSweep{
       0%{opacity:1;transform:translate(0,0) rotate(0)}
