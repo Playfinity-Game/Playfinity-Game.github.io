@@ -6,7 +6,6 @@ The target-word source is read-only. This script never edits the dictionary.
 from __future__ import annotations
 
 import argparse
-import base64
 import gzip
 import hashlib
 import json
@@ -106,7 +105,7 @@ def build_candidates(targets: list[str], limit: int) -> list[str]:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--targets", type=Path, default=Path("data/wordfinity-nouns.json"))
-    parser.add_argument("--output", type=Path, default=Path("data/wordfinity-hint-ranks.json.gz"))
+    parser.add_argument("--output", type=Path, default=Path("build/wordfinity-hint-ranks"))
     parser.add_argument("--candidate-count", type=int, default=15500)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--model", default="BAAI/bge-m3")
@@ -154,7 +153,9 @@ def main() -> int:
         raise RuntimeError("Ziel- und Kandidaten-Embeddings haben unterschiedliche Dimensionen.")
 
     candidate_ids = {normalized(word): index for index, word in enumerate(candidates)}
-    rankings: dict[str, str] = {}
+    rankings: dict[str, dict[str, str]] = {}
+    rankings_dir = args.output / "rankings"
+    rankings_dir.mkdir(parents=True, exist_ok=True)
     for offset, target in enumerate(targets):
         scores = candidate_vectors @ target_vectors[offset]
         # Stable sorting makes equal-score ordering reproducible across builds.
@@ -163,7 +164,16 @@ def main() -> int:
         if int(order[0]) != target_id:
             # Ensure the exact target is rank 1 even if the encoder has an anomaly.
             order = np.concatenate((np.array([target_id], dtype="<u2"), order[order != target_id]))
-        rankings[normalized(target)] = base64.b64encode(order.tobytes()).decode("ascii")
+        target_key = normalized(target)
+        file_name = hashlib.sha256(target_key.encode("utf-8")).hexdigest()[:20] + ".u16.gz"
+        rank_path = rankings_dir / file_name
+        with rank_path.open("wb") as raw_rank_file:
+            with gzip.GzipFile(fileobj=raw_rank_file, mode="wb", compresslevel=9, mtime=0) as compressed:
+                compressed.write(order.tobytes())
+        rankings[target_key] = {
+            "file": "rankings/" + file_name,
+            "sha256": hashlib.sha256(rank_path.read_bytes()).hexdigest(),
+        }
         if (offset + 1) % 100 == 0 or offset + 1 == len(targets):
             print(f"Ranglisten: {offset + 1}/{len(targets)}", flush=True)
 
@@ -179,12 +189,19 @@ def main() -> int:
         "targetDictionarySha256": hashlib.sha256(target_bytes).hexdigest(),
         "rankings": rankings,
     }
-    args.output.parent.mkdir(parents=True, exist_ok=True)
-    with args.output.open("wb") as raw_output:
-        with gzip.GzipFile(fileobj=raw_output, mode="wb", compresslevel=9, mtime=0) as compressed:
-            compressed.write(json.dumps(payload, ensure_ascii=False, separators=(",", ":")).encode("utf-8"))
-    print(f"Geschrieben: {args.output} ({args.output.stat().st_size:,} Bytes)", flush=True)
-    print("Hinweis: Die Datei ist noch nicht mit dem Live-Worker verbunden.", flush=True)
+    args.output.mkdir(parents=True, exist_ok=True)
+    manifest_path = args.output / "manifest.json"
+    manifest_path.write_text(
+        json.dumps(payload, ensure_ascii=False, separators=(",", ":")),
+        encoding="utf-8",
+    )
+    total_bytes = sum(path.stat().st_size for path in args.output.rglob("*") if path.is_file())
+    print(
+        f"Geschrieben: {manifest_path} und {len(rankings)} einzelne Rangdateien "
+        f"({total_bytes:,} Bytes gesamt)",
+        flush=True,
+    )
+    print("Hinweis: Die Rangdateien sind noch nicht mit dem Live-Worker verbunden.", flush=True)
     return 0
 
 
