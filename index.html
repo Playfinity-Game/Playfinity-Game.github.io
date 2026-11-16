@@ -730,9 +730,44 @@
     .guesswhat-result-title { color:var(--neon-gold); font-weight:900; letter-spacing:.08em; font-size:.85rem; }
 
     .pir-card {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
       background: var(--bg-card);
       border: 1px solid var(--border-glow);
       border-radius: 16px;
+
+    /* GuessWhat needs its own watermark: the opaque game card covers the screen-level mark. */
+    .pir-card::before {
+      content: "PLAYFINITY";
+      position: absolute;
+      z-index: 0;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 0 8px;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      font-size: clamp(2.8rem, 12vw, 7.5rem);
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: .045em;
+      color: transparent;
+      background: linear-gradient(100deg, #a900ff 0%, #00eaff 48%, #d000ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      opacity: .42;
+      filter: drop-shadow(0 0 7px rgba(0,234,255,.8))
+              drop-shadow(0 0 20px rgba(0,234,255,.55))
+              drop-shadow(0 0 34px rgba(176,38,255,.5));
+    }
+    .pir-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
       padding: 24px;
       display: flex;
       flex-direction: column;
