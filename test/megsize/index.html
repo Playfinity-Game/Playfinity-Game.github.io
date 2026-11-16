@@ -51,10 +51,10 @@ button:disabled{opacity:.4;cursor:not-allowed}
 </style>
 </head>
 <body>
-<header><h1><span class="mega">MEGA</span><span class="size">SIZE</span></h1><div class="scoreline" id="score">RUNDE 1 / 3 <b>0 PUNKTE</b></div></header>
+<header><h1><span class="mega">MEGA</span><span class="size">SIZE</span></h1><div class="scoreline" id="score">RUNDE 1 / 6 <b>0 PUNKTE</b></div></header>
 <main class="wrap">
 <p class="intro">Wie groß ist das wirklich? Passe die rote Silhouette an die echte Größe an.</p>
-<div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">3</strong></div>
+<div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">6</strong></div>
 <div class="toolbar"><button id="zoomOut" aria-label="Ansicht herauszoomen">Ansicht −</button><button id="zoomIn" aria-label="Ansicht hineinzoomen">Ansicht +</button><button id="resetView">Ansicht zurücksetzen</button></div>
 <section class="board-shell">
 <div class="board" id="board"><div class="ground"></div><div class="world" id="world"><div class="obj reference" id="reference"></div><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
@@ -94,13 +94,23 @@ function render(){
 function applyGuess(){const s=sizeFor(rounds[index].target.svg,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
 function applyZoom(){world.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')'}
 function boardPoint(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left-panX)/zoom,y:(e.clientY-b.top-panY)/zoom}}
-function changeObjectScale(mult){if(locked)return;guessScale=Math.max(.04,Math.min(30,guessScale*mult));applyGuess()}
+function changeObjectScale(mult){if(locked)return;guessScale=Math.max(.015,Math.min(80,guessScale*mult));applyGuess()}
 $('objectLarger').onclick=()=>changeObjectScale(1.14);$('objectSmaller').onclick=()=>changeObjectScale(1/1.14);
-guess.addEventListener('pointerdown',e=>{if(locked||e.pointerType==='touch'&&pointers.size>1)return;e.preventDefault();guess.setPointerCapture(e.pointerId);const p=boardPoint(e);drag={x:p.x-guessX,y:p.y-guessY}});
-guess.addEventListener('pointermove',e=>{if(!drag||locked)return;const p=boardPoint(e);guessX=p.x-drag.x;guessY=p.y-drag.y;applyGuess()});
-guess.addEventListener('pointerup',()=>drag=null);guess.addEventListener('pointercancel',()=>drag=null);
+const guessPointers=new Map();let objectPinch=null;
+guess.addEventListener('pointerdown',e=>{
+ if(locked)return;e.preventDefault();guess.setPointerCapture(e.pointerId);guessPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(guessPointers.size===2){const a=[...guessPointers.values()];objectPinch={distance:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),scale:guessScale};drag=null;}
+ else{const p=boardPoint(e);drag={x:p.x-guessX,y:p.y-guessY};}
+});
+guess.addEventListener('pointermove',e=>{
+ if(!guessPointers.has(e.pointerId)||locked)return;guessPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(guessPointers.size===2&&objectPinch){const a=[...guessPointers.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);guessScale=Math.max(.015,Math.min(80,objectPinch.scale*d/Math.max(1,objectPinch.distance)));applyGuess();}
+ else if(drag){const p=boardPoint(e);guessX=p.x-drag.x;guessY=p.y-drag.y;applyGuess();}
+});
+function endGuessPointer(e){guessPointers.delete(e.pointerId);if(guessPointers.size<2)objectPinch=null;if(guessPointers.size===1){const [id,p]=[...guessPointers.entries()][0],q=boardPoint({clientX:p.x,clientY:p.y});drag={x:q.x-guessX,y:q.y-guessY};}else drag=null;}
+guess.addEventListener('pointerup',endGuessPointer);guess.addEventListener('pointercancel',endGuessPointer);
 guess.addEventListener('wheel',e=>{if(locked)return;e.preventDefault();changeObjectScale(e.deltaY<0?1.08:.92)},{passive:false});
-$('zoomIn').onclick=()=>{zoom=Math.min(4,zoom*1.18);applyZoom()};$('zoomOut').onclick=()=>{zoom=Math.max(.45,zoom/1.18);applyZoom()};
+$('zoomIn').onclick=()=>{zoom=Math.min(40,zoom*1.2);applyZoom()};$('zoomOut').onclick=()=>{zoom=Math.max(.025,zoom/1.2);applyZoom()};
 $('resetView').onclick=()=>{zoom=1;panX=0;panY=0;applyZoom()};
 const pointers=new Map();let pinch=null;
 board.addEventListener('pointerdown',e=>{
@@ -110,7 +120,7 @@ board.addEventListener('pointerdown',e=>{
 });
 board.addEventListener('pointermove',e=>{
  if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
- if(pointers.size===2&&pinch){const a=[...pointers.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),mX=(a[0].x+a[1].x)/2,mY=(a[0].y+a[1].y)/2,next=Math.max(.45,Math.min(4,pinch.zoom*d/Math.max(1,pinch.distance)));const rect=board.getBoundingClientRect(),localX=pinch.midX-rect.left,localY=pinch.midY-rect.top,ratio=next/pinch.zoom;panX=localX-(localX-pinch.panX)*ratio+(mX-pinch.midX);panY=localY-(localY-pinch.panY)*ratio+(mY-pinch.midY);zoom=next;applyZoom();}
+ if(pointers.size===2&&pinch){const a=[...pointers.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),mX=(a[0].x+a[1].x)/2,mY=(a[0].y+a[1].y)/2,next=Math.max(.025,Math.min(40,pinch.zoom*d/Math.max(1,pinch.distance)));const rect=board.getBoundingClientRect(),localX=pinch.midX-rect.left,localY=pinch.midY-rect.top,ratio=next/pinch.zoom;panX=localX-(localX-pinch.panX)*ratio+(mX-pinch.midX);panY=localY-(localY-pinch.panY)*ratio+(mY-pinch.midY);zoom=next;applyZoom();}
 });
 function endPointer(e){pointers.delete(e.pointerId);if(pointers.size<2)pinch=null}
 board.addEventListener('pointerup',endPointer);board.addEventListener('pointercancel',endPointer);
