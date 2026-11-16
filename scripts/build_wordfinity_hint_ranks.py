@@ -73,7 +73,7 @@ def load_targets(path: Path) -> list[str]:
 
 def build_candidates(targets: list[str], limit: int) -> list[str]:
     try:
-        from wordfreq import top_n_list
+        from wordfreq import top_n_list, zipf_frequency
     except ImportError as exc:
         raise RuntimeError("Fehlendes Paket 'wordfreq'. Installiere scripts/requirements-hint-ranks.txt.") from exc
 
@@ -87,11 +87,13 @@ def build_candidates(targets: list[str], limit: int) -> list[str]:
             len(key) < 3
             or len(key) > 32
             or not WORD_RE.fullmatch(word)
+            or word != key  # Exclude capitalized names, brands and sentence fragments.
             or key in STOPWORDS
             or key.isdigit()
+            or zipf_frequency(key, "de") < 2.5
         ):
             continue
-        candidates.setdefault(key, word)
+        candidates.setdefault(key, key)
         if len(candidates) >= limit:
             break
 
