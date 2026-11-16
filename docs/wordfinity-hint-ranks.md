@@ -3,7 +3,7 @@
 ## Ziel
 
 Dieses Build-Werkzeug erzeugt eine reproduzierbare semantische Rangliste für jedes
-bestehende Lösungswort. Es verändert weder \`data/wordfinity-nouns.json\` noch die
+bestehende Lösungswort. Es verändert weder `data/wordfinity-nouns.json` noch die
 Auswahl der Lösungswörter, die Kategorien, die normale Spielwertung oder die
 bestehende Rangberechnung.
 
@@ -16,22 +16,22 @@ Rangnummern sind daher nicht mit Kontexto-Rangnummern gleichzusetzen.
 
 Im Repository-Hauptverzeichnis:
 
-\`\`\`bash
+```bash
 python -m venv .venv
 . .venv/bin/activate
 pip install -r scripts/requirements-hint-ranks.txt
 python scripts/build_wordfinity_hint_ranks.py
-\`\`\`
+```
 
 Standardmäßig liest das Skript die vorhandene Datei
-\`data/wordfinity-nouns.json\` und schreibt
-\`data/wordfinity-hint-ranks.json.gz\`. Das Ergebnis enthält:
+`data/wordfinity-nouns.json` und schreibt
+`data/wordfinity-hint-ranks.json.gz`. Das Ergebnis enthält:
 - den unveränderten Zielwortbestand als Prüfsumme und Anzahl,
 - einen separaten, häufigen deutschen Tipp-Wortschatz,
 - für jedes Zielwort die vollständige, nach Kosinus-Ähnlichkeit sortierte
   Kandidatenliste (als Base64-kodierte UInt16-IDs).
 
-Die Kandidatenbasis wird aus der deutschen Häufigkeitsliste von \`wordfreq\`
+Die Kandidatenbasis wird aus der deutschen Häufigkeitsliste von `wordfreq`
 gebildet; vorhandene Zielwörter werden zusätzlich aufgenommen, falls sie nicht
 im Häufigkeits-Ausschnitt vorkommen. Der Build ist deterministisch bei gleicher
 Modell- und Paketversion.
