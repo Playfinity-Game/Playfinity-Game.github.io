@@ -4006,6 +4006,1746 @@
     {
       "word": "Popcorn",
       "category": "Essen & Trinken"
+    },
+    {
+      "word": "Aal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Amsel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ameise",
+      "category": "Tiere"
+    },
+    {
+      "word": "Antilope",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ara",
+      "category": "Tiere"
+    },
+    {
+      "word": "Axolotl",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bachstelze",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dackel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dohle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dromedar",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eber",
+      "category": "Tiere"
+    },
+    {
+      "word": "Elster",
+      "category": "Tiere"
+    },
+    {
+      "word": "Erdmännchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fasan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fledermaus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fliege",
+      "category": "Tiere"
+    },
+    {
+      "word": "Floh",
+      "category": "Tiere"
+    },
+    {
+      "word": "Forelle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Frosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gans",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gazelle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gecko",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gibbon",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gnu",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Grille",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hamster",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hering",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hirsch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hummel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hyäne",
+      "category": "Tiere"
+    },
+    {
+      "word": "Iltis",
+      "category": "Tiere"
+    },
+    {
+      "word": "Insekt",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kakadu",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kamel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kaninchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Karpfen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kater",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kauz",
+      "category": "Tiere"
+    },
+    {
+      "word": "Keiler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kiebitz",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kobra",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kolibri",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kondor",
+      "category": "Tiere"
+    },
+    {
+      "word": "Krabbe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Krebs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kuckuck",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lama",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lamm",
+      "category": "Tiere"
+    },
+    {
+      "word": "Libelle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Löffler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Marder",
+      "category": "Tiere"
+    },
+    {
+      "word": "Meerschweinchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Möwe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Murmeltier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Muschel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nachtigall",
+      "category": "Tiere"
+    },
+    {
+      "word": "Natter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Otter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Panther",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pfau",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pudel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Qualle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ratte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Salamander",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schakal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schlange",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schnecke",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schwan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Seeadler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Seelöwe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Seepferdchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Seehund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Spatz",
+      "category": "Tiere"
+    },
+    {
+      "word": "Specht",
+      "category": "Tiere"
+    },
+    {
+      "word": "Spinne",
+      "category": "Tiere"
+    },
+    {
+      "word": "Stier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Storch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Strauß",
+      "category": "Tiere"
+    },
+    {
+      "word": "Taube",
+      "category": "Tiere"
+    },
+    {
+      "word": "Termite",
+      "category": "Tiere"
+    },
+    {
+      "word": "Thunfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Uhu",
+      "category": "Tiere"
+    },
+    {
+      "word": "Unke",
+      "category": "Tiere"
+    },
+    {
+      "word": "Viper",
+      "category": "Tiere"
+    },
+    {
+      "word": "Vogel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wachtel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wanze",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wespe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wiesel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Wildschwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Yak",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ziege",
+      "category": "Tiere"
+    },
+    {
+      "word": "Zikade",
+      "category": "Tiere"
+    },
+    {
+      "word": "Zitteraal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Zobel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Zwergkaninchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Barsch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Beagle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bergziege",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bisamratte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Blaumeise",
+      "category": "Tiere"
+    },
+    {
+      "word": "Blutegel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Brachvogel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bulldogge",
+      "category": "Tiere"
+    },
+    {
+      "word": "Buntspecht",
+      "category": "Tiere"
+    },
+    {
+      "word": "Chamäleon",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dorsch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eintagsfliege",
+      "category": "Tiere"
+    },
+    {
+      "word": "Elritze",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eselspinguin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Feldhase",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fischotter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Flusspferd",
+      "category": "Tiere"
+    },
+    {
+      "word": "Flughund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Flusskrebs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gartenschläfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gartenschnecke",
+      "category": "Tiere"
+    },
+    {
+      "word": "Geburtshelferkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldammer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Grünfink",
+      "category": "Tiere"
+    },
+    {
+      "word": "Habicht",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hecht",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hermelin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Huchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kaiman",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kalmar",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kapuzineraffe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Klapperschlange",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kliesche",
+      "category": "Tiere"
+    },
+    {
+      "word": "Knurrhahn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Komodowaran",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lemming",
+      "category": "Tiere"
+    },
+    {
+      "word": "Leopard",
+      "category": "Tiere"
+    },
+    {
+      "word": "Makrele",
+      "category": "Tiere"
+    },
+    {
+      "word": "Marienkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Maultier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Maikäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mistkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mönchsrobbe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Moschusochse",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mücke",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nandu",
+      "category": "Tiere"
+    },
+    {
+      "word": "Okapi",
+      "category": "Tiere"
+    },
+    {
+      "word": "Orca",
+      "category": "Tiere"
+    },
+    {
+      "word": "Papageientaucher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Perlrochen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rotkehlchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rotwild",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schwertfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Stachelschwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Steinbock",
+      "category": "Tiere"
+    },
+    {
+      "word": "Aubergine",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Aprikose",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Artischocke",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bockwurst",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bohne",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Blumenkohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Blaubeerkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bratapfel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bratkartoffeln",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Butterbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Couscous",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Currywurst",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dattel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dinkelbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Döner",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eintopf",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eisbein",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ente",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Erdnuss",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Essiggurke",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Falafel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Feldsalat",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fleischklops",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Flammkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Forelle",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fruchtjoghurt",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fruchtquark",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gulasch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Grießbrei",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Grünkohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hähnchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hirse",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Himbeerkonfitüre",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hühnersuppe",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ingwer",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Johannisbeere",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kakaopulver",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kakao",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kalbsschnitzel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Karamell",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kichererbse",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kokosnuss",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kohlrabi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Knäckebrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kräuterbutter",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kürbis",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Lauch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Laugenbrezel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Lachs",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Lammbraten",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Limonade",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Limette",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mais",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mandarine",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mandel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Marmorkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Marzipan",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Matjes",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mayonnaise",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mettbrötchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mirabelle",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mohnkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mozzarella",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Möhre",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Nektarine",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Obsttorte",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Oliven",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Omelett",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pannfisch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Parmesan",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pastinake",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pesto",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pilzpfanne",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pita",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pommes",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Preiselbeere",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Quiche",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Radieschen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Rahmsoße",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ravioli",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Reibekuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Reis",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Reiswaffel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Rhabarber",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Rinderbraten",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Risotto",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Roggenbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Rosenkohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Rotkohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Salami",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Salat",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Salzstange",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sardine",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sauerkraut",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Schinken",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Schokoriegel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Schwarzwälder Kirschtorte",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Seelachs",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sellerie",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Senf",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sesam",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sorbet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Soße",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sojabohne",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Speck",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Spinat",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Stachelbeere",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Steckrübe",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Streuselkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Sushi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Süßkartoffel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Tafelwasser",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Tafeltraube",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Tofu",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Torte",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Tortellini",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Vanilleeis",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Vanillepudding",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Vanilleschote",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Vollkornbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Waffel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Walnuss",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Weizenbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Weißkohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Wirsing",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Zimtstern",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Zucchini",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Zwieback",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelsaft",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Orangensaft",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mineralwasser",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kräutertee",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Milchshake",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eistee",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Abbrucharbeiter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Altenpfleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Apotheker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Architekt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Augenarzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Augenoptiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baggerfahrer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bankkaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauarbeiter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauingenieur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauzeichner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bergmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bestatter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bibliothekar",
+      "category": "Berufe"
+    },
+    {
+      "word": "Biologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Blumenhändler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchhalter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Busfahrer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Dachdecker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Designer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Dolmetscher",
+      "category": "Berufe"
+    },
+    {
+      "word": "Drogist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Drucker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Erzieher",
+      "category": "Berufe"
+    },
+    {
+      "word": "Facharzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fahrlehrer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fleischer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Florist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Förster",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gebäudereiniger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gerichtsvollzieher",
+      "category": "Berufe"
+    },
+    {
+      "word": "Goldschmied",
+      "category": "Berufe"
+    },
+    {
+      "word": "Grafiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hebamme",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hausmeister",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hausarzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Imker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Informatiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Installateur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Journalist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Juwelier",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kfz-Mechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kellner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kinderarzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Klavierbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Krankenpfleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Landschaftsgärtner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Landwirt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lebensmitteltechniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lokführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Logopäde",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maurer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mediengestalter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Metzger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Notar",
+      "category": "Berufe"
+    },
+    {
+      "word": "Notfallsanitäter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Optiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Orthopäde",
+      "category": "Berufe"
+    },
+    {
+      "word": "Paketzusteller",
+      "category": "Berufe"
+    },
+    {
+      "word": "Parkettleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Pastor",
+      "category": "Berufe"
+    },
+    {
+      "word": "Physiotherapeut",
+      "category": "Berufe"
+    },
+    {
+      "word": "Pflegefachkraft",
+      "category": "Berufe"
+    },
+    {
+      "word": "Programmierer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Rechtsanwalt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Rettungssanitäter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Richter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Sachbearbeiter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Schlosser",
+      "category": "Berufe"
+    },
+    {
+      "word": "Schneider",
+      "category": "Berufe"
+    },
+    {
+      "word": "Schornsteinfeger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Schauspieler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Steuerberater",
+      "category": "Berufe"
+    },
+    {
+      "word": "Straßenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Taxifahrer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Tischler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Übersetzer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Uhrmacher",
+      "category": "Berufe"
+    },
+    {
+      "word": "Vermesser",
+      "category": "Berufe"
+    },
+    {
+      "word": "Versicherungskaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Zahntechniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Zimmermann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Abschleppwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Amphibienfahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokran",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autotransporter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Baufahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Betonmischer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Cabrio",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Campingbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Doppeldeckerbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dreirad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Einsatzwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "E-Scooter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradanhänger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fähre",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Gokart",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Güterzug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "ICE",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Inlineskates",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Kettenfahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Kleinbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Kleinwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Kranwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Kreuzfahrtschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Limousine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Linienbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Moped",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Motorroller",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Müllwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Notarztwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Oldtimer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Panzer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Pistenraupe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Quad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Reisebus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Rennmotorrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Rettungsboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Rikscha",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Roadster",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ruderboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Schneepflug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Schubkarre",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Schützenpanzer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Shuttlebus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Silo-Lkw",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Skateboard",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Skilift",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Sportwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Tanklastwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Tankwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Teleskoplader",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Tretroller",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "U-Bahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Unimog",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Viehtransporter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Vierrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Waggon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Wasserflugzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Werkslok",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Wohnwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Zugmaschine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Zweirad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Zweimaster",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Zubringerbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Zeppelin",
+      "category": "Fahrzeuge & Verkehr"
     }
   ]
 }
