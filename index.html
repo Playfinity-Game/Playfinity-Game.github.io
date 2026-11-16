@@ -606,6 +606,11 @@
     .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.1rem;cursor:pointer;transition:all .2s}
     .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
     .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
+    .kontexto-word-hint-options{display:flex;justify-content:flex-end;gap:8px;margin:6px 0 2px}
+    .kontexto-word-hint-options[hidden]{display:none}
+    .kontexto-word-hint-level{padding:8px 13px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--text-main);font-size:.82rem;font-weight:700;cursor:pointer}
+    .kontexto-word-hint-level:hover:not(:disabled){background:rgba(0,240,255,.18);box-shadow:0 0 10px rgba(0,240,255,.16)}
+    .kontexto-word-hint-level:disabled{opacity:.4;cursor:default}
     .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
@@ -1080,7 +1085,11 @@
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
         </div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></span>
+          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp auswählen" aria-expanded="false" aria-controls="kontexto-word-hint-options" title="Wort-Tipp – Leicht oder Mittel">💡</button></span>
+        </div>
+        <div class="kontexto-word-hint-options" id="kontexto-word-hint-options" role="group" aria-label="Stärke des Wort-Tipps" hidden>
+          <button type="button" class="kontexto-word-hint-level" data-hint-level="leicht">Leicht</button>
+          <button type="button" class="kontexto-word-hint-level" data-hint-level="mittel">Mittel</button>
         </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
@@ -2023,7 +2032,10 @@
           if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
         });
         document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
-        document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
+        document.getElementById('kontexto-word-hint').onclick = () => this.toggleWordHintOptions();
+        document.querySelectorAll('[data-hint-level]').forEach(button => {
+          button.onclick = () => this.showWordHint(button.dataset.hintLevel);
+        });
       },
 
       async inferCategory(word, signal = null) {
@@ -2101,16 +2113,30 @@
         }
       },
 
-      async showWordHint() {
+      toggleWordHintOptions() {
         if (PauseController.paused || this.wordHintInProgress) return;
+        const options = document.getElementById('kontexto-word-hint-options');
+        const trigger = document.getElementById('kontexto-word-hint');
+        if (!options || !trigger) return;
+        options.hidden = !options.hidden;
+        trigger.setAttribute('aria-expanded', String(!options.hidden));
+      },
+
+      async showWordHint(level = 'leicht') {
+        if (PauseController.paused || this.wordHintInProgress) return;
+        const normalizedLevel = level === 'mittel' ? 'mittel' : 'leicht';
         const button = document.getElementById('kontexto-word-hint');
+        const options = document.getElementById('kontexto-word-hint-options');
+        const levelButtons = [...document.querySelectorAll('[data-hint-level]')];
         const requestedRoundId = this.roundId;
         const requestedTarget = this.targetWord;
         if (!requestedTarget) return;
         this.wordHintInProgress = true;
         if (button) button.disabled = true;
+        if (options) options.hidden = true;
+        if (button) button.setAttribute('aria-expanded', 'false');
+        levelButtons.forEach(item => { item.disabled = true; });
 
-        // Ein gemeinsames 3-Sekunden-Limit für Kategorie, Kandidatensuche und Eintrag.
         const hintController = new AbortController();
         let timedOut = false;
         let hintTimeout;
@@ -2129,11 +2155,6 @@
           if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
 
           const targetKey = requestedTarget.toLocaleLowerCase('de-DE');
-          // Die Kategorie wird pro Zielwort zwischengespeichert und an die Tipp-KI übergeben.
-          let category = this.categoryAssignments.get(targetKey);
-          if (!category) category = await this.inferCategory(requestedTarget, hintController.signal);
-          if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-
           const normalize = value => String(value || '').toLocaleLowerCase('de-DE').trim();
           const relatedToExistingWord = candidate => {
             const key = normalize(candidate).replace(/[^a-zäöüß]/g, '');
@@ -2143,8 +2164,6 @@
             return blocked.some(word => key === word || key.includes(word) || word.includes(key));
           };
 
-          // Mehrere Kandidaten-Batches anfordern, bis ein echter Ranggewinn gefunden ist
-          // oder das gemeinsame 3-Sekunden-Limit erreicht wird.
           let batches = 0;
           while (!timedOut && batches < 8) {
             if (requestedRoundId !== this.roundId || PauseController.paused) return;
@@ -2155,7 +2174,7 @@
             const response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ target: requestedTarget, category, excluded, count: 20 }),
+              body: JSON.stringify({ target: requestedTarget, level: normalizedLevel, excluded, count: 20 }),
               signal: hintController.signal
             });
             const result = await response.json().catch(() => {
@@ -2169,22 +2188,16 @@
               .filter(item => item && typeof item.word === 'string' && Number.isFinite(Number(item.similarity)))
               .map(item => ({
                 word: item.word.trim(),
-                similarity: Math.max(0, Math.min(1, Number(item.similarity))),
-                category: typeof item.category === 'string' ? item.category : '',
-                categories: Array.isArray(item.categories) ? item.categories : []
+                similarity: Math.max(0, Math.min(1, Number(item.similarity)))
               }))
               .filter(item => {
                 const key = normalize(item.word);
-                if (!key || !this.dictionaryReady || !this.dictionaryWords.has(key) ||
-                    !/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(item.word) ||
+                if (!key || !/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(item.word) ||
                     key === targetKey || relatedToExistingWord(item.word) ||
                     this.wordHintCandidatesTried.has(key) ||
                     this.guesses.some(guess => normalize(guess.word) === key) ||
                     this.pendingGuesses.has(key)) return false;
-
-                // Wenn die Tipp-API eine Kategorie zurückgibt, muss sie exakt zur Zielkategorie passen.
-                const returnedCategories = [item.category, ...item.categories].filter(Boolean).map(normalize);
-                return !returnedCategories.length || returnedCategories.includes(normalize(category));
+                return true;
               })
               .map(item => ({ ...item, rank: this.calculateGuessRank(item.similarity) }))
               .sort((a, b) => a.rank - b.rank || b.similarity - a.similarity);
@@ -2193,8 +2206,8 @@
               if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
               const candidateKey = normalize(candidate.word);
               this.wordHintCandidatesTried.add(candidateKey);
-              // Strikte Regel: ein Tipp darf den bisherigen Bestwert niemals verschlechtern.
-              if (candidate.rank >= this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity)) continue;
+              const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
+              if (candidate.rank >= bestCurrentRank) continue;
               const added = await this.submitGuess(candidate.word, null, {
                 isHint: true,
                 requireBetterRank: true,
@@ -2204,11 +2217,10 @@
             }
 
             batches++;
-            // Kein Kandidat dieses Batches verbessert den Rang: weitere Wörter anfordern.
             if (!candidates.length && result.hints.length === 0) break;
           }
           if (!timedOut && requestedRoundId === this.roundId && button) {
-            button.title = 'Kein besserer Tipp gefunden – bitte erneut versuchen';
+            button.title = 'Kein passender Tipp gefunden – bitte erneut versuchen';
           }
         })();
 
@@ -2224,7 +2236,10 @@
         } finally {
           clearTimeout(hintTimeout);
           this.wordHintInProgress = false;
-          if (requestedRoundId === this.roundId && button) button.disabled = false;
+          if (requestedRoundId === this.roundId) {
+            if (button) button.disabled = false;
+            levelButtons.forEach(item => { item.disabled = false; });
+          }
         }
       },
       async pickNewTarget() {
