@@ -127,6 +127,8 @@ def main() -> int:
 
     targets = load_targets(args.targets)
     candidates = build_candidates(targets, args.candidate_count)
+    if len(candidates) > 65535:
+        raise ValueError("Der Kandidatenwortschatz überschreitet das UInt16-Format (65.535 Wörter).")
     print(f"{len(targets)} unveränderte Zielwörter; {len(candidates)} Tipp-Kandidaten.", flush=True)
     print(f"Lade Embedding-Modell {args.model} …", flush=True)
 
