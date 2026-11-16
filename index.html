@@ -840,6 +840,12 @@
     .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
     .hangmann-part{opacity:0;transition:opacity .2s}
     .hangmann-part.shown{opacity:1}
+    .hangmann-person.falling{transform-box:fill-box;transform-origin:top center;animation:hangmannDrop 5s ease-in forwards}
+    .hangmann-person.falling .hangmann-part{animation:hangmannScatter 1.7s ease-in forwards}
+    .hangmann-person.falling .hangmann-part:nth-child(2n){animation-delay:.12s}
+    .hangmann-person.falling .hangmann-part:nth-child(3n){animation-delay:.28s}
+    @keyframes hangmannDrop{0%{transform:rotate(0) translate(0,0);opacity:1}22%{transform:rotate(18deg) translate(12px,18px);opacity:1}55%{transform:rotate(48deg) translate(42px,70px);opacity:.9}100%{transform:rotate(75deg) translate(90px,145px);opacity:0}}
+    @keyframes hangmannScatter{0%,25%{opacity:1}100%{opacity:0;transform:translate(12px,28px) rotate(35deg)}}
     .hangmann-word{display:flex;justify-content:center;gap:clamp(4px,1.4vw,10px);flex-wrap:wrap;min-height:54px}
     .hangmann-slot{width:clamp(22px,6vw,38px);height:48px;border-bottom:3px solid var(--neon-cyan);display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:900;text-transform:uppercase;color:#fff}
     .hangmann-category{padding:10px 13px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.1);color:#e5c7ff;font-weight:750;text-align:center}
@@ -1037,21 +1043,21 @@
       <div class="hangmann-wrap">
         <h1 class="hangmann-title"><span class="hang">Hang</span><span class="mann">mann</span></h1>
         <div class="hangmann-top">
-          <span class="hangmann-pill" id="hangmann-errors">Fehler: 0 / 10</span>
+          <span class="hangmann-pill" id="hangmann-errors">Versuche: 10</span>
         </div>
         <div class="hangmann-stage" role="img" aria-label="Galgenfigur, die sich mit falschen Buchstaben aufbaut">
           <svg class="hangmann-svg" viewBox="0 0 240 210" aria-hidden="true">
             <g class="hangmann-gallows"><path d="M28 190H150M58 190V18H160V38M58 48L28 78"/></g>
-            <g class="hangmann-person">
+            <g class="hangmann-person" id="hangmann-person">
               <circle class="hangmann-part" data-part="1" cx="160" cy="58" r="19"/>
               <path class="hangmann-part" data-part="2" d="M160 77V127"/>
               <path class="hangmann-part" data-part="3" d="M160 91L132 111"/>
               <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
-              <circle class="hangmann-part" data-part="7" cx="153" cy="54" r="2.5"/>
-              <circle class="hangmann-part" data-part="8" cx="167" cy="54" r="2.5"/>
-              <path class="hangmann-part" data-part="9" d="M154 68Q160 73 166 68"/>
+              <path class="hangmann-part" data-part="7" d="M153 54 C149 60 149 63 153 65 C157 63 157 60 153 54Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
+              <path class="hangmann-part" data-part="8" d="M167 54 C163 60 163 63 167 65 C171 63 171 60 167 54Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
+              <path class="hangmann-part" data-part="9" d="M153 72 Q160 64 167 72"/>
               <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
             </g>
           </svg>
@@ -1213,7 +1219,7 @@
        HANGMANN GAME
        ========================================================================== */
     const HangmannGame = {
-      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false,
+      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null,
       normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
       async init(){
         if(!this.initialized){
@@ -1252,6 +1258,8 @@
         root.addEventListener('click',e=>{const button=e.target.closest('[data-letter]');if(button)this.guess(button.dataset.letter);});
       },
       newRound(){
+        if(this.fallTimer){clearTimeout(this.fallTimer);this.fallTimer=null;}
+        const person=document.getElementById("hangmann-person");if(person)person.classList.remove("falling");
         if(!this.words.length)return;
         if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}
         this.target=this.wordQueue.pop();
@@ -1309,6 +1317,10 @@
           CommunityBoard.record('hangmann',player);
           showCorrectAnswerOverlay(this.target.word, null, false, '🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!');
           PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
+        }else if(!won){
+          document.getElementById('hangmann-status').textContent='😭 Oh nein! Die Figur fällt auseinander …';
+          const person=document.getElementById('hangmann-person');if(person)person.classList.add('falling');
+          this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},5000);
         }
       }
     };
