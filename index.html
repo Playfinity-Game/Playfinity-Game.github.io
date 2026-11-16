@@ -2302,14 +2302,15 @@
       },
 
       calculateGuessRank(similarity) {
-        const normalizedSimilarity = Math.max(0, Math.min(1, Number(similarity) || 0));
-        let calculatedRank = 1 + Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 15499);
-        while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank < 15500) calculatedRank++;
-        if (this.guesses.some(item => item.rank === calculatedRank)) {
-          calculatedRank = Math.max(1, calculatedRank - 1);
-          while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
-        }
-        return calculatedRank;
+        // Ausgewogene, deterministische Rangskala:
+        // Gleiche semantische Ähnlichkeit ergibt immer denselben Rang –
+        // unabhängig davon, welche Wörter vorher geraten wurden.
+        // Kleinere Ränge bedeuten größere Nähe zum geheimen Wort.
+        const numericSimilarity = Number(similarity);
+        const normalizedSimilarity = Number.isFinite(numericSimilarity)
+          ? Math.max(0, Math.min(1, numericSimilarity))
+          : 0;
+        return 1 + Math.round(Math.pow(1 - normalizedSimilarity, 1.8) * 15499);
       },
 
       async submitGuess(word, player = null, options = {}) {
