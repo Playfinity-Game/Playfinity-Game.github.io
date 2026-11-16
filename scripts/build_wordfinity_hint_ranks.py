@@ -64,7 +64,7 @@ def load_targets(path: Path) -> list[str]:
         for item in words:
             word = str(item).strip()
             key = normalized(word)
-            if key and WORD_RE.fullmatch(word):
+            if key:
                 targets.setdefault(key, word)
     if not targets:
         raise ValueError("Keine gültigen Zielwörter in der Quelldatei gefunden.")
@@ -156,6 +156,8 @@ def main() -> int:
     rankings: dict[str, dict[str, str]] = {}
     rankings_dir = args.output / "rankings"
     rankings_dir.mkdir(parents=True, exist_ok=True)
+    for stale_rank_file in rankings_dir.glob("*.u16.gz"):
+        stale_rank_file.unlink()
     for offset, target in enumerate(targets):
         scores = candidate_vectors @ target_vectors[offset]
         # Stable sorting makes equal-score ordering reproducible across builds.
