@@ -125,8 +125,11 @@ board.addEventListener('pointermove',e=>{
 function endPointer(e){pointers.delete(e.pointerId);if(pointers.size<2)pinch=null}
 board.addEventListener('pointerup',endPointer);board.addEventListener('pointercancel',endPointer);
 $('lock').onclick=()=>{
- if(locked)return;locked=true;const r=rounds[index],trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
- const s=sizeFor(r.target.svg,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';pos(actual,c.x+25-s.w*trueFactor/2,c.y-s.h*trueFactor);actual.style.display='flex';
+ if(locked)return;
+ const r=rounds[index];
+ if(!r||!Number.isFinite(r.target.value)||!Number.isFinite(r.reference.value)||r.reference.value<=0||r.target.value<=0)return;
+ locked=true;const trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
+ const s=sizeFor(r.target,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';pos(actual,c.x+25-s.w*trueFactor/2,c.y-s.h*trueFactor);actual.style.display='flex';
  $('lock').disabled=true;$('result').classList.add('show');
  $('result').innerHTML='<div class="resulttop"><div class="points">'+pts+'<small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> der Referenzgröße</p><p>Tatsächliche Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Abweichung: <b>'+(error*100).toFixed(1).replace('.',',')+' %</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
  $('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
