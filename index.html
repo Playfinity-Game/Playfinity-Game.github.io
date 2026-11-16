@@ -895,6 +895,35 @@
     .hangmann-cleaner{opacity:0;fill:none;stroke:var(--neon-green);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 4px rgba(0,255,157,.4))}
     .hangmann-stage.cleaning .hangmann-cleaner{animation:hangmannCleanerSweep 10s linear forwards}
     .hangmann-stage.cleaning .hangmann-broom{transform-box:fill-box;transform-origin:4px 0;animation:hangmannBroom .65s ease-in-out 3s 9}
+    .hangmann-kicker{opacity:0;fill:none;stroke:var(--neon-green);stroke-width:4;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(0,255,157,.55))}
+    .hangmann-stage.kicking .hangmann-kicker{animation:hangmannKicker 6.5s ease-in-out forwards}
+    .hangmann-stage.kicking .hangmann-person{transform-box:fill-box;transform-origin:center;animation:hangmannRescueKick 6.5s ease-in-out forwards}
+    .hangmann-stage.kicking .hangmann-kick-leg{transform-box:fill-box;transform-origin:3px 0;animation:hangmannKickLeg 6.5s ease-in-out forwards}
+    .hangmann-stage.kicking .hangmann-rope{animation:hangmannRope 6.5s ease-in-out forwards}
+    .hangmann-rope{stroke:var(--neon-gold);stroke-width:2.5;filter:drop-shadow(0 0 4px rgba(255,210,0,.5))}
+    @keyframes hangmannRope{0%,28%{opacity:1}38%,100%{opacity:0}}
+    @keyframes hangmannKicker{
+      0%,8%{opacity:0;transform:translate(-65px,0)}
+      18%{opacity:1;transform:translate(-12px,0)}
+      30%{opacity:1;transform:translate(-12px,0)}
+      45%{opacity:1;transform:translate(-12px,0)}
+      58%{opacity:1;transform:translate(-12px,0)}
+      68%,100%{opacity:0;transform:translate(-12px,0)}
+    }
+    @keyframes hangmannRescueKick{
+      0%,24%{transform:translate(0,0) rotate(0)}
+      38%{transform:translate(0,42px) rotate(8deg)}
+      48%{transform:translate(-13px,42px) rotate(8deg)}
+      58%{transform:translate(-13px,42px) rotate(8deg)}
+      78%{transform:translate(210px,15px) rotate(430deg)}
+      100%{opacity:0;transform:translate(245px,-8px) rotate(560deg)}
+    }
+    @keyframes hangmannKickLeg{
+      0%,48%,100%{transform:rotate(0)}
+      54%{transform:rotate(-48deg)}
+      61%{transform:rotate(42deg)}
+      68%{transform:rotate(0)}
+    }
     @keyframes hangmannFallAndSweep{
       0%{opacity:1;transform:translate(0,0) rotate(0)}
       16%{opacity:1;transform:translate(-8px,28px) rotate(62deg)}
@@ -1113,6 +1142,7 @@
         <div class="hangmann-stage" id="hangmann-stage" role="img" aria-label="Galgenfigur, die sich mit falschen Buchstaben aufbaut">
           <svg class="hangmann-svg" viewBox="0 0 240 210" aria-hidden="true">
             <g class="hangmann-gallows"><path d="M28 190H150M58 190V18H160V38M58 48L28 78"/></g>
+            <path class="hangmann-rope" d="M160 38V40"/>
             <g class="hangmann-person" id="hangmann-person">
               <circle class="hangmann-part" data-part="1" cx="160" cy="58" r="19"/>
               <path class="hangmann-part" data-part="2" d="M160 77V127"/>
@@ -1128,6 +1158,12 @@
             <g class="hangmann-cleaner" aria-hidden="true">
               <circle cx="20" cy="126" r="9"/><path d="M20 135V158M20 141L7 151M20 141L32 151M20 158L10 176M20 158L30 176"/>
               <g class="hangmann-broom"><path d="M31 153L-3 184"/><path d="M-8 180L1 190L8 183L-1 174Z" stroke="var(--neon-gold)" fill="var(--neon-gold)"/></g>
+            </g>
+            <g class="hangmann-kicker" aria-hidden="true">
+              <circle cx="20" cy="111" r="10"/>
+              <path d="M20 121V151M20 130L7 143M20 130L34 140M20 151L9 176"/>
+              <g class="hangmann-kick-leg"><path d="M20 151L39 169L52 164"/></g>
+              <path d="M52 164L59 160"/>
             </g>
           </svg>
         </div>
@@ -1329,7 +1365,7 @@
       newRound(){
         if(this.fallTimer){clearTimeout(this.fallTimer);this.fallTimer=null;}
         const person=document.getElementById("hangmann-person");if(person)person.classList.remove("falling");
-        const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.remove('cleaning');
+        const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.remove('cleaning','kicking');
         const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.classList.remove('visible');reveal.textContent='';}
         if(!this.words.length)return;
         if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}
@@ -1391,7 +1427,8 @@
         }else if(!won){
           document.getElementById('hangmann-status').textContent='😭 Oh nein! Der Besen-Service ist unterwegs …';
           const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
-          const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.add('cleaning');
+          const stage=document.getElementById('hangmann-stage');
+          if(stage)stage.classList.add(Math.random()<0.5?'cleaning':'kicking');
           this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
         }
       }
