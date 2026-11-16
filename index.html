@@ -840,12 +840,19 @@
     .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
     .hangmann-part{opacity:0;transition:opacity .2s}
     .hangmann-part.shown{opacity:1}
-    .hangmann-person.falling{transform-box:fill-box;transform-origin:top center;animation:hangmannDrop 5s ease-in forwards}
-    .hangmann-person.falling .hangmann-part{animation:hangmannScatter 1.7s ease-in forwards}
-    .hangmann-person.falling .hangmann-part:nth-child(2n){animation-delay:.12s}
-    .hangmann-person.falling .hangmann-part:nth-child(3n){animation-delay:.28s}
-    @keyframes hangmannDrop{0%{transform:rotate(0) translate(0,0);opacity:1}22%{transform:rotate(18deg) translate(12px,18px);opacity:1}55%{transform:rotate(48deg) translate(42px,70px);opacity:.9}100%{transform:rotate(75deg) translate(90px,145px);opacity:0}}
-    @keyframes hangmannScatter{0%,25%{opacity:1}100%{opacity:0;transform:translate(12px,28px) rotate(35deg)}}
+    .hangmann-person.falling{transform-box:fill-box;transform-origin:center;animation:hangmannDrop 1.35s cubic-bezier(.35,.05,.7,1) forwards}
+    .hangmann-person.falling .hangmann-part{transform-box:fill-box;animation:hangmannBreak .65s ease-out .85s forwards}
+    .hangmann-person.falling .hangmann-part:nth-child(2){--break-x:-8px;--break-y:8px}
+    .hangmann-person.falling .hangmann-part:nth-child(3){--break-x:-15px;--break-y:3px}
+    .hangmann-person.falling .hangmann-part:nth-child(4){--break-x:12px;--break-y:8px}
+    .hangmann-person.falling .hangmann-part:nth-child(5){--break-x:-12px;--break-y:13px}
+    .hangmann-person.falling .hangmann-part:nth-child(6){--break-x:16px;--break-y:12px}
+    .hangmann-person.falling .hangmann-part:nth-child(7){--break-x:-10px;--break-y:15px}
+    .hangmann-person.falling .hangmann-part:nth-child(8){--break-x:9px;--break-y:14px}
+    .hangmann-person.falling .hangmann-part:nth-child(9){--break-x:2px;--break-y:18px}
+    .hangmann-person.falling .hangmann-part:nth-child(10){--break-x:0px;--break-y:10px}
+    @keyframes hangmannDrop{0%{transform:translate(0,0) rotate(0)}65%{transform:translate(-12px,76px) rotate(62deg)}82%{transform:translate(-12px,70px) rotate(57deg)}100%{transform:translate(-12px,76px) rotate(62deg)}}
+    @keyframes hangmannBreak{to{opacity:1;transform:translate(var(--break-x,6px),var(--break-y,10px)) rotate(28deg)}}
     .hangmann-word{display:flex;justify-content:center;gap:clamp(4px,1.4vw,10px);flex-wrap:wrap;min-height:54px}
     .hangmann-slot{width:clamp(22px,6vw,38px);height:48px;border-bottom:3px solid var(--neon-cyan);display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:900;text-transform:uppercase;color:#fff}
     .hangmann-category{padding:10px 13px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.1);color:#e5c7ff;font-weight:750;text-align:center}
@@ -1055,8 +1062,8 @@
               <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
-              <path class="hangmann-part" data-part="7" d="M153 54 C149 60 149 63 153 65 C157 63 157 60 153 54Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
-              <path class="hangmann-part" data-part="8" d="M167 54 C163 60 163 63 167 65 C171 63 171 60 167 54Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
+              <path class="hangmann-part" data-part="7" d="M153 56 C151.5 59 151.5 61 153 62 C154.5 61 154.5 59 153 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
+              <path class="hangmann-part" data-part="8" d="M167 56 C165.5 59 165.5 61 167 62 C168.5 61 168.5 59 167 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
               <path class="hangmann-part" data-part="9" d="M153 72 Q160 64 167 72"/>
               <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
             </g>
