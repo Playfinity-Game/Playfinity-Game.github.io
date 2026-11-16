@@ -40,7 +40,7 @@ jobs:
 
       - name: Build semantic ranks
         env:
-          HF_HOME: \${{ runner.temp }}/huggingface
+          HF_HOME: ${{ runner.temp }}/huggingface
           TOKENIZERS_PARALLELISM: "false"
         run: |
           python scripts/build_wordfinity_hint_ranks.py \
