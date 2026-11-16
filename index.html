@@ -915,6 +915,7 @@
     .hangmann-part.shown{opacity:1}
     .hangmann-waterfall{fill:none;stroke:#65dfff;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
     .hangmann-waterfall .tear-highlight{stroke:#d9faff;stroke-width:1.25;opacity:.95}
+    .hangmann-waterfall .tear-eye{stroke:#d9faff;stroke-width:2.4;stroke-linecap:round;fill:none}
     .hangmann-waterfall.shown .tear-flow{animation:hangmann-waterfall-flow .42s linear infinite}
     .hangmann-waterfall.shown .tear-drop{animation:hangmann-waterfall-drop .72s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
     @keyframes hangmann-waterfall-flow{to{stroke-dashoffset:-22}}
@@ -1135,11 +1136,13 @@
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
               <g class="hangmann-part hangmann-waterfall" data-part="7">
+                <path class="tear-eye" d="M149 51 Q153 48 157 51"/>
                 <path class="tear-flow" d="M153 54 C149 60 154 65 150 71 C147 77 152 81 151 85" stroke-dasharray="8 4"/>
                 <path class="tear-highlight" d="M153 55 C150 61 154 65 151 71 C149 76 152 80 152 83"/>
                 <path class="tear-drop" d="M151 83 C147 87 148 90 151 91 C154 90 155 87 151 83Z" fill="#65dfff" stroke="none"/>
               </g>
               <g class="hangmann-part hangmann-waterfall" data-part="8">
+                <path class="tear-eye" d="M163 51 Q167 48 171 51"/>
                 <path class="tear-flow" d="M167 54 C171 60 166 65 170 71 C173 77 168 81 169 85" stroke-dasharray="8 4"/>
                 <path class="tear-highlight" d="M167 55 C170 61 166 65 169 71 C171 76 168 80 168 83"/>
                 <path class="tear-drop" d="M169 83 C165 87 166 90 169 91 C172 90 173 87 169 83Z" fill="#65dfff" stroke="none"/>
