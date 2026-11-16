@@ -1260,7 +1260,7 @@
         document.getElementById('hangmann-hint').disabled=false;
         document.getElementById('hangmann-status').textContent='Wähle einen Buchstaben.';
         document.querySelectorAll('.hangmann-part').forEach(part=>part.classList.remove('shown'));
-        document.getElementById('hangmann-errors').textContent='Fehler: 0 / 10';
+        document.getElementById('hangmann-errors').textContent='Versuche: 10';
         this.renderWord();this.renderKeyboard();
       },
       submitChatGuess(player, text){
@@ -1280,7 +1280,7 @@
           if(Array.from(this.normalize(this.target.word)).every(ch=>this.guessed.has(ch)))this.finish(true);
         }else{
           this.errors++;const part=document.querySelector('[data-part="'+this.errors+'"]');if(part)part.classList.add('shown');
-          document.getElementById('hangmann-errors').textContent='Fehler: '+this.errors+' / 10';
+          document.getElementById('hangmann-errors').textContent='Versuche: '+(10-this.errors);
           if(this.errors>=10)this.finish(false);
         }
         this.renderKeyboard();
