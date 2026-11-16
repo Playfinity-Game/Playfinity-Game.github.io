@@ -21,18 +21,18 @@ button{font:inherit;font-weight:800;border:1px solid #344866;background:#17243a;
 button:disabled{opacity:.4;cursor:not-allowed}
 .primary{background:linear-gradient(110deg,#00d9ef,#168cff);color:#04111e;border:0;padding:12px 26px;box-shadow:0 5px 22px #00bde533}
 .board-shell{border:1px solid #2a3a55;border-radius:16px;overflow:hidden;background:#0b1221;box-shadow:0 18px 55px #0006}
-.board{height:min(59vh,540px);min-height:340px;position:relative;overflow:hidden;touch-action:none;background-color:#0b1324;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:34px 34px}
+.board{height:min(62vh,590px);min-height:360px;position:relative;overflow:hidden;touch-action:none;background-color:#0b1324;background-image:linear-gradient(#ffffff08 1px,transparent 1px),linear-gradient(90deg,#ffffff08 1px,transparent 1px);background-size:34px 34px}
 .ground{position:absolute;left:0;right:0;bottom:14%;height:2px;background:#627b9e88;box-shadow:0 0 9px #4b79c055}
-.world{position:absolute;inset:0;transform-origin:50% 50%}
-.obj{position:absolute;display:flex;align-items:center;justify-content:center;user-select:none;pointer-events:none}
+.world{position:absolute;inset:0;transform-origin:0 0;will-change:transform}
+.obj{position:absolute;display:flex;align-items:center;justify-content:center;user-select:none;pointer-events:none;touch-action:none}
 .obj svg{display:block;width:100%;height:100%;overflow:visible}
-.obj svg *{fill:currentColor}
+.obj svg *{fill:currentColor;stroke:currentColor;stroke-linejoin:round;stroke-linecap:round}
 .reference{color:#168dff;filter:drop-shadow(0 0 7px #168dff66)}
 .guess{color:var(--pink);filter:drop-shadow(0 0 8px #ff477d66);cursor:grab;pointer-events:auto;touch-action:none}
 .guess:active{cursor:grabbing}
-.actual{color:#f4f7ff;opacity:.88;filter:drop-shadow(0 0 8px #ffffff30);display:none;z-index:1}
+.actual{color:#f4f7ff;opacity:.92;filter:drop-shadow(0 0 8px #ffffff30);display:none;z-index:1}
 .guess{z-index:2}
-.meta{display:flex;justify-content:space-between;gap:14px;padding:13px 15px 8px;flex-wrap:wrap}
+.scale-tools{display:flex;align-items:center;justify-content:center;gap:9px;padding:0 12px 10px}.scale-tools span{font-size:.75rem;color:#aab5ca;margin-right:4px}.scale-tools button{min-width:46px;font-size:1.1rem;padding:8px 14px}.meta{display:flex;justify-content:space-between;gap:14px;padding:13px 15px 8px;flex-wrap:wrap}
 .meta strong{display:block;font-size:.88rem}
 .meta .muted{display:block;color:var(--muted);font-size:.78rem}
 .reftext strong{color:#71b7ff}.targettext strong{color:#ff719a}
@@ -47,7 +47,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .result p{margin:4px 0;color:#c5d0e2;font-size:.86rem}
 .result .nextrow{display:flex;justify-content:flex-end;margin-top:12px}
 .hint{text-align:center;color:#7888a4;font-size:.78rem;padding:0 10px;margin-top:12px}
-@media(max-width:600px){header{height:58px;padding:0 14px}.wrap{width:calc(100% - 20px);margin:15px auto 30px}.board{height:52vh;min-height:300px}.meta{padding:11px 12px 6px}.dimension{text-align:left}.lockrow{padding:10px 12px 12px}.lockrow button{width:100%}.toolbar button{padding:7px 10px;font-size:.82rem}.intro{font-size:.83rem}}
+@media(max-width:600px){header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{justify-content:center;flex-wrap:wrap}.toolbar button{flex:1;padding:10px 8px;font-size:.78rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
 </style>
 </head>
 <body>
@@ -55,7 +55,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <main class="wrap">
 <p class="intro">Wie groß ist das wirklich? Passe die rote Silhouette an die echte Größe an.</p>
 <div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">3</strong></div>
-<div class="toolbar"><button id="zoomOut" aria-label="Herauszoomen">−</button><button id="zoomIn" aria-label="Hineinzoomen">+</button><button id="resetView">Ansicht zurücksetzen</button></div>
+<div class="toolbar"><button id="zoomOut" aria-label="Ansicht herauszoomen">Ansicht −</button><button id="zoomIn" aria-label="Ansicht hineinzoomen">Ansicht +</button><button id="resetView">Ansicht zurücksetzen</button></div>
 <section class="board-shell">
 <div class="board" id="board"><div class="ground"></div><div class="world" id="world"><div class="obj reference" id="reference"></div><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
 <div class="meta">
@@ -63,14 +63,17 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <div class="targettext"><strong id="targetName">Gesucht</strong><span class="muted">ROTE SILHOUETTE · DEINE SCHÄTZUNG</span></div>
 <div class="dimension"><strong id="dimension">HÖHE</strong><span class="muted" id="dimensionNote">Vergleichsmaß</span></div>
 </div>
-<div class="lockrow"><button class="primary" id="lock">LOCK IN</button></div>
+<div class="scale-tools"><span>ROTE SILHOUETTE GRÖSSE</span><button id="objectSmaller" aria-label="Rote Silhouette verkleinern">−</button><button id="objectLarger" aria-label="Rote Silhouette vergrößern">+</button></div><div class="lockrow"><button class="primary" id="lock">LOCK IN</button></div>
 <div class="result" id="result"></div>
 </section>
-<p class="hint">Rot ziehen zum Positionieren · Mausrad oder Zoom-Tasten zum Skalieren · nach dem Lock-in zeigt Weiß die echte Größe.</p>
+<p class="hint">Rot ziehen zum Positionieren · + / − ändert die Schätzung · zwei Finger zoomen und verschieben die Ansicht · Weiß zeigt nach LOCK IN die echte Größe.</p>
 </main>
 <script src="./data.js"></script>
 <script>
-(()=>{const rounds=window.MEGASIZE_DATA||[];let index=0,total=0,zoom=1,locked=false,guessScale=1,guessX=0,guessY=0,base=142,drag=null;const $=id=>document.getElementById(id),board=$('board'),world=$('world'),ref=$('reference'),guess=$('guess'),actual=$('actual');
+(()=>{
+const rounds=window.MEGASIZE_DATA||[];
+let index=0,total=0,zoom=1,panX=0,panY=0,locked=false,guessScale=1,guessX=0,guessY=0,base=142,drag=null;
+const $=id=>document.getElementById(id),board=$('board'),world=$('world'),ref=$('reference'),guess=$('guess'),actual=$('actual');
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function box(svg){const m=svg.match(/viewBox=["']\s*([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)\s*["']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
 function sizeFor(svg,axisPx){const b=box(svg),ratio=b.w/b.h;return {w:axisPx*(ratio>=1?1:ratio),h:axisPx*(ratio>=1?1/ratio:1)}}
@@ -78,22 +81,48 @@ function factor(r){const ratio=r.target.value/r.reference.value;return r.dimensi
 function center(){return{x:board.clientWidth/2,y:board.clientHeight*.72}}
 function setObj(el,svg,s){el.innerHTML=svg;el.style.width=s.w+'px';el.style.height=s.h+'px'}
 function pos(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
-function render(){if(!rounds.length)return;const r=rounds[index],c=center();$('referenceName').textContent=r.reference.name;$('targetName').textContent=r.target.name;$('dimension').textContent=r.dimension.toUpperCase();$('dimensionNote').textContent=r.dimension==='Fläche'?'Flächenvergleich':'Größenvergleich';$('round').textContent=index+1;$('roundTotal').textContent=rounds.length;$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
-const rs=sizeFor(r.reference.svg,base),ts=sizeFor(r.target.svg,base);setObj(ref,r.reference.svg,rs);pos(ref,c.x-base-22,c.y-rs.h);
-setObj(guess,r.target.svg,ts);setObj(actual,r.target.svg,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false}
-function applyGuess(){const r=rounds[index],s=sizeFor(r.target.svg,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
-function applyZoom(){world.style.transform='scale('+zoom+')';}
-function point(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left)/zoom,y:(e.clientY-b.top)/zoom}}
-guess.addEventListener('pointerdown',e=>{if(locked)return;e.preventDefault();guess.setPointerCapture(e.pointerId);const p=point(e);drag={x:p.x-guessX,y:p.y-guessY}});
-guess.addEventListener('pointermove',e=>{if(!drag||locked)return;const p=point(e);guessX=p.x-drag.x;guessY=p.y-drag.y;applyGuess()});
+function render(){
+ if(!rounds.length)return;
+ const r=rounds[index],c=center(),rs=sizeFor(r.reference.svg,base),ts=sizeFor(r.target.svg,base);
+ $('referenceName').textContent=r.reference.name;$('targetName').textContent=r.target.name;
+ $('dimension').textContent=r.dimension.toUpperCase();$('dimensionNote').textContent=r.dimension==='Fläche'?'Flächenvergleich':'Größenvergleich';
+ $('round').textContent=index+1;$('roundTotal').textContent=rounds.length;$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
+ setObj(ref,r.reference.svg,rs);pos(ref,c.x-base-22,c.y-rs.h);
+ setObj(guess,r.target.svg,ts);setObj(actual,r.target.svg,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;
+ locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false;
+}
+function applyGuess(){const s=sizeFor(rounds[index].target.svg,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
+function applyZoom(){world.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')'}
+function boardPoint(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left-panX)/zoom,y:(e.clientY-b.top-panY)/zoom}}
+function changeObjectScale(mult){if(locked)return;guessScale=Math.max(.04,Math.min(30,guessScale*mult));applyGuess()}
+$('objectLarger').onclick=()=>changeObjectScale(1.14);$('objectSmaller').onclick=()=>changeObjectScale(1/1.14);
+guess.addEventListener('pointerdown',e=>{if(locked||e.pointerType==='touch'&&pointers.size>1)return;e.preventDefault();guess.setPointerCapture(e.pointerId);const p=boardPoint(e);drag={x:p.x-guessX,y:p.y-guessY}});
+guess.addEventListener('pointermove',e=>{if(!drag||locked)return;const p=boardPoint(e);guessX=p.x-drag.x;guessY=p.y-drag.y;applyGuess()});
 guess.addEventListener('pointerup',()=>drag=null);guess.addEventListener('pointercancel',()=>drag=null);
-board.addEventListener('wheel',e=>{if(locked||!e.target.closest('#guess'))return;e.preventDefault();guessScale=Math.max(.05,Math.min(20,guessScale*(e.deltaY<0?1.08:.92)));applyGuess()},{passive:false});
-$('zoomIn').onclick=()=>{zoom=Math.min(2.5,zoom*1.18);applyZoom()};$('zoomOut').onclick=()=>{zoom=Math.max(.4,zoom/1.18);applyZoom()};$('resetView').onclick=()=>{zoom=1;applyZoom()};
-$('lock').onclick=()=>{if(locked)return;locked=true;const r=rounds[index],trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
-const s=sizeFor(r.target.svg,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';pos(actual,c.x+25-s.w*trueFactor/2,c.y-s.h*trueFactor);actual.style.display='flex';
-$('lock').disabled=true;$('result').classList.add('show');$('result').innerHTML='<div class="resulttop"><div class="points">'+pts+'<small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> der Referenzgröße</p><p>Tatsächliche Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Abweichung: <b>'+ (error*100).toFixed(1).replace('.',',')+' %</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Ergebnis anzeigen':'Nächste Runde')+' →</button></div>';
-$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
-$('next').onclick=()=>{if(index<rounds.length-1){index++;render()}else{$('result').innerHTML='<div class="resulttop"><div class="points">'+total+'<small> Punkte</small></div><div><h2>MEGASIZE abgeschlossen! 🏆</h2><p>Deine Gesamtpunktzahl aus '+rounds.length+' Runden.</p></div></div><div class="nextrow"><button id="again">Nochmal spielen</button></div>';$('again').onclick=()=>{index=0;total=0;render()}}}
-};render()})();
+guess.addEventListener('wheel',e=>{if(locked)return;e.preventDefault();changeObjectScale(e.deltaY<0?1.08:.92)},{passive:false});
+$('zoomIn').onclick=()=>{zoom=Math.min(4,zoom*1.18);applyZoom()};$('zoomOut').onclick=()=>{zoom=Math.max(.45,zoom/1.18);applyZoom()};
+$('resetView').onclick=()=>{zoom=1;panX=0;panY=0;applyZoom()};
+const pointers=new Map();let pinch=null;
+board.addEventListener('pointerdown',e=>{
+ if(e.target.closest('#guess'))return;
+ pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(pointers.size===2){const a=[...pointers.values()];pinch={distance:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),zoom,midX:(a[0].x+a[1].x)/2,midY:(a[0].y+a[1].y)/2,panX,panY};}
+});
+board.addEventListener('pointermove',e=>{
+ if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
+ if(pointers.size===2&&pinch){const a=[...pointers.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y),mX=(a[0].x+a[1].x)/2,mY=(a[0].y+a[1].y)/2,next=Math.max(.45,Math.min(4,pinch.zoom*d/Math.max(1,pinch.distance)));const rect=board.getBoundingClientRect(),localX=pinch.midX-rect.left,localY=pinch.midY-rect.top,ratio=next/pinch.zoom;panX=localX-(localX-pinch.panX)*ratio+(mX-pinch.midX);panY=localY-(localY-pinch.panY)*ratio+(mY-pinch.midY);zoom=next;applyZoom();}
+});
+function endPointer(e){pointers.delete(e.pointerId);if(pointers.size<2)pinch=null}
+board.addEventListener('pointerup',endPointer);board.addEventListener('pointercancel',endPointer);
+$('lock').onclick=()=>{
+ if(locked)return;locked=true;const r=rounds[index],trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
+ const s=sizeFor(r.target.svg,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';pos(actual,c.x+25-s.w*trueFactor/2,c.y-s.h*trueFactor);actual.style.display='flex';
+ $('lock').disabled=true;$('result').classList.add('show');
+ $('result').innerHTML='<div class="resulttop"><div class="points">'+pts+'<small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> der Referenzgröße</p><p>Tatsächliche Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Abweichung: <b>'+(error*100).toFixed(1).replace('.',',')+' %</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
+ $('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
+ $('next').onclick=()=>{if(index<rounds.length-1){index++;render()}else{$('result').innerHTML='<div class="resulttop"><div class="points">'+total+'<small> Punkte</small></div><div><h2>MEGASIZE abgeschlossen! 🏆</h2><p>Deine Gesamtpunktzahl aus '+rounds.length+' Runden.</p></div></div><div class="nextrow"><button id="again">Nochmal spielen</button></div>';$('again').onclick=()=>{index=0;total=0;render()}}};
+};
+render();window.addEventListener('resize',()=>{if(!locked)render()});
+})();
 </script>
 </body></html>
