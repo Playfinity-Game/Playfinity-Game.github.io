@@ -913,6 +913,13 @@
     .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
     .hangmann-part{opacity:0;transition:opacity .2s}
     .hangmann-part.shown{opacity:1}
+    .hangmann-tear.shown{animation:hangmann-tear-run 1.25s cubic-bezier(.22,.7,.35,1) forwards}
+    @keyframes hangmann-tear-run{
+      0%{opacity:0;transform:translate(0,-3px) scale(.78)}
+      18%{opacity:1}
+      72%{opacity:1;transform:translate(2px,13px) scale(1.08)}
+      100%{opacity:1;transform:translate(3px,22px) scale(1)}
+    }
     .hangmann-reveal{display:none;margin:0 0 10px;padding:9px 14px;border:1px solid rgba(255,0,127,.42);border-radius:11px;background:rgba(255,0,127,.1);color:#fff;text-align:center;font-size:clamp(.95rem,3.5vw,1.2rem);font-weight:850;box-shadow:0 0 18px rgba(255,0,127,.12)}
     .hangmann-reveal.visible{display:block}
     .hangmann-reveal strong{color:var(--neon-cyan);letter-spacing:.04em}
@@ -1128,9 +1135,9 @@
               <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
-              <path class="hangmann-part" data-part="7" d="M153 56 C151.5 59 151.5 61 153 62 C154.5 61 154.5 59 153 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
-              <path class="hangmann-part" data-part="8" d="M167 56 C165.5 59 165.5 61 167 62 C168.5 61 168.5 59 167 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
-              <path class="hangmann-part" data-part="9" d="M153 72 Q160 64 167 72"/>
+              <path class="hangmann-part hangmann-tear" data-part="7" d="M148 55 C143 62 142 66 148 70 C154 66 153 62 148 55Z" fill="#65dfff" stroke="#b9f4ff" stroke-width="1.2"/>
+              <path class="hangmann-part hangmann-tear" data-part="8" d="M172 55 C167 62 166 66 172 70 C178 66 177 62 172 55Z" fill="#65dfff" stroke="#b9f4ff" stroke-width="1.2"/>
+              <path class="hangmann-part" data-part="9" d="M152 72 Q160 84 168 72"/>
               <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
             </g>
           </svg>
