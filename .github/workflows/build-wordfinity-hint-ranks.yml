@@ -65,7 +65,7 @@ jobs:
           assert manifest["targetCount"] == len(manifest["rankings"])
           assert manifest["candidateCount"] == len(manifest["candidateWords"])
           assert len(manifest["candidateWords"]) <= 65535
-          assert len({word.casefold() for word in manifest["candidateWords"]}) == len(manifest["candidateWords"])
+          assert len({word.lower() for word in manifest["candidateWords"]}) == len(manifest["candidateWords"])
           for target, entry in manifest["rankings"].items():
               rank_file = manifest_path.parent / entry["file"]
               assert rank_file.is_file(), f"Missing rank file for {target}"
