@@ -4024,10 +4024,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Ara",
-      "category": "Tiere"
-    },
-    {
       "word": "Axolotl",
       "category": "Tiere"
     },
@@ -4248,10 +4244,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Panther",
-      "category": "Tiere"
-    },
-    {
       "word": "Pfau",
       "category": "Tiere"
     },
@@ -4344,14 +4336,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Unke",
-      "category": "Tiere"
-    },
-    {
-      "word": "Viper",
-      "category": "Tiere"
-    },
-    {
       "word": "Vogel",
       "category": "Tiere"
     },
@@ -4384,10 +4368,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Zikade",
-      "category": "Tiere"
-    },
-    {
       "word": "Zitteraal",
       "category": "Tiere"
     },
@@ -4404,10 +4384,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Beagle",
-      "category": "Tiere"
-    },
-    {
       "word": "Bergziege",
       "category": "Tiere"
     },
@@ -4421,10 +4397,6 @@
     },
     {
       "word": "Blutegel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Brachvogel",
       "category": "Tiere"
     },
     {
@@ -4445,14 +4417,6 @@
     },
     {
       "word": "Eintagsfliege",
-      "category": "Tiere"
-    },
-    {
-      "word": "Elritze",
-      "category": "Tiere"
-    },
-    {
-      "word": "Eselspinguin",
       "category": "Tiere"
     },
     {
@@ -4528,19 +4492,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Kliesche",
-      "category": "Tiere"
-    },
-    {
-      "word": "Knurrhahn",
-      "category": "Tiere"
-    },
-    {
       "word": "Komodowaran",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lemming",
       "category": "Tiere"
     },
     {
@@ -4568,14 +4520,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Mönchsrobbe",
-      "category": "Tiere"
-    },
-    {
-      "word": "Moschusochse",
-      "category": "Tiere"
-    },
-    {
       "word": "Mücke",
       "category": "Tiere"
     },
@@ -4589,14 +4533,6 @@
     },
     {
       "word": "Orca",
-      "category": "Tiere"
-    },
-    {
-      "word": "Papageientaucher",
-      "category": "Tiere"
-    },
-    {
-      "word": "Perlrochen",
       "category": "Tiere"
     },
     {
@@ -5156,10 +5092,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Abbrucharbeiter",
-      "category": "Berufe"
-    },
-    {
       "word": "Altenpfleger",
       "category": "Berufe"
     },
@@ -5693,10 +5625,6 @@
     },
     {
       "word": "Tretroller",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
-      "word": "U-Bahn",
       "category": "Fahrzeuge & Verkehr"
     },
     {
