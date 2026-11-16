@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Kurze, geläufige deutsche Begriffe für Hangmann (maximal 10 Zeichen).",
+  "description": "Deutsche Begriffe für Hangmann aus fünf Kategorien.",
   "words": [
     {
       "word": "Affe",
@@ -618,6 +618,206 @@
     {
       "word": "SENSOR",
       "category": "Technik & Digitales"
+    },
+    {
+      "word": "Pizza",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Nudeln",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kartoffel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pfannkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hamburger",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Schokolade",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Erdbeere",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Wassermelone",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gurke",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brokkoli",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Käsekuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bratwurst",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brezel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Spaghetti",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Marmelade",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Pfirsich",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ananas",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Feuerwehrmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Polizist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bäcker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Schreiner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektriker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Tierarzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lehrer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Koch",
+      "category": "Berufe"
+    },
+    {
+      "word": "Friseur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Pilot",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gärtner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fotograf",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Zahnarzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Musiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Motorrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Lastwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehr",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Krankenwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Hubschrauber",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "U-Bahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Straßenbahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Segelboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Traktor",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bagger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Gabelstapler",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Rennwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Polizeiauto",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Wohnmobil",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Schneemobil",
+      "category": "Fahrzeuge & Verkehr"
     }
   ]
 }
