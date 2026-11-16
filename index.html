@@ -913,6 +913,18 @@
     .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
     .hangmann-part{opacity:0;transition:opacity .2s}
     .hangmann-part.shown{opacity:1}
+    .hangmann-face-detail{opacity:0;transition:opacity .2s}
+    .hangmann-face-detail.shown{opacity:1}
+    .hangmann-eye{fill:var(--neon-cyan);stroke:none}
+    .hangmann-part.tear.shown{animation:hangmann-tear-run 1.05s cubic-bezier(.35,.05,.65,1) both}
+    .hangmann-part.tear[data-part="8"].shown{animation-delay:.12s}
+    @keyframes hangmann-tear-run{0%{opacity:0;transform:translateY(-2px) scale(.72)}18%{opacity:1;transform:translateY(0) scale(1)}72%{opacity:1;transform:translateY(9px) scale(.92)}100%{opacity:0;transform:translateY(15px) scale(.7)}}
+    .hangmann-stars{opacity:0;pointer-events:none;transform-box:view-box;transform-origin:160px 58px}
+    .hangmann-stage.dizzy .hangmann-stars{opacity:1;animation:hangmann-stars-orbit 1.25s linear infinite}
+    .hangmann-star{fill:var(--neon-gold);stroke:#fff0a6;stroke-width:1;filter:drop-shadow(0 0 4px rgba(255,208,0,.7))}
+    @keyframes hangmann-stars-orbit{to{transform:rotate(360deg)}}
+    .hangmann-person.falling{transform-box:view-box;transform-origin:160px 58px;animation:hangmann-soft-fall 1.45s cubic-bezier(.45,.02,.72,.35) forwards}
+    @keyframes hangmann-soft-fall{0%{transform:rotate(0deg) translateY(0)}22%{transform:rotate(-7deg) translateY(1px)}48%{transform:rotate(13deg) translateY(5px)}72%{transform:rotate(48deg) translateY(13px)}100%{transform:rotate(82deg) translateY(21px)}}
     .hangmann-reveal{display:none;margin:0 0 10px;padding:9px 14px;border:1px solid rgba(255,0,127,.42);border-radius:11px;background:rgba(255,0,127,.1);color:#fff;text-align:center;font-size:clamp(.95rem,3.5vw,1.2rem);font-weight:850;box-shadow:0 0 18px rgba(255,0,127,.12)}
     .hangmann-reveal.visible{display:block}
     .hangmann-reveal strong{color:var(--neon-cyan);letter-spacing:.04em}
@@ -1121,16 +1133,25 @@
           <svg class="hangmann-svg" viewBox="0 0 240 210" aria-hidden="true">
             <g class="hangmann-gallows"><path d="M28 190H150M58 190V18H160V38M58 48L28 78"/></g>
             <path class="hangmann-rope" d="M160 38V40"/>
+            <g class="hangmann-stars" aria-hidden="true">
+              <path class="hangmann-star" d="M160 24L163 32L171 33L165 39L167 47L160 43L153 47L155 39L149 33L157 32Z"/>
+              <path class="hangmann-star" d="M132 48L134 53L140 54L135 58L136 64L132 61L127 64L128 58L124 54L130 53Z"/>
+              <path class="hangmann-star" d="M188 45L190 50L196 51L192 55L193 61L188 58L183 61L184 55L180 51L186 50Z"/>
+            </g>
             <g class="hangmann-person" id="hangmann-person">
               <circle class="hangmann-part" data-part="1" cx="160" cy="58" r="19"/>
+              <g class="hangmann-face-detail">
+                <circle class="hangmann-eye" cx="153" cy="54" r="2.1"/>
+                <circle class="hangmann-eye" cx="167" cy="54" r="2.1"/>
+                <path d="M156 68H164" fill="none" stroke="var(--neon-cyan)" stroke-width="2" stroke-linecap="round"/>
+              </g>
               <path class="hangmann-part" data-part="2" d="M160 77V127"/>
               <path class="hangmann-part" data-part="3" d="M160 91L132 111"/>
               <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
-              <path class="hangmann-part" data-part="7" d="M153 56 C151.5 59 151.5 61 153 62 C154.5 61 154.5 59 153 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
-              <path class="hangmann-part" data-part="8" d="M167 56 C165.5 59 165.5 61 167 62 C168.5 61 168.5 59 167 56Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
-              <path class="hangmann-part" data-part="9" d="M153 72 Q160 64 167 72"/>
+              <path class="hangmann-part tear" data-part="7" d="M153 59C149 65 149 68 153 71C157 68 157 65 153 59Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
+              <path class="hangmann-part tear" data-part="8" d="M167 59C163 65 163 68 167 71C171 68 171 65 167 59Z" fill="var(--neon-cyan)" stroke="var(--neon-cyan)"/>
               <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
             </g>
           </svg>
@@ -1292,7 +1313,7 @@
        HANGMANN GAME
        ========================================================================== */
     const HangmannGame = {
-      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null,
+      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null, dizzyTimer:null,
       normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
       async init(){
         if(!this.initialized){
@@ -1332,8 +1353,10 @@
       },
       newRound(){
         if(this.fallTimer){clearTimeout(this.fallTimer);this.fallTimer=null;}
+        if(this.dizzyTimer){clearTimeout(this.dizzyTimer);this.dizzyTimer=null;}
         const person=document.getElementById("hangmann-person");if(person)person.classList.remove("falling");
-        const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.remove('cleaning','kicking');
+        const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.remove('cleaning','kicking','dizzy');
+        const face=document.querySelector('.hangmann-face-detail');if(face)face.classList.remove('shown');
         const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.classList.remove('visible');reveal.textContent='';}
         if(!this.words.length)return;
         if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}
@@ -1363,6 +1386,7 @@
           if(Array.from(this.normalize(this.target.word)).every(ch=>this.guessed.has(ch)))this.finish(true);
         }else{
           this.errors++;const part=document.querySelector('[data-part="'+this.errors+'"]');if(part)part.classList.add('shown');
+          if(this.errors===1){const face=document.querySelector('.hangmann-face-detail');if(face)face.classList.add('shown');}
           document.getElementById('hangmann-errors').textContent='Versuche: '+(10-this.errors);
           if(this.errors>=10)this.finish(false);
         }
@@ -1393,9 +1417,17 @@
           showCorrectAnswerOverlay(this.target.word, null, false, '🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!');
           PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
         }else if(!won){
-          document.getElementById('hangmann-status').textContent='😭 Oh nein!';
-          const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
-          this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
+          document.getElementById('hangmann-status').textContent='Oh nein!';
+           const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
+           const stage=document.getElementById('hangmann-stage');
+           const person=document.getElementById('hangmann-person');
+           if(stage)stage.classList.add('dizzy');
+           this.dizzyTimer=setTimeout(()=>{
+             this.dizzyTimer=null;
+             if(stage)stage.classList.remove('dizzy');
+             if(person)person.classList.add('falling');
+           },1750);
+           this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
         }
       }
     };
