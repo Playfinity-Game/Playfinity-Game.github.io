@@ -913,14 +913,12 @@
     .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
     .hangmann-part{opacity:0;transition:opacity .2s}
     .hangmann-part.shown{opacity:1}
-    .hangmann-tear{transform-box:fill-box;transform-origin:center}
-    .hangmann-tear.shown{animation:hangmann-tear-run 1.25s cubic-bezier(.22,.7,.35,1) forwards}
-    @keyframes hangmann-tear-run{
-      0%{opacity:0;transform:translateY(-2px) scale(.82)}
-      20%{opacity:1}
-      72%{opacity:1;transform:translateY(5px) scale(1.04)}
-      100%{opacity:1;transform:translateY(8px) scale(1)}
-    }
+    .hangmann-waterfall{fill:none;stroke:#65dfff;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+    .hangmann-waterfall .tear-highlight{stroke:#d9faff;stroke-width:1.25;opacity:.95}
+    .hangmann-waterfall.shown .tear-flow{animation:hangmann-waterfall-flow .42s linear infinite}
+    .hangmann-waterfall.shown .tear-drop{animation:hangmann-waterfall-drop .72s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+    @keyframes hangmann-waterfall-flow{to{stroke-dashoffset:-22}}
+    @keyframes hangmann-waterfall-drop{from{transform:translateY(-1px);opacity:.72}to{transform:translateY(3px);opacity:1}}
     .hangmann-reveal{display:none;margin:0 0 10px;padding:9px 14px;border:1px solid rgba(255,0,127,.42);border-radius:11px;background:rgba(255,0,127,.1);color:#fff;text-align:center;font-size:clamp(.95rem,3.5vw,1.2rem);font-weight:850;box-shadow:0 0 18px rgba(255,0,127,.12)}
     .hangmann-reveal.visible{display:block}
     .hangmann-reveal strong{color:var(--neon-cyan);letter-spacing:.04em}
@@ -1136,9 +1134,17 @@
               <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
               <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
               <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
-              <path class="hangmann-part hangmann-tear" data-part="7" d="M151 59 C147 65 146 69 151 74 C156 69 155 65 151 59Z" fill="#65dfff" stroke="#b9f4ff" stroke-width="1.2"/>
-              <path class="hangmann-part hangmann-tear" data-part="8" d="M169 59 C165 65 164 69 169 74 C174 69 173 65 169 59Z" fill="#65dfff" stroke="#b9f4ff" stroke-width="1.2"/>
-              <path class="hangmann-part" data-part="9" d="M152 72 Q160 84 168 72"/>
+              <g class="hangmann-part hangmann-waterfall" data-part="7">
+                <path class="tear-flow" d="M153 54 C149 60 154 65 150 71 C147 77 152 81 151 85" stroke-dasharray="8 4"/>
+                <path class="tear-highlight" d="M153 55 C150 61 154 65 151 71 C149 76 152 80 152 83"/>
+                <path class="tear-drop" d="M151 83 C147 87 148 90 151 91 C154 90 155 87 151 83Z" fill="#65dfff" stroke="none"/>
+              </g>
+              <g class="hangmann-part hangmann-waterfall" data-part="8">
+                <path class="tear-flow" d="M167 54 C171 60 166 65 170 71 C173 77 168 81 169 85" stroke-dasharray="8 4"/>
+                <path class="tear-highlight" d="M167 55 C170 61 166 65 169 71 C171 76 168 80 168 83"/>
+                <path class="tear-drop" d="M169 83 C165 87 166 90 169 91 C172 90 173 87 169 83Z" fill="#65dfff" stroke="none"/>
+              </g>
+              <path class="hangmann-part" data-part="9" d="M152 76 Q160 66 168 76"/>
               <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
             </g>
           </svg>
