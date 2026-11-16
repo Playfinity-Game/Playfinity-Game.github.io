@@ -180,7 +180,7 @@ async function handleHints(env, body) {
   const hints = candidates
     .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
     .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, 30);
+    .slice(0, 40);
   return json({ hints, level, model: EMBEDDING_MODEL });
 }
 
