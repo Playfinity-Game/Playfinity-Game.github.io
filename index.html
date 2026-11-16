@@ -2199,15 +2199,30 @@
                     this.pendingGuesses.has(key)) return false;
                 return true;
               })
-              .map(item => ({ ...item, rank: this.calculateGuessRank(item.similarity) }))
-              .sort((a, b) => a.rank - b.rank || b.similarity - a.similarity);
+              .map(item => ({ ...item, rank: this.calculateGuessRank(item.similarity) }));
 
-            for (const candidate of candidates) {
+            // Kontexto-inspiriertes Prinzip: Der Tipp zielt auf eine bestimmte
+            // Position relativ zum bisherigen Bestwert statt einfach den ähnlichsten
+            // KI-Kandidaten zu nehmen. Ohne bisherigen Versuch bleibt der Tipp bewusst
+            // weiter hinten im Rangfeld.
+            const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
+            const desiredRank = Number.isFinite(bestCurrentRank)
+              ? (normalizedLevel === 'leicht'
+                  ? Math.max(2, Math.floor(bestCurrentRank / 2))
+                  : Math.max(2, bestCurrentRank - 1))
+              : (normalizedLevel === 'leicht' ? 11000 : 14500);
+
+            const rankedCandidates = candidates
+              .filter(item => !Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank)
+              .sort((a, b) =>
+                Math.abs(a.rank - desiredRank) - Math.abs(b.rank - desiredRank) ||
+                a.rank - b.rank
+              );
+
+            for (const candidate of rankedCandidates) {
               if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
               const candidateKey = normalize(candidate.word);
               this.wordHintCandidatesTried.add(candidateKey);
-              const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
-              if (candidate.rank >= bestCurrentRank) continue;
               const added = await this.submitGuess(candidate.word, null, {
                 isHint: true,
                 requireBetterRank: true,
