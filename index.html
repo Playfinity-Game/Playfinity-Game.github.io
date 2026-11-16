@@ -167,29 +167,33 @@
       z-index: -1;
       top: 42%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(-8deg);
-      width: max-content;
-      max-width: 100%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 0 8px;
+      text-align: center;
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
-      font-size: clamp(2.4rem, 11vw, 7.2rem);
+      font-size: clamp(3.1rem, 15vw, 9rem);
       line-height: 1;
-      font-weight: 950;
-      letter-spacing: 0.055em;
+      font-weight: 1000;
+      letter-spacing: 0.045em;
       color: transparent;
-      background: linear-gradient(105deg, rgba(176, 38, 255, 0.72), rgba(0, 240, 255, 0.78), rgba(176, 38, 255, 0.72));
+      background: linear-gradient(100deg, #a900ff 0%, #00eaff 48%, #d000ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
-      opacity: 0.13;
-      filter: drop-shadow(0 0 16px rgba(0, 210, 255, 0.16));
+      opacity: 0.23;
+      filter:
+        drop-shadow(0 0 5px rgba(0, 234, 255, 0.62))
+        drop-shadow(0 0 16px rgba(0, 234, 255, 0.38))
+        drop-shadow(0 0 28px rgba(176, 38, 255, 0.32));
     }
 
     @media (max-width: 520px) {
       .screen.active:not(#screen-menu)::before {
-        font-size: clamp(2rem, 10vw, 3.5rem);
-        letter-spacing: 0.035em;
-        opacity: 0.11;
+        font-size: clamp(2.45rem, 12vw, 4.5rem);
+        letter-spacing: 0.025em;
+        opacity: 0.2;
       }
     }
 
