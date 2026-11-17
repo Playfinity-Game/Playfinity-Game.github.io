@@ -219,9 +219,11 @@ const server = http.createServer(async (request, response) => {
     if (request.method === "POST" && !adminOriginAllowed(request)) {
       return sendJson(response, 403, { error: "Origin nicht erlaubt." });
     }
+    if (request.method === "POST" && !allowRequest(request)) {
+      return sendJson(response, 429, { error: "Zu viele Admin-Anfragen." });
+    }
 
     if (request.method === "POST" && url.pathname === "/admin/login") {
-      if (!allowRequest(request)) return sendJson(response, 429, { error: "Zu viele Anmeldeversuche." });
       let body;
       try { body = await readJsonBody(request, 2048); }
       catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
