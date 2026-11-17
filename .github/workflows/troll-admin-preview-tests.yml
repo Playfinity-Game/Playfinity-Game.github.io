@@ -7,11 +7,13 @@ on:
     paths:
       - 'troll-admin-preview.html'
       - 'tiktok-connector/server.js'
+      - 'tiktok-connector/admin.html'
       - 'tiktok-connector/troll-admin-auth.js'
       - 'tiktok-connector/troll-admin-state.js'
       - 'tests/troll-admin-preview.spec.cjs'
       - 'tests/troll-admin-auth.spec.js'
       - 'tests/troll-admin-state.spec.js'
+      - 'tests/troll-admin-dashboard.spec.js'
       - '.github/workflows/troll-admin-preview-tests.yml'
   pull_request:
     branches:
@@ -19,11 +21,13 @@ on:
     paths:
       - 'troll-admin-preview.html'
       - 'tiktok-connector/server.js'
+      - 'tiktok-connector/admin.html'
       - 'tiktok-connector/troll-admin-auth.js'
       - 'tiktok-connector/troll-admin-state.js'
       - 'tests/troll-admin-preview.spec.cjs'
       - 'tests/troll-admin-auth.spec.js'
       - 'tests/troll-admin-state.spec.js'
+      - 'tests/troll-admin-dashboard.spec.js'
       - '.github/workflows/troll-admin-preview-tests.yml'
 
 jobs:
@@ -43,4 +47,4 @@ jobs:
       - name: Install Chromium
         run: npx playwright install --with-deps chromium
       - name: Run unit and browser tests
-        run: node --test tests/troll-admin-auth.spec.js tests/troll-admin-state.spec.js tests/troll-admin-preview.spec.cjs
+        run: node --test tests/troll-admin-auth.spec.js tests/troll-admin-state.spec.js tests/troll-admin-preview.spec.cjs tests/troll-admin-dashboard.spec.js
