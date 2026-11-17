@@ -610,11 +610,6 @@
     .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.1rem;cursor:pointer;transition:all .2s}
     .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
     .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
-    .kontexto-word-hint-options{display:flex;justify-content:flex-end;gap:8px;margin:6px 0 2px}
-    .kontexto-word-hint-options[hidden]{display:none}
-    .kontexto-word-hint-level{padding:8px 13px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--text-main);font-size:.82rem;font-weight:700;cursor:pointer}
-    .kontexto-word-hint-level:hover:not(:disabled){background:rgba(0,240,255,.18);box-shadow:0 0 10px rgba(0,240,255,.16)}
-    .kontexto-word-hint-level:disabled{opacity:.4;cursor:default}
     .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
@@ -1089,11 +1084,7 @@
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
         </div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp auswählen" aria-expanded="false" aria-controls="kontexto-word-hint-options" title="Wort-Tipp – Leicht oder Mittel">💡</button></span>
-        </div>
-        <div class="kontexto-word-hint-options" id="kontexto-word-hint-options" role="group" aria-label="Stärke des Wort-Tipps" hidden>
-          <button type="button" class="kontexto-word-hint-level" data-hint-level="leicht">Leicht</button>
-          <button type="button" class="kontexto-word-hint-level" data-hint-level="mittel">Mittel</button>
+          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Automatischer Wort-Tipp">💡</button></span>
         </div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
@@ -2036,10 +2027,7 @@
           if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
         });
         document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
-        document.getElementById('kontexto-word-hint').onclick = () => this.toggleWordHintOptions();
-        document.querySelectorAll('[data-hint-level]').forEach(button => {
-          button.onclick = () => this.showWordHint(button.dataset.hintLevel);
-        });
+        document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
       async inferCategory(word, signal = null) {
@@ -2117,18 +2105,9 @@
         }
       },
 
-      toggleWordHintOptions() {
+      async showWordHint() {
         if (PauseController.paused || this.wordHintInProgress) return;
-        const options = document.getElementById('kontexto-word-hint-options');
-        const trigger = document.getElementById('kontexto-word-hint');
-        if (!options || !trigger) return;
-        options.hidden = !options.hidden;
-        trigger.setAttribute('aria-expanded', String(!options.hidden));
-      },
-
-      async showWordHint(level = 'leicht') {
-        if (PauseController.paused || this.wordHintInProgress) return;
-        const normalizedLevel = level === 'mittel' ? 'mittel' : 'leicht';
+        const normalizedLevel = 'leicht';
         const button = document.getElementById('kontexto-word-hint');
         const options = document.getElementById('kontexto-word-hint-options');
         const levelButtons = [...document.querySelectorAll('[data-hint-level]')];
