@@ -29,24 +29,23 @@ Ein passwortgeschütztes Admin-Menü für fünf spätere Live-Funktionen: Bildsc
 - Vorschau enthält keine echte Passwort-Authentifizierung.
 
 ### 2026-11-17 – Vorschau-Browser-Tests
-- Playwright-Tests unter `tests/troll-admin-preview.spec.cjs` ergänzen Prüfungen der fünf lokalen Effekte, Not-Aus, Sperre/Wiederfreigabe und ausbleibender externer Netzwerkaufrufe.
-- GitHub-Actions-Lauf auf Commit `4b42ac0d0f11368a8e8274b5bb97b43e5c6999b2` erfolgreich: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998075007
+- Playwright-Tests unter `tests/troll-admin-preview.spec.cjs` prüfen die fünf lokalen Effekte, Not-Aus, Sperre/Wiederfreigabe und ausbleibende externe Netzwerkaufrufe.
+- GitHub-Actions-Lauf erfolgreich: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998075007
 
 ### 2026-11-17 – Sicherheitsentwurf und Auth-Modul
 - `TROLL_ADMIN_SICHERHEITSKONZEPT.md` dokumentiert Architektur, sichere Session-Cookies, Origin-Prüfung, Rate-Limits und serverseitigen Not-Aus.
-- `tiktok-connector/troll-admin-auth.js` ergänzt: Passwort-Hashprüfung mit Node `scrypt`, Salt/Hash aus Environment-Konfiguration, konstante Hash-Vergleichszeit, zufällige opake Sitzungstokens, Ablauf und Logout.
+- `tiktok-connector/troll-admin-auth.js` ergänzt: Passwort-Hashprüfung mit Node `scrypt`, Salt/Hash aus Environment-Konfiguration, konstanter Hash-Vergleich, zufällige opake Sitzungstokens, Ablauf und Logout.
 - Das Auth-Modul verweigert die Initialisierung, wenn Hash oder Salt fehlen/ungültig sind.
-- `tests/troll-admin-auth.spec.js` ergänzt: Konfigurationsfehler, korrekter/falscher Login, unbekannte/abgemeldete Tokens und Ablauf werden getestet.
-- Workflow erweitert, damit Auth-Unit-Tests und Vorschau-Browser-Tests gemeinsam laufen.
-- CI-Lauf für Commit `8ebc15756449fb7059d579016292d984b5fdf93b`: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998519124
-- Zuletzt beobachtet: Playwright- und Chromium-Installation laufen; Testschritt noch ausstehend.
+- `tests/troll-admin-auth.spec.js` prüft Konfigurationsfehler, korrekten/falschen Login, unbekannte/abgemeldete Tokens und Ablauf.
+- GitHub-Actions-Workflow führt Auth-Unit-Tests und Vorschau-Browser-Tests gemeinsam aus.
+- CI-Lauf auf Commit `8ebc15756449fb7059d579016292d984b5fdf93b` vollständig erfolgreich: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998519124
 
 ## Status
-Die isolierte Vorschau ist getestet. Das Authentifizierungsmodul ist als separater Baustein angelegt, aber noch nicht in `server.js` eingebunden und noch nicht für HTTP-Login/Session-Endpunkte verwendet. Die neuen Auth-Tests sind noch nicht als bestanden bestätigt. Not-Aus und Live-Steuerung sind serverseitig noch nicht implementiert. Render und `main` wurden nicht verändert.
+Die isolierte Vorschau und das Auth-Modul sind vorhanden; Vorschau- und Authentifizierungstests sind in GitHub Actions erfolgreich. Das Auth-Modul ist noch nicht in `server.js` eingebunden und es gibt noch keine HTTP-Login-/Session-Endpunkte. Serverseitiger Not-Aus und Live-Steuerung sind noch nicht implementiert. Render und `main` wurden nicht verändert.
 
 ## Nächste Schritte
-1. Aktuellen CI-Lauf abschließen und mögliche Fehler beheben.
-2. Auth-Modul mit HTTP-Login, Logout, Cookie- und Origin-Schutz in einem isolierten Server-Entwurf verbinden.
-3. Server-seitigen Not-Aus und Test-Endpunkte ohne echte Spielaktionen ergänzen.
+1. Auth-Modul in isolierte HTTP-Routen für Login/Logout und Session-Cookie-Schutz integrieren.
+2. Origin-Prüfung, Login-Rate-Limit und sichere JSON-Verarbeitung ergänzen und testen.
+3. Serverseitigen Not-Aus samt gesperrtem Standardzustand und authentifizierter bewusster Wiederfreigabe ergänzen.
 4. Regressionstests für bestehende Health-, TikTok-Connect- und WebSocket-Funktionen durchführen.
 5. Erst nach Tests und ausdrücklicher Freigabe über Integration und Deployment entscheiden.
