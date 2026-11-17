@@ -1605,7 +1605,11 @@
             body: JSON.stringify({ username })
           });
           const data = await response.json().catch(() => ({}));
-          if (!response.ok || !data.websocketPath) throw new Error(data.error || 'Verbindung konnte nicht gestartet werden.');
+          if (!response.ok || !data.websocketPath) {
+            const baseMessage = data.error || 'Verbindung konnte nicht gestartet werden.';
+            const detail = typeof data.detail === 'string' ? data.detail.trim().slice(0, 300) : '';
+            throw new Error(detail ? baseMessage + ' Ursache: ' + detail : baseMessage);
+          }
 
           const socketUrl = this.baseUrl.replace(/^https:/, 'wss:') + data.websocketPath;
           const socket = new WebSocket(socketUrl);
