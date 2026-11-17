@@ -26,7 +26,7 @@ function playerSnapshot() {
     else if (now - player.lastSeenAt > 60_000) player.active = false;
   }
   return [...activePlayers.values()].filter(p => p.active && p.game !== 'menu').map(p => ({
-    playerId:p.id, name:p.name, streamerUsername:p.streamerUsername || null, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt
+    playerId:p.id, name:p.name, streamerUsername:p.streamerUsername || null, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt, solution:p.solution || ''
   }));
 }
 
