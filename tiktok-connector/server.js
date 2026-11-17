@@ -279,15 +279,20 @@ const server = http.createServer(async (request, response) => {
     }
 
     if (request.method === "GET" && url.pathname === "/admin/live-connections") {
-      const liveConnections = [...sessions.values()]
-        .filter((session) => !session.stopped)
-        .map((session) => ({
-          username: session.username,
-          viewerCount: session.viewerCount,
-          connectedPlayers: session.clients.size,
-          lastEventAt: session.lastEventAt
-        }));
-      return sendJson(response, 200, { connections: liveConnections });
+      const bridgeToken = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+      if (!bridgeToken) return sendJson(response, 503, { error: "Produktionsdaten sind noch nicht verbunden." });
+      try {
+        const upstream = await fetch("https://playfinity-game-github-io.onrender.com/internal/admin-snapshot", {
+          headers: { authorization: `Bearer ${bridgeToken}` },
+          signal: AbortSignal.timeout(8000),
+          cache: "no-store"
+        });
+        if (!upstream.ok) return sendJson(response, 502, { error: "Produktions-Live-Daten sind gerade nicht erreichbar." });
+        const snapshot = await upstream.json();
+        return sendJson(response, 200, { connections: Array.isArray(snapshot.connections) ? snapshot.connections : [] });
+      } catch {
+        return sendJson(response, 502, { error: "Verbindung zum Produktionsserver fehlgeschlagen." });
+      }
     }
 
     if (request.method === "POST" && url.pathname === "/admin/nudge") {
