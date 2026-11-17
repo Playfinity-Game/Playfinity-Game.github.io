@@ -14,6 +14,20 @@ const allowedOrigins = new Set(
 );
 
 const sessions = new Map();
+
+const activePlayers = new Map();
+const PLAYER_GAMES = new Set(["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"]);
+const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert"]);
+function playerSnapshot() {
+  const cutoff = Date.now() - 60_000;
+  for (const [id, player] of activePlayers) {
+    if (player.lastSeenAt < cutoff || player.socket.readyState !== WebSocket.OPEN) activePlayers.delete(id);
+  }
+  return [...activePlayers.values()].filter(p => p.active).map(p => ({
+    playerId:p.id, name:p.name, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt
+  }));
+}
+
 const sessionsByUsername = new Map();
 const requestBuckets = new Map();
 
@@ -313,6 +327,30 @@ const server = http.createServer(async (request, response) => {
 
   if (url.pathname === "/api/metrics") return handleUsageMetrics(request, response);
 
+  if (url.pathname === "/internal/admin-snapshot" && request.method === "GET") {
+    const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+    if (!expected || request.headers.authorization !== `Bearer ${expected}`) return sendJson(response, 401, { error: "Nicht autorisiert." });
+    const connections = [...sessions.values()].filter(session => !session.stopped).map(session => ({
+      username: session.username, viewerCount: session.viewerCount ?? null,
+      connectedPlayers: session.clients.size, lastEventAt: session.lastEventAt ?? null
+    }));
+    return sendJson(response, 200, { connections, players: playerSnapshot() });
+  }
+
+  if (url.pathname === "/internal/admin-troll" && request.method === "POST") {
+    const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+    if (!expected || request.headers.authorization !== `Bearer ${expected}`) return sendJson(response, 401, { error: "Nicht autorisiert." });
+    let raw = "";
+    for await (const chunk of request) { raw += chunk; if (Buffer.byteLength(raw,"utf8") > 1024) return sendJson(response,413,{error:"Anfrage zu groß."}); }
+    let body; try { body = JSON.parse(raw || "{}"); } catch { return sendJson(response,400,{error:"Ungültige Anfrage."}); }
+    const player = activePlayers.get(String(body.playerId || ""));
+    if (!player || player.socket.readyState !== WebSocket.OPEN || !player.active) return sendJson(response,404,{error:"Spieler ist nicht mehr verbunden."});
+    if (!PLAYER_TROLL_ACTIONS.has(body.action)) return sendJson(response,400,{error:"Unbekannte Troll-Aktion."});
+    player.socket.send(JSON.stringify({type:"admin_troll",action:body.action}));
+    return sendJson(response,200,{ok:true,playerId:player.id,action:body.action});
+  }
+
+
   if (request.method === "GET" && (url.pathname === "/admin" || url.pathname === "/admin/")) {
     try {
       const html = await readFile(new URL("./admin.html", import.meta.url));
@@ -444,6 +482,11 @@ const websocketServer = new WebSocketServer({ noServer: true });
 server.on("upgrade", (request, socket, head) => {
   const origin = request.headers.origin;
   const pathname = new URL(request.url || "/", "http://localhost").pathname;
+  if (pathname === "/players") {
+    if (!origin || !allowedOrigins.has(origin)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
+    websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("player-connection", websocket, request));
+    return;
+  }
   const token = pathname.startsWith("/ws/") ? pathname.slice(4) : "";
   const session = sessions.get(token);
 
@@ -456,6 +499,23 @@ server.on("upgrade", (request, socket, head) => {
   websocketServer.handleUpgrade(request, socket, head, (websocket) => {
     websocketServer.emit("connection", websocket, request, session);
   });
+});
+
+websocketServer.on("player-connection", (websocket) => {
+  const id = randomBytes(8).toString("hex");
+  const player = { id, name: "Spieler-" + id.slice(0,4).toUpperCase(), game:"menu", active:true, connectedAt:new Date().toISOString(), lastSeenAt:Date.now(), socket:websocket };
+  activePlayers.set(id, player);
+  websocket.send(JSON.stringify({type:"registered",playerId:id,name:player.name}));
+  websocket.on("message", raw => {
+    if (Buffer.byteLength(raw) > 512) return;
+    let message; try { message = JSON.parse(String(raw)); } catch { return; }
+    if (message.type !== "presence") return;
+    player.game = PLAYER_GAMES.has(message.game) ? message.game : "menu";
+    player.active = message.active === true;
+    player.lastSeenAt = Date.now();
+  });
+  websocket.on("close", () => activePlayers.delete(id));
+  websocket.on("error", () => activePlayers.delete(id));
 });
 
 websocketServer.on("connection", (websocket, _request, session) => {
