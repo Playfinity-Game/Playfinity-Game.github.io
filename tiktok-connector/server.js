@@ -24,7 +24,7 @@ function playerSnapshot() {
     if (player.socket.readyState !== WebSocket.OPEN || now - player.lastSeenAt > 10 * 60_000) activePlayers.delete(id);
     else if (now - player.lastSeenAt > 60_000) player.active = false;
   }
-  return [...activePlayers.values()].filter(p => p.active).map(p => ({
+  return [...activePlayers.values()].filter(p => p.active && p.game !== 'menu').map(p => ({
     playerId:p.id, name:p.name, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt
   }));
 }
