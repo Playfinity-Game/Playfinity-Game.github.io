@@ -321,6 +321,20 @@ const server = http.createServer(async (request, response) => {
     } catch { return sendJson(response, 500, { error: "Admin-Oberfläche konnte nicht geladen werden." }); }
   }
 
+  if (request.method === "GET" && url.pathname === "/internal/admin-snapshot") {
+    const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+    if (!expected || request.headers.authorization !== `Bearer ${expected}`) {
+      return sendJson(response, 401, { error: "Nicht autorisiert." });
+    }
+    const connections = [...sessions.values()].filter(session => !session.stopped).map(session => ({
+      username: session.username,
+      viewerCount: session.viewerCount ?? null,
+      connectedPlayers: session.clients.size,
+      lastEventAt: session.lastEventAt ?? null
+    }));
+    return sendJson(response, 200, { connections });
+  }
+
   if (url.pathname.startsWith("/admin/")) {
     if (!adminAuth) return sendJson(response, 503, { error: "Admin ist noch nicht konfiguriert. Bitte Passwort-Hash und Salt in Render setzen." });
     if (request.method === "POST" && !adminOriginAllowed(request)) return sendJson(response, 403, { error: "Origin nicht erlaubt." });
