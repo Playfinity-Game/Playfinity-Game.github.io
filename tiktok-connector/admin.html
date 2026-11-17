@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLAYFINITY · Troll Admin</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#151d33;--line:#2a3654;--text:#f4f6ff;--muted:#aab5d0;--accent:#9b7bff;--danger:#ff647c;--good:#56d6a0}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#20264b 0,#0b1020 55%);font:16px system-ui,sans-serif;color:var(--text);min-height:100vh;padding:28px 16px}
+main{max-width:850px;margin:auto}.brand{text-align:center;margin:12px 0 26px}.brand h1{margin:0;color:#b7a3ff;letter-spacing:.16em;font-size:clamp(28px,6vw,42px)}.brand p,.muted{color:var(--muted)}
+.panel{background:#151d33ee;border:1px solid var(--line);border-radius:18px;padding:22px;margin:16px 0;box-shadow:0 16px 50px #0004}
+.login{max-width:420px;margin:0 auto}.field{display:grid;gap:8px;margin:18px 0}input{width:100%;padding:14px;border:1px solid var(--line);border-radius:10px;background:#0c1428;color:var(--text);font:inherit}
+button{border:0;border-radius:11px;padding:13px 16px;font:600 15px system-ui;cursor:pointer;background:var(--accent);color:#100d20}button:disabled{opacity:.5;cursor:not-allowed}.wide{width:100%}.secondary{background:#273451;color:var(--text)}.danger{background:var(--danger);color:#260811}.good{background:var(--good);color:#082016}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}.action{background:#1c2945;color:var(--text);border:1px solid #354363;text-align:left}.action small{display:block;color:var(--muted);font-weight:400;margin-top:5px}
+.row{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}.pill{border-radius:99px;padding:6px 10px;background:#303b58;color:var(--muted);font-size:13px}.pill.good{background:#173d34;color:#9af0ca}.pill.bad{background:#492333;color:#ffb5c1}
+#message{min-height:24px;color:var(--muted);margin-top:12px}.hidden{display:none}.note{font-size:13px;color:var(--muted);line-height:1.5}
+</style></head>
+<body><main>
+<header class="brand"><h1>PLAYFINITY</h1><p>TROLL ADMIN CONTROL</p></header>
+<section id="login" class="panel login"><div style="text-align:center"><div style="font-size:38px">🛡️</div><h2>Admin Login</h2><p class="muted">Geschützter Zugang</p></div>
+<form id="loginForm"><label class="field">Admin-Passwort<input id="password" type="password" autocomplete="current-password" required maxlength="1024" placeholder="Passwort eingeben"></label><button class="wide" type="submit">Einloggen</button></form><div id="loginMessage" role="status"></div></section>
+<section id="dashboard" class="hidden">
+<div class="panel"><div class="row"><div><h2 style="margin:0">Kontrollzentrum</h2><p class="muted" style="margin:6px 0 0">Angemeldet · Testmodus</p></div><button id="logout" class="secondary">Ausloggen</button></div></div>
+<div class="panel"><div class="row"><h3>Not-Aus</h3><span id="stopState" class="pill bad">Aktiv – gesperrt</span></div><p class="note">Der Not-Aus blockiert alle Troll-Aktionen. Zum Testen muss er bewusst freigegeben werden.</p><div class="row"><button id="stop" class="danger">NOT-AUS aktivieren</button><button id="reenable" class="good">Testmodus freigeben</button></div></div>
+<div class="panel"><h3>Troll-Aktionen</h3><div class="grid">
+<button class="action" data-action="shake">📳 Bildschirm wackeln<small>Simulierter Effekt</small></button>
+<button class="action" data-action="flip">🙃 Spiel umdrehen<small>Simulierter Effekt</small></button>
+<button class="action" data-action="confetti">🎉 Konfetti-Explosion<small>Simulierter Effekt</small></button>
+<button class="action" data-action="freeze">🧊 Spiel einfrieren / freigeben<small>Simulierter Effekt</small></button>
+<button class="action" data-action="message">💬 Lustige Nachricht<small>Simulierter Effekt</small></button>
+</div><div id="message" role="status" aria-live="polite"></div></div>
+<div class="panel"><h3>Live-Verbindungen</h3><p class="muted">Die echte Spieler- und TikTok-Live-Übersicht wird in einem späteren Schritt angebunden. In diesem Test-Dashboard werden noch keine Live-Spieler oder Zuschauer angezeigt.</p><span class="pill">Noch nicht verbunden</span></div>
+<p class="note">Sicherer Testbereich: Aktionen sind derzeit ausschließlich Simulationen. Es werden keine Effekte im echten Spiel ausgelöst.</p>
+</section></main>
+<script>
+const $=s=>document.querySelector(s);let stopped=true;
+async function api(path,method='GET',body){const r=await fetch(path,{method,credentials:'same-origin',headers:body?{'content-type':'application/json'}:{},body:body?JSON.stringify(body):undefined});let data={};try{data=await r.json()}catch{}if(!r.ok)throw new Error(data.error||'Anfrage fehlgeschlagen');return data}
+function render(){ $('#login').classList.toggle('hidden',true);$('#dashboard').classList.toggle('hidden',false);$('#stopState').textContent=stopped?'Aktiv – gesperrt':'Inaktiv – freigegeben';$('#stopState').className='pill '+(stopped?'bad':'good');document.querySelectorAll('[data-action]').forEach(b=>b.disabled=stopped)}
+async function refresh(){const s=await api('/admin/status');stopped=s.emergencyStop;render()}
+$('#loginForm').addEventListener('submit',async e=>{e.preventDefault();$('#loginMessage').textContent='';try{await api('/admin/login','POST',{password:$('#password').value});$('#password').value='';await refresh()}catch(err){$('#loginMessage').textContent=err.message}});
+$('#logout').onclick=async()=>{try{await api('/admin/logout','POST',{});}finally{$('#dashboard').classList.add('hidden');$('#login').classList.remove('hidden')}};
+$('#stop').onclick=async()=>{try{const s=await api('/admin/emergency-stop','POST',{});stopped=s.emergencyStop;render();$('#message').textContent='Not-Aus ist aktiv.'}catch(e){$('#message').textContent=e.message}};
+$('#reenable').onclick=async()=>{try{const s=await api('/admin/re-enable','POST',{});stopped=s.emergencyStop;render();$('#message').textContent='Testmodus freigegeben. Aktionen bleiben Simulationen.'}catch(e){$('#message').textContent=e.message}};
+document.querySelectorAll('[data-action]').forEach(b=>b.onclick=async()=>{try{const r=await api('/admin/action','POST',{action:b.dataset.action});$('#message').textContent='Simulation erfolgreich: '+r.action+' (keine echte Spielwirkung).'}catch(e){$('#message').textContent=e.message}});
+(async()=>{try{await refresh()}catch{$('#dashboard').classList.add('hidden');$('#login').classList.remove('hidden')}})();
+</script></body></html>
