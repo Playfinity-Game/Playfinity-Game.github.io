@@ -19,6 +19,11 @@ const sessionsByUsername = new Map();
 const requestBuckets = new Map();
 const adminState = createTrollAdminState();
 const ADMIN_COOKIE = "__Host-playfinity-admin";
+const TROLL_ADMIN_TEST_ORIGIN = String(process.env.TROLL_ADMIN_TEST_ORIGIN || "").trim();
+const ADMIN_GAME_EVENTS_ENABLED = process.env.TROLL_ADMIN_GAME_EVENTS_ENABLED === "true"
+  && Boolean(TROLL_ADMIN_TEST_ORIGIN)
+  && allowedOrigins.has(TROLL_ADMIN_TEST_ORIGIN)
+  && TROLL_ADMIN_TEST_ORIGIN !== "https://playfinity-game.github.io";
 let adminAuth = null;
 try {
   adminAuth = createAdminAuth();
@@ -160,13 +165,15 @@ function broadcast(session, payload) {
   }
 }
 
+function sessionKey(origin, username) { return `${origin}::${username}`; }
+
 function stopSession(session) {
   if (!session || session.stopped) return;
   session.stopped = true;
   clearTimeout(session.idleTimer);
   sessions.delete(session.token);
-  if (sessionsByUsername.get(session.username) === session.token) {
-    sessionsByUsername.delete(session.username);
+  if (sessionsByUsername.get(sessionKey(session.origin, session.username)) === session.token) {
+    sessionsByUsername.delete(sessionKey(session.origin, session.username));
   }
   for (const client of session.clients) {
     if (client.readyState === WebSocket.OPEN) client.close(1000, "Session ended");
@@ -174,8 +181,9 @@ function stopSession(session) {
   session.connection.disconnect().catch(() => {});
 }
 
-async function startSession(username) {
-  const existingToken = sessionsByUsername.get(username);
+async function startSession(username, origin) {
+  const key = sessionKey(origin, username);
+  const existingToken = sessionsByUsername.get(key);
   const existing = existingToken && sessions.get(existingToken);
   if (existing && !existing.stopped) return existing;
 
@@ -185,7 +193,7 @@ async function startSession(username) {
     fetchRoomInfoOnConnect: true
   });
 
-  const session = { token, username, connection, clients: new Set(), stopped: false, idleTimer: null };
+  const session = { token, username, origin, connection, clients: new Set(), stopped: false, idleTimer: null };
   const eventNames = [
     ["chat", WebcastEvent.CHAT], ["gift", WebcastEvent.GIFT], ["like", WebcastEvent.LIKE],
     ["follow", WebcastEvent.FOLLOW], ["share", WebcastEvent.SHARE], ["member", WebcastEvent.MEMBER],
@@ -200,7 +208,7 @@ async function startSession(username) {
 
   await connection.connect();
   sessions.set(token, session);
-  sessionsByUsername.set(username, token);
+  sessionsByUsername.set(key, token);
   return session;
 }
 
@@ -283,7 +291,17 @@ const server = http.createServer(async (request, response) => {
         const status = result.reason === "emergency_stop_active" ? 423 : 400;
         return sendJson(response, status, { error: result.reason });
       }
-      return sendJson(response, 200, result);
+      let delivered = 0;
+      if (ADMIN_GAME_EVENTS_ENABLED) {
+        const message = JSON.stringify({ type: "admin_action", action: result.action, issuedAt: new Date().toISOString() });
+        for (const session of sessions.values()) {
+          if (session.origin !== TROLL_ADMIN_TEST_ORIGIN || session.stopped) continue;
+          for (const client of session.clients) {
+            if (client.readyState === WebSocket.OPEN) { client.send(message); delivered += 1; }
+          }
+        }
+      }
+      return sendJson(response, 200, { ...result, delivered, gameEventsEnabled: ADMIN_GAME_EVENTS_ENABLED });
     }
 
     return sendJson(response, 404, { error: "Admin-Endpunkt nicht gefunden." });
@@ -310,7 +328,7 @@ const server = http.createServer(async (request, response) => {
     const username = normalizeUsername(body.username);
     if (!username) return sendJson(response, 400, { error: "Bitte einen gültigen TikTok-@Namen eingeben." });
     try {
-      const session = await startSession(username);
+      const session = await startSession(username, request.headers.origin);
       return sendJson(response, 200, {
         ok: true, username: session.username, websocketPath: `/ws/${session.token}`, message: "TikTok LIVE verbunden."
       }, { "access-control-allow-origin": request.headers.origin, "vary": "Origin" });
@@ -331,7 +349,7 @@ server.on("upgrade", (request, socket, head) => {
   const pathname = new URL(request.url || "/", "http://localhost").pathname;
   const token = pathname.startsWith("/ws/") ? pathname.slice(4) : "";
   const session = sessions.get(token);
-  if (!origin || !allowedOrigins.has(origin) || !session || session.stopped) {
+  if (!origin || !allowedOrigins.has(origin) || !session || session.stopped || origin !== session.origin) {
     socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n");
     socket.destroy();
     return;
