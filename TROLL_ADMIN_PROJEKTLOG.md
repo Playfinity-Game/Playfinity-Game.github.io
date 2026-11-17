@@ -34,11 +34,20 @@ Ein passwortgeschütztes Admin-Menü für fünf spätere Live-Funktionen: Bildsc
 - Datei nach dem Commit über GitHub erneut abgerufen und Inhalt geprüft.
 - Commit: `174f36b12b7d491be50131fb00fcd60b63cc9afa`
 
+### 2026-11-17 – Browser-Testautomatisierung
+- Playwright-Browser-Tests unter `tests/troll-admin-preview.spec.cjs` ergänzt.
+- Tests prüfen Vorhandensein der fünf Steuerungen, lokale Ausführung der Effekte, Not-Aus, Sperre und bewusste Wiederfreigabe.
+- Zusätzliche Prüfung stellt sicher, dass die Vorschau keine externen Netzwerkaufrufe macht.
+- GitHub-Actions-Workflow `.github/workflows/troll-admin-preview-tests.yml` erstellt; installiert Playwright/Chromium und führt die Tests aus.
+- Testdatei nach dem Erstellen noch einmal verbessert; der erste Workflow-Lauf startete auf dem unmittelbar vorherigen Commit. Ein erneuter Lauf nach der Testkorrektur ist daher noch erforderlich.
+- Aktueller Workflow-Lauf: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998042263
+- Zuletzt beobachteter Status: Chromium-Installation läuft; Tests noch nicht gestartet.
+
 ## Status
-Die isolierte Vorschau-Datei ist im Feature-Branch angelegt und auf GitHub verifiziert. Noch keine Live-Funktionen, keine Authentifizierung und keine Tests in einem echten Spiel. Render und `main` wurden nicht verändert.
+Vorschau und automatisierte Browser-Tests sind im Feature-Branch angelegt. Der CI-Lauf ist noch nicht abgeschlossen; daher sind die Tests noch nicht als bestanden bestätigt. Noch keine Live-Funktionen und keine Authentifizierung. Render und `main` wurden nicht verändert.
 
 ## Nächste Schritte
-1. Vorschau in einer sicheren Testumgebung öffnen und jede Simulation einschließlich Not-Aus prüfen.
-2. Browser-/Automatisierungstests ergänzen.
+1. CI-Lauf abschließen und nach der Testkorrektur erneut ausführen.
+2. Eventuelle Testfehler beheben und Ergebnisse dokumentieren.
 3. Authentifizierungs- und serverseitiges Not-Aus-Konzept für den Connector entwerfen.
 4. Erst nach Tests und ausdrücklicher Freigabe über Integration und Deployment entscheiden.
