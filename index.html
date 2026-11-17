@@ -1308,7 +1308,7 @@
       },
 
       renderScreen(screenId, isForwardNav) {
-        if (window.PlayfinityPlayerPresence) PlayfinityPlayerPresence.setGame(screenId);
+        PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
         document.body.classList.toggle('game-active', screenId !== 'menu');
