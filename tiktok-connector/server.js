@@ -2,6 +2,8 @@ import http from "node:http";
 import { randomBytes } from "node:crypto";
 import { TikTokLiveConnection, WebcastEvent } from "tiktok-live-connector";
 import { WebSocketServer, WebSocket } from "ws";
+import { createAdminAuth } from "./troll-admin-auth.js";
+import { createTrollAdminState } from "./troll-admin-state.js";
 
 const PORT = Number(process.env.PORT || 3000);
 const allowedOrigins = new Set(
@@ -14,6 +16,14 @@ const allowedOrigins = new Set(
 const sessions = new Map();
 const sessionsByUsername = new Map();
 const requestBuckets = new Map();
+const adminState = createTrollAdminState();
+const ADMIN_COOKIE = "__Host-playfinity-admin";
+let adminAuth = null;
+try {
+  adminAuth = createAdminAuth();
+} catch (error) {
+  console.warn(String(error?.message || "Troll Admin auth is not configured."));
+}
 
 function sendJson(response, status, body, extraHeaders = {}) {
   response.writeHead(status, {
@@ -27,6 +37,58 @@ function sendJson(response, status, body, extraHeaders = {}) {
 function originAllowed(request) {
   const origin = request.headers.origin;
   return Boolean(origin && allowedOrigins.has(origin));
+}
+
+function adminOriginAllowed(request) {
+  const origin = request.headers.origin;
+  if (!origin) return false;
+  try {
+    const parsed = new URL(origin);
+    const host = request.headers.host;
+    const forwardedProto = String(request.headers["x-forwarded-proto"] || "").split(",")[0].trim();
+    const protocol = forwardedProto || (request.socket.encrypted ? "https" : "http");
+    return Boolean(host && parsed.host === host && parsed.protocol === protocol + ":");
+  } catch {
+    return false;
+  }
+}
+
+function readCookie(request, name) {
+  const cookieHeader = request.headers.cookie || "";
+  for (const part of cookieHeader.split(";")) {
+    const separator = part.indexOf("=");
+    if (separator < 0) continue;
+    if (part.slice(0, separator).trim() === name) {
+      return part.slice(separator + 1).trim();
+    }
+  }
+  return "";
+}
+
+async function readJsonBody(request, maxBytes = 2048) {
+  let rawBody = "";
+  for await (const chunk of request) {
+    rawBody += chunk;
+    if (Buffer.byteLength(rawBody, "utf8") > maxBytes) {
+      const error = new Error("body_too_large");
+      error.statusCode = 413;
+      throw error;
+    }
+  }
+  try {
+    const body = JSON.parse(rawBody || "{}");
+    if (!body || typeof body !== "object" || Array.isArray(body)) throw new Error("invalid_object");
+    return body;
+  } catch {
+    const error = new Error("invalid_json");
+    error.statusCode = 400;
+    throw error;
+  }
+}
+
+function adminSession(request) {
+  const token = readCookie(request, ADMIN_COOKIE);
+  return adminAuth && adminAuth.authenticate(token) ? token : null;
 }
 
 function normalizeUsername(value) {
@@ -60,8 +122,6 @@ function eventPayload(type, data = {}) {
   const user = userSummary(data.user);
   switch (type) {
     case "chat": {
-      // Current TikTokLiveConnection payloads expose chat text as "content".
-      // Keep "comment" as a compatibility fallback for older payload shapes.
       const comment = data.content ?? data.comment ?? data.data?.content ?? data.data?.comment ?? "";
       return { type, user, comment: String(comment).trim() };
     }
@@ -76,12 +136,7 @@ function eventPayload(type, data = {}) {
         repeatEnd: data.repeatEnd ?? true
       };
     case "like":
-      return {
-        type,
-        user,
-        likeCount: data.likeCount ?? 1,
-        totalLikeCount: data.totalLikeCount ?? null
-      };
+      return { type, user, likeCount: data.likeCount ?? 1, totalLikeCount: data.totalLikeCount ?? null };
     case "follow":
     case "share":
     case "member":
@@ -129,34 +184,17 @@ async function startSession(username) {
     fetchRoomInfoOnConnect: true
   });
 
-  const session = {
-    token,
-    username,
-    connection,
-    clients: new Set(),
-    stopped: false,
-    idleTimer: null
-  };
-
+  const session = { token, username, connection, clients: new Set(), stopped: false, idleTimer: null };
   const eventNames = [
-    ["chat", WebcastEvent.CHAT],
-    ["gift", WebcastEvent.GIFT],
-    ["like", WebcastEvent.LIKE],
-    ["follow", WebcastEvent.FOLLOW],
-    ["share", WebcastEvent.SHARE],
-    ["member", WebcastEvent.MEMBER],
+    ["chat", WebcastEvent.CHAT], ["gift", WebcastEvent.GIFT], ["like", WebcastEvent.LIKE],
+    ["follow", WebcastEvent.FOLLOW], ["share", WebcastEvent.SHARE], ["member", WebcastEvent.MEMBER],
     ["roomUser", WebcastEvent.ROOM_USER]
   ];
-
   for (const [name, eventName] of eventNames) {
     connection.on(eventName, (data) => broadcast(session, eventPayload(name, data)));
   }
-
   connection.on("error", (error) => {
-    broadcast(session, {
-      type: "connector_error",
-      message: String(error?.message || "TikTok-Verbindung fehlgeschlagen")
-    });
+    broadcast(session, { type: "connector_error", message: String(error?.message || "TikTok-Verbindung fehlgeschlagen") });
   });
 
   await connection.connect();
@@ -176,6 +214,63 @@ const server = http.createServer(async (request, response) => {
     });
   }
 
+  if (url.pathname.startsWith("/admin/")) {
+    if (!adminAuth) return sendJson(response, 503, { error: "Admin ist noch nicht konfiguriert." });
+    if (request.method === "POST" && !adminOriginAllowed(request)) {
+      return sendJson(response, 403, { error: "Origin nicht erlaubt." });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/login") {
+      if (!allowRequest(request)) return sendJson(response, 429, { error: "Zu viele Anmeldeversuche." });
+      let body;
+      try { body = await readJsonBody(request, 2048); }
+      catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
+      const token = adminAuth.login(body.password);
+      if (!token) return sendJson(response, 401, { error: "Anmeldung fehlgeschlagen." });
+      return sendJson(response, 200, { ok: true }, {
+        "set-cookie": `${ADMIN_COOKIE}=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=1800`
+      });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/logout") {
+      const token = readCookie(request, ADMIN_COOKIE);
+      if (token) adminAuth.logout(token);
+      return sendJson(response, 200, { ok: true }, {
+        "set-cookie": `${ADMIN_COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0`
+      });
+    }
+
+    if (!adminSession(request)) return sendJson(response, 401, { error: "Anmeldung erforderlich." });
+
+    if (request.method === "GET" && url.pathname === "/admin/status") {
+      return sendJson(response, 200, { authenticated: true, emergencyStop: adminState.isStopped() });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/emergency-stop") {
+      const state = adminState.activateEmergencyStop();
+      return sendJson(response, 200, { ok: true, ...state });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/re-enable") {
+      const state = adminState.reEnable();
+      return sendJson(response, 200, { ok: true, ...state });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/action") {
+      let body;
+      try { body = await readJsonBody(request, 1024); }
+      catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
+      const result = adminState.simulateAction(body.action);
+      if (!result.ok) {
+        const status = result.reason === "emergency_stop_active" ? 423 : 400;
+        return sendJson(response, status, { error: result.reason });
+      }
+      return sendJson(response, 200, result);
+    }
+
+    return sendJson(response, 404, { error: "Admin-Endpunkt nicht gefunden." });
+  }
+
   if (request.method === "OPTIONS" && url.pathname === "/api/connect") {
     if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
     response.writeHead(204, {
@@ -191,42 +286,21 @@ const server = http.createServer(async (request, response) => {
   if (request.method === "POST" && url.pathname === "/api/connect") {
     if (!originAllowed(request)) return sendJson(response, 403, { error: "Diese Herkunft ist nicht freigegeben." });
     if (!allowRequest(request)) return sendJson(response, 429, { error: "Zu viele Verbindungsversuche. Bitte kurz warten." });
-
-    let rawBody = "";
-    for await (const chunk of request) {
-      rawBody += chunk;
-      if (rawBody.length > 2048) return sendJson(response, 413, { error: "Anfrage zu groß." });
-    }
-
     let body;
-    try {
-      body = JSON.parse(rawBody || "{}");
-    } catch {
-      return sendJson(response, 400, { error: "Ungültige Anfrage." });
-    }
-
+    try { body = await readJsonBody(request, 2048); }
+    catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
     const username = normalizeUsername(body.username);
     if (!username) return sendJson(response, 400, { error: "Bitte einen gültigen TikTok-@Namen eingeben." });
-
     try {
       const session = await startSession(username);
       return sendJson(response, 200, {
-        ok: true,
-        username: session.username,
-        websocketPath: `/ws/${session.token}`,
-        message: "TikTok LIVE verbunden."
-      }, {
-        "access-control-allow-origin": request.headers.origin,
-        "vary": "Origin"
-      });
+        ok: true, username: session.username, websocketPath: `/ws/${session.token}`, message: "TikTok LIVE verbunden."
+      }, { "access-control-allow-origin": request.headers.origin, "vary": "Origin" });
     } catch (error) {
       return sendJson(response, 502, {
         error: "TikTok-LIVE konnte nicht erreicht werden. Ist der Account gerade live?",
         detail: String(error?.message || "Unbekannter Verbindungsfehler")
-      }, {
-        "access-control-allow-origin": request.headers.origin,
-        "vary": "Origin"
-      });
+      }, { "access-control-allow-origin": request.headers.origin, "vary": "Origin" });
     }
   }
 
@@ -234,19 +308,16 @@ const server = http.createServer(async (request, response) => {
 });
 
 const websocketServer = new WebSocketServer({ noServer: true });
-
 server.on("upgrade", (request, socket, head) => {
   const origin = request.headers.origin;
   const pathname = new URL(request.url || "/", "http://localhost").pathname;
   const token = pathname.startsWith("/ws/") ? pathname.slice(4) : "";
   const session = sessions.get(token);
-
   if (!origin || !allowedOrigins.has(origin) || !session || session.stopped) {
-    socket.write("HTTP/1.1 403 Forbidden\r\n\r\n");
+    socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n");
     socket.destroy();
     return;
   }
-
   websocketServer.handleUpgrade(request, socket, head, (websocket) => {
     websocketServer.emit("connection", websocket, request, session);
   });
@@ -255,12 +326,7 @@ server.on("upgrade", (request, socket, head) => {
 websocketServer.on("connection", (websocket, _request, session) => {
   clearTimeout(session.idleTimer);
   session.clients.add(websocket);
-  websocket.send(JSON.stringify({
-    type: "connected",
-    streamer: session.username,
-    receivedAt: new Date().toISOString()
-  }));
-
+  websocket.send(JSON.stringify({ type: "connected", streamer: session.username, receivedAt: new Date().toISOString() }));
   websocket.on("close", () => {
     session.clients.delete(websocket);
     if (session.clients.size === 0) {
