@@ -20,38 +20,33 @@ Ein passwortgeschütztes Admin-Menü für fünf spätere Live-Funktionen: Bildsc
 - Die vorhandene normale Pause-Funktion ist nicht der Troll-Not-Aus.
 
 ## Arbeitsprotokoll
-### 2026-11-17 – Bestandsaufnahme
-- Repository-Struktur auf `main` lesend geprüft.
+### 2026-11-17 – Bestandsaufnahme und isolierte Vorschau
+- Repository-Struktur auf `main` lesend geprüft; keine Änderungen an `main` oder Render.
 - Hauptdatei `index.html`, Ordner `scripts`, `tests`, `assets` und `tiktok-connector` identifiziert.
-- Keine Änderung an `main` oder Render.
-
-### 2026-11-17 – Isolierte Vorschau
-- Feature-Branch `feature/troll-admin-safe-preview` von `main` erstellt.
-- Datei `troll-admin-preview.html` angelegt.
-- Enthält Simulationen für alle fünf gewünschten Funktionen sowie Not-Aus mit Sperre und bewusster Wiederfreigabe.
+- Feature-Branch `feature/troll-admin-safe-preview` erstellt.
+- `troll-admin-preview.html` enthält Simulationen der fünf Funktionen sowie Not-Aus mit Sperre und bewusster Wiederfreigabe.
 - Vorschau hat keine TikTok-Verbindung, keine Server-Aufrufe und keine Verbindung zum echten Spiel.
-- Keine echte Passwort-Authentifizierung; diese muss serverseitig implementiert werden, bevor irgendeine Live-Steuerung zulässig ist.
-- Vorschau nach dem Commit erneut abgerufen und geprüft.
+- Vorschau enthält keine echte Passwort-Authentifizierung.
 
-### 2026-11-17 – Browser-Testautomatisierung
-- Playwright-Browser-Tests unter `tests/troll-admin-preview.spec.cjs` ergänzt.
-- Tests prüfen fünf Steuerungen, lokale Effekte, Not-Aus, Sperre und bewusste Wiederfreigabe.
-- Zusätzliche Prüfung stellt sicher, dass die Vorschau keine externen Netzwerkaufrufe macht.
-- GitHub-Actions-Workflow `.github/workflows/troll-admin-preview-tests.yml` erstellt.
-- Zweiter Lauf auf Commit `4b42ac0d0f11368a8e8274b5bb97b43e5c6999b2` erfolgreich abgeschlossen; alle Workflow-Schritte einschließlich Browser-Tests meldeten `success`.
-- Ergebnis: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998075007
+### 2026-11-17 – Vorschau-Browser-Tests
+- Playwright-Tests unter `tests/troll-admin-preview.spec.cjs` ergänzen Prüfungen der fünf lokalen Effekte, Not-Aus, Sperre/Wiederfreigabe und ausbleibender externer Netzwerkaufrufe.
+- GitHub-Actions-Lauf auf Commit `4b42ac0d0f11368a8e8274b5bb97b43e5c6999b2` erfolgreich: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998075007
 
-### 2026-11-17 – Sicherheitsentwurf
-- `TROLL_ADMIN_SICHERHEITSKONZEPT.md` erstellt.
-- Bevorzugt wird, die spätere Admin-Oberfläche direkt vom Connector unter derselben Herkunft auszuliefern. Das vermeidet fragile Cross-Site-Cookie-Abhängigkeiten zwischen GitHub Pages und Render.
-- Entwurf beschreibt serverseitigen Login, scrypt-Hash aus Render-Environment-Konfiguration, sichere Session-Cookies, Origin-Prüfung, Rate-Limits und serverseitigen Not-Aus.
-- Noch keine Anmeldung, Session oder Live-Steuerung implementiert.
+### 2026-11-17 – Sicherheitsentwurf und Auth-Modul
+- `TROLL_ADMIN_SICHERHEITSKONZEPT.md` dokumentiert Architektur, sichere Session-Cookies, Origin-Prüfung, Rate-Limits und serverseitigen Not-Aus.
+- `tiktok-connector/troll-admin-auth.js` ergänzt: Passwort-Hashprüfung mit Node `scrypt`, Salt/Hash aus Environment-Konfiguration, konstante Hash-Vergleichszeit, zufällige opake Sitzungstokens, Ablauf und Logout.
+- Das Auth-Modul verweigert die Initialisierung, wenn Hash oder Salt fehlen/ungültig sind.
+- `tests/troll-admin-auth.spec.js` ergänzt: Konfigurationsfehler, korrekter/falscher Login, unbekannte/abgemeldete Tokens und Ablauf werden getestet.
+- Workflow erweitert, damit Auth-Unit-Tests und Vorschau-Browser-Tests gemeinsam laufen.
+- CI-Lauf für Commit `8ebc15756449fb7059d579016292d984b5fdf93b`: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998519124
+- Zuletzt beobachtet: Playwright- und Chromium-Installation laufen; Testschritt noch ausstehend.
 
 ## Status
-Die isolierte Vorschau und ihre automatisierten Browser-Tests sind vorhanden; der CI-Lauf ist erfolgreich. Der Sicherheitsentwurf ist dokumentiert. Das ist kein Nachweis für Live-Integration oder Authentifizierung: Beides ist noch nicht implementiert. Render und `main` wurden nicht verändert.
+Die isolierte Vorschau ist getestet. Das Authentifizierungsmodul ist als separater Baustein angelegt, aber noch nicht in `server.js` eingebunden und noch nicht für HTTP-Login/Session-Endpunkte verwendet. Die neuen Auth-Tests sind noch nicht als bestanden bestätigt. Not-Aus und Live-Steuerung sind serverseitig noch nicht implementiert. Render und `main` wurden nicht verändert.
 
 ## Nächste Schritte
-1. Sicherheitsentwurf in konkrete serverseitige Authentifizierungs- und Not-Aus-Tests übersetzen.
-2. Authentifizierung und Admin-Endpunkte zunächst ohne Live-Spiel-Aktionen im Feature-Branch implementieren.
-3. Regressionstests für bestehende Health-, TikTok-Connect- und WebSocket-Funktionen durchführen.
-4. Erst nach Tests und ausdrücklicher Freigabe über Integration und Deployment entscheiden.
+1. Aktuellen CI-Lauf abschließen und mögliche Fehler beheben.
+2. Auth-Modul mit HTTP-Login, Logout, Cookie- und Origin-Schutz in einem isolierten Server-Entwurf verbinden.
+3. Server-seitigen Not-Aus und Test-Endpunkte ohne echte Spielaktionen ergänzen.
+4. Regressionstests für bestehende Health-, TikTok-Connect- und WebSocket-Funktionen durchführen.
+5. Erst nach Tests und ausdrücklicher Freigabe über Integration und Deployment entscheiden.
