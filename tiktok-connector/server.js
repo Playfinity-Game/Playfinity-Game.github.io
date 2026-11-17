@@ -1,7 +1,9 @@
 import http from "node:http";
+import { readFile } from "node:fs/promises";
 import { randomBytes } from "node:crypto";
 import { TikTokLiveConnection, WebcastEvent } from "tiktok-live-connector";
 import { WebSocketServer, WebSocket } from "ws";
+import { createAdminAuth } from "./troll-admin-auth.js";
 
 const PORT = Number(process.env.PORT || 3000);
 const allowedOrigins = new Set(
@@ -14,6 +16,43 @@ const allowedOrigins = new Set(
 const sessions = new Map();
 const sessionsByUsername = new Map();
 const requestBuckets = new Map();
+
+const ADMIN_COOKIE = "__Host-playfinity-admin";
+let adminAuth = null;
+try { adminAuth = createAdminAuth(); }
+catch (error) { console.warn(String(error?.message || "Admin auth is not configured.")); }
+
+function adminOriginAllowed(request) {
+  const origin = request.headers.origin;
+  if (!origin) return false;
+  try {
+    const parsed = new URL(origin);
+    const host = request.headers.host;
+    const forwardedProto = String(request.headers["x-forwarded-proto"] || "").split(",")[0].trim();
+    const protocol = forwardedProto || (request.socket.encrypted ? "https" : "http");
+    return Boolean(host && parsed.host === host && parsed.protocol === protocol + ":");
+  } catch { return false; }
+}
+function readAdminCookie(request) {
+  for (const part of (request.headers.cookie || "").split(";")) {
+    const separator = part.indexOf("=");
+    if (separator >= 0 && part.slice(0, separator).trim() === ADMIN_COOKIE) return part.slice(separator + 1).trim();
+  }
+  return "";
+}
+async function readAdminBody(request) {
+  let raw = "";
+  for await (const chunk of request) {
+    raw += chunk;
+    if (Buffer.byteLength(raw, "utf8") > 2048) return null;
+  }
+  try { const body = JSON.parse(raw || "{}"); return body && typeof body === "object" && !Array.isArray(body) ? body : null; }
+  catch { return null; }
+}
+function adminAuthenticated(request) {
+  const token = readAdminCookie(request);
+  return Boolean(adminAuth && adminAuth.authenticate(token));
+}
 
 function sendJson(response, status, body, extraHeaders = {}) {
   response.writeHead(status, {
@@ -265,6 +304,53 @@ const server = http.createServer(async (request, response) => {
   const url = new URL(request.url || "/", "http://localhost");
 
   if (url.pathname === "/api/metrics") return handleUsageMetrics(request, response);
+
+  if (request.method === "GET" && (url.pathname === "/admin" || url.pathname === "/admin/")) {
+    try {
+      const html = await readFile(new URL("./admin.html", import.meta.url));
+      response.writeHead(200, { "content-type": "text/html; charset=utf-8", "cache-control": "no-store", "x-content-type-options": "nosniff", "referrer-policy": "no-referrer" });
+      return response.end(html);
+    } catch { return sendJson(response, 500, { error: "Admin-Oberfläche konnte nicht geladen werden." }); }
+  }
+
+  if (url.pathname.startsWith("/admin/")) {
+    if (!adminAuth) return sendJson(response, 503, { error: "Admin ist noch nicht konfiguriert. Bitte Passwort-Hash und Salt in Render setzen." });
+    if (request.method === "POST" && !adminOriginAllowed(request)) return sendJson(response, 403, { error: "Origin nicht erlaubt." });
+    if (request.method === "POST" && !allowRequest(request)) return sendJson(response, 429, { error: "Zu viele Admin-Anfragen." });
+    if (request.method === "POST" && url.pathname === "/admin/login") {
+      const body = await readAdminBody(request);
+      if (!body) return sendJson(response, 400, { error: "Ungültige Anfrage." });
+      const token = adminAuth.login(body.password);
+      if (!token) return sendJson(response, 401, { error: "Anmeldung fehlgeschlagen." });
+      return sendJson(response, 200, { ok: true }, { "set-cookie": `${ADMIN_COOKIE}=${token}; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=1800` });
+    }
+    if (request.method === "POST" && url.pathname === "/admin/logout") {
+      const token = readAdminCookie(request); if (token) adminAuth.logout(token);
+      return sendJson(response, 200, { ok: true }, { "set-cookie": `${ADMIN_COOKIE}=; Path=/; HttpOnly; Secure; SameSite=Strict; Max-Age=0` });
+    }
+    if (!adminAuthenticated(request)) return sendJson(response, 401, { error: "Anmeldung erforderlich." });
+    if (request.method === "GET" && url.pathname === "/admin/status") return sendJson(response, 200, { authenticated: true });
+    if (request.method === "GET" && url.pathname === "/admin/live-connections") {
+      const connections = [...sessions.values()].filter(session => !session.stopped).map(session => ({
+        username: session.username, viewerCount: session.viewerCount ?? null,
+        connectedPlayers: session.clients.size, lastEventAt: session.lastEventAt ?? null
+      }));
+      return sendJson(response, 200, { connections });
+    }
+    if (request.method === "GET" && url.pathname === "/admin/metrics") {
+      const now = Date.now();
+      for (const [id, session] of usageStats.sessions) if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+      const activeSessions = [...usageStats.sessions.values()].filter(session => session.active).length;
+      return sendJson(response, 200, {
+        day: usageStats.day, pageViews: usageStats.pageViews, uniqueVisitors: usageStats.visitors.size,
+        totalPlayMinutes: Math.round(usageStats.totalPlayMs / 60000 * 10) / 10,
+        averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(usageStats.totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
+        activeSessions, longestSessionMinutes: Math.round(usageStats.longestSessionMs / 60000 * 10) / 10,
+        storage: "memory_only"
+      });
+    }
+    return sendJson(response, 404, { error: "Admin-Endpunkt nicht gefunden." });
+  }
 
   if (request.method === "GET" && url.pathname === "/health") {
     return sendJson(response, 200, {
