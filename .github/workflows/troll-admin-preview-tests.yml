@@ -1,0 +1,34 @@
+name: Troll Admin Preview Tests
+
+on:
+  push:
+    branches:
+      - feature/troll-admin-safe-preview
+    paths:
+      - 'troll-admin-preview.html'
+      - 'tests/troll-admin-preview.spec.cjs'
+      - '.github/workflows/troll-admin-preview-tests.yml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'troll-admin-preview.html'
+      - 'tests/troll-admin-preview.spec.cjs'
+      - '.github/workflows/troll-admin-preview-tests.yml'
+
+jobs:
+  browser-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install Playwright
+        run: npm install --no-save playwright
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Run preview browser tests
+        run: node --test tests/troll-admin-preview.spec.cjs
