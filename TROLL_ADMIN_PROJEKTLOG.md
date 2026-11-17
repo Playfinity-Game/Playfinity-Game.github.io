@@ -39,15 +39,16 @@ Ein passwortgeschütztes Admin-Menü für fünf spätere Live-Funktionen: Bildsc
 - Tests prüfen Vorhandensein der fünf Steuerungen, lokale Ausführung der Effekte, Not-Aus, Sperre und bewusste Wiederfreigabe.
 - Zusätzliche Prüfung stellt sicher, dass die Vorschau keine externen Netzwerkaufrufe macht.
 - GitHub-Actions-Workflow `.github/workflows/troll-admin-preview-tests.yml` erstellt; installiert Playwright/Chromium und führt die Tests aus.
-- Testdatei nach dem Erstellen noch einmal verbessert; der erste Workflow-Lauf startete auf dem unmittelbar vorherigen Commit. Ein erneuter Lauf nach der Testkorrektur ist daher noch erforderlich.
-- Aktueller Workflow-Lauf: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998042263
-- Zuletzt beobachteter Status: Chromium-Installation läuft; Tests noch nicht gestartet.
+- Erster Lauf war noch in Arbeit; nach der Testdatei-Korrektur wurde ein neuer Lauf gestartet.
+- Zweiter Lauf auf Commit `4b42ac0d0f11368a8e8274b5bb97b43e5c6999b2` erfolgreich abgeschlossen.
+- Alle Workflow-Schritte einschließlich „Run preview browser tests“ meldeten `success`.
+- Ergebnis: https://github.com/Playfinity-Game/Playfinity-Game.github.io/actions/runs/43998075007
 
 ## Status
-Vorschau und automatisierte Browser-Tests sind im Feature-Branch angelegt. Der CI-Lauf ist noch nicht abgeschlossen; daher sind die Tests noch nicht als bestanden bestätigt. Noch keine Live-Funktionen und keine Authentifizierung. Render und `main` wurden nicht verändert.
+Die isolierte Vorschau und die automatisierten Browser-Tests sind im Feature-Branch vorhanden; der aktuelle CI-Lauf ist erfolgreich. Die Tests bestätigen die beschriebenen Vorschau-Abläufe und dass keine externen Netzwerkaufrufe ausgelöst werden. Das ist kein Nachweis für Live-Integration oder Authentifizierung: Beides ist noch nicht implementiert. Render und `main` wurden nicht verändert.
 
 ## Nächste Schritte
-1. CI-Lauf abschließen und nach der Testkorrektur erneut ausführen.
-2. Eventuelle Testfehler beheben und Ergebnisse dokumentieren.
-3. Authentifizierungs- und serverseitiges Not-Aus-Konzept für den Connector entwerfen.
+1. Vorschau und Testdatei auf Vollständigkeit prüfen.
+2. Authentifizierungs- und serverseitiges Not-Aus-Konzept für den Connector entwerfen.
+3. Server-seitige Tests für Authentifizierung, Berechtigungen und Not-Aus planen, bevor Live-Funktionen angebunden werden.
 4. Erst nach Tests und ausdrücklicher Freigabe über Integration und Deployment entscheiden.
