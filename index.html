@@ -936,6 +936,7 @@
     .correct-answer-kicker{font-size:.85rem;font-weight:900;letter-spacing:.16em;color:var(--neon-green);text-transform:uppercase}
     .correct-answer-message{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:950;color:#fff;line-height:1.15}
     .correct-answer-word{font-size:clamp(2rem,9vw,3.5rem);font-weight:1000;color:var(--neon-cyan);letter-spacing:.05em;text-shadow:0 0 24px rgba(0,240,255,.4);overflow-wrap:anywhere}
+    .correct-answer-winner{font-size:1.05rem;font-weight:850;color:var(--neon-green);line-height:1.35;overflow-wrap:anywhere}
     .correct-answer-timer{color:var(--text-muted);font-size:.9rem}
     .correct-answer-continue{width:100%;padding:14px 18px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#001018;font-weight:950;font-size:1rem;cursor:pointer}
     @keyframes correctAnswerPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
@@ -1286,6 +1287,7 @@
       <div class="correct-answer-kicker">🎉 RICHTIG!</div>
       <div class="correct-answer-message" id="correct-answer-message">Du hast das Wort erraten!</div>
       <div class="correct-answer-word" id="correct-answer-word"></div>
+      <div class="correct-answer-winner" id="correct-answer-winner" hidden></div>
       <div class="correct-answer-timer" id="correct-answer-timer">Die nächste Runde startet gleich …</div>
       <button type="button" class="correct-answer-continue" id="correct-answer-continue" hidden>Fortfahren ›</button>
     </div>
@@ -2479,7 +2481,7 @@
           const autoAdvance=document.getElementById('kontexto-auto-next').checked;
           resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('kontexto',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
           resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
-          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance);
+          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance, '🎯 GEHEIMWORT GEFUNDEN!', player?.name || 'Lokaler Spieler');
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
           return true;
         }
@@ -2847,20 +2849,24 @@
     function hideCorrectAnswerOverlay() {
       const overlay = document.getElementById('correct-answer-overlay');
       if (overlay) overlay.classList.remove('active');
+      const winner = document.getElementById('correct-answer-winner');
+      if (winner) { winner.textContent = ''; winner.hidden = true; }
       const button = document.getElementById('correct-answer-continue');
       if (button) { button.hidden = true; button.onclick = null; }
     }
 
-    function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!') {
+    function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!', winnerName = '') {
       const overlay = document.getElementById('correct-answer-overlay');
       const title = document.getElementById('correct-answer-message');
       const word = document.getElementById('correct-answer-word');
+      const winner = document.getElementById('correct-answer-winner');
       const timer = document.getElementById('correct-answer-timer');
       const button = document.getElementById('correct-answer-continue');
       if (!overlay || !title || !word || !timer || !button) return;
       PauseController.clear('correct-answer', 'display');
       title.textContent = message;
       word.textContent = 'Das Wort war: ' + answer;
+      if (winner) { winner.textContent = winnerName ? '🏆 Erraten von: ' + winnerName : ''; winner.hidden = !winnerName; }
       timer.textContent = '';
       button.hidden = true;
       button.onclick = null;
