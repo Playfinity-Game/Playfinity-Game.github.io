@@ -174,7 +174,9 @@ async function startSession(username) {
     connection,
     clients: new Set(),
     stopped: false,
-    idleTimer: null
+    idleTimer: null,
+    viewerCount: null,
+    lastEventAt: new Date().toISOString()
   };
 
   const eventNames = [
@@ -188,7 +190,13 @@ async function startSession(username) {
   ];
 
   for (const [name, eventName] of eventNames) {
-    connection.on(eventName, (data) => broadcast(session, eventPayload(name, data)));
+    connection.on(eventName, (data) => {
+      if (name === "roomUser" && Number.isFinite(Number(data?.viewerCount))) {
+        session.viewerCount = Number(data.viewerCount);
+      }
+      session.lastEventAt = new Date().toISOString();
+      broadcast(session, eventPayload(name, data));
+    });
   }
 
   connection.on("error", (error) => {
