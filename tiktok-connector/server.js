@@ -18,6 +18,7 @@ const sessions = new Map();
 const activePlayers = new Map();
 const PLAYER_GAMES = new Set(["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"]);
 const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert"]);
+const STREAMER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert"]);
 function playerSnapshot() {
   const now = Date.now();
   for (const [id, player] of activePlayers) {
@@ -397,6 +398,30 @@ const server = http.createServer(async (request, response) => {
         connectedPlayers: session.clients.size, lastEventAt: session.lastEventAt ?? null
       }));
       return sendJson(response, 200, { connections });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/streamer-action") {
+      const body = await readAdminBody(request);
+      if (!body) return sendJson(response, 400, { error: "Ungültige Anfrage." });
+      const username = typeof body.username === "string" ? body.username.trim().replace(/^@/, "") : "";
+      const action = typeof body.action === "string" ? body.action : "";
+      if (!/^[A-Za-z0-9._]{2,24}$/.test(username) || !STREAMER_TROLL_ACTIONS.has(action)) {
+        return sendJson(response, 400, { error: "Ungültiger Streamer oder Troll-Effekt." });
+      }
+      const targets = [...sessions.values()].filter(session =>
+        !session.stopped && session.username.toLowerCase() === username.toLowerCase()
+      );
+      let delivered = 0;
+      const message = JSON.stringify({ type: "admin_action", action, issuedAt: new Date().toISOString() });
+      for (const session of targets) {
+        for (const client of session.clients) {
+          if (client.readyState === WebSocket.OPEN) { client.send(message); delivered += 1; }
+        }
+      }
+      return sendJson(response, delivered ? 200 : 409, {
+        ok: delivered > 0, username, action, delivered,
+        error: delivered ? undefined : "Für diesen Streamer ist gerade kein Playfinity-Fenster verbunden."
+      });
     }
     if (request.method === "GET" && url.pathname === "/admin/metrics") {
       const now = Date.now();

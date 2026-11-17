@@ -1631,6 +1631,8 @@
                 };
                 TikFinity.lastUserName = user.name;
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
+              } else if (message.type === 'admin_action') {
+                PlayfinityPlayerPresence.showEffect(message.action);
               } else if (message.type === 'connector_error') {
                 this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
               }
