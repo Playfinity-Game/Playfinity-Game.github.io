@@ -2784,11 +2784,66 @@
       modal.classList.add('active');
     }
 
+
+    // Anonyme PLAYFINITY-Nutzungsstatistik: zählt sichtbare Spielzeit, keine Eingaben/Inhalte.
+    const PlayfinityUsageMetrics = {
+      endpoint: 'https://playfinity-game-github-io.onrender.com/api/metrics',
+      visitorKey: 'playfinity_anon_visitor_v1',
+      sessionId: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)),
+      visitorId: null,
+      startedAt: Date.now(),
+      lastSentAt: Date.now(),
+      timer: null,
+      init() {
+        try {
+          this.visitorId = localStorage.getItem(this.visitorKey);
+          if (!this.visitorId) {
+            this.visitorId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+            localStorage.setItem(this.visitorKey, this.visitorId);
+          }
+        } catch (_) {
+          this.visitorId = this.sessionId;
+        }
+        this.send('start');
+        this.timer = setInterval(() => this.send('heartbeat'), 30000);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            this.lastSentAt = Date.now();
+            this.send('heartbeat');
+          } else {
+            this.send('pause');
+          }
+        });
+        window.addEventListener('pagehide', () => this.send('end'));
+      },
+      send(event) {
+        const now = Date.now();
+        const visible = document.visibilityState === 'visible';
+        const elapsed = Math.max(0, Math.min(45000, now - this.lastSentAt));
+        this.lastSentAt = now;
+        const body = JSON.stringify({
+          event,
+          visitorId: this.visitorId,
+          sessionId: this.sessionId,
+          visible,
+          elapsedMs: visible && event !== 'start' ? elapsed : 0
+        });
+        try {
+          if (event === 'end' && navigator.sendBeacon) {
+            navigator.sendBeacon(this.endpoint, new Blob([body], { type: 'application/json' }));
+          } else {
+            fetch(this.endpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body, keepalive: event === 'pause' });
+          }
+        } catch (_) {}
+      }
+    };
+
     // Beim Laden der Plattform initialisieren
     window.addEventListener('DOMContentLoaded', () => {
       PlayfinityRouter.init();
       TikFinity.init();
       TikTokConnector.init();
+      PlayfinityUsageMetrics.init();
     });
   </script>
 </body>

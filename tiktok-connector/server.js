@@ -165,8 +165,106 @@ async function startSession(username) {
   return session;
 }
 
+
+const usageStats = {
+  day: new Date().toISOString().slice(0, 10),
+  pageViews: 0,
+  visitors: new Set(),
+  totalPlayMs: 0,
+  longestSessionMs: 0,
+  sessions: new Map()
+};
+
+function resetUsageDayIfNeeded() {
+  const today = new Date().toISOString().slice(0, 10);
+  if (usageStats.day !== today) {
+    usageStats.day = today;
+    usageStats.pageViews = 0;
+    usageStats.visitors.clear();
+  }
+}
+
+function handleUsageMetrics(request, response) {
+  if (request.method === "GET") {
+    const now = Date.now();
+    for (const [id, session] of usageStats.sessions) {
+      if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+    }
+    const activeSessions = [...usageStats.sessions.values()].filter(session => session.active).length;
+    return sendJson(response, 200, {
+      day: usageStats.day,
+      pageViews: usageStats.pageViews,
+      uniqueVisitors: usageStats.visitors.size,
+      totalPlayMinutes: Math.round(usageStats.totalPlayMs / 60000 * 10) / 10,
+      averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(usageStats.totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
+      activeSessions,
+      longestSessionMinutes: Math.round(usageStats.longestSessionMs / 60000 * 10) / 10,
+      storage: "memory_only"
+    }, { "access-control-allow-origin": "*", "cache-control": "no-store" });
+  }
+  if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
+  if (request.method === "OPTIONS") {
+    response.writeHead(204, {
+      "access-control-allow-origin": request.headers.origin,
+      "access-control-allow-methods": "POST, OPTIONS",
+      "access-control-allow-headers": "content-type",
+      "access-control-max-age": "600",
+      "vary": "Origin"
+    });
+    return response.end();
+  }
+  if (request.method !== "POST") return sendJson(response, 405, { error: "Method not allowed" });
+  let rawBody = "";
+  request.on("data", chunk => {
+    rawBody += chunk;
+    if (rawBody.length > 2048) request.destroy();
+  });
+  request.on("end", () => {
+    let body;
+    try { body = JSON.parse(rawBody || "{}"); } catch { return sendJson(response, 400, { error: "Invalid JSON" }); }
+    const { event, visitorId, sessionId, elapsedMs } = body;
+    if (!["start", "heartbeat", "pause", "end"].includes(event) ||
+        typeof visitorId !== "string" || visitorId.length > 100 ||
+        typeof sessionId !== "string" || sessionId.length > 100) {
+      return sendJson(response, 400, { error: "Invalid metrics event" });
+    }
+    resetUsageDayIfNeeded();
+    const now = Date.now();
+    const elapsed = Number.isFinite(elapsedMs) ? Math.max(0, Math.min(45000, elapsedMs)) : 0;
+    if (event === "start") {
+      usageStats.pageViews += 1;
+      usageStats.visitors.add(visitorId);
+      usageStats.sessions.set(sessionId, { visitorId, startedAt: now, lastSeenAt: now, active: true, playMs: 0 });
+    } else {
+      const session = usageStats.sessions.get(sessionId);
+      if (session) {
+        if (event === "heartbeat" && body.visible === true) {
+          session.playMs += elapsed;
+          usageStats.totalPlayMs += elapsed;
+          session.active = true;
+        } else if (event === "pause" || event === "end") {
+          session.playMs += elapsed;
+          usageStats.totalPlayMs += elapsed;
+          session.active = false;
+          if (event === "end") usageStats.longestSessionMs = Math.max(usageStats.longestSessionMs, session.playMs);
+        }
+        session.lastSeenAt = now;
+      }
+    }
+    for (const [id, session] of usageStats.sessions) {
+      if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+    }
+    return sendJson(response, 200, { ok: true }, {
+      "access-control-allow-origin": request.headers.origin,
+      "vary": "Origin"
+    });
+  });
+}
+
 const server = http.createServer(async (request, response) => {
   const url = new URL(request.url || "/", "http://localhost");
+
+  if (url.pathname === "/api/metrics") return handleUsageMetrics(request, response);
 
   if (request.method === "GET" && url.pathname === "/health") {
     return sendJson(response, 200, {
