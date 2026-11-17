@@ -289,9 +289,41 @@ const server = http.createServer(async (request, response) => {
         });
         if (!upstream.ok) return sendJson(response, 502, { error: "Produktions-Live-Daten sind gerade nicht erreichbar." });
         const snapshot = await upstream.json();
-        return sendJson(response, 200, { connections: Array.isArray(snapshot.connections) ? snapshot.connections : [] });
+        return sendJson(response, 200, {
+          connections: Array.isArray(snapshot.connections) ? snapshot.connections : [],
+          players: Array.isArray(snapshot.players) ? snapshot.players : []
+        });
       } catch {
         return sendJson(response, 502, { error: "Verbindung zum Produktionsserver fehlgeschlagen." });
+      }
+    }
+
+
+    if (request.method === "POST" && url.pathname === "/admin/troll-player") {
+      if (adminState.isStopped()) return sendJson(response, 423, { error: "Not-Aus ist aktiv. Bitte erst im Kontrollzentrum freigeben." });
+      let body;
+      try { body = await readJsonBody(request, 1024); }
+      catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
+      const playerId = typeof body.playerId === "string" ? body.playerId : "";
+      const action = typeof body.action === "string" ? body.action : "";
+      if (!/^[a-f0-9]{16}$/.test(playerId) || !["shake","confetti","glitch","fog","invert"].includes(action)) {
+        return sendJson(response, 400, { error: "Ungültiger Spieler oder Troll-Effekt." });
+      }
+      const bridgeToken = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+      if (!bridgeToken) return sendJson(response, 503, { error: "Produktionsdaten sind noch nicht verbunden." });
+      try {
+        const upstream = await fetch("https://playfinity-game-github-io.onrender.com/internal/admin-troll", {
+          method: "POST",
+          headers: { authorization: `Bearer ${bridgeToken}`, "content-type": "application/json" },
+          body: JSON.stringify({ playerId, action }),
+          signal: AbortSignal.timeout(8000),
+          cache: "no-store"
+        });
+        const result = await upstream.json().catch(() => ({}));
+        if (!upstream.ok) return sendJson(response, upstream.status, { error: result.error || "Troll-Effekt konnte nicht zugestellt werden." });
+        return sendJson(response, 200, result);
+      } catch {
+        return sendJson(response, 502, { error: "Verbindung zum Spielserver fehlgeschlagen." });
       }
     }
 
