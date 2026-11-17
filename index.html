@@ -1093,11 +1093,11 @@
           </div>
         </div>
 
-        <!-- Hangmann Card -->
+        <!-- Hangman Card -->
         <div class="game-card card-gold" onclick="PlayfinityRouter.go('hangmann')">
           <div>
             <div class="card-badge" style="color:var(--neon-gold)">Buchstaben-Rätsel</div>
-            <div class="card-title"><span style="color:var(--neon-cyan)">Hang</span><span style="color:var(--neon-pink)">mann</span></div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">Hang</span><span style="color:var(--neon-pink)">man</span></div>
             <div class="card-desc">Errate das gesuchte Nomen Buchstabe für Buchstabe – mit Kategorie-Tipp und Galgenfigur.</div>
           </div>
           <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
@@ -1203,7 +1203,7 @@
     <!-- SCREEN: HANGMANN -->
     <section class="screen" id="screen-hangmann">
       <div class="hangmann-wrap">
-        <h1 class="hangmann-title"><span class="hang">Hang</span><span class="mann">mann</span></h1>
+        <h1 class="hangmann-title"><span class="hang">Hang</span><span class="mann">man</span></h1>
         <div class="hangmann-top">
           <span class="hangmann-pill" id="hangmann-errors">Versuche: 10</span>
         </div>
@@ -1415,7 +1415,7 @@
             if(!response.ok)throw new Error('Wortliste nicht erreichbar');
             const payload=await response.json();this.words=(payload.words||[]).filter(item=>item&&item.word&&item.category);this.wordQueue=[];
             if(!this.words.length){
-              status.textContent='Unsere eigene Hangmann-Wortliste wird gerade gemeinsam aufgebaut.';
+              status.textContent='Unsere eigene Hangman-Wortliste wird gerade gemeinsam aufgebaut.';
               document.getElementById('hangmann-category').textContent='Kategorie-Tipp: folgt bald';
               document.getElementById('hangmann-hint').disabled=true;
               document.getElementById('hangmann-new').disabled=true;
