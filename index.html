@@ -392,6 +392,55 @@
       text-align: center;
     }
 
+    .wordle-guess-player-label {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 100%;
+      margin-top: 1px;
+      color: var(--text-muted);
+      font-size: .68rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .wordle-streamer-entry {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 320px;
+      margin: 2px auto 0;
+    }
+    .wordle-streamer-entry input {
+      width: 100%;
+      min-width: 0;
+      max-width: 210px;
+      height: 38px;
+      padding: 0 12px;
+      border: 1px solid rgba(0, 229, 255, .45);
+      border-radius: 8px;
+      background: rgba(12, 14, 32, .8);
+      color: var(--text-main);
+      font: inherit;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .wordle-streamer-entry button {
+      height: 38px;
+      padding: 0 13px;
+      border: 1px solid rgba(0, 229, 255, .45);
+      border-radius: 8px;
+      background: rgba(0, 229, 255, .12);
+      color: var(--neon-cyan);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .wordle-streamer-entry button:disabled { opacity: .45; cursor: not-allowed; }
+
     .wordle-cell {
       aspect-ratio: 1;
       border: 2px solid rgba(255, 255, 255, 0.15);
@@ -1076,6 +1125,10 @@
         </div>
         <div class="wordle-grid" id="wordle-board"></div>
         <div class="keyboard" id="wordle-keyboard"></div>
+        <form class="wordle-streamer-entry" id="wordle-streamer-entry" autocomplete="off">
+          <input id="wordle-streamer-input" type="text" maxlength="5" minlength="5" pattern="[A-Za-zÄÖÜäöüß]{5}" placeholder="Dein Wort (5)" aria-label="Eigenes FIVE-X-Wort" autocomplete="off" spellcheck="false">
+          <button id="wordle-streamer-submit" type="submit">Raten</button>
+        </form>
         <div class="round-result" id="wordle-round-result"></div>
       </div>
     </section>
@@ -1738,6 +1791,15 @@
         if (this.initialized) return;
         this.buildKeyboard();
         window.addEventListener('keydown', (e) => this.handlePhysicalKey(e));
+        const streamerForm = document.getElementById('wordle-streamer-entry');
+        const streamerInput = document.getElementById('wordle-streamer-input');
+        streamerForm?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.submitStreamerGuess();
+        });
+        streamerInput?.addEventListener('input', () => {
+          streamerInput.value = streamerInput.value.replace(/[^A-Za-zÄÖÜäöüß]/g, '').toLocaleUpperCase('de-DE').slice(0, 5);
+        });
         window.addEventListener('resize', () => this.renderBoard());
         this.initialized = true;
       },
@@ -1793,6 +1855,13 @@
             rowDiv.appendChild(cell);
           }
 
+          if (guess?.player?.name) {
+            const playerLabel = document.createElement('div');
+            playerLabel.className = 'wordle-guess-player-label';
+            playerLabel.textContent = 'Eingegeben von: ' + guess.player.name;
+            rowDiv.appendChild(playerLabel);
+          }
+
           if (guess && guess.word === this.targetWord) {
             const winnerLabel = document.createElement('div');
             winnerLabel.className = 'wordle-winner-label';
@@ -1814,6 +1883,7 @@
 
       handlePhysicalKey(e) {
         if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
+        if (e.target instanceof HTMLElement && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
         if (e.key === 'Enter') {
           this.submitCurrentGuess();
         } else if (e.key === 'Backspace') {
@@ -1846,6 +1916,15 @@
           this.currentGuess = '';
           this.renderBoard();
         }
+      },
+
+      submitStreamerGuess() {
+        if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
+        const input = document.getElementById('wordle-streamer-input');
+        const word = (input?.value || '').trim().toLocaleUpperCase('de-DE');
+        if (!/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        this.submitGuess(word, { id: 'streamer', name: 'Streamer' });
+        if (input) input.value = '';
       },
 
       submitGuess(word, player = null) {
