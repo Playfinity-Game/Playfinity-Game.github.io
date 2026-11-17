@@ -193,14 +193,20 @@ async function startSession(username, origin) {
     fetchRoomInfoOnConnect: true
   });
 
-  const session = { token, username, origin, connection, clients: new Set(), stopped: false, idleTimer: null };
+  const session = { token, username, origin, connection, clients: new Set(), stopped: false, idleTimer: null, viewerCount: null, lastEventAt: new Date().toISOString() };
   const eventNames = [
     ["chat", WebcastEvent.CHAT], ["gift", WebcastEvent.GIFT], ["like", WebcastEvent.LIKE],
     ["follow", WebcastEvent.FOLLOW], ["share", WebcastEvent.SHARE], ["member", WebcastEvent.MEMBER],
     ["roomUser", WebcastEvent.ROOM_USER]
   ];
   for (const [name, eventName] of eventNames) {
-    connection.on(eventName, (data) => broadcast(session, eventPayload(name, data)));
+    connection.on(eventName, (data) => {
+      if (name === "roomUser" && Number.isFinite(Number(data?.viewerCount))) {
+        session.viewerCount = Number(data.viewerCount);
+      }
+      session.lastEventAt = new Date().toISOString();
+      broadcast(session, eventPayload(name, data));
+    });
   }
   connection.on("error", (error) => {
     broadcast(session, { type: "connector_error", message: String(error?.message || "TikTok-Verbindung fehlgeschlagen") });
@@ -270,6 +276,37 @@ const server = http.createServer(async (request, response) => {
 
     if (request.method === "GET" && url.pathname === "/admin/status") {
       return sendJson(response, 200, { authenticated: true, emergencyStop: adminState.isStopped() });
+    }
+
+    if (request.method === "GET" && url.pathname === "/admin/live-connections") {
+      const liveConnections = [...sessions.values()]
+        .filter((session) => !session.stopped)
+        .map((session) => ({
+          username: session.username,
+          viewerCount: session.viewerCount,
+          connectedPlayers: session.clients.size,
+          lastEventAt: session.lastEventAt
+        }));
+      return sendJson(response, 200, { connections: liveConnections });
+    }
+
+    if (request.method === "POST" && url.pathname === "/admin/nudge") {
+      let body;
+      try { body = await readJsonBody(request, 256); }
+      catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
+      const username = normalizeUsername(body.username);
+      if (!username) return sendJson(response, 400, { error: "Ungültiger Streamer-Name." });
+      const targets = [...sessions.values()].filter((session) =>
+        !session.stopped && session.username.toLowerCase() === username.toLowerCase()
+      );
+      let delivered = 0;
+      for (const session of targets) {
+        const message = JSON.stringify({ type: "admin_nudge", issuedAt: new Date().toISOString() });
+        for (const client of session.clients) {
+          if (client.readyState === WebSocket.OPEN) { client.send(message); delivered += 1; }
+        }
+      }
+      return sendJson(response, 200, { ok: true, delivered });
     }
 
     if (request.method === "POST" && url.pathname === "/admin/emergency-stop") {
