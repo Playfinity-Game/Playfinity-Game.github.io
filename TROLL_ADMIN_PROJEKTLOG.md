@@ -99,6 +99,39 @@ Wichtig: Der Connector-Healthcheck beweist nur, dass der Connector antwortet. Er
 - [ ] Automatisierte bzw. reproduzierbare Tests dokumentieren.
 - [ ] Erst nach ausdrücklicher Freigabe Integrations- und Deployment-Plan erstellen.
 
+
+### 2026-11-17 – Schritt 2: Spielstruktur untersucht
+
+Untersuchte Dateien/Verzeichnisse auf `main` (nur lesend):
+- `index.html` (139.732 Zeichen): aktuelle PLAYFINITY-Hauptseite.
+- `test/index.html` (98.224 Zeichen): ältere/abweichende Testseite.
+- `tiktok-connector/server.js` (8.739 Zeichen): TikTok-Connector.
+- Verzeichnislisten von `scripts/`, `assets/`, `tests/`, `test/` und `tiktok-connector/`.
+
+Wichtige Erkenntnisse aus `index.html`:
+- Die Hauptanwendung ist eine einzelne HTML-Datei mit umfangreichem eingebettetem CSS und JavaScript; es gibt nur ein externes Script für Cloudflare Web Analytics.
+- Die Spielansichten liegen innerhalb von `<main>` als Sections mit der Klasse `.screen`; der Router `PlayfinityRouter` schaltet die Ansichten über `.active` um.
+- Vorhandene Spiele/Module umfassen FIVE X/Wordle, WORDFINITY, SIZE IT UP, HANGMANN und PRICE IS RIGHT.
+- Ein vorhandener `PauseController` pausiert und setzt registrierte Timer fort; außerdem gibt es bereits einen Pause-Button und ein Pause-Overlay. Das ist eine vorhandene Spielpause, aber noch kein Troll-Admin-Not-Aus.
+- TikFinity und `TikTokConnector` sind bereits in die Hauptseite eingebunden. Der TikTok-Connector kann eine gespeicherte Verbindung beim Laden automatisch wiederherstellen. Deshalb darf eine isolierte Troll-Vorschau die Hauptseite nicht einfach laden oder initialisieren, wenn garantiert keine Live-Verbindung entstehen soll.
+- Das aktuelle Frontend spricht den bestehenden Connector unter `https://playfinity-game-github-io.onrender.com` an. In `server.js` existieren weiterhin nur Healthcheck, TikTok-Verbindung und WebSocket-Ereignisverteilung; keine Troll-Admin-API.
+- `test/index.html` ist strukturell eine andere/ältere Spielversion (u. a. andere Screen-/Modulnamen und kein Hangmann-Modul) und ist nicht ohne Weiteres eine sichere Basis für die Vorschau.
+
+Technische Konsequenz für Schritt 3:
+- Die Vorschau soll als eigenständige, separate HTML-Seite bzw. Testoberfläche auf einem Feature-Branch entstehen.
+- Sie soll ein simuliertes Spielfeld und lokale Effekte enthalten, keine Imports/Initialisierung der TikTok-Connectoren, keine Netzwerkaufrufe und keine Steuerung des Live-Spiels.
+- Die fünf gewünschten Effekte lassen sich dort zunächst unabhängig testen. Eine spätere Integration in die Hauptseite muss separat geplant und ausdrücklich freigegeben werden.
+
+Sicherheits- und Änderungsstatus:
+- Nur GitHub-Dateien auf `main` gelesen; keine Datei auf `main` geändert.
+- Kein Feature-Branch für die Implementierung erstellt.
+- Kein Render-Aufruf, keine Änderung an Render-Einstellungen und kein Deployment durchgeführt.
+- Keine Troll-Aktion implementiert; dies war eine reine Bestandsaufnahme.
+
+Aktualisierung der Aufgaben:
+- [x] Repository-Struktur des Spiels und relevante Frontend-Dateien untersuchen (Bestandsaufnahme abgeschlossen; gezielte Detailprüfung folgt vor Integration).
+- [ ] Sichere, isolierte Troll-Menü-Vorschau konzipieren und implementieren.
+
 ## 7. Aktueller Status
 
 **Dokumentation angelegt; Troll-Menü noch nicht implementiert.** Der Live-Connector wurde durch diese Dokumentationsarbeit nicht verändert. Der Branch `docs/troll-admin-projektlog` ist ein Dokumentationsbranch und wird nicht automatisch auf den bestehenden Render-Service ausgerollt, solange dessen Branch-Konfiguration unverändert bleibt.
