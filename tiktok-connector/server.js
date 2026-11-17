@@ -1,4 +1,5 @@
 import http from "node:http";
+import { readFile } from "node:fs/promises";
 import { randomBytes } from "node:crypto";
 import { TikTokLiveConnection, WebcastEvent } from "tiktok-live-connector";
 import { WebSocketServer, WebSocket } from "ws";
@@ -205,6 +206,21 @@ async function startSession(username) {
 
 const server = http.createServer(async (request, response) => {
   const url = new URL(request.url || "/", "http://localhost");
+
+  if (request.method === "GET" && (url.pathname === "/admin" || url.pathname === "/admin/")) {
+    try {
+      const html = await readFile(new URL("./admin.html", import.meta.url));
+      response.writeHead(200, {
+        "content-type": "text/html; charset=utf-8",
+        "cache-control": "no-store",
+        "x-content-type-options": "nosniff",
+        "referrer-policy": "no-referrer"
+      });
+      return response.end(html);
+    } catch {
+      return sendJson(response, 500, { error: "Admin-Oberfläche konnte nicht geladen werden." });
+    }
+  }
 
   if (request.method === "GET" && url.pathname === "/health") {
     return sendJson(response, 200, {
