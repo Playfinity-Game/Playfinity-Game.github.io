@@ -2109,16 +2109,11 @@
         if (PauseController.paused || this.wordHintInProgress) return;
         const normalizedLevel = 'leicht';
         const button = document.getElementById('kontexto-word-hint');
-        const options = document.getElementById('kontexto-word-hint-options');
-        const levelButtons = [...document.querySelectorAll('[data-hint-level]')];
-        const requestedRoundId = this.roundId;
+        const requestedRoundId = this.roundId;        const requestedRoundId = this.roundId;
         const requestedTarget = this.targetWord;
         if (!requestedTarget) return;
         this.wordHintInProgress = true;
         if (button) button.disabled = true;
-        if (options) options.hidden = true;
-        if (button) button.setAttribute('aria-expanded', 'false');
-        levelButtons.forEach(item => { item.disabled = true; });
 
         const hintController = new AbortController();
         let timedOut = false;
