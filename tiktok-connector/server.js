@@ -402,7 +402,10 @@ const server = http.createServer(async (request, response) => {
           .map(player => ({ name: player.name, game: player.game })),
         lastEventAt: session.lastEventAt ?? null
       }));
-      return sendJson(response, 200, { connections });
+      const solutions = [...activePlayers.values()]
+        .filter(player => player.active && player.socket.readyState === WebSocket.OPEN && player.streamerUsername && player.solution)
+        .map(player => ({ streamerUsername: player.streamerUsername, game: player.game, solution: player.solution, updatedAt: player.lastSeenAt }));
+      return sendJson(response, 200, { connections, solutions });
     }
 
     if (request.method === "POST" && url.pathname === "/admin/streamer-action") {
@@ -536,7 +539,7 @@ server.on("upgrade", (request, socket, head) => {
 websocketServer.on("player-connection", (websocket) => {
   const id = randomBytes(8).toString("hex");
   const fallbackName = "Spieler-" + id.slice(0,4).toUpperCase();
-  const player = { id, name:fallbackName, fallbackName, streamerUsername:null, game:"menu", active:true, connectedAt:new Date().toISOString(), lastSeenAt:Date.now(), socket:websocket };
+  const player = { id, name:fallbackName, fallbackName, streamerUsername:null, game:"menu", solution:"", active:true, connectedAt:new Date().toISOString(), lastSeenAt:Date.now(), socket:websocket };
   activePlayers.set(id, player);
   websocket.send(JSON.stringify({type:"registered",playerId:id,name:player.name}));
   websocket.on("message", raw => {
@@ -548,6 +551,8 @@ websocketServer.on("player-connection", (websocket) => {
     player.streamerUsername = streamerUsername;
     player.name = streamerUsername ? "@" + streamerUsername : player.fallbackName;
     player.active = message.active === true;
+    const solution = typeof message.solution === "string" ? message.solution.trim() : "";
+    player.solution = player.active && player.game !== "menu" && /^[A-Za-zÄÖÜäöüßẞ -]{1,80}$/.test(solution) ? solution : "";
     player.lastSeenAt = Date.now();
     activePlayers.set(id, player);
   });
