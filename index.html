@@ -1618,6 +1618,7 @@
             clearTimeout(TikFinity.reconnectTimer);
             if (TikFinity.ws && TikFinity.ws.readyState < WebSocket.CLOSING) TikFinity.ws.close();
             this.setStatus('TikTok LIVE verbunden: @' + data.username, 'connected');
+            PlayfinityPlayerPresence.setStreamer(data.username);
             console.log('[PLAYFINITY] TikTok LIVE verbunden:', data.username);
           };
 
@@ -1647,6 +1648,7 @@
             const wasActive = activeLiveSource === 'tiktok';
             this.connected = false;
             this.ws = null;
+            PlayfinityPlayerPresence.setStreamer('');
             if (wasActive) {
               activeLiveSource = 'none';
               this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
@@ -1668,6 +1670,7 @@
         this.ws = null;
         this.connected = false;
         activeLiveSource = 'none';
+        PlayfinityPlayerPresence.setStreamer('');
         this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
         if (socket) socket.close(1000, 'Vom Streamer getrennt');
         TikFinity.pausedForTikTok = false;
@@ -2866,6 +2869,7 @@
       reconnectTimer: null,
       heartbeatTimer: null,
       playerId: null,
+      streamerUsername: '',
       game: 'menu',
       active: true,
       closing: false,
@@ -2899,9 +2903,14 @@
           this.reconnectTimer = setTimeout(() => this.connect(), 5000);
         }
       },
+      setStreamer(username) {
+        const value = String(username || '').trim().replace(/^@/, '');
+        this.streamerUsername = /^[A-Za-z0-9._]{2,24}$/.test(value) ? value : '';
+        this.sendPresence();
+      },
       sendPresence() {
         if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
-        this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible'}));
+        this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername}));
       },
       setGame(game) {
         this.game = ['menu','wordle','wordfinity','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
