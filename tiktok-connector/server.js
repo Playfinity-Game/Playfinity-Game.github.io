@@ -26,7 +26,7 @@ function playerSnapshot() {
     else if (now - player.lastSeenAt > 60_000) player.active = false;
   }
   return [...activePlayers.values()].filter(p => p.active && p.game !== 'menu').map(p => ({
-    playerId:p.id, name:p.name, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt
+    playerId:p.id, name:p.name, streamerUsername:p.streamerUsername || null, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt
   }));
 }
 
@@ -395,7 +395,12 @@ const server = http.createServer(async (request, response) => {
     if (request.method === "GET" && url.pathname === "/admin/live-connections") {
       const connections = [...sessions.values()].filter(session => !session.stopped).map(session => ({
         username: session.username, viewerCount: session.viewerCount ?? null,
-        connectedPlayers: session.clients.size, lastEventAt: session.lastEventAt ?? null
+        connectedPlayers: session.clients.size,
+        players: [...activePlayers.values()]
+          .filter(player => player.active && player.socket.readyState === WebSocket.OPEN &&
+            player.streamerUsername && player.streamerUsername.toLowerCase() === session.username.toLowerCase())
+          .map(player => ({ name: player.name, game: player.game })),
+        lastEventAt: session.lastEventAt ?? null
       }));
       return sendJson(response, 200, { connections });
     }
@@ -529,7 +534,8 @@ server.on("upgrade", (request, socket, head) => {
 
 websocketServer.on("player-connection", (websocket) => {
   const id = randomBytes(8).toString("hex");
-  const player = { id, name: "Spieler-" + id.slice(0,4).toUpperCase(), game:"menu", active:true, connectedAt:new Date().toISOString(), lastSeenAt:Date.now(), socket:websocket };
+  const fallbackName = "Spieler-" + id.slice(0,4).toUpperCase();
+  const player = { id, name:fallbackName, fallbackName, streamerUsername:null, game:"menu", active:true, connectedAt:new Date().toISOString(), lastSeenAt:Date.now(), socket:websocket };
   activePlayers.set(id, player);
   websocket.send(JSON.stringify({type:"registered",playerId:id,name:player.name}));
   websocket.on("message", raw => {
@@ -537,6 +543,9 @@ websocketServer.on("player-connection", (websocket) => {
     let message; try { message = JSON.parse(String(raw)); } catch { return; }
     if (message.type !== "presence") return;
     player.game = PLAYER_GAMES.has(message.game) ? message.game : "menu";
+    const streamerUsername = typeof message.streamerUsername === "string" ? normalizeUsername(message.streamerUsername) : null;
+    player.streamerUsername = streamerUsername;
+    player.name = streamerUsername ? "@" + streamerUsername : player.fallbackName;
     player.active = message.active === true;
     player.lastSeenAt = Date.now();
     activePlayers.set(id, player);
