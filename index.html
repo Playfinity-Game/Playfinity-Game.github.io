@@ -1615,6 +1615,8 @@
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
               } else if (message.type === 'admin_action') {
                 this.handleAdminAction(message.action);
+              } else if (message.type === 'admin_nudge') {
+                this.showAdminNudge();
               } else if (message.type === 'connector_error') {
                 this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
               }
@@ -1642,6 +1644,29 @@
           TikFinity.pausedForTikTok = false;
           if (!TikFinity.connected) TikFinity.connect();
         }
+      },
+
+      showAdminNudge() {
+        const existing = document.getElementById('playfinity-admin-nudge');
+        if (existing) existing.remove();
+        const notice = document.createElement('div');
+        notice.id = 'playfinity-admin-nudge';
+        notice.textContent = '👀 Der Admin schaut dir gerade zu';
+        Object.assign(notice.style, {
+          position: 'fixed', top: '18px', right: '18px', zIndex: '10000',
+          maxWidth: 'min(360px, calc(100vw - 36px))', padding: '11px 16px',
+          borderRadius: '12px', background: 'rgba(25, 30, 48, .94)',
+          color: '#fff', border: '1px solid rgba(183, 163, 255, .65)',
+          boxShadow: '0 8px 28px rgba(0,0,0,.28)', font: '600 14px system-ui',
+          opacity: '0', transform: 'translateY(-8px)', transition: 'opacity .2s, transform .2s',
+          pointerEvents: 'none'
+        });
+        document.body.appendChild(notice);
+        requestAnimationFrame(() => { notice.style.opacity = '1'; notice.style.transform = 'translateY(0)'; });
+        setTimeout(() => {
+          notice.style.opacity = '0'; notice.style.transform = 'translateY(-8px)';
+          setTimeout(() => notice.remove(), 250);
+        }, 5000);
       },
 
       handleAdminAction(action) {
