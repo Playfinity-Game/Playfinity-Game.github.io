@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PLAYFINITY – Troll Admin Vorschau</title>
+<style>
+:root{color-scheme:dark;--bg:#101321;--panel:#1a2033;--line:#303b59;--text:#f4f6ff;--muted:#aab4d0;--accent:#9b8cff;--danger:#ff5d73;--good:#55d6a3}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 15% 0%,#25234a,var(--bg) 48%);font:16px/1.5 system-ui,sans-serif;color:var(--text);padding:24px}
+main{max-width:1050px;margin:auto}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;flex-wrap:wrap}h1{margin:0;font-size:clamp(1.6rem,4vw,2.4rem)}p{color:var(--muted)}.tag{border:1px solid #796de0;color:#c9c2ff;border-radius:999px;padding:6px 12px;font-size:.8rem}
+.notice{margin:20px 0;padding:14px 16px;border:1px solid #806b32;background:#322b19;border-radius:12px;color:#ffe5a1}
+.layout{display:grid;grid-template-columns: minmax(260px, .85fr) minmax(300px,1.15fr);gap:18px}.panel{background:#1a2033eF;border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 16px 50px #0003}h2{font-size:1.1rem;margin:0 0 14px}.controls{display:grid;gap:10px}.action{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px;background:#242c44;border:1px solid #3a4668;border-radius:12px}.action span{font-weight:600}.action button,.stop{border:0;border-radius:9px;padding:9px 13px;font-weight:700;cursor:pointer;background:var(--accent);color:#141329}.action button:disabled{opacity:.35;cursor:not-allowed}.stop{width:100%;margin-top:14px;background:var(--danger);color:#24070c;padding:13px}.stop:disabled{opacity:.5}.stage{min-height:310px;border-radius:14px;border:1px dashed #59678d;background:linear-gradient(145deg,#202a46,#171d30);display:grid;place-items:center;text-align:center;padding:20px;position:relative;overflow:hidden}.game-card{padding:28px 36px;border-radius:18px;background:#303c62;box-shadow:0 10px 35px #0005;transition:transform .25s}.game-card h3{margin:0 0 8px;font-size:1.5rem}.game-card p{margin:0}.stage.shake .game-card{animation:shake .12s linear 8}.stage.flip .game-card{transform:rotate(180deg)}.stage.frozen:after{content:"EINGEFROREN";position:absolute;inset:0;display:grid;place-items:center;background:#101321bb;color:white;font-weight:900;letter-spacing:.15em;font-size:1.5rem}.toast{position:absolute;top:14px;left:50%;transform:translateX(-50%);background:#f7e7a4;color:#211b08;padding:9px 14px;border-radius:10px;font-weight:800;max-width:90%;text-align:center}.status{display:flex;gap:8px;align-items:center;margin-top:14px;color:var(--muted);font-size:.9rem}.dot{width:9px;height:9px;border-radius:50%;background:var(--good)}.dot.off{background:var(--danger)}.log{margin-top:14px;min-height:72px;color:var(--muted);font-size:.88rem}.foot{font-size:.82rem;color:var(--muted);margin-top:18px}@keyframes shake{0%,100%{transform:translate(0)}25%{transform:translate(5px,-3px)}50%{transform:translate(-5px,3px)}75%{transform:translate(3px,4px)}}@media(max-width:720px){body{padding:14px}.layout{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<header class="top"><div><h1>🎮 PLAYFINITY Troll Admin</h1><p>Isolierte Funktionsvorschau – keine Verbindung zum Live-Spiel</p></div><span class="tag">SAFE PREVIEW · TESTMODUS</span></header>
+<div class="notice"><strong>Wichtig:</strong> Diese Seite simuliert Effekte ausschließlich in diesem Vorschaufenster. Keine TikTok-Verbindung, keine Server-Aufrufe, keine Aktionen im echten Spiel und keine echte Anmeldung.</div>
+<section class="layout">
+<div class="panel"><h2>Steuerung</h2><div class="controls">
+<div class="action"><span>📳 Bildschirm wackeln</span><button data-action="shake">Testen</button></div>
+<div class="action"><span>🙃 Spiel umdrehen</span><button data-action="flip">Umdrehen</button></div>
+<div class="action"><span>🎉 Konfetti-Explosion</span><button data-action="confetti">Auslösen</button></div>
+<div class="action"><span>🧊 Spiel einfrieren / freigeben</span><button data-action="freeze">Einfrieren</button></div>
+<div class="action"><span>💬 Lustige Nachricht</span><button data-action="message">Einblenden</button></div>
+</div><button class="stop" id="stop">⛔ NOT-AUS – alle Effekte stoppen</button>
+<div class="status"><i class="dot" id="dot"></i><span id="state">Vorschau aktiv</span></div><div class="log" id="log" aria-live="polite">Bereit. Wähle eine Testfunktion.</div></div>
+<div class="panel"><h2>Spielbereich (nur Simulation)</h2><div class="stage" id="stage"><div class="game-card" id="game"><h3>PLAYFINITY</h3><p>Hier werden die Effekte simuliert.</p></div></div><p class="foot">Not-Aus sperrt alle Effekt-Schaltflächen. Zum erneuten Testen muss er bewusst wieder freigegeben werden.</p></div>
+</section>
+<p class="foot">Technischer Prototyp ohne Authentifizierung. Vor jeder späteren Live-Integration sind serverseitige Anmeldung, Session-Schutz, Berechtigungsprüfung und ein serverseitiger Not-Aus erforderlich.</p>
+</main>
+<script>
+(()=>{
+const stage=document.querySelector('#stage'), log=document.querySelector('#log'), state=document.querySelector('#state'), dot=document.querySelector('#dot'), stop=document.querySelector('#stop'), buttons=[...document.querySelectorAll('[data-action]')];
+let disabled=false,frozen=false,flipped=false,timer=null;
+function report(s){log.textContent=s}
+function lock(value){disabled=value;buttons.forEach(b=>b.disabled=value);dot.classList.toggle('off',value);state.textContent=value?'Not-Aus aktiv – Steuerung gesperrt':'Vorschau aktiv';stop.textContent=value?'▶ Vorschau bewusst freigeben':'⛔ NOT-AUS – alle Effekte stoppen'}
+function confetti(){for(let i=0;i<34;i++){const p=document.createElement('b');p.textContent=['✦','●','◆','★'][i%4];p.style.cssText='position:absolute;left:'+Math.random()*100+'%;top:-20px;color:'+['#ffcf5a','#ff79ae','#79e6d0','#b5a3ff'][i%4]+';font-size:'+(12+Math.random()*18)+'px;pointer-events:none;z-index:2';stage.append(p);const y=180+Math.random()*180;p.animate([{transform:'translateY(0) rotate(0deg)',opacity:1},{transform:'translateY('+y+'px) rotate(500deg)',opacity:0}],{duration:900+Math.random()*700}).onfinish=()=>p.remove()}}
+buttons.forEach(b=>b.addEventListener('click',()=>{
+if(disabled)return;
+switch(b.dataset.action){
+case 'shake':stage.classList.remove('shake');void stage.offsetWidth;stage.classList.add('shake');setTimeout(()=>stage.classList.remove('shake'),1100);report('📳 Wackeln wurde in der Vorschau simuliert.');break;
+case 'flip':flipped=!flipped;stage.classList.toggle('flip',flipped);report(flipped?'🙃 Vorschau auf den Kopf gestellt.':'↩️ Vorschau zurückgedreht.');b.textContent=flipped?'Zurückdrehen':'Umdrehen';break;
+case 'confetti':confetti();report('🎉 Konfetti wurde in der Vorschau ausgelöst.');break;
+case 'freeze':frozen=!frozen;stage.classList.toggle('frozen',frozen);b.textContent=frozen?'Freigeben':'Einfrieren';report(frozen?'🧊 Vorschau eingefroren.':'▶️ Vorschau freigegeben.');break;
+case 'message':const old=stage.querySelector('.toast');if(old)old.remove();const t=document.createElement('div');t.className='toast';t.textContent=['Achtung: Der Hamster übernimmt! 🐹','Skill-Update fehlgeschlagen. Bitte lachen. 😂','Dein Controller braucht Urlaub. 🎮'][Math.floor(Math.random()*3)];stage.append(t);setTimeout(()=>t.remove(),2600);report('💬 Eine Testnachricht wurde eingeblendet.');break;
+}
+}));
+stop.addEventListener('click',()=>{
+if(!disabled){stage.classList.remove('shake','flip','frozen');stage.querySelectorAll('.toast,b').forEach(e=>e.remove());frozen=false;flipped=false;buttons.find(b=>b.dataset.action==='freeze').textContent='Einfrieren';buttons.find(b=>b.dataset.action==='flip').textContent='Umdrehen';lock(true);report('Not-Aus: Alle Vorschau-Effekte gestoppt. Steuerung bleibt gesperrt.')}
+else{lock(false);report('Vorschau bewusst wieder freigegeben.')}
+});
+})();
+</script>
+</body>
+</html>
