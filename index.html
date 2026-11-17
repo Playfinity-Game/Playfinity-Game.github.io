@@ -947,10 +947,27 @@
     .hangmann-status strong{color:var(--neon-green)}
     @media(max-width:480px){.hangmann-stage{min-height:190px}.hangmann-svg{height:190px}.hangmann-key{height:42px;font-size:.9rem}.hangmann-slot{height:42px}}
 
+
+    /* Gezielt ausgelöste, rein visuelle Admin-Troll-Effekte */
+    @keyframes pf-admin-shake { 0%,100%{transform:translate(0,0)} 20%{transform:translate(-5px,2px)} 40%{transform:translate(5px,-2px)} 60%{transform:translate(-4px,-1px)} 80%{transform:translate(4px,2px)} }
+    body.pf-admin-shake main { animation:pf-admin-shake .55s ease-in-out 3; }
+    body.pf-admin-glitch main { animation:pf-admin-shake .12s steps(2) 8; filter:hue-rotate(145deg) saturate(1.8); }
+    body.pf-admin-invert main { filter:invert(1); }
+    #pf-admin-effect{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none;overflow:hidden}
+    #pf-admin-effect.active{display:block}
+    #pf-admin-effect .pf-effect-label{position:absolute;top:18%;left:50%;transform:translateX(-50%);padding:12px 20px;border:1px solid rgba(255,255,255,.5);border-radius:14px;background:rgba(7,8,20,.88);color:#fff;font-weight:900;font-size:clamp(1.1rem,4vw,2rem);text-shadow:0 0 14px #00f0ff;box-shadow:0 0 30px #00f0ff66}
+    #pf-admin-effect.confetti{background-image:radial-gradient(circle,#ff007f 2px,transparent 3px),radial-gradient(circle,#00f0ff 2px,transparent 3px),radial-gradient(circle,#ffd000 2px,transparent 3px);background-size:43px 57px,61px 49px,73px 67px;background-position:0 0,17px 23px,31px 11px;animation:pf-confetti .7s linear 8}
+    #pf-admin-effect.fog{background:radial-gradient(ellipse at 20% 50%,#d9f7ff88,transparent 55%),radial-gradient(ellipse at 80% 40%,#c9c9ff88,transparent 60%);backdrop-filter:blur(3px);animation:pf-fog 1s ease-in-out 5 alternate}
+    @keyframes pf-confetti{from{background-position:0 -100px,17px -80px,31px -120px}to{background-position:0 900px,17px 820px,31px 880px}}
+    @keyframes pf-fog{from{opacity:.25}to{opacity:.95}}
+    @media(prefers-reduced-motion:reduce){body.pf-admin-shake main,body.pf-admin-glitch main,#pf-admin-effect{animation-duration:.01ms!important}}
+
   </style>
 </head>
 
 <body>
+
+  <div id="pf-admin-effect" aria-hidden="true"><div class="pf-effect-label"></div></div>
 
   <!-- STICKY HEADER -->
   <header>
@@ -1291,6 +1308,7 @@
       },
 
       renderScreen(screenId, isForwardNav) {
+        if (window.PlayfinityPlayerPresence) PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
         document.body.classList.toggle('game-active', screenId !== 'menu');
@@ -2838,12 +2856,97 @@
       }
     };
 
+
+    // Anonyme Live-Spieler-Verbindung für das Admin-Kontrollzentrum.
+    const PlayfinityPlayerPresence = {
+      baseUrl: 'https://playfinity-game-github-io.onrender.com',
+      socket: null,
+      reconnectTimer: null,
+      heartbeatTimer: null,
+      playerId: null,
+      game: 'menu',
+      active: true,
+      connect() {
+        if (document.visibilityState !== 'visible') return;
+        try {
+          const url = this.baseUrl.replace(/^https:/, 'wss:') + '/players';
+          const socket = new WebSocket(url);
+          this.socket = socket;
+          socket.onopen = () => {
+            this.sendPresence();
+            clearInterval(this.heartbeatTimer);
+            this.heartbeatTimer = setInterval(() => this.sendPresence(), 20000);
+          };
+          socket.onmessage = (event) => {
+            try {
+              const message = JSON.parse(event.data);
+              if (message.type === 'registered') this.playerId = message.playerId;
+              if (message.type === 'admin_troll') this.showEffect(message.action);
+            } catch (_) {}
+          };
+          socket.onclose = () => {
+            this.playerId = null;
+            clearInterval(this.heartbeatTimer);
+            clearTimeout(this.reconnectTimer);
+            this.reconnectTimer = setTimeout(() => this.connect(), 4000);
+          };
+          socket.onerror = () => socket.close();
+        } catch (_) {
+          clearTimeout(this.reconnectTimer);
+          this.reconnectTimer = setTimeout(() => this.connect(), 5000);
+        }
+      },
+      sendPresence() {
+        if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
+        this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible'}));
+      },
+      setGame(game) {
+        this.game = ['menu','wordle','wordfinity','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
+        this.sendPresence();
+      },
+      showEffect(action) {
+        const root = document.getElementById('pf-admin-effect');
+        if (!root) return;
+        document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert');
+        root.className = '';
+        root.innerHTML = '<div class="pf-effect-label"></div>';
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500};
+        if (action === 'shake') document.body.classList.add('pf-admin-shake');
+        else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
+        else if (action === 'invert') document.body.classList.add('pf-admin-invert');
+        else if (action === 'confetti' || action === 'fog') root.classList.add(action);
+        else return;
+        root.querySelector('.pf-effect-label').textContent = labels[action];
+        root.classList.add('active');
+        clearTimeout(this.effectTimer);
+        this.effectTimer = setTimeout(() => {
+          document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert');
+          root.className = '';
+        }, durations[action] || 2000);
+      },
+      init() {
+        this.connect();
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            if (!this.socket || this.socket.readyState > WebSocket.OPEN) this.connect();
+            this.sendPresence();
+          } else this.sendPresence();
+        });
+        window.addEventListener('pagehide', () => {
+          clearInterval(this.heartbeatTimer);
+          try { this.socket?.close(); } catch (_) {}
+        });
+      }
+    };
+
     // Beim Laden der Plattform initialisieren
     window.addEventListener('DOMContentLoaded', () => {
       PlayfinityRouter.init();
       TikFinity.init();
       TikTokConnector.init();
       PlayfinityUsageMetrics.init();
+      PlayfinityPlayerPresence.init();
     });
   </script>
 </body>
