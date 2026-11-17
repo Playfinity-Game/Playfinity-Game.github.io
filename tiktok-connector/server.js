@@ -19,9 +19,10 @@ const activePlayers = new Map();
 const PLAYER_GAMES = new Set(["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"]);
 const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert"]);
 function playerSnapshot() {
-  const cutoff = Date.now() - 60_000;
+  const now = Date.now();
   for (const [id, player] of activePlayers) {
-    if (player.lastSeenAt < cutoff || player.socket.readyState !== WebSocket.OPEN) activePlayers.delete(id);
+    if (player.socket.readyState !== WebSocket.OPEN || now - player.lastSeenAt > 10 * 60_000) activePlayers.delete(id);
+    else if (now - player.lastSeenAt > 60_000) player.active = false;
   }
   return [...activePlayers.values()].filter(p => p.active).map(p => ({
     playerId:p.id, name:p.name, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt
@@ -513,6 +514,7 @@ websocketServer.on("player-connection", (websocket) => {
     player.game = PLAYER_GAMES.has(message.game) ? message.game : "menu";
     player.active = message.active === true;
     player.lastSeenAt = Date.now();
+    activePlayers.set(id, player);
   });
   websocket.on("close", () => activePlayers.delete(id));
   websocket.on("error", () => activePlayers.delete(id));
