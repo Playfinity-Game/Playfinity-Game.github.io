@@ -1448,6 +1448,7 @@
         document.querySelectorAll('.hangmann-part').forEach(part=>part.classList.remove('shown'));
         document.getElementById('hangmann-errors').textContent='Versuche: 10';
         this.renderWord();this.renderKeyboard();
+        PlayfinityPlayerPresence.sendPresence();
       },
       submitChatGuess(player, text){
         if(!this.target||this.locked)return;
@@ -1820,6 +1821,7 @@
         if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
         this.renderBoard();
         this.resetKeyboardColors();
+        PlayfinityPlayerPresence.sendPresence();
       },
 
       renderBoard() {
@@ -2411,6 +2413,7 @@
         const result=document.getElementById('kontexto-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
         this.renderGuesses();
+        PlayfinityPlayerPresence.sendPresence();
       },
 
       async initModel() {
@@ -2999,7 +3002,8 @@
       },
       sendPresence() {
         if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
-        this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername}));
+        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'wordfinity' ? KontextoGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : '';
+        this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
       },
       setGame(game) {
         this.game = ['menu','wordle','wordfinity','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
