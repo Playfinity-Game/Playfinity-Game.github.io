@@ -495,9 +495,10 @@ const server = http.createServer(async (request, response) => {
         "vary": "Origin"
       });
     } catch (error) {
+      console.error("[TikTok] Verbindung fehlgeschlagen:", error?.stack || error?.message || error);
       return sendJson(response, 502, {
         error: "TikTok-LIVE konnte nicht erreicht werden. Ist der Account gerade live?",
-        detail: String(error?.message || "Unbekannter Verbindungsfehler")
+        detail: String(error?.message || "Unbekannter Verbindungsfehler").slice(0, 300)
       }, {
         "access-control-allow-origin": request.headers.origin,
         "vary": "Origin"
