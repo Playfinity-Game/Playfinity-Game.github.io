@@ -1529,7 +1529,7 @@
        COMMUNITY-RANGLISTEN (LETZTE 24 STUNDEN, STREAMER-BROWSER)
        ========================================================================== */
     const TikTokConnector = {
-      baseUrl: 'https://playfinity-game-github-io.onrender.com',
+      baseUrl: 'https://playfinity-troll-admin-test.onrender.com',
       ws: null,
       connected: false,
       statusNode: document.getElementById('tiktok-connector-status'),
@@ -1613,6 +1613,8 @@
                 };
                 TikFinity.lastUserName = user.name;
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
+              } else if (message.type === 'admin_action') {
+                this.handleAdminAction(message.action);
               } else if (message.type === 'connector_error') {
                 this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
               }
@@ -1639,6 +1641,40 @@
           this.setStatus(error.message || 'TikTok LIVE konnte nicht verbunden werden.', 'error');
           TikFinity.pausedForTikTok = false;
           if (!TikFinity.connected) TikFinity.connect();
+        }
+      },
+
+      handleAdminAction(action) {
+        if (action === 'shake') {
+          document.body.animate(
+            [{ transform: 'translateX(0)' }, { transform: 'translateX(-8px)' }, { transform: 'translateX(8px)' }, { transform: 'translateX(-5px)' }, { transform: 'translateX(0)' }],
+            { duration: 550, iterations: 2 }
+          );
+        } else if (action === 'flip') {
+          document.body.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(180deg)' }, { transform: 'rotate(360deg)' }], { duration: 900 });
+        } else if (action === 'confetti') {
+          const layer = document.createElement('div');
+          layer.setAttribute('aria-hidden', 'true');
+          Object.assign(layer.style, { position: 'fixed', inset: '0', zIndex: '9999', pointerEvents: 'none', overflow: 'hidden' });
+          for (let i = 0; i < 70; i++) {
+            const piece = document.createElement('i');
+            Object.assign(piece.style, {
+              position: 'absolute', left: (Math.random() * 100) + '%', top: '-12px',
+              width: '8px', height: '12px', borderRadius: '2px',
+              background: ['#00f0ff', '#ff007f', '#b026ff', '#ffd000', '#00ff9d'][i % 5]
+            });
+            layer.appendChild(piece);
+            piece.animate(
+              [{ transform: 'translateY(0) rotate(0deg)', opacity: 1 }, { transform: 'translateY(110vh) rotate(720deg)', opacity: 0.8 }],
+              { duration: 1800 + Math.random() * 1200, easing: 'ease-in', fill: 'forwards' }
+            );
+          }
+          document.body.appendChild(layer);
+          setTimeout(() => layer.remove(), 3300);
+        } else if (action === 'freeze') {
+          PauseController.setPaused(!PauseController.paused);
+        } else if (action === 'message') {
+          showModal('Eine Nachricht vom Troll 👾', 'Weiter geht’s – der Troll war hier!');
         }
       },
 
