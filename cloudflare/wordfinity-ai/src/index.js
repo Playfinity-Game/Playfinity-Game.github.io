@@ -127,6 +127,7 @@ async function handleHints(env, body) {
   const target = String(body.target || "").trim();
   if (!target) return json({ error: "target ist erforderlich" }, 400);
   const level = body.level === "mittel" ? "mittel" : "leicht";
+  const requestedCount = Math.max(8, Math.min(24, Number(body.count) || 20));
   const excluded = new Set(
     (Array.isArray(body.excluded) ? body.excluded : [])
       .map(x => String(x).trim().toLocaleLowerCase("de-DE"))
@@ -141,8 +142,8 @@ async function handleHints(env, body) {
   const text = await generate(
     env,
     "Du hilfst bei einem deutschen semantischen Wort-Ratespiel. Erzeuge gebräuchliche deutsche Einzelwörter als hilfreiche, indirekte Denkanstöße zum Zielwort. " + levelGuidance + " Niemals das Zielwort selbst oder Zusammensetzungen, Ableitungen, Beugungsformen oder Schreibvarianten des Zielworts oder ausgeschlossener Wörter ausgeben. Keine Wortgruppen, Sätze, Erklärungen, Fantasiewörter oder seltenen Fachbegriffe. Die Wörter dürfen außerhalb einer vorgegebenen Spielwortliste liegen. Gib ausschließlich ein Wort pro Zeile aus, ohne Nummerierung oder Zusatztext.",
-    "Zielwort: " + target + "\nTippstufe: " + level + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt 40 unterschiedliche, passende Denkanstöße, eins pro Zeile.",
-    400
+    "Zielwort: " + target + "\nTippstufe: " + level + "\nBereits ausgeschlossen (diese und ähnliche Schreibweisen nicht nennen): " + [...excluded].slice(0, 100).join(", ") + "\nErzeuge jetzt " + requestedCount + " unterschiedliche, passende Denkanstöße, eins pro Zeile.",
+    Math.max(160, requestedCount * 11)
   );
 
   let candidates = [];
@@ -170,7 +171,7 @@ async function handleHints(env, body) {
       seen.add(x.toLocaleLowerCase("de-DE"));
       return true;
     })
-    .slice(0, 40);
+    .slice(0, requestedCount);
 
   if (!candidates.length) throw new Error("Die Tipp-KI hat keine gültigen Wörter geliefert");
   const embedded = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
@@ -180,7 +181,7 @@ async function handleHints(env, body) {
   const hints = candidates
     .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
     .sort((a, b) => b.similarity - a.similarity)
-    .slice(0, 40);
+    .slice(0, requestedCount);
   return json({ hints, level, model: EMBEDDING_MODEL });
 }
 
