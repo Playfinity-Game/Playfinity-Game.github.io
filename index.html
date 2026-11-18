@@ -1003,6 +1003,16 @@
     body.pf-admin-shake main { animation:pf-admin-shake .55s ease-in-out 3; }
     body.pf-admin-glitch main { animation:pf-admin-shake .12s steps(2) 8; filter:hue-rotate(145deg) saturate(1.8); }
     body.pf-admin-invert main { filter:invert(1); }
+    body.pf-admin-spin main { transform:rotate(180deg); }
+    body.pf-admin-spin main { transition:transform .25s ease; }
+    body.pf-admin-pixel main { filter:contrast(1.35) saturate(1.8); }
+    body.pf-admin-ice main { filter:brightness(1.12) saturate(.55) hue-rotate(155deg); }
+    #pf-admin-effect.pixel { background:repeating-linear-gradient(0deg,transparent 0 5px,#1118 6px),repeating-linear-gradient(90deg,#fff2 0 5px,transparent 6px);backdrop-filter:blur(1.5px) contrast(1.5); }
+    #pf-admin-effect.ice { background:linear-gradient(135deg,#c9f7ff66,#fff9 45%,#8deaff66);backdrop-filter:blur(2px); }
+    #pf-admin-effect.static { background:repeating-radial-gradient(circle at 20% 30%,#fff9 0 1px,#1119 2px 3px,transparent 4px 6px);background-size:9px 11px;mix-blend-mode:screen;animation:pf-static .12s steps(3) infinite; }
+    #pf-admin-effect.googly .pf-googly-eyes { position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);font-size:clamp(5rem,25vw,13rem);letter-spacing:.12em;filter:drop-shadow(0 5px 8px #0009);animation:pf-eyes .35s ease-in-out infinite alternate;white-space:nowrap; }
+    @keyframes pf-static { from{background-position:0 0}to{background-position:17px -23px} }
+    @keyframes pf-eyes { from{transform:translate(-50%,-50%) rotate(-8deg) scale(.96)}to{transform:translate(-50%,-50%) rotate(8deg) scale(1.04)} }
     #pf-admin-effect{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none;overflow:hidden}
     #pf-admin-effect.active{display:block}
     #pf-admin-effect .pf-effect-label{position:absolute;top:18%;left:50%;transform:translateX(-50%);padding:12px 20px;border:1px solid rgba(255,255,255,.5);border-radius:14px;background:rgba(7,8,20,.88);color:#fff;font-weight:900;font-size:clamp(1.1rem,4vw,2rem);text-shadow:0 0 14px #00f0ff;box-shadow:0 0 30px #00f0ff66}
@@ -3012,22 +3022,27 @@
       showEffect(action) {
         const root = document.getElementById('pf-admin-effect');
         if (!root) return;
-        document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert');
+        document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
         root.className = '';
         root.innerHTML = '<div class="pf-effect-label"></div>';
-        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!'};
-        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500};
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200};
         if (action === 'shake') document.body.classList.add('pf-admin-shake');
         else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
         else if (action === 'invert') document.body.classList.add('pf-admin-invert');
-        else if (action === 'confetti' || action === 'fog') root.classList.add(action);
+        else if (action === 'spin') document.body.classList.add('pf-admin-spin');
+        else if (action === 'pixel') { document.body.classList.add('pf-admin-pixel'); root.classList.add('pixel'); }
+        else if (action === 'ice') { document.body.classList.add('pf-admin-ice'); root.classList.add('ice'); }
+        else if (['confetti','fog','static'].includes(action)) root.classList.add(action);
+        else if (action === 'googly') { root.classList.add('googly'); root.insertAdjacentHTML('afterbegin','<div class="pf-googly-eyes" aria-hidden="true">👀</div>'); }
         else return;
         root.querySelector('.pf-effect-label').textContent = labels[action];
         root.classList.add('active');
         clearTimeout(this.effectTimer);
         this.effectTimer = setTimeout(() => {
-          document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert');
+          document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
           root.className = '';
+          root.innerHTML = '<div class="pf-effect-label"></div>';
         }, durations[action] || 2000);
       },
       init() {
