@@ -77,6 +77,17 @@ const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'
 function box(item){if(item.w&&item.h)return {w:item.w,h:item.h};const svg=item.svg||'';const m=svg.match(/viewBox=["']\s*([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)\s*["']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
 function sizeFor(item,axisPx){const z=box(item),ratio=z.w/z.h;return {w:axisPx*(ratio>=1?1:ratio),h:axisPx*(ratio>=1?1/ratio:1)}}
 function factor(r){const ratio=r.target.value/r.reference.value;return r.dimension==='Fläche'?Math.sqrt(ratio):ratio}
+function toMeters(value,unit){if(unit==='cm')return value/100;if(unit==='km')return value*1000;return value}
+function formatMeasure(value,unit,dimension){
+ const area=dimension==='Fläche',suffix=area?'²':'';
+ let meters=toMeters(value,unit),outUnit=unit;
+ if(unit==='m'||unit==='cm'||unit==='km'){
+  if(Math.abs(meters)>=1000){value=meters/1000;outUnit='km'}
+  else if(Math.abs(meters)<1){value=meters*100;outUnit='cm'}
+  else{value=meters;outUnit='m'}
+ }
+ return value.toLocaleString('de-DE',{maximumFractionDigits:2})+' '+outUnit+suffix;
+}
 function center(){return{x:board.clientWidth/2,y:board.clientHeight*.72}}
 function setObj(el,item,s){el.style.width=s.w+'px';el.style.height=s.h+'px';if(item.src){el.innerHTML='';el.classList.add('png');el.style.webkitMaskImage='url('+item.src+')';el.style.maskImage='url('+item.src+')';}else{el.classList.remove('png');el.style.webkitMaskImage='';el.style.maskImage='';el.innerHTML=item.svg||'';}}
 function pos(el,x,y){el.style.left=x+'px';el.style.top=y+'px'}
@@ -134,7 +145,8 @@ $('lock').onclick=()=>{
  locked=true;const previousTotal=total,trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
  const s=sizeFor(r.target,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';actual.style.display='flex';positionActual();
  $('lock').disabled=true;$('result').classList.add('show');
- $('result').innerHTML='<div class="resulttop"><div class="points"><span id="roundPoints">0</span><small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Exakte Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> · Abweichung: <b>'+(error*100).toFixed(1).replace('.',',')+' %</b></p><p>Gesamt: <b><span id="totalPoints">'+previousTotal+'</span> Punkte</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
+ const estimatedValue=r.reference.value*(r.dimension==='Fläche'?guessScale*guessScale:guessScale),difference=Math.abs(estimatedValue-r.target.value);
+ $('result').innerHTML='<div class="resulttop"><div class="points"><span id="roundPoints">0</span><small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Deine Schätzung: <b>'+formatMeasure(estimatedValue,r.reference.unit,r.dimension)+'</b></p><p>Tatsächliche Größe: <b>'+formatMeasure(r.target.value,r.target.unit,r.dimension)+'</b></p><p>Unterschied: <b>'+formatMeasure(difference,r.target.unit,r.dimension)+'</b></p><p>Gesamt: <b><span id="totalPoints">'+previousTotal+'</span> Punkte</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
  $('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
  animateNumber($('roundPoints'),0,pts,950);animateNumber($('totalPoints'),previousTotal,total,1100);
  $('next').onclick=()=>{if(index<rounds.length-1){index++;render()}else{$('result').innerHTML='<div class="resulttop"><div class="points"><span id="finalPoints">0</span><small> Punkte</small></div><div><h2>MEGASIZE abgeschlossen! 🏆</h2><p>Deine Gesamtpunktzahl aus '+rounds.length+' Runden.</p></div></div><div class="nextrow"><button id="again">Nochmal spielen</button></div>';animateNumber($('finalPoints'),0,total,1300);$('again').onclick=()=>{index=0;total=0;render()}}};
