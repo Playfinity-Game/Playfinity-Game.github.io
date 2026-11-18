@@ -165,11 +165,12 @@
       animation: fadeIn 0.25s ease-out;
     }
 
+    /* Einheitliches PLAYFINITY-Wasserzeichen auf allen Spielbildschirmen. */
     .screen.active:not(#screen-menu)::before {
       content: "PLAYFINITY";
       position: absolute;
       z-index: -1;
-      top: 42%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 100%;
@@ -178,7 +179,7 @@
       white-space: nowrap;
       pointer-events: none;
       user-select: none;
-      font-size: clamp(3.1rem, 15vw, 9rem);
+      font-size: clamp(3rem, 12vw, 8rem);
       line-height: 1;
       font-weight: 1000;
       letter-spacing: 0.045em;
@@ -186,18 +187,17 @@
       background: linear-gradient(100deg, #a900ff 0%, #00eaff 48%, #d000ff 100%);
       -webkit-background-clip: text;
       background-clip: text;
-      opacity: 0.23;
+      opacity: 0.18;
       filter:
-        drop-shadow(0 0 5px rgba(0, 234, 255, 0.62))
-        drop-shadow(0 0 16px rgba(0, 234, 255, 0.38))
-        drop-shadow(0 0 28px rgba(176, 38, 255, 0.32));
+        drop-shadow(0 0 5px rgba(0, 234, 255, 0.48))
+        drop-shadow(0 0 16px rgba(0, 234, 255, 0.28))
+        drop-shadow(0 0 28px rgba(176, 38, 255, 0.24));
     }
 
     @media (max-width: 520px) {
       .screen.active:not(#screen-menu)::before {
-        font-size: clamp(2.45rem, 12vw, 4.5rem);
+        font-size: clamp(2.25rem, 11vw, 4rem);
         letter-spacing: 0.025em;
-        opacity: 0.2;
       }
     }
 
@@ -786,41 +786,10 @@
       position: relative;
       isolation: isolate;
       overflow: hidden;
-      background: var(--bg-card);
+      /* Leicht transparent, damit das einheitliche Bildschirm-Wasserzeichen durchscheint. */
+      background: rgba(18, 20, 44, 0.62);
       border: 1px solid var(--border-glow);
       border-radius: 16px;
-
-    /* GuessWhat needs its own watermark: the opaque game card covers the screen-level mark. */
-    .pir-card::before {
-      content: "PLAYFINITY";
-      position: absolute;
-      z-index: 0;
-      inset: 50% auto auto 50%;
-      transform: translate(-50%, -50%);
-      width: 100%;
-      padding: 0 8px;
-      text-align: center;
-      white-space: nowrap;
-      pointer-events: none;
-      user-select: none;
-      font-size: clamp(2.8rem, 12vw, 7.5rem);
-      line-height: 1;
-      font-weight: 1000;
-      letter-spacing: .045em;
-      color: transparent;
-      background: linear-gradient(100deg, #a900ff 0%, #00eaff 48%, #d000ff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      opacity: .42;
-      filter: drop-shadow(0 0 7px rgba(0,234,255,.8))
-              drop-shadow(0 0 20px rgba(0,234,255,.55))
-              drop-shadow(0 0 34px rgba(176,38,255,.5));
-    }
-    .pir-card > * {
-      position: relative;
-      z-index: 1;
-    }
-
       padding: 24px;
       display: flex;
       flex-direction: column;
@@ -828,6 +797,11 @@
       max-width: 600px;
       margin: 0 auto;
       width: 100%;
+    }
+
+    .pir-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .pir-header {
