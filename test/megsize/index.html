@@ -95,7 +95,7 @@ function render(){
  if(!rounds.length)return;
  const r=rounds[index],c=center(),rs=sizeFor(r.reference,base),ts=sizeFor(r.target,base);
  $('referenceName').textContent=r.reference.name;$('targetName').textContent=r.target.name;
- $('dimension').textContent=r.dimension.toUpperCase();$('dimensionNote').textContent=r.dimension==='Fläche'?'Flächenvergleich':'Größenvergleich';
+ $('dimension').textContent=r.dimension.toUpperCase();
  $('round').textContent=index+1;$('roundTotal').textContent=rounds.length;$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
  setObj(ref,r.reference,rs);applyReferenceZoom();
  setObj(guess,r.target,ts);setObj(actual,r.target,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;
