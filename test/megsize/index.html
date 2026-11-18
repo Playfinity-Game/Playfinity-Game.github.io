@@ -59,14 +59,14 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <section class="board-shell">
 <div class="board" id="board"><div class="ground"></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
 <div class="meta">
-<div class="reftext"><strong id="referenceName">Referenz</strong><span class="muted">BLAUE SILHOUETTE · FESTE GRÖSSE</span></div>
+<div class="reftext"><strong id="referenceName">Referenz</strong><span class="muted">BLAUE SILHOUETTE · ZOOMABHÄNGIG</span></div>
 <div class="targettext"><strong id="targetName">Gesucht</strong><span class="muted">ROTE SILHOUETTE · DEINE SCHÄTZUNG</span></div>
 <div class="dimension"><strong id="dimension">HÖHE</strong><span class="muted" id="dimensionNote">Vergleichsmaß</span></div>
 </div>
-<div class="scale-tools"><span>ROTE SILHOUETTE GRÖSSE</span><button id="objectSmaller" aria-label="Rote Silhouette verkleinern">−</button><button id="objectLarger" aria-label="Rote Silhouette vergrößern">+</button></div><div class="lockrow"><button class="primary" id="lock">LOCK IN</button></div>
+<div class="scale-tools"><span>GRÖSSE DER ROTEN SILHOUETTE</span><button id="objectSmaller" aria-label="Rote Silhouette verkleinern">−</button><button id="objectLarger" aria-label="Rote Silhouette vergrößern">+</button></div><div class="lockrow"><button class="primary" id="lock">Auswerten</button></div>
 <div class="result" id="result"></div>
 </section>
-<p class="hint">Rot ziehen zum Positionieren · + / − ändert die Schätzung · zwei Finger zoomen und verschieben die Ansicht · Weiß zeigt nach LOCK IN die echte Größe.</p>
+<p class="hint">Rot ziehen zum Positionieren · Die Knöpfe unter dem Spielfeld ändern die Schätzung · Zwei Finger zoomen und verschieben die Ansicht · Weiß zeigt nach dem Auswerten die echte Größe.</p>
 </main>
 <script src="./data.js"></script>
 <script>
