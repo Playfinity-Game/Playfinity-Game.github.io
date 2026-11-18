@@ -1028,7 +1028,13 @@
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
-    <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity: Nach Gewinn automatisch nächstes Wort starten</span></label>
+    <div class="menu-setting-group">
+      <div class="menu-setting-heading">Automatisch weiter</div>
+      <label class="menu-setting" for="wordle-auto-next"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>
+      <label class="menu-setting" for="hangmann-auto-next"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>
+      <label class="menu-setting" for="priceisright-auto-next"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>
+      <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity</span></label>
+    </div>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -1316,9 +1322,16 @@
 
         document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
-        const autoNext=document.getElementById('kontexto-auto-next');
-        autoNext.checked=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
-        autoNext.addEventListener('change',()=>localStorage.setItem('playfinity_kontexto_auto_next',String(autoNext.checked)));
+        [
+          ['wordle-auto-next','playfinity_wordle_auto_next'],
+          ['hangmann-auto-next','playfinity_hangmann_auto_next'],
+          ['priceisright-auto-next','playfinity_priceisright_auto_next'],
+          ['kontexto-auto-next','playfinity_kontexto_auto_next']
+        ].forEach(([id,key])=>{
+          const setting=document.getElementById(id);
+          setting.checked=localStorage.getItem(key)!=='false';
+          setting.addEventListener('change',()=>localStorage.setItem(key,String(setting.checked)));
+        });
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
         toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
@@ -1495,14 +1508,15 @@
         this.locked=true;this.renderWord();this.renderKeyboard();
         document.getElementById('hangmann-status').innerHTML=won?'<strong>🎉 Richtig! Das Wort lautet '+CommunityBoard.escape(this.target.word)+'.</strong>':'Nicht ganz! Das gesuchte Wort war <strong>'+CommunityBoard.escape(this.target.word)+'</strong>.';
         document.getElementById('hangmann-hint').disabled=true;
-        if(won&&player){
-          CommunityBoard.record('hangmann',player);
-          showCorrectAnswerOverlay(this.target.word, null, false, '🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!');
-          PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
-        }else if(!won){
+        const autoNext=localStorage.getItem('playfinity_hangmann_auto_next')!=='false';
+        if(won){
+          if(player)CommunityBoard.record('hangmann',player);
+          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,player?'🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!':'🎉 Richtig geraten!');
+          if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
+        }else{
           document.getElementById('hangmann-status').textContent='😭 Oh nein!';
           const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
-          this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
+          if(autoNext)this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
         }
       }
     };
@@ -1978,8 +1992,9 @@
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
           resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
-          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false, player ? '🏆 Gewonnen von: ' + player.name : '🏆 Gewonnen von: Lokaler Spieler');
-          PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
+          const autoNext=localStorage.getItem('playfinity_wordle_auto_next')!=='false';
+          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), !autoNext, player ? '🏆 Gewonnen von: ' + player.name : '🏆 Gewonnen von: Lokaler Spieler');
+          if(autoNext)PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
         }
       },
 
@@ -2768,6 +2783,7 @@
           if (event.key === 'Enter') document.getElementById('pir-submit').click();
         });
         document.getElementById('pir-next-btn').style.display = 'none';
+        document.getElementById('pir-next-btn').addEventListener('click',()=>this.nextQuestion());
         await this.loadQuestionPool();
         this.nextQuestion();
       },
@@ -2805,6 +2821,8 @@
       nextQuestion() {
         PauseController.clear('guesswhat','roundTimer');
         PauseController.clear('guesswhat','revealTimer');
+        const nextButton=document.getElementById('pir-next-btn');
+        if(nextButton)nextButton.style.display='none';
         this.roundOpen = false;
         this.guesses = [];
         const liveList = document.getElementById('pir-live-guesses');
@@ -2893,8 +2911,10 @@
           document.getElementById('pir-source-link').appendChild(sourceLink);
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
-        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), false, 'Richtig geraten!');
-        PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
+        const autoNext=localStorage.getItem('playfinity_priceisright_auto_next')!=='false';
+        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), !autoNext, 'Richtig geraten!');
+        if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
+        else if(!correctPlayers.length)document.getElementById('pir-next-btn').style.display='block';
       }
     };
 
