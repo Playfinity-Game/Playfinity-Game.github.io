@@ -59,7 +59,6 @@ def main() -> int:
             errors.append({"target": item["word"], "error": "SHA-256 stimmt nicht"})
             continue
         try:
-            order = list(__import__("array").array("H"))
             import array
             ranks = array.array("H")
             ranks.frombytes(gzip.decompress(raw))
