@@ -36,14 +36,20 @@ gebildet; vorhandene Zielwörter werden zusätzlich aufgenommen, falls sie nicht
 im Häufigkeits-Ausschnitt vorkommen. Der Build ist deterministisch bei gleicher
 Modell- und Paketversion.
 
-## Geplante Laufzeitintegration
+## Online-Veröffentlichung und Laufzeitintegration
 
-Der generierte Ordner ist zunächst nur ein Build-Artefakt. Er wird bewusst noch
-nicht vom Live-Worker geladen: Vorher müssen Hosting/Cache, Dateigröße,
-Ladeverhalten und die Worker-Ressourcengrenzen geprüft werden. Danach kann der
-Worker für **Leicht** ungefähr die halbe Rangposition des besten Versuchs und
-für **Mittel** die unmittelbar bessere Rangposition wählen und belegte,
-bereits geratene oder ausgeschlossene Wörter überspringen.
+Der Build veröffentlicht die erzeugten Dateien in den separaten Git-Branch
+`wordfinity-rank-data`. Dieser Branch wird als statischer Datenspeicher über
+`raw.githubusercontent.com` ausgeliefert; er enthält nur das Manifest und
+die gzip-komprimierten Rangdateien, nicht den Spielcode.
 
-Ohne erfolgreiche Erzeugung und Integration dieser Datei darf das Spiel nicht
-behaupten, bereits echte vorberechnete Ranglisten zu verwenden.
+Das Spiel lädt das Manifest bei Bedarf einmal und danach ausschließlich die
+Rangdatei des aktuellen Zielworts. Die Dekomprimierung und Rangauflösung laufen
+im Browser, nicht im Cloudflare Worker. Die Dateien werden vom Browser-Cache
+wiederverwendet. Für Wörter außerhalb des vorberechneten Kandidatenbestands
+oder bei nicht erreichbaren Rangdateien bleibt der bisherige BGE-M3-Worker als
+Fallback aktiv.
+
+Die angezeigte Rangnummer entspricht bei enthaltenen Tippwörtern der echten
+Position in der vorberechneten BGE-M3-Kandidatenliste. Die Rangliste verändert
+weder die Zielwortauswahl noch die übrige Spielwertung.
