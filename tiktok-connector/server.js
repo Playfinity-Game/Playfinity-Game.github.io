@@ -253,15 +253,19 @@ function handleUsageMetrics(request, response) {
     for (const [id, session] of usageStats.sessions) {
       if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
     }
-    const activeSessions = [...usageStats.sessions.values()].filter(session => session.active).length;
+    const active = [...usageStats.sessions.values()].filter(session => session.active);
+    const livePlayMs = active.reduce((sum, session) => sum + Math.max(0, Math.min(45000, now - session.lastSeenAt)), 0);
+    const liveLongestMs = active.reduce((longest, session) =>
+      Math.max(longest, session.playMs + Math.max(0, Math.min(45000, now - session.lastSeenAt))), usageStats.longestSessionMs);
+    const totalPlayMs = usageStats.totalPlayMs + livePlayMs;
     return sendJson(response, 200, {
       day: usageStats.day,
       pageViews: usageStats.pageViews,
       uniqueVisitors: usageStats.visitors.size,
-      totalPlayMinutes: Math.round(usageStats.totalPlayMs / 60000 * 10) / 10,
-      averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(usageStats.totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
-      activeSessions,
-      longestSessionMinutes: Math.round(usageStats.longestSessionMs / 60000 * 10) / 10,
+      totalPlayMinutes: Math.round(totalPlayMs / 60000 * 10) / 10,
+      averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
+      activeSessions: active.length,
+      longestSessionMinutes: Math.round(liveLongestMs / 60000 * 10) / 10,
       storage: "memory_only"
     }, { "access-control-allow-origin": "*", "cache-control": "no-store" });
   }
@@ -309,7 +313,7 @@ function handleUsageMetrics(request, response) {
           session.playMs += elapsed;
           usageStats.totalPlayMs += elapsed;
           session.active = false;
-          if (event === "end") usageStats.longestSessionMs = Math.max(usageStats.longestSessionMs, session.playMs);
+          usageStats.longestSessionMs = Math.max(usageStats.longestSessionMs, session.playMs);
         }
         session.lastSeenAt = now;
       }

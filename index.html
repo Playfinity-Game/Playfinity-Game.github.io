@@ -2941,7 +2941,7 @@
           visitorId: this.visitorId,
           sessionId: this.sessionId,
           visible,
-          elapsedMs: visible && event !== 'start' ? elapsed : 0
+          elapsedMs: event !== 'start' ? elapsed : 0
         });
         try {
           if (event === 'end' && navigator.sendBeacon) {
