@@ -2425,7 +2425,7 @@
 
       async loadSemanticRankManifest() {
         if (!this.semanticRankManifestPromise) {
-          this.semanticRankManifestPromise = fetch(this.semanticRankManifestUrl, { cache: 'force-cache' })
+          this.semanticRankManifestPromise = fetch(this.semanticRankManifestUrl, { cache: 'no-cache' })
             .then(response => {
               if (!response.ok) throw new Error('Online-Ranglisten nicht verfügbar: ' + response.status);
               return response.json();
@@ -2458,7 +2458,7 @@
           let rankPromise = this.semanticRankCache.get(targetKey);
           if (!rankPromise) {
             const baseUrl = this.semanticRankManifestUrl.slice(0, this.semanticRankManifestUrl.lastIndexOf('/') + 1);
-            rankPromise = fetch(baseUrl + entry.file, { cache: 'force-cache' }).then(async response => {
+            rankPromise = fetch(baseUrl + entry.file + '?v=' + encodeURIComponent(manifest.targetDictionarySha256), { cache: 'force-cache' }).then(async response => {
               if (!response.ok) throw new Error('Rangdatei nicht verfügbar: ' + response.status);
               if (typeof DecompressionStream !== 'function') throw new Error('Browser unterstützt gzip-Dekomprimierung nicht');
               const compressed = await response.arrayBuffer();
