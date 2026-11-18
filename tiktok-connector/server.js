@@ -154,9 +154,14 @@ function broadcast(session, payload) {
     streamer: session.username,
     receivedAt: new Date().toISOString()
   });
+  let delivered = 0;
   for (const client of session.clients) {
-    if (client.readyState === WebSocket.OPEN) client.send(message);
+    if (client.readyState === WebSocket.OPEN) {
+      client.send(message);
+      delivered += 1;
+    }
   }
+  return delivered;
 }
 
 function stopSession(session) {
@@ -192,7 +197,16 @@ async function startSession(username) {
     stopped: false,
     idleTimer: null,
     viewerCount: null,
-    lastEventAt: new Date().toISOString()
+    lastEventAt: null,
+    lastEventType: null,
+    eventCounts: {},
+    chatEventsReceived: 0,
+    chatEventsForwarded: 0,
+    chatClientDeliveries: 0,
+    lastChatAt: null,
+    lastChatForwardedAt: null,
+    lastConnectorError: null,
+    lastConnectorErrorAt: null
   };
 
   const eventNames = [
@@ -210,15 +224,29 @@ async function startSession(username) {
       if (name === "roomUser" && Number.isFinite(Number(data?.viewerCount))) {
         session.viewerCount = Number(data.viewerCount);
       }
-      session.lastEventAt = new Date().toISOString();
-      broadcast(session, eventPayload(name, data));
+      const eventAt = new Date().toISOString();
+      session.lastEventAt = eventAt;
+      session.lastEventType = name;
+      session.eventCounts[name] = (session.eventCounts[name] || 0) + 1;
+      if (name === "chat") {
+        session.chatEventsReceived += 1;
+        session.lastChatAt = eventAt;
+      }
+      const delivered = broadcast(session, eventPayload(name, data));
+      if (name === "chat" && delivered > 0) {
+        session.chatEventsForwarded += 1;
+        session.chatClientDeliveries += delivered;
+        session.lastChatForwardedAt = eventAt;
+      }
     });
   }
 
   connection.on("error", (error) => {
+    session.lastConnectorError = String(error?.message || "TikTok-Verbindung fehlgeschlagen").slice(0, 300);
+    session.lastConnectorErrorAt = new Date().toISOString();
     broadcast(session, {
       type: "connector_error",
-      message: String(error?.message || "TikTok-Verbindung fehlgeschlagen")
+      message: session.lastConnectorError
     });
   });
 
@@ -407,6 +435,16 @@ const server = http.createServer(async (request, response) => {
       const connections = [...sessions.values()].filter(session => !session.stopped).map(session => ({
         username: session.username, viewerCount: session.viewerCount ?? null,
         connectedPlayers: session.clients.size,
+        lastEventAt: session.lastEventAt,
+        lastEventType: session.lastEventType,
+        eventCounts: session.eventCounts,
+        chatEventsReceived: session.chatEventsReceived,
+        chatEventsForwarded: session.chatEventsForwarded,
+        chatClientDeliveries: session.chatClientDeliveries,
+        lastChatAt: session.lastChatAt,
+        lastChatForwardedAt: session.lastChatForwardedAt,
+        lastConnectorError: session.lastConnectorError,
+        lastConnectorErrorAt: session.lastConnectorErrorAt,
         players: [...activePlayers.values()]
           .filter(player => player.active && player.socket.readyState === WebSocket.OPEN &&
             player.streamerUsername && player.streamerUsername.toLowerCase() === session.username.toLowerCase())
