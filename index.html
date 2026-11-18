@@ -2355,6 +2355,7 @@
       async pickNewTarget() {
         PauseController.clear('kontexto','roundTimer');
         this.roundId++;
+        this.wordHintCandidatesTried.clear();
         const requestedRoundId=this.roundId;
         this.roundLocked=false;
         this.pendingGuesses.clear();
