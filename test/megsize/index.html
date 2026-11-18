@@ -27,7 +27,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .obj{position:absolute;display:flex;align-items:center;justify-content:center;user-select:none;pointer-events:none;touch-action:none}
 .obj svg{display:block;width:100%;height:100%;overflow:visible;fill:currentColor}.obj.png{background-color:currentColor;-webkit-mask-repeat:no-repeat;mask-repeat:no-repeat;-webkit-mask-position:center;mask-position:center;-webkit-mask-size:contain;mask-size:contain}
 .obj svg *{stroke:currentColor;stroke-linejoin:round;stroke-linecap:round}
-.reference{color:#168dff;filter:drop-shadow(0 0 7px #168dff66)}
+.reference{color:#168dff;filter:drop-shadow(0 0 7px #168dff66);z-index:3;pointer-events:none}
 .guess{color:var(--pink);filter:drop-shadow(0 0 8px #ff477d66);cursor:grab;pointer-events:auto;touch-action:none}
 .guess:active{cursor:grabbing}
 .actual{color:#f4f7ff;opacity:.92;filter:drop-shadow(0 0 8px #ffffff30);display:none;z-index:1}
@@ -57,7 +57,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">6</strong></div>
 <div class="toolbar"><button id="zoomOut" aria-label="Ansicht herauszoomen">Ansicht −</button><button id="zoomIn" aria-label="Ansicht hineinzoomen">Ansicht +</button><button id="resetView">Ansicht zurücksetzen</button></div>
 <section class="board-shell">
-<div class="board" id="board"><div class="ground"></div><div class="world" id="world"><div class="obj reference" id="reference"></div><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
+<div class="board" id="board"><div class="ground"></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
 <div class="meta">
 <div class="reftext"><strong id="referenceName">Referenz</strong><span class="muted">BLAUE SILHOUETTE · FESTE GRÖSSE</span></div>
 <div class="targettext"><strong id="targetName">Gesucht</strong><span class="muted">ROTE SILHOUETTE · DEINE SCHÄTZUNG</span></div>
@@ -87,7 +87,7 @@ function render(){
  $('referenceName').textContent=r.reference.name;$('targetName').textContent=r.target.name;
  $('dimension').textContent=r.dimension.toUpperCase();$('dimensionNote').textContent=r.dimension==='Fläche'?'Flächenvergleich':'Größenvergleich';
  $('round').textContent=index+1;$('roundTotal').textContent=rounds.length;$('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
- setObj(ref,r.reference,rs);pos(ref,c.x-base-22,c.y-rs.h);
+ setObj(ref,r.reference,rs);pos(ref,24,board.clientHeight*.86-rs.h);
  setObj(guess,r.target,ts);setObj(actual,r.target,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;
  locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false;
 }
