@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus zehn Kategorien.",
+  "description": "Deutsche Begriffe für Hangman aus elf Kategorien.",
   "words": [
     {
       "word": "Affe",
@@ -4929,259 +4929,991 @@
     },
     {
       "word": "Abenteuer",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Album",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Anzug",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Badehose",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Badezimmer",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Ball",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Basteln",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Bibliothek",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Bilderbuch",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Bogen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Brettspiel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Brille",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Buntstift",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Camping",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Comic",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Farbkasten",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Ferien",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Gesellschaftsspiel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Hausaufgabe",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Heft",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Hobby",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Jacke",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Karte",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Kino",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Knete",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Konzert",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Kreide",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Lesebuch",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Malbuch",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Malen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Murmel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Musik",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Note",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Pause",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Puzzle",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Rakete",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Rechenheft",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Ranzen",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Roller",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Rubbellos",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlitten",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlafanzug",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlafsack",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlüsselband",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schnitzeljagd",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schulbus",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Schulhof",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Schultasche",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Schwimmbad",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Seilspringen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Spiel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Spielplatz",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Sport",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Sportplatz",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Stift",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Tanzen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Theater",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Ticket",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Turnbeutel",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Turnhalle",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Urlaub",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Video",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Wettbewerb",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Zeichnen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abakus",
+      "category": "Schule"
+    },
+    {
+      "word": "Abschlussprüfung",
+      "category": "Schule"
+    },
+    {
+      "word": "Abitur",
+      "category": "Schule"
+    },
+    {
+      "word": "Abiturient",
+      "category": "Schule"
+    },
+    {
+      "word": "Abiturzeugnis",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsbogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Atlas",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufsatz",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufgabenheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufgabenblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Ausleihkarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Berichtsheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Bewertung",
+      "category": "Schule"
+    },
+    {
+      "word": "Bibliotheksausweis",
+      "category": "Schule"
+    },
+    {
+      "word": "Bildkarten",
+      "category": "Schule"
+    },
+    {
+      "word": "Bildtafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Bleistiftmine",
+      "category": "Schule"
+    },
+    {
+      "word": "Bleistiftspitzer",
+      "category": "Schule"
+    },
+    {
+      "word": "Block",
+      "category": "Schule"
+    },
+    {
+      "word": "Buch",
+      "category": "Schule"
+    },
+    {
+      "word": "Buchstabe",
+      "category": "Schule"
+    },
+    {
+      "word": "Buchstabenkarten",
+      "category": "Schule"
+    },
+    {
+      "word": "Buchstabentafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Chemiebuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Chemieraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Computerraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Diktat",
+      "category": "Schule"
+    },
+    {
+      "word": "Diktatheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Doppelstunde",
+      "category": "Schule"
+    },
+    {
+      "word": "Dreieck",
+      "category": "Schule"
+    },
+    {
+      "word": "Einschulung",
+      "category": "Schule"
+    },
+    {
+      "word": "Einmaleins",
+      "category": "Schule"
+    },
+    {
+      "word": "Elternabend",
+      "category": "Schule"
+    },
+    {
+      "word": "Elternbrief",
+      "category": "Schule"
+    },
+    {
+      "word": "Englischbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Entschuldigung",
+      "category": "Schule"
+    },
+    {
+      "word": "Erdkunde",
+      "category": "Schule"
+    },
+    {
+      "word": "Erdkundebuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Erstklässler",
+      "category": "Schule"
+    },
+    {
+      "word": "Facharbeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachlehrer",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Farbpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Feder",
+      "category": "Schule"
+    },
+    {
+      "word": "Federhalter",
+      "category": "Schule"
+    },
+    {
+      "word": "Fibel",
+      "category": "Schule"
+    },
+    {
+      "word": "Formelsammlung",
+      "category": "Schule"
+    },
+    {
+      "word": "Fragebogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Französischbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Füller",
+      "category": "Schule"
+    },
+    {
+      "word": "Füllfederhalter",
+      "category": "Schule"
+    },
+    {
+      "word": "Geodreieck",
+      "category": "Schule"
+    },
+    {
+      "word": "Geografie",
+      "category": "Schule"
+    },
+    {
+      "word": "Geografiebuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Geschichtsbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Gesangbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Grammatik",
+      "category": "Schule"
+    },
+    {
+      "word": "Grundkurs",
+      "category": "Schule"
+    },
+    {
+      "word": "Grundschule",
+      "category": "Schule"
+    },
+    {
+      "word": "Halbjahreszeugnis",
+      "category": "Schule"
+    },
+    {
+      "word": "Handarbeitszeug",
+      "category": "Schule"
+    },
+    {
+      "word": "Hausaufgabenheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Hausaufgabenhilfe",
+      "category": "Schule"
+    },
+    {
+      "word": "Heftklammer",
+      "category": "Schule"
+    },
+    {
+      "word": "Heftumschlag",
+      "category": "Schule"
+    },
+    {
+      "word": "Hefter",
+      "category": "Schule"
+    },
+    {
+      "word": "Hörverstehen",
+      "category": "Schule"
+    },
+    {
+      "word": "Inhaltsverzeichnis",
+      "category": "Schule"
+    },
+    {
+      "word": "Jahreszeugnis",
+      "category": "Schule"
+    },
+    {
+      "word": "Karteikarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Karteikasten",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenarbeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenfoto",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenfahrt",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenkamerad",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenkasse",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenlehrer",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenliste",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenstufe",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenzimmer",
+      "category": "Schule"
+    },
+    {
+      "word": "Klebestift",
+      "category": "Schule"
+    },
+    {
+      "word": "Klemmbrett",
+      "category": "Schule"
+    },
+    {
+      "word": "Korrektur",
+      "category": "Schule"
+    },
+    {
+      "word": "Korrekturbogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Korrekturstift",
+      "category": "Schule"
+    },
+    {
+      "word": "Kreidestück",
+      "category": "Schule"
+    },
+    {
+      "word": "Kunstbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Kunstunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Kursbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Kursheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Lateinbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernkarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernkartei",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernkontrolle",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernmaterial",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernplattform",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernspiel",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernstoff",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernziel",
+      "category": "Schule"
+    },
+    {
+      "word": "Leseblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesefibel",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesestunde",
+      "category": "Schule"
+    },
+    {
+      "word": "Lückentext",
+      "category": "Schule"
+    },
+    {
+      "word": "Mappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Mathebuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Mathematik",
+      "category": "Schule"
+    },
+    {
+      "word": "Mathematikheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Malkittel",
+      "category": "Schule"
+    },
+    {
+      "word": "Malkreide",
+      "category": "Schule"
+    },
+    {
+      "word": "Mensa",
+      "category": "Schule"
+    },
+    {
+      "word": "Merkblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Mikroskop",
+      "category": "Schule"
+    },
+    {
+      "word": "Mitschrift",
+      "category": "Schule"
+    },
+    {
+      "word": "MündlichePrüfung",
+      "category": "Schule"
+    },
+    {
+      "word": "Nachhilfe",
+      "category": "Schule"
+    },
+    {
+      "word": "Nachhilfestunde",
+      "category": "Schule"
+    },
+    {
+      "word": "Notenheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Notenliste",
+      "category": "Schule"
+    },
+    {
+      "word": "Notenmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Oberstufe",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausengong",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenhalle",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenhof",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenzeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Pinsel",
+      "category": "Schule"
+    },
+    {
+      "word": "Plakat",
+      "category": "Schule"
+    },
+    {
+      "word": "Plakatwand",
+      "category": "Schule"
+    },
+    {
+      "word": "Präsentation",
+      "category": "Schule"
+    },
+    {
+      "word": "Prüfbogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Prüfungsbogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Prüfungsheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Prüfungstermin",
+      "category": "Schule"
+    },
+    {
+      "word": "Pult",
+      "category": "Schule"
+    },
+    {
+      "word": "Radiermine",
+      "category": "Schule"
+    },
+    {
+      "word": "Radierer",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechenaufgabe",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechenbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Referat",
+      "category": "Schule"
+    },
+    {
+      "word": "Religionsbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Rückmeldung",
+      "category": "Schule"
+    },
+    {
+      "word": "Sachbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Sachkunde",
+      "category": "Schule"
+    },
+    {
+      "word": "Schablone",
+      "category": "Schule"
+    },
+    {
+      "word": "Schreibblock",
+      "category": "Schule"
+    },
+    {
+      "word": "Schreibbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Schreibheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Schreibmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Schreibtafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Schreibübung",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulbank",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulbücherei",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulgebäude",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulglocke",
+      "category": "Schule"
+    },
+    {
+      "word": "Schuljahr",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulkind",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulleitung",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulmaterial",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulnote",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulordnung",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulranzen",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulregeln",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulsekretariat",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulstunde",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulweg",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulzeugnis",
+      "category": "Schule"
+    },
+    {
+      "word": "Schwammtafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Sitzplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Spitzer",
+      "category": "Schule"
+    },
+    {
+      "word": "Sprachbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Sprachkurs",
+      "category": "Schule"
+    },
+    {
+      "word": "Sprachlabor",
+      "category": "Schule"
+    },
+    {
+      "word": "Stundenplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Tafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Tafelbild",
+      "category": "Schule"
     }
   ]
 }
