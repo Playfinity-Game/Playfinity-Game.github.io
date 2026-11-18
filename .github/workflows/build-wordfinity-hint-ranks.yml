@@ -11,6 +11,7 @@ on:
       - "data/wordfinity-nouns.json"
       - "data/wordfinity-ranking-benchmark.json"
       - "scripts/evaluate_wordfinity_rank_quality.py"
+      - "scripts/apply_wordfinity_hard_negatives.py"
 
 permissions:
   contents: write
@@ -50,6 +51,13 @@ jobs:
             --output build/wordfinity-hint-ranks \
             --candidate-count 15500 \
             --batch-size 32
+
+      - name: Apply reviewed semantic hard-negative corrections
+        run: |
+          python -m py_compile scripts/apply_wordfinity_hard_negatives.py
+          python scripts/apply_wordfinity_hard_negatives.py \\
+            --build build/wordfinity-hint-ranks \\
+            --benchmark data/wordfinity-ranking-benchmark.json
 
       - name: Check quality evaluator syntax
         run: python -m py_compile scripts/evaluate_wordfinity_rank_quality.py
