@@ -3248,18 +3248,6 @@
       "category": "Natur"
     },
     {
-      "word": "Halbwüste",
-      "category": "Natur"
-    },
-    {
-      "word": "Tundra",
-      "category": "Natur"
-    },
-    {
-      "word": "Taiga",
-      "category": "Natur"
-    },
-    {
       "word": "Moor",
       "category": "Natur"
     },
@@ -3269,10 +3257,6 @@
     },
     {
       "word": "Heide",
-      "category": "Natur"
-    },
-    {
-      "word": "Aue",
       "category": "Natur"
     },
     {
@@ -3364,19 +3348,11 @@
       "category": "Natur"
     },
     {
-      "word": "Lagune",
-      "category": "Natur"
-    },
-    {
       "word": "Riff",
       "category": "Natur"
     },
     {
       "word": "Korallenriff",
-      "category": "Natur"
-    },
-    {
-      "word": "Atoll",
       "category": "Natur"
     },
     {
@@ -3424,14 +3400,6 @@
       "category": "Natur"
     },
     {
-      "word": "Stromschnelle",
-      "category": "Natur"
-    },
-    {
-      "word": "Delta",
-      "category": "Natur"
-    },
-    {
       "word": "Mündung",
       "category": "Natur"
     },
@@ -3440,15 +3408,7 @@
       "category": "Natur"
     },
     {
-      "word": "Polder",
-      "category": "Natur"
-    },
-    {
       "word": "Salzsee",
-      "category": "Natur"
-    },
-    {
-      "word": "Kratersee",
       "category": "Natur"
     },
     {
@@ -3461,10 +3421,6 @@
     },
     {
       "word": "Nebel",
-      "category": "Natur"
-    },
-    {
-      "word": "Dunst",
       "category": "Natur"
     },
     {
@@ -3505,10 +3461,6 @@
     },
     {
       "word": "Frost",
-      "category": "Natur"
-    },
-    {
-      "word": "Raureif",
       "category": "Natur"
     },
     {
@@ -3589,10 +3541,6 @@
     },
     {
       "word": "Neumond",
-      "category": "Natur"
-    },
-    {
-      "word": "Sichelmond",
       "category": "Natur"
     },
     {
@@ -3696,14 +3644,6 @@
       "category": "Natur"
     },
     {
-      "word": "Biosphäre",
-      "category": "Natur"
-    },
-    {
-      "word": "Ökosystem",
-      "category": "Natur"
-    },
-    {
       "word": "Lebensraum",
       "category": "Natur"
     },
@@ -3732,10 +3672,6 @@
       "category": "Natur"
     },
     {
-      "word": "Geröll",
-      "category": "Natur"
-    },
-    {
       "word": "Stein",
       "category": "Natur"
     },
@@ -3748,23 +3684,7 @@
       "category": "Natur"
     },
     {
-      "word": "Basalt",
-      "category": "Natur"
-    },
-    {
-      "word": "Kalkstein",
-      "category": "Natur"
-    },
-    {
-      "word": "Schiefer",
-      "category": "Natur"
-    },
-    {
       "word": "Marmor",
-      "category": "Natur"
-    },
-    {
-      "word": "Quarz",
       "category": "Natur"
     },
     {
@@ -4164,10 +4084,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Keiler",
-      "category": "Tiere"
-    },
-    {
       "word": "Kiebitz",
       "category": "Tiere"
     },
@@ -4205,10 +4121,6 @@
     },
     {
       "word": "Libelle",
-      "category": "Tiere"
-    },
-    {
-      "word": "Löffler",
       "category": "Tiere"
     },
     {
@@ -4372,10 +4284,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Zobel",
-      "category": "Tiere"
-    },
-    {
       "word": "Zwergkaninchen",
       "category": "Tiere"
     },
@@ -4440,19 +4348,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Gartenschläfer",
-      "category": "Tiere"
-    },
-    {
       "word": "Gartenschnecke",
       "category": "Tiere"
     },
     {
       "word": "Geburtshelferkröte",
-      "category": "Tiere"
-    },
-    {
-      "word": "Goldammer",
       "category": "Tiere"
     },
     {
@@ -4469,10 +4369,6 @@
     },
     {
       "word": "Hermelin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Huchen",
       "category": "Tiere"
     },
     {
@@ -4521,14 +4417,6 @@
     },
     {
       "word": "Mücke",
-      "category": "Tiere"
-    },
-    {
-      "word": "Nandu",
-      "category": "Tiere"
-    },
-    {
-      "word": "Okapi",
       "category": "Tiere"
     },
     {
@@ -4828,10 +4716,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Pannfisch",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Parmesan",
       "category": "Essen & Trinken"
     },
@@ -4997,10 +4881,6 @@
     },
     {
       "word": "Süßkartoffel",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Tafelwasser",
       "category": "Essen & Trinken"
     },
     {
@@ -5288,10 +5168,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Lebensmitteltechniker",
-      "category": "Berufe"
-    },
-    {
       "word": "Lokführer",
       "category": "Berufe"
     },
@@ -5548,10 +5424,6 @@
       "category": "Fahrzeuge & Verkehr"
     },
     {
-      "word": "Pistenraupe",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
       "word": "Quad",
       "category": "Fahrzeuge & Verkehr"
     },
@@ -5572,10 +5444,6 @@
       "category": "Fahrzeuge & Verkehr"
     },
     {
-      "word": "Roadster",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
       "word": "Ruderboot",
       "category": "Fahrzeuge & Verkehr"
     },
@@ -5593,10 +5461,6 @@
     },
     {
       "word": "Shuttlebus",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
-      "word": "Silo-Lkw",
       "category": "Fahrzeuge & Verkehr"
     },
     {
@@ -5648,10 +5512,6 @@
       "category": "Fahrzeuge & Verkehr"
     },
     {
-      "word": "Werkslok",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
       "word": "Wohnwagen",
       "category": "Fahrzeuge & Verkehr"
     },
@@ -5661,14 +5521,6 @@
     },
     {
       "word": "Zweirad",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
-      "word": "Zweimaster",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
-      "word": "Zubringerbus",
       "category": "Fahrzeuge & Verkehr"
     },
     {
