@@ -38,16 +38,16 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .reftext strong{color:#71b7ff}.targettext strong{color:#ff719a}
 .dimension{color:#c8d3e8;text-align:right}
 .lockrow{display:flex;justify-content:flex-end;padding:10px 15px 15px}
-.result{display:none;margin:0 15px 15px;padding:15px;border:1px solid #3a5577;border-radius:13px;background:linear-gradient(135deg,#101f34,#0d1728)}
+.result{display:none;position:absolute;top:10px;left:10px;z-index:9;width:calc(100% - 112px);max-width:310px;margin:0;padding:11px;border:1px solid #59708f;border-radius:12px;background:linear-gradient(135deg,#101f34f5,#0d1728f5);box-shadow:0 8px 28px #0009;backdrop-filter:blur(8px)}
 .result.show{display:block}
-.resulttop{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.resulttop{display:flex;align-items:center;gap:10px;flex-wrap:wrap}.result .points{font-size:2rem;flex:0 0 auto}.result h2{font-size:.9rem}.result p{font-size:.76rem;line-height:1.35}.result .nextrow{margin-top:8px}.result .nextrow button{padding:7px 10px;font-size:.78rem}
 .points{font-size:2.5rem;line-height:1;font-weight:950;color:#ffdb57}
 .points small{font-size:.9rem;color:#c6d1e5;font-weight:700}
 .result h2{font-size:1rem;margin:0 0 5px}
 .result p{margin:4px 0;color:#c5d0e2;font-size:.86rem}
 .result .nextrow{display:flex;justify-content:flex-end;margin-top:12px}
 .hint{text-align:center;color:#7888a4;font-size:.78rem;padding:0 10px;margin-top:12px}
-@media(max-width:600px){header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{top:8px;right:8px;gap:5px;padding:4px}.toolbar button{width:36px;height:34px;flex:none;padding:0;font-size:1.2rem}.toolbar button#resetView{width:34px;font-size:.95rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
+@media(max-width:600px){header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{top:8px;right:8px;gap:5px;padding:4px}.result{top:8px;left:8px;width:calc(100% - 104px);padding:8px}.result .points{font-size:1.75rem}.result p{font-size:.69rem}.result .resulttop{gap:7px}.toolbar button{width:36px;height:34px;flex:none;padding:0;font-size:1.2rem}.toolbar button#resetView{width:34px;font-size:.95rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
 </style>
 </head>
 <body>
@@ -56,14 +56,14 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <p class="intro">Wie groß ist das wirklich? Passe die rote Silhouette an die echte Größe an.</p>
 <div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">6</strong></div>
 <section class="board-shell">
-<div class="board" id="board"><div class="ground"></div><div class="toolbar" aria-label="Ansicht vergrößern oder verkleinern"><button id="zoomOut" aria-label="Ansicht herauszoomen" title="Verkleinern">−</button><button id="zoomIn" aria-label="Ansicht hineinzoomen" title="Vergrößern">+</button><button id="resetView" aria-label="Ansicht zurücksetzen" title="Ansicht zurücksetzen">↺</button></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
+<div class="board" id="board"><div class="ground"></div><div class="toolbar" aria-label="Ansicht vergrößern oder verkleinern"><button id="zoomOut" aria-label="Ansicht herauszoomen" title="Verkleinern">−</button><button id="zoomIn" aria-label="Ansicht hineinzoomen" title="Vergrößern">+</button><button id="resetView" aria-label="Ansicht zurücksetzen" title="Ansicht zurücksetzen">↺</button></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div><div class="result" id="result"></div></div>
 <div class="meta">
 <div class="reftext"><strong id="referenceName">Referenz</strong><span class="muted">BLAUE SILHOUETTE · ZOOMABHÄNGIG</span></div>
 <div class="targettext"><strong id="targetName">Gesucht</strong><span class="muted">ROTE SILHOUETTE · DEINE SCHÄTZUNG</span></div>
 <div class="dimension"><strong id="dimension">HÖHE</strong><span class="muted" id="dimensionNote">Vergleichsmaß</span></div>
 </div>
 <div class="scale-tools"><span>GRÖSSE DER ROTEN SILHOUETTE</span><button id="objectSmaller" aria-label="Rote Silhouette verkleinern">−</button><button id="objectLarger" aria-label="Rote Silhouette vergrößern">+</button></div><div class="lockrow"><button class="primary" id="lock">Auswerten</button></div>
-<div class="result" id="result"></div>
+
 </section>
 <p class="hint">Rot ziehen zum Positionieren · Die Knöpfe unter dem Spielfeld ändern die Schätzung · Die Ansicht lässt sich oben rechts zoomen · Weiß zeigt nach dem Auswerten die echte Größe.</p>
 </main>
@@ -134,8 +134,8 @@ $('lock').onclick=()=>{
  locked=true;const previousTotal=total,trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
  const s=sizeFor(r.target,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';actual.style.display='flex';positionActual();
  $('lock').disabled=true;$('result').classList.add('show');
- $('result').innerHTML='<div class="resulttop"><div class="points"><span id="roundPoints">0</span><small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> der Referenzgröße</p><p>Tatsächliche Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Abweichung: <b>'+(error*100).toFixed(1).replace('.',',')+' %</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
- $('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b><span id="totalPoints">'+previousTotal+'</span> PUNKTE</b>';
+ $('result').innerHTML='<div class="resulttop"><div class="points"><span id="roundPoints">0</span><small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Exakte Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> · Abweichung: <b>'+(error*100).toFixed(1).replace('.',',')+' %</b></p><p>Gesamt: <b><span id="totalPoints">'+previousTotal+'</span> Punkte</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
+ $('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b>'+total+' PUNKTE</b>';
  animateNumber($('roundPoints'),0,pts,950);animateNumber($('totalPoints'),previousTotal,total,1100);
  $('next').onclick=()=>{if(index<rounds.length-1){index++;render()}else{$('result').innerHTML='<div class="resulttop"><div class="points"><span id="finalPoints">0</span><small> Punkte</small></div><div><h2>MEGASIZE abgeschlossen! 🏆</h2><p>Deine Gesamtpunktzahl aus '+rounds.length+' Runden.</p></div></div><div class="nextrow"><button id="again">Nochmal spielen</button></div>';animateNumber($('finalPoints'),0,total,1300);$('again').onclick=()=>{index=0;total=0;render()}}};
 };
