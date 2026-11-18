@@ -9,6 +9,8 @@ on:
       - "scripts/build_wordfinity_hint_ranks.py"
       - "scripts/requirements-hint-ranks.txt"
       - "data/wordfinity-nouns.json"
+      - "data/wordfinity-ranking-benchmark.json"
+      - "scripts/evaluate_wordfinity_rank_quality.py"
 
 permissions:
   contents: write
@@ -48,6 +50,18 @@ jobs:
             --output build/wordfinity-hint-ranks \
             --candidate-count 15500 \
             --batch-size 32
+
+      - name: Check quality evaluator syntax
+        run: python -m py_compile scripts/evaluate_wordfinity_rank_quality.py
+
+      - name: Audit every target and semantic control case
+        run: |
+          python scripts/evaluate_wordfinity_rank_quality.py \
+            --build build/wordfinity-hint-ranks \
+            --targets data/wordfinity-nouns.json \
+            --benchmark data/wordfinity-ranking-benchmark.json \
+            --report build/wordfinity-quality-report.json \
+            --negative-top-n 10
 
       - name: Validate manifest and target dictionary fingerprint
         run: |
