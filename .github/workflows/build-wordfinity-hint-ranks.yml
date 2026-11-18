@@ -94,8 +94,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch --orphan wordfinity-rank-data
-          git rm -rf . || true
-          rm -rf build
+          git clean -fdx
           cp -R "$RUNNER_TEMP/wordfinity-rank-data/." .
           git add -A
           git commit -m "Publish Wordfinity semantic rank data"
