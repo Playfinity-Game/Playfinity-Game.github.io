@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangmann aus fünf Kategorien.",
+  "description": "Deutsche Begriffe für Hangman aus zehn Kategorien.",
   "words": [
     {
       "word": "Affe",
@@ -2612,606 +2612,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Drache",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Einhorn",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberer",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hexe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Fee",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kobold",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zwerg",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Riese",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Troll",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Oger",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Goblin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Ork",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Elf",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Elfe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Nixe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Meerjungfrau",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Meerjungmann",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Wassermann",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zentaur",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Pegasus",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Greif",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Phönix",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Werwolf",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Vampir",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Geist",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Gespenst",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Dämon",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Engel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Teufel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zombie",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Skelett",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Golem",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Gargoyle",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hydra",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Minotaurus",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zyklop",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Medusa",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Basilisk",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Mantikor",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Prinz",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Prinzessin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "König",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Königin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kaiser",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kaiserin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Ritter",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Knappe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Burgfräulein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Königssohn",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Königstochter",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Müllerssohn",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Müllerstochter",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Bauer",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Bäuerin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Schneider",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Schneiderin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Königskind",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Stiefmutter",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Stiefschwester",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Stiefbruder",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Waldfee",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Waldgeist",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Waldschrat",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Waldkobold",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hausgeist",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Schutzgeist",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberlehrling",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Magier",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Magierin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hexenmeister",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hexenmeisterin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Druide",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Druidin",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Schamane",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Orakel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Seher",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Prophet",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Alchemist",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Barde",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Troubadour",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenreiter",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenbaby",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberstab",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberbuch",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zaubertrank",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberhut",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hexenkessel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kristallkugel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Wunschring",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Tarnkappe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Wunderlampe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberspiegel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberschwert",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberschlüssel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberbesen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Siebenmeilenstiefel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Goldesel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Tischlein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Wunschbrunnen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Feenstaub",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenblut",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Einhornhorn",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Phönixfeder",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenei",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenschuppe",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenzahn",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Amulett",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Talisman",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Runenstein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kristall",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Edelstein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberstein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Mondstein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Sonnenstein",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Runenschwert",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Elfenbogen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zwergenhammer",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenschild",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Ritterschwert",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Ritterhelm",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Ritterrüstung",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kettenhemd",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Königskrone",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zepter",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Thron",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Burg",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Turm",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Verlies",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Kerker",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Geheimgang",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Geheimtür",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Labyrinth",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Zauberwald",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Märchenwald",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Feenschloss",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Drachenhöhle",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Ritterburg",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Spukhaus",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Geisterschiff",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hexenhaus",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Lebkuchenhaus",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Hänsel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Gretel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Rotkäppchen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Aschenputtel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Schneewittchen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Dornröschen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Rapunzel",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Rumpelstilzchen",
-      "category": "Fantasy & Märchen"
-    },
-    {
-      "word": "Froschkönig",
-      "category": "Fantasy & Märchen"
-    },
-    {
       "word": "Wald",
       "category": "Natur"
     },
@@ -5526,6 +4926,262 @@
     {
       "word": "Zeppelin",
       "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Abenteuer",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Album",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Anzug",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Badehose",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Badezimmer",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Ball",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Basteln",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Bibliothek",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Bilderbuch",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Bogen",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Brettspiel",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Brille",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Buntstift",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Camping",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Comic",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Farbkasten",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Ferien",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Gesellschaftsspiel",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Hausaufgabe",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Heft",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Hobby",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Jacke",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Karte",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Kino",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Knete",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Konzert",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Kreide",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Lesebuch",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Malbuch",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Malen",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Murmel",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Musik",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Note",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Pause",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Puzzle",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Rakete",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Rechenheft",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Ranzen",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Roller",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Rubbellos",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schlitten",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schlafanzug",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schlafsack",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schlüsselband",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schnitzeljagd",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schulbus",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schulhof",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schultasche",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Schwimmbad",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Seilspringen",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Spiel",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Spielplatz",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Sport",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Sportplatz",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Stift",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Tanzen",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Theater",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Ticket",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Turnbeutel",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Turnhalle",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Urlaub",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Video",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Wettbewerb",
+      "category": "Schule & Freizeit"
+    },
+    {
+      "word": "Zeichnen",
+      "category": "Schule & Freizeit"
     }
   ]
 }
