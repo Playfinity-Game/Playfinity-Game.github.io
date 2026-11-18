@@ -56,11 +56,11 @@ jobs:
 
       - name: Audit every target and semantic control case
         run: |
-          python scripts/evaluate_wordfinity_rank_quality.py \\
-            --build build/wordfinity-hint-ranks \\
-            --targets data/wordfinity-nouns.json \\
-            --benchmark data/wordfinity-ranking-benchmark.json \\
-            --report build/wordfinity-quality-report.json \\
+          python scripts/evaluate_wordfinity_rank_quality.py \
+            --build build/wordfinity-hint-ranks \
+            --targets data/wordfinity-nouns.json \
+            --benchmark data/wordfinity-ranking-benchmark.json \
+            --report build/wordfinity-quality-report.json \
             --negative-top-n 10
 
       - name: Validate manifest and target dictionary fingerprint
