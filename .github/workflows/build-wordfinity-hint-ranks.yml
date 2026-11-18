@@ -11,7 +11,7 @@ on:
       - "data/wordfinity-nouns.json"
 
 permissions:
-  contents: read
+  contents: write
 
 concurrency:
   group: wordfinity-hint-rank-build
@@ -83,3 +83,19 @@ jobs:
           path: build/wordfinity-hint-ranks/
           if-no-files-found: error
           retention-days: 90
+
+      - name: Publish online rank data branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/wordfinity-rank-data"
+          cp -R build/wordfinity-hint-ranks/. "$RUNNER_TEMP/wordfinity-rank-data/"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --orphan wordfinity-rank-data
+          git rm -rf . || true
+          cp -R "$RUNNER_TEMP/wordfinity-rank-data/." .
+          git add -A
+          git commit -m "Publish Wordfinity semantic rank data"
+          git push "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" HEAD:refs/heads/wordfinity-rank-data --force
