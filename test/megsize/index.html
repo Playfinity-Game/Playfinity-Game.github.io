@@ -16,7 +16,7 @@ h1 .mega{color:var(--cyan)}h1 .size{color:var(--pink)}
 .intro{text-align:center;color:#aab5ca;margin:0 0 16px;font-size:.92rem}
 .roundline{text-align:center;color:#8794ad;font-size:.68rem;letter-spacing:2px;text-transform:uppercase;margin:0 0 12px}
 .roundline strong{color:#f4f7ff}
-.toolbar{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin:0 0 8px}.toolbar-label{font-size:.7rem;letter-spacing:1px;color:#98a5bd;text-transform:uppercase;margin-right:3px}.toolbar button{width:44px;height:42px;padding:0;font-size:1.45rem;line-height:1;border-radius:12px;background:#17243a;border-color:#344866}.toolbar button#resetView{width:auto;padding:0 12px;font-size:.78rem;letter-spacing:.2px}
+.toolbar{position:absolute;top:10px;right:10px;z-index:10;display:flex;gap:6px;padding:5px;border:1px solid #ffffff20;border-radius:13px;background:#091222d9;backdrop-filter:blur(8px)}.toolbar button{width:38px;height:36px;padding:0;font-size:1.3rem;line-height:1;border-radius:9px;background:#17243a;border-color:#344866}.toolbar button#resetView{width:36px;font-size:1rem}
 button{font:inherit;font-weight:800;border:1px solid #344866;background:#17243a;color:#f4f7ff;border-radius:10px;padding:9px 13px;cursor:pointer}
 button:disabled{opacity:.4;cursor:not-allowed}
 .primary{background:linear-gradient(110deg,#00d9ef,#168cff);color:#04111e;border:0;padding:12px 26px;box-shadow:0 5px 22px #00bde533}
@@ -47,7 +47,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .result p{margin:4px 0;color:#c5d0e2;font-size:.86rem}
 .result .nextrow{display:flex;justify-content:flex-end;margin-top:12px}
 .hint{text-align:center;color:#7888a4;font-size:.78rem;padding:0 10px;margin-top:12px}
-@media(max-width:600px){header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{justify-content:center;flex-wrap:wrap}.toolbar button{flex:1;padding:10px 8px;font-size:.78rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
+@media(max-width:600px){header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{top:8px;right:8px;gap:5px;padding:4px}.toolbar button{width:36px;height:34px;flex:none;padding:0;font-size:1.2rem}.toolbar button#resetView{width:34px;font-size:.95rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
 </style>
 </head>
 <body>
@@ -55,9 +55,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <main class="wrap">
 <p class="intro">Wie groß ist das wirklich? Passe die rote Silhouette an die echte Größe an.</p>
 <div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">6</strong></div>
-<div class="toolbar"><span class="toolbar-label">Ansicht</span><button id="zoomOut" aria-label="Ansicht herauszoomen" title="Verkleinern">−</button><button id="zoomIn" aria-label="Ansicht hineinzoomen" title="Vergrößern">+</button><button id="resetView" aria-label="Ansicht zurücksetzen">Zurücksetzen</button></div>
 <section class="board-shell">
-<div class="board" id="board"><div class="ground"></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
+<div class="board" id="board"><div class="ground"></div><div class="toolbar" aria-label="Ansicht vergrößern oder verkleinern"><button id="zoomOut" aria-label="Ansicht herauszoomen" title="Verkleinern">−</button><button id="zoomIn" aria-label="Ansicht hineinzoomen" title="Vergrößern">+</button><button id="resetView" aria-label="Ansicht zurücksetzen" title="Ansicht zurücksetzen">↺</button></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div></div>
 <div class="meta">
 <div class="reftext"><strong id="referenceName">Referenz</strong><span class="muted">BLAUE SILHOUETTE · ZOOMABHÄNGIG</span></div>
 <div class="targettext"><strong id="targetName">Gesucht</strong><span class="muted">ROTE SILHOUETTE · DEINE SCHÄTZUNG</span></div>
@@ -66,7 +65,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 <div class="scale-tools"><span>GRÖSSE DER ROTEN SILHOUETTE</span><button id="objectSmaller" aria-label="Rote Silhouette verkleinern">−</button><button id="objectLarger" aria-label="Rote Silhouette vergrößern">+</button></div><div class="lockrow"><button class="primary" id="lock">Auswerten</button></div>
 <div class="result" id="result"></div>
 </section>
-<p class="hint">Rot ziehen zum Positionieren · Die Knöpfe unter dem Spielfeld ändern die Schätzung · Zwei Finger zoomen und verschieben die Ansicht · Weiß zeigt nach dem Auswerten die echte Größe.</p>
+<p class="hint">Rot ziehen zum Positionieren · Die Knöpfe unter dem Spielfeld ändern die Schätzung · Die Ansicht lässt sich oben rechts zoomen · Weiß zeigt nach dem Auswerten die echte Größe.</p>
 </main>
 <script src="./data.js"></script>
 <script>
@@ -91,9 +90,11 @@ function render(){
  setObj(guess,r.target,ts);setObj(actual,r.target,ts);guessScale=1;guessX=c.x+25-ts.w/2;guessY=c.y-ts.h;
  locked=false;actual.style.display='none';applyGuess();applyZoom();$('result').classList.remove('show');$('result').innerHTML='';$('lock').disabled=false;
 }
-function applyGuess(){const s=sizeFor(rounds[index].target,base);guess.style.width=s.w*guessScale+'px';guess.style.height=s.h*guessScale+'px';pos(guess,guessX,guessY)}
+function groundWorldY(height){return (board.clientHeight*.86-panY)/zoom-height}
+function applyGuess(){const s=sizeFor(rounds[index].target,base),w=s.w*guessScale,h=s.h*guessScale;guess.style.width=w+'px';guess.style.height=h+'px';guessY=groundWorldY(h);pos(guess,guessX,guessY)}
 function applyReferenceZoom(){const r=rounds[index];if(!r)return;const rs=sizeFor(r.reference,base);ref.style.transformOrigin='top left';ref.style.transform='scale('+zoom+')';pos(ref,24,board.clientHeight*.86-rs.h*zoom)}
-function applyZoom(){world.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')';applyReferenceZoom()}
+function positionActual(){if(!rounds[index]||actual.style.display==='none')return;const r=rounds[index],trueFactor=factor(r),s=sizeFor(r.target,base),h=s.h*trueFactor,c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=h+'px';pos(actual,c.x+25-s.w*trueFactor/2,groundWorldY(h))}
+function applyZoom(){world.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')';applyReferenceZoom();if(rounds[index])applyGuess();if(locked)positionActual()}
 function boardPoint(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left-panX)/zoom,y:(e.clientY-b.top-panY)/zoom}}
 function changeObjectScale(mult){if(locked)return;guessScale=Math.max(.015,Math.min(80,guessScale*mult));applyGuess()}
 function animateNumber(el,from,to,duration=950,suffix=''){if(!el)return;const start=performance.now(),delta=to-from;el.textContent=Math.round(from).toLocaleString('de-DE')+suffix;function tick(now){const t=Math.min(1,(now-start)/duration),ease=1-Math.pow(1-t,3),value=Math.round(from+delta*ease);el.textContent=value.toLocaleString('de-DE')+suffix;if(t<1)requestAnimationFrame(tick)}requestAnimationFrame(tick)}
@@ -107,7 +108,7 @@ guess.addEventListener('pointerdown',e=>{
 guess.addEventListener('pointermove',e=>{
  if(!guessPointers.has(e.pointerId)||locked)return;guessPointers.set(e.pointerId,{x:e.clientX,y:e.clientY});
  if(guessPointers.size===2&&objectPinch){const a=[...guessPointers.values()],d=Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);guessScale=Math.max(.015,Math.min(80,objectPinch.scale*d/Math.max(1,objectPinch.distance)));applyGuess();}
- else if(drag){const p=boardPoint(e);guessX=p.x-drag.x;guessY=p.y-drag.y;applyGuess();}
+ else if(drag){const p=boardPoint(e);guessX=p.x-drag.x;applyGuess();}
 });
 function endGuessPointer(e){guessPointers.delete(e.pointerId);if(guessPointers.size<2)objectPinch=null;if(guessPointers.size===1){const [id,p]=[...guessPointers.entries()][0],q=boardPoint({clientX:p.x,clientY:p.y});drag={x:q.x-guessX,y:q.y-guessY};}else drag=null;}
 guess.addEventListener('pointerup',endGuessPointer);guess.addEventListener('pointercancel',endGuessPointer);
@@ -131,7 +132,7 @@ $('lock').onclick=()=>{
  const r=rounds[index];
  if(!r||!Number.isFinite(r.target.value)||!Number.isFinite(r.reference.value)||r.reference.value<=0||r.target.value<=0)return;
  locked=true;const previousTotal=total,trueFactor=factor(r),error=Math.abs(guessScale-trueFactor)/trueFactor,pts=Math.max(0,Math.round(100*(1-error)));total+=pts;
- const s=sizeFor(r.target,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';pos(actual,c.x+25-s.w*trueFactor/2,c.y-s.h*trueFactor);actual.style.display='flex';
+ const s=sizeFor(r.target,base),c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=s.h*trueFactor+'px';actual.style.display='flex';positionActual();
  $('lock').disabled=true;$('result').classList.add('show');
  $('result').innerHTML='<div class="resulttop"><div class="points"><span id="roundPoints">0</span><small> / 100</small></div><div><h2>Dein Ergebnis</h2><p>Deine Schätzung: <b>'+guessScale.toFixed(2).replace('.',',')+'×</b> der Referenzgröße</p><p>Tatsächliche Größe: <b>'+r.target.value.toLocaleString('de-DE')+' '+esc(r.target.unit)+'</b></p><p>Abweichung: <b>'+(error*100).toFixed(1).replace('.',',')+' %</b></p></div></div><div class="nextrow"><button id="next">'+(index===rounds.length-1?'Gesamtergebnis':'Nächste Runde')+' →</button></div>';
  $('score').innerHTML='RUNDE '+(index+1)+' / '+rounds.length+' <b><span id="totalPoints">'+previousTotal+'</span> PUNKTE</b>';
