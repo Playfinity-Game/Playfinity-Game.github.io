@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus zehn Kategorien.",
+  "description": "Deutsche Begriffe für Hangman aus elf Kategorien.",
   "words": [
     {
       "word": "Affe",
@@ -4929,259 +4929,259 @@
     },
     {
       "word": "Abenteuer",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Album",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Anzug",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Badehose",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Badezimmer",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Ball",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Basteln",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Bibliothek",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Bilderbuch",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Bogen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Brettspiel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Brille",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Buntstift",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Camping",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Comic",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Farbkasten",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Ferien",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Gesellschaftsspiel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Hausaufgabe",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Heft",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Hobby",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Jacke",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Karte",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Kino",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Knete",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Konzert",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Kreide",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Lesebuch",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Malbuch",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Malen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Murmel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Musik",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Note",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Pause",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Puzzle",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Rakete",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Rechenheft",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Ranzen",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Roller",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Rubbellos",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlitten",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlafanzug",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlafsack",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schlüsselband",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schnitzeljagd",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Schulbus",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Schulhof",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Schultasche",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Schwimmbad",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Seilspringen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Spiel",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Spielplatz",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Sport",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Sportplatz",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Stift",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Tanzen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Theater",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Ticket",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Turnbeutel",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Turnhalle",
-      "category": "Schule & Freizeit"
+      "category": "Schule"
     },
     {
       "word": "Urlaub",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Video",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Wettbewerb",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     },
     {
       "word": "Zeichnen",
-      "category": "Schule & Freizeit"
+      "category": "Freizeit"
     }
   ]
 }
