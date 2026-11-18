@@ -231,20 +231,16 @@ async function startSession(username) {
 
 const usageStats = {
   day: new Date().toISOString().slice(0, 10),
-  pageViews: 0,
-  visitors: new Set(),
-  totalPlayMs: 0,
-  longestSessionMs: 0,
-  sessions: new Map()
+  pageViews: 0, visitors: new Set(), totalPlayMs: 0, longestSessionMs: 0,
+  sessions: new Map(), daily: new Map()
 };
-
+function getDailyUsage(day = new Date().toISOString().slice(0, 10)) {
+  if (!usageStats.daily.has(day)) usageStats.daily.set(day, { pageViews: 0, visitors: new Set(), playMs: 0, longestSessionMs: 0 });
+  return usageStats.daily.get(day);
+}
 function resetUsageDayIfNeeded() {
-  const today = new Date().toISOString().slice(0, 10);
-  if (usageStats.day !== today) {
-    usageStats.day = today;
-    usageStats.pageViews = 0;
-    usageStats.visitors.clear();
-  }
+  usageStats.day = new Date().toISOString().slice(0, 10);
+  getDailyUsage(usageStats.day);
 }
 
 function handleUsageMetrics(request, response) {
@@ -257,16 +253,21 @@ function handleUsageMetrics(request, response) {
     const livePlayMs = active.reduce((sum, session) => sum + Math.max(0, Math.min(45000, now - session.lastSeenAt)), 0);
     const liveLongestMs = active.reduce((longest, session) =>
       Math.max(longest, session.playMs + Math.max(0, Math.min(45000, now - session.lastSeenAt))), usageStats.longestSessionMs);
+    const today = getDailyUsage();
+    const todayLivePlayMs = active.reduce((sum, session) => sum + Math.max(0, Math.min(45000, now - session.lastSeenAt)), 0);
+    const todayLiveLongestMs = active.reduce((longest, session) => Math.max(longest, session.playMs + Math.max(0, Math.min(45000, now - session.lastSeenAt))), today.longestSessionMs);
     const totalPlayMs = usageStats.totalPlayMs + livePlayMs;
+    const todayPlayMs = today.playMs + todayLivePlayMs;
     return sendJson(response, 200, {
-      day: usageStats.day,
-      pageViews: usageStats.pageViews,
-      uniqueVisitors: usageStats.visitors.size,
+      day: usageStats.day, pageViews: usageStats.pageViews, uniqueVisitors: usageStats.visitors.size,
       totalPlayMinutes: Math.round(totalPlayMs / 60000 * 10) / 10,
       averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
-      activeSessions: active.length,
-      longestSessionMinutes: Math.round(liveLongestMs / 60000 * 10) / 10,
-      storage: "memory_only"
+      activeSessions: active.length, longestSessionMinutes: Math.round(liveLongestMs / 60000 * 10) / 10,
+      todayPageViews: today.pageViews, todayUniqueVisitors: today.visitors.size,
+      todayPlayMinutes: Math.round(todayPlayMs / 60000 * 10) / 10,
+      todayAveragePlayMinutesPerVisit: today.pageViews ? Math.round(todayPlayMs / today.pageViews / 60000 * 10) / 10 : 0,
+      todayLongestSessionMinutes: Math.round(todayLiveLongestMs / 60000 * 10) / 10,
+      storage: "memory_only", period: "since_server_start"
     }, { "access-control-allow-origin": "*", "cache-control": "no-store" });
   }
   if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
@@ -298,9 +299,12 @@ function handleUsageMetrics(request, response) {
     resetUsageDayIfNeeded();
     const now = Date.now();
     const elapsed = Number.isFinite(elapsedMs) ? Math.max(0, Math.min(45000, elapsedMs)) : 0;
+    const daily = getDailyUsage();
     if (event === "start") {
       usageStats.pageViews += 1;
       usageStats.visitors.add(visitorId);
+      daily.pageViews += 1;
+      daily.visitors.add(visitorId);
       usageStats.sessions.set(sessionId, { visitorId, startedAt: now, lastSeenAt: now, active: true, playMs: 0 });
     } else {
       const session = usageStats.sessions.get(sessionId);
@@ -308,12 +312,15 @@ function handleUsageMetrics(request, response) {
         if (event === "heartbeat" && body.visible === true) {
           session.playMs += elapsed;
           usageStats.totalPlayMs += elapsed;
+          daily.playMs += elapsed;
           session.active = true;
         } else if (event === "pause" || event === "end") {
           session.playMs += elapsed;
           usageStats.totalPlayMs += elapsed;
+          daily.playMs += elapsed;
           session.active = false;
           usageStats.longestSessionMs = Math.max(usageStats.longestSessionMs, session.playMs);
+          daily.longestSessionMs = Math.max(daily.longestSessionMs, session.playMs);
         }
         session.lastSeenAt = now;
       }
@@ -439,12 +446,17 @@ const server = http.createServer(async (request, response) => {
       const now = Date.now();
       for (const [id, session] of usageStats.sessions) if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
       const activeSessions = [...usageStats.sessions.values()].filter(session => session.active).length;
+      const today = getDailyUsage();
       return sendJson(response, 200, {
         day: usageStats.day, pageViews: usageStats.pageViews, uniqueVisitors: usageStats.visitors.size,
         totalPlayMinutes: Math.round(usageStats.totalPlayMs / 60000 * 10) / 10,
         averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(usageStats.totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
         activeSessions, longestSessionMinutes: Math.round(usageStats.longestSessionMs / 60000 * 10) / 10,
-        storage: "memory_only"
+        todayPageViews: today.pageViews, todayUniqueVisitors: today.visitors.size,
+        todayPlayMinutes: Math.round(today.playMs / 60000 * 10) / 10,
+        todayAveragePlayMinutesPerVisit: today.pageViews ? Math.round(today.playMs / today.pageViews / 60000 * 10) / 10 : 0,
+        todayLongestSessionMinutes: Math.round(today.longestSessionMs / 60000 * 10) / 10,
+        storage: "memory_only", period: "since_server_start"
       });
     }
     return sendJson(response, 404, { error: "Admin-Endpunkt nicht gefunden." });
