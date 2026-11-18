@@ -654,17 +654,12 @@
       text-align: left;
     }
 
-    .kontexto-hint-controls{display:flex;justify-content:flex-end;align-items:center;gap:8px;width:100%;margin:8px 0 4px}
-    .kontexto-inline-hints{display:inline-flex;align-items:center;justify-content:center;gap:8px;margin:0}
-    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 36px;width:36px;height:36px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.1rem;cursor:pointer;transition:all .2s}
+    .kontexto-hint-controls{display:flex;justify-content:flex-start;align-items:center;gap:8px;width:100%;margin:8px 0 0;box-sizing:border-box}
+    .kontexto-inline-hints{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:100%;margin:0}
+    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;min-width:42px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.32);border-radius:10px;background:rgba(0,240,255,.09);color:var(--neon-cyan);font-size:1.2rem;cursor:pointer;transition:all .2s;box-sizing:border-box}
     .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
     .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
-    .kontexto-word-hint-options{display:flex;justify-content:flex-end;gap:8px;margin:6px 0 2px}
-    .kontexto-word-hint-options[hidden]{display:none}
-    .kontexto-word-hint-level{padding:8px 13px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--text-main);font-size:.82rem;font-weight:700;cursor:pointer}
-    .kontexto-word-hint-level:hover:not(:disabled){background:rgba(0,240,255,.18);box-shadow:0 0 10px rgba(0,240,255,.16)}
-    .kontexto-word-hint-level:disabled{opacity:.4;cursor:default}
-    .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
+    .kontexto-category-hint{display:block;width:100%;box-sizing:border-box;margin:0;padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700;text-align:center;overflow-wrap:anywhere}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
     .guess-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -1157,8 +1152,6 @@
           </div>
         </div>
 
-        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
-
         <div class="input-box">
           <input type="text" class="game-input" id="kontexto-input" placeholder="Dein Wort..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
@@ -1170,12 +1163,9 @@
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
         </div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Wort-Tipp auswählen" aria-expanded="false" aria-controls="kontexto-word-hint-options" title="Wort-Tipp – Leicht oder Mittel">💡</button></span>
+          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie anzeigen (einmal pro Runde)" title="Kategorie anzeigen – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Besseren Wort-Tipp anzeigen" title="Besseren Wort-Tipp anzeigen">💡</button></span>
         </div>
-        <div class="kontexto-word-hint-options" id="kontexto-word-hint-options" role="group" aria-label="Stärke des Wort-Tipps" hidden>
-          <button type="button" class="kontexto-word-hint-level" data-hint-level="leicht">Leicht</button>
-          <button type="button" class="kontexto-word-hint-level" data-hint-level="mittel">Mittel</button>
-        </div>
+        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
@@ -2156,10 +2146,7 @@
           if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
         });
         document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
-        document.getElementById('kontexto-word-hint').onclick = () => this.toggleWordHintOptions();
-        document.querySelectorAll('[data-hint-level]').forEach(button => {
-          button.onclick = () => this.showWordHint(button.dataset.hintLevel);
-        });
+        document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
       async inferCategory(word, signal = null) {
@@ -2237,29 +2224,16 @@
         }
       },
 
-      toggleWordHintOptions() {
+      async showWordHint() {
         if (PauseController.paused || this.wordHintInProgress) return;
-        const options = document.getElementById('kontexto-word-hint-options');
-        const trigger = document.getElementById('kontexto-word-hint');
-        if (!options || !trigger) return;
-        options.hidden = !options.hidden;
-        trigger.setAttribute('aria-expanded', String(!options.hidden));
-      },
-
-      async showWordHint(level = 'leicht') {
-        if (PauseController.paused || this.wordHintInProgress) return;
-        const normalizedLevel = level === 'mittel' ? 'mittel' : 'leicht';
+        const normalizedLevel = 'mittel';
         const button = document.getElementById('kontexto-word-hint');
-        const options = document.getElementById('kontexto-word-hint-options');
-        const levelButtons = [...document.querySelectorAll('[data-hint-level]')];
         const requestedRoundId = this.roundId;
         const requestedTarget = this.targetWord;
         if (!requestedTarget) return;
         this.wordHintInProgress = true;
         if (button) button.disabled = true;
-        if (options) options.hidden = true;
-        if (button) button.setAttribute('aria-expanded', 'false');
-        levelButtons.forEach(item => { item.disabled = true; });
+
 
         const hintController = new AbortController();
         let timedOut = false;
@@ -2331,10 +2305,8 @@
             // weiter hinten im Rangfeld.
             const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
             const desiredRank = Number.isFinite(bestCurrentRank)
-              ? (normalizedLevel === 'leicht'
-                  ? Math.max(2, Math.floor(bestCurrentRank / 2))
-                  : Math.max(2, bestCurrentRank - 1))
-              : (normalizedLevel === 'leicht' ? 11000 : 14500);
+              ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
+              : 11000;
 
             const rankedCandidates = candidates
               .filter(item => !Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank)
@@ -2377,7 +2349,6 @@
           this.wordHintInProgress = false;
           if (requestedRoundId === this.roundId) {
             if (button) button.disabled = false;
-            levelButtons.forEach(item => { item.disabled = false; });
           }
         }
       },
