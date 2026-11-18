@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "description": "Kuratierte semantische Kontrollfälle. Positive Begriffe sind bedeutungsnah; negative Begriffe sind reine Schreibähnlichkeiten oder sonstige Verwechslungen.",
+  "cases": [
+    {
+      "target": "Dachs",
+      "category": "Tiere",
+      "positive": [
+        "Fuchs",
+        "Marder",
+        "Igel",
+        "Maulwurf",
+        "Waschbär"
+      ],
+      "negative": [
+        "Dach"
+      ]
+    }
+  ]
+}
