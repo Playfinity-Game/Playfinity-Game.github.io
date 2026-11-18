@@ -372,8 +372,19 @@ const server = http.createServer(async (request, response) => {
     const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
     if (!expected || request.headers.authorization !== `Bearer ${expected}`) return sendJson(response, 401, { error: "Nicht autorisiert." });
     const connections = [...sessions.values()].filter(session => !session.stopped).map(session => ({
-      username: session.username, viewerCount: session.viewerCount ?? null,
-      connectedPlayers: session.clients.size, lastEventAt: session.lastEventAt ?? null
+      username: session.username,
+      viewerCount: session.viewerCount ?? null,
+      connectedPlayers: session.clients.size,
+      lastEventAt: session.lastEventAt ?? null,
+      lastEventType: session.lastEventType ?? null,
+      eventCounts: session.eventCounts ?? {},
+      chatEventsReceived: session.chatEventsReceived ?? 0,
+      chatEventsForwarded: session.chatEventsForwarded ?? 0,
+      chatClientDeliveries: session.chatClientDeliveries ?? 0,
+      lastChatAt: session.lastChatAt ?? null,
+      lastChatForwardedAt: session.lastChatForwardedAt ?? null,
+      lastConnectorError: session.lastConnectorError ?? null,
+      lastConnectorErrorAt: session.lastConnectorErrorAt ?? null
     }));
     return sendJson(response, 200, { connections, players: playerSnapshot() });
   }
