@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus elf Kategorien.",
+  "description": "Deutsche Begriffe für Hangman aus elf Kategorien. Bereinigt: künstliche Raum-/Wäsche-Komposita, doppelte Wortteile und sehr spezielle Rassenbezeichnungen entfernt.",
   "words": [
     {
       "word": "Affe",
@@ -12352,10 +12352,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Badezimmerschrank",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Bademantel",
       "category": "Dinge im Haushalt"
     },
@@ -14244,10 +14240,6 @@
       "category": "Tiere"
     },
     {
-      "word": "American Staffordshire Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Appenzeller Sennenhund",
       "category": "Tiere"
     },
@@ -14453,10 +14445,6 @@
     },
     {
       "word": "Greyhound",
-      "category": "Tiere"
-    },
-    {
-      "word": "Großer Schweizer Sennenhund",
       "category": "Tiere"
     },
     {
@@ -14693,10 +14681,6 @@
     },
     {
       "word": "Welsh Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "West Highland White Terrier",
       "category": "Tiere"
     },
     {
@@ -15180,27 +15164,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Ostfriesisches Milchschaf",
-      "category": "Tiere"
-    },
-    {
-      "word": "Coburger Fuchsschaf",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bentheimer Landschaf",
-      "category": "Tiere"
-    },
-    {
       "word": "Kamerunschaf",
       "category": "Tiere"
     },
     {
       "word": "Angoraziege",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bunte Deutsche Edelziege",
       "category": "Tiere"
     },
     {
@@ -15216,19 +15184,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Thüringer Wald Ziege",
-      "category": "Tiere"
-    },
-    {
       "word": "Girgentana",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alpines Steinschaf",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsches Sattelschwein",
       "category": "Tiere"
     },
     {
@@ -15244,10 +15200,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Schwäbisch-Hällisches Schwein",
-      "category": "Tiere"
-    },
-    {
       "word": "Bunte Bentheimer",
       "category": "Tiere"
     },
@@ -15257,10 +15209,6 @@
     },
     {
       "word": "Turopolje",
-      "category": "Tiere"
-    },
-    {
-      "word": "Angler Sattelschwein",
       "category": "Tiere"
     },
     {
@@ -15389,10 +15337,6 @@
     },
     {
       "word": "Süddeutsches Kaltblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Rheinisch-Deutsches Kaltblut",
       "category": "Tiere"
     },
     {
@@ -15548,19 +15492,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Dsungarischer Zwerghamster",
-      "category": "Tiere"
-    },
-    {
       "word": "Roborowski-Zwerghamster",
       "category": "Tiere"
     },
     {
       "word": "Campbell-Zwerghamster",
-      "category": "Tiere"
-    },
-    {
-      "word": "Chinesischer Streifenhamster",
       "category": "Tiere"
     },
     {
@@ -15648,10 +15584,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Lappländischer Rentierhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Norwegischer Elchhund",
       "category": "Tiere"
     },
@@ -15673,14 +15605,6 @@
     },
     {
       "word": "Holländischer Schäferhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Polnischer Niederungshütehund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Tschechoslowakischer Wolfhund",
       "category": "Tiere"
     },
     {
@@ -15772,10 +15696,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Soft Coated Wheaten Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Glen of Imaal Terrier",
       "category": "Tiere"
     },
@@ -15801,10 +15721,6 @@
     },
     {
       "word": "Tervueren",
-      "category": "Tiere"
-    },
-    {
-      "word": "Weißer Schweizer Schäferhund",
       "category": "Tiere"
     },
     {
@@ -15841,10 +15757,6 @@
     },
     {
       "word": "Kaukasischer Owtscharka",
-      "category": "Tiere"
-    },
-    {
-      "word": "Mittelasiatischer Owtscharka",
       "category": "Tiere"
     },
     {
@@ -19533,14 +19445,6 @@
     },
     {
       "word": "Sozialpädagogin",
-      "category": "Berufe"
-    },
-    {
-      "word": "Sozialversicherungsfachangestellter",
-      "category": "Berufe"
-    },
-    {
-      "word": "Sozialversicherungsfachangestellterin",
       "category": "Berufe"
     },
     {
@@ -24592,290 +24496,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Badezimmerregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerspiegel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerleuchte",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerlampe",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerhocker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerteppich",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmermatte",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmervorleger",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerhandtuchhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerseifenspender",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerzahnbürstenhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbecher",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwandboard",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerduschablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerduschkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerduschvorhang",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerduschstange",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerduschkopf",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbrause",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbadewannenstöpsel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwannengriff",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbadewannenbrett",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbademantel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerhandtuch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbadetuch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwaschlappen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmergästehandtuch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbadematte",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwäschesammler",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwäschesack",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerkosmetikspiegel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerrasierspiegel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerföhn",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerhaartrockner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerglätteisen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerlockenstab",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerrasierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerelektrorasierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerbartschneider",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmernagelschere",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmernagelfeile",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerpinzette",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmermaniküreset",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerpediküreset",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwaage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerfieberthermometer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerzahnbürste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerelektrischezahnbürste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmermunddusche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwasserhahn",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwaschbecken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwaschtisch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmertoilettenbürste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmertoilettenpapierhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerklobürstenhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmertoilettenhocker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwc-sitz",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwc-deckel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerspülkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerabfalleimer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmertreteimer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwattepadspender",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerkosmetikeimer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerwattestäbchenbox",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerseifenschale",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerseifenablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerduftspender",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerlüfter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerheizstrahler",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Badezimmerhandtuchtrockner",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Waschmaschine",
       "category": "Dinge im Haushalt"
     },
@@ -24944,10 +24564,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Waschwaschmittelspender",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Waschdosierkugel",
       "category": "Dinge im Haushalt"
     },
@@ -24964,91 +24580,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Waschwäscheklammer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschekorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschespinne",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschetrockner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschbecken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschbürste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschhandschuh",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschhandschuhhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschmittelbox",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschmittelregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwaschmaschinenunterlage",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Waschmaschinenreiniger",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschenetz",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäscheklammerbeutel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschesack",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschesortierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschetrenner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschefaltbrett",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäscheklammerkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäscheleine",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäscheleinehalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschwäschewagen",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25273,10 +24805,6 @@
     },
     {
       "word": "Putzputzmittelflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Putzreinigungsmittelspender",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25800,286 +25328,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Schlafzimmerbett",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettgestell",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerlattenrost",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmermatratze",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmertopper",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmermatratzenschoner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettdecke",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmersommerdecke",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerwinterdecke",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkissen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmernackenkissen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerseitenkissen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkopfkissen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkissenfüllung",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettwäsche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettlaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerspannbettlaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettbezug",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkissenbezug",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettüberwurf",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmertagesdecke",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmernachttisch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmernachtkonsole",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmernachtlampe",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmernachtlicht",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerwecker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerradiowecker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkleiderschrank",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkleiderstange",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkleiderbügel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerhosenbügel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerrockbügel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmergürtelhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkrawattenhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschubladeneinsatz",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschmuckkästchen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschmuckständer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschmuckhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschminkspiegel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschminktisch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerfrisiertisch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerwäschesack",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerwäschekorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschuhablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschuhbank",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerschuhanzieher",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkleiderhaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerwandhaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmergarderobenhaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerraumduft",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerduftkerze",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerverdunkelungsrollo",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmervorhang",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmergardine",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerteppich",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettvorleger",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerherrendiener",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerstummerdiener",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerkleiderständer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerparavent",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmertruhe",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettbank",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerbettleiter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmermoskitonetz",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerlesekissen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerleselampe",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerdeckenventilator",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerheizdecke",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schlafzimmerwärmflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Flurgarderobe",
       "category": "Dinge im Haushalt"
     },
@@ -26285,290 +25533,6 @@
     },
     {
       "word": "Flurtreppenschutzgitter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischschreibtisch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbürostuhl",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischdrehstuhl",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischrollcontainer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischaktenregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbücherregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischschreibtischlampe",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtischleuchte",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischmonitorständer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbildschirmhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischlaptopständer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischlaptophalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtastaturablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischmauspad",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischschreibtischunterlage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischstiftehalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischstiftebecher",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbriefablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischdokumentenablage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischpapierkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischaktenordner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischhefter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischlocher",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtacker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischenthefter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischschere",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischlineal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischgeodreieck",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischmaßband",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbleistift",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischkugelschreiber",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischfüller",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischmarker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtextmarker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischradiergummi",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischspitzer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischklebestift",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtesafilmabroller",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischklebebandspender",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischnotizblock",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischnotizbuch",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischkalender",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischterminplaner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbrieföffner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbriefwaage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischetikettiergerät",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischbeschriftungsgerät",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischlaminiergerät",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischaktenvernichter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischlocherzange",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischklemmbrett",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischschreibunterlage",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischstempel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischstempelkissen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischrechner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtaschenrechner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischdrucker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischscanner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischpapierfach",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischdruckerpapier",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtonerkassette",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischusb-hub",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischsteckdosenleiste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischkabelbox",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischkabelhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischkopfhörerständer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischheadsethalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischladestation",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischladegerät",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischwecker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Schreibtischtischuhr",
       "category": "Dinge im Haushalt"
     },
     {
@@ -26901,14 +25865,6 @@
     },
     {
       "word": "Gartenaufbewahrungsbox",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Gartenwäschespinne",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Gartenwäscheschirm",
       "category": "Dinge im Haushalt"
     },
     {
@@ -27716,10 +26672,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Aufbewahrungswäschebox",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Aufbewahrungsspielzeugkiste",
       "category": "Dinge im Haushalt"
     },
@@ -27749,10 +26701,6 @@
     },
     {
       "word": "Aufbewahrungsfaltkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungswäschekorb",
       "category": "Dinge im Haushalt"
     },
     {
@@ -27801,10 +26749,6 @@
     },
     {
       "word": "Aufbewahrungsdeko-box",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsaufbewahrungstasche",
       "category": "Dinge im Haushalt"
     },
     {
@@ -28197,30 +27141,6 @@
     },
     {
       "word": "Haushalthocker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Haushaltwäscheständer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Haushaltwäschespinne",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Haushaltwäschesack",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Haushaltwäschekorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Haushaltwäscheklammer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Haushaltwäscheklammerkorb",
       "category": "Dinge im Haushalt"
     }
   ]
