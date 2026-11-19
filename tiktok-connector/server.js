@@ -17,7 +17,7 @@ const sessions = new Map();
 
 const activePlayers = new Map();
 const PLAYER_GAMES = new Set(["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"]);
-const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly"]);
+const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly","frog","skeleton","ghost","rocket"]);
 const STREAMER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly"]);
 function playerSnapshot() {
   const now = Date.now();
