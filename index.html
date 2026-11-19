@@ -980,9 +980,9 @@
     @keyframes pf-admin-shake { 0%,100%{transform:translate(0,0)} 20%{transform:translate(-5px,2px)} 40%{transform:translate(5px,-2px)} 60%{transform:translate(-4px,-1px)} 80%{transform:translate(4px,2px)} }
     body.pf-admin-shake main { animation:pf-admin-shake .55s ease-in-out 3; }
     body.pf-admin-glitch main { animation:pf-admin-shake .12s steps(2) 8; filter:hue-rotate(145deg) saturate(1.8); }
-    body.pf-admin-invert main { filter:invert(1); }
-    body.pf-admin-spin main { transform:rotate(180deg); }
-    body.pf-admin-spin main { transition:transform .25s ease; }
+    body.pf-admin-invert main { transform:rotate(180deg); transform-origin:center center; transition:transform .35s ease; }
+    body.pf-admin-spin main { animation:pf-admin-full-spin 1.2s ease-in-out 2; transform-origin:center center; }
+    @keyframes pf-admin-full-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
     body.pf-admin-pixel main { filter:contrast(1.35) saturate(1.8); }
     body.pf-admin-ice main { filter:brightness(1.12) saturate(.55) hue-rotate(155deg); }
     #pf-admin-effect.pixel { background:repeating-linear-gradient(0deg,transparent 0 5px,#1118 6px),repeating-linear-gradient(90deg,#fff2 0 5px,transparent 6px);backdrop-filter:blur(1.5px) contrast(1.5); }
