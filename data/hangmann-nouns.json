@@ -20222,6 +20222,2006 @@
     {
       "word": "Vertriebsleiter",
       "category": "Berufe"
+    },
+    {
+      "word": "Dodgeball",
+      "category": "Sport"
+    },
+    {
+      "word": "Korfball",
+      "category": "Sport"
+    },
+    {
+      "word": "Unterwasserhockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Bandy",
+      "category": "Sport"
+    },
+    {
+      "word": "Shorttrack",
+      "category": "Sport"
+    },
+    {
+      "word": "Skispringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Abfahrt",
+      "category": "Sport"
+    },
+    {
+      "word": "Slalom",
+      "category": "Sport"
+    },
+    {
+      "word": "Riesenslalom",
+      "category": "Sport"
+    },
+    {
+      "word": "Super-G",
+      "category": "Sport"
+    },
+    {
+      "word": "Skicross",
+      "category": "Sport"
+    },
+    {
+      "word": "Halfpipe",
+      "category": "Sport"
+    },
+    {
+      "word": "Freestyle",
+      "category": "Sport"
+    },
+    {
+      "word": "Stand-up-Paddling",
+      "category": "Sport"
+    },
+    {
+      "word": "Kanusport",
+      "category": "Sport"
+    },
+    {
+      "word": "Rafting",
+      "category": "Sport"
+    },
+    {
+      "word": "Turmspringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Freitauchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Flossenschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Paragliding",
+      "category": "Sport"
+    },
+    {
+      "word": "Drachenfliegen",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportklettern",
+      "category": "Sport"
+    },
+    {
+      "word": "Halbmarathon",
+      "category": "Sport"
+    },
+    {
+      "word": "Ultramarathon",
+      "category": "Sport"
+    },
+    {
+      "word": "Crosslauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Dreisprung",
+      "category": "Sport"
+    },
+    {
+      "word": "Hammerwurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Mehrkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Mittelstreckenlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Langstreckenlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Radsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Mountainbiking",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnradsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Kunstradfahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Radball",
+      "category": "Sport"
+    },
+    {
+      "word": "Cyclocross",
+      "category": "Sport"
+    },
+    {
+      "word": "Aquathlon",
+      "category": "Sport"
+    },
+    {
+      "word": "Säbelfechten",
+      "category": "Sport"
+    },
+    {
+      "word": "Degenfechten",
+      "category": "Sport"
+    },
+    {
+      "word": "Florettfechten",
+      "category": "Sport"
+    },
+    {
+      "word": "Armbrustschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "Tontaubenschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kraftdreikampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportakrobatik",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Sumo",
+      "category": "Sport"
+    },
+    {
+      "word": "Profiboxen",
+      "category": "Sport"
+    },
+    {
+      "word": "MMA",
+      "category": "Sport"
+    },
+    {
+      "word": "Savate",
+      "category": "Sport"
+    },
+    {
+      "word": "Aikido",
+      "category": "Sport"
+    },
+    {
+      "word": "Jiu-Jitsu",
+      "category": "Sport"
+    },
+    {
+      "word": "Ju-Jutsu",
+      "category": "Sport"
+    },
+    {
+      "word": "Hapkido",
+      "category": "Sport"
+    },
+    {
+      "word": "Kung-Fu",
+      "category": "Sport"
+    },
+    {
+      "word": "Wushu",
+      "category": "Sport"
+    },
+    {
+      "word": "Kendo",
+      "category": "Sport"
+    },
+    {
+      "word": "Iaido",
+      "category": "Sport"
+    },
+    {
+      "word": "Kyudo",
+      "category": "Sport"
+    },
+    {
+      "word": "Pankration",
+      "category": "Sport"
+    },
+    {
+      "word": "Wrestling",
+      "category": "Sport"
+    },
+    {
+      "word": "Darts",
+      "category": "Sport"
+    },
+    {
+      "word": "Poolbillard",
+      "category": "Sport"
+    },
+    {
+      "word": "Karambolage",
+      "category": "Sport"
+    },
+    {
+      "word": "Boule",
+      "category": "Sport"
+    },
+    {
+      "word": "Futsal",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Fünferfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Siebenmeterschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "Elfmeterschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "Torwandschießen",
+      "category": "Sport"
+    },
+    {
+      "word": "E-Sport",
+      "category": "Sport"
+    },
+    {
+      "word": "Schachboxen",
+      "category": "Sport"
+    },
+    {
+      "word": "Denksport",
+      "category": "Sport"
+    },
+    {
+      "word": "Go",
+      "category": "Sport"
+    },
+    {
+      "word": "Dame",
+      "category": "Sport"
+    },
+    {
+      "word": "Mühle",
+      "category": "Sport"
+    },
+    {
+      "word": "Backgammon",
+      "category": "Sport"
+    },
+    {
+      "word": "Trabrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Galopprennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Vielseitigkeitsreiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Distanzreiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Westernreiten",
+      "category": "Sport"
+    },
+    {
+      "word": "Reining",
+      "category": "Sport"
+    },
+    {
+      "word": "Fahren",
+      "category": "Sport"
+    },
+    {
+      "word": "Skijöring",
+      "category": "Sport"
+    },
+    {
+      "word": "Hundeschlittenrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Agility",
+      "category": "Sport"
+    },
+    {
+      "word": "Hunderennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Hunderallye",
+      "category": "Sport"
+    },
+    {
+      "word": "Kampfsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Wintersport",
+      "category": "Sport"
+    },
+    {
+      "word": "Laufsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Reitsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Klettersport",
+      "category": "Sport"
+    },
+    {
+      "word": "Flugsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Turniersport",
+      "category": "Sport"
+    },
+    {
+      "word": "Mannschaftssport",
+      "category": "Sport"
+    },
+    {
+      "word": "Einzelsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Spitzensport",
+      "category": "Sport"
+    },
+    {
+      "word": "Leistungssport",
+      "category": "Sport"
+    },
+    {
+      "word": "Freizeitsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Hochleistungssport",
+      "category": "Sport"
+    },
+    {
+      "word": "Behindertensport",
+      "category": "Sport"
+    },
+    {
+      "word": "Parasport",
+      "category": "Sport"
+    },
+    {
+      "word": "Rollstuhlbasketball",
+      "category": "Sport"
+    },
+    {
+      "word": "Rollstuhlrugby",
+      "category": "Sport"
+    },
+    {
+      "word": "Rollstuhltennis",
+      "category": "Sport"
+    },
+    {
+      "word": "Goalball",
+      "category": "Sport"
+    },
+    {
+      "word": "Blindenfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Sitzvolleyball",
+      "category": "Sport"
+    },
+    {
+      "word": "Para-Leichtathletik",
+      "category": "Sport"
+    },
+    {
+      "word": "Para-Schwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Para-Ski",
+      "category": "Sport"
+    },
+    {
+      "word": "Schlittenhockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Mountainboard",
+      "category": "Sport"
+    },
+    {
+      "word": "Longboarden",
+      "category": "Sport"
+    },
+    {
+      "word": "Speedskating",
+      "category": "Sport"
+    },
+    {
+      "word": "Eisklettern",
+      "category": "Sport"
+    },
+    {
+      "word": "Eiswandern",
+      "category": "Sport"
+    },
+    {
+      "word": "Schneeschuhlaufen",
+      "category": "Sport"
+    },
+    {
+      "word": "Schneemobilrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Enduro",
+      "category": "Sport"
+    },
+    {
+      "word": "Rallycross",
+      "category": "Sport"
+    },
+    {
+      "word": "Formelrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kartsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Bergrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Langstreckenrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Tourenwagenrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Stockcar",
+      "category": "Sport"
+    },
+    {
+      "word": "Driften",
+      "category": "Sport"
+    },
+    {
+      "word": "Motorradrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Superbike",
+      "category": "Sport"
+    },
+    {
+      "word": "Trial",
+      "category": "Sport"
+    },
+    {
+      "word": "Motorradtrial",
+      "category": "Sport"
+    },
+    {
+      "word": "Speedway",
+      "category": "Sport"
+    },
+    {
+      "word": "Seitenwagenrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Jet-Ski",
+      "category": "Sport"
+    },
+    {
+      "word": "Wakeboarden",
+      "category": "Sport"
+    },
+    {
+      "word": "Wakesurfen",
+      "category": "Sport"
+    },
+    {
+      "word": "Parasailing",
+      "category": "Sport"
+    },
+    {
+      "word": "Rettungsschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Lifesaving",
+      "category": "Sport"
+    },
+    {
+      "word": "Unterwasserrugby",
+      "category": "Sport"
+    },
+    {
+      "word": "Unterwasserfussball",
+      "category": "Sport"
+    },
+    {
+      "word": "Sporttauchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Apnoetauchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Eisschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Winterbaden",
+      "category": "Sport"
+    },
+    {
+      "word": "Rückenschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Schmetterlingsschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Lagen",
+      "category": "Sport"
+    },
+    {
+      "word": "Staffelschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Langstreckenschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Freiwasserschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Beckenschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kunstspringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Synchronspringen",
+      "category": "Sport"
+    },
+    {
+      "word": "Trampolin",
+      "category": "Sport"
+    },
+    {
+      "word": "Doppelmini",
+      "category": "Sport"
+    },
+    {
+      "word": "Bodenturnen",
+      "category": "Sport"
+    },
+    {
+      "word": "Reckturnen",
+      "category": "Sport"
+    },
+    {
+      "word": "Barren",
+      "category": "Sport"
+    },
+    {
+      "word": "Stufenbarren",
+      "category": "Sport"
+    },
+    {
+      "word": "Schwebebalken",
+      "category": "Sport"
+    },
+    {
+      "word": "Pauschenpferd",
+      "category": "Sport"
+    },
+    {
+      "word": "Ringe",
+      "category": "Sport"
+    },
+    {
+      "word": "Sprungtisch",
+      "category": "Sport"
+    },
+    {
+      "word": "Seitpferd",
+      "category": "Sport"
+    },
+    {
+      "word": "Strecksprung",
+      "category": "Sport"
+    },
+    {
+      "word": "Salto",
+      "category": "Sport"
+    },
+    {
+      "word": "Überschlag",
+      "category": "Sport"
+    },
+    {
+      "word": "Handstand",
+      "category": "Sport"
+    },
+    {
+      "word": "Radschlag",
+      "category": "Sport"
+    },
+    {
+      "word": "Flickflack",
+      "category": "Sport"
+    },
+    {
+      "word": "Rolle",
+      "category": "Sport"
+    },
+    {
+      "word": "Spagat",
+      "category": "Sport"
+    },
+    {
+      "word": "Standwaage",
+      "category": "Sport"
+    },
+    {
+      "word": "Kopfstand",
+      "category": "Sport"
+    },
+    {
+      "word": "Klimmzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Liegestütz",
+      "category": "Sport"
+    },
+    {
+      "word": "Kniebeuge",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausfallschritt",
+      "category": "Sport"
+    },
+    {
+      "word": "Plank",
+      "category": "Sport"
+    },
+    {
+      "word": "Burpee",
+      "category": "Sport"
+    },
+    {
+      "word": "Mountainclimber",
+      "category": "Sport"
+    },
+    {
+      "word": "Sit-up",
+      "category": "Sport"
+    },
+    {
+      "word": "Crunch",
+      "category": "Sport"
+    },
+    {
+      "word": "Hampelmann",
+      "category": "Sport"
+    },
+    {
+      "word": "Kniehebelauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Anfersen",
+      "category": "Sport"
+    },
+    {
+      "word": "Dehnübung",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufwärmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Abwärmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Kondition",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausdauer",
+      "category": "Sport"
+    },
+    {
+      "word": "Schnelligkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Beweglichkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Koordination",
+      "category": "Sport"
+    },
+    {
+      "word": "Kraft",
+      "category": "Sport"
+    },
+    {
+      "word": "Reaktionsfähigkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Gleichgewicht",
+      "category": "Sport"
+    },
+    {
+      "word": "Sprungkraft",
+      "category": "Sport"
+    },
+    {
+      "word": "Wurfkraft",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingslager",
+      "category": "Sport"
+    },
+    {
+      "word": "Training",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingsplan",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingsrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingseinheit",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingsplatz",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingshalle",
+      "category": "Sport"
+    },
+    {
+      "word": "Stadion",
+      "category": "Sport"
+    },
+    {
+      "word": "Arena",
+      "category": "Sport"
+    },
+    {
+      "word": "Rennbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Laufbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Tartanbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Schwimmbecken",
+      "category": "Sport"
+    },
+    {
+      "word": "Sprungturm",
+      "category": "Sport"
+    },
+    {
+      "word": "Skatepark",
+      "category": "Sport"
+    },
+    {
+      "word": "Pumptrack",
+      "category": "Sport"
+    },
+    {
+      "word": "Snowpark",
+      "category": "Sport"
+    },
+    {
+      "word": "Skipiste",
+      "category": "Sport"
+    },
+    {
+      "word": "Loipenstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Bobbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Eisbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Ruderstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Regattastrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Tennisplatz",
+      "category": "Sport"
+    },
+    {
+      "word": "Tennishalle",
+      "category": "Sport"
+    },
+    {
+      "word": "Basketballfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Spielfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Spielfeldrand",
+      "category": "Sport"
+    },
+    {
+      "word": "Strafraum",
+      "category": "Sport"
+    },
+    {
+      "word": "Torraum",
+      "category": "Sport"
+    },
+    {
+      "word": "Mittellinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Seitenlinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Grundlinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufschlaglinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Dreipunktelinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Torlinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Startlinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Ziellinie",
+      "category": "Sport"
+    },
+    {
+      "word": "Wechselzone",
+      "category": "Sport"
+    },
+    {
+      "word": "Weitsprunggrube",
+      "category": "Sport"
+    },
+    {
+      "word": "Wurfring",
+      "category": "Sport"
+    },
+    {
+      "word": "Kugelstoßring",
+      "category": "Sport"
+    },
+    {
+      "word": "Hürdenstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Staffelstab",
+      "category": "Sport"
+    },
+    {
+      "word": "Startblock",
+      "category": "Sport"
+    },
+    {
+      "word": "Startpistole",
+      "category": "Sport"
+    },
+    {
+      "word": "Zielband",
+      "category": "Sport"
+    },
+    {
+      "word": "Stoppuhr",
+      "category": "Sport"
+    },
+    {
+      "word": "Anzeigetafel",
+      "category": "Sport"
+    },
+    {
+      "word": "Spielstand",
+      "category": "Sport"
+    },
+    {
+      "word": "Punktestand",
+      "category": "Sport"
+    },
+    {
+      "word": "Bestzeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Weltrekord",
+      "category": "Sport"
+    },
+    {
+      "word": "Rekord",
+      "category": "Sport"
+    },
+    {
+      "word": "Qualifikation",
+      "category": "Sport"
+    },
+    {
+      "word": "Vorrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Hauptrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Zwischenrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausscheidungsrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Endrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Finale",
+      "category": "Sport"
+    },
+    {
+      "word": "Halbfinale",
+      "category": "Sport"
+    },
+    {
+      "word": "Viertelfinale",
+      "category": "Sport"
+    },
+    {
+      "word": "Achtelfinale",
+      "category": "Sport"
+    },
+    {
+      "word": "Gruppenphase",
+      "category": "Sport"
+    },
+    {
+      "word": "Rückspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Hinspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Freundschaftsspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Testspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Ligaspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Pokalspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Meisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Weltmeisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Europameisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Olympia",
+      "category": "Sport"
+    },
+    {
+      "word": "Paralympics",
+      "category": "Sport"
+    },
+    {
+      "word": "Wettkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Turnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Pokal",
+      "category": "Sport"
+    },
+    {
+      "word": "Liga",
+      "category": "Sport"
+    },
+    {
+      "word": "Saison",
+      "category": "Sport"
+    },
+    {
+      "word": "Spieltag",
+      "category": "Sport"
+    },
+    {
+      "word": "Heimspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Auswärtsspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Derby",
+      "category": "Sport"
+    },
+    {
+      "word": "Relegation",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufstieg",
+      "category": "Sport"
+    },
+    {
+      "word": "Abstieg",
+      "category": "Sport"
+    },
+    {
+      "word": "Playoff",
+      "category": "Sport"
+    },
+    {
+      "word": "Play-in",
+      "category": "Sport"
+    },
+    {
+      "word": "Etappe",
+      "category": "Sport"
+    },
+    {
+      "word": "Rennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Lauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Wettlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Staffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Duelle",
+      "category": "Sport"
+    },
+    {
+      "word": "Duell",
+      "category": "Sport"
+    },
+    {
+      "word": "Match",
+      "category": "Sport"
+    },
+    {
+      "word": "Partie",
+      "category": "Sport"
+    },
+    {
+      "word": "Begegnung",
+      "category": "Sport"
+    },
+    {
+      "word": "Satz",
+      "category": "Sport"
+    },
+    {
+      "word": "Runde",
+      "category": "Sport"
+    },
+    {
+      "word": "Durchgang",
+      "category": "Sport"
+    },
+    {
+      "word": "Halbzeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Nachspielzeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Verlängerung",
+      "category": "Sport"
+    },
+    {
+      "word": "Verlängerungszeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Anstoß",
+      "category": "Sport"
+    },
+    {
+      "word": "Abpfiff",
+      "category": "Sport"
+    },
+    {
+      "word": "Schlusspfiff",
+      "category": "Sport"
+    },
+    {
+      "word": "Einwurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Abwurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Eckball",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistoß",
+      "category": "Sport"
+    },
+    {
+      "word": "Strafstoß",
+      "category": "Sport"
+    },
+    {
+      "word": "Elfmeter",
+      "category": "Sport"
+    },
+    {
+      "word": "Abseits",
+      "category": "Sport"
+    },
+    {
+      "word": "Foul",
+      "category": "Sport"
+    },
+    {
+      "word": "Handspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Zeitstrafe",
+      "category": "Sport"
+    },
+    {
+      "word": "Platzverweis",
+      "category": "Sport"
+    },
+    {
+      "word": "Verwarnung",
+      "category": "Sport"
+    },
+    {
+      "word": "Unparteiischer",
+      "category": "Sport"
+    },
+    {
+      "word": "Linienrichter",
+      "category": "Sport"
+    },
+    {
+      "word": "Kampfrichter",
+      "category": "Sport"
+    },
+    {
+      "word": "Zeitnehmer",
+      "category": "Sport"
+    },
+    {
+      "word": "Wertungsrichter",
+      "category": "Sport"
+    },
+    {
+      "word": "Co-Trainer",
+      "category": "Sport"
+    },
+    {
+      "word": "Athlet",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportler",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportlerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Spieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Spielerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Mannschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Team",
+      "category": "Sport"
+    },
+    {
+      "word": "Kader",
+      "category": "Sport"
+    },
+    {
+      "word": "Kapitän",
+      "category": "Sport"
+    },
+    {
+      "word": "Kapitänin",
+      "category": "Sport"
+    },
+    {
+      "word": "Torwart",
+      "category": "Sport"
+    },
+    {
+      "word": "Torhüter",
+      "category": "Sport"
+    },
+    {
+      "word": "Torhüterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Abwehrspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Verteidiger",
+      "category": "Sport"
+    },
+    {
+      "word": "Innenverteidiger",
+      "category": "Sport"
+    },
+    {
+      "word": "Mittelfeldspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Stürmer",
+      "category": "Sport"
+    },
+    {
+      "word": "Angreifer",
+      "category": "Sport"
+    },
+    {
+      "word": "Libero",
+      "category": "Sport"
+    },
+    {
+      "word": "Spielmacher",
+      "category": "Sport"
+    },
+    {
+      "word": "Ersatzspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Auswechselspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Einwechselspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Reservist",
+      "category": "Sport"
+    },
+    {
+      "word": "Nachwuchsspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Jugendspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Profi",
+      "category": "Sport"
+    },
+    {
+      "word": "Amateur",
+      "category": "Sport"
+    },
+    {
+      "word": "Hobbyathlet",
+      "category": "Sport"
+    },
+    {
+      "word": "Wettkämpfer",
+      "category": "Sport"
+    },
+    {
+      "word": "Olympiasieger",
+      "category": "Sport"
+    },
+    {
+      "word": "Weltmeister",
+      "category": "Sport"
+    },
+    {
+      "word": "Europameister",
+      "category": "Sport"
+    },
+    {
+      "word": "Titelverteidiger",
+      "category": "Sport"
+    },
+    {
+      "word": "Rekordhalter",
+      "category": "Sport"
+    },
+    {
+      "word": "Vizemeister",
+      "category": "Sport"
+    },
+    {
+      "word": "Medaillengewinner",
+      "category": "Sport"
+    },
+    {
+      "word": "Goldmedaille",
+      "category": "Sport"
+    },
+    {
+      "word": "Silbermedaille",
+      "category": "Sport"
+    },
+    {
+      "word": "Bronzemedaille",
+      "category": "Sport"
+    },
+    {
+      "word": "Pokalübergabe",
+      "category": "Sport"
+    },
+    {
+      "word": "Siegerehrung",
+      "category": "Sport"
+    },
+    {
+      "word": "Podium",
+      "category": "Sport"
+    },
+    {
+      "word": "Treppchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Medaille",
+      "category": "Sport"
+    },
+    {
+      "word": "Urkunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Startnummer",
+      "category": "Sport"
+    },
+    {
+      "word": "Trikot",
+      "category": "Sport"
+    },
+    {
+      "word": "Sporthose",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingsanzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportjacke",
+      "category": "Sport"
+    },
+    {
+      "word": "Laufshirt",
+      "category": "Sport"
+    },
+    {
+      "word": "Funktionsshirt",
+      "category": "Sport"
+    },
+    {
+      "word": "Sport-BH",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportsocken",
+      "category": "Sport"
+    },
+    {
+      "word": "Stutzen",
+      "category": "Sport"
+    },
+    {
+      "word": "Schienbeinschoner",
+      "category": "Sport"
+    },
+    {
+      "word": "Knieschoner",
+      "category": "Sport"
+    },
+    {
+      "word": "Ellbogenschoner",
+      "category": "Sport"
+    },
+    {
+      "word": "Handgelenkschoner",
+      "category": "Sport"
+    },
+    {
+      "word": "Mundschutz",
+      "category": "Sport"
+    },
+    {
+      "word": "Zahnschutz",
+      "category": "Sport"
+    },
+    {
+      "word": "Kopfschutz",
+      "category": "Sport"
+    },
+    {
+      "word": "Helm",
+      "category": "Sport"
+    },
+    {
+      "word": "Reithelm",
+      "category": "Sport"
+    },
+    {
+      "word": "Torwarthandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Fausthandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Schwimmbrille",
+      "category": "Sport"
+    },
+    {
+      "word": "Taucherbrille",
+      "category": "Sport"
+    },
+    {
+      "word": "Badeanzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Neoprenanzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Wetsuit",
+      "category": "Sport"
+    },
+    {
+      "word": "Skibrille",
+      "category": "Sport"
+    },
+    {
+      "word": "Sonnenbrille",
+      "category": "Sport"
+    },
+    {
+      "word": "Startnummernband",
+      "category": "Sport"
+    },
+    {
+      "word": "Laufgürtel",
+      "category": "Sport"
+    },
+    {
+      "word": "Sportuhr",
+      "category": "Sport"
+    },
+    {
+      "word": "Pulsmesser",
+      "category": "Sport"
+    },
+    {
+      "word": "Fitnessarmband",
+      "category": "Sport"
+    },
+    {
+      "word": "Schrittzähler",
+      "category": "Sport"
+    },
+    {
+      "word": "Kompass",
+      "category": "Sport"
+    },
+    {
+      "word": "Höhenmesser",
+      "category": "Sport"
+    },
+    {
+      "word": "GPS-Gerät",
+      "category": "Sport"
+    },
+    {
+      "word": "Trinkflasche",
+      "category": "Sport"
+    },
+    {
+      "word": "Isolierflasche",
+      "category": "Sport"
+    },
+    {
+      "word": "Trinkrucksack",
+      "category": "Sport"
+    },
+    {
+      "word": "Sporttasche",
+      "category": "Sport"
+    },
+    {
+      "word": "Magnesiumbeutel",
+      "category": "Sport"
+    },
+    {
+      "word": "Harz",
+      "category": "Sport"
+    },
+    {
+      "word": "Grip",
+      "category": "Sport"
+    },
+    {
+      "word": "Tape",
+      "category": "Sport"
+    },
+    {
+      "word": "Sporttape",
+      "category": "Sport"
+    },
+    {
+      "word": "Kinesiotape",
+      "category": "Sport"
+    },
+    {
+      "word": "Pflaster",
+      "category": "Sport"
+    },
+    {
+      "word": "Kühlpack",
+      "category": "Sport"
+    },
+    {
+      "word": "Wärmepack",
+      "category": "Sport"
+    },
+    {
+      "word": "Erste-Hilfe-Kasten",
+      "category": "Sport"
+    },
+    {
+      "word": "Massageball",
+      "category": "Sport"
+    },
+    {
+      "word": "Faszienrolle",
+      "category": "Sport"
+    },
+    {
+      "word": "Yogamatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Turnmatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Weichbodenmatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Sprungbrett",
+      "category": "Sport"
+    },
+    {
+      "word": "Sprungtuch",
+      "category": "Sport"
+    },
+    {
+      "word": "Trampolinnetz",
+      "category": "Sport"
+    },
+    {
+      "word": "Hantel",
+      "category": "Sport"
+    },
+    {
+      "word": "Kurzhantel",
+      "category": "Sport"
+    },
+    {
+      "word": "Langhantel",
+      "category": "Sport"
+    },
+    {
+      "word": "Kettlebell",
+      "category": "Sport"
+    },
+    {
+      "word": "Gewichtsscheibe",
+      "category": "Sport"
+    },
+    {
+      "word": "Hantelbank",
+      "category": "Sport"
+    },
+    {
+      "word": "Kraftstation",
+      "category": "Sport"
+    },
+    {
+      "word": "Klimmzugstange",
+      "category": "Sport"
+    },
+    {
+      "word": "Dipständer",
+      "category": "Sport"
+    },
+    {
+      "word": "Expander",
+      "category": "Sport"
+    },
+    {
+      "word": "Widerstandsband",
+      "category": "Sport"
+    },
+    {
+      "word": "Theraband",
+      "category": "Sport"
+    },
+    {
+      "word": "Springseil",
+      "category": "Sport"
+    },
+    {
+      "word": "Medizinball",
+      "category": "Sport"
+    },
+    {
+      "word": "Balancekissen",
+      "category": "Sport"
+    },
+    {
+      "word": "Balanceboard",
+      "category": "Sport"
+    },
+    {
+      "word": "Wackelbrett",
+      "category": "Sport"
+    },
+    {
+      "word": "Koordinationsleiter",
+      "category": "Sport"
+    },
+    {
+      "word": "Hütchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Markierungshütchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Slalomstange",
+      "category": "Sport"
+    },
+    {
+      "word": "Trainingsdummy",
+      "category": "Sport"
+    },
+    {
+      "word": "Sandsack",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxsack",
+      "category": "Sport"
+    },
+    {
+      "word": "Speedball",
+      "category": "Sport"
+    },
+    {
+      "word": "Doppelendball",
+      "category": "Sport"
+    },
+    {
+      "word": "Pratze",
+      "category": "Sport"
+    },
+    {
+      "word": "Schlagpolster",
+      "category": "Sport"
+    },
+    {
+      "word": "Schlagkissen",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxring",
+      "category": "Sport"
+    },
+    {
+      "word": "Ringseil",
+      "category": "Sport"
+    },
+    {
+      "word": "Kampffläche",
+      "category": "Sport"
+    },
+    {
+      "word": "Tatami",
+      "category": "Sport"
+    },
+    {
+      "word": "Florett",
+      "category": "Sport"
+    },
+    {
+      "word": "Säbel",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtjacke",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechthose",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschutz",
+      "category": "Sport"
+    },
+    {
+      "word": "Schutzweste",
+      "category": "Sport"
+    },
+    {
+      "word": "Schulterpolster",
+      "category": "Sport"
+    },
+    {
+      "word": "Football",
+      "category": "Sport"
+    },
+    {
+      "word": "Rugbyball",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Softballschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Cricketschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeyschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Floorballschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Tennisschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Badmintonschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Squashschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Tischtennisschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Padelschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Pickleballschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfschläger",
+      "category": "Sport"
+    },
+    {
+      "word": "Driver",
+      "category": "Sport"
+    },
+    {
+      "word": "Putter",
+      "category": "Sport"
+    },
+    {
+      "word": "Eisen",
+      "category": "Sport"
+    },
+    {
+      "word": "Wedge",
+      "category": "Sport"
+    },
+    {
+      "word": "Tennisball",
+      "category": "Sport"
+    },
+    {
+      "word": "Tischtennisball",
+      "category": "Sport"
+    },
+    {
+      "word": "Shuttlecock",
+      "category": "Sport"
+    },
+    {
+      "word": "Squashball",
+      "category": "Sport"
     }
   ]
 }
