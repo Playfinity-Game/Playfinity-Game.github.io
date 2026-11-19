@@ -117,6 +117,8 @@
     .app-menu .tiktok-connector-panel button{padding:10px;text-align:center;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#000;font-weight:800}
     .app-menu .tiktok-connector-panel button:hover{color:#000;filter:brightness(1.08)}
     .app-menu .tiktok-connector-panel #tiktok-disconnect-button{background:rgba(255,0,127,.12);border:1px solid rgba(255,0,127,.35);color:#ff8cbd}
+    .app-menu .tiktok-connector-panel #tiktok-reconnect-button{width:auto;align-self:flex-start;padding:5px 9px;border:1px solid rgba(0,240,255,.35);background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:.72rem}
+    .app-menu .tiktok-connector-panel #tiktok-reconnect-button:disabled{opacity:.45;cursor:not-allowed}
     #tiktok-connector-status{font-size:.78rem;line-height:1.4;color:var(--text-muted);overflow-wrap:anywhere}
     .tiktok-connector-note{font-size:.68rem;line-height:1.4;color:var(--text-muted)}
     .status-dot {
@@ -1035,6 +1037,7 @@
       <label for="tiktok-username">TikTok-Benutzername</label>
       <input id="tiktok-username" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@deinname" maxlength="25">
       <button type="button" id="tiktok-connect-button">Mit TikTok LIVE verbinden</button>
+      <button type="button" id="tiktok-reconnect-button" hidden disabled>↻ Reconnect</button>
       <button type="button" id="tiktok-disconnect-button" hidden>Verbindung trennen</button>
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
@@ -1650,6 +1653,8 @@
       statusNode: document.getElementById('tiktok-connector-status'),
       connectButton: document.getElementById('tiktok-connect-button'),
       disconnectButton: document.getElementById('tiktok-disconnect-button'),
+      reconnectButton: document.getElementById('tiktok-reconnect-button'),
+      reconnecting: false,
 
       savedUsernameKey: 'playfinity_tiktok_username_v1',
 
@@ -1660,6 +1665,7 @@
         if (input && savedUsername) input.value = savedUsername;
         this.connectButton?.addEventListener('click', () => this.connect());
         this.disconnectButton?.addEventListener('click', () => this.disconnect());
+        this.reconnectButton?.addEventListener('click', () => this.reconnect());
         input?.addEventListener('keydown', (event) => {
           if (event.key === 'Enter') this.connect();
         });
@@ -1672,6 +1678,11 @@
         const isConnected = state === 'connected' || state === 'error-connected';
         if (this.connectButton) this.connectButton.disabled = state === 'connecting' || isConnected;
         if (this.disconnectButton) this.disconnectButton.hidden = !isConnected;
+        if (this.reconnectButton) {
+          this.reconnectButton.hidden = !isConnected;
+          this.reconnectButton.disabled = !isConnected || this.reconnecting;
+          this.reconnectButton.textContent = this.reconnecting ? '↻ Verbinde …' : '↻ Reconnect';
+        }
         if (activeLiveSource === 'tiktok' || state === 'connecting') {
           const dot = document.getElementById('ws-indicator');
           const label = document.getElementById('ws-label');
@@ -1735,6 +1746,8 @@
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
               } else if (message.type === 'admin_action') {
                 PlayfinityPlayerPresence.showEffect(message.action);
+              } else if (message.type === 'connector_reconnected') {
+                this.setStatus('TikTok LIVE wurde neu verbunden.', 'connected');
               } else if (message.type === 'connector_error') {
                 this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
               }
@@ -1762,6 +1775,35 @@
           this.setStatus(error.message || 'TikTok LIVE konnte nicht verbunden werden.', 'error');
           TikFinity.pausedForTikTok = false;
           if (!TikFinity.connected) TikFinity.connect();
+        }
+      },
+
+      async reconnect() {
+        if (!this.connected || this.reconnecting) return;
+        const username = (document.getElementById('tiktok-username')?.value || '').trim().replace(/^@/, '');
+        if (!/^[A-Za-z0-9._]{2,24}$/.test(username)) {
+          this.setStatus('Bitte gib einen gültigen TikTok-@Namen ein.', 'error-connected');
+          return;
+        }
+        this.reconnecting = true;
+        this.setStatus('TikTok LIVE wird neu verbunden …', 'connecting');
+        try {
+          const response = await fetch(this.baseUrl + '/api/reconnect', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username })
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.ok) {
+            const detail = typeof data.detail === 'string' ? ' Ursache: ' + data.detail.trim().slice(0, 300) : '';
+            throw new Error((data.error || 'TikTok LIVE konnte nicht neu verbunden werden.') + detail);
+          }
+          this.setStatus('TikTok LIVE neu verbunden: @' + (data.username || username), 'connected');
+        } catch (error) {
+          this.setStatus(error.message || 'TikTok-Reconnect fehlgeschlagen.', 'error-connected');
+        } finally {
+          this.reconnecting = false;
+          if (this.connected) this.setStatus(this.statusNode?.textContent || 'TikTok LIVE verbunden.', this.statusNode?.textContent?.includes('Fehler') ? 'error-connected' : 'connected');
         }
       },
 
