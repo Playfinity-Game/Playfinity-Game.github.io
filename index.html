@@ -2246,7 +2246,9 @@
           if (button) button.title = 'Kategorie-Tipp wurde bereits angezeigt';
         } catch (error) {
           console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
-          display.textContent = 'Kategorie-Fehler: ' + (error && error.message ? error.message : 'Unbekannter Fehler');
+          // Fehler bleiben für Spieler unsichtbar; die Ladeanzeige wird still entfernt.
+          display.textContent = '';
+          display.hidden = true;
         } finally {
           if (requestedRoundId === this.roundId && !this.categoryHintUsed && button) button.disabled = false;
         }
@@ -2359,20 +2361,14 @@
             batches++;
             if (!candidates.length && result.hints.length === 0) break;
           }
-          if (!timedOut && requestedRoundId === this.roundId && button) {
-            button.title = 'Kein passender Tipp gefunden – bitte erneut versuchen';
-          }
+          // Wenn kein passender Tipp gefunden wird, bleibt die Spieloberfläche unverändert.
         })();
 
         try {
           await Promise.race([hintOperation, timeoutPromise]);
         } catch (error) {
           if (error && error.name !== 'AbortError') console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:', error);
-          if (requestedRoundId === this.roundId && button) {
-            button.title = error && error.name === 'AbortError'
-              ? 'Tipp nicht rechtzeitig – bitte erneut versuchen (Limit: 20 Sekunden)'
-              : 'Tipp gerade nicht verfügbar – bitte erneut versuchen';
-          }
+          // Keine Fehlermeldung und kein Tooltip im Spiel; der Button wird unten still freigegeben.
         } finally {
           clearTimeout(hintTimeout);
           // Ein abgebrochener Tipp aus einer älteren Runde darf keinen neueren Tipp entsperren.
