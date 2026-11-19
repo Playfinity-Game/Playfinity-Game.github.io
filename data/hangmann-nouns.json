@@ -5914,6 +5914,406 @@
     {
       "word": "Tafelbild",
       "category": "Schule"
+    },
+    {
+      "word": "Abschlussklasse",
+      "category": "Schule"
+    },
+    {
+      "word": "Abschlusszeugnis",
+      "category": "Schule"
+    },
+    {
+      "word": "Achsenspiegel",
+      "category": "Schule"
+    },
+    {
+      "word": "Alphabettafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Anwesenheitsliste",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsauftrag",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsgemeinschaft",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsmaterial",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsplatz",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufgabenkarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufgabenstellung",
+      "category": "Schule"
+    },
+    {
+      "word": "Ausbildungsplatz",
+      "category": "Schule"
+    },
+    {
+      "word": "Aushang",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelschere",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelkleber",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Bauklotz",
+      "category": "Schule"
+    },
+    {
+      "word": "Beamerwagen",
+      "category": "Schule"
+    },
+    {
+      "word": "Berufsschule",
+      "category": "Schule"
+    },
+    {
+      "word": "Beurteilung",
+      "category": "Schule"
+    },
+    {
+      "word": "Bewegungspause",
+      "category": "Schule"
+    },
+    {
+      "word": "Biologiebuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Biologieraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Bleistiftfach",
+      "category": "Schule"
+    },
+    {
+      "word": "Buchdeckel",
+      "category": "Schule"
+    },
+    {
+      "word": "Buchrücken",
+      "category": "Schule"
+    },
+    {
+      "word": "Datenblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Deckfarben",
+      "category": "Schule"
+    },
+    {
+      "word": "Denkaufgabe",
+      "category": "Schule"
+    },
+    {
+      "word": "Dienstbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Doppelpunkt",
+      "category": "Schule"
+    },
+    {
+      "word": "Durchschreibepapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Einband",
+      "category": "Schule"
+    },
+    {
+      "word": "Einführungskurs",
+      "category": "Schule"
+    },
+    {
+      "word": "Einzelarbeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Experiment",
+      "category": "Schule"
+    },
+    {
+      "word": "Experimentierkasten",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachkonferenz",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachraumplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Faltblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Faltpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Fehlerkorrektur",
+      "category": "Schule"
+    },
+    {
+      "word": "Ferienplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Folienstift",
+      "category": "Schule"
+    },
+    {
+      "word": "Förderkurs",
+      "category": "Schule"
+    },
+    {
+      "word": "Fremdsprache",
+      "category": "Schule"
+    },
+    {
+      "word": "Gedichtband",
+      "category": "Schule"
+    },
+    {
+      "word": "Geometrie",
+      "category": "Schule"
+    },
+    {
+      "word": "Geschichtsatlas",
+      "category": "Schule"
+    },
+    {
+      "word": "Globus",
+      "category": "Schule"
+    },
+    {
+      "word": "Grundrechenart",
+      "category": "Schule"
+    },
+    {
+      "word": "Hausordnung",
+      "category": "Schule"
+    },
+    {
+      "word": "Heftstreifen",
+      "category": "Schule"
+    },
+    {
+      "word": "Hochsprungmatte",
+      "category": "Schule"
+    },
+    {
+      "word": "Informatikraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Jahresplanung",
+      "category": "Schule"
+    },
+    {
+      "word": "Karteikartei",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenarbeitstermin",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenbuchdeckel",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenfahrtziel",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassensprecher",
+      "category": "Schule"
+    },
+    {
+      "word": "Klebestreifen",
+      "category": "Schule"
+    },
+    {
+      "word": "Klingelzeichen",
+      "category": "Schule"
+    },
+    {
+      "word": "Kopierpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Kopierer",
+      "category": "Schule"
+    },
+    {
+      "word": "Korrekturzeichen",
+      "category": "Schule"
+    },
+    {
+      "word": "Kreidehalter",
+      "category": "Schule"
+    },
+    {
+      "word": "Kunstmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Laminiergerät",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernatelier",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernbegleiter",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernbereich",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernplakat",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernstation",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesekarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesewettbewerb",
+      "category": "Schule"
+    },
+    {
+      "word": "Liniertes Papier",
+      "category": "Schule"
+    },
+    {
+      "word": "Löschblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Mathebogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Meldeheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Merkheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Morgenkreis",
+      "category": "Schule"
+    },
+    {
+      "word": "Musikraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Nachschlagewerk",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenbrot",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausendienst",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenkarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenspiel",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenverkauf",
+      "category": "Schule"
+    },
+    {
+      "word": "Projektarbeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Projektmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Prüfungsraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechenrahmen",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechtschreibheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulaufgabe",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulchor",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulfach",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulfest",
+      "category": "Schule"
     }
   ]
 }
