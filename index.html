@@ -1463,8 +1463,23 @@
         const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.remove('cleaning','kicking');
         const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.classList.remove('visible');reveal.textContent='';}
         if(!this.words.length)return;
-        if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}
+        if(!this.wordQueue.length){
+          const queueKey='playfinity_hangmann_word_queue_v1';
+          const wordKey=item=>item.category+'\\u0000'+this.normalize(item.word);
+          let restored=[];
+          try{
+            const saved=JSON.parse(localStorage.getItem(queueKey)||'[]');
+            const byKey=new Map(this.words.map(item=>[wordKey(item),item]));
+            const used=new Set();
+            restored=saved.map(key=>byKey.get(key)).filter(item=>{if(!item)return false;const key=wordKey(item);if(used.has(key))return false;used.add(key);return true;});
+            const remaining=this.words.filter(item=>!used.has(wordKey(item)));
+            for(let i=remaining.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[remaining[i],remaining[j]]=[remaining[j],remaining[i]];}
+            restored.push(...remaining);
+          }catch(error){restored=[...this.words];}
+          this.wordQueue=restored;
+        }
         this.target=this.wordQueue.pop();
+        try{localStorage.setItem('playfinity_hangmann_word_queue_v1',JSON.stringify(this.wordQueue.map(item=>item.category+'\\u0000'+this.normalize(item.word))));}catch(error){console.warn('[Hangmann] Wortvorrat konnte nicht gespeichert werden.',error);}
         const hardInstrumentWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn']);
         const hardWordLabel=document.getElementById('hangmann-hard-word');
         if(hardWordLabel)hardWordLabel.classList.toggle('visible',this.target.category==='Musikinstrumente'&&hardInstrumentWords.has(this.target.word));
