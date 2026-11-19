@@ -959,6 +959,8 @@
     .hangmann-reveal.visible{display:block}
     .hangmann-reveal strong{color:var(--neon-cyan);letter-spacing:.04em}
     .hangmann-rope{stroke:var(--neon-gold);stroke-width:2.5;filter:drop-shadow(0 0 4px rgba(255,210,0,.5))}
+    .hangmann-hard-word{display:none;margin:0 auto -4px;padding:7px 13px;border:1px solid rgba(255,70,90,.55);border-radius:999px;background:rgba(255,35,65,.13);color:#ff8b9a;text-align:center;font-size:.88rem;font-weight:950;letter-spacing:.08em;text-shadow:0 0 12px rgba(255,55,85,.28)}
+    .hangmann-hard-word.visible{display:block}
     .hangmann-word{display:flex;justify-content:center;gap:clamp(4px,1.4vw,10px);flex-wrap:wrap;min-height:54px}
     .hangmann-slot{width:clamp(22px,6vw,38px);height:48px;border-bottom:3px solid var(--neon-cyan);display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:900;text-transform:uppercase;color:#fff}
     .hangmann-category{padding:10px 13px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.1);color:#e5c7ff;font-weight:750;text-align:center}
@@ -1228,6 +1230,7 @@
           </svg>
         </div>
         <div class="hangmann-category" id="hangmann-category">Kategorie-Tipp: Noch verborgen</div>
+        <div class="hangmann-hard-word" id="hangmann-hard-word" aria-live="polite">☠️ SCHWERES WORT ☠️</div>
         <div class="hangmann-word" id="hangmann-word" aria-live="polite"></div>
         <div class="hangmann-status" id="hangmann-status" aria-live="polite">Wähle einen Buchstaben.</div>
         <form class="hangmann-solution-form" id="hangmann-solution-form">
@@ -1444,6 +1447,9 @@
         if(!this.words.length)return;
         if(!this.wordQueue.length){this.wordQueue=[...this.words];for(let i=this.wordQueue.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[this.wordQueue[i],this.wordQueue[j]]=[this.wordQueue[j],this.wordQueue[i]];}}
         this.target=this.wordQueue.pop();
+        const hardInstrumentWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn']);
+        const hardWordLabel=document.getElementById('hangmann-hard-word');
+        if(hardWordLabel)hardWordLabel.classList.toggle('visible',this.target.category==='Musikinstrumente'&&hardInstrumentWords.has(this.target.word));
         this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
         document.getElementById('hangmann-category').textContent='Kategorie-Tipp: Noch verborgen';
         document.getElementById('hangmann-hint').disabled=false;
