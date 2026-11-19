@@ -3540,10 +3540,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Muschel",
-      "category": "Tiere"
-    },
-    {
       "word": "Nachtigall",
       "category": "Tiere"
     },
@@ -3937,10 +3933,6 @@
     },
     {
       "word": "Flammkuchen",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Forelle",
       "category": "Essen & Trinken"
     },
     {
@@ -4457,10 +4449,6 @@
     },
     {
       "word": "Drogist",
-      "category": "Berufe"
-    },
-    {
-      "word": "Drucker",
       "category": "Berufe"
     },
     {
@@ -6100,6 +6088,222 @@
       "category": "Schule"
     },
     {
+      "word": "Lernzielkontrolle",
+      "category": "Schule"
+    },
+    {
+      "word": "Leseflüssigkeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesekompetenz",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesestrategie",
+      "category": "Schule"
+    },
+    {
+      "word": "Mathearbeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Matheunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Medienkompetenz",
+      "category": "Schule"
+    },
+    {
+      "word": "Mehrzweckraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Musikunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Naturkundeunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Orientierungsstufe",
+      "category": "Schule"
+    },
+    {
+      "word": "Praktikumsbericht",
+      "category": "Schule"
+    },
+    {
+      "word": "Praktikumsplatz",
+      "category": "Schule"
+    },
+    {
+      "word": "Projektwoche",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechenregel",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulbibliothekar",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulveranstaltung",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulwettbewerb",
+      "category": "Schule"
+    },
+    {
+      "word": "Sprachprüfung",
+      "category": "Schule"
+    },
+    {
+      "word": "Sporthalle",
+      "category": "Schule"
+    },
+    {
+      "word": "Sportunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Vertretungsplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Versuchsaufbau",
+      "category": "Schule"
+    },
+    {
+      "word": "Wahlpflichtfach",
+      "category": "Schule"
+    },
+    {
+      "word": "Wochenplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Zahlenraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Abschlussklasse",
+      "category": "Schule"
+    },
+    {
+      "word": "Anmeldeformular",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufgabenstellung",
+      "category": "Schule"
+    },
+    {
+      "word": "Beurteilungskriterium",
+      "category": "Schule"
+    },
+    {
+      "word": "Bildungszentrum",
+      "category": "Schule"
+    },
+    {
+      "word": "Computerunterricht",
+      "category": "Schule"
+    },
+    {
+      "word": "Deutschheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Englischheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachkonferenz",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachlehrkraft",
+      "category": "Schule"
+    },
+    {
+      "word": "Förderbedarf",
+      "category": "Schule"
+    },
+    {
+      "word": "Förderklasse",
+      "category": "Schule"
+    },
+    {
+      "word": "Französischheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Gruppenraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Grundwissen",
+      "category": "Schule"
+    },
+    {
+      "word": "Hausaufgabenbetreuung",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenarbeitstermin",
+      "category": "Schule"
+    },
+    {
+      "word": "Klausurphase",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenfahrtziel",
+      "category": "Schule"
+    },
+    {
+      "word": "Klausurraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Kopierpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Korrekturzeichen",
+      "category": "Schule"
+    },
+    {
+      "word": "Kreidetafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernbegleitung",
+      "category": "Schule"
+    },
+    {
+      "word": "Lerncoaching",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernentwicklung",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Lerninhalte",
+      "category": "Schule"
+    },
+    {
       "word": "Abendspaziergang",
       "category": "Freizeit"
     },
@@ -6213,10 +6417,6 @@
     },
     {
       "word": "Eisstockschießen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Escape Room",
       "category": "Freizeit"
     },
     {
@@ -6396,10 +6596,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Hula Hoop",
-      "category": "Freizeit"
-    },
-    {
       "word": "Improtheater",
       "category": "Freizeit"
     },
@@ -6504,10 +6700,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Laser Tag",
-      "category": "Freizeit"
-    },
-    {
       "word": "Lauftraining",
       "category": "Freizeit"
     },
@@ -6529,10 +6721,6 @@
     },
     {
       "word": "Livekonzert",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Live-Rollenspiel",
       "category": "Freizeit"
     },
     {
@@ -6605,14 +6793,6 @@
     },
     {
       "word": "Pokerabend",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Podcast aufnehmen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Poetry Slam",
       "category": "Freizeit"
     },
     {
@@ -6736,10 +6916,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Stand-up-Paddling",
-      "category": "Freizeit"
-    },
-    {
       "word": "Sternbeobachtung",
       "category": "Freizeit"
     },
@@ -6768,10 +6944,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Taschen bemalen",
-      "category": "Freizeit"
-    },
-    {
       "word": "Töpfern",
       "category": "Freizeit"
     },
@@ -6789,18 +6961,6 @@
     },
     {
       "word": "Trickfilm",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Traumfänger basteln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Ukulele spielen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Urban Gardening",
       "category": "Freizeit"
     },
     {
@@ -6868,10 +7028,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Zusammen kochen",
-      "category": "Freizeit"
-    },
-    {
       "word": "Zoobesuch",
       "category": "Freizeit"
     },
@@ -6885,10 +7041,6 @@
     },
     {
       "word": "Astronomie",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Autogenes Training",
       "category": "Freizeit"
     },
     {
@@ -6932,10 +7084,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Cajon spielen",
-      "category": "Freizeit"
-    },
-    {
       "word": "Capoeira",
       "category": "Freizeit"
     },
@@ -6972,10 +7120,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "E-Bike-Tour",
-      "category": "Freizeit"
-    },
-    {
       "word": "Ehrenamt",
       "category": "Freizeit"
     },
@@ -6996,10 +7140,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Erste-Hilfe-Kurs",
-      "category": "Freizeit"
-    },
-    {
       "word": "Experimentieren",
       "category": "Freizeit"
     },
@@ -7017,10 +7157,6 @@
     },
     {
       "word": "Federballturnier",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Feuer machen",
       "category": "Freizeit"
     },
     {
@@ -7072,10 +7208,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "Gewürze mischen",
-      "category": "Freizeit"
-    },
-    {
       "word": "Golfkurs",
       "category": "Freizeit"
     },
@@ -7097,18 +7229,6 @@
     },
     {
       "word": "Hundetraining",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Insekten beobachten",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Instrument lernen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Jam-Session",
       "category": "Freizeit"
     },
     {
@@ -7164,19 +7284,7 @@
       "category": "Freizeit"
     },
     {
-      "word": "Kräuter sammeln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Kreatives Schreiben",
-      "category": "Freizeit"
-    },
-    {
       "word": "Kubbturnier",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Kürbis schnitzen",
       "category": "Freizeit"
     },
     {
@@ -7192,339 +7300,7 @@
       "category": "Freizeit"
     },
     {
-      "word": "Live-Musik",
-      "category": "Freizeit"
-    },
-    {
       "word": "Luftmatratzenrennen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Malkurs",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Manga zeichnen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Meditation",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Memory spielen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Motorradtour",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Murmelbahn bauen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Musik machen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Musikunterricht",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Nähkurs",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Nähen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Obst pflücken",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Orchesterprobe",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Outdoortraining",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Papierflieger",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Papierfalten",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Parkourtraining",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Perlen fädeln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Pferdepflege",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Planetariumsbesuch",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Plattensammlung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Plattenbörse",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Ponywanderung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Portraitzeichnen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Rätsel lösen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Reiseplanung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Reparaturkurs",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Rhythmusübung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Ringewerfen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Rosen schneiden",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Rubiks Cube",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Rundwanderung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Salsa",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Sandmalerei",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Schnitzen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Schneeschuhkurs",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Schreibwerkstatt",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Schwimmkurs",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Seifengießen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Selbstverteidigung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Skat",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Skulpturen schnitzen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Sommerfest",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stadtführung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stadtlauf",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stadtparkbesuch",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stand-up-Comedy",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Steine bemalen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Steine sammeln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Sticken",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stoffdruck",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stricken",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Stuntworkshop",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Sudoku",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Tanzaufführung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Taschen nähen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Tastings",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Tischfußball",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Töpferabend",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Tourenradeln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Trampolinpark",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Trickshot",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Ukuleleunterricht",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Unterwasserfotografie",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Urban Sketching",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Vogelbeobachtung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Vorlesen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Waffeln backen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Waldhütte bauen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Wasserschlacht",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Wasserwandern",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Weben",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Weihnachtsbasteln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Weinprobe",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Wettkochen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Wildkräuter sammeln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Windrad basteln",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Winterspaziergang",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Workout im Freien",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Zeitreise-Ausstellung",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Zirkusworkshop",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Zither spielen",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Zumba-Kurs",
       "category": "Freizeit"
     }
   ]
