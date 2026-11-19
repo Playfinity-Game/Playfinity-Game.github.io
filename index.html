@@ -2566,7 +2566,7 @@
           this.roundLocked = true;
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
-          const autoAdvance=document.getElementById('kontexto-auto-next').checked;
+          const autoAdvance=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
           resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('kontexto',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
           resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
           showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance, '🎯 GEHEIMWORT GEFUNDEN!', player?.name || 'Lokaler Spieler');
