@@ -1030,13 +1030,6 @@
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
-    <div class="menu-setting-group">
-      <div class="menu-setting-heading">Automatisch weiter</div>
-      <label class="menu-setting" for="wordle-auto-next"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>
-      <label class="menu-setting" for="hangmann-auto-next"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>
-      <label class="menu-setting" for="priceisright-auto-next"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>
-      <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity</span></label>
-    </div>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -1325,16 +1318,6 @@
 
         document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
-        [
-          ['wordle-auto-next','playfinity_wordle_auto_next'],
-          ['hangmann-auto-next','playfinity_hangmann_auto_next'],
-          ['priceisright-auto-next','playfinity_priceisright_auto_next'],
-          ['kontexto-auto-next','playfinity_kontexto_auto_next']
-        ].forEach(([id,key])=>{
-          const setting=document.getElementById(id);
-          setting.checked=localStorage.getItem(key)!=='false';
-          setting.addEventListener('change',()=>localStorage.setItem(key,String(setting.checked)));
-        });
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
         toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
@@ -1351,7 +1334,30 @@
           if (action === 'home') this.go('menu');
           if (action === 'leaderboard') CommunityBoard.showAll();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
-          if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
+          if (action === 'settings') {
+            const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
+              '<label class="menu-setting"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>' +
+              '<label class="menu-setting"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity</span></label>' +
+              '<label class="menu-setting"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>' +
+              '<label class="menu-setting"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>' +
+              '</div><div class="menu-setting-group"><div class="menu-setting-heading">Kategorie anzeigen</div>' +
+              '<label class="menu-setting"><input id="kontexto-auto-category" type="checkbox"> <span>Wordfinity</span></label>' +
+              '<label class="menu-setting"><input id="hangmann-auto-category" type="checkbox"> <span>Hangman</span></label></div>';
+            showModal('Einstellungen', settingsHtml);
+            [
+              ['wordle-auto-next','playfinity_wordle_auto_next',true],
+              ['kontexto-auto-next','playfinity_kontexto_auto_next',true],
+              ['hangmann-auto-next','playfinity_hangmann_auto_next',true],
+              ['priceisright-auto-next','playfinity_priceisright_auto_next',true],
+              ['kontexto-auto-category','playfinity_wordfinity_auto_category',false],
+              ['hangmann-auto-category','playfinity_hangmann_auto_category',false]
+            ].forEach(([id,key,defaultValue])=>{
+              const setting=document.getElementById(id);
+              if(!setting)return;
+              setting.checked=localStorage.getItem(key)===null ? defaultValue : localStorage.getItem(key)==='true';
+              setting.addEventListener('change',()=>localStorage.setItem(key,String(setting.checked)));
+            });
+          }
           if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>Wordfinity: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
@@ -1451,8 +1457,11 @@
         const hardWordLabel=document.getElementById('hangmann-hard-word');
         if(hardWordLabel)hardWordLabel.classList.toggle('visible',this.target.category==='Musikinstrumente'&&hardInstrumentWords.has(this.target.word));
         this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
-        document.getElementById('hangmann-category').textContent='Kategorie-Tipp: Noch verborgen';
+        const categoryLabel=document.getElementById('hangmann-category');
+        const showCategoryImmediately=localStorage.getItem('playfinity_hangmann_auto_category')==='true';
         document.getElementById('hangmann-hint').disabled=false;
+        document.getElementById('hangmann-hint').hidden=showCategoryImmediately;
+        categoryLabel.textContent=showCategoryImmediately ? this.target.category : 'Kategorie-Tipp: Noch verborgen';
         document.getElementById('hangmann-status').textContent='Wähle einen Buchstaben.';
         document.querySelectorAll('.hangmann-part').forEach(part=>part.classList.remove('shown'));
         document.getElementById('hangmann-errors').textContent='Versuche: 10';
@@ -2425,6 +2434,7 @@
         if(wordButton){wordButton.disabled=false;wordButton.title='Wort-Tipp – beliebig oft';}
         const categoryDisplay=document.getElementById('kontexto-category-display');
         if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
+        if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true') this.showCategoryHint();
         this.guesses=[];
         const result=document.getElementById('kontexto-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
