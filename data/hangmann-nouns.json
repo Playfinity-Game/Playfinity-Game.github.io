@@ -10010,6 +10010,814 @@
     {
       "word": "Schneemaus",
       "category": "Tiere"
+    },
+    {
+      "word": "Abbrucharbeiter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Abfallberater",
+      "category": "Berufe"
+    },
+    {
+      "word": "Abfallmanager",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ackerbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Agrarbiologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Agraringenieur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Akrobat",
+      "category": "Berufe"
+    },
+    {
+      "word": "Altenpflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anästhesist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anästhesistin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anlagenmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anlagenmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anwendungsentwickler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Apothekerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "App-Entwickler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Archäologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Archäologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Architektin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Arzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ärztin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Assistent",
+      "category": "Berufe"
+    },
+    {
+      "word": "Assistentin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Astronaut",
+      "category": "Berufe"
+    },
+    {
+      "word": "Astronautin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Augenoptikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Außenhandelskaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Außenhandelskauffrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bäckerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baggerfahrerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bahnärztin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauarbeiterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauingenieurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baumaschinenführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baumaschinenführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauzeichnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Beamter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Beamtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bestatterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bibliothekarin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Biologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bootsbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bootsbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bodenleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bodenlegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bogenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bogenbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchbinder",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchbinderin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchhalterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Büchsenmacher",
+      "category": "Berufe"
+    },
+    {
+      "word": "Büchsenmacherin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bühnenbildner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bühnenbildnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemielaborant",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemielaborantin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chirurg",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chirurgin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Dachdeckerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenanalyst",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenanalystin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenbankadministrator",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenbankadministratorin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Denkmalpfleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Denkmalpflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Designerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Detektiv",
+      "category": "Berufe"
+    },
+    {
+      "word": "Detektivin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Diätassistent",
+      "category": "Berufe"
+    },
+    {
+      "word": "Diätassistentin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Dolmetscherin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Drechsler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Drechslerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Druckerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "E-Commerce-Manager",
+      "category": "Berufe"
+    },
+    {
+      "word": "E-Commerce-Managerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Edelsteinschleifer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Edelsteinschleiferin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektrikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektroniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektronikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ergotherapeut",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ergotherapeutin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Erzieherin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachinformatiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachinformatikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachlagerist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachlageristin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachverkäufer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachverkäuferin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fahrzeuglackierer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fahrzeuglackiererin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fährmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fährfrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fassadenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fassadenbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Feinmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Feinmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Feuerwehrfrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fischwirt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fischwirtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fliesenleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fliesenlegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Floristin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fluggerätmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fluggerätmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Forstwirt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Forstwirtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fotografin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Friseurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gärtnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gebäudereinigerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geograf",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geografin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gerüstbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gerüstbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Goldschmiedin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Grafikdesigner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Grafikdesignerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heilerziehungspfleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heilerziehungspflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heizungsbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heizungsbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzbildhauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzbildhauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelkaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelkauffrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelfachmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelfachfrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hörakustiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hörakustikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Imkerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Industriemechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Industriemechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Informatikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ingenieur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ingenieurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Installateurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Journalistin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Jurist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Juristin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kameramann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kamerafrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kanalbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kanalbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kauffrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kellnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Keramiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Keramikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kfz-Mechatroniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kfz-Mechatronikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kindergärtner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kindergärtnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Klempner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Klempnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Köchin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konditor",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konditorin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konstrukteur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konstrukteurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kosmetiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kosmetikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Krankenpflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kranführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kranführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Künstler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Künstlerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kürschner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kürschnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Küster",
+      "category": "Berufe"
+    },
+    {
+      "word": "Küsterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lackierer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lackiererin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Landwirtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Landschaftsgärtnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lehrerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Logopädin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lokführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Malerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maurerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mediengestalterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mediziner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Medizinerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Metallbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Metallbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Meteorologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Meteorologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mikrobiologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mikrobiologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Musikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Notarin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Notfallsanitäterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Oberarzt",
+      "category": "Berufe"
     }
   ]
 }
