@@ -8234,6 +8234,606 @@
     {
       "word": "Flugschein",
       "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Abfahrtsrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Abfahrtsstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Abfahrtstraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Ablaufstaffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Achtkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Akrobatikgruppe",
+      "category": "Sport"
+    },
+    {
+      "word": "Akrobatikturnen",
+      "category": "Sport"
+    },
+    {
+      "word": "Amateurboxen",
+      "category": "Sport"
+    },
+    {
+      "word": "Amateurfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Angriffsspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Anlaufbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Anlaufmarke",
+      "category": "Sport"
+    },
+    {
+      "word": "Anschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Armzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufschlag",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufschlagrecht",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufwärmtraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausdauerlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausdauertraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausscheidungskampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausscheidungsspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Außenbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Außenverteidiger",
+      "category": "Sport"
+    },
+    {
+      "word": "Badmintonnetz",
+      "category": "Sport"
+    },
+    {
+      "word": "Badmintonturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnenschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnrekord",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnrad",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnradfahrer",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnradfahrerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballettgymnastik",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballführung",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballgefühl",
+      "category": "Sport"
+    },
+    {
+      "word": "Balljunge",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballmädchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballkontrolle",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballmaschine",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballwurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballhandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballkappe",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballteam",
+      "category": "Sport"
+    },
+    {
+      "word": "Basketballtraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Basketballverein",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachhandballturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachvolleyballnetz",
+      "category": "Sport"
+    },
+    {
+      "word": "Berglauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Berglaufstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Bergsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Beweglichkeitstraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Biathlonstaffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Bobsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Boccia-Kugel",
+      "category": "Sport"
+    },
+    {
+      "word": "Bogensport",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxhandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxtrainer",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxtrainerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Breitensport",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschwimmer",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschwimmerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Bundesligaspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Dauerlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Dauertraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Degen",
+      "category": "Sport"
+    },
+    {
+      "word": "Degenfechter",
+      "category": "Sport"
+    },
+    {
+      "word": "Degenfechterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Dreierbob",
+      "category": "Sport"
+    },
+    {
+      "word": "Dreikampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockeytor",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockeytraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockeyverein",
+      "category": "Sport"
+    },
+    {
+      "word": "Eiskunstläufer",
+      "category": "Sport"
+    },
+    {
+      "word": "Eiskunstläuferin",
+      "category": "Sport"
+    },
+    {
+      "word": "Eissport",
+      "category": "Sport"
+    },
+    {
+      "word": "Einzelrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Einzelwettkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Endspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Ergometer",
+      "category": "Sport"
+    },
+    {
+      "word": "Fahrtechnik",
+      "category": "Sport"
+    },
+    {
+      "word": "Fallrückzieher",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtmaske",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtmeister",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtmeisterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Feldlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Feldspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Finalrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Finalspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Flutlichtspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Flügelspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Flügelspielerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilschwimmer",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilschwimmerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballakademie",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballfan",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtorwart",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtorhüter",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtorhüterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtrainer",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtrainerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschule",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschiedsrichter",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschiedsrichterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballstadion",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtaktik",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballteam",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtrikot",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballwettbewerb",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballweltmeisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Gegneranalyse",
+      "category": "Sport"
+    },
+    {
+      "word": "Gelenkigkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Geräteturner",
+      "category": "Sport"
+    },
+    {
+      "word": "Geräteturnerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Geschicklichkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Gleichgewichtstraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfabschlag",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfbag",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfclub",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfhandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikball",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikgruppe",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikmatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikreifen",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenhockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenmeisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Hochsprunglatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Hochsprungrekord",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeyfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeytor",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeytraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeyverein",
+      "category": "Sport"
+    },
+    {
+      "word": "Hürdenstaffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Hürdenstange",
+      "category": "Sport"
+    },
+    {
+      "word": "Indoorfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Inlineparcours",
+      "category": "Sport"
+    },
+    {
+      "word": "Inlinewettkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Judoanzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Judogürtel",
+      "category": "Sport"
+    },
+    {
+      "word": "Judoka",
+      "category": "Sport"
+    },
+    {
+      "word": "Judomatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Judoturnier",
+      "category": "Sport"
     }
   ]
 }
