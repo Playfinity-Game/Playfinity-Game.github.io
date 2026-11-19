@@ -306,7 +306,7 @@ const server = http.createServer(async (request, response) => {
       catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
       const playerId = typeof body.playerId === "string" ? body.playerId : "";
       const action = typeof body.action === "string" ? body.action : "";
-      if (!/^[a-f0-9]{16}$/.test(playerId) || !["shake","confetti","glitch","fog","invert"].includes(action)) {
+      if (!/^[a-f0-9]{16}$/.test(playerId) || !["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly"].includes(action)) {
         return sendJson(response, 400, { error: "Ungültiger Spieler oder Troll-Effekt." });
       }
       const bridgeToken = process.env.ADMIN_DATA_BRIDGE_TOKEN;
