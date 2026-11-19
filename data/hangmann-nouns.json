@@ -8834,6 +8834,686 @@
     {
       "word": "Judoturnier",
       "category": "Sport"
+    },
+    {
+      "word": "Ahornblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Algenblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Alpenblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Alpenveilchen",
+      "category": "Natur"
+    },
+    {
+      "word": "Ameisenhügel",
+      "category": "Natur"
+    },
+    {
+      "word": "Anemone",
+      "category": "Natur"
+    },
+    {
+      "word": "Apfelbaum",
+      "category": "Natur"
+    },
+    {
+      "word": "Apfelblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Arnika",
+      "category": "Natur"
+    },
+    {
+      "word": "Astgabel",
+      "category": "Natur"
+    },
+    {
+      "word": "Auenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Bachbett",
+      "category": "Natur"
+    },
+    {
+      "word": "Bachlauf",
+      "category": "Natur"
+    },
+    {
+      "word": "Bachufer",
+      "category": "Natur"
+    },
+    {
+      "word": "Bambushain",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumkrone",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumrinde",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumstamm",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumwipfel",
+      "category": "Natur"
+    },
+    {
+      "word": "Beerenstrauch",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergkamm",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergkristall",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergsee",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergwiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Birkenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Birkenrinde",
+      "category": "Natur"
+    },
+    {
+      "word": "Blätterdach",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattlaus",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattader",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattknospe",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattwerk",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenkelch",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenstaub",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenstand",
+      "category": "Natur"
+    },
+    {
+      "word": "Blumenerde",
+      "category": "Natur"
+    },
+    {
+      "word": "Blumenfeld",
+      "category": "Natur"
+    },
+    {
+      "word": "Blumenwiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Bodenfrost",
+      "category": "Natur"
+    },
+    {
+      "word": "Bodennebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Bodenschicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Brandung",
+      "category": "Natur"
+    },
+    {
+      "word": "Brennnessel",
+      "category": "Natur"
+    },
+    {
+      "word": "Brombeerstrauch",
+      "category": "Natur"
+    },
+    {
+      "word": "Bruchwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Buchecker",
+      "category": "Natur"
+    },
+    {
+      "word": "Buchenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Buschwindröschen",
+      "category": "Natur"
+    },
+    {
+      "word": "Dämmerlicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Dattelpalme",
+      "category": "Natur"
+    },
+    {
+      "word": "Dornbusch",
+      "category": "Natur"
+    },
+    {
+      "word": "Dornröschen",
+      "category": "Natur"
+    },
+    {
+      "word": "Dünenlandschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Dünenrose",
+      "category": "Natur"
+    },
+    {
+      "word": "Edelweiß",
+      "category": "Natur"
+    },
+    {
+      "word": "Eichenblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Eichenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Eichel",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisfläche",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisgang",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisgrotte",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisregen",
+      "category": "Natur"
+    },
+    {
+      "word": "Eissee",
+      "category": "Natur"
+    },
+    {
+      "word": "Eiszeit",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdbeben",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdkruste",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdloch",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdmond",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdreich",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdschicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Erosion",
+      "category": "Natur"
+    },
+    {
+      "word": "Eschenblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Eschenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Farnkraut",
+      "category": "Natur"
+    },
+    {
+      "word": "Felsblock",
+      "category": "Natur"
+    },
+    {
+      "word": "Felsbrocken",
+      "category": "Natur"
+    },
+    {
+      "word": "Felswand",
+      "category": "Natur"
+    },
+    {
+      "word": "Feuchtgebiet",
+      "category": "Natur"
+    },
+    {
+      "word": "Feuerlilie",
+      "category": "Natur"
+    },
+    {
+      "word": "Fichte",
+      "category": "Natur"
+    },
+    {
+      "word": "Fichtenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Flachland",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussarm",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussbett",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussdelta",
+      "category": "Natur"
+    },
+    {
+      "word": "Flusslauf",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussmündung",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussufer",
+      "category": "Natur"
+    },
+    {
+      "word": "Frühlingsblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Frühlingswald",
+      "category": "Natur"
+    },
+    {
+      "word": "Frostboden",
+      "category": "Natur"
+    },
+    {
+      "word": "Frostnacht",
+      "category": "Natur"
+    },
+    {
+      "word": "Frostschutz",
+      "category": "Natur"
+    },
+    {
+      "word": "Gänseblümchen",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgsbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgsflora",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgssee",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgswald",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgszug",
+      "category": "Natur"
+    },
+    {
+      "word": "Gefälle",
+      "category": "Natur"
+    },
+    {
+      "word": "Gezeiten",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletscherbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletschersee",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletscherzunge",
+      "category": "Natur"
+    },
+    {
+      "word": "Goldregen",
+      "category": "Natur"
+    },
+    {
+      "word": "Granithang",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasbüschel",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasfläche",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasland",
+      "category": "Natur"
+    },
+    {
+      "word": "Grashalm",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasnarbe",
+      "category": "Natur"
+    },
+    {
+      "word": "Grassteppe",
+      "category": "Natur"
+    },
+    {
+      "word": "Graswurzel",
+      "category": "Natur"
+    },
+    {
+      "word": "Hanglage",
+      "category": "Natur"
+    },
+    {
+      "word": "Heckenrose",
+      "category": "Natur"
+    },
+    {
+      "word": "Heidekraut",
+      "category": "Natur"
+    },
+    {
+      "word": "Heidelandschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Heilquelle",
+      "category": "Natur"
+    },
+    {
+      "word": "Herbstlaub",
+      "category": "Natur"
+    },
+    {
+      "word": "Herbstwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochmoor",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochgebirge",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochland",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochnebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Holunder",
+      "category": "Natur"
+    },
+    {
+      "word": "Holunderblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Holunderbusch",
+      "category": "Natur"
+    },
+    {
+      "word": "Holzstamm",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhlenbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhleneingang",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhlenwand",
+      "category": "Natur"
+    },
+    {
+      "word": "Hügelland",
+      "category": "Natur"
+    },
+    {
+      "word": "Hügellandschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Inselkette",
+      "category": "Natur"
+    },
+    {
+      "word": "Inselstrand",
+      "category": "Natur"
+    },
+    {
+      "word": "Jahresring",
+      "category": "Natur"
+    },
+    {
+      "word": "Jasmin",
+      "category": "Natur"
+    },
+    {
+      "word": "Jungwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkfelsen",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkgestein",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkstein",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiefernwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiefernnadel",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiesel",
+      "category": "Natur"
+    },
+    {
+      "word": "Kieselstrand",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiesgrube",
+      "category": "Natur"
+    },
+    {
+      "word": "Kieselstein",
+      "category": "Natur"
+    },
+    {
+      "word": "Kirschbaum",
+      "category": "Natur"
+    },
+    {
+      "word": "Kirschblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Kleeblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Klippenküste",
+      "category": "Natur"
+    },
+    {
+      "word": "Knospe",
+      "category": "Natur"
+    },
+    {
+      "word": "Kornblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Kräuterbeet",
+      "category": "Natur"
+    },
+    {
+      "word": "Kräuterwiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Kreidefelsen",
+      "category": "Natur"
+    },
+    {
+      "word": "Kreislauf der Natur",
+      "category": "Natur"
+    },
+    {
+      "word": "Kristallhöhle",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstenlinie",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstennebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Lärchenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubbaum",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubfall",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubwald",
+      "category": "Natur"
     }
   ]
 }
