@@ -9514,6 +9514,502 @@
     {
       "word": "Laubwald",
       "category": "Natur"
+    },
+    {
+      "word": "Aalraupe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Aaskäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Affenadler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Affenbrotbaum",
+      "category": "Tiere"
+    },
+    {
+      "word": "Affenpinscher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Afrikanischer Elefant",
+      "category": "Tiere"
+    },
+    {
+      "word": "Agame",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ameisenbär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ameisenigel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Anakonda",
+      "category": "Tiere"
+    },
+    {
+      "word": "Anglerfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ara",
+      "category": "Tiere"
+    },
+    {
+      "word": "Aras",
+      "category": "Tiere"
+    },
+    {
+      "word": "Arktischer Fuchs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Atlasfalter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Auerhahn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Auerhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bachforelle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bärenmarder",
+      "category": "Tiere"
+    },
+    {
+      "word": "Basilisk",
+      "category": "Tiere"
+    },
+    {
+      "word": "Beifußhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Berggorilla",
+      "category": "Tiere"
+    },
+    {
+      "word": "Berglöwe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bergmolch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bienenfresser",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bienenwolf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Birkhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bison",
+      "category": "Tiere"
+    },
+    {
+      "word": "Blauwal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Blindschleiche",
+      "category": "Tiere"
+    },
+    {
+      "word": "Borkenkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Brillenbär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Brillenkaiman",
+      "category": "Tiere"
+    },
+    {
+      "word": "Damhirsch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dingo",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dornhai",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eichelhäher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eisvogel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Erdkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Feldmaus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fennek",
+      "category": "Tiere"
+    },
+    {
+      "word": "Feuersalamander",
+      "category": "Tiere"
+    },
+    {
+      "word": "Flussaal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Frettchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gämse",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gimpel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldfasan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldhamster",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldschakal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Grashüpfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Graureiher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Grizzlybär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gürteltier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Halsbandsittich",
+      "category": "Tiere"
+    },
+    {
+      "word": "Haselmaus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hauskatze",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hausschwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Haustaube",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hausyak",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hirschkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Höckerschwan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hundertfüßer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Jakobsschaf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kaiseradler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kaiserpinguin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kassowar",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kieselkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kiefernspinner",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kieselalge",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kieselkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Killerwal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kleiber",
+      "category": "Tiere"
+    },
+    {
+      "word": "Klippenpinguin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Koboldmaki",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kormoran",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kranich",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kreuzotter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kugelfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Laufkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Laufente",
+      "category": "Tiere"
+    },
+    {
+      "word": "Laubfrosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lemming",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lerche",
+      "category": "Tiere"
+    },
+    {
+      "word": "Makake",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mammut",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mandrill",
+      "category": "Tiere"
+    },
+    {
+      "word": "Marderhund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Meeresschildkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Miesmuschel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Milan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mink",
+      "category": "Tiere"
+    },
+    {
+      "word": "Molch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Moorfrosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nautilus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nebelkrähe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nerz",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nordatlantischer Glattwal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Okapi",
+      "category": "Tiere"
+    },
+    {
+      "word": "Orang-Utan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pavian",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pelik an",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pelikan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pfeilgiftfrosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pinselohrschwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Piranha",
+      "category": "Tiere"
+    },
+    {
+      "word": "Platypus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Polarwolf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Präriehund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Quagga",
+      "category": "Tiere"
+    },
+    {
+      "word": "Quappe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Quetzal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rauchschwalbe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rebhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Regenwurm",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rentier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rhesusaffe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Riesenschildkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ringelnatter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rochen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rotfuchs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schleiereule",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schneehase",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schneeleopard",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schneemaus",
+      "category": "Tiere"
     }
   ]
 }
