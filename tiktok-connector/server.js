@@ -558,9 +558,9 @@ const server = http.createServer(async (request, response) => {
               session.lastConnectorError = null;
               session.lastConnectorErrorAt = null;
               broadcast(session, { type: "connector_reconnected", message: "TikTok LIVE wurde neu verbunden." });
-              if (previousConnection && previousConnection !== nextConnection) await previousConnection.disconnect().catch(() => {});
+              if (previousConnection && previousConnection !== nextConnection) { try { await previousConnection.disconnect(); } catch {} }
             } catch (error) {
-              await nextConnection.disconnect().catch(() => {});
+              try { await nextConnection.disconnect(); } catch {}
               throw error;
             }
           })().finally(() => { session.reconnecting = null; });
