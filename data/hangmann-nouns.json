@@ -7302,6 +7302,6926 @@
     {
       "word": "Luftmatratzenrennen",
       "category": "Freizeit"
+    },
+    {
+      "word": "Digitalprojektor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Felsformation",
+      "category": "Natur"
+    },
+    {
+      "word": "Forellenfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Achsenspiegel",
+      "category": "Schule"
+    },
+    {
+      "word": "Alphabettafel",
+      "category": "Schule"
+    },
+    {
+      "word": "Anwesenheitsliste",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsauftrag",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsgemeinschaft",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsmaterial",
+      "category": "Schule"
+    },
+    {
+      "word": "Arbeitsplatz",
+      "category": "Schule"
+    },
+    {
+      "word": "Aufgabenkarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Ausbildungsplatz",
+      "category": "Schule"
+    },
+    {
+      "word": "Aushang",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelschere",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelkleber",
+      "category": "Schule"
+    },
+    {
+      "word": "Bastelmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Bauklotz",
+      "category": "Schule"
+    },
+    {
+      "word": "Beamerwagen",
+      "category": "Schule"
+    },
+    {
+      "word": "Berufsschule",
+      "category": "Schule"
+    },
+    {
+      "word": "Beurteilung",
+      "category": "Schule"
+    },
+    {
+      "word": "Bewegungspause",
+      "category": "Schule"
+    },
+    {
+      "word": "Biologiebuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Biologieraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Bleistiftfach",
+      "category": "Schule"
+    },
+    {
+      "word": "Datenblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Deckfarben",
+      "category": "Schule"
+    },
+    {
+      "word": "Denkaufgabe",
+      "category": "Schule"
+    },
+    {
+      "word": "Dienstbuch",
+      "category": "Schule"
+    },
+    {
+      "word": "Doppelpunkt",
+      "category": "Schule"
+    },
+    {
+      "word": "Durchschreibepapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Einband",
+      "category": "Schule"
+    },
+    {
+      "word": "Einführungskurs",
+      "category": "Schule"
+    },
+    {
+      "word": "Einzelarbeit",
+      "category": "Schule"
+    },
+    {
+      "word": "Experiment",
+      "category": "Schule"
+    },
+    {
+      "word": "Experimentierkasten",
+      "category": "Schule"
+    },
+    {
+      "word": "Fachraumplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Faltblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Faltpapier",
+      "category": "Schule"
+    },
+    {
+      "word": "Fehlerkorrektur",
+      "category": "Schule"
+    },
+    {
+      "word": "Ferienplan",
+      "category": "Schule"
+    },
+    {
+      "word": "Folienstift",
+      "category": "Schule"
+    },
+    {
+      "word": "Förderkurs",
+      "category": "Schule"
+    },
+    {
+      "word": "Fremdsprache",
+      "category": "Schule"
+    },
+    {
+      "word": "Gedichtband",
+      "category": "Schule"
+    },
+    {
+      "word": "Geometrie",
+      "category": "Schule"
+    },
+    {
+      "word": "Geschichtsatlas",
+      "category": "Schule"
+    },
+    {
+      "word": "Globus",
+      "category": "Schule"
+    },
+    {
+      "word": "Grundrechenart",
+      "category": "Schule"
+    },
+    {
+      "word": "Hausordnung",
+      "category": "Schule"
+    },
+    {
+      "word": "Heftstreifen",
+      "category": "Schule"
+    },
+    {
+      "word": "Hochsprungmatte",
+      "category": "Schule"
+    },
+    {
+      "word": "Jahresplanung",
+      "category": "Schule"
+    },
+    {
+      "word": "Karteikartei",
+      "category": "Schule"
+    },
+    {
+      "word": "Klassenbuchdeckel",
+      "category": "Schule"
+    },
+    {
+      "word": "Klebestreifen",
+      "category": "Schule"
+    },
+    {
+      "word": "Klingelzeichen",
+      "category": "Schule"
+    },
+    {
+      "word": "Kopierer",
+      "category": "Schule"
+    },
+    {
+      "word": "Kunstmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Laminiergerät",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernatelier",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernbegleiter",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernbereich",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernplakat",
+      "category": "Schule"
+    },
+    {
+      "word": "Lernstation",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesekarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Lesewettbewerb",
+      "category": "Schule"
+    },
+    {
+      "word": "Liniertes Papier",
+      "category": "Schule"
+    },
+    {
+      "word": "Löschblatt",
+      "category": "Schule"
+    },
+    {
+      "word": "Mathebogen",
+      "category": "Schule"
+    },
+    {
+      "word": "Meldeheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Merkheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Morgenkreis",
+      "category": "Schule"
+    },
+    {
+      "word": "Musikraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Nachschlagewerk",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenbrot",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausendienst",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenkarte",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenspiel",
+      "category": "Schule"
+    },
+    {
+      "word": "Pausenverkauf",
+      "category": "Schule"
+    },
+    {
+      "word": "Projektmappe",
+      "category": "Schule"
+    },
+    {
+      "word": "Prüfungsraum",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechenrahmen",
+      "category": "Schule"
+    },
+    {
+      "word": "Rechtschreibheft",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulaufgabe",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulfach",
+      "category": "Schule"
+    },
+    {
+      "word": "Schulfest",
+      "category": "Schule"
+    },
+    {
+      "word": "Abenteuerspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abziehbild",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Achterbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Acrylmalerei",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Actionfilm",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Aktionsspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Alleinunterhalter",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Angelkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Angelrute",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Angelverein",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Aquarium",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Aquafitness",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ausflugsboot",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ausflugsziel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Autogrammkarte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badmintonhalle",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badmintonplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badeausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badekappe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badesee",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badestrand",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badeurlaub",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badezusatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bahnfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bahnreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ballettkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ballonfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bandprobe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelstunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Basketballkorb",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Basketballplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Begegnungsspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bergbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Besichtigung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Betriebsausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bierdeckelsammlung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Billardkugel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Billardtisch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bingospiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "BMX-Rad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Briefmarke",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Briefmarkenalbum",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Briefmarkensammlung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Buchclub",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Buchhandlung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Buchlesung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bücherflohmarkt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingkocher",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingtisch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Cartoonzeichnen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Computerspielabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Cosplay",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Dartpfeil",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Dartspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Dartscheibe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Denkspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Discoabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drachenbootrennen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drehbuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drehorgel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eislauf",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eislaufbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eishalle",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Einrad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Einradfahren",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eintrittskarte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Erlebnispark",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Escape Room",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrkarte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrgeschäft",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrstunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Familienfest",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fangspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Faschingsfeier",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Feierabendrunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Feuerwerk",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmclub",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmkamera",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmklassiker",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmvorführung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fitnessstudio",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Flamenco",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Flohmarkt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Flossfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotokurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotomotiv",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotowettbewerb",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitbad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitturnier",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Frisbeescheibe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fussballturnier",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fussballplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gartenschau",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gesellschaftstanz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gitarrenkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Glasmalerei",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Golfball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Golfplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gruppenreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gruppenspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gummitwist",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handarbeitskurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handpuppenspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hobbyraum",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hobbykurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hörspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hundesport",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Inlinehockey",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Improvisationstheater",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Indoor-Spielplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jagdspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jahrmarkt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jonglage",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jonglierball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jonglierkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kanu",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kanufahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kartenspielabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kartbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kegelbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Keramik",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Keramikkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kerzenziehen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kinobesuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kletterwand",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kochbuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Krimidinner",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kunstausstellung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kunsthandwerk",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Laufgruppe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Liedersingen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Luftballon",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Luftmatratze",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malkasten",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malerei",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Manga",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malkolonie",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Marionettentheater",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Märchenstunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Maskenball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Meditation",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Minigolfanlage",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellflugzeug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellboot",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellauto",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mofatour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mosaik",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Motorradtour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mountainbike",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mountainbiketour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musicalbesuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musikgruppe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Naturkunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Naturspaziergang",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Nähkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Nähen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Outdoortraining",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Papierschiff",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Parkourtraining",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Parcours",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Picknickdecke",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Pilzkunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Planschbecken",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Poesieabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Poker",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Pokerrunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Poolparty",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Puzzlebuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Puzzlespiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Quizshow",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Radreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abblendlicht",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Abschleppdienst",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anhängerkupplung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anhänger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anhängelast",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anlasser",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Armaturenbrett",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnauffahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnkreuz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnraststätte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobatterie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnpolizei",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnzubringer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autodach",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofähre",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofahrer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofahrerin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofelge",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoflotte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofriedhof",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autogas",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autohändler",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autohupe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokennzeichen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokino",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Kettenbagger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokofferraum",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokorso",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autolack",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autolackierer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autolampe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automatikgetriebe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automobil",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automobilclub",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automobilhersteller",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autonavigation",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autopanne",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autopark",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoparkplatz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autopilot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreifen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreise",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreisezug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autorennen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreparatur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autorikscha",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autosalon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoschlüssel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autositz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autospiegel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autostart",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autosteuer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autostraße",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowerkstatt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowäsche",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowaschanlage",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowrack",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnarbeiter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnauskunft",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnbetrieb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahndamm",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnfahrkarte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnfahrplan",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnlinie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnsteig",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnhof",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnhofshalle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnhofsuhr",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnübergang",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnwaggon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnwärter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Balkenmäher",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ballon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ballonkorb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Baukran",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Baumaschine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bergungsschlepper",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Betriebsfahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bierbike",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenfrachter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenhafen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenmotorschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenschifffahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Blaulicht",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bobbycar",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Boot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsanleger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsantrieb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsfahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootshaken",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootshaus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootskabine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsmotor",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsrumpf",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsschraube",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsverleih",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsanlage",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsbelag",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremshebel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremslicht",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremspedal",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsscheibe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsspur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Brückenpfeiler",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Buggy",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busbahnhof",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrerin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrkarte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrplan",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busgarage",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bushaltestelle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Buslinie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busreise",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busreisebus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busschleife",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bussitz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busspur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bussteig",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Cabriolet",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Carsharing",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Chassis",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Citybus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dampflok",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dampfschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Doppeldecker",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Draisine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Drehleiter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dreiradroller",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "E-Bike",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnfähre",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahngleis",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnknoten",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnnetz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnschiene",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnsignal",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektroauto",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrobus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrofahrrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrolastwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektromotor",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektromoped",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektromotorrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektroscooter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrotransporter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ersatzrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradbeleuchtung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradbrücke",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradhelm",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradkette",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradkorb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradkurier",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradlenker",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradpedal",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradpumpe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradrahmen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradreifen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradsattel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradschaltung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradschlauch",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradständer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradstraße",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradtasche",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradweg",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradwerkstatt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrbahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrdienst",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrgast",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrgastschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenautomat",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenkontrolle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenkontrolleur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenleser",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenverkauf",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrlehrerin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrplan",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrprüfung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrrinne",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrspur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrstreifen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugbrief",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeughalter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugklasse",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugkontrolle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeuglack",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugpapiere",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugprüfung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugschein",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugtechnik",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugtyp",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugversicherung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugzulassung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fähranleger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährbetrieb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährhafen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährticket",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehrauto",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehrboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehrfahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fließband",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugapparat",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugbegleiter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugbegleiterin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugfeld",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flughafenbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flughafenzubringer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugkarte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugkapitän",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fluglinie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fluglotsin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fluglotse",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugplatz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugreise",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugroute",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugschein",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Abfahrtsrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Abfahrtsstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Abfahrtstraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Ablaufstaffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Achtkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Akrobatikgruppe",
+      "category": "Sport"
+    },
+    {
+      "word": "Akrobatikturnen",
+      "category": "Sport"
+    },
+    {
+      "word": "Amateurboxen",
+      "category": "Sport"
+    },
+    {
+      "word": "Amateurfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Angriffsspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Anlaufbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Anlaufmarke",
+      "category": "Sport"
+    },
+    {
+      "word": "Anschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Armzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufschlag",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufschlagrecht",
+      "category": "Sport"
+    },
+    {
+      "word": "Aufwärmtraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausdauerlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausdauertraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausscheidungskampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Ausscheidungsspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Außenbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Außenverteidiger",
+      "category": "Sport"
+    },
+    {
+      "word": "Badmintonnetz",
+      "category": "Sport"
+    },
+    {
+      "word": "Badmintonturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnenschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnrekord",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnrad",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnradfahrer",
+      "category": "Sport"
+    },
+    {
+      "word": "Bahnradfahrerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballettgymnastik",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballführung",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballgefühl",
+      "category": "Sport"
+    },
+    {
+      "word": "Balljunge",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballmädchen",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballkontrolle",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballmaschine",
+      "category": "Sport"
+    },
+    {
+      "word": "Ballwurf",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballhandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballkappe",
+      "category": "Sport"
+    },
+    {
+      "word": "Baseballteam",
+      "category": "Sport"
+    },
+    {
+      "word": "Basketballtraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Basketballverein",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachhandballturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Beachvolleyballnetz",
+      "category": "Sport"
+    },
+    {
+      "word": "Berglauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Berglaufstrecke",
+      "category": "Sport"
+    },
+    {
+      "word": "Bergsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Beweglichkeitstraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Biathlonstaffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Bobsport",
+      "category": "Sport"
+    },
+    {
+      "word": "Boccia-Kugel",
+      "category": "Sport"
+    },
+    {
+      "word": "Bogensport",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxhandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxtrainer",
+      "category": "Sport"
+    },
+    {
+      "word": "Boxtrainerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Breitensport",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschwimmer",
+      "category": "Sport"
+    },
+    {
+      "word": "Brustschwimmerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Bundesligaspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Dauerlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Dauertraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Degen",
+      "category": "Sport"
+    },
+    {
+      "word": "Degenfechter",
+      "category": "Sport"
+    },
+    {
+      "word": "Degenfechterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Dreierbob",
+      "category": "Sport"
+    },
+    {
+      "word": "Dreikampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockeytor",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockeytraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Eishockeyverein",
+      "category": "Sport"
+    },
+    {
+      "word": "Eiskunstläufer",
+      "category": "Sport"
+    },
+    {
+      "word": "Eiskunstläuferin",
+      "category": "Sport"
+    },
+    {
+      "word": "Eissport",
+      "category": "Sport"
+    },
+    {
+      "word": "Einzelrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Einzelwettkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Endspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Ergometer",
+      "category": "Sport"
+    },
+    {
+      "word": "Fahrtechnik",
+      "category": "Sport"
+    },
+    {
+      "word": "Fallrückzieher",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtbahn",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtmaske",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtmeister",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtmeisterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fechtturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Feldlauf",
+      "category": "Sport"
+    },
+    {
+      "word": "Feldspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Finalrunde",
+      "category": "Sport"
+    },
+    {
+      "word": "Finalspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Flutlichtspiel",
+      "category": "Sport"
+    },
+    {
+      "word": "Flügelspieler",
+      "category": "Sport"
+    },
+    {
+      "word": "Flügelspielerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilschwimmen",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilschwimmer",
+      "category": "Sport"
+    },
+    {
+      "word": "Freistilschwimmerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballakademie",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballfan",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtorwart",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtorhüter",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtorhüterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtrainer",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtrainerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschule",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschiedsrichter",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballschiedsrichterin",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballstadion",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtaktik",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballteam",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballtrikot",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballwettbewerb",
+      "category": "Sport"
+    },
+    {
+      "word": "Fußballweltmeisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Gegneranalyse",
+      "category": "Sport"
+    },
+    {
+      "word": "Gelenkigkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Geräteturner",
+      "category": "Sport"
+    },
+    {
+      "word": "Geräteturnerin",
+      "category": "Sport"
+    },
+    {
+      "word": "Geschicklichkeit",
+      "category": "Sport"
+    },
+    {
+      "word": "Gleichgewichtstraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfabschlag",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfbag",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfclub",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfhandschuh",
+      "category": "Sport"
+    },
+    {
+      "word": "Golfturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikball",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikgruppe",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikmatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Gymnastikreifen",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenhockey",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenmeisterschaft",
+      "category": "Sport"
+    },
+    {
+      "word": "Hallenrennen",
+      "category": "Sport"
+    },
+    {
+      "word": "Hochsprunglatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Hochsprungrekord",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeyfeld",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeytor",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeytraining",
+      "category": "Sport"
+    },
+    {
+      "word": "Hockeyverein",
+      "category": "Sport"
+    },
+    {
+      "word": "Hürdenstaffel",
+      "category": "Sport"
+    },
+    {
+      "word": "Hürdenstange",
+      "category": "Sport"
+    },
+    {
+      "word": "Indoorfußball",
+      "category": "Sport"
+    },
+    {
+      "word": "Inlineparcours",
+      "category": "Sport"
+    },
+    {
+      "word": "Inlinewettkampf",
+      "category": "Sport"
+    },
+    {
+      "word": "Judoanzug",
+      "category": "Sport"
+    },
+    {
+      "word": "Judogürtel",
+      "category": "Sport"
+    },
+    {
+      "word": "Judoka",
+      "category": "Sport"
+    },
+    {
+      "word": "Judomatte",
+      "category": "Sport"
+    },
+    {
+      "word": "Judoturnier",
+      "category": "Sport"
+    },
+    {
+      "word": "Ahornblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Algenblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Alpenblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Alpenveilchen",
+      "category": "Natur"
+    },
+    {
+      "word": "Ameisenhügel",
+      "category": "Natur"
+    },
+    {
+      "word": "Anemone",
+      "category": "Natur"
+    },
+    {
+      "word": "Apfelbaum",
+      "category": "Natur"
+    },
+    {
+      "word": "Apfelblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Arnika",
+      "category": "Natur"
+    },
+    {
+      "word": "Astgabel",
+      "category": "Natur"
+    },
+    {
+      "word": "Auenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Bachbett",
+      "category": "Natur"
+    },
+    {
+      "word": "Bachlauf",
+      "category": "Natur"
+    },
+    {
+      "word": "Bachufer",
+      "category": "Natur"
+    },
+    {
+      "word": "Bambushain",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumkrone",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumrinde",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumstamm",
+      "category": "Natur"
+    },
+    {
+      "word": "Baumwipfel",
+      "category": "Natur"
+    },
+    {
+      "word": "Beerenstrauch",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergkamm",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergkristall",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergsee",
+      "category": "Natur"
+    },
+    {
+      "word": "Bergwiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Birkenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Birkenrinde",
+      "category": "Natur"
+    },
+    {
+      "word": "Blätterdach",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattlaus",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattader",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattknospe",
+      "category": "Natur"
+    },
+    {
+      "word": "Blattwerk",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenkelch",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenstaub",
+      "category": "Natur"
+    },
+    {
+      "word": "Blütenstand",
+      "category": "Natur"
+    },
+    {
+      "word": "Blumenerde",
+      "category": "Natur"
+    },
+    {
+      "word": "Blumenfeld",
+      "category": "Natur"
+    },
+    {
+      "word": "Blumenwiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Bodenfrost",
+      "category": "Natur"
+    },
+    {
+      "word": "Bodennebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Bodenschicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Brandung",
+      "category": "Natur"
+    },
+    {
+      "word": "Brennnessel",
+      "category": "Natur"
+    },
+    {
+      "word": "Brombeerstrauch",
+      "category": "Natur"
+    },
+    {
+      "word": "Bruchwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Buchecker",
+      "category": "Natur"
+    },
+    {
+      "word": "Buchenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Buschwindröschen",
+      "category": "Natur"
+    },
+    {
+      "word": "Dämmerlicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Dattelpalme",
+      "category": "Natur"
+    },
+    {
+      "word": "Dornbusch",
+      "category": "Natur"
+    },
+    {
+      "word": "Dornstrauch",
+      "category": "Natur"
+    },
+    {
+      "word": "Dünenlandschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Dünenrose",
+      "category": "Natur"
+    },
+    {
+      "word": "Edelweiß",
+      "category": "Natur"
+    },
+    {
+      "word": "Eichenblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Eichenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Eichel",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisfläche",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisgang",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisgrotte",
+      "category": "Natur"
+    },
+    {
+      "word": "Eisregen",
+      "category": "Natur"
+    },
+    {
+      "word": "Eissee",
+      "category": "Natur"
+    },
+    {
+      "word": "Eiszeit",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdbeben",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdkruste",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdloch",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdmond",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdreich",
+      "category": "Natur"
+    },
+    {
+      "word": "Erdschicht",
+      "category": "Natur"
+    },
+    {
+      "word": "Erosion",
+      "category": "Natur"
+    },
+    {
+      "word": "Eschenblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Eschenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Farnkraut",
+      "category": "Natur"
+    },
+    {
+      "word": "Felsblock",
+      "category": "Natur"
+    },
+    {
+      "word": "Felsbrocken",
+      "category": "Natur"
+    },
+    {
+      "word": "Felswand",
+      "category": "Natur"
+    },
+    {
+      "word": "Feuchtgebiet",
+      "category": "Natur"
+    },
+    {
+      "word": "Feuerlilie",
+      "category": "Natur"
+    },
+    {
+      "word": "Fichte",
+      "category": "Natur"
+    },
+    {
+      "word": "Fichtenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Flachland",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussarm",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussbett",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussdelta",
+      "category": "Natur"
+    },
+    {
+      "word": "Flusslauf",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussmündung",
+      "category": "Natur"
+    },
+    {
+      "word": "Flussufer",
+      "category": "Natur"
+    },
+    {
+      "word": "Frühlingsblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Frühlingswald",
+      "category": "Natur"
+    },
+    {
+      "word": "Frostboden",
+      "category": "Natur"
+    },
+    {
+      "word": "Frostnacht",
+      "category": "Natur"
+    },
+    {
+      "word": "Frostschutz",
+      "category": "Natur"
+    },
+    {
+      "word": "Gänseblümchen",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgsbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgsflora",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgssee",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgswald",
+      "category": "Natur"
+    },
+    {
+      "word": "Gebirgszug",
+      "category": "Natur"
+    },
+    {
+      "word": "Gefälle",
+      "category": "Natur"
+    },
+    {
+      "word": "Gezeiten",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletscherbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletschersee",
+      "category": "Natur"
+    },
+    {
+      "word": "Gletscherzunge",
+      "category": "Natur"
+    },
+    {
+      "word": "Goldregen",
+      "category": "Natur"
+    },
+    {
+      "word": "Granithang",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasbüschel",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasfläche",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasland",
+      "category": "Natur"
+    },
+    {
+      "word": "Grashalm",
+      "category": "Natur"
+    },
+    {
+      "word": "Grasnarbe",
+      "category": "Natur"
+    },
+    {
+      "word": "Grassteppe",
+      "category": "Natur"
+    },
+    {
+      "word": "Graswurzel",
+      "category": "Natur"
+    },
+    {
+      "word": "Hanglage",
+      "category": "Natur"
+    },
+    {
+      "word": "Heckenrose",
+      "category": "Natur"
+    },
+    {
+      "word": "Heidekraut",
+      "category": "Natur"
+    },
+    {
+      "word": "Heidelandschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Heilquelle",
+      "category": "Natur"
+    },
+    {
+      "word": "Herbstlaub",
+      "category": "Natur"
+    },
+    {
+      "word": "Herbstwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochmoor",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochgebirge",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochland",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochnebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Hochwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Holunder",
+      "category": "Natur"
+    },
+    {
+      "word": "Holunderblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Holunderbusch",
+      "category": "Natur"
+    },
+    {
+      "word": "Holzstamm",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhlenbach",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhleneingang",
+      "category": "Natur"
+    },
+    {
+      "word": "Höhlenwand",
+      "category": "Natur"
+    },
+    {
+      "word": "Hügelland",
+      "category": "Natur"
+    },
+    {
+      "word": "Hügellandschaft",
+      "category": "Natur"
+    },
+    {
+      "word": "Inselkette",
+      "category": "Natur"
+    },
+    {
+      "word": "Inselstrand",
+      "category": "Natur"
+    },
+    {
+      "word": "Jahresring",
+      "category": "Natur"
+    },
+    {
+      "word": "Jasmin",
+      "category": "Natur"
+    },
+    {
+      "word": "Jungwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkfelsen",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkgestein",
+      "category": "Natur"
+    },
+    {
+      "word": "Kalkstein",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiefernwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiefernnadel",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiesel",
+      "category": "Natur"
+    },
+    {
+      "word": "Kieselstrand",
+      "category": "Natur"
+    },
+    {
+      "word": "Kiesgrube",
+      "category": "Natur"
+    },
+    {
+      "word": "Kieselstein",
+      "category": "Natur"
+    },
+    {
+      "word": "Kirschbaum",
+      "category": "Natur"
+    },
+    {
+      "word": "Kirschblüte",
+      "category": "Natur"
+    },
+    {
+      "word": "Kleeblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Klippenküste",
+      "category": "Natur"
+    },
+    {
+      "word": "Knospe",
+      "category": "Natur"
+    },
+    {
+      "word": "Kornblume",
+      "category": "Natur"
+    },
+    {
+      "word": "Kräuterbeet",
+      "category": "Natur"
+    },
+    {
+      "word": "Kräuterwiese",
+      "category": "Natur"
+    },
+    {
+      "word": "Kreidefelsen",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstenheide",
+      "category": "Natur"
+    },
+    {
+      "word": "Kristallhöhle",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstenlinie",
+      "category": "Natur"
+    },
+    {
+      "word": "Küstennebel",
+      "category": "Natur"
+    },
+    {
+      "word": "Lärchenwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubbaum",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubblatt",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubfall",
+      "category": "Natur"
+    },
+    {
+      "word": "Laubwald",
+      "category": "Natur"
+    },
+    {
+      "word": "Aalraupe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Aaskäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Affenadler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Affenbrotbaum",
+      "category": "Tiere"
+    },
+    {
+      "word": "Affenpinscher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Afrikanischer Elefant",
+      "category": "Tiere"
+    },
+    {
+      "word": "Agame",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ameisenbär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ameisenigel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Anakonda",
+      "category": "Tiere"
+    },
+    {
+      "word": "Anglerfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ara",
+      "category": "Tiere"
+    },
+    {
+      "word": "Aras",
+      "category": "Tiere"
+    },
+    {
+      "word": "Arktischer Fuchs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Atlasfalter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Auerhahn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Auerhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bachforelle",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bärenmarder",
+      "category": "Tiere"
+    },
+    {
+      "word": "Basilisk",
+      "category": "Tiere"
+    },
+    {
+      "word": "Beifußhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Berggorilla",
+      "category": "Tiere"
+    },
+    {
+      "word": "Berglöwe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bergmolch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bienenfresser",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bienenwolf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Birkhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Bison",
+      "category": "Tiere"
+    },
+    {
+      "word": "Blauwal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Blindschleiche",
+      "category": "Tiere"
+    },
+    {
+      "word": "Borkenkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Brillenbär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Brillenkaiman",
+      "category": "Tiere"
+    },
+    {
+      "word": "Damhirsch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dingo",
+      "category": "Tiere"
+    },
+    {
+      "word": "Dornhai",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eichelhäher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Eisvogel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Erdkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Feldmaus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Fennek",
+      "category": "Tiere"
+    },
+    {
+      "word": "Feuersalamander",
+      "category": "Tiere"
+    },
+    {
+      "word": "Flussaal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Frettchen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gämse",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gimpel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldfasan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldhamster",
+      "category": "Tiere"
+    },
+    {
+      "word": "Goldschakal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Grashüpfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Graureiher",
+      "category": "Tiere"
+    },
+    {
+      "word": "Grizzlybär",
+      "category": "Tiere"
+    },
+    {
+      "word": "Gürteltier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Halsbandsittich",
+      "category": "Tiere"
+    },
+    {
+      "word": "Haselmaus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hauskatze",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hausschwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Haustaube",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hausyak",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hirschkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Höckerschwan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Hundertfüßer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Jakobsschaf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kaiseradler",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kaiserpinguin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kassowar",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kreuzkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kiefernspinner",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kieselalge",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kieselkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Killerwal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kleiber",
+      "category": "Tiere"
+    },
+    {
+      "word": "Klippenpinguin",
+      "category": "Tiere"
+    },
+    {
+      "word": "Koboldmaki",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kormoran",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kranich",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kreuzotter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Kugelfisch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Laufkäfer",
+      "category": "Tiere"
+    },
+    {
+      "word": "Laufente",
+      "category": "Tiere"
+    },
+    {
+      "word": "Laubfrosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lemming",
+      "category": "Tiere"
+    },
+    {
+      "word": "Lerche",
+      "category": "Tiere"
+    },
+    {
+      "word": "Makake",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mammut",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mandrill",
+      "category": "Tiere"
+    },
+    {
+      "word": "Marderhund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Meeresschildkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Miesmuschel",
+      "category": "Tiere"
+    },
+    {
+      "word": "Milan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Mink",
+      "category": "Tiere"
+    },
+    {
+      "word": "Molch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Moorfrosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nautilus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nebelkrähe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nerz",
+      "category": "Tiere"
+    },
+    {
+      "word": "Nordatlantischer Glattwal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Okapi",
+      "category": "Tiere"
+    },
+    {
+      "word": "Orang-Utan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pavian",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pfeifente",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pelikan",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pfeilgiftfrosch",
+      "category": "Tiere"
+    },
+    {
+      "word": "Pinselohrschwein",
+      "category": "Tiere"
+    },
+    {
+      "word": "Piranha",
+      "category": "Tiere"
+    },
+    {
+      "word": "Platypus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Polarwolf",
+      "category": "Tiere"
+    },
+    {
+      "word": "Präriehund",
+      "category": "Tiere"
+    },
+    {
+      "word": "Quagga",
+      "category": "Tiere"
+    },
+    {
+      "word": "Quappe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Quetzal",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rauchschwalbe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rebhuhn",
+      "category": "Tiere"
+    },
+    {
+      "word": "Regenwurm",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rentier",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rhesusaffe",
+      "category": "Tiere"
+    },
+    {
+      "word": "Riesenschildkröte",
+      "category": "Tiere"
+    },
+    {
+      "word": "Ringelnatter",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rochen",
+      "category": "Tiere"
+    },
+    {
+      "word": "Rotfuchs",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schleiereule",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schneehase",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schneeleopard",
+      "category": "Tiere"
+    },
+    {
+      "word": "Schneemaus",
+      "category": "Tiere"
+    },
+    {
+      "word": "Abbrucharbeiter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Abfallberater",
+      "category": "Berufe"
+    },
+    {
+      "word": "Abfallmanager",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ackerbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Agrarbiologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Agraringenieur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Akrobat",
+      "category": "Berufe"
+    },
+    {
+      "word": "Altenpflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anästhesist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anästhesistin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anlagenmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anlagenmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Anwendungsentwickler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Apothekerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "App-Entwickler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Archäologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Archäologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Architektin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Arzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ärztin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Assistent",
+      "category": "Berufe"
+    },
+    {
+      "word": "Assistentin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Astronaut",
+      "category": "Berufe"
+    },
+    {
+      "word": "Astronautin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Augenoptikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Außenhandelskaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Außenhandelskauffrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bäckerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baggerfahrerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bahnärztin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauarbeiterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauingenieurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baumaschinenführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Baumaschinenführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bauzeichnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Beamter",
+      "category": "Berufe"
+    },
+    {
+      "word": "Beamtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bestatterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bibliothekarin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Biologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bootsbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bootsbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bodenleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bodenlegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bogenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bogenbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchbinder",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchbinderin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Buchhalterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Büchsenmacher",
+      "category": "Berufe"
+    },
+    {
+      "word": "Büchsenmacherin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bühnenbildner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Bühnenbildnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemielaborant",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemielaborantin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chemikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chirurg",
+      "category": "Berufe"
+    },
+    {
+      "word": "Chirurgin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Dachdeckerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenanalyst",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenanalystin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenbankadministrator",
+      "category": "Berufe"
+    },
+    {
+      "word": "Datenbankadministratorin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Denkmalpfleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Denkmalpflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Designerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Detektiv",
+      "category": "Berufe"
+    },
+    {
+      "word": "Detektivin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Diätassistent",
+      "category": "Berufe"
+    },
+    {
+      "word": "Diätassistentin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Dolmetscherin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Drechsler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Drechslerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Druckerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "E-Commerce-Manager",
+      "category": "Berufe"
+    },
+    {
+      "word": "E-Commerce-Managerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Edelsteinschleifer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Edelsteinschleiferin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektrikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektroniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Elektronikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ergotherapeut",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ergotherapeutin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Erzieherin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachinformatiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachinformatikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachlagerist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachlageristin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachverkäufer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fachverkäuferin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fahrzeuglackierer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fahrzeuglackiererin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fährmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fährfrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fassadenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fassadenbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Feinmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Feinmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Feuerwehrfrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fischwirt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fischwirtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fliesenleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fliesenlegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Floristin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fluggerätmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fluggerätmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Forstwirt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Forstwirtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Fotografin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Friseurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gärtnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gebäudereinigerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geograf",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geografin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Geologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gerüstbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Gerüstbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Goldschmiedin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Grafikdesigner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Grafikdesignerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heilerziehungspfleger",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heilerziehungspflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heizungsbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Heizungsbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzbildhauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzbildhauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzmechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Holzmechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelkaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelkauffrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelfachmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hotelfachfrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hörakustiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Hörakustikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Imkerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Industriemechaniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Industriemechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Informatikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ingenieur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Ingenieurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Installateurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Journalistin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Jurist",
+      "category": "Berufe"
+    },
+    {
+      "word": "Juristin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kameramann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kamerafrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kanalbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kanalbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kaufmann",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kauffrau",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kellnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Keramiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Keramikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kfz-Mechatroniker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kfz-Mechatronikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kindergärtner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kindergärtnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Klempner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Klempnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Köchin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konditor",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konditorin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konstrukteur",
+      "category": "Berufe"
+    },
+    {
+      "word": "Konstrukteurin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kosmetiker",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kosmetikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Krankenpflegerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kranführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kranführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Künstler",
+      "category": "Berufe"
+    },
+    {
+      "word": "Künstlerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kürschner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Kürschnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Küster",
+      "category": "Berufe"
+    },
+    {
+      "word": "Küsterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lackierer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lackiererin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Landwirtin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Landschaftsgärtnerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lehrerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Logopädin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Lokführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Malerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenführer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maschinenführerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Maurerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mechanikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mediengestalterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mediziner",
+      "category": "Berufe"
+    },
+    {
+      "word": "Medizinerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Metallbauer",
+      "category": "Berufe"
+    },
+    {
+      "word": "Metallbauerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Meteorologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Meteorologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mikrobiologe",
+      "category": "Berufe"
+    },
+    {
+      "word": "Mikrobiologin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Musikerin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Notarin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Notfallsanitäterin",
+      "category": "Berufe"
+    },
+    {
+      "word": "Oberarzt",
+      "category": "Berufe"
+    },
+    {
+      "word": "Aalfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ahornsirup",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ajvar",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Amaranth",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ananasring",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Anisgebäck",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelchips",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelkompott",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelstrudel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Auberginencreme",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Avocadoöl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Backerbsen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Backfisch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Backpflaume",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Baiser",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Balsamico",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bananenbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bananenchips",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Basilikumpesto",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bauernbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bergkäse",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bienenstich",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bircher Müsli",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Birnensaft",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Biskuitrolle",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Blätterteig",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bolognese",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Borschtsch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bratkartoffel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brioche",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotaufstrich",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotchips",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotknödel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotkruste",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotlaib",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotzeit",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bulgur",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Buttercreme",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Buttermilch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Cantuccini",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chai",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chicorée",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chiliöl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chinakohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chutney",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Cracker",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Crème brûlée",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dinkelmehl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dipsauce",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Donut",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dorschfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eiersalat",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eierlikörkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eierspätzle",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eisbecher",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Erdbeerkonfitüre",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Erbseneintopf",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Esskastanie",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fenchel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Feta",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Feigenmarmelade",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Focaccia",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fruchtpüree",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Garnelen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gazpacho",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gebäck",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gemüsebrühe",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gemüsecurry",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gemüselasagne",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Germknödel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gnocchi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Granatapfel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Grießklößchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Grünkern",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Guacamole",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Halloumi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hefezopf",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Himbeersirup",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hirsebrei",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hummus",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ingwertee",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Jalapeño",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Jasminreis",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kaiserschmarrn",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kartoffelgratin",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kartoffelpuffer",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kimchi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kirschkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kokosmilch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kornflakes",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kräuterquark",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kürbiskernöl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kürbissuppe",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Lachsfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Linsencurry",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Maisbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mandelmus",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mangosorbet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Maultasche",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mohnstrudel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Müsliriegel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Naanbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Abdeckplane",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abflussrohr",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Ablagekorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abtropfbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abtropfsieb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aktenordner",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aktenvernichter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Alarmanlage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Alufolie",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Anrichte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Anzündholz",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aschenbecher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Auflaufform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aufsatzschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Ausstechform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backblech",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backhandschuh",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backpapier",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backpinsel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backrost",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backschüssel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badeente",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badewannenmatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badezimmerschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bademantel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badematte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Balkonstuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Balkontisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Besenstiel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettbezug",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettgestell",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettlaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bilderleiste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bimsstein",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Blechdose",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Blumenkasten",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bodenbürste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bodenmatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bodenvase",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bohnermaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Brotkasten",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Brotschneidemaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bügelhaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bügelstation",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Büroklammer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bürostuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Butterdose",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Butterglocke",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Dampfgarer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Dampfkochtopf",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Duschablage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Duschbrause",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Duschvorhang",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eierbecher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eierkocher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Einmachglas",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Einkaufskorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Einkaufswagen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eiswürfelform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Elektrogrill",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Entsafter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Essbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Essgabel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Esslöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fadenvorhang",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fenstergriff",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterleder",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterladen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterputzer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fenstersauger",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Feuerzeug",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Filterkaffeemaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fleischklopfer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fliegengitter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenöffner",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenregal",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenverschluss",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenwärmer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Föhn",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fußschemel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gardinenstange",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Garderobenhaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Garderobenständer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gartenbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gartenstuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gartentisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gefrierbeutel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gefrierfach",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gefriertruhe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gemüseschäler",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrabtropfer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrkorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrtuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrspüler",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gewürzglas",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gewürzmühle",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Glasuntersetzer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handmixer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handtuchhalter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handtuchwärmer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Haushaltsleiter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Heizkissen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Herdplatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Herdschutz",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Holzbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Holzlöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Holzschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Honiglöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Isolierkanne",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeefilter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeekanne",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeemühle",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeepadmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeepresse",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeeservice",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeemaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaminbesteck",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Karaffe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kehrmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Keksdose",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kerzenhalter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kleiderhaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klopapierhalter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klopfbesen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochbesteck",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochbuchständer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochfeld",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochlöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochtopf",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochplatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Korkenzieher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Körbchen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenarmatur",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenfenster",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenhocker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenmesser",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenradio",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenrolle",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenschere",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchensieb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchentimer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchentuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchentür",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abbildungsdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Abonnementdienst",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Absturzbericht",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Adapterkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Adressbuch",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Akku",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Akkupack",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Aktualisierung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Algorithmus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Aliasname",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anmeldecode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anmeldemaske",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anrufbeantworter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anschlussdose",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Antennenkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anwendungsfenster",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anwendungssoftware",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitsdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitsdaten",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitskopie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitsspeicher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Archivdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Archivordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Array",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audioausgang",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audiobuchse",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audiocodec",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audiokabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audioplayer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Auflösung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ausgabegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ausgangssignal",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Auslastung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Backupdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Backupserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bandbreite",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Barcode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Barcodegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Batterieladegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bedienfeld",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bedienoberfläche",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Benutzerkonto",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Benutzername",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Benutzerprofil",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Betriebssystem",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildbearbeitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bilddatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildformat",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildschirmauflösung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildschirmfoto",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildschirmtastatur",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildsensor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildsignal",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildspeicher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildstabilisator",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildübertragung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildwiederholrate",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Binärcode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Biometrie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bluetoothadapter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bluetoothlautsprecher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Blogbeitrag",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bootmenü",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Browserfenster",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Browserplugin",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cache",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Captcha",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Chatbot",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cloudbackup",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cloudspeicher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Codeeditor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Compiler",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computerchip",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computergehäuse",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computermaus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computerprogramm",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computerschnittstelle",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computersicherheit",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computervirus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cookie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenbankdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenbankserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenbrille",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenleitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datennetz",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datensicherung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenträger",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenübertragung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenverbindung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenverarbeitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Debugging",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopcomputer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopfenster",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalkamera",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalanzeige",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalarchiv",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalassistent",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalbild",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalfunk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalgerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalmikroskop",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalradio",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitaluhr",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalwährung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Display",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Displayglas",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Dockingstation",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Dokumentenordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Downloadmanager",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckertreiber",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckerspooler",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckertinte",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckerpatrone",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Book",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Book-Reader",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Adresse",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Anhang",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Programm",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Server",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabefeld",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabemaske",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabestift",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingangssignal",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabecode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Einstellungen",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Energiesparmodus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Entwicklungsumgebung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ethernet",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ethernetkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Explorer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Exportdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fachinformatik",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Faxgerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Faxserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fehlermeldung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Festplattenlaufwerk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Firmware",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Flashlaufwerk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Flachbildschirm",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Flugsimulator",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fontdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotoapparat",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotodatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotodrucker",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotodruck",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotobearbeitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotobibliothek",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotofilter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotogalerie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotoplattform",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotostream",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Freigabeordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funknetz",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkmodul",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkmaus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkmikrofon",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funknetzwerk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funksteckdose",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkübertragung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingcomputer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingmonitor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingtastatur",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingmaus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gateway",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Geodaten",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafik",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikadapter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikkarte",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikchip",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikdisplay",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikprozessor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafiktablet",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafiktreiber",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Großrechner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Heimnetz",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Heimserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "HTML",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Hub",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Icon",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Identitätsprüfung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Importdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Inbetriebnahme",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Industriecomputer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Infodienst",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Informationssystem",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Infrarotschnittstelle",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Infrarotkamera",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Akkordeonbass",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Altblockflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Altposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Althorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bandoneon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Banjolele",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Barockgitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassblockflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassukulele",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassetthorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Blechblasinstrument",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bongo",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bouzouki",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Chapman Stick",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cimbalom",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Clavichord",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Concertina",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Cornett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "E-Bass",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "E-Gitarre",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "E-Piano",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "E-Violine",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Elektronisches Schlagzeug",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Handharmonika",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Harmonium",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Heckelphon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Horn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Jagdflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Keltische Harfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kemençe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kinnor",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Klangschale",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Kniegeige",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Lure",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mandola",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Maracas",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Marimba",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mellotron",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Metallophon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mirliton",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mizmar",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mundbogen",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Musette",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Nay",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Oktobass",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orgelpositiv",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Pikkoloflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Pocket Trumpet",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Rahmentrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Rebab",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sackbut",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Santoor",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sarrusophon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schellenbaum",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schlüsselfiedel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Schofar",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sheng",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sopranblockflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sopranposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Steeldrum",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Streichbass",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Streichpsalter",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Strohvioline",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Taiko",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tenorblockflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Theorbe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Theremin",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tin Whistle",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Trumscheit",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Uilleann Pipes",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Vibrafon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Viola da gamba",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Waschbrett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Waterphone",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Xylofon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zimbal",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zugposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zupfgeige",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Alphorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassmarimba",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Blechharfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Blechklavier",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bordunlaute",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Chorflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Drehleierbass",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Fanfarenhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Flageolett",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Geigenlaute",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Halslaute",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Naturtrompete",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterbecken",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterglocke",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterharfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterklarinette",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchestertuba",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Piccolotrompete",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Rauschpfeife",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Stabspiel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Stahlzungentrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tasteninstrument",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Tiefbassposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Waldzither",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Windmaschine",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zungentrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Akkordzither",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bordunzither",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bügelhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Chalumeau",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Chororgel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Crotales",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Dulcimer",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Eintonflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Fiedel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Flötenuhr",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Glasharmonika",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Gusli",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Hakenharfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Halszither",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Helikon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Holzquerflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Hornpipe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Jüdische Harfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Leierkasten",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Lippenpfeife",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Längsflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Mandoloncello",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Musikbogen",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterpauke",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchesterposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Orchestertrommel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Renaissanceflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Sopranino-Flöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Trommelpfeife",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Wasserflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zitherharfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Zupflaute",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassglockenspiel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassmarimbaphon",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bassschalmei",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Basszither",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Bügelharfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Chorposaune",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Doppelhorn",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Doppelquerflöte",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Flötenregister",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Glockenharfe",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Klangstab",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Konzertflügel",
+      "category": "Musikinstrumente"
+    },
+    {
+      "word": "Konzertorgel",
+      "category": "Musikinstrumente"
     }
   ]
 }
