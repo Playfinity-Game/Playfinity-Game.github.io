@@ -1403,7 +1403,7 @@
        ========================================================================== */
     const HangmannGame = {
       initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null,
-      normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
+      normalize(value){return String(value||'').normalize('NFKC').replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE').trim().replace(/^[^A-ZÄÖÜẞ]+|[^A-ZÄÖÜẞ]+$/g,'');},
       async init(){
         if(!this.initialized){
           document.getElementById('hangmann-new').addEventListener('click',()=>this.newRound());
@@ -1469,11 +1469,12 @@
         PlayfinityPlayerPresence.sendPresence();
       },
       submitChatGuess(player, text){
-        if(!this.target||this.locked)return;
-        const guess=this.normalize(String(text||'').trim());
+        if(!this.target||this.locked)return false;
+        const guess=this.normalize(text);
         const answer=this.normalize(this.target.word);
-        if(!guess||!player||guess!==answer)return;
+        if(!guess||!player||guess!==answer)return false;
         this.finish(true,player);
+        return true;
       },
       submitWordGuess(value){
         if(!this.target||this.locked)return;
@@ -1526,7 +1527,7 @@
         const autoNext=localStorage.getItem('playfinity_hangmann_auto_next')!=='false';
         if(won){
           if(player)CommunityBoard.record('hangmann',player);
-          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,player?'🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!':'🎉 Richtig geraten!');
+          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,'🎉 WORT ERRATEN!',player ? String(player.name || 'Zuschauer') : '');
           if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
         }else{
           document.getElementById('hangmann-status').textContent='😭 Oh nein!';
