@@ -6314,6 +6314,1018 @@
     {
       "word": "Schulfest",
       "category": "Schule"
+    },
+    {
+      "word": "Abenteuerreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abendspaziergang",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abenteuerspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abfahrtslauf",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Abziehbild",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Achterbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Acrylmalerei",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Actionfilm",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Aktionsspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Alleinunterhalter",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Angelkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Angelrute",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Angelverein",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Aquarium",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Aquafitness",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ausflugsboot",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ausflugsziel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Autogrammkarte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badmintonhalle",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badmintonplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badeausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badekappe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badesee",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badestrand",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badeurlaub",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Badezusatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bahnfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bahnreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ballettkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Ballonfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bandprobe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelbuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelset",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bastelstunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Basketballkorb",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Basketballplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Begegnungsspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bergbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bergwanderung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Besichtigung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Betriebsausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bierdeckelsammlung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Billardkugel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Billardtisch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bingospiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "BMX-Rad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bogenschiessen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Brettspielabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Briefmarke",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Briefmarkenalbum",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Briefmarkensammlung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Buchclub",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Buchhandlung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Buchlesung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Bücherflohmarkt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingkocher",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Campingtisch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Capoeira",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Cartoonzeichnen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Citytour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Computerspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Computerspielabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Cosplay",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Dartpfeil",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Dartspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Dartscheibe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Denkspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Discoabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drachensteigen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drachenbootrennen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drehbuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Drehorgel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eislauf",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eislaufbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eislaufen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eishalle",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eisstockschiessen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Einrad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Einradfahren",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Eintrittskarte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Erlebnisbad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Erlebnispark",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Escape Room",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrradtour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrkarte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrgeschäft",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fahrstunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Familienausflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Familienfest",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fangspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Faschingsfeier",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Feierabendrunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Feuerwerk",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmfestival",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmclub",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmkamera",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmklassiker",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Filmvorführung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fitnesskurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fitnessstudio",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Flamenco",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Flohmarkt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Flossfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotobuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotografie",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotokurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotomotiv",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fotowettbewerb",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitbad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitpark",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Freizeitturnier",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Frisbeescheibe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Frisbeespiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fussball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fussballspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fussballturnier",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Fussballplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gartenarbeit",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gartenfest",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gartenparty",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gartenschau",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Geocaching",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gesellschaftstanz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gitarrenkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Glasmalerei",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Golfball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Golfplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Grillabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Grillfest",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Grillparty",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gruppenreise",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gruppenspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Gummitwist",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hallenbad",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handarbeit",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handarbeitskurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handballspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handlettering",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Handpuppenspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hängematte",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hobbyraum",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hobbykurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hochseilgarten",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hörbuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hörspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Hundesport",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Inlinehockey",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Improvisationstheater",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Indoor-Spielplatz",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jagdspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jahrmarkt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jonglage",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jonglierball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jonglierkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Jugendfreizeit",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kajakfahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kanu",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kanufahrt",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Karaoke",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kartenspiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kartenspielabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kartbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kegelbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Keramik",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Keramikkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kerzenziehen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kindergeburtstag",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kinobesuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kletterhalle",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kletterkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kletterpark",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kletterwand",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kochabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kochbuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kochkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kochwettbewerb",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kreativkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Krimidinner",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kunstkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kunstausstellung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kunsthandwerk",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Kunstmuseum",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Lagerfeuer",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Lagerfeuerabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Laufgruppe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Lauftraining",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Lesen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Lesekreis",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Lichterfest",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Liedersingen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Livekonzert",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Luftballon",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Luftmatratze",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Luftgewehrschiessen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malkasten",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malerei",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Manga",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Malkolonie",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Marionettentheater",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Märchenstunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Maskenball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Meditation",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Minigolfanlage",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellbau",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellflug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellflugzeug",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellbahn",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellboot",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Modellauto",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mofatour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mosaik",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Motorradtour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mountainbike",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Mountainbiketour",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Museumsbesuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musicalbesuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musizieren",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musikabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musikfestival",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musikgruppe",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Musikunterricht",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Nachtwanderung",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Naturfotografie",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Naturkunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Naturspaziergang",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Nähkurs",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Nähen",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Outdoortraining",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Paintball",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Papierschiff",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Parkourtraining",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Parcours",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Picknick",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Picknickdecke",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Pilzkunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Planschbecken",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Poesieabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Poker",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Pokerrunde",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Poolparty",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Puzzlebuch",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Puzzlespiel",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Quizabend",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Quizshow",
+      "category": "Freizeit"
+    },
+    {
+      "word": "Radreise",
+      "category": "Freizeit"
     }
   ]
 }
