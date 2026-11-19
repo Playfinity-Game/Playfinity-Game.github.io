@@ -7326,6 +7326,914 @@
     {
       "word": "Radreise",
       "category": "Freizeit"
+    },
+    {
+      "word": "Abblendlicht",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Abschleppdienst",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anhängerkupplung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anhänger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anhängelast",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Anlasser",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Armaturenbrett",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnauffahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnkreuz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnraststätte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobatterie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnpolizei",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autobahnzubringer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autodach",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofähre",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofahrer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofahrerin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofelge",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoflotte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autofriedhof",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autogas",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autohändler",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autohupe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokennzeichen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokino",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoklav",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokofferraum",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autokorso",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autolack",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autolackierer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autolampe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automatikgetriebe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automobil",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automobilclub",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Automobilhersteller",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autonavigation",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autopanne",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autopark",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoparkplatz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autopilot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreifen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreise",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreisezug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autorennen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoreparatur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autorikscha",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autosalon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autoschlüssel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autositz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autospiegel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autostart",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autosteuer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autostraße",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowerkstatt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowäsche",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowaschanlage",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Autowrack",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnarbeiter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnauskunft",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnbetrieb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahndamm",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnfahrkarte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnfahrplan",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnlinie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnsteig",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnhof",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnhofshalle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnhofsuhr",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnübergang",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnwaggon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bahnwärter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Balkenmäher",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ballon",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ballonkorb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Baukran",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Baumaschine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bergungsschlepper",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Betriebsfahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bierbike",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenfrachter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenhafen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenmotorschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Binnenschifffahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Blaulicht",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bobbycar",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Boot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsanleger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsantrieb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsfahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootshaken",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootshaus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootskabine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsmotor",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsrumpf",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsschraube",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bootsverleih",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsanlage",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsbelag",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremshebel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremslicht",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremspedal",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsscheibe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bremsspur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Brückenpfeiler",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Buggy",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busbahnhof",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrerin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrkarte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busfahrplan",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busgarage",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bushaltestelle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Buslinie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busreise",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busreisebus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busschleife",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bussitz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Busspur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Bussteig",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Cabriolet",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Carsharing",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Chassis",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Citybus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dampflok",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dampfschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Doppeldecker",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Draisine",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Drehleiter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Dreiradroller",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "E-Bike",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnfähre",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahngleis",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnknoten",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnnetz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnschiene",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnsignal",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Eisenbahnwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektroauto",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrobus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrofahrrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrolastwagen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektromotor",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektromoped",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektromotorrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektroscooter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Elektrotransporter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Ersatzrad",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradbeleuchtung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradbrücke",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradhelm",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradkette",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradkorb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradkurier",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradlenker",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradpedal",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradpumpe",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradrahmen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradreifen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradsattel",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradschaltung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradschlauch",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradständer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradstraße",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradtasche",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradweg",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrradwerkstatt",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrbahn",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrdienst",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrgast",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrgastschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenautomat",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenkontrolle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenkontrolleur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenleser",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrkartenverkauf",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrlehrerin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrplan",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrprüfung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrrinne",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrspur",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrstreifen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugbrief",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeughalter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugklasse",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugkontrolle",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeuglack",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugpapiere",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugprüfung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugschein",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugtechnik",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugtyp",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugversicherung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fahrzeugzulassung",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fähranleger",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährbetrieb",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährhafen",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährschiff",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fährticket",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehrauto",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehrboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Feuerwehrfahrzeug",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fließband",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugapparat",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugbegleiter",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugbegleiterin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugboot",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugfeld",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flughafenbus",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flughafenzubringer",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugkarte",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugkapitän",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fluglinie",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fluglotsin",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Fluglotse",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugplatz",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugreise",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugroute",
+      "category": "Fahrzeuge & Verkehr"
+    },
+    {
+      "word": "Flugschein",
+      "category": "Fahrzeuge & Verkehr"
     }
   ]
 }
