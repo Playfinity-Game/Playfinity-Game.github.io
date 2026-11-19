@@ -11826,6 +11826,778 @@
     {
       "word": "Küchentür",
       "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abbildungsdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Abonnementdienst",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Absturzbericht",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Adapterkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Adressbuch",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Akku",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Akkupack",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Aktualisierung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Algorithmus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Aliasname",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anmeldecode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anmeldemaske",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anrufbeantworter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anschlussdose",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Antennenkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anwendungsfenster",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Anwendungssoftware",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitsdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitsdaten",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitskopie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Arbeitsspeicher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Archivdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Archivordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Array",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audioausgang",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audiobuchse",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audiocodec",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audiokabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Audioplayer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Auflösung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ausgabegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ausgangssignal",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Auslastung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Backupdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Backupserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bandbreite",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Barcode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Barcodegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Batterieladegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bedienfeld",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bedienoberfläche",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Benutzerkonto",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Benutzername",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Benutzerprofil",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Betriebssystem",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildbearbeitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bilddatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildformat",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildschirmauflösung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildschirmfoto",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildschirmtastatur",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildsensor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildsignal",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildspeicher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildstabilisator",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildübertragung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bildwiederholrate",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Binärcode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Biometrie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bluetoothadapter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bluetoothlautsprecher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Blogbeitrag",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Bootmenü",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Browserfenster",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Browserplugin",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cache",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Captcha",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Chatbot",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cloudbackup",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cloudspeicher",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Codeeditor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Compiler",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computerchip",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computergehäuse",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computermaus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computerprogramm",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computerschnittstelle",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computersicherheit",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Computervirus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Cookie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenbankdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenbankserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenbrille",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenleitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datennetz",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datensicherung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenträger",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenübertragung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenverbindung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Datenverarbeitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Debugging",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopcomputer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopfenster",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Desktopordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalkamera",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalanzeige",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalarchiv",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalassistent",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalbild",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalfunk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalgerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalmikroskop",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalradio",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitaluhr",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Digitalwährung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Display",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Displayglas",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Dockingstation",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Dokumentenordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Downloadmanager",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckertreiber",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckerspooler",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckertinte",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Druckerpatrone",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Book",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Book-Reader",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Adresse",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Anhang",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Programm",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "E-Mail-Server",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabegerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabefeld",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabemaske",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabestift",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingangssignal",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Eingabecode",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Einstellungen",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Energiesparmodus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Entwicklungsumgebung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ethernet",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Ethernetkabel",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Explorer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Exportdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fachinformatik",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Faxgerät",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Faxserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fehlermeldung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Festplattenlaufwerk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Firmware",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Flashlaufwerk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Flachbildschirm",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Flugsimulator",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "フォント",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotoapparat",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotodatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotodrucker",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotodruck",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotobearbeitung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotobibliothek",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotofilter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotogalerie",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotoplattform",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Fotostream",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Freigabeordner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funknetz",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkmodul",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkmaus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkmikrofon",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funknetzwerk",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funksteckdose",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Funkübertragung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingcomputer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingmonitor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingtastatur",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gamingmaus",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Gateway",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Geodaten",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafik",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikadapter",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikkarte",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikchip",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikdisplay",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafikprozessor",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafiktablet",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Grafiktreiber",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Großrechner",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Heimnetz",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Heimserver",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "HTML",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Hub",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Icon",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Identitätsprüfung",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Importdatei",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Inbetriebnahme",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Industriecomputer",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Infodienst",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Informationssystem",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Infrarotschnittstelle",
+      "category": "Technik & Digitales"
+    },
+    {
+      "word": "Infrarotkamera",
+      "category": "Technik & Digitales"
     }
   ]
 }
