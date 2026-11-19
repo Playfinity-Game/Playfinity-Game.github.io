@@ -11226,6 +11226,606 @@
     {
       "word": "Naanbrot",
       "category": "Essen & Trinken"
+    },
+    {
+      "word": "Abdeckplane",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abflussrohr",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Ablagekorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abtropfbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Abtropfsieb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aktenordner",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aktenvernichter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Alarmanlage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Alufolie",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Anrichte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Anzündholz",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aschenbecher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Auflaufform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Aufsatzschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Ausstechform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backblech",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backhandschuh",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backpapier",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backpinsel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backrost",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Backschüssel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badeente",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badewannenmatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badezimmerschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bademantel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Badematte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Balkonstuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Balkontisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Besenstiel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettbezug",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettgestell",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bettlaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bilderleiste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bimsstein",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Blechdose",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Blumenkasten",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bodenbürste",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bodenmatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bodenvase",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bohnermaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Brotkasten",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Brotschneidemaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bügelhaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bügelstation",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Büroklammer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Bürostuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Butterdose",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Butterglocke",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Dampfgarer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Dampfkochtopf",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Duschablage",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Duschbrause",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Duschvorhang",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eierbecher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eierkocher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Einmachglas",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Einkaufskorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Einkaufswagen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Eiswürfelform",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Elektrogrill",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Entsafter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Essbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Essgabel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Esslöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fadenvorhang",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fenstergriff",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterleder",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterladen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fensterputzer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fenstersauger",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Feuerzeug",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Filterkaffeemaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fleischklopfer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fliegengitter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenöffner",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenregal",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenverschluss",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Flaschenwärmer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Föhn",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fotoalbum",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Fußschemel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gardinenstange",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Garderobenhaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Garderobenständer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gartenbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gartenstuhl",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gartentisch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gefrierbeutel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gefrierfach",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gefriertruhe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gemüseschäler",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrabtropfer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrkorb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrtuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Geschirrspüler",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gewürzglas",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Gewürzmühle",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Glasuntersetzer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handmixer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handtuchhalter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Handtuchwärmer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Haushaltsleiter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Heizkissen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Herdplatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Herdschutz",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Holzbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Holzlöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Holzschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Honiglöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Isolierkanne",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeefilter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeekanne",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeemühle",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeepadmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeepresse",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeeservice",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaffeemaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kaminbesteck",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Karaffe",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kehrmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Keksdose",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kerzenhalter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kleiderhaken",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klopapierhalter",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Klopfbesen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochbesteck",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochbuchständer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochfeld",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochlöffel",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochtopf",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Kochplatte",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Korkenzieher",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Körbchen",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenarmatur",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenbank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenbrett",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenfenster",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenhocker",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenmaschine",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenmesser",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenradio",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenrolle",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenschere",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchenschrank",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchensieb",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchentimer",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchentuch",
+      "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Küchentür",
+      "category": "Dinge im Haushalt"
     }
   ]
 }
