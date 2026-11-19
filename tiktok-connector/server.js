@@ -164,6 +164,49 @@ function broadcast(session, payload) {
   return delivered;
 }
 
+function attachTikTokListeners(session, connection) {
+  const eventNames = [
+    ["chat", WebcastEvent.CHAT],
+    ["gift", WebcastEvent.GIFT],
+    ["like", WebcastEvent.LIKE],
+    ["follow", WebcastEvent.FOLLOW],
+    ["share", WebcastEvent.SHARE],
+    ["member", WebcastEvent.MEMBER],
+    ["roomUser", WebcastEvent.ROOM_USER]
+  ];
+
+  for (const [name, eventName] of eventNames) {
+    connection.on(eventName, (data) => {
+      if (name === "roomUser" && Number.isFinite(Number(data?.viewerCount))) {
+        session.viewerCount = Number(data.viewerCount);
+      }
+      const eventAt = new Date().toISOString();
+      session.lastEventAt = eventAt;
+      session.lastEventType = name;
+      session.eventCounts[name] = (session.eventCounts[name] || 0) + 1;
+      if (name === "chat") {
+        session.chatEventsReceived += 1;
+        session.lastChatAt = eventAt;
+      }
+      const delivered = broadcast(session, eventPayload(name, data));
+      if (name === "chat" && delivered > 0) {
+        session.chatEventsForwarded += 1;
+        session.chatClientDeliveries += delivered;
+        session.lastChatForwardedAt = eventAt;
+      }
+    });
+  }
+
+  connection.on("error", (error) => {
+    session.lastConnectorError = String(error?.message || "TikTok-Verbindung fehlgeschlagen").slice(0, 300);
+    session.lastConnectorErrorAt = new Date().toISOString();
+    broadcast(session, {
+      type: "connector_error",
+      message: session.lastConnectorError
+    });
+  });
+}
+
 function stopSession(session) {
   if (!session || session.stopped) return;
   session.stopped = true;
@@ -209,46 +252,7 @@ async function startSession(username) {
     lastConnectorErrorAt: null
   };
 
-  const eventNames = [
-    ["chat", WebcastEvent.CHAT],
-    ["gift", WebcastEvent.GIFT],
-    ["like", WebcastEvent.LIKE],
-    ["follow", WebcastEvent.FOLLOW],
-    ["share", WebcastEvent.SHARE],
-    ["member", WebcastEvent.MEMBER],
-    ["roomUser", WebcastEvent.ROOM_USER]
-  ];
-
-  for (const [name, eventName] of eventNames) {
-    connection.on(eventName, (data) => {
-      if (name === "roomUser" && Number.isFinite(Number(data?.viewerCount))) {
-        session.viewerCount = Number(data.viewerCount);
-      }
-      const eventAt = new Date().toISOString();
-      session.lastEventAt = eventAt;
-      session.lastEventType = name;
-      session.eventCounts[name] = (session.eventCounts[name] || 0) + 1;
-      if (name === "chat") {
-        session.chatEventsReceived += 1;
-        session.lastChatAt = eventAt;
-      }
-      const delivered = broadcast(session, eventPayload(name, data));
-      if (name === "chat" && delivered > 0) {
-        session.chatEventsForwarded += 1;
-        session.chatClientDeliveries += delivered;
-        session.lastChatForwardedAt = eventAt;
-      }
-    });
-  }
-
-  connection.on("error", (error) => {
-    session.lastConnectorError = String(error?.message || "TikTok-Verbindung fehlgeschlagen").slice(0, 300);
-    session.lastConnectorErrorAt = new Date().toISOString();
-    broadcast(session, {
-      type: "connector_error",
-      message: session.lastConnectorError
-    });
-  });
+  attachTikTokListeners(session, connection);
 
   await connection.connect();
   sessions.set(token, session);
@@ -519,7 +523,7 @@ const server = http.createServer(async (request, response) => {
     });
   }
 
-  if (request.method === "OPTIONS" && url.pathname === "/api/connect") {
+  if (request.method === "OPTIONS" && ["/api/connect", "/api/reconnect"].includes(url.pathname)) {
     if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
     response.writeHead(204, {
       "access-control-allow-origin": request.headers.origin,
@@ -529,6 +533,45 @@ const server = http.createServer(async (request, response) => {
       "vary": "Origin"
     });
     return response.end();
+  }
+
+  if (request.method === "POST" && url.pathname === "/api/reconnect") {
+    if (!originAllowed(request)) return sendJson(response, 403, { error: "Diese Herkunft ist nicht freigegeben." });
+    if (!allowRequest(request)) return sendJson(response, 429, { error: "Zu viele Verbindungsversuche. Bitte kurz warten." });
+    let rawBody = "";
+    for await (const chunk of request) { rawBody += chunk; if (rawBody.length > 2048) return sendJson(response, 413, { error: "Anfrage zu groß." }); }
+    let body; try { body = JSON.parse(rawBody || "{}"); } catch { return sendJson(response, 400, { error: "Ungültige Anfrage." }); }
+    const username = normalizeUsername(body.username);
+    if (!username) return sendJson(response, 400, { error: "Bitte einen gültigen TikTok-@Namen eingeben." });
+    try {
+      let session = sessions.get(sessionsByUsername.get(username));
+      if (!session || session.stopped) session = await startSession(username);
+      else {
+        if (!session.reconnecting) {
+          session.reconnecting = (async () => {
+            const nextConnection = new TikTokLiveConnection(username, { processInitialData: false, fetchRoomInfoOnConnect: true });
+            attachTikTokListeners(session, nextConnection);
+            try {
+              await nextConnection.connect();
+              const previousConnection = session.connection;
+              session.connection = nextConnection;
+              session.lastConnectorError = null;
+              session.lastConnectorErrorAt = null;
+              broadcast(session, { type: "connector_reconnected", message: "TikTok LIVE wurde neu verbunden." });
+              if (previousConnection && previousConnection !== nextConnection) await previousConnection.disconnect().catch(() => {});
+            } catch (error) {
+              await nextConnection.disconnect().catch(() => {});
+              throw error;
+            }
+          })().finally(() => { session.reconnecting = null; });
+        }
+        await session.reconnecting;
+      }
+      return sendJson(response, 200, { ok: true, username: session.username, websocketPath: `/ws/${session.token}`, message: "TikTok LIVE neu verbunden." }, { "access-control-allow-origin": request.headers.origin, "vary": "Origin" });
+    } catch (error) {
+      console.error("[TikTok] Reconnect fehlgeschlagen:", error?.stack || error?.message || error);
+      return sendJson(response, 502, { error: "TikTok-LIVE konnte nicht neu verbunden werden. Ist der Account gerade live?", detail: String(error?.message || "Unbekannter Verbindungsfehler").slice(0, 300) }, { "access-control-allow-origin": request.headers.origin, "vary": "Origin" });
+    }
   }
 
   if (request.method === "POST" && url.pathname === "/api/connect") {
