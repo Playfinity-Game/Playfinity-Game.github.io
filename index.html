@@ -2107,6 +2107,7 @@
       usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
       wordHintCandidatesTried: new Set(),
       wordHintInProgress: false,
+      wordHintController: null,
       categoryEmbeddingCache: null,
       semanticRankManifestPromise: null,
       semanticRankCache: new Map(),
@@ -2263,6 +2264,7 @@
 
 
         const hintController = new AbortController();
+        this.wordHintController = hintController;
         let timedOut = false;
         let hintTimeout;
         const timeoutPromise = new Promise((_, reject) => {
@@ -2373,14 +2375,23 @@
           }
         } finally {
           clearTimeout(hintTimeout);
-          this.wordHintInProgress = false;
-          if (requestedRoundId === this.roundId) {
-            if (button) button.disabled = false;
+          // Ein abgebrochener Tipp aus einer älteren Runde darf keinen neueren Tipp entsperren.
+          if (this.wordHintController === hintController) {
+            this.wordHintController = null;
+            this.wordHintInProgress = false;
+            if (requestedRoundId === this.roundId && button) button.disabled = false;
           }
         }
       },
       async pickNewTarget() {
         PauseController.clear('kontexto','roundTimer');
+        // Laufende Tipp-Anfragen der vorherigen Runde beenden, damit die neue Runde
+        // sofort wieder einen Tipp anfordern kann.
+        if (this.wordHintController) {
+          this.wordHintController.abort();
+          this.wordHintController = null;
+        }
+        this.wordHintInProgress = false;
         this.roundId++;
         this.wordHintCandidatesTried.clear();
         const requestedRoundId=this.roundId;
