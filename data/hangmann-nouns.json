@@ -10818,6 +10818,414 @@
     {
       "word": "Oberarzt",
       "category": "Berufe"
+    },
+    {
+      "word": "Aalfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ahornsirup",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ajvar",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Amaranth",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ananasring",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Anisgebäck",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelchips",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelkompott",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Apfelstrudel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Auberginencreme",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Avocadoöl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Backerbsen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Backfisch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Backpflaume",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Baiser",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Balsamico",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bananenbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bananenchips",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Basilikumpesto",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bauernbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bergkäse",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bienenstich",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bircher Müsli",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Birnensaft",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Biskuitrolle",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Blätterteig",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bolognese",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Borschtsch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bratkartoffel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brioche",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotaufstrich",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotchips",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotknödel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotkruste",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotlaib",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Brotzeit",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Bulgur",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Buttercreme",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Buttermilch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Cantuccini",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chai",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chicorée",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chiliöl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chinakohl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Chutney",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Cracker",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Crème brûlée",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dinkelmehl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dipsauce",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Donut",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Dorschfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eiersalat",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eierlikörkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eierspätzle",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Eisbecher",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Erdbeerkonfitüre",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Erbseneintopf",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Esskastanie",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fenchel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Feta",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Feigenmarmelade",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Focaccia",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Fruchtpüree",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Garnelen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gazpacho",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gebäck",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gemüsebrühe",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gemüsecurry",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gemüselasagne",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Germknödel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Gnocchi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Granatapfel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Grießklößchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Grünkern",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Guacamole",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Halloumi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hefezopf",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Himbeersirup",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hirsebrei",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Hummus",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Ingwertee",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Jalapeño",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Jasminreis",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kaiserschmarrn",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kartoffelgratin",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kartoffelpuffer",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kimchi",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kirschkuchen",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kokosmilch",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kornflakes",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kräuterquark",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kürbiskernöl",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Kürbissuppe",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Lachsfilet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Linsencurry",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Maisbrot",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mandelmus",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mangosorbet",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Maultasche",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Mohnstrudel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Müsliriegel",
+      "category": "Essen & Trinken"
+    },
+    {
+      "word": "Naanbrot",
+      "category": "Essen & Trinken"
     }
   ]
 }
