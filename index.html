@@ -2617,13 +2617,13 @@
           const row = document.createElement('div');
           row.className = 'guess-row';
 
-          // Farbe und Balken richten sich nach der semantischen Ähnlichkeit,
-          // nicht nach der künstlich skalierten Rangnummer.
+          // Rangfarben: 1–100 grün, 101–500 orange, ab 501 rot.
+          // Kleinere Ränge bedeuten eine größere semantische Nähe.
           const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
-          let color = '#ff3b5c'; // Rot: weit entfernt
+          let color = '#ff3b5c'; // Rot: Rang ab 501
           let level = 'Weit entfernt';
-          if (similarityScore >= 0.72) { color = '#00ff9d'; level = 'Sehr nah'; }
-          else if (similarityScore >= 0.48) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
+          if (item.rank <= 100) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (item.rank <= 500) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
 
           const pct = Math.max(5, Math.round(similarityScore * 100));
 
