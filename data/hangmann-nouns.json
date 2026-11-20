@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus elf Kategorien. Bereinigt: künstliche Raum-/Wäsche-Komposita, doppelte Wortteile und sehr spezielle Rassenbezeichnungen entfernt. Weitere Bereinigung: Bindestrich-Wörter und künstliche Begriffe wie Vorratshonigglas entfernt.",
+  "description": "Deutsche Begriffe für Hangman aus elf Kategorien. Bereinigt: künstliche Raum-/Wäsche-Komposita, doppelte Wortteile und sehr spezielle Rassenbezeichnungen entfernt. Weitere Bereinigung: Bindestrich-Wörter und künstliche Begriffe wie Vorratshonigglas entfernt. Neue Kategorie Länder mit 195 Ländernamen; Leerzeichen in mehrteiligen Namen werden im Hangman-Spiel automatisch als Wortabstand angezeigt.",
   "words": [
     {
       "word": "Affe",
@@ -23466,6 +23466,778 @@
     {
       "word": "Aufbewahrungskleiderhülle",
       "category": "Dinge im Haushalt"
+    },
+    {
+      "word": "Afghanistan",
+      "category": "Länder"
+    },
+    {
+      "word": "Ägypten",
+      "category": "Länder"
+    },
+    {
+      "word": "Albanien",
+      "category": "Länder"
+    },
+    {
+      "word": "Algerien",
+      "category": "Länder"
+    },
+    {
+      "word": "Andorra",
+      "category": "Länder"
+    },
+    {
+      "word": "Angola",
+      "category": "Länder"
+    },
+    {
+      "word": "Antigua und Barbuda",
+      "category": "Länder"
+    },
+    {
+      "word": "Äquatorialguinea",
+      "category": "Länder"
+    },
+    {
+      "word": "Argentinien",
+      "category": "Länder"
+    },
+    {
+      "word": "Armenien",
+      "category": "Länder"
+    },
+    {
+      "word": "Aserbaidschan",
+      "category": "Länder"
+    },
+    {
+      "word": "Äthiopien",
+      "category": "Länder"
+    },
+    {
+      "word": "Australien",
+      "category": "Länder"
+    },
+    {
+      "word": "Bahamas",
+      "category": "Länder"
+    },
+    {
+      "word": "Bahrain",
+      "category": "Länder"
+    },
+    {
+      "word": "Bangladesch",
+      "category": "Länder"
+    },
+    {
+      "word": "Barbados",
+      "category": "Länder"
+    },
+    {
+      "word": "Belgien",
+      "category": "Länder"
+    },
+    {
+      "word": "Belize",
+      "category": "Länder"
+    },
+    {
+      "word": "Benin",
+      "category": "Länder"
+    },
+    {
+      "word": "Bhutan",
+      "category": "Länder"
+    },
+    {
+      "word": "Bolivien",
+      "category": "Länder"
+    },
+    {
+      "word": "Bosnien und Herzegowina",
+      "category": "Länder"
+    },
+    {
+      "word": "Botswana",
+      "category": "Länder"
+    },
+    {
+      "word": "Brasilien",
+      "category": "Länder"
+    },
+    {
+      "word": "Brunei",
+      "category": "Länder"
+    },
+    {
+      "word": "Bulgarien",
+      "category": "Länder"
+    },
+    {
+      "word": "Burkina Faso",
+      "category": "Länder"
+    },
+    {
+      "word": "Burundi",
+      "category": "Länder"
+    },
+    {
+      "word": "Chile",
+      "category": "Länder"
+    },
+    {
+      "word": "China",
+      "category": "Länder"
+    },
+    {
+      "word": "Costa Rica",
+      "category": "Länder"
+    },
+    {
+      "word": "Dänemark",
+      "category": "Länder"
+    },
+    {
+      "word": "Demokratische Republik Kongo",
+      "category": "Länder"
+    },
+    {
+      "word": "Deutschland",
+      "category": "Länder"
+    },
+    {
+      "word": "Dominica",
+      "category": "Länder"
+    },
+    {
+      "word": "Dominikanische Republik",
+      "category": "Länder"
+    },
+    {
+      "word": "Dschibuti",
+      "category": "Länder"
+    },
+    {
+      "word": "Ecuador",
+      "category": "Länder"
+    },
+    {
+      "word": "El Salvador",
+      "category": "Länder"
+    },
+    {
+      "word": "Elfenbeinküste",
+      "category": "Länder"
+    },
+    {
+      "word": "Eritrea",
+      "category": "Länder"
+    },
+    {
+      "word": "Estland",
+      "category": "Länder"
+    },
+    {
+      "word": "Eswatini",
+      "category": "Länder"
+    },
+    {
+      "word": "Fidschi",
+      "category": "Länder"
+    },
+    {
+      "word": "Finnland",
+      "category": "Länder"
+    },
+    {
+      "word": "Frankreich",
+      "category": "Länder"
+    },
+    {
+      "word": "Gabun",
+      "category": "Länder"
+    },
+    {
+      "word": "Gambia",
+      "category": "Länder"
+    },
+    {
+      "word": "Georgien",
+      "category": "Länder"
+    },
+    {
+      "word": "Ghana",
+      "category": "Länder"
+    },
+    {
+      "word": "Grenada",
+      "category": "Länder"
+    },
+    {
+      "word": "Griechenland",
+      "category": "Länder"
+    },
+    {
+      "word": "Guatemala",
+      "category": "Länder"
+    },
+    {
+      "word": "Guinea",
+      "category": "Länder"
+    },
+    {
+      "word": "Guinea-Bissau",
+      "category": "Länder"
+    },
+    {
+      "word": "Guyana",
+      "category": "Länder"
+    },
+    {
+      "word": "Haiti",
+      "category": "Länder"
+    },
+    {
+      "word": "Honduras",
+      "category": "Länder"
+    },
+    {
+      "word": "Indien",
+      "category": "Länder"
+    },
+    {
+      "word": "Indonesien",
+      "category": "Länder"
+    },
+    {
+      "word": "Irak",
+      "category": "Länder"
+    },
+    {
+      "word": "Iran",
+      "category": "Länder"
+    },
+    {
+      "word": "Irland",
+      "category": "Länder"
+    },
+    {
+      "word": "Island",
+      "category": "Länder"
+    },
+    {
+      "word": "Israel",
+      "category": "Länder"
+    },
+    {
+      "word": "Italien",
+      "category": "Länder"
+    },
+    {
+      "word": "Jamaika",
+      "category": "Länder"
+    },
+    {
+      "word": "Japan",
+      "category": "Länder"
+    },
+    {
+      "word": "Jemen",
+      "category": "Länder"
+    },
+    {
+      "word": "Jordanien",
+      "category": "Länder"
+    },
+    {
+      "word": "Kambodscha",
+      "category": "Länder"
+    },
+    {
+      "word": "Kamerun",
+      "category": "Länder"
+    },
+    {
+      "word": "Kanada",
+      "category": "Länder"
+    },
+    {
+      "word": "Kap Verde",
+      "category": "Länder"
+    },
+    {
+      "word": "Kasachstan",
+      "category": "Länder"
+    },
+    {
+      "word": "Katar",
+      "category": "Länder"
+    },
+    {
+      "word": "Kenia",
+      "category": "Länder"
+    },
+    {
+      "word": "Kirgisistan",
+      "category": "Länder"
+    },
+    {
+      "word": "Kiribati",
+      "category": "Länder"
+    },
+    {
+      "word": "Kolumbien",
+      "category": "Länder"
+    },
+    {
+      "word": "Komoren",
+      "category": "Länder"
+    },
+    {
+      "word": "Kongo",
+      "category": "Länder"
+    },
+    {
+      "word": "Kroatien",
+      "category": "Länder"
+    },
+    {
+      "word": "Kuba",
+      "category": "Länder"
+    },
+    {
+      "word": "Kuwait",
+      "category": "Länder"
+    },
+    {
+      "word": "Laos",
+      "category": "Länder"
+    },
+    {
+      "word": "Lesotho",
+      "category": "Länder"
+    },
+    {
+      "word": "Lettland",
+      "category": "Länder"
+    },
+    {
+      "word": "Libanon",
+      "category": "Länder"
+    },
+    {
+      "word": "Liberia",
+      "category": "Länder"
+    },
+    {
+      "word": "Libyen",
+      "category": "Länder"
+    },
+    {
+      "word": "Liechtenstein",
+      "category": "Länder"
+    },
+    {
+      "word": "Litauen",
+      "category": "Länder"
+    },
+    {
+      "word": "Luxemburg",
+      "category": "Länder"
+    },
+    {
+      "word": "Madagaskar",
+      "category": "Länder"
+    },
+    {
+      "word": "Malawi",
+      "category": "Länder"
+    },
+    {
+      "word": "Malaysia",
+      "category": "Länder"
+    },
+    {
+      "word": "Malediven",
+      "category": "Länder"
+    },
+    {
+      "word": "Mali",
+      "category": "Länder"
+    },
+    {
+      "word": "Malta",
+      "category": "Länder"
+    },
+    {
+      "word": "Marokko",
+      "category": "Länder"
+    },
+    {
+      "word": "Marshallinseln",
+      "category": "Länder"
+    },
+    {
+      "word": "Mauretanien",
+      "category": "Länder"
+    },
+    {
+      "word": "Mauritius",
+      "category": "Länder"
+    },
+    {
+      "word": "Mexiko",
+      "category": "Länder"
+    },
+    {
+      "word": "Mikronesien",
+      "category": "Länder"
+    },
+    {
+      "word": "Moldau",
+      "category": "Länder"
+    },
+    {
+      "word": "Monaco",
+      "category": "Länder"
+    },
+    {
+      "word": "Mongolei",
+      "category": "Länder"
+    },
+    {
+      "word": "Montenegro",
+      "category": "Länder"
+    },
+    {
+      "word": "Mosambik",
+      "category": "Länder"
+    },
+    {
+      "word": "Myanmar",
+      "category": "Länder"
+    },
+    {
+      "word": "Namibia",
+      "category": "Länder"
+    },
+    {
+      "word": "Nauru",
+      "category": "Länder"
+    },
+    {
+      "word": "Nepal",
+      "category": "Länder"
+    },
+    {
+      "word": "Neuseeland",
+      "category": "Länder"
+    },
+    {
+      "word": "Nicaragua",
+      "category": "Länder"
+    },
+    {
+      "word": "Niederlande",
+      "category": "Länder"
+    },
+    {
+      "word": "Niger",
+      "category": "Länder"
+    },
+    {
+      "word": "Nigeria",
+      "category": "Länder"
+    },
+    {
+      "word": "Nordkorea",
+      "category": "Länder"
+    },
+    {
+      "word": "Nordmazedonien",
+      "category": "Länder"
+    },
+    {
+      "word": "Norwegen",
+      "category": "Länder"
+    },
+    {
+      "word": "Oman",
+      "category": "Länder"
+    },
+    {
+      "word": "Österreich",
+      "category": "Länder"
+    },
+    {
+      "word": "Pakistan",
+      "category": "Länder"
+    },
+    {
+      "word": "Palästina",
+      "category": "Länder"
+    },
+    {
+      "word": "Palau",
+      "category": "Länder"
+    },
+    {
+      "word": "Panama",
+      "category": "Länder"
+    },
+    {
+      "word": "Papua Neuguinea",
+      "category": "Länder"
+    },
+    {
+      "word": "Paraguay",
+      "category": "Länder"
+    },
+    {
+      "word": "Peru",
+      "category": "Länder"
+    },
+    {
+      "word": "Philippinen",
+      "category": "Länder"
+    },
+    {
+      "word": "Polen",
+      "category": "Länder"
+    },
+    {
+      "word": "Portugal",
+      "category": "Länder"
+    },
+    {
+      "word": "Ruanda",
+      "category": "Länder"
+    },
+    {
+      "word": "Rumänien",
+      "category": "Länder"
+    },
+    {
+      "word": "Russland",
+      "category": "Länder"
+    },
+    {
+      "word": "Salomonen",
+      "category": "Länder"
+    },
+    {
+      "word": "Sambia",
+      "category": "Länder"
+    },
+    {
+      "word": "Samoa",
+      "category": "Länder"
+    },
+    {
+      "word": "San Marino",
+      "category": "Länder"
+    },
+    {
+      "word": "Sao Tome und Principe",
+      "category": "Länder"
+    },
+    {
+      "word": "Saudi Arabien",
+      "category": "Länder"
+    },
+    {
+      "word": "Schweden",
+      "category": "Länder"
+    },
+    {
+      "word": "Schweiz",
+      "category": "Länder"
+    },
+    {
+      "word": "Senegal",
+      "category": "Länder"
+    },
+    {
+      "word": "Serbien",
+      "category": "Länder"
+    },
+    {
+      "word": "Seychellen",
+      "category": "Länder"
+    },
+    {
+      "word": "Sierra Leone",
+      "category": "Länder"
+    },
+    {
+      "word": "Simbabwe",
+      "category": "Länder"
+    },
+    {
+      "word": "Singapur",
+      "category": "Länder"
+    },
+    {
+      "word": "Slowakei",
+      "category": "Länder"
+    },
+    {
+      "word": "Slowenien",
+      "category": "Länder"
+    },
+    {
+      "word": "Somalia",
+      "category": "Länder"
+    },
+    {
+      "word": "Spanien",
+      "category": "Länder"
+    },
+    {
+      "word": "Sri Lanka",
+      "category": "Länder"
+    },
+    {
+      "word": "St Kitts und Nevis",
+      "category": "Länder"
+    },
+    {
+      "word": "St Lucia",
+      "category": "Länder"
+    },
+    {
+      "word": "St Vincent und die Grenadinen",
+      "category": "Länder"
+    },
+    {
+      "word": "Südafrika",
+      "category": "Länder"
+    },
+    {
+      "word": "Sudan",
+      "category": "Länder"
+    },
+    {
+      "word": "Südkorea",
+      "category": "Länder"
+    },
+    {
+      "word": "Südsudan",
+      "category": "Länder"
+    },
+    {
+      "word": "Suriname",
+      "category": "Länder"
+    },
+    {
+      "word": "Syrien",
+      "category": "Länder"
+    },
+    {
+      "word": "Tadschikistan",
+      "category": "Länder"
+    },
+    {
+      "word": "Tansania",
+      "category": "Länder"
+    },
+    {
+      "word": "Thailand",
+      "category": "Länder"
+    },
+    {
+      "word": "Timor Leste",
+      "category": "Länder"
+    },
+    {
+      "word": "Togo",
+      "category": "Länder"
+    },
+    {
+      "word": "Tonga",
+      "category": "Länder"
+    },
+    {
+      "word": "Trinidad und Tobago",
+      "category": "Länder"
+    },
+    {
+      "word": "Tschad",
+      "category": "Länder"
+    },
+    {
+      "word": "Tschechien",
+      "category": "Länder"
+    },
+    {
+      "word": "Tunesien",
+      "category": "Länder"
+    },
+    {
+      "word": "Türkei",
+      "category": "Länder"
+    },
+    {
+      "word": "Tuvalu",
+      "category": "Länder"
+    },
+    {
+      "word": "Uganda",
+      "category": "Länder"
+    },
+    {
+      "word": "Ukraine",
+      "category": "Länder"
+    },
+    {
+      "word": "Ungarn",
+      "category": "Länder"
+    },
+    {
+      "word": "Uruguay",
+      "category": "Länder"
+    },
+    {
+      "word": "Usbekistan",
+      "category": "Länder"
+    },
+    {
+      "word": "Vanuatu",
+      "category": "Länder"
+    },
+    {
+      "word": "Vatikanstadt",
+      "category": "Länder"
+    },
+    {
+      "word": "Venezuela",
+      "category": "Länder"
+    },
+    {
+      "word": "Vereinigte Arabische Emirate",
+      "category": "Länder"
+    },
+    {
+      "word": "Vereinigte Staaten",
+      "category": "Länder"
+    },
+    {
+      "word": "Vereinigtes Königreich",
+      "category": "Länder"
+    },
+    {
+      "word": "Vietnam",
+      "category": "Länder"
+    },
+    {
+      "word": "Zentralafrikanische Republik",
+      "category": "Länder"
+    },
+    {
+      "word": "Zypern",
+      "category": "Länder"
     }
   ]
 }
