@@ -1438,7 +1438,7 @@
           try{
             const response=await fetch('data/hangmann-nouns.json',{cache:'no-cache'});
             if(!response.ok)throw new Error('Wortliste nicht erreichbar');
-            const payload=await response.json();this.words=(payload.words||[]).filter(item=>item&&item.word&&item.category);this.wordQueue=[];
+            const payload=await response.json();this.words=(payload.words||[]).filter(item=>item&&item.word&&item.category&&!/[-‐‑‒–—]/u.test(item.word));this.wordQueue=[];
             if(!this.words.length){
               status.textContent='Unsere eigene Hangman-Wortliste wird gerade gemeinsam aufgebaut.';
               document.getElementById('hangmann-category').textContent='Kategorie-Tipp: folgt bald';
