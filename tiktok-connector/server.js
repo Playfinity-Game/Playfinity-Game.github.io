@@ -295,7 +295,8 @@ async function persistUsageEvent({ event, visitorId, elapsedMs, sessionTotalMs =
     headers: { apikey: apiKey, authorization: "Bearer " + apiKey, "content-type": "application/json" },
     body: JSON.stringify({ p_event: event, p_visitor_hash: visitorHash, p_day: new Date().toISOString().slice(0, 10),
       p_elapsed_ms: Math.max(0, Math.min(45000, Number(elapsedMs) || 0)),
-      p_session_total_ms: Math.max(0, Math.min(86400000, Number(sessionTotalMs) || 0)),\n      p_ingest_token: process.env.SUPABASE_INGEST_TOKEN })
+      p_session_total_ms: Math.max(0, Math.min(86400000, Number(sessionTotalMs) || 0)),
+      p_ingest_token: process.env.SUPABASE_INGEST_TOKEN })
   });
   if (!result.ok) throw new Error("Supabase metrics write failed: " + result.status);
 }
