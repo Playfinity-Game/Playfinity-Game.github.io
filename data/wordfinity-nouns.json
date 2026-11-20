@@ -1045,6 +1045,7 @@
     "Skulptur",
     "Staffelei",
     "Statue",
+    "Töpfer",
     "Wachsmalstift",
     "Zeichnen",
     "Zeichnung"
@@ -1127,6 +1128,7 @@
     "Bilderbuch",
     "Buch",
     "Buchladen",
+    "CD",
     "Comic",
     "Figur",
     "Film",
@@ -1140,6 +1142,7 @@
     "Nachricht",
     "Rolle",
     "Roman",
+    "Schallplatte",
     "Seite",
     "Sendung",
     "Serie",
@@ -1158,6 +1161,7 @@
     "Basteln",
     "Faden",
     "Kleber",
+    "Knopf",
     "Nadel",
     "Pappe",
     "Wolle"
