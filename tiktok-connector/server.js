@@ -1,6 +1,6 @@
 import http from "node:http";
 import { readFile } from "node:fs/promises";
-import { randomBytes } from "node:crypto";
+import { randomBytes, createHash } from "node:crypto";
 import { TikTokLiveConnection, WebcastEvent } from "tiktok-live-connector";
 import { WebSocketServer, WebSocket } from "ws";
 import { createAdminAuth } from "./troll-admin-auth.js";
@@ -275,95 +275,98 @@ function resetUsageDayIfNeeded() {
   getDailyUsage(usageStats.day);
 }
 
-function handleUsageMetrics(request, response) {
+async function readPersistentUsage() {
+  const baseUrl = process.env.SUPABASE_URL;
+  const apiKey = process.env.SUPABASE_ANON_KEY;
+  if (!baseUrl || !apiKey) throw new Error("Supabase ist nicht konfiguriert.");
+  const result = await fetch(baseUrl + "/rest/v1/rpc/get_playfinity_usage_metrics", {
+    method: "POST", headers: { apikey: apiKey, authorization: "Bearer " + apiKey, "content-type": "application/json" }, body: JSON.stringify({ p_ingest_token: process.env.SUPABASE_INGEST_TOKEN })
+  });
+  if (!result.ok) throw new Error("Supabase metrics read failed: " + result.status);
+  return result.json();
+}
+async function persistUsageEvent({ event, visitorId, elapsedMs, sessionTotalMs = 0 }) {
+  const baseUrl = process.env.SUPABASE_URL;
+  const apiKey = process.env.SUPABASE_ANON_KEY;
+  if (!baseUrl || !apiKey) throw new Error("Supabase ist nicht konfiguriert.");
+  const visitorHash = createHash("sha256").update(visitorId).digest("hex");
+  const result = await fetch(baseUrl + "/rest/v1/rpc/ingest_playfinity_usage", {
+    method: "POST",
+    headers: { apikey: apiKey, authorization: "Bearer " + apiKey, "content-type": "application/json" },
+    body: JSON.stringify({ p_event: event, p_visitor_hash: visitorHash, p_day: new Date().toISOString().slice(0, 10),
+      p_elapsed_ms: Math.max(0, Math.min(45000, Number(elapsedMs) || 0)),
+      p_session_total_ms: Math.max(0, Math.min(86400000, Number(sessionTotalMs) || 0)),\n      p_ingest_token: process.env.SUPABASE_INGEST_TOKEN })
+  });
+  if (!result.ok) throw new Error("Supabase metrics write failed: " + result.status);
+}
+async function handleUsageMetrics(request, response) {
   if (request.method === "GET") {
-    const now = Date.now();
-    for (const [id, session] of usageStats.sessions) {
-      if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+    try {
+      const data = await readPersistentUsage();
+      const now = Date.now();
+      for (const [id, session] of usageStats.sessions) if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+      const active = [...usageStats.sessions.values()].filter(session => session.active);
+      const livePlayMs = active.reduce((sum, session) => sum + Math.max(0, Math.min(45000, now - session.lastSeenAt)), 0);
+      const totalPlayMs = Number(data.total_play_ms || 0) + livePlayMs;
+      const todayPlayMs = Number(data.today_play_ms || 0) + livePlayMs;
+      const pageViews = Number(data.page_views || 0);
+      const todayPageViews = Number(data.today_page_views || 0);
+      const longestMs = Math.max(Number(data.longest_session_ms || 0), ...active.map(s => s.playMs + Math.max(0, Math.min(45000, now - s.lastSeenAt))), 0);
+      const todayLongestMs = Math.max(Number(data.today_longest_session_ms || 0), ...active.map(s => s.playMs + Math.max(0, Math.min(45000, now - s.lastSeenAt))), 0);
+      return sendJson(response, 200, { day: new Date().toISOString().slice(0, 10), pageViews, uniqueVisitors: Number(data.unique_visitors || 0),
+        totalPlayMinutes: Math.round(totalPlayMs / 60000 * 10) / 10,
+        averagePlayMinutesPerVisit: pageViews ? Math.round(totalPlayMs / pageViews / 60000 * 10) / 10 : 0,
+        activeSessions: active.length, longestSessionMinutes: Math.round(longestMs / 60000 * 10) / 10,
+        todayPageViews, todayUniqueVisitors: Number(data.today_unique_visitors || 0),
+        todayPlayMinutes: Math.round(todayPlayMs / 60000 * 10) / 10,
+        todayAveragePlayMinutesPerVisit: todayPageViews ? Math.round(todayPlayMs / todayPageViews / 60000 * 10) / 10 : 0,
+        todayLongestSessionMinutes: Math.round(todayLongestMs / 60000 * 10) / 10, storage: "supabase", period: "all_time"
+      }, { "access-control-allow-origin": "*", "cache-control": "no-store" });
+    } catch (error) {
+      console.error("[Metrics] Supabase read failed:", error?.message || error);
+      return sendJson(response, 503, { error: "Statistiken sind momentan nicht verfügbar." }, { "access-control-allow-origin": "*" });
     }
-    const active = [...usageStats.sessions.values()].filter(session => session.active);
-    const livePlayMs = active.reduce((sum, session) => sum + Math.max(0, Math.min(45000, now - session.lastSeenAt)), 0);
-    const liveLongestMs = active.reduce((longest, session) =>
-      Math.max(longest, session.playMs + Math.max(0, Math.min(45000, now - session.lastSeenAt))), usageStats.longestSessionMs);
-    const today = getDailyUsage();
-    const todayLivePlayMs = active.reduce((sum, session) => sum + Math.max(0, Math.min(45000, now - session.lastSeenAt)), 0);
-    const todayLiveLongestMs = active.reduce((longest, session) => Math.max(longest, session.playMs + Math.max(0, Math.min(45000, now - session.lastSeenAt))), today.longestSessionMs);
-    const totalPlayMs = usageStats.totalPlayMs + livePlayMs;
-    const todayPlayMs = today.playMs + todayLivePlayMs;
-    return sendJson(response, 200, {
-      day: usageStats.day, pageViews: usageStats.pageViews, uniqueVisitors: usageStats.visitors.size,
-      totalPlayMinutes: Math.round(totalPlayMs / 60000 * 10) / 10,
-      averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
-      activeSessions: active.length, longestSessionMinutes: Math.round(liveLongestMs / 60000 * 10) / 10,
-      todayPageViews: today.pageViews, todayUniqueVisitors: today.visitors.size,
-      todayPlayMinutes: Math.round(todayPlayMs / 60000 * 10) / 10,
-      todayAveragePlayMinutesPerVisit: today.pageViews ? Math.round(todayPlayMs / today.pageViews / 60000 * 10) / 10 : 0,
-      todayLongestSessionMinutes: Math.round(todayLiveLongestMs / 60000 * 10) / 10,
-      storage: "memory_only", period: "since_server_start"
-    }, { "access-control-allow-origin": "*", "cache-control": "no-store" });
   }
   if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
   if (request.method === "OPTIONS") {
-    response.writeHead(204, {
-      "access-control-allow-origin": request.headers.origin,
-      "access-control-allow-methods": "POST, OPTIONS",
-      "access-control-allow-headers": "content-type",
-      "access-control-max-age": "600",
-      "vary": "Origin"
-    });
+    response.writeHead(204, { "access-control-allow-origin": request.headers.origin, "access-control-allow-methods": "POST, OPTIONS",
+      "access-control-allow-headers": "content-type", "access-control-max-age": "600", vary: "Origin" });
     return response.end();
   }
   if (request.method !== "POST") return sendJson(response, 405, { error: "Method not allowed" });
   let rawBody = "";
-  request.on("data", chunk => {
-    rawBody += chunk;
-    if (rawBody.length > 2048) request.destroy();
-  });
-  request.on("end", () => {
+  request.on("data", chunk => { rawBody += chunk; if (rawBody.length > 2048) request.destroy(); });
+  request.on("end", async () => {
     let body;
     try { body = JSON.parse(rawBody || "{}"); } catch { return sendJson(response, 400, { error: "Invalid JSON" }); }
     const { event, visitorId, sessionId, elapsedMs } = body;
-    if (!["start", "heartbeat", "pause", "end"].includes(event) ||
-        typeof visitorId !== "string" || visitorId.length > 100 ||
-        typeof sessionId !== "string" || sessionId.length > 100) {
-      return sendJson(response, 400, { error: "Invalid metrics event" });
-    }
+    if (!["start", "heartbeat", "pause", "end"].includes(event) || typeof visitorId !== "string" || visitorId.length > 100 ||
+        typeof sessionId !== "string" || sessionId.length > 100) return sendJson(response, 400, { error: "Invalid metrics event" });
     resetUsageDayIfNeeded();
     const now = Date.now();
     const elapsed = Number.isFinite(elapsedMs) ? Math.max(0, Math.min(45000, elapsedMs)) : 0;
-    const daily = getDailyUsage();
+    let sessionTotalMs = 0;
     if (event === "start") {
-      usageStats.pageViews += 1;
-      usageStats.visitors.add(visitorId);
-      daily.pageViews += 1;
-      daily.visitors.add(visitorId);
       usageStats.sessions.set(sessionId, { visitorId, startedAt: now, lastSeenAt: now, active: true, playMs: 0 });
     } else {
       const session = usageStats.sessions.get(sessionId);
       if (session) {
-        if (event === "heartbeat" && body.visible === true) {
-          session.playMs += elapsed;
-          usageStats.totalPlayMs += elapsed;
-          daily.playMs += elapsed;
-          session.active = true;
-        } else if (event === "pause" || event === "end") {
-          session.playMs += elapsed;
-          usageStats.totalPlayMs += elapsed;
-          daily.playMs += elapsed;
-          session.active = false;
-          usageStats.longestSessionMs = Math.max(usageStats.longestSessionMs, session.playMs);
-          daily.longestSessionMs = Math.max(daily.longestSessionMs, session.playMs);
+        if ((event === "heartbeat" && body.visible === true) || event === "pause" || event === "end") {
+          session.playMs += elapsed; sessionTotalMs = session.playMs; session.active = event === "heartbeat";
         }
         session.lastSeenAt = now;
       }
     }
-    for (const [id, session] of usageStats.sessions) {
-      if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+    for (const [id, session] of usageStats.sessions) if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
+    try {
+      if (event === "start" || ((event !== "heartbeat" || body.visible === true) && elapsed > 0)) {
+        await persistUsageEvent({ event, visitorId, elapsedMs: event === "heartbeat" && body.visible !== true ? 0 : elapsed, sessionTotalMs });
+      }
+      return sendJson(response, 200, { ok: true, storage: "supabase" }, { "access-control-allow-origin": request.headers.origin, vary: "Origin" });
+    } catch (error) {
+      console.error("[Metrics] Supabase write failed:", error?.message || error);
+      return sendJson(response, 503, { error: "Statistik konnte nicht dauerhaft gespeichert werden." }, { "access-control-allow-origin": request.headers.origin, vary: "Origin" });
     }
-    return sendJson(response, 200, { ok: true }, {
-      "access-control-allow-origin": request.headers.origin,
-      "vary": "Origin"
-    });
   });
 }
 
@@ -496,21 +499,25 @@ const server = http.createServer(async (request, response) => {
       });
     }
     if (request.method === "GET" && url.pathname === "/admin/metrics") {
-      const now = Date.now();
-      for (const [id, session] of usageStats.sessions) if (now - session.lastSeenAt > 90000) usageStats.sessions.delete(id);
-      const activeSessions = [...usageStats.sessions.values()].filter(session => session.active).length;
-      const today = getDailyUsage();
-      return sendJson(response, 200, {
-        day: usageStats.day, pageViews: usageStats.pageViews, uniqueVisitors: usageStats.visitors.size,
-        totalPlayMinutes: Math.round(usageStats.totalPlayMs / 60000 * 10) / 10,
-        averagePlayMinutesPerVisit: usageStats.pageViews ? Math.round(usageStats.totalPlayMs / usageStats.pageViews / 60000 * 10) / 10 : 0,
-        activeSessions, longestSessionMinutes: Math.round(usageStats.longestSessionMs / 60000 * 10) / 10,
-        todayPageViews: today.pageViews, todayUniqueVisitors: today.visitors.size,
-        todayPlayMinutes: Math.round(today.playMs / 60000 * 10) / 10,
-        todayAveragePlayMinutesPerVisit: today.pageViews ? Math.round(today.playMs / today.pageViews / 60000 * 10) / 10 : 0,
-        todayLongestSessionMinutes: Math.round(today.longestSessionMs / 60000 * 10) / 10,
-        storage: "memory_only", period: "since_server_start"
-      });
+      try {
+        const data = await readPersistentUsage();
+        const active = [...usageStats.sessions.values()].filter(s => s.active && Date.now() - s.lastSeenAt <= 90000);
+        const pageViews = Number(data.page_views || 0), totalPlayMs = Number(data.total_play_ms || 0);
+        const todayPageViews = Number(data.today_page_views || 0), todayPlayMs = Number(data.today_play_ms || 0);
+        const longestMs = Math.max(Number(data.longest_session_ms || 0), ...active.map(s => s.playMs), 0);
+        const todayLongestMs = Math.max(Number(data.today_longest_session_ms || 0), ...active.map(s => s.playMs), 0);
+        return sendJson(response, 200, { day: new Date().toISOString().slice(0, 10), pageViews, uniqueVisitors: Number(data.unique_visitors || 0),
+          totalPlayMinutes: Math.round(totalPlayMs / 60000 * 10) / 10,
+          averagePlayMinutesPerVisit: pageViews ? Math.round(totalPlayMs / pageViews / 60000 * 10) / 10 : 0,
+          activeSessions: active.length, longestSessionMinutes: Math.round(longestMs / 60000 * 10) / 10,
+          todayPageViews, todayUniqueVisitors: Number(data.today_unique_visitors || 0),
+          todayPlayMinutes: Math.round(todayPlayMs / 60000 * 10) / 10,
+          todayAveragePlayMinutesPerVisit: todayPageViews ? Math.round(todayPlayMs / todayPageViews / 60000 * 10) / 10 : 0,
+          todayLongestSessionMinutes: Math.round(todayLongestMs / 60000 * 10) / 10, storage: "supabase", period: "all_time" });
+      } catch (error) {
+        console.error("[Admin metrics] Supabase read failed:", error?.message || error);
+        return sendJson(response, 503, { error: "Statistiken sind momentan nicht verfügbar." });
+      }
     }
     return sendJson(response, 404, { error: "Admin-Endpunkt nicht gefunden." });
   }
