@@ -1480,9 +1480,9 @@
         }
         this.target=this.wordQueue.pop();
         try{localStorage.setItem('playfinity_hangmann_word_queue_v1',JSON.stringify(this.wordQueue.map(item=>item.category+'\\u0000'+this.normalize(item.word))));}catch(error){console.warn('[Hangmann] Wortvorrat konnte nicht gespeichert werden.',error);}
-        const hardInstrumentWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn']);
+        const hardWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn','Blindschleiche','Feuersalamander','Ringelnatter','Schleiereule','Stachelschwein','Pfeilgiftfrosch','Borkenkäfer','Gletscherzunge','Kristallhöhle','Küstennebel','Flussdelta','Hochgebirge','Erdkruste','Vorratsglas','Vorratsdose','Vorratsbehälter','Vorratsbox','Vorratscontainer','Vorratsschrank','Vorratsregal','Vorratskorb','Vorratskiste','Vorratseimer','Vorratsflasche','Vorratskanister','Vorratsspender','Vorratsdeckel','Vorratsverschluss','Vorratsetikett','Vorratsclip','Vorratsbeutel','Vorratstüte','Vorratssack','Vorratsfolie','Vorratsalufolie','Vorratsbrotkasten','Vorratsobstkorb','Vorratsölflasche','Vorratsnudelglas','Vorratsteedose','Vorratskeksdose','Vorratstrichter','Aufbewahrungsbox','Aufbewahrungskiste','Aufbewahrungskorb','Aufbewahrungsbehälter','Aufbewahrungsdose','Aufbewahrungsschachtel','Aufbewahrungsschublade','Aufbewahrungsregal','Aufbewahrungsschrank','Aufbewahrungscontainer','Aufbewahrungstasche','Aufbewahrungsbeutel','Aufbewahrungsmappe','Aufbewahrungsordner','Aufbewahrungshülle','Aufbewahrungsetui','Aufbewahrungskoffer','Aufbewahrungstruhe','Aufbewahrungskommode','Aufbewahrungssortierbox','Aufbewahrungseinsatz','Aufbewahrungsteiler','Aufbewahrungsbesteckkasten','Aufbewahrungsschmuckbox','Aufbewahrungsschuhbox','Aufbewahrungskleiderbox','Aufbewahrungsspielzeugkiste','Aufbewahrungswerkzeugkoffer','Aufbewahrungswerkzeugkasten','Aufbewahrungskleinteilebox','Aufbewahrungssichtbox','Aufbewahrungsstapelbox','Aufbewahrungsfaltbox','Aufbewahrungsfaltkorb','Aufbewahrungsvakuumbeutel','Aufbewahrungskleidersack','Aufbewahrungskleiderhülle','Türinsektenschutztür','Fenstersonnenschutzfolie','Gartenpoolbürste','Gartengrillbesteck','Gartenschlauchkupplung','Gartenpflanzkasten','Küchenbrotkasten','Waschmaschinenreiniger']);
         const hardWordLabel=document.getElementById('hangmann-hard-word');
-        if(hardWordLabel)hardWordLabel.classList.toggle('visible',this.target.category==='Musikinstrumente'&&hardInstrumentWords.has(this.target.word));
+        if(hardWordLabel)hardWordLabel.classList.toggle('visible',hardWords.has(this.target.word));
         this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
         const categoryLabel=document.getElementById('hangmann-category');
         const showCategoryImmediately=localStorage.getItem('playfinity_hangmann_auto_category')==='true';
@@ -2683,13 +2683,14 @@
           const row = document.createElement('div');
           row.className = 'guess-row';
 
-          // Farbe und Balken richten sich nach der semantischen Ähnlichkeit,
-          // nicht nach der künstlich skalierten Rangnummer.
+          // Farben folgen den angezeigten semantischen Rangnummern:
+          // 1–150 Grün, 151–1000 Orange, ab 1001 Rot.
           const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
-          let color = '#ff3b5c'; // Rot: weit entfernt
+          const rank = Number(item.rank);
+          let color = '#ff3b5c'; // Rang 1001+: weit entfernt
           let level = 'Weit entfernt';
-          if (similarityScore >= 0.72) { color = '#00ff9d'; level = 'Sehr nah'; }
-          else if (similarityScore >= 0.48) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
+          if (Number.isFinite(rank) && rank <= 150) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (Number.isFinite(rank) && rank <= 1000) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
 
           const pct = Math.max(5, Math.round(similarityScore * 100));
 
@@ -2866,7 +2867,9 @@
         document.getElementById('pir-submit').onclick = () => {
           if(PauseController.paused)return;
           const val = parseFloat(document.getElementById('pir-input').value);
-          if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
+          if (!isNaN(val) && this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' })) {
+            document.getElementById('pir-input').value = '';
+          }
         };
         document.getElementById('pir-input').addEventListener('keydown', event => {
           if (event.key === 'Enter') document.getElementById('pir-submit').click();
@@ -2936,7 +2939,7 @@
       },
 
       submitGuess(val, player = null) {
-        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return false;
         if (!this.roundOpen) {
           this.roundOpen = true;
           this.guesses = [];
@@ -2946,13 +2949,13 @@
         const existingIndex = this.guesses.findIndex(item => String(item.player.id) === String(identity.id));
         if (existingIndex >= 0) {
           const existing = this.guesses[existingIndex];
-          if ((existing.attempts || 1) >= 2) return;
+          if ((existing.attempts || 1) >= 2) return false;
           this.guesses[existingIndex] = { value: val, player: identity, attempts: (existing.attempts || 1) + 1 };
         } else {
           this.guesses.push({ value: val, player: identity, attempts: 1 });
         }
         this.renderLiveGuesses();
-        document.getElementById('pir-input').value = '';
+        return true;
       },
 
       renderLiveGuesses() {

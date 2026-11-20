@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus elf Kategorien. Bereinigt: künstliche Raum-/Wäsche-Komposita, doppelte Wortteile und sehr spezielle Rassenbezeichnungen entfernt. Weitere Bereinigung: künstliche Raum-, Reparatur-, Putz- und Präfix-Komposita sowie doppelte Wortbestandteile entfernt.",
+  "description": "Deutsche Begriffe für Hangman aus elf Kategorien. Bereinigt: künstliche Raum-/Wäsche-Komposita, doppelte Wortteile und sehr spezielle Rassenbezeichnungen entfernt. Weitere Bereinigung: Bindestrich-Wörter und künstliche Begriffe wie Vorratshonigglas entfernt.",
   "words": [
     {
       "word": "Affe",
@@ -4216,10 +4216,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Schwarzwälder Kirschtorte",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Seelachs",
       "category": "Essen & Trinken"
     },
@@ -4528,10 +4524,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Kfz-Mechaniker",
-      "category": "Berufe"
-    },
-    {
       "word": "Kellner",
       "category": "Berufe"
     },
@@ -4729,10 +4721,6 @@
     },
     {
       "word": "Einsatzwagen",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
-      "word": "E-Scooter",
       "category": "Fahrzeuge & Verkehr"
     },
     {
@@ -7572,10 +7560,6 @@
       "category": "Schule"
     },
     {
-      "word": "Liniertes Papier",
-      "category": "Schule"
-    },
-    {
       "word": "Löschblatt",
       "category": "Schule"
     },
@@ -7812,10 +7796,6 @@
       "category": "Freizeit"
     },
     {
-      "word": "BMX-Rad",
-      "category": "Freizeit"
-    },
-    {
       "word": "Briefmarke",
       "category": "Freizeit"
     },
@@ -7929,10 +7909,6 @@
     },
     {
       "word": "Erlebnispark",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Escape Room",
       "category": "Freizeit"
     },
     {
@@ -8101,10 +8077,6 @@
     },
     {
       "word": "Improvisationstheater",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Indoor-Spielplatz",
       "category": "Freizeit"
     },
     {
@@ -8900,10 +8872,6 @@
       "category": "Fahrzeuge & Verkehr"
     },
     {
-      "word": "E-Bike",
-      "category": "Fahrzeuge & Verkehr"
-    },
-    {
       "word": "Eisenbahn",
       "category": "Fahrzeuge & Verkehr"
     },
@@ -9477,10 +9445,6 @@
     },
     {
       "word": "Bobsport",
-      "category": "Sport"
-    },
-    {
-      "word": "Boccia-Kugel",
       "category": "Sport"
     },
     {
@@ -10564,10 +10528,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Afrikanischer Elefant",
-      "category": "Tiere"
-    },
-    {
       "word": "Agame",
       "category": "Tiere"
     },
@@ -10593,10 +10553,6 @@
     },
     {
       "word": "Aras",
-      "category": "Tiere"
-    },
-    {
-      "word": "Arktischer Fuchs",
       "category": "Tiere"
     },
     {
@@ -10928,15 +10884,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Nordatlantischer Glattwal",
-      "category": "Tiere"
-    },
-    {
       "word": "Okapi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Orang-Utan",
       "category": "Tiere"
     },
     {
@@ -11093,10 +11041,6 @@
     },
     {
       "word": "Apothekerin",
-      "category": "Berufe"
-    },
-    {
-      "word": "App-Entwickler",
       "category": "Berufe"
     },
     {
@@ -11333,14 +11277,6 @@
     },
     {
       "word": "Druckerin",
-      "category": "Berufe"
-    },
-    {
-      "word": "E-Commerce-Manager",
-      "category": "Berufe"
-    },
-    {
-      "word": "E-Commerce-Managerin",
       "category": "Berufe"
     },
     {
@@ -11652,14 +11588,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Kfz-Mechatroniker",
-      "category": "Berufe"
-    },
-    {
-      "word": "Kfz-Mechatronikerin",
-      "category": "Berufe"
-    },
-    {
       "word": "Kindergärtner",
       "category": "Berufe"
     },
@@ -11936,10 +11864,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Bircher Müsli",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Birnensaft",
       "category": "Essen & Trinken"
     },
@@ -12029,10 +11953,6 @@
     },
     {
       "word": "Cracker",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Crème brûlée",
       "category": "Essen & Trinken"
     },
     {
@@ -13312,30 +13232,6 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "E-Book",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "E-Book-Reader",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "E-Mail-Adresse",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "E-Mail-Anhang",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "E-Mail-Programm",
-      "category": "Technik & Digitales"
-    },
-    {
-      "word": "E-Mail-Server",
-      "category": "Technik & Digitales"
-    },
-    {
       "word": "Eingabegerät",
       "category": "Technik & Digitales"
     },
@@ -13668,10 +13564,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Chapman Stick",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Cimbalom",
       "category": "Musikinstrumente"
     },
@@ -13685,26 +13577,6 @@
     },
     {
       "word": "Cornett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "E-Bass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "E-Gitarre",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "E-Piano",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "E-Violine",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Elektronisches Schlagzeug",
       "category": "Musikinstrumente"
     },
     {
@@ -13725,10 +13597,6 @@
     },
     {
       "word": "Jagdflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Keltische Harfe",
       "category": "Musikinstrumente"
     },
     {
@@ -13801,10 +13669,6 @@
     },
     {
       "word": "Pikkoloflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pocket Trumpet",
       "category": "Musikinstrumente"
     },
     {
@@ -13884,23 +13748,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Tin Whistle",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Trumscheit",
       "category": "Musikinstrumente"
     },
     {
-      "word": "Uilleann Pipes",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Vibrafon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola da gamba",
       "category": "Musikinstrumente"
     },
     {
@@ -14104,10 +13956,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Jüdische Harfe",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Leierkasten",
       "category": "Musikinstrumente"
     },
@@ -14141,10 +13989,6 @@
     },
     {
       "word": "Renaissanceflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopranino-Flöte",
       "category": "Musikinstrumente"
     },
     {
@@ -14216,43 +14060,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Airedale Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Akita",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alaskan Malamute",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Bulldog",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Cocker Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Appenzeller Sennenhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Shepherd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Cattle Dog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Kelpie",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Terrier",
       "category": "Tiere"
     },
     {
@@ -14268,27 +14076,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Basset Hound",
-      "category": "Tiere"
-    },
-    {
       "word": "Beagle",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bearded Collie",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bedlington Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Belgischer Schäferhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Berner Sennenhund",
       "category": "Tiere"
     },
     {
@@ -14296,27 +14084,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Bichon Frisé",
-      "category": "Tiere"
-    },
-    {
       "word": "Bobtail",
       "category": "Tiere"
     },
     {
-      "word": "Border Collie",
-      "category": "Tiere"
-    },
-    {
-      "word": "Border Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Bordeauxdogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Boston Terrier",
       "category": "Tiere"
     },
     {
@@ -14336,27 +14108,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Cairn Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cane Corso",
-      "category": "Tiere"
-    },
-    {
       "word": "Chihuahua",
-      "category": "Tiere"
-    },
-    {
-      "word": "Chow-Chow",
-      "category": "Tiere"
-    },
-    {
-      "word": "Clumber Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cocker Spaniel",
       "category": "Tiere"
     },
     {
@@ -14368,39 +14120,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Deutsche Dogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Pinscher",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Schäferhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Spitz",
-      "category": "Tiere"
-    },
-    {
       "word": "Dobermann",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dogo Argentino",
-      "category": "Tiere"
-    },
-    {
-      "word": "English Setter",
-      "category": "Tiere"
-    },
-    {
-      "word": "English Springer Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "English Toy Terrier",
       "category": "Tiere"
     },
     {
@@ -14408,35 +14128,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Field Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Finnischer Spitz",
-      "category": "Tiere"
-    },
-    {
-      "word": "Flat Coated Retriever",
-      "category": "Tiere"
-    },
-    {
       "word": "Foxterrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Französische Bulldogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Galgo Español",
-      "category": "Tiere"
-    },
-    {
-      "word": "Golden Retriever",
-      "category": "Tiere"
-    },
-    {
-      "word": "Gordon Setter",
       "category": "Tiere"
     },
     {
@@ -14452,43 +14144,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Irish Setter",
-      "category": "Tiere"
-    },
-    {
-      "word": "Irish Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Irish Wolfhound",
-      "category": "Tiere"
-    },
-    {
-      "word": "Jack Russell Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Japan Chin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Japan Spitz",
-      "category": "Tiere"
-    },
-    {
       "word": "Kangal",
       "category": "Tiere"
     },
     {
       "word": "Keeshond",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kerry Blue Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "King Charles Spaniel",
       "category": "Tiere"
     },
     {
@@ -14504,23 +14164,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Labrador Retriever",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lagotto Romagnolo",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lakeland Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Leonberger",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lhasa Apso",
       "category": "Tiere"
     },
     {
@@ -14529,10 +14173,6 @@
     },
     {
       "word": "Malteser",
-      "category": "Tiere"
-    },
-    {
-      "word": "Manchester Terrier",
       "category": "Tiere"
     },
     {
@@ -14548,27 +14188,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Norfolk Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwich Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Papillon",
       "category": "Tiere"
     },
     {
       "word": "Pekinese",
-      "category": "Tiere"
-    },
-    {
-      "word": "Pembroke Welsh Corgi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Perro de Agua",
       "category": "Tiere"
     },
     {
@@ -14589,10 +14213,6 @@
     },
     {
       "word": "Pomeranian",
-      "category": "Tiere"
-    },
-    {
-      "word": "Rhodesian Ridgeback",
       "category": "Tiere"
     },
     {
@@ -14620,38 +14240,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Scottish Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shar Pei",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shetland Sheepdog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shiba Inu",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shih Tzu",
-      "category": "Tiere"
-    },
-    {
-      "word": "Siberian Husky",
-      "category": "Tiere"
-    },
-    {
-      "word": "Skye Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Staffordshire Bullterrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Tibetmastiff",
       "category": "Tiere"
     },
@@ -14672,35 +14260,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Welsh Corgi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Welsh Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Whippet",
       "category": "Tiere"
     },
     {
-      "word": "Yorkshire Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Abyssinier",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Curl",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Shorthair",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Wirehair",
       "category": "Tiere"
     },
     {
@@ -14720,14 +14284,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Britisch Kurzhaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Britisch Langhaar",
-      "category": "Tiere"
-    },
-    {
       "word": "Burma",
       "category": "Tiere"
     },
@@ -14736,31 +14292,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Cornish Rex",
-      "category": "Tiere"
-    },
-    {
-      "word": "Devon Rex",
-      "category": "Tiere"
-    },
-    {
-      "word": "Europäisch Kurzhaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Exotic Shorthair",
-      "category": "Tiere"
-    },
-    {
-      "word": "Havana Brown",
-      "category": "Tiere"
-    },
-    {
       "word": "Himalayan",
-      "category": "Tiere"
-    },
-    {
-      "word": "Japanische Bobtail",
       "category": "Tiere"
     },
     {
@@ -14768,27 +14300,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Kurilen Bobtail",
-      "category": "Tiere"
-    },
-    {
-      "word": "Maine Coon",
-      "category": "Tiere"
-    },
-    {
       "word": "Manx",
       "category": "Tiere"
     },
     {
-      "word": "Norwegische Waldkatze",
-      "category": "Tiere"
-    },
-    {
       "word": "Ocicat",
-      "category": "Tiere"
-    },
-    {
-      "word": "Orientalisch Kurzhaar",
       "category": "Tiere"
     },
     {
@@ -14800,27 +14316,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Russisch Blau",
-      "category": "Tiere"
-    },
-    {
       "word": "Savannah",
       "category": "Tiere"
     },
     {
-      "word": "Scottish Fold",
-      "category": "Tiere"
-    },
-    {
-      "word": "Selkirk Rex",
-      "category": "Tiere"
-    },
-    {
       "word": "Siamkatze",
-      "category": "Tiere"
-    },
-    {
-      "word": "Sibirische Katze",
       "category": "Tiere"
     },
     {
@@ -14836,19 +14336,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Türkisch Angora",
-      "category": "Tiere"
-    },
-    {
-      "word": "Türkisch Van",
-      "category": "Tiere"
-    },
-    {
       "word": "Tonkinese",
-      "category": "Tiere"
-    },
-    {
-      "word": "Ägyptische Mau",
       "category": "Tiere"
     },
     {
@@ -14868,27 +14356,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Belgisches Kaltblut",
-      "category": "Tiere"
-    },
-    {
       "word": "Berberpferd",
       "category": "Tiere"
     },
     {
       "word": "Clydesdale",
-      "category": "Tiere"
-    },
-    {
-      "word": "Connemara-Pony",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dartmoor-Pony",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsches Reitpony",
       "category": "Tiere"
     },
     {
@@ -14940,14 +14412,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Orlow-Traber",
-      "category": "Tiere"
-    },
-    {
-      "word": "Paso Fino",
-      "category": "Tiere"
-    },
-    {
       "word": "Percheron",
       "category": "Tiere"
     },
@@ -14956,23 +14420,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Quarter Horse",
-      "category": "Tiere"
-    },
-    {
       "word": "Shetlandpony",
       "category": "Tiere"
     },
     {
-      "word": "Shire Horse",
-      "category": "Tiere"
-    },
-    {
       "word": "Tarpan",
-      "category": "Tiere"
-    },
-    {
-      "word": "Tennessee Walking Horse",
       "category": "Tiere"
     },
     {
@@ -14988,10 +14440,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Welsh Pony",
-      "category": "Tiere"
-    },
-    {
       "word": "Zangersheider",
       "category": "Tiere"
     },
@@ -15001,14 +14449,6 @@
     },
     {
       "word": "Angorakaninchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Belgischer Riese",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Riese",
       "category": "Tiere"
     },
     {
@@ -15028,18 +14468,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Meißner Widder",
-      "category": "Tiere"
-    },
-    {
-      "word": "Satin-Kaninchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsches Lachshuhn",
-      "category": "Tiere"
-    },
-    {
       "word": "Araucana",
       "category": "Tiere"
     },
@@ -15049,14 +14477,6 @@
     },
     {
       "word": "Cochin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hamburger Huhn",
-      "category": "Tiere"
-    },
-    {
-      "word": "Holländisches Zwerghuhn",
       "category": "Tiere"
     },
     {
@@ -15076,10 +14496,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Plymouth Rock",
-      "category": "Tiere"
-    },
-    {
       "word": "Seidenhuhn",
       "category": "Tiere"
     },
@@ -15089,14 +14505,6 @@
     },
     {
       "word": "Wyandotte",
-      "category": "Tiere"
-    },
-    {
-      "word": "Appenzeller Spitzhaube",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsche Pekingente",
       "category": "Tiere"
     },
     {
@@ -15112,27 +14520,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Toulouser Gans",
-      "category": "Tiere"
-    },
-    {
-      "word": "Emdener Gans",
-      "category": "Tiere"
-    },
-    {
-      "word": "Diepholzer Gans",
-      "category": "Tiere"
-    },
-    {
       "word": "Pommerngans",
       "category": "Tiere"
     },
     {
       "word": "Lockengans",
-      "category": "Tiere"
-    },
-    {
-      "word": "Afrikanische Graugans",
       "category": "Tiere"
     },
     {
@@ -15156,10 +14548,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Suffolk-Schaf",
-      "category": "Tiere"
-    },
-    {
       "word": "Kamerunschaf",
       "category": "Tiere"
     },
@@ -15169,10 +14557,6 @@
     },
     {
       "word": "Burenziege",
-      "category": "Tiere"
-    },
-    {
-      "word": "Toggenburger Ziege",
       "category": "Tiere"
     },
     {
@@ -15188,15 +14572,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Hampshire-Schwein",
-      "category": "Tiere"
-    },
-    {
       "word": "Pietrain",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bunte Bentheimer",
       "category": "Tiere"
     },
     {
@@ -15212,35 +14588,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Highland-Rind",
-      "category": "Tiere"
-    },
-    {
-      "word": "Jersey-Rind",
-      "category": "Tiere"
-    },
-    {
-      "word": "Angus-Rind",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hereford-Rind",
-      "category": "Tiere"
-    },
-    {
-      "word": "Limousin-Rind",
-      "category": "Tiere"
-    },
-    {
-      "word": "Charolais-Rind",
-      "category": "Tiere"
-    },
-    {
       "word": "Simmentaler",
-      "category": "Tiere"
-    },
-    {
-      "word": "Holstein-Rind",
       "category": "Tiere"
     },
     {
@@ -15256,23 +14604,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Yakutisches Pferd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Przewalski-Pferd",
-      "category": "Tiere"
-    },
-    {
       "word": "Sorraia",
-      "category": "Tiere"
-    },
-    {
-      "word": "Exmoor-Pony",
-      "category": "Tiere"
-    },
-    {
-      "word": "New Forest Pony",
       "category": "Tiere"
     },
     {
@@ -15280,23 +14612,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Dales Pony",
-      "category": "Tiere"
-    },
-    {
       "word": "Hackney",
-      "category": "Tiere"
-    },
-    {
-      "word": "Morgan Horse",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Paint Horse",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Saddlebred",
       "category": "Tiere"
     },
     {
@@ -15304,19 +14620,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Paso Peruano",
-      "category": "Tiere"
-    },
-    {
-      "word": "Mangalarga Marchador",
-      "category": "Tiere"
-    },
-    {
       "word": "Criollo",
-      "category": "Tiere"
-    },
-    {
-      "word": "Caspian Pony",
       "category": "Tiere"
     },
     {
@@ -15328,43 +14632,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Schwarzwälder Kaltblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Süddeutsches Kaltblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alt-Württemberger",
-      "category": "Tiere"
-    },
-    {
       "word": "Dülmener",
       "category": "Tiere"
     },
     {
-      "word": "Senner Pferd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Polnisches Warmblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwedisches Warmblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dänisches Warmblut",
-      "category": "Tiere"
-    },
-    {
       "word": "Finnpferd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwegisches Fjordpferd",
       "category": "Tiere"
     },
     {
@@ -15373,10 +14645,6 @@
     },
     {
       "word": "Baschkire",
-      "category": "Tiere"
-    },
-    {
-      "word": "Achal-Tekkiner",
       "category": "Tiere"
     },
     {
@@ -15389,26 +14657,6 @@
     },
     {
       "word": "Kathiawari",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cleveland Bay",
-      "category": "Tiere"
-    },
-    {
-      "word": "Suffolk Punch",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hackney Pony",
-      "category": "Tiere"
-    },
-    {
-      "word": "Welsh Cob",
-      "category": "Tiere"
-    },
-    {
-      "word": "Welsh Mountain Pony",
       "category": "Tiere"
     },
     {
@@ -15436,22 +14684,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Bretonisches Kaltblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Araber-Berber",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shagya-Araber",
-      "category": "Tiere"
-    },
-    {
-      "word": "Anglo-Araber",
-      "category": "Tiere"
-    },
-    {
       "word": "Traber",
       "category": "Tiere"
     },
@@ -15472,27 +14704,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Sheltie-Meerschweinchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Teddy-Meerschweinchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alpaka-Meerschweinchen",
-      "category": "Tiere"
-    },
-    {
       "word": "Glatthaarmeerschweinchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Roborowski-Zwerghamster",
-      "category": "Tiere"
-    },
-    {
-      "word": "Campbell-Zwerghamster",
       "category": "Tiere"
     },
     {
@@ -15520,43 +14732,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Schwarzschwanz-Präriehund",
-      "category": "Tiere"
-    },
-    {
       "word": "Dachsbracke",
       "category": "Tiere"
     },
     {
-      "word": "Deutscher Wachtelhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kleiner Münsterländer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Großer Münsterländer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsch Kurzhaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsch Drahthaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsch Langhaar",
-      "category": "Tiere"
-    },
-    {
       "word": "Pudelpointer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kleiner Spitz",
       "category": "Tiere"
     },
     {
@@ -15572,47 +14752,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Finnischer Lapphund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwedischer Lapphund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwegischer Elchhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwegischer Lundehund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwedischer Vallhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dansk-Svensk gårdshund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hollandse Herder",
-      "category": "Tiere"
-    },
-    {
-      "word": "Holländischer Schäferhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Saarlooswolfhund",
       "category": "Tiere"
     },
     {
       "word": "Tamaskan",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alaskan Klee Kai",
       "category": "Tiere"
     },
     {
@@ -15632,27 +14776,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Koreanischer Jindo",
-      "category": "Tiere"
-    },
-    {
-      "word": "Thai Ridgeback",
-      "category": "Tiere"
-    },
-    {
-      "word": "Phu Quoc Ridgeback",
-      "category": "Tiere"
-    },
-    {
-      "word": "Chinesischer Schopfhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Xoloitzcuintle",
-      "category": "Tiere"
-    },
-    {
-      "word": "Peruanischer Nackthund",
       "category": "Tiere"
     },
     {
@@ -15660,51 +14784,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Coton de Tuléar",
-      "category": "Tiere"
-    },
-    {
       "word": "Bologneser",
       "category": "Tiere"
     },
     {
-      "word": "Bolonka Zwetna",
-      "category": "Tiere"
-    },
-    {
-      "word": "Russkiy Toy",
-      "category": "Tiere"
-    },
-    {
-      "word": "Prager Rattler",
-      "category": "Tiere"
-    },
-    {
-      "word": "Brüsseler Griffon",
-      "category": "Tiere"
-    },
-    {
-      "word": "Belgischer Griffon",
-      "category": "Tiere"
-    },
-    {
-      "word": "Petit Brabançon",
-      "category": "Tiere"
-    },
-    {
-      "word": "Glen of Imaal Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Picard",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bouvier des Flandres",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bouvier des Ardennes",
       "category": "Tiere"
     },
     {
@@ -15720,10 +14804,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Berger Blanc Suisse",
-      "category": "Tiere"
-    },
-    {
       "word": "Landseer",
       "category": "Tiere"
     },
@@ -15732,27 +14812,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Entlebucher Sennenhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Neapolitanischer Mastiff",
-      "category": "Tiere"
-    },
-    {
-      "word": "Spanischer Mastiff",
-      "category": "Tiere"
-    },
-    {
       "word": "Pyrenäenmastiff",
-      "category": "Tiere"
-    },
-    {
-      "word": "Anatolischer Hirtenhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kaukasischer Owtscharka",
       "category": "Tiere"
     },
     {
@@ -15776,31 +14836,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Bergamasker Hirtenhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Beauceron",
       "category": "Tiere"
     },
     {
       "word": "Bouvier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Old English Sheepdog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cardigan Welsh Corgi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Stumpy Tail Cattle Dog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lancashire Heeler",
       "category": "Tiere"
     },
     {
@@ -15817,22 +14857,6 @@
     },
     {
       "word": "Mittelschnauzer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Miniature Bullterrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Pit Bull Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Olde English Bulldogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Continental Bulldog",
       "category": "Tiere"
     },
     {
@@ -15916,14 +14940,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Rotes Riesenkänguru",
-      "category": "Tiere"
-    },
-    {
-      "word": "Graues Riesenkänguru",
-      "category": "Tiere"
-    },
-    {
       "word": "Antilopenkänguru",
       "category": "Tiere"
     },
@@ -15984,10 +15000,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Hamadryas-Pavian",
-      "category": "Tiere"
-    },
-    {
       "word": "Gelada",
       "category": "Tiere"
     },
@@ -16020,10 +15032,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Goldenes Löwenäffchen",
-      "category": "Tiere"
-    },
-    {
       "word": "Silberäffchen",
       "category": "Tiere"
     },
@@ -16037,14 +15045,6 @@
     },
     {
       "word": "Bambushai",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwarzspitzen-Riffhai",
-      "category": "Tiere"
-    },
-    {
-      "word": "Weißspitzen-Riffhai",
       "category": "Tiere"
     },
     {
@@ -16552,10 +15552,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Earl Grey",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Edamame",
       "category": "Essen & Trinken"
     },
@@ -16689,10 +15685,6 @@
     },
     {
       "word": "Früchtetee",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Garam Masala",
       "category": "Essen & Trinken"
     },
     {
@@ -17532,10 +16524,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Pak Choi",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Palatschinke",
       "category": "Essen & Trinken"
     },
@@ -17549,10 +16537,6 @@
     },
     {
       "word": "Pancetta",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Panna cotta",
       "category": "Essen & Trinken"
     },
     {
@@ -17656,10 +16640,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Pesto Rosso",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Pfifferling",
       "category": "Essen & Trinken"
     },
@@ -17717,10 +16697,6 @@
     },
     {
       "word": "Polenta",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Pommes frites",
       "category": "Essen & Trinken"
     },
     {
@@ -18009,10 +16985,6 @@
     },
     {
       "word": "Schwarzbrot",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Schwarzer Tee",
       "category": "Essen & Trinken"
     },
     {
@@ -19060,10 +18032,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Oberstaatsanwaltin",
-      "category": "Berufe"
-    },
-    {
       "word": "Ökotrophologe",
       "category": "Berufe"
     },
@@ -19109,10 +18077,6 @@
     },
     {
       "word": "Patentanwalt",
-      "category": "Berufe"
-    },
-    {
-      "word": "Patentanwaltin",
       "category": "Berufe"
     },
     {
@@ -19277,10 +18241,6 @@
     },
     {
       "word": "Raumausstatterin",
-      "category": "Berufe"
-    },
-    {
-      "word": "Rechtsanwaltin",
       "category": "Berufe"
     },
     {
@@ -19532,10 +18492,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Steuerfachangestellterin",
-      "category": "Berufe"
-    },
-    {
       "word": "Straßenbauerin",
       "category": "Berufe"
     },
@@ -19756,10 +18712,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Verwaltungsfachangestellterin",
-      "category": "Berufe"
-    },
-    {
       "word": "Veterinär",
       "category": "Berufe"
     },
@@ -19913,10 +18865,6 @@
     },
     {
       "word": "Staatsanwalt",
-      "category": "Berufe"
-    },
-    {
-      "word": "Staatsanwaltin",
       "category": "Berufe"
     },
     {
@@ -20160,10 +19108,6 @@
       "category": "Sport"
     },
     {
-      "word": "Super-G",
-      "category": "Sport"
-    },
-    {
       "word": "Skicross",
       "category": "Sport"
     },
@@ -20173,10 +19117,6 @@
     },
     {
       "word": "Freestyle",
-      "category": "Sport"
-    },
-    {
-      "word": "Stand-up-Paddling",
       "category": "Sport"
     },
     {
@@ -20324,19 +19264,7 @@
       "category": "Sport"
     },
     {
-      "word": "Jiu-Jitsu",
-      "category": "Sport"
-    },
-    {
-      "word": "Ju-Jutsu",
-      "category": "Sport"
-    },
-    {
       "word": "Hapkido",
-      "category": "Sport"
-    },
-    {
-      "word": "Kung-Fu",
       "category": "Sport"
     },
     {
@@ -20401,10 +19329,6 @@
     },
     {
       "word": "Torwandschießen",
-      "category": "Sport"
-    },
-    {
-      "word": "E-Sport",
       "category": "Sport"
     },
     {
@@ -20568,18 +19492,6 @@
       "category": "Sport"
     },
     {
-      "word": "Para-Leichtathletik",
-      "category": "Sport"
-    },
-    {
-      "word": "Para-Schwimmen",
-      "category": "Sport"
-    },
-    {
-      "word": "Para-Ski",
-      "category": "Sport"
-    },
-    {
       "word": "Schlittenhockey",
       "category": "Sport"
     },
@@ -20669,10 +19581,6 @@
     },
     {
       "word": "Seitenwagenrennen",
-      "category": "Sport"
-    },
-    {
-      "word": "Jet-Ski",
       "category": "Sport"
     },
     {
@@ -20865,10 +19773,6 @@
     },
     {
       "word": "Mountainclimber",
-      "category": "Sport"
-    },
-    {
-      "word": "Sit-up",
       "category": "Sport"
     },
     {
@@ -21296,10 +20200,6 @@
       "category": "Sport"
     },
     {
-      "word": "Play-in",
-      "category": "Sport"
-    },
-    {
       "word": "Etappe",
       "category": "Sport"
     },
@@ -21445,10 +20345,6 @@
     },
     {
       "word": "Wertungsrichter",
-      "category": "Sport"
-    },
-    {
-      "word": "Co-Trainer",
       "category": "Sport"
     },
     {
@@ -21668,10 +20564,6 @@
       "category": "Sport"
     },
     {
-      "word": "Sport-BH",
-      "category": "Sport"
-    },
-    {
       "word": "Sportsocken",
       "category": "Sport"
     },
@@ -21784,10 +20676,6 @@
       "category": "Sport"
     },
     {
-      "word": "GPS-Gerät",
-      "category": "Sport"
-    },
-    {
       "word": "Trinkflasche",
       "category": "Sport"
     },
@@ -21837,10 +20725,6 @@
     },
     {
       "word": "Wärmepack",
-      "category": "Sport"
-    },
-    {
-      "word": "Erste-Hilfe-Kasten",
       "category": "Sport"
     },
     {
@@ -22152,10 +21036,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Es-Klarinette",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Bassoboe",
       "category": "Musikinstrumente"
     },
@@ -22244,26 +21124,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Es-Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "B-Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "C-Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "D-Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "A-Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Barocktrompete",
       "category": "Musikinstrumente"
     },
@@ -22289,10 +21149,6 @@
     },
     {
       "word": "Alpenbüchel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schweizer Alphorn",
       "category": "Musikinstrumente"
     },
     {
@@ -22388,10 +21244,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Böhmische Harfe",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Paraguayharfe",
       "category": "Musikinstrumente"
     },
@@ -22401,14 +21253,6 @@
     },
     {
       "word": "Llaneraharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arpa llanera",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arpa paraguaya",
       "category": "Musikinstrumente"
     },
     {
@@ -22452,22 +21296,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Epinette des Vosges",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Appalachian Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mountain Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hammered Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Santur",
       "category": "Musikinstrumente"
     },
@@ -22492,19 +21320,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Kantele mit fünf Saiten",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Autoharp",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chord-Zither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Concert-Zither",
       "category": "Musikinstrumente"
     },
     {
@@ -22524,14 +21340,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Musical Saw",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Singende Säge",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Glasharfe",
       "category": "Musikinstrumente"
     },
@@ -22544,19 +21352,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Cristal Baschet",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ondes Martenot",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Trautonium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mixturtrautonium",
       "category": "Musikinstrumente"
     },
     {
@@ -22568,19 +21364,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Ondes musicales",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Ätherophon",
       "category": "Musikinstrumente"
     },
     {
       "word": "Tannerin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hammond Novachord",
       "category": "Musikinstrumente"
     },
     {
@@ -22593,10 +21381,6 @@
     },
     {
       "word": "Omnichord",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Suzuki QChord",
       "category": "Musikinstrumente"
     },
     {
@@ -22616,10 +21400,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Moog-Synthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Modularsynthesizer",
       "category": "Musikinstrumente"
     },
@@ -22629,14 +21409,6 @@
     },
     {
       "word": "Digitalsynthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "FM-Synthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Wavetable-Synthesizer",
       "category": "Musikinstrumente"
     },
     {
@@ -22653,10 +21425,6 @@
     },
     {
       "word": "Sequenzer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "MIDI-Keyboard",
       "category": "Musikinstrumente"
     },
     {
@@ -22700,27 +21468,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "E-Flügel",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Clavinova",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rhodes-Piano",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Wurlitzer-Piano",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hohner Pianet",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Weltmeister Toccata",
       "category": "Musikinstrumente"
     },
     {
@@ -22733,10 +21481,6 @@
     },
     {
       "word": "Selbstspielklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Player Piano",
       "category": "Musikinstrumente"
     },
     {
@@ -22808,18 +21552,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Steirische Harmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Diatonische Harmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chromatische Harmonika",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Knopfakkordeon",
       "category": "Musikinstrumente"
     },
@@ -22829,22 +21561,6 @@
     },
     {
       "word": "Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Englische Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Anglo-Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Duet-Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chemnitzer Konzertina",
       "category": "Musikinstrumente"
     },
     {
@@ -22864,15 +21580,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Diatonisches Knopfakkordeon",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tremoloharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chromatische Mundharmonika",
       "category": "Musikinstrumente"
     },
     {
@@ -22884,10 +21592,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Pocket Piano",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Mundflöte",
       "category": "Musikinstrumente"
     },
@@ -22896,35 +21600,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Great Highland Bagpipe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Northumbrian Smallpipes",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Border Pipes",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Scottish Smallpipes",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Galicische Gaita",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Asturische Gaita",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Zampogna",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Musette de cour",
       "category": "Musikinstrumente"
     },
     {
@@ -22980,14 +21656,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Low Whistle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Irish Flute",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Fife",
       "category": "Musikinstrumente"
     },
@@ -23005,10 +21673,6 @@
     },
     {
       "word": "Quena",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Quenacho",
       "category": "Musikinstrumente"
     },
     {
@@ -23032,19 +21696,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Moxeño",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Bansuri",
       "category": "Musikinstrumente"
     },
     {
       "word": "Venu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Carnatic Flute",
       "category": "Musikinstrumente"
     },
     {
@@ -23069,14 +21725,6 @@
     },
     {
       "word": "Xiao",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Paixiao",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dongxiao",
       "category": "Musikinstrumente"
     },
     {
@@ -23132,23 +21780,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Jaw Harp",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jew's Harp",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Kubing",
       "category": "Musikinstrumente"
     },
     {
       "word": "Genggong",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dan moi",
       "category": "Musikinstrumente"
     },
     {
@@ -23172,10 +21808,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Duxianqin",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Liuqin",
       "category": "Musikinstrumente"
     },
@@ -23196,10 +21828,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Liuyeqin",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Konghou",
       "category": "Musikinstrumente"
     },
@@ -23212,23 +21840,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Satsuma Biwa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chikuzen Biwa",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Gottan",
       "category": "Musikinstrumente"
     },
     {
       "word": "Sanshin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tsugaru Shamisen",
       "category": "Musikinstrumente"
     },
     {
@@ -23288,15 +21904,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Saenghwang",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Yanggeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kkwaenggwari",
       "category": "Musikinstrumente"
     },
     {
@@ -23348,18 +21956,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Nagado-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shime-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Okedo-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tsuzumi",
       "category": "Musikinstrumente"
     },
@@ -23392,18 +21988,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Kagura-Suzu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Den-Den-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Uchiwa-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Bendir",
       "category": "Musikinstrumente"
     },
@@ -23424,10 +22008,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Frame Drum",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Bodhrán",
       "category": "Musikinstrumente"
     },
@@ -23437,14 +22017,6 @@
     },
     {
       "word": "Doumbek",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tabla Tarang",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pakhawaj",
       "category": "Musikinstrumente"
     },
     {
@@ -23500,10 +22072,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Naqqara",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Dafli",
       "category": "Musikinstrumente"
     },
@@ -23517,10 +22085,6 @@
     },
     {
       "word": "Tombak",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tombak-e-Zourkhaneh",
       "category": "Musikinstrumente"
     },
     {
@@ -23572,10 +22136,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Cura saz",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Cumbus",
       "category": "Musikinstrumente"
     },
@@ -23620,10 +22180,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Kyl-kobyz",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Komuz",
       "category": "Musikinstrumente"
     },
@@ -23637,10 +22193,6 @@
     },
     {
       "word": "Tembur",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tembûr",
       "category": "Musikinstrumente"
     },
     {
@@ -23684,43 +22236,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Hurdy-gurdy",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Vielle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vielle à roue",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola d'amore",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola pomposa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola bastarda",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola da braccio",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola da spalla",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola organista",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violoncello piccolo",
       "category": "Musikinstrumente"
     },
     {
@@ -23748,18 +22264,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Violino piccolo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violino tenor",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violino pomposo",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Violotta",
       "category": "Musikinstrumente"
     },
@@ -23772,19 +22276,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Tromba marina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Marine Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Geigenwerk",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bowed Psaltery",
       "category": "Musikinstrumente"
     },
     {
@@ -23820,10 +22312,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Knee Fiddle",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Gadulka",
       "category": "Musikinstrumente"
     },
@@ -23841,10 +22329,6 @@
     },
     {
       "word": "Kamancha",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Morin Khuur",
       "category": "Musikinstrumente"
     },
     {
@@ -23933,14 +22417,6 @@
     },
     {
       "word": "Ravanastron",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trompette de Béarn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trompette marine",
       "category": "Musikinstrumente"
     },
     {
@@ -24036,26 +22512,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Xirimia",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chirimía",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mijwiz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arghul",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Maqrunah",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Kaval",
       "category": "Musikinstrumente"
     },
@@ -24080,10 +22536,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Parkapzuk",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Zourna",
       "category": "Musikinstrumente"
     },
@@ -24096,14 +22548,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Kakaki",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Atenteben",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Oja",
       "category": "Musikinstrumente"
     },
@@ -24112,15 +22556,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Fula Flute",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tambin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sosso Bala",
       "category": "Musikinstrumente"
     },
     {
@@ -24228,22 +22664,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenwasserkocher",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenkaffeemaschine",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenespressomaschine",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenmilchaufschäumer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenreiskocher",
       "category": "Dinge im Haushalt"
     },
@@ -24252,43 +22672,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenbrotbackautomat",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenstandmixer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenpürierstab",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenkontaktgrill",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchensandwichmaker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenwaffeleisen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenracletteofen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenfonduegerät",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchendörrautomat",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Kücheneismaschine",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24300,18 +22684,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchengeschirrspüler",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenkühlschrank",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchengefrierschrank",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenherd",
       "category": "Dinge im Haushalt"
     },
@@ -24320,23 +22692,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenmikrowelle",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenvakuumierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenbrotkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchengewürzregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchengewürzmühle",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24344,15 +22700,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenabtropfgestell",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenspülbürste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenspülschwamm",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24417,26 +22765,6 @@
     },
     {
       "word": "Waschkapsel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschfleckenentferner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschdosierkugel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschflusensieb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschflusenfilter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschtrocknerball",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24732,27 +23060,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Fensterrollladengurt",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterrollladenmotor",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterrollokette",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterrollohalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Fensterjalousie",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterjalousienband",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24768,35 +23076,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Fenstervorhangschiene",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fenstervorhangstange",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fenstergardinenhaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fenstergardinenring",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterraffhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Fensterraffrollo",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterlüftungsgitter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterfliegengitterrahmen",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24992,10 +23272,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsetikettierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsclip",
       "category": "Dinge im Haushalt"
     },
@@ -25016,23 +23292,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsfrischhaltefolie",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsalufolie",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsbackpapier",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgefrierbeutel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsvakuumbeutel",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25040,43 +23300,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratskartoffelkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratszwiebelkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsobstkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgemüseschale",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzglas",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzdose",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzstreuer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratssalzstreuer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratspfefferstreuer",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25084,35 +23308,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsessigflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratssirupflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsmarmeladenglas",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratshonigglas",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsnudelglas",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsmehlbehälter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratszuckerbehälter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratskaffeedose",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25124,47 +23320,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsbonbondose",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsfrischhaltedose",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgefrierbox",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgefrierbehälter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratseiswürfelform",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsmessbecher",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratstrichter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsportionierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsclipschiene",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsdosenöffner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsflaschenöffner",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25244,10 +23400,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Aufbewahrungssortierkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Aufbewahrungseinsatz",
       "category": "Dinge im Haushalt"
     },
@@ -25256,23 +23408,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Aufbewahrungsschubladenteiler",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsschubladeneinsatz",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Aufbewahrungsbesteckkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsbesteckeinsatz",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsschmuckkästchen",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25329,10 +23465,6 @@
     },
     {
       "word": "Aufbewahrungskleiderhülle",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungskleiderschutzhülle",
       "category": "Dinge im Haushalt"
     }
   ]
