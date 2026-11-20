@@ -2496,9 +2496,9 @@
         const previousTarget=this.targetWord.toLocaleLowerCase('de-DE');
         this.targetWord='';
         const statusText=document.getElementById('model-status-text');
-        if(statusText)statusText.textContent='Prüfe Nomenliste und wähle ein Lösungswort …';
+        if(statusText)statusText.textContent='Prüfe Wortliste und wähle ein Lösungswort …';
         if(!this.dictionaryReady || !this.dictionaryTargetWords.length){
-          if(statusText)statusText.textContent='Nomenliste nicht verfügbar – bitte Seite neu laden.';
+          if(statusText)statusText.textContent='Wortliste nicht verfügbar – bitte Seite neu laden.';
           return;
         }
         let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
@@ -2510,7 +2510,7 @@
           availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==previousTarget);
         }
         if(!availableWords.length){
-          if(statusText)statusText.textContent='Keine gültigen Nomen für eine neue Runde vorhanden.';
+          if(statusText)statusText.textContent='Keine gültigen Wörter für eine neue Runde vorhanden.';
           return;
         }
         const randomIndex=max=>{
