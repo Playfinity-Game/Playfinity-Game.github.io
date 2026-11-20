@@ -2867,7 +2867,9 @@
         document.getElementById('pir-submit').onclick = () => {
           if(PauseController.paused)return;
           const val = parseFloat(document.getElementById('pir-input').value);
-          if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
+          if (!isNaN(val) && this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' })) {
+            document.getElementById('pir-input').value = '';
+          }
         };
         document.getElementById('pir-input').addEventListener('keydown', event => {
           if (event.key === 'Enter') document.getElementById('pir-submit').click();
@@ -2937,7 +2939,7 @@
       },
 
       submitGuess(val, player = null) {
-        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return false;
         if (!this.roundOpen) {
           this.roundOpen = true;
           this.guesses = [];
@@ -2947,13 +2949,13 @@
         const existingIndex = this.guesses.findIndex(item => String(item.player.id) === String(identity.id));
         if (existingIndex >= 0) {
           const existing = this.guesses[existingIndex];
-          if ((existing.attempts || 1) >= 2) return;
+          if ((existing.attempts || 1) >= 2) return false;
           this.guesses[existingIndex] = { value: val, player: identity, attempts: (existing.attempts || 1) + 1 };
         } else {
           this.guesses.push({ value: val, player: identity, attempts: 1 });
         }
         this.renderLiveGuesses();
-        document.getElementById('pir-input').value = '';
+        return true;
       },
 
       renderLiveGuesses() {
