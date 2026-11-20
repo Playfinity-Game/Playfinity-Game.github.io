@@ -4216,10 +4216,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Schwarzwälder Kirschtorte",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Seelachs",
       "category": "Essen & Trinken"
     },
@@ -7572,10 +7568,6 @@
       "category": "Schule"
     },
     {
-      "word": "Liniertes Papier",
-      "category": "Schule"
-    },
-    {
       "word": "Löschblatt",
       "category": "Schule"
     },
@@ -7929,10 +7921,6 @@
     },
     {
       "word": "Erlebnispark",
-      "category": "Freizeit"
-    },
-    {
-      "word": "Escape Room",
       "category": "Freizeit"
     },
     {
@@ -10564,10 +10552,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Afrikanischer Elefant",
-      "category": "Tiere"
-    },
-    {
       "word": "Agame",
       "category": "Tiere"
     },
@@ -10593,10 +10577,6 @@
     },
     {
       "word": "Aras",
-      "category": "Tiere"
-    },
-    {
-      "word": "Arktischer Fuchs",
       "category": "Tiere"
     },
     {
@@ -10925,10 +10905,6 @@
     },
     {
       "word": "Nerz",
-      "category": "Tiere"
-    },
-    {
-      "word": "Nordatlantischer Glattwal",
       "category": "Tiere"
     },
     {
@@ -11936,10 +11912,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Bircher Müsli",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Birnensaft",
       "category": "Essen & Trinken"
     },
@@ -12029,10 +12001,6 @@
     },
     {
       "word": "Cracker",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Crème brûlée",
       "category": "Essen & Trinken"
     },
     {
@@ -13668,10 +13636,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Chapman Stick",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Cimbalom",
       "category": "Musikinstrumente"
     },
@@ -13704,10 +13668,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Elektronisches Schlagzeug",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Handharmonika",
       "category": "Musikinstrumente"
     },
@@ -13725,10 +13685,6 @@
     },
     {
       "word": "Jagdflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Keltische Harfe",
       "category": "Musikinstrumente"
     },
     {
@@ -13801,10 +13757,6 @@
     },
     {
       "word": "Pikkoloflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pocket Trumpet",
       "category": "Musikinstrumente"
     },
     {
@@ -13884,23 +13836,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Tin Whistle",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Trumscheit",
       "category": "Musikinstrumente"
     },
     {
-      "word": "Uilleann Pipes",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Vibrafon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola da gamba",
       "category": "Musikinstrumente"
     },
     {
@@ -14104,10 +14044,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Jüdische Harfe",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Leierkasten",
       "category": "Musikinstrumente"
     },
@@ -14216,43 +14152,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Airedale Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Akita",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alaskan Malamute",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Bulldog",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Cocker Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Appenzeller Sennenhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Shepherd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Cattle Dog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Kelpie",
-      "category": "Tiere"
-    },
-    {
-      "word": "Australian Terrier",
       "category": "Tiere"
     },
     {
@@ -14268,27 +14168,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Basset Hound",
-      "category": "Tiere"
-    },
-    {
       "word": "Beagle",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bearded Collie",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bedlington Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Belgischer Schäferhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Berner Sennenhund",
       "category": "Tiere"
     },
     {
@@ -14296,27 +14176,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Bichon Frisé",
-      "category": "Tiere"
-    },
-    {
       "word": "Bobtail",
       "category": "Tiere"
     },
     {
-      "word": "Border Collie",
-      "category": "Tiere"
-    },
-    {
-      "word": "Border Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Bordeauxdogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Boston Terrier",
       "category": "Tiere"
     },
     {
@@ -14336,27 +14200,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Cairn Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cane Corso",
-      "category": "Tiere"
-    },
-    {
       "word": "Chihuahua",
       "category": "Tiere"
     },
     {
       "word": "Chow-Chow",
-      "category": "Tiere"
-    },
-    {
-      "word": "Clumber Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cocker Spaniel",
       "category": "Tiere"
     },
     {
@@ -14368,39 +14216,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Deutsche Dogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Pinscher",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Schäferhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Spitz",
-      "category": "Tiere"
-    },
-    {
       "word": "Dobermann",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dogo Argentino",
-      "category": "Tiere"
-    },
-    {
-      "word": "English Setter",
-      "category": "Tiere"
-    },
-    {
-      "word": "English Springer Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "English Toy Terrier",
       "category": "Tiere"
     },
     {
@@ -14408,35 +14224,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Field Spaniel",
-      "category": "Tiere"
-    },
-    {
-      "word": "Finnischer Spitz",
-      "category": "Tiere"
-    },
-    {
-      "word": "Flat Coated Retriever",
-      "category": "Tiere"
-    },
-    {
       "word": "Foxterrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Französische Bulldogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Galgo Español",
-      "category": "Tiere"
-    },
-    {
-      "word": "Golden Retriever",
-      "category": "Tiere"
-    },
-    {
-      "word": "Gordon Setter",
       "category": "Tiere"
     },
     {
@@ -14452,43 +14240,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Irish Setter",
-      "category": "Tiere"
-    },
-    {
-      "word": "Irish Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Irish Wolfhound",
-      "category": "Tiere"
-    },
-    {
-      "word": "Jack Russell Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Japan Chin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Japan Spitz",
-      "category": "Tiere"
-    },
-    {
       "word": "Kangal",
       "category": "Tiere"
     },
     {
       "word": "Keeshond",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kerry Blue Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "King Charles Spaniel",
       "category": "Tiere"
     },
     {
@@ -14504,23 +14260,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Labrador Retriever",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lagotto Romagnolo",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lakeland Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Leonberger",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lhasa Apso",
       "category": "Tiere"
     },
     {
@@ -14529,10 +14269,6 @@
     },
     {
       "word": "Malteser",
-      "category": "Tiere"
-    },
-    {
-      "word": "Manchester Terrier",
       "category": "Tiere"
     },
     {
@@ -14548,27 +14284,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Norfolk Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwich Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Papillon",
       "category": "Tiere"
     },
     {
       "word": "Pekinese",
-      "category": "Tiere"
-    },
-    {
-      "word": "Pembroke Welsh Corgi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Perro de Agua",
       "category": "Tiere"
     },
     {
@@ -14589,10 +14309,6 @@
     },
     {
       "word": "Pomeranian",
-      "category": "Tiere"
-    },
-    {
-      "word": "Rhodesian Ridgeback",
       "category": "Tiere"
     },
     {
@@ -14620,38 +14336,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Scottish Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shar Pei",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shetland Sheepdog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shiba Inu",
-      "category": "Tiere"
-    },
-    {
-      "word": "Shih Tzu",
-      "category": "Tiere"
-    },
-    {
-      "word": "Siberian Husky",
-      "category": "Tiere"
-    },
-    {
-      "word": "Skye Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Staffordshire Bullterrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Tibetmastiff",
       "category": "Tiere"
     },
@@ -14672,35 +14356,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Welsh Corgi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Welsh Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Whippet",
       "category": "Tiere"
     },
     {
-      "word": "Yorkshire Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Abyssinier",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Curl",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Shorthair",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Wirehair",
       "category": "Tiere"
     },
     {
@@ -14720,14 +14380,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Britisch Kurzhaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Britisch Langhaar",
-      "category": "Tiere"
-    },
-    {
       "word": "Burma",
       "category": "Tiere"
     },
@@ -14736,31 +14388,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Cornish Rex",
-      "category": "Tiere"
-    },
-    {
-      "word": "Devon Rex",
-      "category": "Tiere"
-    },
-    {
-      "word": "Europäisch Kurzhaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Exotic Shorthair",
-      "category": "Tiere"
-    },
-    {
-      "word": "Havana Brown",
-      "category": "Tiere"
-    },
-    {
       "word": "Himalayan",
-      "category": "Tiere"
-    },
-    {
-      "word": "Japanische Bobtail",
       "category": "Tiere"
     },
     {
@@ -14768,27 +14396,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Kurilen Bobtail",
-      "category": "Tiere"
-    },
-    {
-      "word": "Maine Coon",
-      "category": "Tiere"
-    },
-    {
       "word": "Manx",
       "category": "Tiere"
     },
     {
-      "word": "Norwegische Waldkatze",
-      "category": "Tiere"
-    },
-    {
       "word": "Ocicat",
-      "category": "Tiere"
-    },
-    {
-      "word": "Orientalisch Kurzhaar",
       "category": "Tiere"
     },
     {
@@ -14800,27 +14412,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Russisch Blau",
-      "category": "Tiere"
-    },
-    {
       "word": "Savannah",
       "category": "Tiere"
     },
     {
-      "word": "Scottish Fold",
-      "category": "Tiere"
-    },
-    {
-      "word": "Selkirk Rex",
-      "category": "Tiere"
-    },
-    {
       "word": "Siamkatze",
-      "category": "Tiere"
-    },
-    {
-      "word": "Sibirische Katze",
       "category": "Tiere"
     },
     {
@@ -14836,19 +14432,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Türkisch Angora",
-      "category": "Tiere"
-    },
-    {
-      "word": "Türkisch Van",
-      "category": "Tiere"
-    },
-    {
       "word": "Tonkinese",
-      "category": "Tiere"
-    },
-    {
-      "word": "Ägyptische Mau",
       "category": "Tiere"
     },
     {
@@ -14868,10 +14452,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Belgisches Kaltblut",
-      "category": "Tiere"
-    },
-    {
       "word": "Berberpferd",
       "category": "Tiere"
     },
@@ -14885,10 +14465,6 @@
     },
     {
       "word": "Dartmoor-Pony",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsches Reitpony",
       "category": "Tiere"
     },
     {
@@ -14944,10 +14520,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Paso Fino",
-      "category": "Tiere"
-    },
-    {
       "word": "Percheron",
       "category": "Tiere"
     },
@@ -14956,23 +14528,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Quarter Horse",
-      "category": "Tiere"
-    },
-    {
       "word": "Shetlandpony",
       "category": "Tiere"
     },
     {
-      "word": "Shire Horse",
-      "category": "Tiere"
-    },
-    {
       "word": "Tarpan",
-      "category": "Tiere"
-    },
-    {
-      "word": "Tennessee Walking Horse",
       "category": "Tiere"
     },
     {
@@ -14988,10 +14548,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Welsh Pony",
-      "category": "Tiere"
-    },
-    {
       "word": "Zangersheider",
       "category": "Tiere"
     },
@@ -15001,14 +14557,6 @@
     },
     {
       "word": "Angorakaninchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Belgischer Riese",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutscher Riese",
       "category": "Tiere"
     },
     {
@@ -15028,15 +14576,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Meißner Widder",
-      "category": "Tiere"
-    },
-    {
       "word": "Satin-Kaninchen",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsches Lachshuhn",
       "category": "Tiere"
     },
     {
@@ -15049,14 +14589,6 @@
     },
     {
       "word": "Cochin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hamburger Huhn",
-      "category": "Tiere"
-    },
-    {
-      "word": "Holländisches Zwerghuhn",
       "category": "Tiere"
     },
     {
@@ -15076,10 +14608,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Plymouth Rock",
-      "category": "Tiere"
-    },
-    {
       "word": "Seidenhuhn",
       "category": "Tiere"
     },
@@ -15089,14 +14617,6 @@
     },
     {
       "word": "Wyandotte",
-      "category": "Tiere"
-    },
-    {
-      "word": "Appenzeller Spitzhaube",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsche Pekingente",
       "category": "Tiere"
     },
     {
@@ -15112,27 +14632,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Toulouser Gans",
-      "category": "Tiere"
-    },
-    {
-      "word": "Emdener Gans",
-      "category": "Tiere"
-    },
-    {
-      "word": "Diepholzer Gans",
-      "category": "Tiere"
-    },
-    {
       "word": "Pommerngans",
       "category": "Tiere"
     },
     {
       "word": "Lockengans",
-      "category": "Tiere"
-    },
-    {
-      "word": "Afrikanische Graugans",
       "category": "Tiere"
     },
     {
@@ -15172,10 +14676,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Toggenburger Ziege",
-      "category": "Tiere"
-    },
-    {
       "word": "Saanenziege",
       "category": "Tiere"
     },
@@ -15193,10 +14693,6 @@
     },
     {
       "word": "Pietrain",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bunte Bentheimer",
       "category": "Tiere"
     },
     {
@@ -15256,10 +14752,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Yakutisches Pferd",
-      "category": "Tiere"
-    },
-    {
       "word": "Przewalski-Pferd",
       "category": "Tiere"
     },
@@ -15272,15 +14764,7 @@
       "category": "Tiere"
     },
     {
-      "word": "New Forest Pony",
-      "category": "Tiere"
-    },
-    {
       "word": "Fellpony",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dales Pony",
       "category": "Tiere"
     },
     {
@@ -15288,35 +14772,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Morgan Horse",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Paint Horse",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Saddlebred",
-      "category": "Tiere"
-    },
-    {
       "word": "Standardbred",
       "category": "Tiere"
     },
     {
-      "word": "Paso Peruano",
-      "category": "Tiere"
-    },
-    {
-      "word": "Mangalarga Marchador",
-      "category": "Tiere"
-    },
-    {
       "word": "Criollo",
-      "category": "Tiere"
-    },
-    {
-      "word": "Caspian Pony",
       "category": "Tiere"
     },
     {
@@ -15328,14 +14788,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Schwarzwälder Kaltblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Süddeutsches Kaltblut",
-      "category": "Tiere"
-    },
-    {
       "word": "Alt-Württemberger",
       "category": "Tiere"
     },
@@ -15344,27 +14796,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Senner Pferd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Polnisches Warmblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwedisches Warmblut",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dänisches Warmblut",
-      "category": "Tiere"
-    },
-    {
       "word": "Finnpferd",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwegisches Fjordpferd",
       "category": "Tiere"
     },
     {
@@ -15392,26 +14824,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Cleveland Bay",
-      "category": "Tiere"
-    },
-    {
-      "word": "Suffolk Punch",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hackney Pony",
-      "category": "Tiere"
-    },
-    {
-      "word": "Welsh Cob",
-      "category": "Tiere"
-    },
-    {
-      "word": "Welsh Mountain Pony",
-      "category": "Tiere"
-    },
-    {
       "word": "Pottok",
       "category": "Tiere"
     },
@@ -15433,10 +14845,6 @@
     },
     {
       "word": "Boulonnais",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bretonisches Kaltblut",
       "category": "Tiere"
     },
     {
@@ -15528,35 +14936,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Deutscher Wachtelhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kleiner Münsterländer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Großer Münsterländer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsch Kurzhaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsch Drahthaar",
-      "category": "Tiere"
-    },
-    {
-      "word": "Deutsch Langhaar",
-      "category": "Tiere"
-    },
-    {
       "word": "Pudelpointer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kleiner Spitz",
       "category": "Tiere"
     },
     {
@@ -15572,47 +14952,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Finnischer Lapphund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwedischer Lapphund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwegischer Elchhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Norwegischer Lundehund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Schwedischer Vallhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Dansk-Svensk gårdshund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Hollandse Herder",
-      "category": "Tiere"
-    },
-    {
-      "word": "Holländischer Schäferhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Saarlooswolfhund",
       "category": "Tiere"
     },
     {
       "word": "Tamaskan",
-      "category": "Tiere"
-    },
-    {
-      "word": "Alaskan Klee Kai",
       "category": "Tiere"
     },
     {
@@ -15632,27 +14976,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Koreanischer Jindo",
-      "category": "Tiere"
-    },
-    {
-      "word": "Thai Ridgeback",
-      "category": "Tiere"
-    },
-    {
-      "word": "Phu Quoc Ridgeback",
-      "category": "Tiere"
-    },
-    {
-      "word": "Chinesischer Schopfhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Xoloitzcuintle",
-      "category": "Tiere"
-    },
-    {
-      "word": "Peruanischer Nackthund",
       "category": "Tiere"
     },
     {
@@ -15660,51 +14984,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Coton de Tuléar",
-      "category": "Tiere"
-    },
-    {
       "word": "Bologneser",
       "category": "Tiere"
     },
     {
-      "word": "Bolonka Zwetna",
-      "category": "Tiere"
-    },
-    {
-      "word": "Russkiy Toy",
-      "category": "Tiere"
-    },
-    {
-      "word": "Prager Rattler",
-      "category": "Tiere"
-    },
-    {
-      "word": "Brüsseler Griffon",
-      "category": "Tiere"
-    },
-    {
-      "word": "Belgischer Griffon",
-      "category": "Tiere"
-    },
-    {
-      "word": "Petit Brabançon",
-      "category": "Tiere"
-    },
-    {
-      "word": "Glen of Imaal Terrier",
-      "category": "Tiere"
-    },
-    {
       "word": "Picard",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bouvier des Flandres",
-      "category": "Tiere"
-    },
-    {
-      "word": "Bouvier des Ardennes",
       "category": "Tiere"
     },
     {
@@ -15720,10 +15004,6 @@
       "category": "Tiere"
     },
     {
-      "word": "Berger Blanc Suisse",
-      "category": "Tiere"
-    },
-    {
       "word": "Landseer",
       "category": "Tiere"
     },
@@ -15732,27 +15012,7 @@
       "category": "Tiere"
     },
     {
-      "word": "Entlebucher Sennenhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Neapolitanischer Mastiff",
-      "category": "Tiere"
-    },
-    {
-      "word": "Spanischer Mastiff",
-      "category": "Tiere"
-    },
-    {
       "word": "Pyrenäenmastiff",
-      "category": "Tiere"
-    },
-    {
-      "word": "Anatolischer Hirtenhund",
-      "category": "Tiere"
-    },
-    {
-      "word": "Kaukasischer Owtscharka",
       "category": "Tiere"
     },
     {
@@ -15776,31 +15036,11 @@
       "category": "Tiere"
     },
     {
-      "word": "Bergamasker Hirtenhund",
-      "category": "Tiere"
-    },
-    {
       "word": "Beauceron",
       "category": "Tiere"
     },
     {
       "word": "Bouvier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Old English Sheepdog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Cardigan Welsh Corgi",
-      "category": "Tiere"
-    },
-    {
-      "word": "Stumpy Tail Cattle Dog",
-      "category": "Tiere"
-    },
-    {
-      "word": "Lancashire Heeler",
       "category": "Tiere"
     },
     {
@@ -15817,22 +15057,6 @@
     },
     {
       "word": "Mittelschnauzer",
-      "category": "Tiere"
-    },
-    {
-      "word": "Miniature Bullterrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "American Pit Bull Terrier",
-      "category": "Tiere"
-    },
-    {
-      "word": "Olde English Bulldogge",
-      "category": "Tiere"
-    },
-    {
-      "word": "Continental Bulldog",
       "category": "Tiere"
     },
     {
@@ -15913,14 +15137,6 @@
     },
     {
       "word": "Riesenkänguru",
-      "category": "Tiere"
-    },
-    {
-      "word": "Rotes Riesenkänguru",
-      "category": "Tiere"
-    },
-    {
-      "word": "Graues Riesenkänguru",
       "category": "Tiere"
     },
     {
@@ -16017,10 +15233,6 @@
     },
     {
       "word": "Kaiserschnurrbarttamarin",
-      "category": "Tiere"
-    },
-    {
-      "word": "Goldenes Löwenäffchen",
       "category": "Tiere"
     },
     {
@@ -16552,10 +15764,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Earl Grey",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Edamame",
       "category": "Essen & Trinken"
     },
@@ -16689,10 +15897,6 @@
     },
     {
       "word": "Früchtetee",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Garam Masala",
       "category": "Essen & Trinken"
     },
     {
@@ -17532,10 +16736,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Pak Choi",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Palatschinke",
       "category": "Essen & Trinken"
     },
@@ -17549,10 +16749,6 @@
     },
     {
       "word": "Pancetta",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Panna cotta",
       "category": "Essen & Trinken"
     },
     {
@@ -17656,10 +16852,6 @@
       "category": "Essen & Trinken"
     },
     {
-      "word": "Pesto Rosso",
-      "category": "Essen & Trinken"
-    },
-    {
       "word": "Pfifferling",
       "category": "Essen & Trinken"
     },
@@ -17717,10 +16909,6 @@
     },
     {
       "word": "Polenta",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Pommes frites",
       "category": "Essen & Trinken"
     },
     {
@@ -18009,10 +17197,6 @@
     },
     {
       "word": "Schwarzbrot",
-      "category": "Essen & Trinken"
-    },
-    {
-      "word": "Schwarzer Tee",
       "category": "Essen & Trinken"
     },
     {
@@ -22268,10 +21452,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Schweizer Alphorn",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Yidaki",
       "category": "Musikinstrumente"
     },
@@ -22364,10 +21544,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Böhmische Harfe",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Paraguayharfe",
       "category": "Musikinstrumente"
     },
@@ -22377,14 +21553,6 @@
     },
     {
       "word": "Llaneraharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arpa llanera",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arpa paraguaya",
       "category": "Musikinstrumente"
     },
     {
@@ -22428,18 +21596,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Appalachian Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mountain Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hammered Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Santur",
       "category": "Musikinstrumente"
     },
@@ -22461,10 +21617,6 @@
     },
     {
       "word": "Kannel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kantele mit fünf Saiten",
       "category": "Musikinstrumente"
     },
     {
@@ -22496,14 +21648,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Musical Saw",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Singende Säge",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Glasharfe",
       "category": "Musikinstrumente"
     },
@@ -22516,10 +21660,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Ondes Martenot",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Trautonium",
       "category": "Musikinstrumente"
     },
@@ -22529,10 +21669,6 @@
     },
     {
       "word": "Ondium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ondes musicales",
       "category": "Musikinstrumente"
     },
     {
@@ -22672,10 +21808,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Hohner Pianet",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Clavinet",
       "category": "Musikinstrumente"
     },
@@ -22685,10 +21817,6 @@
     },
     {
       "word": "Selbstspielklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Player Piano",
       "category": "Musikinstrumente"
     },
     {
@@ -22760,18 +21888,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Steirische Harmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Diatonische Harmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chromatische Harmonika",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Knopfakkordeon",
       "category": "Musikinstrumente"
     },
@@ -22784,19 +21900,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Englische Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Anglo-Konzertina",
       "category": "Musikinstrumente"
     },
     {
       "word": "Duet-Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chemnitzer Konzertina",
       "category": "Musikinstrumente"
     },
     {
@@ -22816,15 +21924,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Diatonisches Knopfakkordeon",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tremoloharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chromatische Mundharmonika",
       "category": "Musikinstrumente"
     },
     {
@@ -22836,10 +21936,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Pocket Piano",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Mundflöte",
       "category": "Musikinstrumente"
     },
@@ -22848,35 +21944,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Great Highland Bagpipe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Northumbrian Smallpipes",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Border Pipes",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Scottish Smallpipes",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Galicische Gaita",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Asturische Gaita",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Zampogna",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Musette de cour",
       "category": "Musikinstrumente"
     },
     {
@@ -22932,14 +22000,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Low Whistle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Irish Flute",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Fife",
       "category": "Musikinstrumente"
     },
@@ -22985,10 +22045,6 @@
     },
     {
       "word": "Venu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Carnatic Flute",
       "category": "Musikinstrumente"
     },
     {
@@ -23068,23 +22124,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Jaw Harp",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jew's Harp",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Kubing",
       "category": "Musikinstrumente"
     },
     {
       "word": "Genggong",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dan moi",
       "category": "Musikinstrumente"
     },
     {
@@ -23140,23 +22184,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Satsuma Biwa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chikuzen Biwa",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Gottan",
       "category": "Musikinstrumente"
     },
     {
       "word": "Sanshin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tsugaru Shamisen",
       "category": "Musikinstrumente"
     },
     {
@@ -23320,10 +22352,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Frame Drum",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Bodhrán",
       "category": "Musikinstrumente"
     },
@@ -23452,10 +22480,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Cura saz",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Cumbus",
       "category": "Musikinstrumente"
     },
@@ -23564,38 +22588,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Vielle à roue",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola d'amore",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola pomposa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola bastarda",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola da braccio",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola da spalla",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Viola organista",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violoncello piccolo",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Barockcello",
       "category": "Musikinstrumente"
     },
@@ -23620,18 +22612,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Violino piccolo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violino tenor",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violino pomposo",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Violotta",
       "category": "Musikinstrumente"
     },
@@ -23644,19 +22624,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Tromba marina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Marine Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Geigenwerk",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bowed Psaltery",
       "category": "Musikinstrumente"
     },
     {
@@ -23692,10 +22660,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Knee Fiddle",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Gadulka",
       "category": "Musikinstrumente"
     },
@@ -23713,10 +22677,6 @@
     },
     {
       "word": "Kamancha",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Morin Khuur",
       "category": "Musikinstrumente"
     },
     {
@@ -23805,10 +22765,6 @@
     },
     {
       "word": "Ravanastron",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trompette marine",
       "category": "Musikinstrumente"
     },
     {
