@@ -19060,10 +19060,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Oberstaatsanwaltin",
-      "category": "Berufe"
-    },
-    {
       "word": "Ökotrophologe",
       "category": "Berufe"
     },
@@ -19109,10 +19105,6 @@
     },
     {
       "word": "Patentanwalt",
-      "category": "Berufe"
-    },
-    {
-      "word": "Patentanwaltin",
       "category": "Berufe"
     },
     {
@@ -19277,10 +19269,6 @@
     },
     {
       "word": "Raumausstatterin",
-      "category": "Berufe"
-    },
-    {
-      "word": "Rechtsanwaltin",
       "category": "Berufe"
     },
     {
@@ -19532,10 +19520,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Steuerfachangestellterin",
-      "category": "Berufe"
-    },
-    {
       "word": "Straßenbauerin",
       "category": "Berufe"
     },
@@ -19756,10 +19740,6 @@
       "category": "Berufe"
     },
     {
-      "word": "Verwaltungsfachangestellterin",
-      "category": "Berufe"
-    },
-    {
       "word": "Veterinär",
       "category": "Berufe"
     },
@@ -19913,10 +19893,6 @@
     },
     {
       "word": "Staatsanwalt",
-      "category": "Berufe"
-    },
-    {
-      "word": "Staatsanwaltin",
       "category": "Berufe"
     },
     {
@@ -22452,10 +22428,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Epinette des Vosges",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Appalachian Dulcimer",
       "category": "Musikinstrumente"
     },
@@ -22544,19 +22516,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Cristal Baschet",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Ondes Martenot",
       "category": "Musikinstrumente"
     },
     {
       "word": "Trautonium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mixturtrautonium",
       "category": "Musikinstrumente"
     },
     {
@@ -22580,10 +22544,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Hammond Novachord",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Chamberlin",
       "category": "Musikinstrumente"
     },
@@ -22593,10 +22553,6 @@
     },
     {
       "word": "Omnichord",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Suzuki QChord",
       "category": "Musikinstrumente"
     },
     {
@@ -22717,10 +22673,6 @@
     },
     {
       "word": "Hohner Pianet",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Weltmeister Toccata",
       "category": "Musikinstrumente"
     },
     {
@@ -23008,10 +22960,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Quenacho",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Siku",
       "category": "Musikinstrumente"
     },
@@ -23029,10 +22977,6 @@
     },
     {
       "word": "Pincullo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Moxeño",
       "category": "Musikinstrumente"
     },
     {
@@ -23069,14 +23013,6 @@
     },
     {
       "word": "Xiao",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Paixiao",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dongxiao",
       "category": "Musikinstrumente"
     },
     {
@@ -23172,10 +23108,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Duxianqin",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Liuqin",
       "category": "Musikinstrumente"
     },
@@ -23193,10 +23125,6 @@
     },
     {
       "word": "Qinqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Liuyeqin",
       "category": "Musikinstrumente"
     },
     {
@@ -23288,15 +23216,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Saenghwang",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Yanggeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kkwaenggwari",
       "category": "Musikinstrumente"
     },
     {
@@ -23348,18 +23268,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Nagado-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shime-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Okedo-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tsuzumi",
       "category": "Musikinstrumente"
     },
@@ -23389,18 +23297,6 @@
     },
     {
       "word": "Suzu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kagura-Suzu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Den-Den-Daiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Uchiwa-Daiko",
       "category": "Musikinstrumente"
     },
     {
@@ -23437,14 +23333,6 @@
     },
     {
       "word": "Doumbek",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tabla Tarang",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pakhawaj",
       "category": "Musikinstrumente"
     },
     {
@@ -23500,10 +23388,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Naqqara",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Dafli",
       "category": "Musikinstrumente"
     },
@@ -23517,10 +23401,6 @@
     },
     {
       "word": "Tombak",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tombak-e-Zourkhaneh",
       "category": "Musikinstrumente"
     },
     {
@@ -23617,10 +23497,6 @@
     },
     {
       "word": "Kobyz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kyl-kobyz",
       "category": "Musikinstrumente"
     },
     {
@@ -23936,10 +23812,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Trompette de Béarn",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Trompette marine",
       "category": "Musikinstrumente"
     },
@@ -24036,26 +23908,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Xirimia",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chirimía",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mijwiz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arghul",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Maqrunah",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Kaval",
       "category": "Musikinstrumente"
     },
@@ -24080,10 +23932,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Parkapzuk",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Zourna",
       "category": "Musikinstrumente"
     },
@@ -24096,14 +23944,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Kakaki",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Atenteben",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Oja",
       "category": "Musikinstrumente"
     },
@@ -24112,15 +23952,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Fula Flute",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tambin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sosso Bala",
       "category": "Musikinstrumente"
     },
     {
@@ -24228,22 +24060,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenwasserkocher",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenkaffeemaschine",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenespressomaschine",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenmilchaufschäumer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenreiskocher",
       "category": "Dinge im Haushalt"
     },
@@ -24252,43 +24068,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenbrotbackautomat",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenstandmixer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenpürierstab",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenkontaktgrill",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchensandwichmaker",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenwaffeleisen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenracletteofen",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenfonduegerät",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchendörrautomat",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Kücheneismaschine",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24300,18 +24080,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchengeschirrspüler",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenkühlschrank",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchengefrierschrank",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenherd",
       "category": "Dinge im Haushalt"
     },
@@ -24320,23 +24088,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenmikrowelle",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenvakuumierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenbrotkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchengewürzregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchengewürzmühle",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24344,15 +24096,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Küchenabtropfgestell",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Küchenspülbürste",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Küchenspülschwamm",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24417,26 +24161,6 @@
     },
     {
       "word": "Waschkapsel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschfleckenentferner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschdosierkugel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschflusensieb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschflusenfilter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Waschtrocknerball",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24732,27 +24456,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Fensterrollladengurt",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterrollladenmotor",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterrollokette",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterrollohalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Fensterjalousie",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterjalousienband",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24768,35 +24472,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Fenstervorhangschiene",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fenstervorhangstange",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fenstergardinenhaken",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fenstergardinenring",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterraffhalter",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Fensterraffrollo",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterlüftungsgitter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Fensterfliegengitterrahmen",
       "category": "Dinge im Haushalt"
     },
     {
@@ -24992,10 +24668,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsetikettierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsclip",
       "category": "Dinge im Haushalt"
     },
@@ -25016,23 +24688,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsfrischhaltefolie",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsalufolie",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsbackpapier",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgefrierbeutel",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsvakuumbeutel",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25040,59 +24696,11 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratskartoffelkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratszwiebelkorb",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsobstkorb",
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsgemüseschale",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzglas",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzdose",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzregal",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgewürzstreuer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratssalzstreuer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratspfefferstreuer",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsölflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsessigflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratssirupflasche",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsmarmeladenglas",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25104,18 +24712,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsmehlbehälter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratszuckerbehälter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratskaffeedose",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratsteedose",
       "category": "Dinge im Haushalt"
     },
@@ -25124,47 +24720,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Vorratsbonbondose",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsfrischhaltedose",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgefrierbox",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsgefrierbehälter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratseiswürfelform",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsmessbecher",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Vorratstrichter",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsportionierer",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsclipschiene",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsdosenöffner",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Vorratsflaschenöffner",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25244,10 +24800,6 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Aufbewahrungssortierkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Aufbewahrungseinsatz",
       "category": "Dinge im Haushalt"
     },
@@ -25256,23 +24808,7 @@
       "category": "Dinge im Haushalt"
     },
     {
-      "word": "Aufbewahrungsschubladenteiler",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsschubladeneinsatz",
-      "category": "Dinge im Haushalt"
-    },
-    {
       "word": "Aufbewahrungsbesteckkasten",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsbesteckeinsatz",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungsschmuckkästchen",
       "category": "Dinge im Haushalt"
     },
     {
@@ -25329,10 +24865,6 @@
     },
     {
       "word": "Aufbewahrungskleiderhülle",
-      "category": "Dinge im Haushalt"
-    },
-    {
-      "word": "Aufbewahrungskleiderschutzhülle",
       "category": "Dinge im Haushalt"
     }
   ]
