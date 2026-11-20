@@ -2200,40 +2200,10 @@
       roundId: 0,
       categoryHintUsed: false,
       wordHintUsed: false,
-      targetHints: {
-        Hund: { category: 'Tiere', word: 'Leine', words: ['Leine','Bellen','Pfote','Welpe','Hundehütte','Haustier','Hundeknochen','Gassi'] },
-        Kaffee: { category: 'Essen und Getränke', word: 'Tasse', words: ['Tasse','Bohne','Espresso','Koffein','Kaffeemaschine','Röstung','Cappuccino','Filter'] },
-        Schloss: { category: 'Orte und Gebäude', word: 'Burg', words: ['Burg','Ritter','Turm','Mauer','Festung','König','Zugbrücke','Schlüssel'] },
-        Gitarre: { category: 'Kunst und Unterhaltung', word: 'Musik', words: ['Musik','Saite','Akkord','Rock','Konzert','Verstärker','Lied','Instrument'] },
-        Sommer: { category: 'Wetter und Jahreszeiten', word: 'Sonne', words: ['Sonne','Hitze','Urlaub','Strand','Ferien','Schwimmen','Eis','Juni'] },
-        Flugzeug: { category: 'Fahrzeuge und Verkehr', word: 'Flughafen', words: ['Flughafen','Pilot','Fliegen','Landung','Triebwerk','Passagier','Cockpit','Luftfahrt'] },
-        Ozean: { category: 'Geografie und Landschaften', word: 'Meer', words: ['Meer','Welle','Salzwasser','Atlantik','Tiefe','Wal','Koralle','Küste'] },
-        Roboter: { category: 'Technik und Elektronik', word: 'Maschine', words: ['Maschine','Automat','Computer','Sensor','Programmierung','Technik','Android','KünstlicheIntelligenz'] },
-        Zauberer: { category: 'Fantasie und Fabelwesen', word: 'Magie', words: ['Magie','Zauberei','Hexe','Zauberstab','Zauberspruch','Hexenmeister','Trank','Zauberkunst'] },
-        Kamera: { category: 'Technik und Elektronik', word: 'Foto', words: ['Foto','Fotografie','Objektiv','Linse','Blende','Auslöser','Bild','Videokamera'] },
-        Sonne: { category: 'Weltraum und Himmelskörper', word: 'Stern', words: ['Stern','Licht','Wärme','Planet','Sonnensystem','Strahlung','Himmel','Sonnenlicht'] },
-        Kuchen: { category: 'Essen und Getränke', word: 'Torte', words: ['Torte','Backen','Teig','Gebäck','Zucker','Mehl','Sahne','Dessert'] },
-        Winter: { category: 'Wetter und Jahreszeiten', word: 'Schnee', words: ['Schnee','Kälte','Frost','Eis','Weihnachten','Winterjacke','Schlitten','Dezember'] },
-        Rakete: { category: 'Weltraum und Himmelskörper', word: 'Weltraum', words: ['Weltraum','Astronaut','Start','Triebwerk','Mond','Raumfahrt','Satellit','Raketenstart'] },
-        Wald: { category: 'Pflanzen und Pilze', word: 'Bäume', words: ['Bäume','Forst','Holz','Rehe','Pilze','Moos','Lichtung','Waldboden'] },
-        Insel: { category: 'Geografie und Landschaften', word: 'Strand', words: ['Strand','Meer','Küste','Palme','Atoll','Archipel','Urlaub','Eiland'] },
-        Musik: { category: 'Kunst und Unterhaltung', word: 'Lied', words: ['Lied','Melodie','Rhythmus','Klang','Instrument','Gesang','Konzert','Noten'] },
-        Pferd: { category: 'Tiere', word: 'Reiten', words: ['Reiten','Stute','Hengst','Fohlen','Pferdestall','Hufe','Mähne','Koppel'] },
-        Telefon: { category: 'Technik und Elektronik', word: 'Anruf', words: ['Anruf','Handy','Smartphone','Telefonat','Hörer','Wählen','Nachricht','Kommunikation'] },
-        Schmetterling: { category: 'Tiere', word: 'Flügel', words: ['Flügel','Raupe','Puppe','Falter','Schmetterlingsflügel','Blüte','Nektar','Insekt'] }
-      },
-
-      // 20 deutsche Zielwörter
-      targets: [
-        'Hund','Kaffee','Schloss','Gitarre','Sommer','Flugzeug','Ozean','Roboter',
-        'Zauberer','Kamera','Sonne','Kuchen','Winter','Rakete','Wald','Insel',
-        'Musik','Pferd','Telefon','Schmetterling'
-      ],
-
       dictionaryReady: false,
       dictionaryWords: new Set(),
       dictionaryTargetWords: [],
-      usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
+      usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets-v2') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
       wordHintCandidatesTried: new Set(),
       wordHintInProgress: false,
       wordHintController: null,
@@ -2268,6 +2238,7 @@
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
           this.dictionaryTargetWords = uniqueWords;
           this.categoryAssignments = assignments;
+          this.usedTargets = new Set([...this.usedTargets].filter(key => this.dictionaryWords.has(key)));
           this.dictionaryReady = true;
           if (statusText) statusText.textContent = uniqueWords.length.toLocaleString('de-DE') + ' Wörter aus ' + Object.keys(groupedWords).length + ' Kategorien geladen';
           return true;
@@ -2525,27 +2496,37 @@
         const previousTarget=this.targetWord.toLocaleLowerCase('de-DE');
         this.targetWord='';
         const statusText=document.getElementById('model-status-text');
-        if(statusText)statusText.textContent='Prüfe Nomenliste und wähle ein Lösungswort …';
+        if(statusText)statusText.textContent='Prüfe Wortliste und wähle ein Lösungswort …';
         if(!this.dictionaryReady || !this.dictionaryTargetWords.length){
-          if(statusText)statusText.textContent='Nomenliste nicht verfügbar – bitte Seite neu laden.';
+          if(statusText)statusText.textContent='Wortliste nicht verfügbar – bitte Seite neu laden.';
           return;
         }
-        const excluded=[...this.usedTargets].slice(-300);
-        if(previousTarget && !excluded.includes(previousTarget)) excluded.push(previousTarget);
-        let availableWords=this.dictionaryTargetWords.filter(word=>!excluded.includes(word.toLocaleLowerCase('de-DE')));
+        let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
         if(!availableWords.length){
-          // Nach einem vollständigen Durchlauf den Pool neu mischen, aber das vorige Ziel vermeiden.
+          // Erst nach einem vollständigen Durchlauf wird der Pool zurückgesetzt.
+          // Das zuletzt gespielte Wort bleibt ausgeschlossen, damit es nicht direkt wiederkommt.
+          this.usedTargets.clear();
+          if(previousTarget) this.usedTargets.add(previousTarget);
           availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==previousTarget);
         }
         if(!availableWords.length){
-          if(statusText)statusText.textContent='Keine gültigen Nomen für eine neue Runde vorhanden.';
+          if(statusText)statusText.textContent='Keine gültigen Wörter für eine neue Runde vorhanden.';
           return;
         }
-        const selectedWord=availableWords[Math.floor(Math.random()*availableWords.length)];
+        const randomIndex=max=>{
+          const cryptoApi=window.crypto;
+          if(cryptoApi&&cryptoApi.getRandomValues){
+            const range=0x100000000,limit=range-(range%max),value=new Uint32Array(1);
+            do{cryptoApi.getRandomValues(value);}while(value[0]>=limit);
+            return value[0]%max;
+          }
+          return Math.floor(Math.random()*max);
+        };
+        const selectedWord=availableWords[randomIndex(availableWords.length)];
         if(requestedRoundId!==this.roundId)return;
         this.targetWord=selectedWord;
         this.usedTargets.add(selectedWord.toLocaleLowerCase('de-DE'));
-        try { localStorage.setItem('wordfinity-used-targets', JSON.stringify([...this.usedTargets].slice(-1000))); } catch (_) {}
+        try { localStorage.setItem('wordfinity-used-targets-v2', JSON.stringify([...this.usedTargets])); } catch (_) {}
         if(statusText)statusText.textContent='Neues Lösungswort aus deiner Wortliste geladen';
 
         this.categoryHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();

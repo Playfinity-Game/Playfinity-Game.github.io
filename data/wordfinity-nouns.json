@@ -276,7 +276,8 @@
     "Wäscheständer",
     "Waschmaschine",
     "Waschmittel",
-    "Wischmopp"
+    "Wischmopp",
+    "Nachbarhaus"
   ],
   "Geld & Wirtschaft": [
     "Angebot",
@@ -627,7 +628,8 @@
     "Stadtführung",
     "Tourist",
     "Wohnwagen",
-    "Zelt"
+    "Zelt",
+    "Urlaub"
   ],
   "Körper & Gesundheit": [
     "Apotheke",
@@ -727,11 +729,9 @@
     "Team",
     "Termin",
     "Tierarzt",
-    "Urlaub",
     "Verkäufer",
     "Vertrag",
-    "Werkstatt",
-    "Werkzeug"
+    "Werkstatt"
   ],
   "Sport & Bewegung": [
     "Badminton",
@@ -828,7 +828,6 @@
     "Mama",
     "Mitbewohner",
     "Mitmensch",
-    "Nachbarhaus",
     "Nachbarskind",
     "Nachkomme",
     "Papa",
@@ -1108,7 +1107,12 @@
     "Kleber",
     "Nadel",
     "Pappe",
-    "Wolle"
+    "Wolle",
+    "Karton",
+    "Klebeband",
+    "Leim",
+    "Ton",
+    "Draht"
   ],
   "Spiele & Freizeit": [
     "Angeln",
@@ -1159,7 +1163,6 @@
     "Bohrer",
     "Brett",
     "Bürste",
-    "Draht",
     "Dübel",
     "Erde",
     "Farbroller",
@@ -1168,14 +1171,11 @@
     "Haken",
     "Hammer",
     "Holz",
-    "Karton",
     "Kette",
     "Kies",
     "Kiste",
-    "Klebeband",
     "Lack",
     "Leder",
-    "Leim",
     "Leiter",
     "Maßband",
     "Metall",
@@ -1191,13 +1191,13 @@
     "Spachtel",
     "Stein",
     "Tapete",
-    "Ton",
     "Wasserwaage",
     "Werkbank",
     "Werkzeugkasten",
     "Zange",
     "Ziegel",
-    "Zollstock"
+    "Zollstock",
+    "Werkzeug"
   ],
   "Fahrzeuge & Verkehr": [
     "Ampel",
@@ -1355,44 +1355,6 @@
     "Weltall",
     "Wissenschaftler"
   ],
-  "Gefühle & Eigenschaften": [
-    "Angst",
-    "ängstlich",
-    "böse",
-    "dumm",
-    "ehrlich",
-    "faul",
-    "fleißig",
-    "frech",
-    "Freude",
-    "freundlich",
-    "fröhlich",
-    "gemein",
-    "Glück",
-    "Hass",
-    "helfen",
-    "klug",
-    "lächeln",
-    "lachen",
-    "lieb",
-    "Liebe",
-    "lustig",
-    "Mut",
-    "mutig",
-    "Neid",
-    "nett",
-    "ruhig",
-    "Scham",
-    "Spaß",
-    "stark",
-    "Stolz",
-    "streiten",
-    "teilen",
-    "Trauer",
-    "traurig",
-    "weinen",
-    "Wut"
-  ],
   "Meer & Wasser": [
     "Angel",
     "Anker",
@@ -1419,5 +1381,47 @@
     "Tauchanzug",
     "Tropfen",
     "Wasserrutsche"
+  ],
+  "Gefühle": [
+    "Angst",
+    "Freude",
+    "Glück",
+    "Hass",
+    "Liebe",
+    "Mut",
+    "Neid",
+    "Scham",
+    "Spaß",
+    "Stolz",
+    "Trauer",
+    "Wut"
+  ],
+  "Eigenschaften": [
+    "ängstlich",
+    "böse",
+    "dumm",
+    "ehrlich",
+    "faul",
+    "fleißig",
+    "frech",
+    "freundlich",
+    "fröhlich",
+    "gemein",
+    "klug",
+    "lieb",
+    "lustig",
+    "mutig",
+    "nett",
+    "ruhig",
+    "stark",
+    "traurig"
+  ],
+  "Handlungen": [
+    "helfen",
+    "lächeln",
+    "lachen",
+    "streiten",
+    "teilen",
+    "weinen"
   ]
 }
