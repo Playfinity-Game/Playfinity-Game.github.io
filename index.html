@@ -1480,9 +1480,9 @@
         }
         this.target=this.wordQueue.pop();
         try{localStorage.setItem('playfinity_hangmann_word_queue_v1',JSON.stringify(this.wordQueue.map(item=>item.category+'\\u0000'+this.normalize(item.word))));}catch(error){console.warn('[Hangmann] Wortvorrat konnte nicht gespeichert werden.',error);}
-        const hardInstrumentWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn']);
+        const hardWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn','Blindschleiche','Feuersalamander','Ringelnatter','Schleiereule','Stachelschwein','Pfeilgiftfrosch','Borkenkäfer','Gletscherzunge','Kristallhöhle','Küstennebel','Flussdelta','Hochgebirge','Erdkruste']);
         const hardWordLabel=document.getElementById('hangmann-hard-word');
-        if(hardWordLabel)hardWordLabel.classList.toggle('visible',this.target.category==='Musikinstrumente'&&hardInstrumentWords.has(this.target.word));
+        if(hardWordLabel)hardWordLabel.classList.toggle('visible',hardWords.has(this.target.word));
         this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
         const categoryLabel=document.getElementById('hangmann-category');
         const showCategoryImmediately=localStorage.getItem('playfinity_hangmann_auto_category')==='true';
