@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus elf Kategorien. Bereinigt: künstliche Raum-/Wäsche-Komposita, doppelte Wortteile und sehr spezielle Rassenbezeichnungen entfernt. Weitere Bereinigung: Bindestrich-Wörter und künstliche Begriffe wie Vorratshonigglas entfernt. Neue Kategorie Länder mit 195 Ländernamen; Leerzeichen in mehrteiligen Namen werden im Hangman-Spiel automatisch als Wortabstand angezeigt.",
+  "description": "Deutsche Begriffe für Hangman aus zwölf Kategorien. Neue Kategorie Städte mit bekannten Großstädten weltweit; schwierige Städtenamen sind mit ☠️☠️ markiert. Leerzeichen in mehrteiligen Namen werden im Hangman-Spiel automatisch als Wortabstand angezeigt.",
   "words": [
     {
       "word": "Affe",
@@ -24246,6 +24246,1628 @@
     {
       "word": "Turkmenistan",
       "category": "Länder"
+    },
+    {
+      "word": "Berlin",
+      "category": "Städte"
+    },
+    {
+      "word": "Hamburg",
+      "category": "Städte"
+    },
+    {
+      "word": "München",
+      "category": "Städte"
+    },
+    {
+      "word": "Köln",
+      "category": "Städte"
+    },
+    {
+      "word": "Frankfurt",
+      "category": "Städte"
+    },
+    {
+      "word": "Stuttgart",
+      "category": "Städte"
+    },
+    {
+      "word": "Düsseldorf",
+      "category": "Städte"
+    },
+    {
+      "word": "Leipzig",
+      "category": "Städte"
+    },
+    {
+      "word": "Dortmund",
+      "category": "Städte"
+    },
+    {
+      "word": "Essen",
+      "category": "Städte"
+    },
+    {
+      "word": "Bremen",
+      "category": "Städte"
+    },
+    {
+      "word": "Dresden",
+      "category": "Städte"
+    },
+    {
+      "word": "Hannover",
+      "category": "Städte"
+    },
+    {
+      "word": "Nürnberg",
+      "category": "Städte"
+    },
+    {
+      "word": "Duisburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Bochum",
+      "category": "Städte"
+    },
+    {
+      "word": "Wuppertal",
+      "category": "Städte"
+    },
+    {
+      "word": "Bielefeld",
+      "category": "Städte"
+    },
+    {
+      "word": "Bonn",
+      "category": "Städte"
+    },
+    {
+      "word": "Münster",
+      "category": "Städte"
+    },
+    {
+      "word": "Karlsruhe",
+      "category": "Städte"
+    },
+    {
+      "word": "Mannheim",
+      "category": "Städte"
+    },
+    {
+      "word": "Augsburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Wiesbaden",
+      "category": "Städte"
+    },
+    {
+      "word": "Gelsenkirchen",
+      "category": "Städte"
+    },
+    {
+      "word": "Mönchengladbach",
+      "category": "Städte"
+    },
+    {
+      "word": "Braunschweig",
+      "category": "Städte"
+    },
+    {
+      "word": "Chemnitz",
+      "category": "Städte"
+    },
+    {
+      "word": "Kiel",
+      "category": "Städte"
+    },
+    {
+      "word": "Aachen",
+      "category": "Städte"
+    },
+    {
+      "word": "Halle",
+      "category": "Städte"
+    },
+    {
+      "word": "Magdeburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Freiburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Krefeld",
+      "category": "Städte"
+    },
+    {
+      "word": "Lübeck",
+      "category": "Städte"
+    },
+    {
+      "word": "Oberhausen",
+      "category": "Städte"
+    },
+    {
+      "word": "Erfurt",
+      "category": "Städte"
+    },
+    {
+      "word": "Mainz",
+      "category": "Städte"
+    },
+    {
+      "word": "Rostock",
+      "category": "Städte"
+    },
+    {
+      "word": "Kassel",
+      "category": "Städte"
+    },
+    {
+      "word": "Hagen",
+      "category": "Städte"
+    },
+    {
+      "word": "Potsdam",
+      "category": "Städte"
+    },
+    {
+      "word": "Saarbrücken",
+      "category": "Städte"
+    },
+    {
+      "word": "Hamm",
+      "category": "Städte"
+    },
+    {
+      "word": "Ludwigshafen",
+      "category": "Städte"
+    },
+    {
+      "word": "Oldenburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Osnabrück",
+      "category": "Städte"
+    },
+    {
+      "word": "Leverkusen",
+      "category": "Städte"
+    },
+    {
+      "word": "Heidelberg",
+      "category": "Städte"
+    },
+    {
+      "word": "Darmstadt",
+      "category": "Städte"
+    },
+    {
+      "word": "Solingen",
+      "category": "Städte"
+    },
+    {
+      "word": "Herne",
+      "category": "Städte"
+    },
+    {
+      "word": "Neuss",
+      "category": "Städte"
+    },
+    {
+      "word": "Regensburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Paderborn",
+      "category": "Städte"
+    },
+    {
+      "word": "Ingolstadt",
+      "category": "Städte"
+    },
+    {
+      "word": "Würzburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Ulm",
+      "category": "Städte"
+    },
+    {
+      "word": "Heilbronn",
+      "category": "Städte"
+    },
+    {
+      "word": "Pforzheim",
+      "category": "Städte"
+    },
+    {
+      "word": "Offenbach",
+      "category": "Städte"
+    },
+    {
+      "word": "Fürth",
+      "category": "Städte"
+    },
+    {
+      "word": "Göttingen",
+      "category": "Städte"
+    },
+    {
+      "word": "Bottrop",
+      "category": "Städte"
+    },
+    {
+      "word": "Trier",
+      "category": "Städte"
+    },
+    {
+      "word": "Recklinghausen",
+      "category": "Städte"
+    },
+    {
+      "word": "Reutlingen",
+      "category": "Städte"
+    },
+    {
+      "word": "Bremerhaven",
+      "category": "Städte"
+    },
+    {
+      "word": "Koblenz",
+      "category": "Städte"
+    },
+    {
+      "word": "Bergisch Gladbach",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Jena",
+      "category": "Städte"
+    },
+    {
+      "word": "Remscheid",
+      "category": "Städte"
+    },
+    {
+      "word": "Erlangen",
+      "category": "Städte"
+    },
+    {
+      "word": "Moers",
+      "category": "Städte"
+    },
+    {
+      "word": "Siegen",
+      "category": "Städte"
+    },
+    {
+      "word": "Hildesheim",
+      "category": "Städte"
+    },
+    {
+      "word": "Salzgitter",
+      "category": "Städte"
+    },
+    {
+      "word": "Cottbus",
+      "category": "Städte"
+    },
+    {
+      "word": "Gera",
+      "category": "Städte"
+    },
+    {
+      "word": "Kaiserslautern",
+      "category": "Städte"
+    },
+    {
+      "word": "Schwerin",
+      "category": "Städte"
+    },
+    {
+      "word": "Gütersloh",
+      "category": "Städte"
+    },
+    {
+      "word": "Witten",
+      "category": "Städte"
+    },
+    {
+      "word": "Iserlohn",
+      "category": "Städte"
+    },
+    {
+      "word": "Düren",
+      "category": "Städte"
+    },
+    {
+      "word": "Esslingen",
+      "category": "Städte"
+    },
+    {
+      "word": "Zwickau",
+      "category": "Städte"
+    },
+    {
+      "word": "Flensburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Villingen Schwenningen",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Marl",
+      "category": "Städte"
+    },
+    {
+      "word": "Lünen",
+      "category": "Städte"
+    },
+    {
+      "word": "Minden",
+      "category": "Städte"
+    },
+    {
+      "word": "Ratingen",
+      "category": "Städte"
+    },
+    {
+      "word": "Velbert",
+      "category": "Städte"
+    },
+    {
+      "word": "Konstanz",
+      "category": "Städte"
+    },
+    {
+      "word": "Worms",
+      "category": "Städte"
+    },
+    {
+      "word": "Marburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Lüneburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Bayreuth",
+      "category": "Städte"
+    },
+    {
+      "word": "Bamberg",
+      "category": "Städte"
+    },
+    {
+      "word": "Aschaffenburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Landshut",
+      "category": "Städte"
+    },
+    {
+      "word": "Kempten",
+      "category": "Städte"
+    },
+    {
+      "word": "Rosenheim",
+      "category": "Städte"
+    },
+    {
+      "word": "Passau",
+      "category": "Städte"
+    },
+    {
+      "word": "Weimar",
+      "category": "Städte"
+    },
+    {
+      "word": "Stralsund",
+      "category": "Städte"
+    },
+    {
+      "word": "Greifswald",
+      "category": "Städte"
+    },
+    {
+      "word": "Baden Baden",
+      "category": "Städte"
+    },
+    {
+      "word": "Paris",
+      "category": "Städte"
+    },
+    {
+      "word": "London",
+      "category": "Städte"
+    },
+    {
+      "word": "Rom",
+      "category": "Städte"
+    },
+    {
+      "word": "Madrid",
+      "category": "Städte"
+    },
+    {
+      "word": "Barcelona",
+      "category": "Städte"
+    },
+    {
+      "word": "Lissabon",
+      "category": "Städte"
+    },
+    {
+      "word": "Porto",
+      "category": "Städte"
+    },
+    {
+      "word": "Amsterdam",
+      "category": "Städte"
+    },
+    {
+      "word": "Rotterdam",
+      "category": "Städte"
+    },
+    {
+      "word": "Den Haag",
+      "category": "Städte"
+    },
+    {
+      "word": "Brüssel",
+      "category": "Städte"
+    },
+    {
+      "word": "Antwerpen",
+      "category": "Städte"
+    },
+    {
+      "word": "Gent",
+      "category": "Städte"
+    },
+    {
+      "word": "Brügge",
+      "category": "Städte"
+    },
+    {
+      "word": "Zürich",
+      "category": "Städte"
+    },
+    {
+      "word": "Genf",
+      "category": "Städte"
+    },
+    {
+      "word": "Basel",
+      "category": "Städte"
+    },
+    {
+      "word": "Bern",
+      "category": "Städte"
+    },
+    {
+      "word": "Wien",
+      "category": "Städte"
+    },
+    {
+      "word": "Salzburg",
+      "category": "Städte"
+    },
+    {
+      "word": "Graz",
+      "category": "Städte"
+    },
+    {
+      "word": "Innsbruck",
+      "category": "Städte"
+    },
+    {
+      "word": "Linz",
+      "category": "Städte"
+    },
+    {
+      "word": "Prag",
+      "category": "Städte"
+    },
+    {
+      "word": "Bratislava",
+      "category": "Städte"
+    },
+    {
+      "word": "Budapest",
+      "category": "Städte"
+    },
+    {
+      "word": "Warschau",
+      "category": "Städte"
+    },
+    {
+      "word": "Krakau",
+      "category": "Städte"
+    },
+    {
+      "word": "Danzig",
+      "category": "Städte"
+    },
+    {
+      "word": "Posen",
+      "category": "Städte"
+    },
+    {
+      "word": "Breslau",
+      "category": "Städte"
+    },
+    {
+      "word": "Lodz",
+      "category": "Städte"
+    },
+    {
+      "word": "Bukarest",
+      "category": "Städte"
+    },
+    {
+      "word": "Sofia",
+      "category": "Städte"
+    },
+    {
+      "word": "Belgrad",
+      "category": "Städte"
+    },
+    {
+      "word": "Zagreb",
+      "category": "Städte"
+    },
+    {
+      "word": "Ljubljana",
+      "category": "Städte"
+    },
+    {
+      "word": "Sarajevo",
+      "category": "Städte"
+    },
+    {
+      "word": "Skopje",
+      "category": "Städte"
+    },
+    {
+      "word": "Tirana",
+      "category": "Städte"
+    },
+    {
+      "word": "Athen",
+      "category": "Städte"
+    },
+    {
+      "word": "Thessaloniki",
+      "category": "Städte"
+    },
+    {
+      "word": "Istanbul",
+      "category": "Städte"
+    },
+    {
+      "word": "Ankara",
+      "category": "Städte"
+    },
+    {
+      "word": "Izmir",
+      "category": "Städte"
+    },
+    {
+      "word": "Antalya",
+      "category": "Städte"
+    },
+    {
+      "word": "Kopenhagen",
+      "category": "Städte"
+    },
+    {
+      "word": "Aarhus",
+      "category": "Städte"
+    },
+    {
+      "word": "Stockholm",
+      "category": "Städte"
+    },
+    {
+      "word": "Göteborg",
+      "category": "Städte"
+    },
+    {
+      "word": "Malmö",
+      "category": "Städte"
+    },
+    {
+      "word": "Oslo",
+      "category": "Städte"
+    },
+    {
+      "word": "Bergen",
+      "category": "Städte"
+    },
+    {
+      "word": "Trondheim",
+      "category": "Städte"
+    },
+    {
+      "word": "Helsinki",
+      "category": "Städte"
+    },
+    {
+      "word": "Tampere",
+      "category": "Städte"
+    },
+    {
+      "word": "Turku",
+      "category": "Städte"
+    },
+    {
+      "word": "Reykjavik",
+      "category": "Städte"
+    },
+    {
+      "word": "Tallinn",
+      "category": "Städte"
+    },
+    {
+      "word": "Riga",
+      "category": "Städte"
+    },
+    {
+      "word": "Vilnius",
+      "category": "Städte"
+    },
+    {
+      "word": "Minsk",
+      "category": "Städte"
+    },
+    {
+      "word": "Kiew",
+      "category": "Städte"
+    },
+    {
+      "word": "Lwiw",
+      "category": "Städte"
+    },
+    {
+      "word": "Odessa",
+      "category": "Städte"
+    },
+    {
+      "word": "Charkiw",
+      "category": "Städte"
+    },
+    {
+      "word": "Moskau",
+      "category": "Städte"
+    },
+    {
+      "word": "Sankt Petersburg",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Kasan",
+      "category": "Städte"
+    },
+    {
+      "word": "Sotschi",
+      "category": "Städte"
+    },
+    {
+      "word": "Nischni Nowgorod",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Wladiwostok",
+      "category": "Städte"
+    },
+    {
+      "word": "Tiflis",
+      "category": "Städte"
+    },
+    {
+      "word": "Jerewan",
+      "category": "Städte"
+    },
+    {
+      "word": "Baku",
+      "category": "Städte"
+    },
+    {
+      "word": "Chisinau",
+      "category": "Städte"
+    },
+    {
+      "word": "Podgorica",
+      "category": "Städte"
+    },
+    {
+      "word": "Nikosia",
+      "category": "Städte"
+    },
+    {
+      "word": "Valletta",
+      "category": "Städte"
+    },
+    {
+      "word": "Andorra la Vella",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "New York",
+      "category": "Städte"
+    },
+    {
+      "word": "Los Angeles",
+      "category": "Städte"
+    },
+    {
+      "word": "Chicago",
+      "category": "Städte"
+    },
+    {
+      "word": "Houston",
+      "category": "Städte"
+    },
+    {
+      "word": "Phoenix",
+      "category": "Städte"
+    },
+    {
+      "word": "Philadelphia",
+      "category": "Städte"
+    },
+    {
+      "word": "San Antonio",
+      "category": "Städte"
+    },
+    {
+      "word": "San Diego",
+      "category": "Städte"
+    },
+    {
+      "word": "Dallas",
+      "category": "Städte"
+    },
+    {
+      "word": "San Jose",
+      "category": "Städte"
+    },
+    {
+      "word": "Austin",
+      "category": "Städte"
+    },
+    {
+      "word": "Jacksonville",
+      "category": "Städte"
+    },
+    {
+      "word": "Fort Worth",
+      "category": "Städte"
+    },
+    {
+      "word": "Columbus",
+      "category": "Städte"
+    },
+    {
+      "word": "Charlotte",
+      "category": "Städte"
+    },
+    {
+      "word": "Indianapolis",
+      "category": "Städte"
+    },
+    {
+      "word": "San Francisco",
+      "category": "Städte"
+    },
+    {
+      "word": "Seattle",
+      "category": "Städte"
+    },
+    {
+      "word": "Denver",
+      "category": "Städte"
+    },
+    {
+      "word": "Washington",
+      "category": "Städte"
+    },
+    {
+      "word": "Boston",
+      "category": "Städte"
+    },
+    {
+      "word": "Nashville",
+      "category": "Städte"
+    },
+    {
+      "word": "Detroit",
+      "category": "Städte"
+    },
+    {
+      "word": "Portland",
+      "category": "Städte"
+    },
+    {
+      "word": "Las Vegas",
+      "category": "Städte"
+    },
+    {
+      "word": "Miami",
+      "category": "Städte"
+    },
+    {
+      "word": "Atlanta",
+      "category": "Städte"
+    },
+    {
+      "word": "Orlando",
+      "category": "Städte"
+    },
+    {
+      "word": "Tampa",
+      "category": "Städte"
+    },
+    {
+      "word": "Minneapolis",
+      "category": "Städte"
+    },
+    {
+      "word": "Cleveland",
+      "category": "Städte"
+    },
+    {
+      "word": "Pittsburgh",
+      "category": "Städte"
+    },
+    {
+      "word": "Cincinnati",
+      "category": "Städte"
+    },
+    {
+      "word": "Baltimore",
+      "category": "Städte"
+    },
+    {
+      "word": "Milwaukee",
+      "category": "Städte"
+    },
+    {
+      "word": "Kansas City",
+      "category": "Städte"
+    },
+    {
+      "word": "New Orleans",
+      "category": "Städte"
+    },
+    {
+      "word": "Sacramento",
+      "category": "Städte"
+    },
+    {
+      "word": "Oakland",
+      "category": "Städte"
+    },
+    {
+      "word": "Honolulu",
+      "category": "Städte"
+    },
+    {
+      "word": "Anchorage",
+      "category": "Städte"
+    },
+    {
+      "word": "Toronto",
+      "category": "Städte"
+    },
+    {
+      "word": "Montreal",
+      "category": "Städte"
+    },
+    {
+      "word": "Vancouver",
+      "category": "Städte"
+    },
+    {
+      "word": "Ottawa",
+      "category": "Städte"
+    },
+    {
+      "word": "Calgary",
+      "category": "Städte"
+    },
+    {
+      "word": "Edmonton",
+      "category": "Städte"
+    },
+    {
+      "word": "Quebec",
+      "category": "Städte"
+    },
+    {
+      "word": "Winnipeg",
+      "category": "Städte"
+    },
+    {
+      "word": "Halifax",
+      "category": "Städte"
+    },
+    {
+      "word": "Mexiko Stadt",
+      "category": "Städte"
+    },
+    {
+      "word": "Guadalajara",
+      "category": "Städte"
+    },
+    {
+      "word": "Monterrey",
+      "category": "Städte"
+    },
+    {
+      "word": "Puebla",
+      "category": "Städte"
+    },
+    {
+      "word": "Havanna",
+      "category": "Städte"
+    },
+    {
+      "word": "Santo Domingo",
+      "category": "Städte"
+    },
+    {
+      "word": "San Juan",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Panama Stadt",
+      "category": "Städte"
+    },
+    {
+      "word": "San José",
+      "category": "Städte"
+    },
+    {
+      "word": "Guatemala Stadt",
+      "category": "Städte"
+    },
+    {
+      "word": "Tegucigalpa",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Managua",
+      "category": "Städte"
+    },
+    {
+      "word": "San Salvador",
+      "category": "Städte"
+    },
+    {
+      "word": "Kingston",
+      "category": "Städte"
+    },
+    {
+      "word": "Port of Spain",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Bogota",
+      "category": "Städte"
+    },
+    {
+      "word": "Medellin",
+      "category": "Städte"
+    },
+    {
+      "word": "Cali",
+      "category": "Städte"
+    },
+    {
+      "word": "Caracas",
+      "category": "Städte"
+    },
+    {
+      "word": "Quito",
+      "category": "Städte"
+    },
+    {
+      "word": "Guayaquil",
+      "category": "Städte"
+    },
+    {
+      "word": "Lima",
+      "category": "Städte"
+    },
+    {
+      "word": "Arequipa",
+      "category": "Städte"
+    },
+    {
+      "word": "La Paz",
+      "category": "Städte"
+    },
+    {
+      "word": "Santa Cruz",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Santiago",
+      "category": "Städte"
+    },
+    {
+      "word": "Valparaiso",
+      "category": "Städte"
+    },
+    {
+      "word": "Buenos Aires",
+      "category": "Städte"
+    },
+    {
+      "word": "Cordoba",
+      "category": "Städte"
+    },
+    {
+      "word": "Rosario",
+      "category": "Städte"
+    },
+    {
+      "word": "Montevideo",
+      "category": "Städte"
+    },
+    {
+      "word": "Asuncion",
+      "category": "Städte"
+    },
+    {
+      "word": "Rio de Janeiro",
+      "category": "Städte"
+    },
+    {
+      "word": "Sao Paulo",
+      "category": "Städte"
+    },
+    {
+      "word": "Brasilia",
+      "category": "Städte"
+    },
+    {
+      "word": "Salvador",
+      "category": "Städte"
+    },
+    {
+      "word": "Belo Horizonte",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Recife",
+      "category": "Städte"
+    },
+    {
+      "word": "Fortaleza",
+      "category": "Städte"
+    },
+    {
+      "word": "Manaus",
+      "category": "Städte"
+    },
+    {
+      "word": "Curitiba",
+      "category": "Städte"
+    },
+    {
+      "word": "Porto Alegre",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Belem",
+      "category": "Städte"
+    },
+    {
+      "word": "Georgetown",
+      "category": "Städte"
+    },
+    {
+      "word": "Paramaribo",
+      "category": "Städte"
+    },
+    {
+      "word": "Castries",
+      "category": "Städte"
+    },
+    {
+      "word": "Nassau",
+      "category": "Städte"
+    },
+    {
+      "word": "Bridgetown",
+      "category": "Städte"
+    },
+    {
+      "word": "Tokio",
+      "category": "Städte"
+    },
+    {
+      "word": "Osaka",
+      "category": "Städte"
+    },
+    {
+      "word": "Kyoto",
+      "category": "Städte"
+    },
+    {
+      "word": "Yokohama",
+      "category": "Städte"
+    },
+    {
+      "word": "Nagoya",
+      "category": "Städte"
+    },
+    {
+      "word": "Sapporo",
+      "category": "Städte"
+    },
+    {
+      "word": "Kobe",
+      "category": "Städte"
+    },
+    {
+      "word": "Fukuoka",
+      "category": "Städte"
+    },
+    {
+      "word": "Hiroshima",
+      "category": "Städte"
+    },
+    {
+      "word": "Sendai",
+      "category": "Städte"
+    },
+    {
+      "word": "Naha",
+      "category": "Städte"
+    },
+    {
+      "word": "Seoul",
+      "category": "Städte"
+    },
+    {
+      "word": "Busan",
+      "category": "Städte"
+    },
+    {
+      "word": "Incheon",
+      "category": "Städte"
+    },
+    {
+      "word": "Daegu",
+      "category": "Städte"
+    },
+    {
+      "word": "Taipeh",
+      "category": "Städte"
+    },
+    {
+      "word": "Kaohsiung",
+      "category": "Städte"
+    },
+    {
+      "word": "Hongkong",
+      "category": "Städte"
+    },
+    {
+      "word": "Macau",
+      "category": "Städte"
+    },
+    {
+      "word": "Peking",
+      "category": "Städte"
+    },
+    {
+      "word": "Shanghai",
+      "category": "Städte"
+    },
+    {
+      "word": "Guangzhou",
+      "category": "Städte"
+    },
+    {
+      "word": "Shenzhen",
+      "category": "Städte"
+    },
+    {
+      "word": "Chengdu",
+      "category": "Städte"
+    },
+    {
+      "word": "Chongqing",
+      "category": "Städte"
+    },
+    {
+      "word": "Wuhan",
+      "category": "Städte"
+    },
+    {
+      "word": "Xi An",
+      "category": "Städte"
+    },
+    {
+      "word": "Nanjing",
+      "category": "Städte"
+    },
+    {
+      "word": "Tianjin",
+      "category": "Städte"
+    },
+    {
+      "word": "Hangzhou",
+      "category": "Städte"
+    },
+    {
+      "word": "Suzhou",
+      "category": "Städte"
+    },
+    {
+      "word": "Harbin",
+      "category": "Städte"
+    },
+    {
+      "word": "Kunming",
+      "category": "Städte"
+    },
+    {
+      "word": "Lhasa",
+      "category": "Städte"
+    },
+    {
+      "word": "Ulaanbaatar",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Pyongyang",
+      "category": "Städte"
+    },
+    {
+      "word": "Hanoi",
+      "category": "Städte"
+    },
+    {
+      "word": "Ho Chi Minh Stadt",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Da Nang",
+      "category": "Städte"
+    },
+    {
+      "word": "Hue",
+      "category": "Städte"
+    },
+    {
+      "word": "Phnom Penh",
+      "category": "Städte"
+    },
+    {
+      "word": "Siem Reap",
+      "category": "Städte"
+    },
+    {
+      "word": "Vientiane",
+      "category": "Städte"
+    },
+    {
+      "word": "Bangkok",
+      "category": "Städte"
+    },
+    {
+      "word": "Chiang Mai",
+      "category": "Städte"
+    },
+    {
+      "word": "Phuket",
+      "category": "Städte"
+    },
+    {
+      "word": "Yangon",
+      "category": "Städte"
+    },
+    {
+      "word": "Mandalay",
+      "category": "Städte"
+    },
+    {
+      "word": "Kuala Lumpur",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "George Town",
+      "category": "Städte"
+    },
+    {
+      "word": "Johor Bahru",
+      "category": "Städte"
+    },
+    {
+      "word": "Jakarta",
+      "category": "Städte"
+    },
+    {
+      "word": "Surabaya",
+      "category": "Städte"
+    },
+    {
+      "word": "Bandung",
+      "category": "Städte"
+    },
+    {
+      "word": "Medan",
+      "category": "Städte"
+    },
+    {
+      "word": "Yogyakarta",
+      "category": "Städte"
+    },
+    {
+      "word": "Denpasar",
+      "category": "Städte"
+    },
+    {
+      "word": "Manila",
+      "category": "Städte"
+    },
+    {
+      "word": "Quezon City",
+      "category": "Städte"
+    },
+    {
+      "word": "Cebu",
+      "category": "Städte"
+    },
+    {
+      "word": "Davao",
+      "category": "Städte"
+    },
+    {
+      "word": "Bandar Seri Begawan",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Dhaka",
+      "category": "Städte"
+    },
+    {
+      "word": "Chittagong",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Kathmandu",
+      "category": "Städte"
+    },
+    {
+      "word": "Pokhara",
+      "category": "Städte"
+    },
+    {
+      "word": "Thimphu",
+      "category": "Städte"
+    },
+    {
+      "word": "Neu Delhi",
+      "category": "Städte"
+    },
+    {
+      "word": "Mumbai",
+      "category": "Städte"
+    },
+    {
+      "word": "Kalkutta",
+      "category": "Städte"
+    },
+    {
+      "word": "Bengaluru",
+      "category": "Städte"
+    },
+    {
+      "word": "Chennai",
+      "category": "Städte"
+    },
+    {
+      "word": "Hyderabad",
+      "category": "Städte"
+    },
+    {
+      "word": "Ahmedabad",
+      "category": "Städte"
+    },
+    {
+      "word": "Pune",
+      "category": "Städte"
+    },
+    {
+      "word": "Jaipur",
+      "category": "Städte"
+    },
+    {
+      "word": "Surat",
+      "category": "Städte"
+    },
+    {
+      "word": "Lucknow",
+      "category": "Städte"
+    },
+    {
+      "word": "Kanpur",
+      "category": "Städte"
+    },
+    {
+      "word": "Varanasi",
+      "category": "Städte"
+    },
+    {
+      "word": "Agra",
+      "category": "Städte"
+    },
+    {
+      "word": "Amritsar",
+      "category": "Städte"
+    },
+    {
+      "word": "Kochi",
+      "category": "Städte"
+    },
+    {
+      "word": "Goa",
+      "category": "Städte"
+    },
+    {
+      "word": "Karatschi",
+      "category": "Städte"
+    },
+    {
+      "word": "Lahore",
+      "category": "Städte"
+    },
+    {
+      "word": "Islamabad",
+      "category": "Städte"
+    },
+    {
+      "word": "Rawalpindi",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Peshawar",
+      "category": "Städte"
+    },
+    {
+      "word": "Faisalabad",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Kabul",
+      "category": "Städte"
+    },
+    {
+      "word": "Taschkent",
+      "category": "Städte"
+    },
+    {
+      "word": "Samarkand",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Almaty",
+      "category": "Städte"
+    },
+    {
+      "word": "Astana",
+      "category": "Städte"
+    },
+    {
+      "word": "Bischkek",
+      "category": "Städte"
+    },
+    {
+      "word": "Duschanbe",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Aschgabat",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Teheran",
+      "category": "Städte"
+    },
+    {
+      "word": "Isfahan",
+      "category": "Städte"
+    },
+    {
+      "word": "Schiras",
+      "category": "Städte"
+    },
+    {
+      "word": "Maschhad",
+      "category": "Städte",
+      "hard": true
+    },
+    {
+      "word": "Bagdad",
+      "category": "Städte"
+    },
+    {
+      "word": "Basra",
+      "category": "Städte"
+    },
+    {
+      "word": "Erbil",
+      "category": "Städte"
+    },
+    {
+      "word": "Riad",
+      "category": "Städte"
+    },
+    {
+      "word": "Dschidda",
+      "category": "Städte"
+    },
+    {
+      "word": "Mekka",
+      "category": "Städte"
+    },
+    {
+      "word": "Medina",
+      "category": "Städte"
+    },
+    {
+      "word": "Dubai",
+      "category": "Städte"
+    },
+    {
+      "word": "Abu Dhabi",
+      "category": "Städte"
+    },
+    {
+      "word": "Sharjah",
+      "category": "Städte"
+    },
+    {
+      "word": "Doha",
+      "category": "Städte"
     }
   ]
 }
