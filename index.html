@@ -2503,11 +2503,13 @@
         }
         let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
         if(!availableWords.length){
+          // Auch nach einem Neuladen bleibt das zuletzt gespielte Wort erkennbar.
+          const lastUsedTarget=previousTarget||[...this.usedTargets].pop()||'';
           // Erst nach einem vollständigen Durchlauf wird der Pool zurückgesetzt.
           // Das zuletzt gespielte Wort bleibt ausgeschlossen, damit es nicht direkt wiederkommt.
           this.usedTargets.clear();
-          if(previousTarget) this.usedTargets.add(previousTarget);
-          availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==previousTarget);
+          if(lastUsedTarget) this.usedTargets.add(lastUsedTarget);
+          availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==lastUsedTarget);
         }
         if(!availableWords.length){
           if(statusText)statusText.textContent='Keine gültigen Wörter für eine neue Runde vorhanden.';
