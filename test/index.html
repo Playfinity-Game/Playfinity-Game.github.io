@@ -5,13 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>PLAYFINITY</title>
   <meta name="theme-color" content="#070814">
+  <!-- Cloudflare Web Analytics -->
+  <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token":"58920ae3e8fc4ef0bdbaa0d9402a7182"}'></script>
+  <!-- End Cloudflare Web Analytics -->
 
-  <!-- Transformers.js für Kontexto (semantische KI direkt im Browser) -->
-  <script type="module">
-    import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
-    window.transformersPipeline = pipeline;
-    env.allowLocalModels = false;
-  </script>
+
 
   <style>
     /* ==========================================================================
@@ -119,6 +117,8 @@
     .app-menu .tiktok-connector-panel button{padding:10px;text-align:center;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#000;font-weight:800}
     .app-menu .tiktok-connector-panel button:hover{color:#000;filter:brightness(1.08)}
     .app-menu .tiktok-connector-panel #tiktok-disconnect-button{background:rgba(255,0,127,.12);border:1px solid rgba(255,0,127,.35);color:#ff8cbd}
+    .app-menu .tiktok-connector-panel #tiktok-reconnect-button{width:auto;align-self:flex-start;padding:5px 9px;border:1px solid rgba(0,240,255,.35);background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:.72rem}
+    .app-menu .tiktok-connector-panel #tiktok-reconnect-button:disabled{opacity:.45;cursor:not-allowed}
     #tiktok-connector-status{font-size:.78rem;line-height:1.4;color:var(--text-muted);overflow-wrap:anywhere}
     .tiktok-connector-note{font-size:.68rem;line-height:1.4;color:var(--text-muted)}
     .status-dot {
@@ -156,6 +156,8 @@
 
     .screen {
       display: none;
+      position: relative;
+      isolation: isolate;
       flex-direction: column;
       flex: 1;
       padding: 16px;
@@ -163,6 +165,42 @@
       width: 100%;
       margin: 0 auto;
       animation: fadeIn 0.25s ease-out;
+    }
+
+    /* Einheitliches PLAYFINITY-Wasserzeichen auf allen Spielbildschirmen. */
+    .screen.active:not(#screen-menu)::before {
+      content: "PLAYFINITY";
+      position: absolute;
+      z-index: -1;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100%;
+      padding: 0 8px;
+      text-align: center;
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      font-size: clamp(3rem, 12vw, 8rem);
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: 0.045em;
+      color: transparent;
+      background: linear-gradient(100deg, #a900ff 0%, #00eaff 48%, #d000ff 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      opacity: 0.18;
+      filter:
+        drop-shadow(0 0 5px rgba(0, 234, 255, 0.48))
+        drop-shadow(0 0 16px rgba(0, 234, 255, 0.28))
+        drop-shadow(0 0 28px rgba(176, 38, 255, 0.24));
+    }
+
+    @media (max-width: 520px) {
+      .screen.active:not(#screen-menu)::before {
+        font-size: clamp(2.25rem, 11vw, 4rem);
+        letter-spacing: 0.025em;
+      }
     }
 
     .screen.active {
@@ -318,20 +356,92 @@
       width: 100%;
     }
 
+    .wordle-mobile-entry { display: none; }
     .wordle-grid {
-      display: grid;
-      grid-template-rows: repeat(6, 1fr);
+      display: flex;
+      flex-direction: column;
+      flex: 0 0 auto;
       gap: 6px;
       width: 100%;
       max-width: 320px;
+      overflow: hidden;
+      overscroll-behavior: none;
       margin: 10px auto;
+      padding-right: 4px;
     }
+
+    .wordle-row { flex: 0 0 auto; }
 
     .wordle-row {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
       gap: 6px;
     }
+
+    .wordle-winner-label {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 100%;
+      margin-top: 2px;
+      padding: 3px 10px;
+      border: 1px solid rgba(0, 255, 157, .55);
+      border-radius: 999px;
+      background: rgba(0, 255, 157, .12);
+      color: var(--neon-green);
+      font-size: .72rem;
+      font-weight: 800;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .wordle-guess-player-label {
+      grid-column: 1 / -1;
+      justify-self: center;
+      max-width: 100%;
+      margin-top: 1px;
+      color: var(--text-muted);
+      font-size: .68rem;
+      line-height: 1.2;
+      overflow-wrap: anywhere;
+      text-align: center;
+    }
+
+    .wordle-streamer-entry {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      max-width: 320px;
+      margin: 2px auto 0;
+    }
+    .wordle-streamer-entry input {
+      width: 100%;
+      min-width: 0;
+      max-width: 210px;
+      height: 38px;
+      padding: 0 12px;
+      border: 1px solid rgba(0, 229, 255, .45);
+      border-radius: 8px;
+      background: rgba(12, 14, 32, .8);
+      color: var(--text-main);
+      font: inherit;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-align: center;
+      text-transform: uppercase;
+    }
+    .wordle-streamer-entry button {
+      height: 38px;
+      padding: 0 13px;
+      border: 1px solid rgba(0, 229, 255, .45);
+      border-radius: 8px;
+      background: rgba(0, 229, 255, .12);
+      color: var(--neon-cyan);
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .wordle-streamer-entry button:disabled { opacity: .45; cursor: not-allowed; }
 
     .wordle-cell {
       aspect-ratio: 1;
@@ -423,7 +533,11 @@
     .key-btn.absent { background: #181a30; color: #555c7a; opacity: 0.6; }
     .screen#screen-wordle { min-height: calc(100vh - 64px); }
     .screen#screen-wordle .wordle-container { justify-content:flex-start; gap:10px; padding-top:4px; }
-    @media(max-width:600px){header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw)}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
+    @media(max-width:600px){
+      .wordle-mobile-entry{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:100%;min-height:42px;color:var(--text-main);font-size:1rem;line-height:1.25;text-align:center}
+      .wordle-mobile-letters{min-height:1.25em;letter-spacing:.12em}
+      .wordle-mobile-word{min-height:1.25em;font-weight:800;color:var(--neon-cyan)}
+      header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw);overflow:hidden}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
 
     /* ==========================================================================
        6. KONTEXTO SCREEN
@@ -542,12 +656,12 @@
       text-align: left;
     }
 
-    .kontexto-header-hints{display:none;align-items:center;gap:6px;margin-left:auto}
-    .kontexto-header-hint{width:38px;height:36px;border:1px solid rgba(0,240,255,.28);border-radius:9px;background:rgba(0,240,255,.08);color:var(--neon-cyan);font-size:1.15rem;cursor:pointer;transition:all .2s}
-    .kontexto-header-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
-    .kontexto-header-hint:disabled{opacity:.4;cursor:default}
-    body.kontexto-active .kontexto-header-hints{display:flex}
-    .kontexto-category-hint{padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700}
+    .kontexto-hint-controls{display:flex;justify-content:flex-start;align-items:center;gap:8px;width:100%;margin:8px 0 0;box-sizing:border-box}
+    .kontexto-inline-hints{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:100%;margin:0}
+    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;min-width:42px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.32);border-radius:10px;background:rgba(0,240,255,.09);color:var(--neon-cyan);font-size:1.2rem;cursor:pointer;transition:all .2s;box-sizing:border-box}
+    .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
+    .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
+    .kontexto-category-hint{display:block;width:100%;box-sizing:border-box;margin:0;padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700;text-align:center;overflow-wrap:anywhere}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
     .guess-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -671,7 +785,11 @@
     .guesswhat-result-title { color:var(--neon-gold); font-weight:900; letter-spacing:.08em; font-size:.85rem; }
 
     .pir-card {
-      background: var(--bg-card);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      /* Leicht transparent, damit das einheitliche Bildschirm-Wasserzeichen durchscheint. */
+      background: rgba(18, 20, 44, 0.62);
       border: 1px solid var(--border-glow);
       border-radius: 16px;
       padding: 24px;
@@ -681,6 +799,11 @@
       max-width: 600px;
       margin: 0 auto;
       width: 100%;
+    }
+
+    .pir-card > * {
+      position: relative;
+      z-index: 1;
     }
 
     .pir-header {
@@ -784,6 +907,7 @@
     .correct-answer-kicker{font-size:.85rem;font-weight:900;letter-spacing:.16em;color:var(--neon-green);text-transform:uppercase}
     .correct-answer-message{font-size:clamp(1.5rem,5vw,2.2rem);font-weight:950;color:#fff;line-height:1.15}
     .correct-answer-word{font-size:clamp(2rem,9vw,3.5rem);font-weight:1000;color:var(--neon-cyan);letter-spacing:.05em;text-shadow:0 0 24px rgba(0,240,255,.4);overflow-wrap:anywhere}
+    .correct-answer-winner{font-size:1.05rem;font-weight:850;color:var(--neon-green);line-height:1.35;overflow-wrap:anywhere}
     .correct-answer-timer{color:var(--text-muted);font-size:.9rem}
     .correct-answer-continue{width:100%;padding:14px 18px;border:0;border-radius:11px;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#001018;font-weight:950;font-size:1rem;cursor:pointer}
     @keyframes correctAnswerPop{from{opacity:0;transform:scale(.92)}to{opacity:1;transform:scale(1)}}
@@ -805,10 +929,95 @@
     .wordle-result-guess{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 0}
     .pir-correct-winners{margin:10px 0;padding:10px;border:1px solid rgba(0,255,157,.35);border-radius:10px;color:var(--neon-green)}
     .screen#screen-wordle .round-result.visible{max-height:45vh;overflow:auto}
-</style>
+
+    /* HANGMANN */
+    .hangmann-wrap{width:100%;max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+    .hangmann-title{text-align:center;font-size:clamp(2rem,7vw,3rem);font-weight:950;letter-spacing:1px}
+    .hangmann-title .hang{color:var(--neon-cyan);text-shadow:0 0 16px rgba(0,240,255,.28)}
+    .hangmann-title .mann{color:var(--neon-pink);text-shadow:0 0 16px rgba(255,0,127,.25)}
+    .hangmann-top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+    .hangmann-pill{padding:7px 11px;border:1px solid rgba(0,240,255,.24);border-radius:999px;background:rgba(0,240,255,.07);color:var(--neon-cyan);font-size:.8rem;font-weight:800}
+    .hangmann-chat-toggle{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--text-muted);font-size:.82rem;font-weight:700;cursor:pointer}
+    .hangmann-chat-toggle input{flex-shrink:0}
+    .hangmann-solution-form{display:flex;gap:8px;width:100%;max-width:460px;margin:0 auto;align-items:stretch}
+    .hangmann-solution-form input{flex:1;min-width:0;padding:11px 12px;border:1px solid rgba(0,240,255,.35);border-radius:9px;background:rgba(12,14,32,.85);color:#fff;font:inherit;text-transform:uppercase}
+    .hangmann-solution-form input::placeholder{color:var(--text-muted);text-transform:none}
+    .hangmann-solution-form button{white-space:nowrap}
+    @media(max-width:480px){.hangmann-chat-toggle-top{display:none}.hangmann-solution-form{gap:6px}.hangmann-solution-form input{font-size:16px;padding:10px}.hangmann-solution-form button{padding:10px 12px;font-size:.82rem}}
+    .hangmann-stage{border:1px solid var(--border-glow);border-radius:16px;background:rgba(12,14,32,.72);padding:12px;display:flex;justify-content:center;align-items:center;min-height:220px}
+    .hangmann-svg{width:min(100%,330px);height:220px;overflow:visible}
+    .hangmann-gallows{fill:none;stroke:var(--neon-cyan);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(0,240,255,.35))}
+    .hangmann-person{fill:none;stroke:var(--neon-pink);stroke-width:5;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 0 5px rgba(255,0,127,.35))}
+    .hangmann-part{opacity:0;transition:opacity .2s}
+    .hangmann-part.shown{opacity:1}
+    .hangmann-waterfall{fill:none;stroke:#65dfff;stroke-width:4.5;stroke-linecap:round;stroke-linejoin:round}
+    .hangmann-waterfall .tear-highlight{stroke:#d9faff;stroke-width:1.25;opacity:.95}
+    .hangmann-waterfall .tear-eye{stroke:#d9faff;stroke-width:2.4;stroke-linecap:round;fill:none}
+    .hangmann-waterfall.shown .tear-flow{animation:hangmann-waterfall-flow .42s linear infinite}
+    .hangmann-waterfall.shown .tear-drop{animation:hangmann-waterfall-drop .72s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:center}
+    @keyframes hangmann-waterfall-flow{to{stroke-dashoffset:-22}}
+    @keyframes hangmann-waterfall-drop{from{transform:translateY(-1px);opacity:.72}to{transform:translateY(3px);opacity:1}}
+    .hangmann-reveal{display:none;margin:0 0 10px;padding:9px 14px;border:1px solid rgba(255,0,127,.42);border-radius:11px;background:rgba(255,0,127,.1);color:#fff;text-align:center;font-size:clamp(.95rem,3.5vw,1.2rem);font-weight:850;box-shadow:0 0 18px rgba(255,0,127,.12)}
+    .hangmann-reveal.visible{display:block}
+    .hangmann-reveal strong{color:var(--neon-cyan);letter-spacing:.04em}
+    .hangmann-rope{stroke:var(--neon-gold);stroke-width:2.5;filter:drop-shadow(0 0 4px rgba(255,210,0,.5))}
+    .hangmann-hard-word{display:none;margin:0 auto -4px;padding:7px 13px;border:1px solid rgba(255,70,90,.55);border-radius:999px;background:rgba(255,35,65,.13);color:#ff8b9a;text-align:center;font-size:.88rem;font-weight:950;letter-spacing:.08em;text-shadow:0 0 12px rgba(255,55,85,.28)}
+    .hangmann-hard-word.visible{display:block}
+    .hangmann-word{display:flex;justify-content:center;gap:clamp(4px,1.4vw,10px);flex-wrap:wrap;min-height:54px}
+    .hangmann-slot{width:clamp(22px,6vw,38px);height:48px;border-bottom:3px solid var(--neon-cyan);display:flex;align-items:center;justify-content:center;font-size:clamp(1.2rem,4.5vw,1.8rem);font-weight:900;text-transform:uppercase;color:#fff}
+    .hangmann-slot.hangmann-space{width:clamp(8px,2vw,16px);border-bottom:0}
+    .hangmann-category{padding:10px 13px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.1);color:#e5c7ff;font-weight:750;text-align:center}
+    .hangmann-actions{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+    .hangmann-keyboard{display:flex;flex-direction:column;gap:6px;width:100%}
+    .hangmann-keyrow{display:flex;justify-content:center;gap:5px}
+    .hangmann-key{flex:1;max-width:46px;min-width:0;height:46px;border-radius:8px;border:1px solid rgba(255,255,255,.13);background:rgba(28,32,68,.92);color:#fff;font-weight:850;font-size:1rem;cursor:pointer}
+    .hangmann-key:disabled{opacity:.32;cursor:default}
+    .hangmann-key.hit{background:var(--neon-green);border-color:var(--neon-green);color:#06130e}
+    .hangmann-key.miss{background:#44203a;border-color:#8e315f;color:#ff9bc9}
+    .hangmann-status{min-height:24px;text-align:center;color:var(--text-muted);font-size:.9rem}
+    .hangmann-status strong{color:var(--neon-green)}
+    @media(max-width:480px){.hangmann-stage{min-height:190px}.hangmann-svg{height:190px}.hangmann-key{height:42px;font-size:.9rem}.hangmann-slot{height:42px}}
+
+
+    /* Gezielt ausgelöste, rein visuelle Admin-Troll-Effekte */
+    @keyframes pf-admin-shake { 0%,100%{transform:translate(0,0)} 20%{transform:translate(-5px,2px)} 40%{transform:translate(5px,-2px)} 60%{transform:translate(-4px,-1px)} 80%{transform:translate(4px,2px)} }
+    body.pf-admin-shake main { animation:pf-admin-shake .55s ease-in-out 3; }
+    body.pf-admin-glitch main { animation:pf-admin-shake .12s steps(2) 8; filter:hue-rotate(145deg) saturate(1.8); }
+    body.pf-admin-invert main { transform:rotate(180deg); transform-origin:center center; transition:transform .35s ease; }
+    body.pf-admin-spin main { animation:pf-admin-full-spin 1.2s ease-in-out 2; transform-origin:center center; }
+    @keyframes pf-admin-full-spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+    body.pf-admin-pixel main { filter:contrast(1.35) saturate(1.8); }
+    body.pf-admin-ice main { filter:brightness(1.12) saturate(.55) hue-rotate(155deg); }
+    #pf-admin-effect.pixel { background:repeating-linear-gradient(0deg,transparent 0 5px,#1118 6px),repeating-linear-gradient(90deg,#fff2 0 5px,transparent 6px);backdrop-filter:blur(1.5px) contrast(1.5); }
+    #pf-admin-effect.ice { background:linear-gradient(135deg,#c9f7ff66,#fff9 45%,#8deaff66);backdrop-filter:blur(2px); }
+    #pf-admin-effect.static { background:repeating-radial-gradient(circle at 20% 30%,#fff9 0 1px,#1119 2px 3px,transparent 4px 6px);background-size:9px 11px;mix-blend-mode:screen;animation:pf-static .12s steps(3) infinite; }
+    #pf-admin-effect.googly .pf-googly-eyes { position:absolute;top:42%;left:50%;transform:translate(-50%,-50%);font-size:clamp(5rem,25vw,13rem);letter-spacing:.12em;filter:drop-shadow(0 5px 8px #0009);animation:pf-eyes .35s ease-in-out infinite alternate;white-space:nowrap; }
+    @keyframes pf-static { from{background-position:0 0}to{background-position:17px -23px} }
+    @keyframes pf-eyes { from{transform:translate(-50%,-50%) rotate(-8deg) scale(.96)}to{transform:translate(-50%,-50%) rotate(8deg) scale(1.04)} }
+    #pf-admin-effect{position:fixed;inset:0;z-index:9999;pointer-events:none;display:none;overflow:hidden}
+    #pf-admin-effect.active{display:block}
+    #pf-admin-effect .pf-effect-label{position:absolute;top:18%;left:50%;transform:translateX(-50%);padding:12px 20px;border:1px solid rgba(255,255,255,.5);border-radius:14px;background:rgba(7,8,20,.88);color:#fff;font-weight:900;font-size:clamp(1.1rem,4vw,2rem);text-shadow:0 0 14px #00f0ff;box-shadow:0 0 30px #00f0ff66}
+    #pf-admin-effect.confetti{background-image:radial-gradient(circle,#ff007f 2px,transparent 3px),radial-gradient(circle,#00f0ff 2px,transparent 3px),radial-gradient(circle,#ffd000 2px,transparent 3px);background-size:43px 57px,61px 49px,73px 67px;background-position:0 0,17px 23px,31px 11px;animation:pf-confetti .7s linear 8}
+    #pf-admin-effect.fog{background:radial-gradient(ellipse at 20% 50%,#d9f7ff88,transparent 55%),radial-gradient(ellipse at 80% 40%,#c9c9ff88,transparent 60%);backdrop-filter:blur(3px);animation:pf-fog 1s ease-in-out 5 alternate}
+    @keyframes pf-confetti{from{background-position:0 -100px,17px -80px,31px -120px}to{background-position:0 900px,17px 820px,31px 880px}}
+    @keyframes pf-fog{from{opacity:.25}to{opacity:.95}}
+    #pf-admin-effect .pf-crossing-emoji{position:absolute;top:54%;left:0;font-size:clamp(4.5rem,18vw,10rem);line-height:1;filter:drop-shadow(0 8px 12px #0009);will-change:transform;white-space:nowrap}
+    #pf-admin-effect .pf-crossing-emoji.frog{animation:pf-frog-cross 4.4s ease-in-out forwards}
+    #pf-admin-effect .pf-crossing-emoji.skeleton{animation:pf-skeleton-cross 3.9s linear forwards}
+    #pf-admin-effect .pf-crossing-emoji.ghost{animation:pf-ghost-cross 4.2s ease-in-out forwards}
+    #pf-admin-effect .pf-crossing-emoji.rocket{animation:pf-rocket-cross 2.7s ease-in forwards}
+    @keyframes pf-frog-cross{0%{transform:translate(-20vw,0) rotate(-12deg)}18%{transform:translate(5vw,-19vh) rotate(8deg)}36%{transform:translate(32vw,0) rotate(-7deg)}58%{transform:translate(61vw,-17vh) rotate(8deg)}78%{transform:translate(88vw,0) rotate(-5deg)}100%{transform:translate(125vw,-8vh) rotate(12deg)}}
+    @keyframes pf-skeleton-cross{0%{transform:translate(-22vw,0) rotate(-8deg)}20%{transform:translate(8vw,-3vh) rotate(8deg)}40%{transform:translate(42vw,2vh) rotate(-8deg)}60%{transform:translate(72vw,-3vh) rotate(8deg)}80%{transform:translate(100vw,1vh) rotate(-8deg)}100%{transform:translate(125vw,0) rotate(8deg)}}
+    @keyframes pf-ghost-cross{0%{transform:translate(-20vw,8vh);opacity:0}12%{opacity:1}35%{transform:translate(32vw,-8vh)}65%{transform:translate(78vw,5vh)}88%{opacity:1}100%{transform:translate(125vw,-6vh);opacity:0}}
+    @keyframes pf-rocket-cross{0%{transform:translate(-25vw,10vh) rotate(-18deg)}100%{transform:translate(130vw,-22vh) rotate(-18deg)}}
+    @media(prefers-reduced-motion:reduce){body.pf-admin-shake main,body.pf-admin-glitch main,#pf-admin-effect{animation-duration:.01ms!important}#pf-admin-effect .pf-crossing-emoji{animation-duration:.01ms!important}}
+
+  </style>
 </head>
 
 <body>
+
+  <div id="pf-admin-effect" aria-hidden="true"><div class="pf-effect-label"></div></div>
 
   <!-- STICKY HEADER -->
   <header>
@@ -818,7 +1027,6 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
-    <div class="kontexto-header-hints" id="kontexto-header-hints" aria-label="Wordfinity-Tipps"><button type="button" class="kontexto-header-hint" id="kontexto-category-hint" aria-label="Kategorie-Tipp (einmal pro Runde)" title="Kategorie-Tipp – einmal pro Runde">🏷️</button><button type="button" class="kontexto-header-hint" id="kontexto-word-hint" aria-label="Wort-Tipp" title="Wort-Tipp – beliebig oft">💡</button></div>
     <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
@@ -830,12 +1038,11 @@
       <label for="tiktok-username">TikTok-Benutzername</label>
       <input id="tiktok-username" type="text" inputmode="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="@deinname" maxlength="25">
       <button type="button" id="tiktok-connect-button">Mit TikTok LIVE verbinden</button>
-      <button type="button" id="tiktok-reconnect-button">Reconnect</button>
+      <button type="button" id="tiktok-reconnect-button" hidden disabled>↻ Reconnect</button>
       <button type="button" id="tiktok-disconnect-button" hidden>Verbindung trennen</button>
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
-    <label class="menu-setting" for="kontexto-auto-next"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity: Nach Gewinn automatisch nächstes Wort starten</span></label>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -862,8 +1069,8 @@
           </div>
         </div>
 
-        <!-- Kontexto Card -->
-        <div class="game-card card-purple" onclick="PlayfinityRouter.go('kontexto')">
+        <!-- WORDFINITY Card -->
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
           <div>
             <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
@@ -886,6 +1093,16 @@
           </div>
         </div>
 
+        <!-- Hangman Card -->
+        <div class="game-card card-gold" onclick="PlayfinityRouter.go('hangmann')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-gold)">Buchstaben-Rätsel</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">Hang</span><span style="color:var(--neon-pink)">man</span></div>
+            <div class="card-desc">Errate das gesuchte Nomen Buchstabe für Buchstabe – mit Kategorie-Tipp und Galgenfigur.</div>
+          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
+        </div>
+
         <!-- Zahlen schätzen Card -->
         <div class="game-card card-gold" onclick="PlayfinityRouter.go('priceisright')">
           <div>
@@ -903,18 +1120,26 @@
     <!-- SCREEN 2: WORDLE -->
     <section class="screen" id="screen-wordle">
       <div class="wordle-container">
+        <div class="wordle-mobile-entry" aria-live="polite" aria-label="Aktuelle Eingabe">
+          <div class="wordle-mobile-letters" id="wordle-mobile-letters"></div>
+          <div class="wordle-mobile-word" id="wordle-mobile-word"></div>
+        </div>
         <div class="wordle-grid" id="wordle-board"></div>
         <div class="keyboard" id="wordle-keyboard"></div>
+        <form class="wordle-streamer-entry" id="wordle-streamer-entry" autocomplete="off">
+          <input id="wordle-streamer-input" type="text" maxlength="5" minlength="5" pattern="[A-Za-zÄÖÜäöüß]{5}" placeholder="Dein Wort (5)" aria-label="Eigenes FIVE-X-Wort" autocomplete="off" spellcheck="false">
+          <button id="wordle-streamer-submit" type="submit">Raten</button>
+        </form>
         <div class="round-result" id="wordle-round-result"></div>
       </div>
     </section>
 
     <!-- SCREEN 3: KONTEXTO -->
-    <section class="screen" id="screen-kontexto">
+    <section class="screen" id="screen-wordfinity">
       <div class="kontexto-wrap">
         <div class="model-loader" id="kontexto-loader">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">Semantisches KI-Modell wird geladen...</span>
+            <span id="model-status-text">Cloudflare KI wird verbunden...</span>
             <span id="model-status-pct">0%</span>
           </div>
           <div class="model-loader-bar">
@@ -923,17 +1148,19 @@
         </div>
 
         <div class="input-box">
-          <input type="text" class="game-input" id="kontexto-input" placeholder="Wort auf Deutsch eingeben..." autocomplete="off">
+          <input type="text" class="game-input" id="kontexto-input" placeholder="Dein Wort..." autocomplete="off">
           <button class="btn-action" id="kontexto-submit">Tippen</button>
         </div>
-
-        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
 
         <div class="guess-legend" aria-label="Bedeutung der Farben">
           <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
           <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
         </div>
+        <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
+          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie anzeigen (einmal pro Runde)" title="Kategorie anzeigen – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Besseren Wort-Tipp anzeigen" title="Besseren Wort-Tipp anzeigen">💡</button></span>
+        </div>
+        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
@@ -964,6 +1191,62 @@
         <div class="size-controls">
           <div class="size-drag-hint" style="text-align:center;color:var(--text-muted);font-size:.82rem;padding:4px 0;">⬆ Nach oben ziehen = größer · ⬇ Nach unten ziehen = kleiner</div>
           <button class="btn-action btn-block" id="btn-size-submit">Größe einloggen</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN: HANGMANN -->
+    <section class="screen" id="screen-hangmann">
+      <div class="hangmann-wrap">
+        <h1 class="hangmann-title"><span class="hang">Hang</span><span class="mann">man</span></h1>
+        <div class="hangmann-top">
+          <span class="hangmann-pill" id="hangmann-errors">Versuche: 10</span>
+          <label class="hangmann-chat-toggle hangmann-chat-toggle-top">
+            <input type="checkbox" id="hangmann-chat-enabled" style="width:18px;height:18px;accent-color:var(--neon-cyan);">
+            Live-Chat darf mitraten
+          </label>
+        </div>
+        <div class="hangmann-reveal" id="hangmann-reveal" aria-live="polite"></div>
+        <div class="hangmann-stage" id="hangmann-stage" role="img" aria-label="Galgenfigur, die sich mit falschen Buchstaben aufbaut">
+          <svg class="hangmann-svg" viewBox="0 0 240 210" aria-hidden="true">
+            <g class="hangmann-gallows"><path d="M28 190H150M58 190V18H160V38M58 48L28 78"/></g>
+            <path class="hangmann-rope" d="M160 38V40"/>
+            <g class="hangmann-person" id="hangmann-person">
+              <circle class="hangmann-part" data-part="1" cx="160" cy="58" r="19"/>
+              <path class="hangmann-part" data-part="2" d="M160 77V127"/>
+              <path class="hangmann-part" data-part="3" d="M160 91L132 111"/>
+              <path class="hangmann-part" data-part="4" d="M160 91L188 111"/>
+              <path class="hangmann-part" data-part="5" d="M160 127L137 160"/>
+              <path class="hangmann-part" data-part="6" d="M160 127L183 160"/>
+              <g class="hangmann-part hangmann-waterfall" data-part="7">
+                <path class="tear-eye" d="M149 51 Q153 48 157 51"/>
+                <path class="tear-flow" d="M153 54 C149 60 154 65 150 71 C147 77 152 81 151 85" stroke-dasharray="8 4"/>
+                <path class="tear-highlight" d="M153 55 C150 61 154 65 151 71 C149 76 152 80 152 83"/>
+                <path class="tear-drop" d="M151 83 C147 87 148 90 151 91 C154 90 155 87 151 83Z" fill="#65dfff" stroke="none"/>
+              </g>
+              <g class="hangmann-part hangmann-waterfall" data-part="8">
+                <path class="tear-eye" d="M163 51 Q167 48 171 51"/>
+                <path class="tear-flow" d="M167 54 C171 60 166 65 170 71 C173 77 168 81 169 85" stroke-dasharray="8 4"/>
+                <path class="tear-highlight" d="M167 55 C170 61 166 65 169 71 C171 76 168 80 168 83"/>
+                <path class="tear-drop" d="M169 83 C165 87 166 90 169 91 C172 90 173 87 169 83Z" fill="#65dfff" stroke="none"/>
+              </g>
+              <path class="hangmann-part" data-part="9" d="M154 69 Q160 63 166 69"/>
+              <path class="hangmann-part" data-part="10" d="M146 43L151 39L157 41L163 39L170 43"/>
+            </g>
+          </svg>
+        </div>
+        <div class="hangmann-category" id="hangmann-category">Kategorie-Tipp: Noch verborgen</div>
+        <div class="hangmann-hard-word" id="hangmann-hard-word" aria-live="polite">☠️ SCHWERES WORT ☠️</div>
+        <div class="hangmann-word" id="hangmann-word" aria-live="polite"></div>
+        <div class="hangmann-status" id="hangmann-status" aria-live="polite">Wähle einen Buchstaben.</div>
+        <form class="hangmann-solution-form" id="hangmann-solution-form">
+          <input id="hangmann-solution-input" type="text" maxlength="40" autocomplete="off" autocapitalize="characters" placeholder="Lösungswort eingeben …" aria-label="Lösungswort eingeben">
+          <button class="btn-action" type="submit">Wort lösen</button>
+        </form>
+        <div class="hangmann-keyboard" id="hangmann-keyboard" aria-label="Buchstabentastatur"></div>
+        <div class="hangmann-actions">
+          <button class="btn-action" id="hangmann-hint" type="button">🏷 Kategorie zeigen</button>
+          <button class="btn-action" id="hangmann-new" type="button">Neues Wort</button>
         </div>
       </div>
     </section>
@@ -1004,6 +1287,7 @@
       <div class="correct-answer-kicker">🎉 RICHTIG!</div>
       <div class="correct-answer-message" id="correct-answer-message">Du hast das Wort erraten!</div>
       <div class="correct-answer-word" id="correct-answer-word"></div>
+      <div class="correct-answer-winner" id="correct-answer-winner" hidden></div>
       <div class="correct-answer-timer" id="correct-answer-timer">Die nächste Runde startet gleich …</div>
       <button type="button" class="correct-answer-continue" id="correct-answer-continue" hidden>Fortfahren ›</button>
     </div>
@@ -1047,9 +1331,6 @@
 
         document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
-        const autoNext=document.getElementById('kontexto-auto-next');
-        autoNext.checked=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
-        autoNext.addEventListener('change',()=>localStorage.setItem('playfinity_kontexto_auto_next',String(autoNext.checked)));
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
         toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
@@ -1066,7 +1347,30 @@
           if (action === 'home') this.go('menu');
           if (action === 'leaderboard') CommunityBoard.showAll();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
-          if (action === 'settings') showModal('Einstellungen', 'Die bestehende Arcade-Darstellung bleibt erhalten. Weitere Einstellungen können später ergänzt werden.');
+          if (action === 'settings') {
+            const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
+              '<label class="menu-setting"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>' +
+              '<label class="menu-setting"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity</span></label>' +
+              '<label class="menu-setting"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>' +
+              '<label class="menu-setting"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>' +
+              '</div><div class="menu-setting-group"><div class="menu-setting-heading">Kategorie anzeigen</div>' +
+              '<label class="menu-setting"><input id="kontexto-auto-category" type="checkbox"> <span>Wordfinity</span></label>' +
+              '<label class="menu-setting"><input id="hangmann-auto-category" type="checkbox"> <span>Hangman</span></label></div>';
+            showModal('Einstellungen', settingsHtml);
+            [
+              ['wordle-auto-next','playfinity_wordle_auto_next',true],
+              ['kontexto-auto-next','playfinity_kontexto_auto_next',true],
+              ['hangmann-auto-next','playfinity_hangmann_auto_next',true],
+              ['priceisright-auto-next','playfinity_priceisright_auto_next',true],
+              ['kontexto-auto-category','playfinity_wordfinity_auto_category',false],
+              ['hangmann-auto-category','playfinity_hangmann_auto_category',false]
+            ].forEach(([id,key,defaultValue])=>{
+              const setting=document.getElementById(id);
+              if(!setting)return;
+              setting.checked=localStorage.getItem(key)===null ? defaultValue : localStorage.getItem(key)==='true';
+              setting.addEventListener('change',()=>localStorage.setItem(key,String(setting.checked)));
+            });
+          }
           if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>Wordfinity: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
@@ -1079,8 +1383,9 @@
       },
 
       renderScreen(screenId, isForwardNav) {
+        PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.body.classList.toggle('kontexto-active', screenId === 'kontexto');
+        document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
         document.body.classList.toggle('game-active', screenId !== 'menu');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
@@ -1099,9 +1404,201 @@
 
       onEnterGame(screenId) {
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
-        if (screenId === 'kontexto' && !KontextoGame.initialized) KontextoGame.init();
+        if (screenId === 'hangmann') HangmannGame.init();
+        if (screenId === 'wordfinity' && !KontextoGame.initialized) KontextoGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
+      }
+    };
+
+    /* ==========================================================================
+       HANGMANN GAME
+       ========================================================================== */
+    const HangmannGame = {
+      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null,
+      normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
+      async init(){
+        if(!this.initialized){
+          document.getElementById('hangmann-new').addEventListener('click',()=>this.newRound());
+          document.getElementById('hangmann-hint').addEventListener('click',()=>this.showHint());
+          document.getElementById('hangmann-solution-form').addEventListener('submit',e=>{
+            e.preventDefault();
+            const input=document.getElementById('hangmann-solution-input');
+            this.submitWordGuess(input.value);
+          });
+          const chatToggle=document.getElementById('hangmann-chat-enabled');
+          this.chatGuessEnabled=localStorage.getItem('hangmann-chat-enabled')==='true';
+          chatToggle.checked=this.chatGuessEnabled;
+          chatToggle.addEventListener('change',()=>{this.chatGuessEnabled=chatToggle.checked;localStorage.setItem('hangmann-chat-enabled',String(this.chatGuessEnabled));});
+          window.addEventListener('keydown',e=>{if(PlayfinityRouter.currentScreen==='hangmann'&&/^[a-zäöüß]$/i.test(e.key))this.guess(e.key);});
+          this.buildKeyboard();this.initialized=true;
+        }
+        if(!this.words.length){
+          const status=document.getElementById('hangmann-status');status.textContent='Wortliste wird geladen …';
+          try{
+            const response=await fetch('data/hangmann-nouns.json',{cache:'no-cache'});
+            if(!response.ok)throw new Error('Wortliste nicht erreichbar');
+            const payload=await response.json();this.words=(payload.words||[]).filter(item=>item&&item.word&&item.category);this.wordQueue=[];
+            if(!this.words.length){
+              status.textContent='Unsere eigene Hangman-Wortliste wird gerade gemeinsam aufgebaut.';
+              document.getElementById('hangmann-category').textContent='Kategorie-Tipp: folgt bald';
+              document.getElementById('hangmann-hint').disabled=true;
+              document.getElementById('hangmann-new').disabled=true;
+              document.querySelectorAll('#hangmann-keyboard [data-letter]').forEach(button=>button.disabled=true);
+              return;
+            }
+          }catch(error){status.textContent='Die Wortliste konnte nicht geladen werden. Bitte später erneut versuchen.';return;}
+        }
+        document.getElementById('hangmann-new').disabled=false;
+        if(!this.target)this.newRound();
+      },
+      buildKeyboard(){
+        const root=document.getElementById('hangmann-keyboard');
+        const rows=['QWERTZUIOP','ASDFGHJKL','ÄÖÜẞYXCVBNM'];
+        root.innerHTML=rows.map(row=>'<div class="hangmann-keyrow">'+Array.from(row).map(letter=>'<button type="button" class="hangmann-key" data-letter="'+letter+'" aria-label="Buchstabe '+letter+'">'+letter+'</button>').join('')+'</div>').join('');
+        root.addEventListener('click',e=>{const button=e.target.closest('[data-letter]');if(button)this.guess(button.dataset.letter);});
+      },
+      newRound(){
+        if(this.fallTimer){clearTimeout(this.fallTimer);this.fallTimer=null;}
+        const person=document.getElementById("hangmann-person");if(person)person.classList.remove("falling");
+        const stage=document.getElementById('hangmann-stage');if(stage)stage.classList.remove('cleaning','kicking');
+        const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.classList.remove('visible');reveal.textContent='';}
+        if(!this.words.length)return;
+        const queueKey='playfinity_hangmann_word_queue_v2';
+        const categoryKey='playfinity_hangmann_last_category_v1';
+        const wordKey=item=>item.category+'\\u0000'+this.normalize(item.word);
+        const randomIndex=max=>{
+          if(max<=1)return 0;
+          const cryptoApi=window.crypto;
+          if(cryptoApi&&cryptoApi.getRandomValues){
+            const range=0x100000000;
+            const limit=range-(range%max);
+            const value=new Uint32Array(1);
+            let number;
+            do{cryptoApi.getRandomValues(value);number=value[0];}while(number>=limit);
+            return number%max;
+          }
+          return Math.floor(Math.random()*max);
+        };
+        const shuffle=items=>{
+          for(let i=items.length-1;i>0;i--){
+            const j=randomIndex(i+1);
+            [items[i],items[j]]=[items[j],items[i]];
+          }
+          return items;
+        };
+        if(!this.wordQueue.length){
+          let restored=[];
+          try{
+            const saved=JSON.parse(localStorage.getItem(queueKey)||'[]');
+            const byKey=new Map(this.words.map(item=>[wordKey(item),item]));
+            const used=new Set();
+            restored=saved.map(key=>byKey.get(key)).filter(item=>{
+              if(!item)return false;
+              const key=wordKey(item);
+              if(used.has(key))return false;
+              used.add(key);
+              return true;
+            });
+            const remaining=this.words.filter(item=>!used.has(wordKey(item)));
+            restored.push(...shuffle(remaining));
+          }catch(error){
+            restored=shuffle([...this.words]);
+          }
+          this.wordQueue=restored;
+        }
+        if(!this.wordQueue.length)this.wordQueue=shuffle([...this.words]);
+        let previousCategory='';
+        try{previousCategory=localStorage.getItem(categoryKey)||'';}catch(error){}
+        const otherCategoryIndexes=[];
+        this.wordQueue.forEach((item,index)=>{if(item.category!==previousCategory)otherCategoryIndexes.push(index);});
+        const candidates=otherCategoryIndexes.length?otherCategoryIndexes:this.wordQueue.map((_,index)=>index);
+        const selectedIndex=candidates[randomIndex(candidates.length)];
+        this.target=this.wordQueue.splice(selectedIndex,1)[0];
+        try{
+          localStorage.setItem(queueKey,JSON.stringify(this.wordQueue.map(item=>wordKey(item))));
+          localStorage.setItem(categoryKey,this.target.category);
+        }catch(error){console.warn('[Hangmann] Zufallsauswahl konnte nicht gespeichert werden.',error);}
+        const hardWords=new Set(['Nyckelharpa','Kontrafagott','Ophikleide','Serpent','Rankett','Cornamuse','Krummhorn','Sopranino','Basssaxofon','Gaita','Zurna','Guzheng','Guqin','Ruan','Biwa','Berimbau','Balafon','Sarangi','Sarod','Rebec','Psalter','Mellophon','Ventilhorn','Blindschleiche','Feuersalamander','Ringelnatter','Schleiereule','Stachelschwein','Pfeilgiftfrosch','Borkenkäfer','Gletscherzunge','Kristallhöhle','Küstennebel','Flussdelta','Hochgebirge','Erdkruste','Vorratsglas','Vorratsdose','Vorratsbehälter','Vorratsbox','Vorratscontainer','Vorratsschrank','Vorratsregal','Vorratskorb','Vorratskiste','Vorratseimer','Vorratsflasche','Vorratskanister','Vorratsspender','Vorratsdeckel','Vorratsverschluss','Vorratsetikett','Vorratsclip','Vorratsbeutel','Vorratstüte','Vorratssack','Vorratsfolie','Vorratsalufolie','Vorratsbrotkasten','Vorratsobstkorb','Vorratsölflasche','Vorratsnudelglas','Vorratsteedose','Vorratskeksdose','Vorratstrichter','Aufbewahrungsbox','Aufbewahrungskiste','Aufbewahrungskorb','Aufbewahrungsbehälter','Aufbewahrungsdose','Aufbewahrungsschachtel','Aufbewahrungsschublade','Aufbewahrungsregal','Aufbewahrungsschrank','Aufbewahrungscontainer','Aufbewahrungstasche','Aufbewahrungsbeutel','Aufbewahrungsmappe','Aufbewahrungsordner','Aufbewahrungshülle','Aufbewahrungsetui','Aufbewahrungskoffer','Aufbewahrungstruhe','Aufbewahrungskommode','Aufbewahrungssortierbox','Aufbewahrungseinsatz','Aufbewahrungsteiler','Aufbewahrungsbesteckkasten','Aufbewahrungsschmuckbox','Aufbewahrungsschuhbox','Aufbewahrungskleiderbox','Aufbewahrungsspielzeugkiste','Aufbewahrungswerkzeugkoffer','Aufbewahrungswerkzeugkasten','Aufbewahrungskleinteilebox','Aufbewahrungssichtbox','Aufbewahrungsstapelbox','Aufbewahrungsfaltbox','Aufbewahrungsfaltkorb','Aufbewahrungsvakuumbeutel','Aufbewahrungskleidersack','Aufbewahrungskleiderhülle','Türinsektenschutztür','Fenstersonnenschutzfolie','Gartenpoolbürste','Gartengrillbesteck','Gartenschlauchkupplung','Gartenpflanzkasten','Küchenbrotkasten','Waschmaschinenreiniger']);
+        const hardWordLabel=document.getElementById('hangmann-hard-word');
+        if(hardWordLabel)hardWordLabel.classList.toggle('visible',(this.target.hard===true||hardWords.has(this.target.word)));
+        this.guessed=new Set();this.errors=0;this.locked=false;this.hintShown=false;
+        const categoryLabel=document.getElementById('hangmann-category');
+        const showCategoryImmediately=localStorage.getItem('playfinity_hangmann_auto_category')==='true';
+        document.getElementById('hangmann-hint').disabled=false;
+        document.getElementById('hangmann-hint').hidden=showCategoryImmediately;
+        categoryLabel.textContent=showCategoryImmediately ? this.target.category : 'Kategorie-Tipp: Noch verborgen';
+        document.getElementById('hangmann-status').textContent='Wähle einen Buchstaben.';
+        document.querySelectorAll('.hangmann-part').forEach(part=>part.classList.remove('shown'));
+        document.getElementById('hangmann-errors').textContent='Versuche: 10';
+        this.renderWord();this.renderKeyboard();
+        PlayfinityPlayerPresence.sendPresence();
+      },
+      submitChatGuess(player, text){
+        if(!this.target||this.locked)return;
+        const guess=this.normalize(String(text||'').trim());
+        const answer=this.normalize(this.target.word);
+        if(!guess||!player||guess!==answer)return;
+        this.finish(true,player);
+      },
+      submitWordGuess(value){
+        if(!this.target||this.locked)return;
+        const guess=this.normalize(String(value||'').trim());
+        if(!guess)return;
+        const input=document.getElementById('hangmann-solution-input');
+        if(guess===this.normalize(this.target.word)){
+          if(input)input.value='';
+          this.finish(true);
+        }else{
+          document.getElementById('hangmann-status').textContent='Das ist leider nicht das gesuchte Wort.';
+          if(input){input.select();}
+        }
+      },
+      guess(letter){
+        if(!this.target||this.locked)return;
+        const key=this.normalize(letter);
+        if(!/^[A-ZÄÖÜẞ]$/.test(key)||this.guessed.has(key))return;
+        this.guessed.add(key);
+        if(this.normalize(this.target.word).includes(key)){
+          this.renderWord();
+          if(Array.from(this.normalize(this.target.word)).every(ch=>ch===' '||this.guessed.has(ch)))this.finish(true);
+        }else{
+          this.errors++;const part=document.querySelector('[data-part="'+this.errors+'"]');if(part)part.classList.add('shown');
+          document.getElementById('hangmann-errors').textContent='Versuche: '+(10-this.errors);
+          if(this.errors>=10)this.finish(false);
+        }
+        this.renderKeyboard();
+      },
+      renderWord(){
+        const word=this.normalize(this.target.word);
+        document.getElementById('hangmann-word').innerHTML=Array.from(word).map(ch=>ch===' '?'<span class="hangmann-slot hangmann-space" aria-hidden="true"></span>':'<span class="hangmann-slot">'+(this.guessed.has(ch)?ch:'')+'</span>').join('');
+      },
+      renderKeyboard(){
+        document.querySelectorAll('#hangmann-keyboard [data-letter]').forEach(button=>{
+          const letter=button.dataset.letter;button.disabled=this.guessed.has(letter)||this.locked;
+          button.classList.toggle('hit',this.guessed.has(letter)&&this.normalize(this.target.word).includes(letter));
+          button.classList.toggle('miss',this.guessed.has(letter)&&!this.normalize(this.target.word).includes(letter));
+        });
+      },
+      showHint(){
+        if(!this.target||this.hintShown)return;
+        this.hintShown=true;document.getElementById('hangmann-category').textContent='Kategorie: '+this.target.category;
+        document.getElementById('hangmann-hint').disabled=true;
+      },
+      finish(won, player=null){
+        this.locked=true;this.renderWord();this.renderKeyboard();
+        document.getElementById('hangmann-status').innerHTML=won?'<strong>🎉 Richtig! Das Wort lautet '+CommunityBoard.escape(this.target.word)+'.</strong>':'Nicht ganz! Das gesuchte Wort war <strong>'+CommunityBoard.escape(this.target.word)+'</strong>.';
+        document.getElementById('hangmann-hint').disabled=true;
+        const autoNext=localStorage.getItem('playfinity_hangmann_auto_next')!=='false';
+        if(won){
+          if(player)CommunityBoard.record('hangmann',player);
+          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,player?'🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!':'🎉 Richtig geraten!');
+          if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
+        }else{
+          document.getElementById('hangmann-status').textContent='😭 Oh nein!';
+          const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
+          if(autoNext)this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
+        }
       }
     };
 
@@ -1180,15 +1677,37 @@
         this.reconnectTimer = setTimeout(() => this.connect(), 4000);
       },
 
+      isStreamerChatMessage(user) {
+        let streamerUsername = '';
+        try {
+          streamerUsername = (localStorage.getItem('playfinity_tiktok_username_v1') || document.getElementById('tiktok-username')?.value || '').trim().replace(/^@/, '').toLowerCase();
+        } catch (error) {
+          streamerUsername = (document.getElementById('tiktok-username')?.value || '').trim().replace(/^@/, '').toLowerCase();
+        }
+        if (!streamerUsername) return false;
+        const userId = String(user?.id || '').trim().replace(/^@/, '').toLowerCase();
+        const userName = String(user?.name || '').trim().replace(/^@/, '').toLowerCase();
+        return userId === streamerUsername || userName === streamerUsername;
+      },
+
       routeLiveChat(user, text, source = 'tikfinity') {
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
+        // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
+        if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
-        } else if (screen === 'kontexto' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
+        } else if (screen === 'wordfinity' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
           KontextoGame.submitGuess(text, user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
-          PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
+          PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
+        } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
+          const chatMessage = text.trim();
+          if (/^[A-Za-zÄÖÜäöüß]$/.test(chatMessage)) {
+            HangmannGame.guess(chatMessage);
+          } else {
+            HangmannGame.submitChatGuess(user, chatMessage);
+          }
         }
       }
     };
@@ -1197,29 +1716,42 @@
        COMMUNITY-RANGLISTEN (LETZTE 24 STUNDEN, STREAMER-BROWSER)
        ========================================================================== */
     const TikTokConnector = {
-      baseUrl: 'https://playfinity-tiktok-reconnect-test.onrender.com',
+      baseUrl: 'https://playfinity-game-github-io.onrender.com',
       ws: null,
       connected: false,
       statusNode: document.getElementById('tiktok-connector-status'),
       connectButton: document.getElementById('tiktok-connect-button'),
       disconnectButton: document.getElementById('tiktok-disconnect-button'),
       reconnectButton: document.getElementById('tiktok-reconnect-button'),
+      reconnecting: false,
+
+      savedUsernameKey: 'playfinity_tiktok_username_v1',
 
       init() {
+        const input = document.getElementById('tiktok-username');
+        let savedUsername = '';
+        try { savedUsername = localStorage.getItem(this.savedUsernameKey) || ''; } catch (error) {}
+        if (input && savedUsername) input.value = savedUsername;
         this.connectButton?.addEventListener('click', () => this.connect());
         this.disconnectButton?.addEventListener('click', () => this.disconnect());
         this.reconnectButton?.addEventListener('click', () => this.reconnect());
-        document.getElementById('tiktok-username')?.addEventListener('keydown', (event) => {
+        input?.addEventListener('keydown', (event) => {
           if (event.key === 'Enter') this.connect();
         });
+        // Eine zuvor verbundene TikTok-Quelle nach einem Seiten-Reload automatisch wiederherstellen.
+        if (savedUsername) this.connect();
       },
 
       setStatus(message, state = 'idle') {
         if (this.statusNode) this.statusNode.textContent = message;
         const isConnected = state === 'connected' || state === 'error-connected';
         if (this.connectButton) this.connectButton.disabled = state === 'connecting' || isConnected;
-        if (this.reconnectButton) this.reconnectButton.disabled = state === 'connecting';
         if (this.disconnectButton) this.disconnectButton.hidden = !isConnected;
+        if (this.reconnectButton) {
+          this.reconnectButton.hidden = !isConnected;
+          this.reconnectButton.disabled = !isConnected || this.reconnecting;
+          this.reconnectButton.textContent = this.reconnecting ? '↻ Verbinde …' : '↻ Reconnect';
+        }
         if (activeLiveSource === 'tiktok' || state === 'connecting') {
           const dot = document.getElementById('ws-indicator');
           const label = document.getElementById('ws-label');
@@ -1240,13 +1772,21 @@
 
         this.setStatus('Verbinde mit dem PLAYFINITY-Server …', 'connecting');
         try {
+          // Der öffentliche TikTok-Benutzername ist keine Zugangsinformation und wird lokal gemerkt.
+          localStorage.setItem(this.savedUsernameKey, username);
+        } catch (error) {}
+        try {
           const response = await fetch(this.baseUrl + '/api/connect', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ username })
           });
           const data = await response.json().catch(() => ({}));
-          if (!response.ok || !data.websocketPath) throw new Error(data.error || 'Verbindung konnte nicht gestartet werden.');
+          if (!response.ok || !data.websocketPath) {
+            const baseMessage = data.error || 'Verbindung konnte nicht gestartet werden.';
+            const detail = typeof data.detail === 'string' ? data.detail.trim().slice(0, 300) : '';
+            throw new Error(detail ? baseMessage + ' Ursache: ' + detail : baseMessage);
+          }
 
           const socketUrl = this.baseUrl.replace(/^https:/, 'wss:') + data.websocketPath;
           const socket = new WebSocket(socketUrl);
@@ -1259,6 +1799,7 @@
             clearTimeout(TikFinity.reconnectTimer);
             if (TikFinity.ws && TikFinity.ws.readyState < WebSocket.CLOSING) TikFinity.ws.close();
             this.setStatus('TikTok LIVE verbunden: @' + data.username, 'connected');
+            PlayfinityPlayerPresence.setStreamer(data.username);
             console.log('[PLAYFINITY] TikTok LIVE verbunden:', data.username);
           };
 
@@ -1272,6 +1813,10 @@
                 };
                 TikFinity.lastUserName = user.name;
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
+              } else if (message.type === 'admin_action') {
+                PlayfinityPlayerPresence.showEffect(message.action);
+              } else if (message.type === 'connector_reconnected') {
+                this.setStatus('TikTok LIVE wurde neu verbunden.', 'connected');
               } else if (message.type === 'connector_error') {
                 this.setStatus(message.message || 'TikTok-Verbindung meldet einen Fehler.', 'error-connected');
               }
@@ -1286,6 +1831,7 @@
             const wasActive = activeLiveSource === 'tiktok';
             this.connected = false;
             this.ws = null;
+            PlayfinityPlayerPresence.setStreamer('');
             if (wasActive) {
               activeLiveSource = 'none';
               this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
@@ -1302,44 +1848,41 @@
       },
 
       async reconnect() {
-        const input = document.getElementById('tiktok-username');
-        const username = (input?.value || '').trim().replace(/^@/, '');
+        if (!this.connected || this.reconnecting) return;
+        const username = (document.getElementById('tiktok-username')?.value || '').trim().replace(/^@/, '');
         if (!/^[A-Za-z0-9._]{2,24}$/.test(username)) {
-          this.setStatus('Bitte gib einen gültigen TikTok-@Namen ein.', 'error');
-          input?.focus();
+          this.setStatus('Bitte gib einen gültigen TikTok-@Namen ein.', 'error-connected');
           return;
         }
-        this.setStatus('TikTok-Verbindung wird neu aufgebaut …', 'connecting');
+        this.reconnecting = true;
+        this.setStatus('TikTok LIVE wird neu verbunden …', 'connecting');
         try {
-          localStorage.setItem(this.savedUsernameKey, username);
           const response = await fetch(this.baseUrl + '/api/reconnect', {
-            method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ username })
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ username })
           });
           const data = await response.json().catch(() => ({}));
-          if (!response.ok || !data.websocketPath) {
-            const detail = typeof data.detail === 'string' ? data.detail.trim().slice(0, 300) : '';
-            throw new Error(detail ? (data.error || 'Reconnect fehlgeschlagen.') + ' Ursache: ' + detail : (data.error || 'Reconnect fehlgeschlagen.'));
+          if (!response.ok || !data.ok) {
+            const detail = typeof data.detail === 'string' ? ' Ursache: ' + data.detail.trim().slice(0, 300) : '';
+            throw new Error((data.error || 'TikTok LIVE konnte nicht neu verbunden werden.') + detail);
           }
-          if (this.ws?.readyState === WebSocket.OPEN) {
-            this.connected = true;
-            activeLiveSource = 'tiktok';
-            TikFinity.pausedForTikTok = true;
-            this.setStatus('TikTok LIVE wieder verbunden: @' + data.username, 'connected');
-            PlayfinityPlayerPresence.setStreamer(data.username);
-          } else {
-            this.connected = false;
-            await this.connect();
-          }
+          this.setStatus('TikTok LIVE neu verbunden: @' + (data.username || username), 'connected');
         } catch (error) {
-          this.setStatus(error.message || 'TikTok konnte nicht neu verbunden werden.', 'error');
+          this.setStatus(error.message || 'TikTok-Reconnect fehlgeschlagen.', 'error-connected');
+        } finally {
+          this.reconnecting = false;
+          if (this.connected) this.setStatus(this.statusNode?.textContent || 'TikTok LIVE verbunden.', this.statusNode?.textContent?.includes('Fehler') ? 'error-connected' : 'connected');
         }
       },
 
       disconnect() {
+        try { localStorage.removeItem(this.savedUsernameKey); } catch (error) {}
         const socket = this.ws;
         this.ws = null;
         this.connected = false;
         activeLiveSource = 'none';
+        PlayfinityPlayerPresence.setStreamer('');
         this.setStatus('TikTok LIVE getrennt. TikFinity wird wieder aktiviert.', 'idle');
         if (socket) socket.close(1000, 'Vom Streamer getrennt');
         TikFinity.pausedForTikTok = false;
@@ -1351,6 +1894,7 @@
       key: 'playfinity_community_scores_v1', windowMs: 86400000,
       read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
       record(game, player) { if (!player || !player.id || player.id === 'unknown') return; const rows = this.read(); rows.push({game, id:player.id, name:player.name || 'Zuschauer', at:Date.now(), points:1}); localStorage.setItem(this.key, JSON.stringify(rows)); },
+      winsForPlayer(game, player) { if (!player || !player.id || player.id === 'unknown') return 0; return this.read().filter(e => e.game === game && e.id === player.id).length; },
       top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
       escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
       render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
@@ -1370,54 +1914,95 @@
       roundTimer: null,
       solvedRounds: 0,
 
-      // Ausgewählte deutsche 5-Buchstaben-Wörter
-      wordPool: [
-        'TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER',
-        'VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD',
-        'BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE',
-        'KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE',
-        'MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'
-      ],
+      // Die geprüfte FIVE-X-Wortliste wird aus data/fivex-words.json geladen.
+      wordPool: ['TRAUM','STERN','APFEL','BLUME','SONNE','STADT','KRAFT','TISCH','KATER','VOGEL','FEUER','WORTE','INSEL','WALZE','KREIS','LICHT','GLÜCK','PFERD','BERGE','FLUSS','BRIEF','STUHL','RADIO','BLATT','WOLKE','FARBE','TIEFE','KREUZ','LAMPE','BODEN','DRAHT','FEDER','GLEIS','HAFEN','KETTE','LINIE','MOTOR','NADEL','ORKAN','PERLE','RASEN','SAITE','TÜRME','WAGEN','ZWEIG'],
+      wordPoolLoadPromise: null,
+      wordPoolIndex: 0,
+
+      shuffleWordPool() {
+        for (let i = this.wordPool.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [this.wordPool[i], this.wordPool[j]] = [this.wordPool[j], this.wordPool[i]];
+        }
+        this.wordPoolIndex = 0;
+      },
+
+      async loadWordPool() {
+        if (!this.wordPoolLoadPromise) {
+          this.wordPoolLoadPromise = fetch('data/fivex-words.json', { cache: 'no-store' })
+            .then(response => { if (!response.ok) throw new Error('FIVE-X-Wortliste konnte nicht geladen werden'); return response.json(); })
+            .then(words => {
+              if (!Array.isArray(words) || words.length < 1000 || words.some(word => !/^[A-ZÄÖÜ]{5}$/.test(word))) throw new Error('FIVE-X-Wortliste ist ungültig');
+              this.wordPool = [...new Set(words)];
+              this.shuffleWordPool();
+              return true;
+            })
+            .catch(error => { console.error('[FIVE X] Wortliste konnte nicht geladen werden:', error); this.shuffleWordPool(); return false; });
+        }
+        return this.wordPoolLoadPromise;
+      },
 
       init() {
         if (this.initialized) return;
         this.buildKeyboard();
         window.addEventListener('keydown', (e) => this.handlePhysicalKey(e));
+        const streamerForm = document.getElementById('wordle-streamer-entry');
+        const streamerInput = document.getElementById('wordle-streamer-input');
+        streamerForm?.addEventListener('submit', (e) => {
+          e.preventDefault();
+          this.submitStreamerGuess();
+        });
+        streamerInput?.addEventListener('input', () => {
+          streamerInput.value = streamerInput.value.replace(/[^A-Za-zÄÖÜäöüß]/g, '').toLocaleUpperCase('de-DE').slice(0, 5);
+        });
+        window.addEventListener('resize', () => this.renderBoard());
         this.initialized = true;
       },
 
-      startNewGame() {
+      async startNewGame() {
         PauseController.clear('wordle','roundTimer');
         this.init();
+        await this.loadWordPool();
         this.roundLocked = false;
-        this.targetWord = this.wordPool[Math.floor(Math.random() * this.wordPool.length)];
+        // Zufällige Reihenfolge ohne Wiederholung, bis der komplette Pool einmal gespielt wurde.
+        if (this.wordPoolIndex >= this.wordPool.length) this.shuffleWordPool();
+        this.targetWord = this.wordPool[this.wordPoolIndex++];
         this.guesses = [];
         this.currentGuess = '';
         const result = document.getElementById('wordle-round-result');
         if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
         this.renderBoard();
         this.resetKeyboardColors();
+        PlayfinityPlayerPresence.sendPresence();
       },
 
       renderBoard() {
         const board = document.getElementById('wordle-board');
+        if (!board) return;
         board.innerHTML = '';
-        const rowsToShow = Math.max(6, this.guesses.length + 1);
+        const mobileLetters = document.getElementById('wordle-mobile-letters');
+        const mobileWord = document.getElementById('wordle-mobile-word');
+        if (mobileLetters) mobileLetters.textContent = this.currentGuess.split('').join(' ');
+        if (mobileWord) mobileWord.textContent = this.currentGuess;
 
-        for (let r = 0; r < rowsToShow; r++) {
+        // Neueste Versuche stehen oben. Das Board behält exakt sechs sichtbare Zeilen;
+        // ältere Versuche laufen unten aus dem festen Anzeigefenster heraus.
+        const visibleGuesses = [...this.guesses].reverse();
+        const totalRows = Math.max(6, visibleGuesses.length + (this.roundLocked ? 0 : 1));
+
+        for (let r = 0; r < totalRows; r++) {
           const rowDiv = document.createElement('div');
           rowDiv.className = 'wordle-row';
 
-          const guess = this.guesses[r];
-          const isCurrentRow = (r === this.guesses.length);
+          const guess = visibleGuesses[r];
+          const isCurrentRow = (r === visibleGuesses.length && !this.roundLocked);
 
           for (let c = 0; c < 5; c++) {
             const cell = document.createElement('div');
             cell.className = 'wordle-cell';
 
             if (guess) {
-              const letter = guess.word[c];
-              cell.innerText = letter;
+              cell.innerText = guess.word[c];
               cell.classList.add(guess.result[c]);
             } else if (isCurrentRow && this.currentGuess[c]) {
               cell.innerText = this.currentGuess[c];
@@ -1425,12 +2010,36 @@
             }
             rowDiv.appendChild(cell);
           }
+
+          if (guess?.player?.name) {
+            const playerLabel = document.createElement('div');
+            playerLabel.className = 'wordle-guess-player-label';
+            playerLabel.textContent = 'Eingegeben von: ' + guess.player.name;
+            rowDiv.appendChild(playerLabel);
+          }
+
+          if (guess && guess.word === this.targetWord) {
+            const winnerLabel = document.createElement('div');
+            winnerLabel.className = 'wordle-winner-label';
+            winnerLabel.textContent = '🏆 Erraten von: ' + (guess.player?.name || 'Lokaler Spieler') + (guess.player ? ' · ' + (CommunityBoard.winsForPlayer('wordle', guess.player) + 1) + '× richtig' : '');
+            rowDiv.appendChild(winnerLabel);
+          }
+
           board.appendChild(rowDiv);
+        }
+
+        // Die Höhe des Boards entspricht immer exakt sechs Wortraster-Zeilen.
+        const firstRow = board.querySelector('.wordle-row');
+        if (firstRow) {
+          const rowHeight = firstRow.getBoundingClientRect().height;
+          const rowGap = parseFloat(getComputedStyle(board).rowGap) || 0;
+          board.style.height = (rowHeight * 6 + rowGap * 5) + 'px';
         }
       },
 
       handlePhysicalKey(e) {
         if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
+        if (e.target instanceof HTMLElement && e.target.closest('input, textarea, select, [contenteditable="true"]')) return;
         if (e.key === 'Enter') {
           this.submitCurrentGuess();
         } else if (e.key === 'Backspace') {
@@ -1442,7 +2051,7 @@
 
       typeLetter(char) {
         if (PauseController.paused) return;
-        if (this.currentGuess.length < 5) {
+        if (!this.roundLocked && this.currentGuess.length < 5) {
           this.currentGuess += char;
           this.renderBoard();
         }
@@ -1450,7 +2059,7 @@
 
       backspace() {
         if (PauseController.paused) return;
-        if (this.currentGuess.length > 0) {
+        if (!this.roundLocked && this.currentGuess.length > 0) {
           this.currentGuess = this.currentGuess.slice(0, -1);
           this.renderBoard();
         }
@@ -1461,7 +2070,17 @@
         if (this.currentGuess.length === 5) {
           this.submitGuess(this.currentGuess);
           this.currentGuess = '';
+          this.renderBoard();
         }
+      },
+
+      submitStreamerGuess() {
+        if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
+        const input = document.getElementById('wordle-streamer-input');
+        const word = (input?.value || '').trim().toLocaleUpperCase('de-DE');
+        if (!/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        this.submitGuess(word, { id: 'streamer', name: 'Streamer' });
+        if (input) input.value = '';
       },
 
       submitGuess(word, player = null) {
@@ -1494,6 +2113,7 @@
           }
         }
 
+        // Chronologische Reihenfolge: jeder neue Versuch erscheint unter dem vorherigen.
         this.guesses.push({ word, result, player: player || null });
         this.updateKeyboardColors(word, result);
         this.renderBoard();
@@ -1505,10 +2125,11 @@
           CommunityBoard.record('wordle',player);
           const resultBox=document.getElementById('wordle-round-result');
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
-          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div><div class="result-countdown">Nächste Runde in 7 Sekunden</div>';
+          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
-          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), false);
-          PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
+          const autoNext=localStorage.getItem('playfinity_wordle_auto_next')!=='false';
+          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), !autoNext, player ? '🏆 Gewonnen von: ' + player.name : '🏆 Gewonnen von: Lokaler Spieler');
+          if(autoNext)PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
         }
       },
 
@@ -1567,9 +2188,10 @@
        ========================================================================== */
     const KontextoGame = {
       initialized: false,
-      pipeline: null,
+      aiReady: false,
+      modelReadyPromise: null,
       targetWord: '',
-      targetEmbedding: null,
+      embeddingCache: new Map(),
       guesses: [],
       roundLocked: false,
       roundTimer: null,
@@ -1578,40 +2200,66 @@
       roundId: 0,
       categoryHintUsed: false,
       wordHintUsed: false,
-      targetHints: {
-        Hund: { category: 'Tier', word: 'Leine' },
-        Kaffee: { category: 'Getränk', word: 'Tasse' },
-        Schloss: { category: 'Gebäude oder Bauwerk', word: 'Burg' },
-        Gitarre: { category: 'Musikinstrument', word: 'Musik' },
-        Sommer: { category: 'Jahreszeit', word: 'Sonne' },
-        Flugzeug: { category: 'Verkehrsmittel', word: 'Flughafen' },
-        Ozean: { category: 'Natur und Gewässer', word: 'Meer' },
-        Roboter: { category: 'Technik', word: 'Maschine' },
-        Zauberer: { category: 'Figur aus der Fantasywelt', word: 'Magie' },
-        Kamera: { category: 'Technik und Geräte', word: 'Foto' },
-        Sonne: { category: 'Himmelskörper', word: 'Stern' },
-        Kuchen: { category: 'Essen und Süßspeisen', word: 'Torte' },
-        Winter: { category: 'Jahreszeit', word: 'Schnee' },
-        Rakete: { category: 'Raumfahrt', word: 'Weltraum' },
-        Wald: { category: 'Natur und Landschaft', word: 'Bäume' },
-        Insel: { category: 'Geografie und Orte', word: 'Strand' },
-        Musik: { category: 'Kunst und Unterhaltung', word: 'Lied' },
-        Pferd: { category: 'Tier', word: 'Reiten' },
-        Telefon: { category: 'Technik und Kommunikation', word: 'Anruf' },
-        Schmetterling: { category: 'Tier', word: 'Flügel' }
+      dictionaryReady: false,
+      dictionaryWords: new Set(),
+      dictionaryTargetWords: [],
+      usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets-v2') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
+      wordHintCandidatesTried: new Set(),
+      wordHintInProgress: false,
+      wordHintController: null,
+      categoryEmbeddingCache: null,
+      semanticRankManifestPromise: null,
+      semanticRankCache: new Map(),
+      semanticRankManifestUrl: 'https://raw.githubusercontent.com/Playfinity-Game/Playfinity-Game.github.io/wordfinity-rank-data/manifest.json',
+      categoryAssignments: new Map(),
+      async loadDictionary() {
+        const statusText = document.getElementById('model-status-text');
+        try {
+          const response = await fetch('data/wordfinity-nouns.json', { cache: 'no-store' });
+          if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
+          const groupedWords = await response.json();
+          if (!groupedWords || Array.isArray(groupedWords) || typeof groupedWords !== 'object') {
+            throw new Error('Wortliste muss ein Objekt mit Kategorien und Wortlisten sein');
+          }
+          const uniqueWordsByKey = new Map();
+          const assignments = new Map();
+          for (const [category, words] of Object.entries(groupedWords)) {
+            if (!Array.isArray(words)) throw new Error('Ungültige Wortliste in Kategorie: ' + category);
+            for (const value of words) {
+              const word = String(value).trim().normalize('NFC');
+              if (!/^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word)) continue;
+              const key = word.toLocaleLowerCase('de-DE');
+              if (!uniqueWordsByKey.has(key)) uniqueWordsByKey.set(key, word);
+              if (!assignments.has(key)) assignments.set(key, category);
+            }
+          }
+          const uniqueWords = [...uniqueWordsByKey.values()];
+          if (uniqueWords.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
+          this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
+          this.dictionaryTargetWords = uniqueWords;
+          this.categoryAssignments = assignments;
+          this.usedTargets = new Set([...this.usedTargets].filter(key => this.dictionaryWords.has(key)));
+          this.dictionaryReady = true;
+          if (statusText) statusText.textContent = uniqueWords.length.toLocaleString('de-DE') + ' Wörter aus ' + Object.keys(groupedWords).length + ' Kategorien geladen';
+          return true;
+        } catch (error) {
+          console.error('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
+          if (statusText) statusText.innerText = 'Wörterbuch nicht verfügbar – bitte Seite neu laden.';
+          return false;
+        }
       },
-
-      // 20 deutsche Zielwörter
-      targets: [
-        'Hund','Kaffee','Schloss','Gitarre','Sommer','Flugzeug','Ozean','Roboter',
-        'Zauberer','Kamera','Sonne','Kuchen','Winter','Rakete','Wald','Insel',
-        'Musik','Pferd','Telefon','Schmetterling'
-      ],
 
       init() {
         this.initialized = true;
-        this.pickNewTarget();
-        this.initModel();
+        // Ein einziges, sofort verfügbares Promise verhindert Klick-Rennen,
+        // während Wörterbuch und KI-Modell initialisiert werden.
+        this.modelReadyPromise = (async () => {
+          const dictionaryLoaded = await this.loadDictionary();
+          if (!dictionaryLoaded) return false;
+          await this.pickNewTarget();
+          if (this.targetWord) await this.initModel();
+          return !!this.targetWord;
+        })();
 
         document.getElementById('kontexto-submit').onclick = () => {
           if(PauseController.paused)return;
@@ -1629,107 +2277,389 @@
         document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
-      showCategoryHint() {
-        if (PauseController.paused || this.roundLocked || this.categoryHintUsed) return;
-        const hint = this.targetHints[this.targetWord];
-        if (!hint) return;
-        this.categoryHintUsed = true;
+      async inferCategory(word, signal = null) {
+        const key = String(word || '').normalize('NFC').trim();
+        const normalizedKey = key.toLocaleLowerCase('de-DE');
+        // Die Kategorie aus der aktiven Wortliste hat Vorrang vor einer KI-Schätzung.
+        const assignedCategory = this.categoryAssignments.get(normalizedKey);
+        if (assignedCategory) return assignedCategory;
+        // Nur Wörter außerhalb der Wortliste werden ersatzweise von der KI kategorisiert.
+        try {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 25000);
+          let response;
+          try {
+            response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/category', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ target: key }),
+              signal: signal || controller.signal
+            });
+          } finally {
+            clearTimeout(timeout);
+          }
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || 'Kategorie-KI Fehler ' + response.status);
+          const generatedCategory = typeof result.category === 'string' ? result.category.trim() : '';
+          if (!generatedCategory || generatedCategory.length > 48 || !/^[A-Za-zÄÖÜäöüß0-9 &+()/,-]+$/.test(generatedCategory)) {
+            throw new Error('Die KI hat keine gültige Kategorie geliefert');
+          }
+          this.categoryAssignments.set(normalizedKey, generatedCategory);
+          return generatedCategory;
+        } catch (error) {
+          const detail = error && error.name === 'AbortError'
+            ? 'Die Kategorie-KI antwortet zu langsam.'
+            : (error && error.message ? error.message : 'Unbekannter KI-Fehler');
+          throw new Error('Kategorie konnte nicht erstellt werden: ' + detail);
+        }
+      },
+
+      async showCategoryHint() {
+        if (PauseController.paused || this.categoryHintUsed) return;
         const display = document.getElementById('kontexto-category-display');
-        display.textContent = 'Kategorie: ' + hint.category;
-        display.hidden = false;
         const button = document.getElementById('kontexto-category-hint');
-        button.disabled = true;
-        button.textContent = '🏷️';
+        if (!display) return;
+        const requestedRoundId = this.roundId;
+        const requestedTarget = this.targetWord;
+        if (!requestedTarget) {
+          display.textContent = 'Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
+          display.hidden = false;
+          return;
+        }
+        if (button) button.disabled = true;
+        display.textContent = 'Kategorie wird ermittelt …';
+        display.hidden = false;
+        try {
+          if (!this.aiReady && this.modelReadyPromise) {
+            display.textContent = 'KI-Modell wird noch geladen …';
+            await this.modelReadyPromise;
+          }
+          if (requestedRoundId !== this.roundId || PauseController.paused) return;
+          const category = await this.inferCategory(requestedTarget);
+          if (requestedRoundId !== this.roundId) return;
+          if (PauseController.paused) {
+            if (button) button.disabled = false;
+            return;
+          }
+          this.categoryHintUsed = true;
+          display.textContent = 'Kategorie: ' + category;
+          if (button) button.title = 'Kategorie-Tipp wurde bereits angezeigt';
+        } catch (error) {
+          console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
+          // Fehler bleiben für Spieler unsichtbar; die Ladeanzeige wird still entfernt.
+          display.textContent = '';
+          display.hidden = true;
+        } finally {
+          if (requestedRoundId === this.roundId && !this.categoryHintUsed && button) button.disabled = false;
+        }
       },
 
-      showWordHint() {
-        if (PauseController.paused || this.roundLocked) return;
-        const hint = this.targetHints[this.targetWord];
-        if (!hint) return;
-        this.submitGuess(hint.word, null, { isHint: true });
-      },
+      async showWordHint() {
+        if (PauseController.paused || this.wordHintInProgress) return;
+        const normalizedLevel = 'mittel';
+        const button = document.getElementById('kontexto-word-hint');
+        const requestedRoundId = this.roundId;
+        const requestedTarget = this.targetWord;
+        if (!requestedTarget) return;
+        this.wordHintInProgress = true;
+        if (button) button.disabled = true;
 
+
+        const hintController = new AbortController();
+        this.wordHintController = hintController;
+        let timedOut = false;
+        let hintTimeout;
+        const timeoutPromise = new Promise((_, reject) => {
+          hintTimeout = setTimeout(() => {
+            timedOut = true;
+            hintController.abort();
+            const error = new Error('Wort-Tipp überschritt das Zeitlimit von 20 Sekunden');
+            error.name = 'AbortError';
+            reject(error);
+          }, 20000);
+        });
+
+        const hintOperation = (async () => {
+          if (!this.aiReady && this.modelReadyPromise) await this.modelReadyPromise;
+          if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
+
+          const targetKey = requestedTarget.toLocaleLowerCase('de-DE');
+          const normalize = value => String(value || '').toLocaleLowerCase('de-DE').trim();
+          const relatedToExistingWord = candidate => {
+            const key = normalize(candidate).replace(/[^a-zäöüß]/g, '');
+            const blocked = [requestedTarget, ...this.guesses.map(item => item.word), ...this.pendingGuesses]
+              .map(word => normalize(word).replace(/[^a-zäöüß]/g, ''))
+              .filter(word => word.length >= 4);
+            return blocked.some(word => key === word || key.includes(word) || word.includes(key));
+          };
+
+          let batches = 0;
+          while (!timedOut && batches < 8) {
+            if (requestedRoundId !== this.roundId || PauseController.paused) return;
+            const excluded = [...this.wordHintCandidatesTried];
+            this.guesses.forEach(item => excluded.push(item.word));
+            this.pendingGuesses.forEach(word => excluded.push(word));
+
+            const response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ target: requestedTarget, level: normalizedLevel, excluded, count: 20 }),
+              signal: hintController.signal
+            });
+            const result = await response.json().catch(() => {
+              throw new Error('Ungültige Antwort vom Tipp-Server');
+            });
+            if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
+            if (!response.ok) throw new Error(result.error || 'Tipp-Server Fehler ' + response.status);
+            if (!Array.isArray(result.hints)) throw new Error('Keine gültige Tipp-Liste erhalten');
+
+            const candidates = result.hints
+              .filter(item => item && typeof item.word === 'string' && Number.isFinite(Number(item.similarity)))
+              .map(item => ({
+                word: item.word.trim(),
+                similarity: Math.max(0, Math.min(1, Number(item.similarity)))
+              }))
+              .filter(item => {
+                const key = normalize(item.word);
+                if (!key || !/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(item.word) ||
+                    key === targetKey || relatedToExistingWord(item.word) ||
+                    this.wordHintCandidatesTried.has(key) ||
+                    this.guesses.some(guess => normalize(guess.word) === key) ||
+                    this.pendingGuesses.has(key)) return false;
+                return true;
+              })
+              .map(item => ({ ...item, rank: this.calculateGuessRank(item.similarity) }));
+
+            // Kontexto-inspiriertes Prinzip: Der Tipp zielt auf eine bestimmte
+            // Position relativ zum bisherigen Bestwert statt einfach den ähnlichsten
+            // KI-Kandidaten zu nehmen. Ohne bisherigen Versuch bleibt der Tipp bewusst
+            // weiter hinten im Rangfeld.
+            const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
+            const desiredRank = Number.isFinite(bestCurrentRank)
+              ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
+              : 11000;
+
+            const rankedCandidates = candidates
+              .filter(item => !Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank)
+              .sort((a, b) =>
+                Math.abs(a.rank - desiredRank) - Math.abs(b.rank - desiredRank) ||
+                a.rank - b.rank
+              );
+
+            for (const candidate of rankedCandidates) {
+              if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
+              const candidateKey = normalize(candidate.word);
+              this.wordHintCandidatesTried.add(candidateKey);
+              const added = await this.submitGuess(candidate.word, null, {
+                isHint: true,
+                requireBetterRank: true,
+                precomputedSimilarity: candidate.similarity
+              });
+              if (added) return;
+            }
+
+            batches++;
+            if (!candidates.length && result.hints.length === 0) break;
+          }
+          // Wenn kein passender Tipp gefunden wird, bleibt die Spieloberfläche unverändert.
+        })();
+
+        try {
+          await Promise.race([hintOperation, timeoutPromise]);
+        } catch (error) {
+          if (error && error.name !== 'AbortError') console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:', error);
+          // Keine Fehlermeldung und kein Tooltip im Spiel; der Button wird unten still freigegeben.
+        } finally {
+          clearTimeout(hintTimeout);
+          // Ein abgebrochener Tipp aus einer älteren Runde darf keinen neueren Tipp entsperren.
+          if (this.wordHintController === hintController) {
+            this.wordHintController = null;
+            this.wordHintInProgress = false;
+            if (requestedRoundId === this.roundId && button) button.disabled = false;
+          }
+        }
+      },
       async pickNewTarget() {
         PauseController.clear('kontexto','roundTimer');
+        // Laufende Tipp-Anfragen der vorherigen Runde beenden, damit die neue Runde
+        // sofort wieder einen Tipp anfordern kann.
+        if (this.wordHintController) {
+          this.wordHintController.abort();
+          this.wordHintController = null;
+        }
+        this.wordHintInProgress = false;
         this.roundId++;
-        this.roundLocked = !!this.pipeline;
+        this.wordHintCandidatesTried.clear();
+        const requestedRoundId=this.roundId;
+        this.roundLocked=false;
         this.pendingGuesses.clear();
-        this.targetWord = this.targets[Math.floor(Math.random() * this.targets.length)];
-        this.categoryHintUsed = false;
-        this.wordHintUsed = false;
-        const categoryButton = document.getElementById('kontexto-category-hint');
-        const wordButton = document.getElementById('kontexto-word-hint');
-        if (categoryButton) { categoryButton.disabled = false; categoryButton.textContent = '🏷️'; }
-        if (wordButton) { wordButton.disabled = false; wordButton.title = 'Wort-Tipp – beliebig oft'; }
-        const categoryDisplay = document.getElementById('kontexto-category-display');
-        if (categoryDisplay) { categoryDisplay.hidden = true; categoryDisplay.textContent = ''; }
-        this.guesses = [];
-        this.targetEmbedding = null;
-        if (this.pipeline) this.targetEmbedding = await this.getEmbedding(this.targetWord);
-        this.roundLocked = false;
-        const result = document.getElementById('kontexto-round-result');
-        if (result) { result.classList.remove('visible'); result.innerHTML = ''; }
+        const previousTarget=this.targetWord.toLocaleLowerCase('de-DE');
+        this.targetWord='';
+        const statusText=document.getElementById('model-status-text');
+        if(statusText)statusText.textContent='Prüfe Wortliste und wähle ein Lösungswort …';
+        if(!this.dictionaryReady || !this.dictionaryTargetWords.length){
+          if(statusText)statusText.textContent='Wortliste nicht verfügbar – bitte Seite neu laden.';
+          return;
+        }
+        let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
+        if(!availableWords.length){
+          // Auch nach einem Neuladen bleibt das zuletzt gespielte Wort erkennbar.
+          const lastUsedTarget=previousTarget||[...this.usedTargets].pop()||'';
+          // Erst nach einem vollständigen Durchlauf wird der Pool zurückgesetzt.
+          // Das zuletzt gespielte Wort bleibt ausgeschlossen, damit es nicht direkt wiederkommt.
+          this.usedTargets.clear();
+          if(lastUsedTarget) this.usedTargets.add(lastUsedTarget);
+          availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==lastUsedTarget);
+        }
+        if(!availableWords.length){
+          if(statusText)statusText.textContent='Keine gültigen Wörter für eine neue Runde vorhanden.';
+          return;
+        }
+        const randomIndex=max=>{
+          const cryptoApi=window.crypto;
+          if(cryptoApi&&cryptoApi.getRandomValues){
+            const range=0x100000000,limit=range-(range%max),value=new Uint32Array(1);
+            do{cryptoApi.getRandomValues(value);}while(value[0]>=limit);
+            return value[0]%max;
+          }
+          return Math.floor(Math.random()*max);
+        };
+        const selectedWord=availableWords[randomIndex(availableWords.length)];
+        if(requestedRoundId!==this.roundId)return;
+        this.targetWord=selectedWord;
+        this.usedTargets.add(selectedWord.toLocaleLowerCase('de-DE'));
+        try { localStorage.setItem('wordfinity-used-targets-v2', JSON.stringify([...this.usedTargets])); } catch (_) {}
+        if(statusText)statusText.textContent='Neues Lösungswort aus deiner Wortliste geladen';
+
+        this.categoryHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
+        const categoryButton=document.getElementById('kontexto-category-hint'),wordButton=document.getElementById('kontexto-word-hint');
+        if(categoryButton){categoryButton.disabled=false;categoryButton.textContent='🏷️';}
+        if(wordButton){wordButton.disabled=false;wordButton.title='Wort-Tipp – beliebig oft';}
+        const categoryDisplay=document.getElementById('kontexto-category-display');
+        if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
+        if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true') this.showCategoryHint();
+        this.guesses=[];
+        const result=document.getElementById('kontexto-round-result');
+        if(result){result.classList.remove('visible');result.innerHTML='';}
         this.renderGuesses();
+        PlayfinityPlayerPresence.sendPresence();
       },
 
       async initModel() {
-        const loader = document.getElementById('kontexto-loader');
-        const statusText = document.getElementById('model-status-text');
-        const statusPct = document.getElementById('model-status-pct');
-        const fill = document.getElementById('model-progress-fill');
+        const loader=document.getElementById('kontexto-loader'),statusText=document.getElementById('model-status-text');
+        const statusPct=document.getElementById('model-status-pct'),fill=document.getElementById('model-progress-fill');
+        if(statusText)statusText.textContent='Verbinde mit Cloudflare KI …';
+        if(statusPct)statusPct.textContent='';
+        if(fill)fill.style.width='100%';
+        try{
+          await this.getSimilarity(this.targetWord,this.targetWord);
+          this.aiReady=true;
+          if(statusText)statusText.textContent='Cloudflare KI verbunden';
+        }catch(error){
+          console.warn('[WORDFINITY] Cloudflare KI nicht erreichbar:',error);
+          this.aiReady=false;
+          if(statusText)statusText.textContent='Cloudflare KI nicht erreichbar – lokaler Ersatzmodus aktiv.';
+        }
+        if(loader)loader.style.display='none';
+        this.roundLocked=false;
+      },
 
-        try {
-          if (window.transformersPipeline) {
-            this.roundLocked = true;
-            this.pipeline = await window.transformersPipeline('feature-extraction', 'Xenova/paraphrase-multilingual-MiniLM-L12-v2', {
-              progress_callback: (p) => {
-                if (p.status === 'progress') {
-                  const pct = Math.round(p.progress || 0);
-                  statusPct.innerText = pct + '%';
-                  fill.style.width = pct + '%';
-                }
+      async loadSemanticRankManifest() {
+        if (!this.semanticRankManifestPromise) {
+          this.semanticRankManifestPromise = fetch(this.semanticRankManifestUrl, { cache: 'no-cache' })
+            .then(response => {
+              if (!response.ok) throw new Error('Online-Ranglisten nicht verfügbar: ' + response.status);
+              return response.json();
+            })
+            .then(manifest => {
+              if (manifest?.format !== 'wordfinity-semantic-ranks-v1' ||
+                  !Array.isArray(manifest.candidateWords) || !manifest.rankings ||
+                  !Number.isFinite(manifest.candidateCount)) {
+                throw new Error('Ungültiges Ranglisten-Manifest');
               }
+              const candidateIds = new Map();
+              manifest.candidateWords.forEach((word, index) => {
+                candidateIds.set(String(word).toLocaleLowerCase('de-DE').trim(), index);
+              });
+              return { ...manifest, candidateIds };
             });
+        }
+        return this.semanticRankManifestPromise;
+      },
 
-            // Target-Embedding vorberechnen
-            this.targetEmbedding = await this.getEmbedding(this.targetWord);
-            this.roundLocked = false;
-            loader.style.display = 'none';
-          } else {
-            statusText.innerText = 'Lokaler Modus aktiv (vereinfachte Näherung)';
-            this.roundLocked = false;
-            loader.style.display = 'none';
+      async getPrecomputedRank(target, guess) {
+        const targetKey = String(target || '').toLocaleLowerCase('de-DE').trim();
+        const guessKey = String(guess || '').toLocaleLowerCase('de-DE').trim();
+        try {
+          const manifest = await this.loadSemanticRankManifest();
+          const candidateId = manifest.candidateIds.get(guessKey);
+          const entry = manifest.rankings[targetKey];
+          if (!Number.isInteger(candidateId) || !entry?.file) return null;
+
+          let rankPromise = this.semanticRankCache.get(targetKey);
+          if (!rankPromise) {
+            const baseUrl = this.semanticRankManifestUrl.slice(0, this.semanticRankManifestUrl.lastIndexOf('/') + 1);
+            rankPromise = fetch(baseUrl + entry.file + '?v=' + encodeURIComponent(manifest.targetDictionarySha256), { cache: 'force-cache' }).then(async response => {
+              if (!response.ok) throw new Error('Rangdatei nicht verfügbar: ' + response.status);
+              if (typeof DecompressionStream !== 'function') throw new Error('Browser unterstützt gzip-Dekomprimierung nicht');
+              const compressed = await response.arrayBuffer();
+              const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
+              const bytes = await new Response(stream).arrayBuffer();
+              if (bytes.byteLength % 2 !== 0) throw new Error('Ungültige Rangdatei');
+              const view = new DataView(bytes);
+              const ranks = new Map();
+              for (let offset = 0; offset < bytes.byteLength; offset += 2) {
+                ranks.set(view.getUint16(offset, true), offset / 2 + 1);
+              }
+              return ranks;
+            });
+            this.semanticRankCache.set(targetKey, rankPromise);
           }
-        } catch (err) {
-          console.warn('[Kontexto] Fallback aktiv:', err);
-          statusText.innerText = 'KI-Modell nicht verfügbar – vereinfachte Näherung aktiv.';
-          this.roundLocked = false;
-          loader.style.display = 'none';
+          const ranks = await rankPromise;
+          return ranks.get(candidateId) ?? null;
+        } catch (error) {
+          console.warn('[WORDFINITY] Online-Rangliste nicht nutzbar; verwende KI-Ersatz:', error);
+          return null;
         }
       },
 
-      async getEmbedding(text) {
-        if (!this.pipeline) return null;
-        const out = await this.pipeline(text.toLowerCase(), { pooling: 'mean', normalize: true });
-        return Array.from(out.data);
+      async getSimilarity(target,guess){
+        const response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity',{
+          method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target,guess})
+        });
+        let result;
+        try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom KI-Server');}
+        if(!response.ok)throw new Error(result.error||'KI-Server Fehler '+response.status);
+        if(!Number.isFinite(Number(result.similarity)))throw new Error('Kein Ähnlichkeitswert vom KI-Server');
+        return Number(result.similarity);
       },
 
-      cosineSimilarity(vecA, vecB) {
-        let dot = 0, normA = 0, normB = 0;
-        for (let i = 0; i < vecA.length; i++) {
-          dot += vecA[i] * vecB[i];
-          normA += vecA[i] * vecA[i];
-          normB += vecB[i] * vecB[i];
-        }
-        return dot / (Math.sqrt(normA) * Math.sqrt(normB));
+      calculateGuessRank(similarity) {
+        // Ausgewogene, deterministische Rangskala:
+        // Gleiche semantische Ähnlichkeit ergibt immer denselben Rang –
+        // unabhängig davon, welche Wörter vorher geraten wurden.
+        // Kleinere Ränge bedeuten größere Nähe zum geheimen Wort.
+        const numericSimilarity = Number(similarity);
+        const normalizedSimilarity = Number.isFinite(numericSimilarity)
+          ? Math.max(0, Math.min(1, numericSimilarity))
+          : 0;
+        return 1 + Math.round(Math.pow(1 - normalizedSimilarity, 1.8) * 15499);
       },
 
       async submitGuess(word, player = null, options = {}) {
         if (PauseController.paused) return;
+        if (!this.targetWord) {
+          const status = document.getElementById('model-status-text');
+          if (status) status.textContent = 'Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
+          return false;
+        }
         const cleanWord = String(word || '').trim().normalize('NFC');
-        if (this.roundLocked || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return;
+        if ((this.roundLocked && !options.isHint) || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return false;
         const key = cleanWord.toLocaleLowerCase('de-DE');
-        if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return;
+        // Semantische Bewertung ist unabhängig von der kuratierten Zielwortliste:
+        // Auch gültige deutsche Wörter außerhalb des Wörterbuchs dürfen geraten werden.
+        // Die Wortliste bleibt für Zielwörter und kuratierte Inhalte bestehen.
+        if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return false;
         this.pendingGuesses.add(key);
         const submittedRoundId = this.roundId;
         if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
@@ -1739,52 +2669,47 @@
           this.roundLocked = true;
           CommunityBoard.record('kontexto', player);
           const resultBox = document.getElementById('kontexto-round-result');
-          const autoAdvance=document.getElementById('kontexto-auto-next').checked;
-          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b>':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'<div class="result-countdown">Nächstes Wort in 7 Sekunden</div>':'');
+          const autoAdvance=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
+          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('kontexto',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
           resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
-          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance);
+          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance, '🎯 GEHEIMWORT GEFUNDEN!', player?.name || 'Lokaler Spieler');
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
-          return;
+          return true;
         }
-        let sim = 0;
-        if (this.pipeline) {
-          if (!this.targetEmbedding) this.targetEmbedding = await this.getEmbedding(this.targetWord);
-          const emb = await this.getEmbedding(cleanWord);
-          if (this.targetEmbedding && emb) sim = this.cosineSimilarity(this.targetEmbedding, emb);
-        } else {
-          // Fallback unterscheidet Wörter anhand gemeinsamer Buchstaben und Buchstabenpaare,
-          // statt allen Wörtern gleicher Länge denselben Wert zu geben.
-          const makeBigrams = value => {
-            const normalized = value.toLocaleLowerCase('de-DE');
-            const pairs = new Set();
-            for (let i = 0; i < normalized.length - 1; i++) pairs.add(normalized.slice(i, i + 2));
-            return pairs;
-          };
-          const targetLetters = new Set([...this.targetWord.toLocaleLowerCase('de-DE')]);
-          const guessLetters = new Set([...cleanWord.toLocaleLowerCase('de-DE')]);
-          const letterUnion = new Set([...targetLetters, ...guessLetters]);
-          const letterOverlap = [...targetLetters].filter(ch => guessLetters.has(ch)).length / Math.max(1, letterUnion.size);
-          const targetPairs = makeBigrams(this.targetWord);
-          const guessPairs = makeBigrams(cleanWord);
-          const pairUnion = new Set([...targetPairs, ...guessPairs]);
-          const pairOverlap = [...targetPairs].filter(pair => guessPairs.has(pair)).length / Math.max(1, pairUnion.size);
-          sim = (letterOverlap * 0.35 + pairOverlap * 0.65) * 2 - 1;
+        let sim=0;
+        let precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
+        if (precomputedRank === null) precomputedRank = await this.getPrecomputedRank(this.targetWord, cleanWord);
+        if (precomputedRank !== null) {
+          const manifest = await this.loadSemanticRankManifest();
+          sim = 1 - ((precomputedRank - 1) / Math.max(1, manifest.candidateCount - 1));
+        } else if(Number.isFinite(options.precomputedSimilarity))sim=options.precomputedSimilarity;
+        else{
+          try{sim=await this.getSimilarity(this.targetWord,cleanWord);}
+          catch(error){
+            console.warn('[WORDFINITY] Cloudflare KI fehlgeschlagen; lokaler Ersatzwert:',error);
+            const bigrams=value=>{const out=new Set(),v=value.toLocaleLowerCase('de-DE');for(let i=0;i<v.length-1;i++)out.add(v.slice(i,i+2));return out;};
+            const a=new Set([...this.targetWord.toLocaleLowerCase('de-DE')]),b=new Set([...cleanWord.toLocaleLowerCase('de-DE')]);
+            const union=new Set([...a,...b]),overlap=[...a].filter(ch=>b.has(ch)).length/Math.max(1,union.size);
+            const pa=bigrams(this.targetWord),pb=bigrams(cleanWord),pu=new Set([...pa,...pb]);
+            const pairOverlap=[...pa].filter(pair=>pb.has(pair)).length/Math.max(1,pu.size);
+            sim=(overlap*.35+pairOverlap*.65);
+          }
         }
-        if (PauseController.paused || submittedRoundId !== this.roundId || this.roundLocked) { this.pendingGuesses.delete(key); return; }
-        const normalizedSimilarity = Math.max(0, Math.min(1, (sim + 1) / 2));
-        // PLAYFINITY-Modellrang: feste, nachvollziehbare Skala statt künstlicher Millionenwerte.
-        // Dies ist eine Ähnlichkeitsschätzung, noch kein exakter Platz in einem vollständigen Wörterbuch.
-        let calculatedRank = 1 + Math.round(Math.pow(1 - normalizedSimilarity, 2.5) * 15499);
-        while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank < 15500) calculatedRank++;
-        if (this.guesses.some(item => item.rank === calculatedRank)) {
-          calculatedRank = Math.max(1, calculatedRank - 1);
-          while (this.guesses.some(item => item.rank === calculatedRank) && calculatedRank > 1) calculatedRank--;
+        if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
+        const normalizedSimilarity = Math.max(0, Math.min(1, sim));
+        // Derselbe Rangrechner wird auch für Tipp-Kandidaten vorab verwendet.
+        const calculatedRank = precomputedRank !== null ? precomputedRank : this.calculateGuessRank(normalizedSimilarity);
+        // Wort-Tipps nur übernehmen, wenn sie den aktuell besten Rang verbessern.
+        const bestExistingRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
+        if (options.requireBetterRank && calculatedRank >= bestExistingRank) {
+          this.pendingGuesses.delete(key);
+          return false;
         }
-        if(options.isHint){const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);if(calculatedRank>=bestRank){this.pendingGuesses.delete(key);return;}}
         this.guesses.push({word:cleanWord,rank:calculatedRank,similarity:sim,isHint:!!options.isHint,player:player||null});
-        this.guesses.sort((a, b) => b.similarity - a.similarity || a.rank - b.rank);
+        this.guesses.sort((a, b) => a.rank - b.rank || b.similarity - a.similarity);
         this.pendingGuesses.delete(key);
         this.renderGuesses();
+        return true;
       },
 
       renderGuesses() {
@@ -1795,21 +2720,22 @@
           const row = document.createElement('div');
           row.className = 'guess-row';
 
-          // Farbe und Balken richten sich nach der semantischen Ähnlichkeit,
-          // nicht nach der künstlich skalierten Rangnummer.
-          const similarityScore = Math.max(0, Math.min(1, (Number(item.similarity) + 1) / 2));
-          let color = '#ff3b5c'; // Rot: weit entfernt
+          // Farben folgen den angezeigten semantischen Rangnummern:
+          // 1–150 Grün, 151–1000 Orange, ab 1001 Rot.
+          const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
+          const rank = Number(item.rank);
+          let color = '#ff3b5c'; // Rang 1001+: weit entfernt
           let level = 'Weit entfernt';
-          if (similarityScore >= 0.72) { color = '#00ff9d'; level = 'Sehr nah'; }
-          else if (similarityScore >= 0.48) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
+          if (Number.isFinite(rank) && rank <= 150) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (Number.isFinite(rank) && rank <= 1000) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
 
           const pct = Math.max(5, Math.round(similarityScore * 100));
 
           row.innerHTML = `
             <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
             <span class="guess-word">${CommunityBoard.escape(item.word)}${item.isHint ? '<span class="guess-hint-tag">💡 TIPP</span>' : ''}</span>
-            <span class="guess-rank" style="color: ${color}" title="${level}">#${item.rank}</span>
             <span class="kontexto-guess-player">${item.player ? CommunityBoard.escape(item.player.name) : "—"}</span>
+            <span class="guess-rank" style="color: ${color}; margin-left:auto" title="${level}">#${item.rank}</span>
           `;
           container.appendChild(row);
         });
@@ -1978,12 +2904,15 @@
         document.getElementById('pir-submit').onclick = () => {
           if(PauseController.paused)return;
           const val = parseFloat(document.getElementById('pir-input').value);
-          if (!isNaN(val)) this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
+          if (!isNaN(val) && this.submitStreamerGuess(val)) {
+            document.getElementById('pir-input').value = '';
+          }
         };
         document.getElementById('pir-input').addEventListener('keydown', event => {
-          if (event.key === 'Enter') document.getElementById('pir-submit').click();
+          if (event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); document.getElementById('pir-submit').click(); }
         });
         document.getElementById('pir-next-btn').style.display = 'none';
+        document.getElementById('pir-next-btn').addEventListener('click',()=>this.nextQuestion());
         await this.loadQuestionPool();
         this.nextQuestion();
       },
@@ -2021,6 +2950,8 @@
       nextQuestion() {
         PauseController.clear('guesswhat','roundTimer');
         PauseController.clear('guesswhat','revealTimer');
+        const nextButton=document.getElementById('pir-next-btn');
+        if(nextButton)nextButton.style.display='none';
         this.roundOpen = false;
         this.guesses = [];
         const liveList = document.getElementById('pir-live-guesses');
@@ -2044,8 +2975,17 @@
         document.getElementById('pir-input-group').style.display = 'flex';
       },
 
+      submitStreamerGuess(val) {
+        return this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
+      },
+
+      submitChatGuess(val, player) {
+        if (!player || !player.id || String(player.id) === 'local-player') return false;
+        return this.submitGuess(val, player);
+      },
+
       submitGuess(val, player = null) {
-        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return;
+        if (PauseController.paused || !Number.isFinite(val) || !this.currentQuestion || !this.roundOpen && this.guesses.length > 0) return false;
         if (!this.roundOpen) {
           this.roundOpen = true;
           this.guesses = [];
@@ -2055,13 +2995,13 @@
         const existingIndex = this.guesses.findIndex(item => String(item.player.id) === String(identity.id));
         if (existingIndex >= 0) {
           const existing = this.guesses[existingIndex];
-          if ((existing.attempts || 1) >= 2) return;
+          if ((existing.attempts || 1) >= 2) return false;
           this.guesses[existingIndex] = { value: val, player: identity, attempts: (existing.attempts || 1) + 1 };
         } else {
           this.guesses.push({ value: val, player: identity, attempts: 1 });
         }
         this.renderLiveGuesses();
-        document.getElementById('pir-input').value = '';
+        return true;
       },
 
       renderLiveGuesses() {
@@ -2090,14 +3030,14 @@
         const winner = ordered[0];
         const correctPlayers = ordered.filter(item => item.value === this.currentQuestion.a);
         const diff = Math.abs(winner.value - this.currentQuestion.a);
-        CommunityBoard.record('priceisright', winner.player);
+        correctPlayers.forEach(item => CommunityBoard.record('priceisright', item.player));
         document.getElementById('pir-input-group').style.display = 'none';
         document.getElementById('pir-result').style.display = 'flex';
         document.getElementById('pir-answer').innerText = `${this.currentQuestion.a} ${this.currentQuestion.u}`;
         const feedback = correctPlayers.length ? '🎯 <b>Volltreffer!</b> ' + correctPlayers.length + ' richtige Antwort(en).' : '🏆 <b>GUESSWHAT!</b> Am nächsten dran: <b>' + CommunityBoard.escape(winner.player.name) + '</b> · Schätzung: ' + winner.value + ' (Abweichung: ' + diff + ' ' + this.currentQuestion.u + ')';
-        const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name)).join('<br>') + '</div>' : '';
+        const correctHtml = correctPlayers.length ? '<div class="pir-correct-winners"><b>Richtig geraten:</b><br>' + correctPlayers.map(item => CommunityBoard.escape(item.player.name) + ' · bereits ' + CommunityBoard.winsForPlayer('priceisright', item.player) + '× richtig').join('<br>') + '</div>' : '';
         const allGuesses = ordered.map(item => `${CommunityBoard.escape(item.player.name)}: ${item.value}`).join('<br>');
-        document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div><div class="result-countdown">Nächste Frage in 7 Sekunden</div>`;
+        document.getElementById('pir-explanation').innerHTML = `${feedback}${correctHtml}<br><br>${allGuesses}<br><br>${this.currentQuestion.exp}<div id="pir-source-link" style="margin-top:8px;"></div><div id="pir-community-list"></div>`;
         const sourceUrl = String(this.currentQuestion.source || '');
         if (/^https:\/\//i.test(sourceUrl)) {
           const sourceLink = document.createElement('a');
@@ -2109,8 +3049,10 @@
           document.getElementById('pir-source-link').appendChild(sourceLink);
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
-        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), false, 'Richtig geraten!');
-        PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
+        const autoNext=localStorage.getItem('playfinity_priceisright_auto_next')!=='false';
+        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), !autoNext, 'Richtig geraten!');
+        if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
+        else if(!correctPlayers.length)document.getElementById('pir-next-btn').style.display='block';
       }
     };
 
@@ -2120,20 +3062,24 @@
     function hideCorrectAnswerOverlay() {
       const overlay = document.getElementById('correct-answer-overlay');
       if (overlay) overlay.classList.remove('active');
+      const winner = document.getElementById('correct-answer-winner');
+      if (winner) { winner.textContent = ''; winner.hidden = true; }
       const button = document.getElementById('correct-answer-continue');
       if (button) { button.hidden = true; button.onclick = null; }
     }
 
-    function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!') {
+    function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!', winnerName = '') {
       const overlay = document.getElementById('correct-answer-overlay');
       const title = document.getElementById('correct-answer-message');
       const word = document.getElementById('correct-answer-word');
+      const winner = document.getElementById('correct-answer-winner');
       const timer = document.getElementById('correct-answer-timer');
       const button = document.getElementById('correct-answer-continue');
       if (!overlay || !title || !word || !timer || !button) return;
       PauseController.clear('correct-answer', 'display');
       title.textContent = message;
       word.textContent = 'Das Wort war: ' + answer;
+      if (winner) { winner.textContent = winnerName ? '🏆 Erraten von: ' + winnerName : ''; winner.hidden = !winnerName; }
       timer.textContent = '';
       button.hidden = true;
       button.onclick = null;
@@ -2163,11 +3109,174 @@
       modal.classList.add('active');
     }
 
+
+    // Anonyme PLAYFINITY-Nutzungsstatistik: zählt sichtbare Spielzeit, keine Eingaben/Inhalte.
+    const PlayfinityUsageMetrics = {
+      endpoint: 'https://playfinity-game-github-io.onrender.com/api/metrics',
+      visitorKey: 'playfinity_anon_visitor_v1',
+      sessionId: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2)),
+      visitorId: null,
+      startedAt: Date.now(),
+      lastSentAt: Date.now(),
+      timer: null,
+      init() {
+        try {
+          this.visitorId = localStorage.getItem(this.visitorKey);
+          if (!this.visitorId) {
+            this.visitorId = crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + Math.random().toString(16).slice(2);
+            localStorage.setItem(this.visitorKey, this.visitorId);
+          }
+        } catch (_) {
+          this.visitorId = this.sessionId;
+        }
+        this.send('start');
+        this.timer = setInterval(() => this.send('heartbeat'), 30000);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            this.lastSentAt = Date.now();
+            this.send('heartbeat');
+          } else {
+            this.send('pause');
+          }
+        });
+        window.addEventListener('pagehide', () => this.send('end'));
+      },
+      send(event) {
+        const now = Date.now();
+        const visible = document.visibilityState === 'visible';
+        const elapsed = Math.max(0, Math.min(45000, now - this.lastSentAt));
+        this.lastSentAt = now;
+        const body = JSON.stringify({
+          event,
+          visitorId: this.visitorId,
+          sessionId: this.sessionId,
+          visible,
+          elapsedMs: event !== 'start' ? elapsed : 0
+        });
+        try {
+          if (event === 'end' && navigator.sendBeacon) {
+            navigator.sendBeacon(this.endpoint, new Blob([body], { type: 'application/json' }));
+          } else {
+            fetch(this.endpoint, { method: 'POST', headers: { 'content-type': 'application/json' }, body, keepalive: event === 'pause' });
+          }
+        } catch (_) {}
+      }
+    };
+
+
+    // Anonyme Live-Spieler-Verbindung für das Admin-Kontrollzentrum.
+    const PlayfinityPlayerPresence = {
+      baseUrl: 'https://playfinity-game-github-io.onrender.com',
+      socket: null,
+      reconnectTimer: null,
+      heartbeatTimer: null,
+      playerId: null,
+      streamerUsername: '',
+      game: 'menu',
+      active: true,
+      closing: false,
+      connect() {
+        if (document.visibilityState !== 'visible') return;
+        try {
+          const url = this.baseUrl.replace(/^https:/, 'wss:') + '/players';
+          const socket = new WebSocket(url);
+          this.socket = socket;
+          socket.onopen = () => {
+            this.sendPresence();
+            clearInterval(this.heartbeatTimer);
+            this.heartbeatTimer = setInterval(() => this.sendPresence(), 20000);
+          };
+          socket.onmessage = (event) => {
+            try {
+              const message = JSON.parse(event.data);
+              if (message.type === 'registered') this.playerId = message.playerId;
+              if (message.type === 'admin_troll') this.showEffect(message.action);
+            } catch (_) {}
+          };
+          socket.onclose = () => {
+            this.playerId = null;
+            clearInterval(this.heartbeatTimer);
+            clearTimeout(this.reconnectTimer);
+            if (!this.closing) this.reconnectTimer = setTimeout(() => this.connect(), 4000);
+          };
+          socket.onerror = () => socket.close();
+        } catch (_) {
+          clearTimeout(this.reconnectTimer);
+          this.reconnectTimer = setTimeout(() => this.connect(), 5000);
+        }
+      },
+      setStreamer(username) {
+        const value = String(username || '').trim().replace(/^@/, '');
+        this.streamerUsername = /^[A-Za-z0-9._]{2,24}$/.test(value) ? value : '';
+        this.sendPresence();
+      },
+      sendPresence() {
+        if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
+        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'wordfinity' ? KontextoGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : '';
+        this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
+      },
+      setGame(game) {
+        this.game = ['menu','wordle','wordfinity','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
+        this.sendPresence();
+      },
+      showEffect(action) {
+        const root = document.getElementById('pf-admin-effect');
+        if (!root) return;
+        document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
+        root.className = '';
+        root.innerHTML = '<div class="pf-effect-label"></div>';
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700};
+        if (action === 'shake') document.body.classList.add('pf-admin-shake');
+        else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
+        else if (action === 'invert') document.body.classList.add('pf-admin-invert');
+        else if (action === 'spin') document.body.classList.add('pf-admin-spin');
+        else if (action === 'pixel') { document.body.classList.add('pf-admin-pixel'); root.classList.add('pixel'); }
+        else if (action === 'ice') { document.body.classList.add('pf-admin-ice'); root.classList.add('ice'); }
+        else if (['confetti','fog','static'].includes(action)) root.classList.add(action);
+        else if (action === 'googly') { root.classList.add('googly'); root.insertAdjacentHTML('afterbegin','<div class="pf-googly-eyes" aria-hidden="true">👀</div>'); }
+        else if (['frog','skeleton','ghost','rocket'].includes(action)) {
+          const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀'};
+          root.classList.add(action);
+          const sprite = document.createElement('div');
+          sprite.className = 'pf-crossing-emoji ' + action;
+          sprite.setAttribute('aria-hidden','true');
+          sprite.textContent = sprites[action];
+          root.appendChild(sprite);
+        }
+        else return;
+        root.querySelector('.pf-effect-label').textContent = labels[action];
+        root.classList.add('active');
+        clearTimeout(this.effectTimer);
+        this.effectTimer = setTimeout(() => {
+          document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
+          root.className = '';
+          root.innerHTML = '<div class="pf-effect-label"></div>';
+        }, durations[action] || 2000);
+      },
+      init() {
+        this.connect();
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'visible') {
+            if (!this.socket || this.socket.readyState > WebSocket.OPEN) this.connect();
+            this.sendPresence();
+          } else this.sendPresence();
+        });
+        window.addEventListener('pagehide', () => {
+          this.closing = true;
+          clearInterval(this.heartbeatTimer);
+          try { this.socket?.close(); } catch (_) {}
+        });
+      }
+    };
+
     // Beim Laden der Plattform initialisieren
     window.addEventListener('DOMContentLoaded', () => {
       PlayfinityRouter.init();
       TikFinity.init();
       TikTokConnector.init();
+      PlayfinityUsageMetrics.init();
+      PlayfinityPlayerPresence.init();
     });
   </script>
 </body>
