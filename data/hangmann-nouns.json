@@ -23688,7 +23688,7 @@
       "category": "Länder"
     },
     {
-      "word": "Guinea-Bissau",
+      "word": "Guinea Bissau",
       "category": "Länder"
     },
     {
@@ -24237,6 +24237,14 @@
     },
     {
       "word": "Zypern",
+      "category": "Länder"
+    },
+    {
+      "word": "Belarus",
+      "category": "Länder"
+    },
+    {
+      "word": "Turkmenistan",
       "category": "Länder"
     }
   ]
