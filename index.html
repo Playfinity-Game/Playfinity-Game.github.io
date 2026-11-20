@@ -1638,15 +1638,30 @@
         this.reconnectTimer = setTimeout(() => this.connect(), 4000);
       },
 
+      isStreamerChatMessage(user) {
+        let streamerUsername = '';
+        try {
+          streamerUsername = (localStorage.getItem('playfinity_tiktok_username_v1') || document.getElementById('tiktok-username')?.value || '').trim().replace(/^@/, '').toLowerCase();
+        } catch (error) {
+          streamerUsername = (document.getElementById('tiktok-username')?.value || '').trim().replace(/^@/, '').toLowerCase();
+        }
+        if (!streamerUsername) return false;
+        const userId = String(user?.id || '').trim().replace(/^@/, '').toLowerCase();
+        const userName = String(user?.name || '').trim().replace(/^@/, '').toLowerCase();
+        return userId === streamerUsername || userName === streamerUsername;
+      },
+
       routeLiveChat(user, text, source = 'tikfinity') {
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
+        // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
+        if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
         } else if (screen === 'wordfinity' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
           KontextoGame.submitGuess(text, user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
-          PriceIsRightGame.submitGuess(Number(text.replace(',', '.')), user);
+          PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
           const chatMessage = text.trim();
           if (/^[A-Za-zÄÖÜäöüß]$/.test(chatMessage)) {
@@ -2867,12 +2882,12 @@
         document.getElementById('pir-submit').onclick = () => {
           if(PauseController.paused)return;
           const val = parseFloat(document.getElementById('pir-input').value);
-          if (!isNaN(val) && this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' })) {
+          if (!isNaN(val) && this.submitStreamerGuess(val)) {
             document.getElementById('pir-input').value = '';
           }
         };
         document.getElementById('pir-input').addEventListener('keydown', event => {
-          if (event.key === 'Enter') document.getElementById('pir-submit').click();
+          if (event.key === 'Enter') { event.preventDefault(); event.stopPropagation(); document.getElementById('pir-submit').click(); }
         });
         document.getElementById('pir-next-btn').style.display = 'none';
         document.getElementById('pir-next-btn').addEventListener('click',()=>this.nextQuestion());
@@ -2936,6 +2951,15 @@
         document.getElementById('pir-input').value = '';
         document.getElementById('pir-result').style.display = 'none';
         document.getElementById('pir-input-group').style.display = 'flex';
+      },
+
+      submitStreamerGuess(val) {
+        return this.submitGuess(val, { id: 'local-player', name: 'Lokaler Spieler' });
+      },
+
+      submitChatGuess(val, player) {
+        if (!player || !player.id || String(player.id) === 'local-player') return false;
+        return this.submitGuess(val, player);
       },
 
       submitGuess(val, player = null) {
