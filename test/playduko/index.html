@@ -9,7 +9,7 @@
 :root{color-scheme:dark;--bg:#070814;--panel:#12142c;--cyan:#00eaff;--pink:#ff007f;--gold:#ffd000;--muted:#9ba3c7;--line:rgba(0,234,255,.25)}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 10%,#30104b 0,transparent 34%),radial-gradient(circle at 90% 90%,#06364b 0,transparent 35%),var(--bg);color:#f5f7ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 header{display:flex;align-items:center;justify-content:space-between;padding:14px max(16px,calc((100vw - 900px)/2));border-bottom:1px solid var(--line);background:#0a0c1df0;position:sticky;top:0;z-index:2}
-.brand{font-weight:1000;font-size:1.35rem;letter-spacing:.04em}.brand .play{color:var(--cyan)}.brand .duko{color:var(--pink)}
+.brand{font-weight:1000;font-size:1.35rem;letter-spacing:.04em}.brand .play{color:var(--cyan)}.brand .finity{color:var(--pink)}
 a{color:var(--cyan);text-decoration:none;font-weight:700}.wrap{width:min(900px,100%);margin:auto;padding:24px 16px 48px}
 h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{color:var(--cyan)}.duko{color:var(--pink)}.sub{text-align:center;color:var(--muted);margin:0 0 22px}
 .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
@@ -27,48 +27,42 @@ h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{co
 </style>
 </head>
 <body>
-<header><div class="brand"><span class="play">Play</span><span class="duko">Duko</span></div><a href="../">← Zur Testseite</a></header>
+<header><div class="brand"><span class="play">Play</span><span class="finity">finity</span></div><a href="../">← Zur Testseite</a></header>
 <main class="wrap">
 <h1><span class="play">Play</span><span class="duko">Duko</span></h1>
-<p class="sub">Das gemeinsame Zahlenrätsel von Playfinity</p>
+
 <div class="layout">
 <section class="panel" aria-label="Sudoku-Spiel">
 <div class="board-frame" aria-label="Sudoku mit Koordinaten"><div aria-hidden="true"></div><div class="col-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div><div class="row-labels" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span></div><div id="board" class="board" role="grid" aria-label="Sudoku 9 mal 9"></div></div>
 <div id="numbers" class="numbers" aria-label="Zahl auswählen"></div>
-<div class="actions"><button class="action" id="erase">⌫ Löschen</button><button class="action" id="check">Prüfen</button><button class="action primary" id="new">Neues Rätsel</button></div>
+<div class="actions"><select id="difficulty" class="action" aria-label="Schwierigkeitsgrad"><option value="40">Leicht</option><option value="34" selected>Normal</option><option value="30">Schwer</option><option value="27">Profi</option></select><button class="action" id="erase">⌫ Löschen</button><button class="action" id="check">Prüfen</button><button class="action primary" id="new">Neues Rätsel</button></div>
 <div id="status" class="status" role="status" aria-live="polite">Wähle ein leeres Feld und anschließend eine Zahl.</div>
 </section>
 </div>
 </main>
 <script>
 (()=>{
-const puzzles=[
-{p:"530070000600195000098000060800060003400803001700020006060000280000419005000080079",s:"534678912672195348198342567859761423426853791713924856961537284287419635345286179"},
-{p:"004678912672095348198342067859761423426853791713924856961537284287419635345286179",s:"534678912672195348198342567859761423426853791713924856961537284287419635345286179"}
-];
-let puzzle=0,grid=[],selected=-1;
-const board=document.querySelector("#board"),numbers=document.querySelector("#numbers"),status=document.querySelector("#status");
+let currentPuzzle=null,grid=[],selected=-1,lastPuzzle="";
+const board=document.querySelector("#board"),numbers=document.querySelector("#numbers"),status=document.querySelector("#status"),difficulty=document.querySelector("#difficulty");
 const row=i=>Math.floor(i/9),col=i=>i%9,box=(r,c)=>Math.floor(r/3)*3+Math.floor(c/3);
-function conflicts(i,n){const r=row(i),c=col(i),b=box(r,c);return grid.some((v,j)=>j!==i&&v===n&&(row(j)===r||col(j)===c||box(row(j),col(j))===b));}
+const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+function candidates(g,i){const r=row(i),c=col(i),used=new Set();for(let k=0;k<9;k++){if(g[r*9+k])used.add(g[r*9+k]);if(g[k*9+c])used.add(g[k*9+c]);}const br=Math.floor(r/3)*3,bc=Math.floor(c/3)*3;for(let y=0;y<3;y++)for(let x=0;x<3;x++)if(g[(br+y)*9+bc+x])used.add(g[(br+y)*9+bc+x]);return shuffle([1,2,3,4,5,6,7,8,9].filter(n=>!used.has(n)));}
+function findBest(g){let best=-1,opts=null;for(let i=0;i<81;i++)if(!g[i]){const a=candidates(g,i);if(!opts||a.length<opts.length){best=i;opts=a;if(a.length<=1)break;}}return best<0?null:{index:best,options:opts};}
+function fillSolution(g){const next=findBest(g);if(!next)return true;for(const n of next.options){g[next.index]=n;if(fillSolution(g))return true;g[next.index]=0;}return false;}
+function countSolutions(g,limit=2){let count=0;function visit(){if(count>=limit)return;const next=findBest(g);if(!next){count++;return;}for(const n of next.options){g[next.index]=n;visit();g[next.index]=0;if(count>=limit)return;}}visit();return count;}
+function generatePuzzle(targetClues){const solution=Array(81).fill(0);if(!fillSolution(solution))throw new Error("Sudoku konnte nicht erzeugt werden.");const puzzle=solution.slice();let clues=81;for(const i of shuffle(Array.from({length:81},(_,k)=>k))){if(clues<=targetClues)break;const old=puzzle[i];puzzle[i]=0;if(countSolutions(puzzle.slice(),2)!==1)puzzle[i]=old;else clues--;}return {p:puzzle.join(""),s:solution.join("")};}
 function say(msg,type=""){status.textContent=msg;status.className="status "+type;}
-function render(){
- board.innerHTML="";
- for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));
- if(puzzles[puzzle].p[i]!=="0")b.classList.add("fixed");
- if(i===selected)b.classList.add("selected");
- if(selected>=0&&i!==selected&&(row(i)===row(selected)||col(i)===col(selected)||box(row(i),col(i))===box(row(selected),col(selected))))b.classList.add("peer");
- if(selected>=0&&grid[i]&&grid[i]===grid[selected])b.classList.add("same");
- if(grid[i]&&conflicts(i,grid[i]))b.classList.add("conflict");
- b.textContent=grid[i]||"";b.addEventListener("click",()=>{selected=i;render();});board.appendChild(b);}
-}
-function setNumber(n){if(selected<0){say("Bitte zuerst ein leeres Feld auswählen.","bad");return;}if(puzzles[puzzle].p[selected]!=="0"){say("Dieses Feld ist vorgegeben und kann nicht geändert werden.","bad");return;}if(n&&conflicts(selected,n)){say("Diese Zahl passt nicht: Sie kommt in Zeile, Spalte oder Block bereits vor.","bad");return;}grid[selected]=n;render();say(n?"Zahl eingetragen.":"Feld geleert.");}
+function render(){board.innerHTML="";for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));if(currentPuzzle.p[i]!=="0")b.classList.add("fixed");if(i===selected)b.classList.add("selected");if(selected>=0&&i!==selected&&(row(i)===row(selected)||col(i)===col(selected)||box(row(i),col(i))===box(row(selected),col(selected))))b.classList.add("peer");if(selected>=0&&grid[i]&&grid[i]===grid[selected])b.classList.add("same");if(grid[i]&&conflicts(i,grid[i]))b.classList.add("conflict");b.textContent=grid[i]||"";b.addEventListener("click",()=>{selected=i;render();});board.appendChild(b);}}
+function conflicts(i,n){const r=row(i),c=col(i),b=box(r,c);return grid.some((v,j)=>j!==i&&v===n&&(row(j)===r||col(j)===c||box(row(j),col(j))===b));}
+function setNumber(n){if(selected<0){say("Bitte zuerst ein leeres Feld auswählen.","bad");return;}if(currentPuzzle.p[selected]!=="0"){say("Dieses Feld ist vorgegeben und kann nicht geändert werden.","bad");return;}if(n&&conflicts(selected,n)){say("Diese Zahl passt nicht: Sie kommt in Zeile, Spalte oder Block bereits vor.","bad");return;}grid[selected]=n;render();say(n?"Zahl eingetragen.":"Feld geleert.");}
 for(let n=1;n<=9;n++){const b=document.createElement("button");b.type="button";b.textContent=n;b.addEventListener("click",()=>setNumber(n));numbers.appendChild(b);}
 document.querySelector("#erase").addEventListener("click",()=>setNumber(0));
-document.querySelector("#check").addEventListener("click",()=>{if(grid.every((v,i)=>String(v)===puzzles[puzzle].s[i]))say("🎉 Geschafft! Das Sudoku ist vollständig und richtig gelöst.","good");else say("Noch nicht ganz! Prüfe die leeren Felder und versuche es weiter.");});
-function fresh(){puzzle=(puzzle+1)%puzzles.length;grid=puzzles[puzzle].p.split("").map(Number);selected=-1;render();say("Neues Rätsel gestartet. Viel Spaß!");}
-document.querySelector("#new").addEventListener("click",fresh);
+document.querySelector("#check").addEventListener("click",()=>{if(grid.every((v,i)=>String(v)===currentPuzzle.s[i]))say("🎉 Geschafft! Das Sudoku ist vollständig und richtig gelöst.","good");else say("Noch nicht ganz! Prüfe die leeren Felder und versuche es weiter.");});
+function fresh(initial=false){say("Neues Sudoku wird erstellt …");document.querySelector("#new").disabled=true;setTimeout(()=>{try{let next;for(let attempt=0;attempt<4;attempt++){next=generatePuzzle(Number(difficulty.value));if(next.p!==lastPuzzle)break;}currentPuzzle=next;lastPuzzle=next.p;grid=currentPuzzle.p.split("").map(Number);selected=-1;render();say((initial?"Willkommen! ":"Neues Rätsel gestartet! ")+difficulty.options[difficulty.selectedIndex].text+" – viel Spaß!");}catch(err){say("Das Rätsel konnte gerade nicht erstellt werden. Bitte erneut versuchen.","bad");}finally{document.querySelector("#new").disabled=false;}},20);}
+difficulty.addEventListener("change",()=>say("Schwierigkeit: "+difficulty.options[difficulty.selectedIndex].text+". Beim nächsten Rätsel wird sie angewendet."));
+document.querySelector("#new").addEventListener("click",()=>fresh(false));
 document.addEventListener("keydown",e=>{if(selected<0)return;if(/^[1-9]$/.test(e.key))setNumber(Number(e.key));else if(e.key==="Backspace"||e.key==="Delete")setNumber(0);else if(e.key==="ArrowUp"&&row(selected)>0)selected-=9;else if(e.key==="ArrowDown"&&row(selected)<8)selected+=9;else if(e.key==="ArrowLeft"&&col(selected)>0)selected--;else if(e.key==="ArrowRight"&&col(selected)<8)selected++;else return;render();});
-grid=puzzles[0].p.split("").map(Number);render();
+fresh(true);
 })();
 </script>
 </body>
