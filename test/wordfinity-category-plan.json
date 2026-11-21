@@ -23,7 +23,8 @@
     },
     {
       "name": "Pflanzen",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 161
     },
     {
       "name": "Natur",
@@ -170,5 +171,5 @@
       "targetWords": 150
     }
   ],
-  "currentWordCount": 1064
+  "currentWordCount": 1185
 }
