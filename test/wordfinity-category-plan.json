@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "project": "Wordfinity",
+  "status": "category-plan",
+  "targetWordCount": 10000,
+  "totalPlannedSlots": 10000,
+  "language": "de",
+  "wordForm": "plural",
+  "rules": [
+    "Nur bekannte, gebräuchliche deutsche Substantive im Plural.",
+    "Nur einzelne Wörter: keine Leerzeichen, Bindestriche oder Satzzeichen.",
+    "Keine Fachbegriffe und keine unnötig komplizierten Wörter.",
+    "Keine doppelten Wörter über Kategorien hinweg.",
+    "Die Zielzahlen sind Planwerte und dürfen bei Bedarf sinnvoll angepasst werden."
+  ],
+  "categories": [
+    {
+      "name": "Tiere",
+      "targetWords": 700
+    },
+    {
+      "name": "Pflanzen",
+      "targetWords": 300
+    },
+    {
+      "name": "Natur",
+      "targetWords": 300
+    },
+    {
+      "name": "Essen",
+      "targetWords": 700
+    },
+    {
+      "name": "Getränke",
+      "targetWords": 150
+    },
+    {
+      "name": "Haushalt",
+      "targetWords": 400
+    },
+    {
+      "name": "Wohnen",
+      "targetWords": 300
+    },
+    {
+      "name": "Kleidung",
+      "targetWords": 400
+    },
+    {
+      "name": "Körper",
+      "targetWords": 250
+    },
+    {
+      "name": "Gesundheit",
+      "targetWords": 150
+    },
+    {
+      "name": "Sport",
+      "targetWords": 500
+    },
+    {
+      "name": "Freizeit",
+      "targetWords": 300
+    },
+    {
+      "name": "Technik",
+      "targetWords": 450
+    },
+    {
+      "name": "Elektronik",
+      "targetWords": 250
+    },
+    {
+      "name": "Fahrzeuge",
+      "targetWords": 250
+    },
+    {
+      "name": "Verkehr",
+      "targetWords": 200
+    },
+    {
+      "name": "Berufe",
+      "targetWords": 350
+    },
+    {
+      "name": "Arbeit",
+      "targetWords": 200
+    },
+    {
+      "name": "Schule",
+      "targetWords": 300
+    },
+    {
+      "name": "Bildung",
+      "targetWords": 150
+    },
+    {
+      "name": "Musik",
+      "targetWords": 250
+    },
+    {
+      "name": "Kunst",
+      "targetWords": 150
+    },
+    {
+      "name": "Kultur",
+      "targetWords": 150
+    },
+    {
+      "name": "Medien",
+      "targetWords": 200
+    },
+    {
+      "name": "Spiele",
+      "targetWords": 300
+    },
+    {
+      "name": "Familie",
+      "targetWords": 150
+    },
+    {
+      "name": "Menschen",
+      "targetWords": 250
+    },
+    {
+      "name": "Gebäude",
+      "targetWords": 200
+    },
+    {
+      "name": "Orte",
+      "targetWords": 250
+    },
+    {
+      "name": "Reisen",
+      "targetWords": 200
+    },
+    {
+      "name": "Wetter",
+      "targetWords": 150
+    },
+    {
+      "name": "Wissenschaft",
+      "targetWords": 150
+    },
+    {
+      "name": "Weltraum",
+      "targetWords": 100
+    },
+    {
+      "name": "Wirtschaft",
+      "targetWords": 150
+    },
+    {
+      "name": "Werkzeuge",
+      "targetWords": 250
+    },
+    {
+      "name": "Handwerk",
+      "targetWords": 150
+    },
+    {
+      "name": "Gefühle",
+      "targetWords": 200
+    },
+    {
+      "name": "Zeit",
+      "targetWords": 150
+    }
+  ]
+}
