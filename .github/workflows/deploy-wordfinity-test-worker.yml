@@ -5,6 +5,7 @@ on:
     branches:
       - wordfinity-test-singular-word-batch-1
       - wordfinity-test-live-rank-cpu-fix
+      - wordfinity-test-mobile-submit-reliability
     paths:
       - "cloudflare/wordfinity-ai-test/**"
       - ".github/workflows/deploy-wordfinity-test-worker.yml"
