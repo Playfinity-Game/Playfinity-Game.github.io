@@ -11,18 +11,16 @@
 header{display:flex;align-items:center;justify-content:space-between;padding:14px max(16px,calc((100vw - 900px)/2));border-bottom:1px solid var(--line);background:#0a0c1df0;position:sticky;top:0;z-index:2}
 .brand{display:flex;align-items:center;gap:12px;cursor:pointer}.logo-text{font-size:1.4rem;font-weight:900;letter-spacing:2px;background:linear-gradient(135deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 20px rgba(0,240,255,.35)}@media(max-width:600px){.logo-text{font-size:1.08rem;letter-spacing:1px}}
 a{color:var(--cyan);text-decoration:none;font-weight:700}.wrap{width:min(900px,100%);margin:auto;padding:24px 16px 48px}
-h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{color:var(--cyan)}.duko{color:var(--pink)}.sub{text-align:center;color:var(--muted);margin:0 0 22px}
+h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 18px}.play{color:var(--cyan)}.duko{color:var(--pink)}
 .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
 .panel{background:#11142be8;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 36px #0005}
 .board-frame{display:grid;grid-template-columns:26px minmax(0,1fr);grid-template-rows:26px minmax(0,1fr);gap:4px;width:100%;max-width:720px;margin-inline:auto}.col-labels{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:var(--cyan);font-weight:900}.row-labels{grid-column:1;grid-row:2;display:grid;grid-template-rows:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:var(--pink);font-weight:900}.board{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(9,1fr);width:100%;aspect-ratio:1;border:2px solid #b7c3ee;border-radius:7px;overflow:hidden;background:#090b1c}
 .cell{min-width:0;display:grid;place-items:center;border:1px solid #303653;background:#10142b;color:#fff;font-size:clamp(1rem,4.6vw,1.7rem);font-weight:750;cursor:pointer;padding:0;position:relative}
 .cell:nth-child(3n){border-right:2px solid #9ba8d3}.cell:nth-child(9n){border-right:0}.cell:nth-child(n+19):nth-child(-n+27),.cell:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid #9ba8d3}
-.cell.fixed{color:#9feeff;background:#171d3a}.cell.selected{background:#21415a;outline:2px solid var(--cyan);outline-offset:-2px}.cell.peer{background:#19243b}.cell.same{background:#25374b}.cell.conflict{color:#ff8fb7;background:#4a1932}.cell:focus-visible{outline:2px solid white;outline-offset:-2px;z-index:1}
+.cell.fixed{color:#9feeff;background:#171d3a}.cell.selected{background:#21415a;outline:2px solid var(--cyan);outline-offset:-2px}.cell.peer{background:#19243b}.cell.same{background:#25374b}.cell.conflict,.cell.incorrect{color:#ff9dbf;background:#4a1932}.cell.hinted{animation:hintPulse 1.2s ease-out}@keyframes hintPulse{0%,35%{background:#7b6414;color:#fff;box-shadow:inset 0 0 0 3px var(--gold)}100%{background:#171d3a;color:#9feeff;box-shadow:none}}.cell:focus-visible{outline:2px solid white;outline-offset:-2px;z-index:1}
 .numbers{display:grid;grid-template-columns:repeat(9,1fr);gap:7px;margin-top:14px}.numbers button,button.action{border:1px solid var(--line);background:#17203c;color:#fff;border-radius:10px;padding:11px 4px;font-weight:800;font-size:1rem;cursor:pointer}.numbers button:hover,button.action:hover{border-color:var(--cyan);background:#203653}.numbers button:disabled{opacity:.3;cursor:not-allowed}
-.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{flex:1;min-width:90px}.primary{background:linear-gradient(110deg,#00d9ef,#1685ff)!important;color:#06101e!important;border:0!important}
-.status{min-height:48px;margin-top:12px;padding:11px;border-radius:10px;background:#0b1024;color:#b9c4e8;font-size:.9rem;line-height:1.4}.status.good{color:#76ffc8}.status.bad{color:#ff9dbf}
-.side h2{font-size:1.05rem;margin:0 0 10px}.side p,.side li{color:#c0c7e4;font-size:.9rem;line-height:1.5}.side ul{padding-left:18px}.pill{display:inline-block;border:1px solid #ffffff25;border-radius:30px;padding:5px 10px;color:var(--gold);font-size:.75rem;font-weight:800;margin-bottom:12px}
-.chat{margin-top:14px;padding:12px;border:1px dashed #8e78bc;border-radius:12px;background:#1b1530}.chat code{color:#ffd66e;font-weight:800}.chat small{display:block;color:#a9a2c6;margin-top:6px}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.action{flex:1;min-width:76px}.primary{background:linear-gradient(110deg,#00d9ef,#1685ff)!important;color:#06101e!important;border:0!important}.hint{flex:0 0 48px;font-size:1.3rem!important;color:var(--gold)!important;border-color:rgba(255,208,0,.45)!important;padding:8px!important}.hint:hover{background:#403719!important;border-color:var(--gold)!important}
+.board.solved{box-shadow:0 0 0 2px #76ffc8,0 0 24px #76ffc855}
 @media(max-width:680px){.wrap{padding:16px 12px 32px}.panel{padding:12px}.numbers{gap:5px}.numbers button{padding:10px 2px}}
 </style>
 </head>
@@ -30,20 +28,18 @@ h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{co
 <header><div class="brand"><div class="logo-text">PLAYFINITY</div></div><a href="../">← Zur Testseite</a></header>
 <main class="wrap">
 <h1><span class="play">Play</span><span class="duko">Duko</span></h1>
-
 <div class="layout">
 <section class="panel" aria-label="Sudoku-Spiel">
 <div class="board-frame" aria-label="Sudoku mit Koordinaten"><div aria-hidden="true"></div><div class="col-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div><div class="row-labels" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span></div><div id="board" class="board" role="grid" aria-label="Sudoku 9 mal 9"></div></div>
 <div id="numbers" class="numbers" aria-label="Zahl auswählen"></div>
-<div class="actions"><select id="difficulty" class="action" aria-label="Schwierigkeitsgrad"><option value="40">Leicht</option><option value="34" selected>Normal</option><option value="30">Schwer</option><option value="27">Profi</option></select><button class="action" id="erase">⌫ Löschen</button><button class="action" id="check">Prüfen</button><button class="action primary" id="new">Neues Rätsel</button></div>
-<div id="status" class="status" role="status" aria-live="polite">Wähle ein leeres Feld und anschließend eine Zahl.</div>
+<div class="actions"><select id="difficulty" class="action" aria-label="Schwierigkeitsgrad"><option value="40">Leicht</option><option value="34" selected>Normal</option><option value="30">Schwer</option><option value="27">Profi</option></select><button class="action hint" id="hint" type="button" aria-label="Zufälligen Tipp anzeigen" title="Zufälliger Tipp">💡</button><button class="action" id="erase" type="button" aria-label="Löschen">⌫</button><button class="action" id="check" type="button">Prüfen</button><button class="action primary" id="new" type="button">Neues Rätsel</button></div>
 </section>
 </div>
 </main>
 <script>
 (()=>{
-let currentPuzzle=null,grid=[],selected=-1,lastPuzzle="";
-const board=document.querySelector("#board"),numbers=document.querySelector("#numbers"),status=document.querySelector("#status"),difficulty=document.querySelector("#difficulty");
+let currentPuzzle=null,grid=[],selected=-1,lastPuzzle="",hintedIndex=-1,checked=false;
+const board=document.querySelector("#board"),numbers=document.querySelector("#numbers"),difficulty=document.querySelector("#difficulty");
 const row=i=>Math.floor(i/9),col=i=>i%9,box=(r,c)=>Math.floor(r/3)*3+Math.floor(c/3);
 const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
 function candidates(g,i){const r=row(i),c=col(i),used=new Set();for(let k=0;k<9;k++){if(g[r*9+k])used.add(g[r*9+k]);if(g[k*9+c])used.add(g[k*9+c]);}const br=Math.floor(r/3)*3,bc=Math.floor(c/3)*3;for(let y=0;y<3;y++)for(let x=0;x<3;x++)if(g[(br+y)*9+bc+x])used.add(g[(br+y)*9+bc+x]);return shuffle([1,2,3,4,5,6,7,8,9].filter(n=>!used.has(n)));}
@@ -51,18 +47,17 @@ function findBest(g){let best=-1,opts=null;for(let i=0;i<81;i++)if(!g[i]){const 
 function fillSolution(g){const next=findBest(g);if(!next)return true;for(const n of next.options){g[next.index]=n;if(fillSolution(g))return true;g[next.index]=0;}return false;}
 function countSolutions(g,limit=2){let count=0;function visit(){if(count>=limit)return;const next=findBest(g);if(!next){count++;return;}for(const n of next.options){g[next.index]=n;visit();g[next.index]=0;if(count>=limit)return;}}visit();return count;}
 function generatePuzzle(targetClues){const solution=Array(81).fill(0);if(!fillSolution(solution))throw new Error("Sudoku konnte nicht erzeugt werden.");const puzzle=solution.slice();let clues=81;for(const i of shuffle(Array.from({length:81},(_,k)=>k))){if(clues<=targetClues)break;const old=puzzle[i];puzzle[i]=0;if(countSolutions(puzzle.slice(),2)!==1)puzzle[i]=old;else clues--;}return {p:puzzle.join(""),s:solution.join("")};}
-function say(msg,type=""){status.textContent=msg;status.className="status "+type;}
-function render(){board.innerHTML="";for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));if(currentPuzzle.p[i]!=="0")b.classList.add("fixed");if(i===selected)b.classList.add("selected");if(selected>=0&&i!==selected&&(row(i)===row(selected)||col(i)===col(selected)||box(row(i),col(i))===box(row(selected),col(selected))))b.classList.add("peer");if(selected>=0&&grid[i]&&grid[i]===grid[selected])b.classList.add("same");if(grid[i]&&conflicts(i,grid[i]))b.classList.add("conflict");b.textContent=grid[i]||"";b.addEventListener("click",()=>{selected=i;render();});board.appendChild(b);}}
+function render(){board.innerHTML="";board.classList.toggle("solved",checked&&grid.every((v,i)=>String(v)===currentPuzzle.s[i]));for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));if(currentPuzzle.p[i]!=="0")b.classList.add("fixed");if(i===selected)b.classList.add("selected");if(selected>=0&&i!==selected&&(row(i)===row(selected)||col(i)===col(selected)||box(row(i),col(i))===box(row(selected),col(selected))))b.classList.add("peer");if(selected>=0&&grid[i]&&grid[i]===grid[selected])b.classList.add("same");if(grid[i]&&conflicts(i,grid[i]))b.classList.add("conflict");if(checked&&grid[i]&&String(grid[i])!==currentPuzzle.s[i])b.classList.add("incorrect");if(i===hintedIndex)b.classList.add("hinted");b.textContent=grid[i]||"";b.addEventListener("click",()=>{selected=i;render();});board.appendChild(b);}}
 function conflicts(i,n){const r=row(i),c=col(i),b=box(r,c);return grid.some((v,j)=>j!==i&&v===n&&(row(j)===r||col(j)===c||box(row(j),col(j))===b));}
-function setNumber(n){if(selected<0){say("Bitte zuerst ein leeres Feld auswählen.","bad");return;}if(currentPuzzle.p[selected]!=="0"){say("Dieses Feld ist vorgegeben und kann nicht geändert werden.","bad");return;}if(n&&conflicts(selected,n)){say("Diese Zahl passt nicht: Sie kommt in Zeile, Spalte oder Block bereits vor.","bad");return;}grid[selected]=n;render();say(n?"Zahl eingetragen.":"Feld geleert.");}
+function setNumber(n){if(selected<0||currentPuzzle.p[selected]!=="0")return;if(n&&conflicts(selected,n))return;grid[selected]=n;checked=false;hintedIndex=-1;render();}
 for(let n=1;n<=9;n++){const b=document.createElement("button");b.type="button";b.textContent=n;b.addEventListener("click",()=>setNumber(n));numbers.appendChild(b);}
 document.querySelector("#erase").addEventListener("click",()=>setNumber(0));
-document.querySelector("#check").addEventListener("click",()=>{if(grid.every((v,i)=>String(v)===currentPuzzle.s[i]))say("🎉 Geschafft! Das Sudoku ist vollständig und richtig gelöst.","good");else say("Noch nicht ganz! Prüfe die leeren Felder und versuche es weiter.");});
-function fresh(initial=false){say("Neues Sudoku wird erstellt …");document.querySelector("#new").disabled=true;setTimeout(()=>{try{let next;for(let attempt=0;attempt<4;attempt++){next=generatePuzzle(Number(difficulty.value));if(next.p!==lastPuzzle)break;}currentPuzzle=next;lastPuzzle=next.p;grid=currentPuzzle.p.split("").map(Number);selected=-1;render();say((initial?"Willkommen! ":"Neues Rätsel gestartet! ")+difficulty.options[difficulty.selectedIndex].text+" – viel Spaß!");}catch(err){say("Das Rätsel konnte gerade nicht erstellt werden. Bitte erneut versuchen.","bad");}finally{document.querySelector("#new").disabled=false;}},20);}
-difficulty.addEventListener("change",()=>say("Schwierigkeit: "+difficulty.options[difficulty.selectedIndex].text+". Beim nächsten Rätsel wird sie angewendet."));
-document.querySelector("#new").addEventListener("click",()=>fresh(false));
+document.querySelector("#check").addEventListener("click",()=>{checked=true;render();});
+document.querySelector("#hint").addEventListener("click",()=>{const empty=[];for(let i=0;i<81;i++)if(currentPuzzle.p[i]==="0"&&!grid[i])empty.push(i);if(!empty.length)return;const i=empty[Math.floor(Math.random()*empty.length)];grid[i]=Number(currentPuzzle.s[i]);selected=-1;hintedIndex=i;checked=false;render();});
+function fresh(){document.querySelector("#new").disabled=true;setTimeout(()=>{try{let next;for(let attempt=0;attempt<4;attempt++){next=generatePuzzle(Number(difficulty.value));if(next.p!==lastPuzzle)break;}currentPuzzle=next;lastPuzzle=next.p;grid=currentPuzzle.p.split("").map(Number);selected=-1;hintedIndex=-1;checked=false;render();}catch(err){document.querySelector("#new").disabled=false;throw err;}document.querySelector("#new").disabled=false;},20);}
+document.querySelector("#new").addEventListener("click",fresh);
 document.addEventListener("keydown",e=>{if(selected<0)return;if(/^[1-9]$/.test(e.key))setNumber(Number(e.key));else if(e.key==="Backspace"||e.key==="Delete")setNumber(0);else if(e.key==="ArrowUp"&&row(selected)>0)selected-=9;else if(e.key==="ArrowDown"&&row(selected)<8)selected+=9;else if(e.key==="ArrowLeft"&&col(selected)>0)selected--;else if(e.key==="ArrowRight"&&col(selected)<8)selected++;else return;render();});
-fresh(true);
+fresh();
 })();
 </script>
 </body>
