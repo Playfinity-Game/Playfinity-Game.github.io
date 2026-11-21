@@ -18,7 +18,8 @@
   "categories": [
     {
       "name": "Tiere",
-      "targetWords": 700
+      "targetWords": 700,
+      "currentWords": 107
     },
     {
       "name": "Pflanzen",
@@ -169,5 +170,5 @@
       "targetWords": 150
     }
   ],
-  "currentWordCount": 924
+  "currentWordCount": 977
 }
