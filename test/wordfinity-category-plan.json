@@ -149,12 +149,12 @@
     {
       "name": "Gebäude",
       "targetWords": 200,
-      "currentWords": 11
+      "currentWords": 86
     },
     {
       "name": "Orte",
       "targetWords": 250,
-      "currentWords": 8
+      "currentWords": 91
     },
     {
       "name": "Reisen",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2151
+  "currentWordCount": 2309
 }
