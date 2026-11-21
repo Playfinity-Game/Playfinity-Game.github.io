@@ -44,17 +44,17 @@
     {
       "name": "Haushalt",
       "targetWords": 400,
-      "currentWords": 34
+      "currentWords": 100
     },
     {
       "name": "Wohnen",
       "targetWords": 300,
-      "currentWords": 36
+      "currentWords": 97
     },
     {
       "name": "Kleidung",
       "targetWords": 400,
-      "currentWords": 32
+      "currentWords": 87
     },
     {
       "name": "Körper",
@@ -207,5 +207,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 1358
+  "currentWordCount": 1540
 }
