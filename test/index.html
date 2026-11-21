@@ -2227,20 +2227,21 @@
             if (!Array.isArray(words)) throw new Error('Ungültige Wortliste in Kategorie: ' + category);
             for (const value of words) {
               const word = String(value).trim().normalize('NFC');
-              if (!/^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word)) continue;
+              if (!/^[A-Za-zÄÖÜäöüß]{2,}$/u.test(word)) continue;
               const key = word.toLocaleLowerCase('de-DE');
               if (!uniqueWordsByKey.has(key)) uniqueWordsByKey.set(key, word);
               if (!assignments.has(key)) assignments.set(key, category);
             }
           }
           const uniqueWords = [...uniqueWordsByKey.values()];
-          if (uniqueWords.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
           this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
           this.dictionaryTargetWords = uniqueWords;
           this.categoryAssignments = assignments;
           this.usedTargets = new Set([...this.usedTargets].filter(key => this.dictionaryWords.has(key)));
           this.dictionaryReady = true;
-          if (statusText) statusText.textContent = uniqueWords.length.toLocaleString('de-DE') + ' Wörter aus ' + Object.keys(groupedWords).length + ' Kategorien geladen';
+          if (statusText) statusText.textContent = uniqueWords.length
+            ? uniqueWords.length.toLocaleString('de-DE') + ' Pluralwörter aus ' + Object.keys(groupedWords).length + ' Kategorien geladen'
+            : Object.keys(groupedWords).length + ' neue Kategorien angelegt – Wortliste wird aufgebaut';
           return true;
         } catch (error) {
           console.error('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
@@ -2498,7 +2499,7 @@
         const statusText=document.getElementById('model-status-text');
         if(statusText)statusText.textContent='Prüfe Wortliste und wähle ein Lösungswort …';
         if(!this.dictionaryReady || !this.dictionaryTargetWords.length){
-          if(statusText)statusText.textContent='Wortliste nicht verfügbar – bitte Seite neu laden.';
+          if(statusText)statusText.textContent='Die neuen Kategorien sind vorbereitet. Die Pluralwortliste wird gerade aufgebaut.';
           return;
         }
         let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
