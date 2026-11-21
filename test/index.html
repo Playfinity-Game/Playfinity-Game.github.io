@@ -2203,6 +2203,7 @@
       dictionaryReady: false,
       dictionaryWords: new Set(),
       dictionaryTargetWords: [],
+      liveCandidateScoreCache: new Map(),
       usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets-v2') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
       wordHintCandidatesTried: new Set(),
       wordHintInProgress: false,
@@ -2263,8 +2264,10 @@
           if(PauseController.paused)return;
           const inp = document.getElementById('kontexto-input');
           if (inp.value.trim()) {
-            this.submitGuess(inp.value.trim());
-            inp.value = '';
+            const submittedWord = inp.value.trim();
+            this.submitGuess(submittedWord).then(accepted => {
+              if (accepted && inp.value.trim() === submittedWord) inp.value = '';
+            });
           }
         };
 
@@ -2577,24 +2580,69 @@
       },
 
       async getLiveRanks(target, guesses) {
-        const response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/rank', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            target,
-            guesses,
-            candidates: this.dictionaryTargetWords
-          })
-        });
-        const result = await response.json().catch(() => {
-          throw new Error('Ungültige Antwort vom semantischen Rangserver');
-        });
-        if (!response.ok) throw new Error(result.error || 'Rangserver Fehler ' + response.status);
-        if (!Array.isArray(result.ranks) || result.ranks.length !== guesses.length ||
-            result.ranks.some(item => !Number.isFinite(Number(item.rank)) || !Number.isFinite(Number(item.similarity)))) {
-          throw new Error('Der Rangserver hat keine gültigen Live-Ränge geliefert');
+        const targetKey = String(target || '').toLocaleLowerCase('de-DE').trim();
+        let scorePromise = this.liveCandidateScoreCache.get(targetKey);
+        if (!scorePromise) {
+          scorePromise = (async () => {
+            const candidates = this.dictionaryTargetWords;
+            const chunkSize = 90;
+            const chunks = [];
+            for (let i = 0; i < candidates.length; i += chunkSize) {
+              chunks.push(candidates.slice(i, i + chunkSize));
+            }
+            const scores = [];
+            let nextChunk = 0;
+            const workers = Array.from({ length: 4 }, async () => {
+              while (true) {
+                const index = nextChunk++;
+                if (index >= chunks.length) return;
+                const response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/scores', {
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({ target, candidates: chunks[index] })
+                });
+                const result = await response.json().catch(() => {
+                  throw new Error('Ungültige Antwort beim semantischen Wortvergleich');
+                });
+                if (!response.ok) throw new Error(result.error || 'Semantikserver Fehler ' + response.status);
+                if (!Array.isArray(result.scores) || result.scores.length !== chunks[index].length ||
+                    result.scores.some(item => !Number.isFinite(Number(item.similarity)))) {
+                  throw new Error('Der Semantikserver hat unvollständige Vergleichswerte geliefert');
+                }
+                scores.push(...result.scores);
+                const status = document.getElementById('model-status-text');
+                if (status) status.textContent = 'BGE-M3 vergleicht Wortliste live: ' + scores.length + ' / ' + candidates.length;
+              }
+            });
+            await Promise.all(workers);
+            return scores;
+          })();
+          this.liveCandidateScoreCache.set(targetKey, scorePromise);
+          while (this.liveCandidateScoreCache.size > 2) {
+            const oldestKey = this.liveCandidateScoreCache.keys().next().value;
+            if (oldestKey === targetKey) break;
+            this.liveCandidateScoreCache.delete(oldestKey);
+          }
+          scorePromise.catch(() => this.liveCandidateScoreCache.delete(targetKey));
         }
-        return result.ranks;
+        const candidateScores = await scorePromise;
+        const missing = guesses.filter(item => !Number.isFinite(Number(item.similarity)));
+        const missingScores = await Promise.all(missing.map(item => this.getSimilarity(target, item.word)));
+        let missingIndex = 0;
+        return guesses.map(item => {
+          const guessSimilarity = Number.isFinite(Number(item.similarity))
+            ? Number(item.similarity)
+            : missingScores[missingIndex++];
+          const guessKey = String(item.word || '').toLocaleLowerCase('de-DE');
+          let rank = 1;
+          for (const candidate of candidateScores) {
+            const candidateSimilarity = Number(candidate.similarity);
+            if (candidateSimilarity > guessSimilarity + 1e-7) rank++;
+            else if (Math.abs(candidateSimilarity - guessSimilarity) <= 1e-7 &&
+                     String(candidate.word).localeCompare(String(item.word), 'de-DE') < 0) rank++;
+          }
+          return { word: item.word, rank, similarity: guessSimilarity };
+        });
       },
 
       async getSimilarity(target,guess){
@@ -2653,7 +2701,7 @@
           console.error('[WORDFINITY] Live-Semantikrang fehlgeschlagen:', error);
           this.pendingGuesses.delete(key);
           const status = document.getElementById('model-status-text');
-          if (status) status.textContent = 'Semantische Bewertung gerade nicht verfügbar. Bitte erneut versuchen.';
+          if (status) status.textContent = 'Semantische Bewertung fehlgeschlagen: ' + (error?.message || 'Bitte erneut versuchen.');
           return false;
         }
         if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }

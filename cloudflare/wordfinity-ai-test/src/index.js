@@ -125,6 +125,26 @@ async function getLiveCandidateScores(env, target, candidates) {
   }
 }
 
+async function handleCandidateScores(env, body) {
+  const target = String(body.target || "").trim();
+  const candidates = Array.isArray(body.candidates)
+    ? [...new Set(body.candidates.map(x => String(x || "").trim()).filter(Boolean))]
+    : [];
+  if (!target || !candidates.length || candidates.length > 95) {
+    return json({ error: "target und 1 bis 95 Vergleichswörter sind erforderlich" }, 400);
+  }
+  const result = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
+  if (!Array.isArray(result?.data) || result.data.length !== candidates.length + 1) {
+    throw new Error("Das Embedding-Modell hat unvollständige Vergleichsvektoren geliefert");
+  }
+  const targetVector = result.data[0];
+  const scores = candidates.map((word, index) => ({
+    word,
+    similarity: cosine(targetVector, result.data[index + 1])
+  }));
+  return json({ scores, model: EMBEDDING_MODEL, ranking: "live-semantic-scores" });
+}
+
 async function handleLiveRank(env, body) {
   const target = String(body.target || "").trim();
   const candidates = Array.isArray(body.candidates)
@@ -320,6 +340,7 @@ export default {
     try {
       switch (url.pathname) {
         case "/api/similarity": return await handleSimilarity(env, body);
+        case "/api/scores": return await handleCandidateScores(env, body);
         case "/api/rank": return await handleLiveRank(env, body);
         case "/api/hints": return await handleHints(env, body);
         case "/api/category": return await handleCategory(env, body);
