@@ -169,12 +169,12 @@
     {
       "name": "Wissenschaft",
       "targetWords": 150,
-      "currentWords": 19
+      "currentWords": 45
     },
     {
       "name": "Weltraum",
       "targetWords": 100,
-      "currentWords": 16
+      "currentWords": 30
     },
     {
       "name": "Wirtschaft",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2403
+  "currentWordCount": 2443
 }
