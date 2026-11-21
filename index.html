@@ -1014,10 +1014,12 @@
 
   
 /* PlayDuko – isolierte Styles innerhalb der Hauptseite */
-#screen-playduko .pd-wrap{width:min(900px,100%);margin:auto;padding:18px 12px 40px}
-#screen-playduko .pd-title{text-align:center;font-size:clamp(2rem,7vw,3.1rem);margin:8px 0 16px;font-weight:900}
+#screen-playduko .pd-wrap{width:min(900px,100%);margin:0 auto;padding:8px 12px 28px}
+#screen-playduko .pd-title{text-align:center;font-size:clamp(2rem,7vw,3.1rem);margin:0;font-weight:900}
 #screen-playduko .pd-play{color:var(--neon-cyan)} #screen-playduko .pd-duko{color:var(--neon-pink)}
-#screen-playduko .pd-panel{position:relative;background:#11142be8;border:1px solid rgba(0,234,255,.25);border-radius:18px;padding:14px;box-shadow:0 12px 36px #0005}
+#screen-playduko .pd-panel{position:relative;width:100%;max-width:760px;margin:0 auto;background:#11142be8;border:1px solid rgba(0,234,255,.25);border-radius:18px;padding:14px;box-shadow:0 12px 36px #0005}
+#screen-playduko .pd-heading{position:relative;display:flex;align-items:center;justify-content:center;width:100%;max-width:720px;min-height:48px;margin:0 auto 8px}
+#screen-playduko .pd-heading .pd-hint{position:absolute;right:0;top:50%;transform:translateY(-50%);z-index:2}
 #screen-playduko .pd-board-frame{display:grid;grid-template-columns:26px minmax(0,1fr);grid-template-rows:26px minmax(0,1fr);gap:4px;width:100%;max-width:720px;margin-inline:auto}
 #screen-playduko .pd-col-labels{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:transparent;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-pink));-webkit-background-clip:text;background-clip:text;font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:900}
 #screen-playduko .pd-row-labels{grid-column:1;grid-row:2;display:grid;grid-template-rows:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:transparent;background:linear-gradient(135deg,var(--neon-cyan),var(--neon-pink));-webkit-background-clip:text;background-clip:text;font-size:clamp(1.05rem,2.8vw,1.3rem);font-weight:900}
@@ -1035,7 +1037,6 @@
 #screen-playduko .pd-numbers button,#screen-playduko button.pd-action{border:1px solid rgba(0,234,255,.25);background:#17203c;color:#fff;border-radius:10px;padding:11px 4px;font-weight:800;font-size:1rem;cursor:pointer}
 #screen-playduko .pd-numbers button:hover,#screen-playduko button.pd-action:hover{border-color:var(--neon-cyan);background:#203653}
 #screen-playduko .pd-numbers button.chosen{border-color:var(--neon-gold);background:#403719;color:var(--neon-gold);box-shadow:0 0 0 1px var(--neon-gold)}
-#screen-playduko .pd-board-tools{display:flex;justify-content:flex-end;align-items:center;width:100%;max-width:720px;min-height:44px;margin:0 auto 6px;position:relative;z-index:2}
 #screen-playduko .pd-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
 #screen-playduko .pd-action{flex:1;min-width:76px}
 #screen-playduko .pd-primary{background:linear-gradient(110deg,#00d9ef,#1685ff)!important;color:#06101e!important;border:0!important}
@@ -1163,9 +1164,11 @@
     <!-- SCREEN: PLAYDUKO -->
     <section class="screen" id="screen-playduko">
       <div class="pd-wrap">
-        <h1 class="pd-title"><span class="pd-play">Play</span><span class="pd-duko">Duko</span></h1>
         <section class="pd-panel" aria-label="Sudoku-Spiel">
-          <div class="pd-board-tools"><button class="pd-action pd-hint" id="pd-hint" type="button" aria-label="Zufälligen Tipp anzeigen" title="Zufälliger Tipp">💡</button></div>
+          <div class="pd-heading">
+            <h1 class="pd-title"><span class="pd-play">Play</span><span class="pd-duko">Duko</span></h1>
+            <button class="pd-action pd-hint" id="pd-hint" type="button" aria-label="Zufälligen Tipp anzeigen" title="Zufälliger Tipp">💡</button>
+          </div>
           <div class="pd-board-frame" aria-label="Sudoku mit Koordinaten">
             <div aria-hidden="true"></div>
             <div class="pd-col-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div>
