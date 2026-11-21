@@ -159,12 +159,12 @@
     {
       "name": "Reisen",
       "targetWords": 200,
-      "currentWords": 6
+      "currentWords": 51
     },
     {
       "name": "Wetter",
       "targetWords": 150,
-      "currentWords": 22
+      "currentWords": 71
     },
     {
       "name": "Wissenschaft",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2309
+  "currentWordCount": 2403
 }
