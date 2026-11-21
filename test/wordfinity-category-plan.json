@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "project": "Wordfinity",
   "status": "wordlist-in-progress",
-  "targetWordCount": 10000,
-  "totalPlannedSlots": 10000,
+  "targetWordCount": 9850,
+  "totalPlannedSlots": 9850,
   "language": "de",
   "wordForm": "singular",
   "rules": [
@@ -12,7 +12,7 @@
     "Nur bekannte Alltagswörter, die Kinder und Jugendliche kennen.",
     "Keine Fachbegriffe, künstlichen Wortbildungen oder unnötig schwierigen Wörter.",
     "Keine doppelten Wörter über Kategorien hinweg.",
-    "38 einfache Kategorien mit insgesamt 10.000 Wörtern als Ziel.",
+    "37 einfache Kategorien mit insgesamt 9.850 Wörtern als Planwert.",
     "Die Zielzahlen sind Planwerte und dürfen bei Bedarf sinnvoll angepasst werden."
   ],
   "categories": [
@@ -119,17 +119,12 @@
     {
       "name": "Musik",
       "targetWords": 250,
-      "currentWords": 27
+      "currentWords": 70
     },
     {
       "name": "Kunst",
       "targetWords": 150,
-      "currentWords": 15
-    },
-    {
-      "name": "Kultur",
-      "targetWords": 150,
-      "currentWords": 17
+      "currentWords": 47
     },
     {
       "name": "Medien",
@@ -207,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 1947
+  "currentWordCount": 2005
 }
