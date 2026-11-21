@@ -129,12 +129,12 @@
     {
       "name": "Medien",
       "targetWords": 200,
-      "currentWords": 7
+      "currentWords": 33
     },
     {
       "name": "Spiele",
       "targetWords": 300,
-      "currentWords": 20
+      "currentWords": 58
     },
     {
       "name": "Familie",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2005
+  "currentWordCount": 2069
 }
