@@ -24,152 +24,188 @@
     {
       "name": "Pflanzen",
       "targetWords": 300,
-      "currentWords": 138
+      "currentWords": 135
     },
     {
       "name": "Natur",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 33
     },
     {
       "name": "Essen",
-      "targetWords": 700
+      "targetWords": 700,
+      "currentWords": 81
     },
     {
       "name": "Getränke",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 13
     },
     {
       "name": "Haushalt",
-      "targetWords": 400
+      "targetWords": 400,
+      "currentWords": 34
     },
     {
       "name": "Wohnen",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 36
     },
     {
       "name": "Kleidung",
-      "targetWords": 400
+      "targetWords": 400,
+      "currentWords": 32
     },
     {
       "name": "Körper",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 35
     },
     {
       "name": "Gesundheit",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 24
     },
     {
       "name": "Sport",
-      "targetWords": 500
+      "targetWords": 500,
+      "currentWords": 30
     },
     {
       "name": "Freizeit",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 30
     },
     {
       "name": "Technik",
-      "targetWords": 450
+      "targetWords": 450,
+      "currentWords": 17
     },
     {
       "name": "Elektronik",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 16
     },
     {
       "name": "Fahrzeuge",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 27
     },
     {
       "name": "Verkehr",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 26
     },
     {
       "name": "Berufe",
-      "targetWords": 350
+      "targetWords": 350,
+      "currentWords": 32
     },
     {
       "name": "Arbeit",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 24
     },
     {
       "name": "Schule",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 21
     },
     {
       "name": "Bildung",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 21
     },
     {
       "name": "Musik",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 27
     },
     {
       "name": "Kunst",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 15
     },
     {
       "name": "Kultur",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 17
     },
     {
       "name": "Medien",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 7
     },
     {
       "name": "Spiele",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 20
     },
     {
       "name": "Familie",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 22
     },
     {
       "name": "Menschen",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 20
     },
     {
       "name": "Gebäude",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 11
     },
     {
       "name": "Orte",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 8
     },
     {
       "name": "Reisen",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 6
     },
     {
       "name": "Wetter",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 22
     },
     {
       "name": "Wissenschaft",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 19
     },
     {
       "name": "Weltraum",
-      "targetWords": 100
+      "targetWords": 100,
+      "currentWords": 16
     },
     {
       "name": "Wirtschaft",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 18
     },
     {
       "name": "Werkzeuge",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 20
     },
     {
       "name": "Handwerk",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 6
     },
     {
       "name": "Gefühle",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 22
     },
     {
       "name": "Zeit",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 22
     }
   ],
-  "currentWordCount": 1162
+  "currentWordCount": 1159
 }
