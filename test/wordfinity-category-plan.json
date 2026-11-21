@@ -19,7 +19,7 @@
     {
       "name": "Tiere",
       "targetWords": 700,
-      "currentWords": 107
+      "currentWords": 168
     },
     {
       "name": "Pflanzen",
@@ -170,5 +170,5 @@
       "targetWords": 150
     }
   ],
-  "currentWordCount": 977
+  "currentWordCount": 1038
 }
