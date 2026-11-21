@@ -7,10 +7,12 @@
   "language": "de",
   "wordForm": "plural",
   "rules": [
-    "Nur bekannte, gebräuchliche deutsche Substantive im Plural.",
+    "Nur deutsche Substantive im Plural.",
     "Nur einzelne Wörter: keine Leerzeichen, Bindestriche oder Satzzeichen.",
-    "Keine Fachbegriffe und keine unnötig komplizierten Wörter.",
+    "Nur bekannte Alltagswörter, die Kinder und Jugendliche kennen.",
+    "Keine Fachbegriffe, künstlichen Wortbildungen oder unnötig schwierigen Wörter.",
     "Keine doppelten Wörter über Kategorien hinweg.",
+    "38 einfache Kategorien mit insgesamt 10.000 Wörtern als Ziel.",
     "Die Zielzahlen sind Planwerte und dürfen bei Bedarf sinnvoll angepasst werden."
   ],
   "categories": [
