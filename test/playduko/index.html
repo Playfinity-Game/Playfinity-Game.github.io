@@ -12,7 +12,7 @@ header{display:flex;align-items:center;justify-content:space-between;padding:14p
 .brand{font-weight:1000;font-size:1.35rem;letter-spacing:.04em}.brand .play{color:var(--cyan)}.brand .duko{color:var(--pink)}
 a{color:var(--cyan);text-decoration:none;font-weight:700}.wrap{width:min(900px,100%);margin:auto;padding:24px 16px 48px}
 h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{color:var(--cyan)}.duko{color:var(--pink)}.sub{text-align:center;color:var(--muted);margin:0 0 22px}
-.layout{display:grid;grid-template-columns:minmax(0,1fr) minmax(220px,280px);gap:18px;align-items:start}
+.layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
 .panel{background:#11142be8;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 36px #0005}
 .board{display:grid;grid-template-columns:repeat(9,1fr);width:100%;aspect-ratio:1;border:2px solid #b7c3ee;border-radius:7px;overflow:hidden;background:#090b1c}
 .cell{min-width:0;display:grid;place-items:center;border:1px solid #303653;background:#10142b;color:#fff;font-size:clamp(1rem,4.6vw,1.7rem);font-weight:750;cursor:pointer;padding:0;position:relative}
@@ -23,7 +23,7 @@ h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{co
 .status{min-height:48px;margin-top:12px;padding:11px;border-radius:10px;background:#0b1024;color:#b9c4e8;font-size:.9rem;line-height:1.4}.status.good{color:#76ffc8}.status.bad{color:#ff9dbf}
 .side h2{font-size:1.05rem;margin:0 0 10px}.side p,.side li{color:#c0c7e4;font-size:.9rem;line-height:1.5}.side ul{padding-left:18px}.pill{display:inline-block;border:1px solid #ffffff25;border-radius:30px;padding:5px 10px;color:var(--gold);font-size:.75rem;font-weight:800;margin-bottom:12px}
 .chat{margin-top:14px;padding:12px;border:1px dashed #8e78bc;border-radius:12px;background:#1b1530}.chat code{color:#ffd66e;font-weight:800}.chat small{display:block;color:#a9a2c6;margin-top:6px}
-@media(max-width:680px){.layout{grid-template-columns:1fr}.side{order:2}.wrap{padding:16px 12px 32px}.panel{padding:12px}.numbers{gap:5px}.numbers button{padding:10px 2px}}
+@media(max-width:680px){.wrap{padding:16px 12px 32px}.panel{padding:12px}.numbers{gap:5px}.numbers button{padding:10px 2px}}
 </style>
 </head>
 <body>
@@ -38,13 +38,6 @@ h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{co
 <div class="actions"><button class="action" id="erase">⌫ Löschen</button><button class="action" id="check">Prüfen</button><button class="action primary" id="new">Neues Rätsel</button></div>
 <div id="status" class="status" role="status" aria-live="polite">Wähle ein leeres Feld und anschließend eine Zahl.</div>
 </section>
-<aside class="panel side">
-<span class="pill">TESTVERSION 1</span>
-<h2>So wird gespielt</h2>
-<ul><li>Jede Zahl von 1 bis 9 darf pro Zeile nur einmal vorkommen.</li><li>Das Gleiche gilt für jede Spalte und jeden 3×3-Block.</li><li>Türkis markierte Zahlen sind vorgegeben und gesperrt.</li></ul>
-<div class="chat"><strong>💬 TikTok-Chat – vorbereitet</strong><p>Später können Zuschauer Züge wie <code>A9 3</code> senden.</p><small>Die Chat-Anbindung ist in dieser ersten Version noch nicht aktiv.</small></div>
-<p>Diese erste Ausbaustufe läuft unabhängig von den anderen Spielen. Als Nächstes können wir die Chat-Züge ergänzen.</p>
-</aside>
 </div>
 </main>
 <script>
