@@ -29,17 +29,17 @@
     {
       "name": "Natur",
       "targetWords": 300,
-      "currentWords": 51
+      "currentWords": 95
     },
     {
       "name": "Essen",
       "targetWords": 700,
-      "currentWords": 81
+      "currentWords": 166
     },
     {
       "name": "Getränke",
       "targetWords": 150,
-      "currentWords": 13
+      "currentWords": 43
     },
     {
       "name": "Haushalt",
@@ -207,5 +207,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 1205
+  "currentWordCount": 1364
 }
