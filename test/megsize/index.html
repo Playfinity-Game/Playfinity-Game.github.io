@@ -8,7 +8,7 @@
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#172b49 0,#0b1020 43%,var(--bg) 78%);color:#f4f7ff;font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
 header{height:68px;padding:0 max(18px,calc((100vw - 1040px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #ffffff12;background:#080d1bcc}
-.back-link{color:#9eb1cc;text-decoration:none;font-size:.78rem;font-weight:700;white-space:nowrap}
+.brand{font-size:1.4rem;font-weight:900;letter-spacing:2px;white-space:nowrap;background:linear-gradient(135deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 20px rgba(0,240,255,.35);text-decoration:none}
 .back-link:hover{color:var(--cyan)}
 h1{margin:0;font-size:clamp(1.5rem,4vw,2rem);letter-spacing:2px;font-weight:900}
 h1 .mega{color:var(--cyan)}h1 .size{color:var(--pink)}
@@ -53,9 +53,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 </style>
 </head>
 <body>
-<header><a class="back-link" href="../">← TESTZENTRALE</a><h1><span class="mega">MEGA</span><span class="size">SIZE</span></h1><div class="scoreline" id="score">RUNDE 1 / 6 <b>0 PUNKTE</b></div></header>
+<header><a class="brand" href="../" aria-label="Playfinity – zurück zur Testzentrale">PLAYFINITY</a><h1><span class="mega">MEGA</span><span class="size">SIZE</span></h1><div class="scoreline" id="score">RUNDE 1 / 6 <b>0 PUNKTE</b></div></header>
 <main class="wrap">
-<p class="intro">Wie groß ist das wirklich? Passe die rote Silhouette an die echte Größe an.</p>
 <div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">6</strong></div>
 <section class="board-shell">
 <div class="board" id="board"><div class="ground"></div><div class="toolbar" aria-label="Ansicht vergrößern oder verkleinern"><button id="zoomOut" aria-label="Ansicht herauszoomen" title="Verkleinern">−</button><button id="zoomIn" aria-label="Ansicht hineinzoomen" title="Vergrößern">+</button><button id="resetView" aria-label="Ansicht zurücksetzen" title="Ansicht zurücksetzen">↺</button></div><div class="obj reference" id="reference"></div><div class="world" id="world"><div class="obj actual" id="actual"></div><div class="obj guess" id="guess"></div></div><div class="result" id="result"></div></div>
