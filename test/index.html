@@ -2464,7 +2464,8 @@
               const added = await this.submitGuess(candidate.word, null, {
                 isHint: true,
                 requireBetterRank: true,
-                precomputedSimilarity: candidate.similarity
+                precomputedSimilarity: candidate.similarity,
+                precomputedRank: candidate.rank
               });
               if (added) return;
             }
