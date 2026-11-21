@@ -2197,6 +2197,7 @@
       roundTimer: null,
       solvedRounds: 0,
       pendingGuesses: new Set(),
+      inputSubmissionInProgress: false,
       roundId: 0,
       categoryHintUsed: false,
       wordHintUsed: false,
@@ -2260,19 +2261,35 @@
           return !!this.targetWord;
         })();
 
-        document.getElementById('kontexto-submit').onclick = () => {
-          if(PauseController.paused)return;
-          const inp = document.getElementById('kontexto-input');
-          if (inp.value.trim()) {
-            const submittedWord = inp.value.trim();
-            this.submitGuess(submittedWord).then(accepted => {
-              if (accepted && inp.value.trim() === submittedWord) inp.value = '';
-            });
+        const submitButton = document.getElementById('kontexto-submit');
+        const wordInput = document.getElementById('kontexto-input');
+        this.inputSubmissionInProgress = false;
+        const submitFromInput = async () => {
+          if (PauseController.paused || this.inputSubmissionInProgress) return;
+          const submittedWord = wordInput.value.trim();
+          if (!submittedWord) return;
+
+          // Verhindert doppelte Touch-/Enter-Übermittlungen auf Mobilgeräten.
+          this.inputSubmissionInProgress = true;
+          submitButton.disabled = true;
+          try {
+            const accepted = await this.submitGuess(submittedWord);
+            if (accepted && wordInput.value.trim() === submittedWord) wordInput.value = '';
+          } catch (error) {
+            console.error('[WORDFINITY] Eingabe konnte nicht verarbeitet werden:', error);
+          } finally {
+            this.inputSubmissionInProgress = false;
+            submitButton.disabled = false;
           }
         };
+        submitButton.onclick = submitFromInput;
 
-        document.getElementById('kontexto-input').addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
+        wordInput.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter' || event.isComposing) return;
+          // Die Android-/iOS-Tastatur darf kein zusätzliches Submit auslösen.
+          event.preventDefault();
+          event.stopPropagation();
+          submitFromInput();
         });
         document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
         document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
