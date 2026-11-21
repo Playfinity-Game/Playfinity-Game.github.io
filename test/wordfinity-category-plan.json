@@ -59,17 +59,17 @@
     {
       "name": "Körper",
       "targetWords": 250,
-      "currentWords": 35
+      "currentWords": 87
     },
     {
       "name": "Gesundheit",
       "targetWords": 150,
-      "currentWords": 24
+      "currentWords": 79
     },
     {
       "name": "Sport",
       "targetWords": 500,
-      "currentWords": 30
+      "currentWords": 114
     },
     {
       "name": "Freizeit",
@@ -207,5 +207,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 1540
+  "currentWordCount": 1731
 }
