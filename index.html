@@ -1012,6 +1012,38 @@
     @keyframes pf-rocket-cross{0%{transform:translate(-25vw,10vh) rotate(-18deg)}100%{transform:translate(130vw,-22vh) rotate(-18deg)}}
     @media(prefers-reduced-motion:reduce){body.pf-admin-shake main,body.pf-admin-glitch main,#pf-admin-effect{animation-duration:.01ms!important}#pf-admin-effect .pf-crossing-emoji{animation-duration:.01ms!important}}
 
+  
+/* PlayDuko – isolierte Styles innerhalb der Hauptseite */
+#screen-playduko .pd-wrap{width:min(900px,100%);margin:auto;padding:18px 12px 40px}
+#screen-playduko .pd-title{text-align:center;font-size:clamp(2rem,7vw,3.1rem);margin:8px 0 16px;font-weight:900}
+#screen-playduko .pd-play{color:var(--neon-cyan)} #screen-playduko .pd-duko{color:var(--neon-pink)}
+#screen-playduko .pd-panel{position:relative;background:#11142be8;border:1px solid rgba(0,234,255,.25);border-radius:18px;padding:14px;box-shadow:0 12px 36px #0005}
+#screen-playduko .pd-board-frame{display:grid;grid-template-columns:26px minmax(0,1fr);grid-template-rows:26px minmax(0,1fr);gap:4px;width:100%;max-width:720px;margin-inline:auto}
+#screen-playduko .pd-col-labels{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:var(--neon-cyan);font-weight:900}
+#screen-playduko .pd-row-labels{grid-column:1;grid-row:2;display:grid;grid-template-rows:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:var(--neon-pink);font-weight:900}
+#screen-playduko .pd-board{position:relative;isolation:isolate;grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));grid-template-rows:repeat(9,minmax(0,1fr));width:100%;aspect-ratio:1;border:2px solid #b7c3ee;border-radius:7px;overflow:hidden;background:#090b1c}
+#screen-playduko .pd-board::before{content:"PLAYFINITY";position:absolute;z-index:0;inset:0;display:grid;place-items:center;pointer-events:none;user-select:none;white-space:nowrap;font-size:clamp(2rem,10vw,6rem);line-height:1;font-weight:1000;letter-spacing:.045em;color:transparent;background:linear-gradient(100deg,#a900ff 0%,#00eaff 48%,#d000ff 100%);-webkit-background-clip:text;background-clip:text;opacity:.18;filter:drop-shadow(0 0 5px rgba(0,234,255,.48)) drop-shadow(0 0 16px rgba(0,234,255,.28)) drop-shadow(0 0 28px rgba(176,38,255,.24))}
+#screen-playduko .pd-cell{position:relative;z-index:1;width:100%;height:100%;min-width:0;min-height:0;display:grid;place-items:center;appearance:none;margin:0;border:1px solid #303653;background:rgba(16,20,43,.78);color:#fff;font-size:clamp(1rem,4.6vw,1.7rem);font-weight:750;line-height:1;cursor:pointer;padding:0}
+#screen-playduko .pd-cell:nth-child(3n){border-right:2px solid #9ba8d3} #screen-playduko .pd-cell:nth-child(9n){border-right:0}
+#screen-playduko .pd-cell:nth-child(n+19):nth-child(-n+27),#screen-playduko .pd-cell:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid #9ba8d3}
+#screen-playduko .pd-cell.fixed{color:#9feeff;background:rgba(23,29,58,.82)} #screen-playduko .pd-cell.selected{background:#21415a;outline:2px solid var(--neon-cyan);outline-offset:-2px}
+#screen-playduko .pd-cell.peer{background:#19243b} #screen-playduko .pd-cell.conflict,#screen-playduko .pd-cell.incorrect{color:#ff9dbf;background:#4a1932}
+#screen-playduko .pd-cell.hinted{animation:pdHintPulse 1.2s ease-out}
+@keyframes pdHintPulse{0%,35%{background:#7b6414;color:#fff;box-shadow:inset 0 0 0 3px var(--neon-gold)}100%{background:#171d3a;color:#9feeff;box-shadow:none}}
+#screen-playduko .pd-cell:focus-visible{outline:2px solid white;outline-offset:-2px;z-index:1}
+#screen-playduko .pd-numbers{display:grid;grid-template-columns:repeat(9,1fr);gap:7px;margin-top:14px}
+#screen-playduko .pd-numbers button,#screen-playduko button.pd-action{border:1px solid rgba(0,234,255,.25);background:#17203c;color:#fff;border-radius:10px;padding:11px 4px;font-weight:800;font-size:1rem;cursor:pointer}
+#screen-playduko .pd-numbers button:hover,#screen-playduko button.pd-action:hover{border-color:var(--neon-cyan);background:#203653}
+#screen-playduko .pd-numbers button.chosen{border-color:var(--neon-gold);background:#403719;color:var(--neon-gold);box-shadow:0 0 0 1px var(--neon-gold)}
+#screen-playduko .pd-board-tools{display:flex;justify-content:flex-end;width:100%;max-width:720px;margin:0 auto 4px}
+#screen-playduko .pd-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+#screen-playduko .pd-action{flex:1;min-width:76px}
+#screen-playduko .pd-primary{background:linear-gradient(110deg,#00d9ef,#1685ff)!important;color:#06101e!important;border:0!important}
+#screen-playduko .pd-hint{flex:0 0 48px;font-size:1.3rem!important;color:var(--neon-gold)!important;border-color:rgba(255,208,0,.45)!important;padding:8px!important}
+#screen-playduko .pd-numbers button:disabled,#screen-playduko .pd-action:disabled{opacity:.35;cursor:not-allowed}
+#screen-playduko .pd-board.solved{box-shadow:0 0 0 2px #76ffc8,0 0 24px #76ffc855}
+@media(max-width:680px){#screen-playduko .pd-wrap{padding:12px 8px 28px}#screen-playduko .pd-panel{padding:10px}#screen-playduko .pd-numbers{gap:5px}#screen-playduko .pd-numbers button{padding:10px 2px}}
+
   </style>
 </head>
 
@@ -1081,6 +1113,16 @@
           </div>
         </div>
 
+        <!-- PlayDuko -->
+        <div class="game-card card-gold" onclick="PlayfinityRouter.go('playduko')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-gold)">Zahlenspiel</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">Play</span><span style="color:var(--neon-pink)">Duko</span></div>
+            <div class="card-desc">Finde die fehlenden Zahlen und löse das Sudoku.</div>
+          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
+        </div>
+
         <!-- Size It Up Card -->
         <div class="game-card card-pink" aria-disabled="true" style="cursor:default">
           <div>
@@ -1114,6 +1156,31 @@
             <span class="btn-play-card" style="color: var(--neon-gold)">Starten ›</span>
           </div>
         </div>
+      </div>
+    </section>
+
+
+    <!-- SCREEN: PLAYDUKO -->
+    <section class="screen" id="screen-playduko">
+      <div class="pd-wrap">
+        <h1 class="pd-title"><span class="pd-play">Play</span><span class="pd-duko">Duko</span></h1>
+        <section class="pd-panel" aria-label="Sudoku-Spiel">
+          <div class="pd-board-tools"><button class="pd-action pd-hint" id="pd-hint" type="button" aria-label="Zufälligen Tipp anzeigen" title="Zufälliger Tipp">💡</button></div>
+          <div class="pd-board-frame" aria-label="Sudoku mit Koordinaten">
+            <div aria-hidden="true"></div>
+            <div class="pd-col-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div>
+            <div class="pd-row-labels" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span></div>
+            <div id="pd-board" class="pd-board" role="grid" aria-label="Sudoku 9 mal 9"></div>
+          </div>
+          <div id="pd-numbers" class="pd-numbers" aria-label="Zahl auswählen"></div>
+          <div class="pd-actions">
+            <select id="pd-difficulty" class="pd-action" aria-label="Schwierigkeitsgrad"><option value="40">Leicht</option><option value="34" selected>Normal</option><option value="30">Schwer</option><option value="27">Profi</option></select>
+            <button class="pd-action pd-primary" id="pd-submit-number" type="button" disabled>Eingabe</button>
+            <button class="pd-action" id="pd-erase" type="button" aria-label="Löschen">⌫</button>
+            <button class="pd-action" id="pd-check" type="button">Prüfen</button>
+            <button class="pd-action pd-primary" id="pd-new" type="button">Neues Rätsel</button>
+          </div>
+        </section>
       </div>
     </section>
 
@@ -1408,8 +1475,33 @@
         if (screenId === 'wordfinity' && !KontextoGame.initialized) KontextoGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
+        if (screenId === 'playduko') PlayDukoGame.init();
       }
     };
+
+
+    /* PLAYDUKO – eigenes Spielmodul, nutzt den bestehenden TikTok-Nachrichtenfluss */
+    const PlayDukoGame = (() => {
+      let currentPuzzle=null,grid=[],selected=-1,lastPuzzle="",hintedIndex=-1,checked=false,pendingNumber=null,initialized=false;
+      let board,numbers,difficulty,submitButton;
+      const row=i=>Math.floor(i/9),col=i=>i%9,box=(r,c)=>Math.floor(r/3)*3+Math.floor(c/3);
+      const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
+      function candidates(g,i){const r=row(i),c=col(i),used=new Set();for(let k=0;k<9;k++){if(g[r*9+k])used.add(g[r*9+k]);if(g[k*9+c])used.add(g[k*9+c]);}const br=Math.floor(r/3)*3,bc=Math.floor(c/3)*3;for(let y=0;y<3;y++)for(let x=0;x<3;x++)if(g[(br+y)*9+bc+x])used.add(g[(br+y)*9+bc+x]);return shuffle([1,2,3,4,5,6,7,8,9].filter(n=>!used.has(n)));}
+      function findBest(g){let best=-1,opts=null;for(let i=0;i<81;i++)if(!g[i]){const a=candidates(g,i);if(!opts||a.length<opts.length){best=i;opts=a;if(a.length<=1)break;}}return best<0?null:{index:best,options:opts};}
+      function fillSolution(g){const next=findBest(g);if(!next)return true;for(const n of next.options){g[next.index]=n;if(fillSolution(g))return true;g[next.index]=0;}return false;}
+      function countSolutions(g,limit=2){let count=0;function visit(){if(count>=limit)return;const next=findBest(g);if(!next){count++;return;}for(const n of next.options){g[next.index]=n;visit();g[next.index]=0;if(count>=limit)return;}}visit();return count;}
+      function generatePuzzle(targetClues){const solution=Array(81).fill(0);if(!fillSolution(solution))throw new Error("Sudoku konnte nicht erzeugt werden.");const puzzle=solution.slice();let clues=81;for(const i of shuffle(Array.from({length:81},(_,k)=>k))){if(clues<=targetClues)break;const old=puzzle[i];puzzle[i]=0;if(countSolutions(puzzle.slice(),2)!==1)puzzle[i]=old;else clues--;}return {p:puzzle.join(""),s:solution.join("")};}
+      function conflicts(i,n){const r=row(i),c=col(i),b=box(r,c);return grid.some((v,j)=>j!==i&&v===n&&(row(j)===r||col(j)===c||box(row(j),col(j))===b));}
+      function renderNumbers(){numbers.querySelectorAll("button").forEach(b=>b.classList.toggle("chosen",Number(b.textContent)===pendingNumber));}
+      function render(){if(!currentPuzzle)return;board.innerHTML="";board.classList.toggle("solved",checked&&grid.every((v,i)=>String(v)===currentPuzzle.s[i]));for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="pd-cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));if(currentPuzzle.p[i]!=="0")b.classList.add("fixed");if(i===selected)b.classList.add("selected");if(selected>=0&&i!==selected&&(row(i)===row(selected)||col(i)===col(selected)||box(row(i),col(i))===box(row(selected),col(selected))))b.classList.add("peer");if(grid[i]&&conflicts(i,grid[i]))b.classList.add("conflict");if(checked&&grid[i]&&String(grid[i])!==currentPuzzle.s[i])b.classList.add("incorrect");if(i===hintedIndex)b.classList.add("hinted");b.textContent=grid[i]||"";b.addEventListener("click",()=>{selected=i;render();});board.appendChild(b);}submitButton.disabled=selected<0||currentPuzzle.p[selected]!=="0"||pendingNumber===null;}
+      function chooseNumber(n){pendingNumber=n;renderNumbers();if(submitButton)submitButton.disabled=selected<0||currentPuzzle.p[selected]!=="0";}
+      function setNumber(n){const target=selected;if(target<0||currentPuzzle.p[target]!=="0")return;if(n&&conflicts(target,n))return;const nextGrid=grid.slice();nextGrid[target]=n;grid=nextGrid;pendingNumber=null;checked=false;hintedIndex=-1;renderNumbers();render();if(grid.every(Boolean)&&grid.every((v,i)=>String(v)===currentPuzzle.s[i])){checked=true;render();}}
+      function fresh(){const button=document.getElementById("pd-new");button.disabled=true;setTimeout(()=>{try{let next;for(let attempt=0;attempt<4;attempt++){next=generatePuzzle(Number(difficulty.value));if(next.p!==lastPuzzle)break;}currentPuzzle=next;lastPuzzle=next.p;grid=currentPuzzle.p.split("").map(Number);selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();}catch(err){console.error("[PlayDuko]",err);}button.disabled=false;},20);}
+      function init(){if(!initialized){board=document.getElementById("pd-board");numbers=document.getElementById("pd-numbers");difficulty=document.getElementById("pd-difficulty");submitButton=document.getElementById("pd-submit-number");for(let n=1;n<=9;n++){const b=document.createElement("button");b.type="button";b.textContent=n;b.addEventListener("click",()=>chooseNumber(n));numbers.appendChild(b);}submitButton.addEventListener("click",()=>{if(pendingNumber!==null)setNumber(pendingNumber);});document.getElementById("pd-erase").addEventListener("click",()=>setNumber(0));document.getElementById("pd-check").addEventListener("click",()=>{checked=true;render();});document.getElementById("pd-hint").addEventListener("click",showHint);document.getElementById("pd-new").addEventListener("click",fresh);document.addEventListener("keydown",e=>{if(PlayfinityRouter.currentScreen!=="playduko"||selected<0)return;if(/^[1-9]$/.test(e.key))chooseNumber(Number(e.key));else if(e.key==="Enter"&&pendingNumber!==null)setNumber(pendingNumber);else if(e.key==="Backspace"||e.key==="Delete")setNumber(0);else if(e.key==="ArrowUp"&&row(selected)>0)selected-=9;else if(e.key==="ArrowDown"&&row(selected)<8)selected+=9;else if(e.key==="ArrowLeft"&&col(selected)>0)selected--;else if(e.key==="ArrowRight"&&col(selected)<8)selected++;else return;render();});initialized=true;}if(!currentPuzzle)fresh();else render();}
+      function showHint(){if(!currentPuzzle)return;const empty=[];for(let i=0;i<81;i++)if(currentPuzzle.p[i]==="0"&&!grid[i])empty.push(i);if(!empty.length)return;const i=empty[Math.floor(Math.random()*empty.length)];grid[i]=Number(currentPuzzle.s[i]);selected=-1;pendingNumber=null;hintedIndex=i;checked=false;renderNumbers();render();}
+      function handleChat(text){const match=String(text||"").match(/^\s*([A-I])([1-9])\s+([1-9])\s*$/i);if(!match||!currentPuzzle||PlayfinityRouter.currentScreen!=="playduko")return false;const r=match[1].toUpperCase().charCodeAt(0)-65,c=Number(match[2])-1,n=Number(match[3]),i=r*9+c;if(currentPuzzle.p[i]!=="0"||grid[i]!==0||conflicts(i,n))return false;const nextGrid=grid.slice();nextGrid[i]=n;grid=nextGrid;selected=i;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();if(grid.every(Boolean)&&grid.every((v,j)=>String(v)===currentPuzzle.s[j])){checked=true;render();}return true;}
+      return {init,handleChat};
+    })();
 
     /* ==========================================================================
        HANGMANN GAME
@@ -1693,6 +1785,7 @@
       routeLiveChat(user, text, source = 'tikfinity') {
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
+        if (screen === 'playduko') { PlayDukoGame.handleChat(text); return; }
         // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
         if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
