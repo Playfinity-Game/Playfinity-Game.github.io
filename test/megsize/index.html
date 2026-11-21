@@ -8,7 +8,7 @@
 *{box-sizing:border-box}
 body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% -15%,#172b49 0,#0b1020 43%,var(--bg) 78%);color:#f4f7ff;font:15px/1.45 system-ui,-apple-system,Segoe UI,sans-serif}
 header{height:68px;padding:0 max(18px,calc((100vw - 1040px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid #ffffff12;background:#080d1bcc}
-.brand{font-size:1.4rem;font-weight:900;letter-spacing:2px;white-space:nowrap;background:linear-gradient(135deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 20px rgba(0,240,255,.35);text-decoration:none}
+.brand{display:flex;align-items:center;gap:12px;cursor:pointer;text-decoration:none}.logo-text{font-size:1.4rem;font-weight:900;letter-spacing:2px;white-space:nowrap;background:linear-gradient(135deg,var(--cyan),var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent;text-shadow:0 0 20px rgba(0,240,255,.35)}
 .back-link:hover{color:var(--cyan)}
 h1{margin:0;font-size:clamp(1.5rem,4vw,2rem);letter-spacing:2px;font-weight:900}
 h1 .mega{color:var(--cyan)}h1 .size{color:var(--pink)}
@@ -49,11 +49,11 @@ button:disabled{opacity:.4;cursor:not-allowed}
 .result p{margin:4px 0;color:#c5d0e2;font-size:.86rem}
 .result .nextrow{display:flex;justify-content:flex-end;margin-top:12px}
 .hint{text-align:center;color:#7888a4;font-size:.78rem;padding:0 10px;margin-top:12px}
-@media(max-width:600px){header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{top:8px;right:8px;gap:5px;padding:4px}.result{top:8px;left:8px;width:calc(100% - 104px);padding:8px}.result .points{font-size:1.75rem}.result p{font-size:.69rem}.result .resulttop{gap:7px}.toolbar button{width:36px;height:34px;flex:none;padding:0;font-size:1.2rem}.toolbar button#resetView{width:34px;font-size:.95rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
+@media(max-width:600px){ .logo-text{font-size:1.08rem;letter-spacing:1px}header{height:58px;padding:0 12px}.wrap{width:calc(100% - 16px);margin:12px auto 24px}.board{height:54svh;min-height:310px;max-height:520px}.meta{display:grid;grid-template-columns:1fr 1fr;gap:9px;padding:11px 12px 7px}.dimension{text-align:left;grid-column:1/-1;border-top:1px solid #ffffff12;padding-top:7px}.meta strong{font-size:.82rem;overflow-wrap:anywhere}.meta .muted{font-size:.67rem}.lockrow{padding:9px 10px 12px}.lockrow button{width:100%;min-height:46px}.toolbar{top:8px;right:8px;gap:5px;padding:4px}.result{top:8px;left:8px;width:calc(100% - 104px);padding:8px}.result .points{font-size:1.75rem}.result p{font-size:.69rem}.result .resulttop{gap:7px}.toolbar button{width:36px;height:34px;flex:none;padding:0;font-size:1.2rem}.toolbar button#resetView{width:34px;font-size:.95rem}.scale-tools button{min-height:42px}.intro{font-size:.8rem;margin-bottom:12px}.roundline{margin-bottom:8px}.hint{font-size:.7rem;line-height:1.5}}
 </style>
 </head>
 <body>
-<header><a class="brand" href="../" aria-label="Playfinity – zurück zur Testzentrale">PLAYFINITY</a><h1><span class="mega">MEGA</span><span class="size">SIZE</span></h1><div class="scoreline" id="score">RUNDE 1 / 6 <b>0 PUNKTE</b></div></header>
+<header><a class="brand" href="../" aria-label="Playfinity – zurück zur Testzentrale"><div class="logo-text">PLAYFINITY</div></a><h1><span class="mega">MEGA</span><span class="size">SIZE</span></h1><div class="scoreline" id="score">RUNDE 1 / 6 <b>0 PUNKTE</b></div></header>
 <main class="wrap">
 <div class="roundline">RUNDE <strong id="round">1</strong> / <strong id="roundTotal">6</strong></div>
 <section class="board-shell">
