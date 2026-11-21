@@ -125,6 +125,11 @@ async function getLiveCandidateScores(env, target, candidates) {
   }
 }
 
+// Teilt identische Live-Berechnungen zwischen Spielern, die denselben Zielwort-Batch
+// gleichzeitig anfragen. Der Cache enthält nur aktuelle Laufzeit-Ergebnisse und keine
+// vorab berechneten Ranglisten.
+const candidateScoreBatchCache = new Map();
+
 async function handleCandidateScores(env, body) {
   const target = String(body.target || "").trim();
   const candidates = Array.isArray(body.candidates)
@@ -133,15 +138,35 @@ async function handleCandidateScores(env, body) {
   if (!target || !candidates.length || candidates.length > 95) {
     return json({ error: "target und 1 bis 95 Vergleichswörter sind erforderlich" }, 400);
   }
-  const result = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
-  if (!Array.isArray(result?.data) || result.data.length !== candidates.length + 1) {
-    throw new Error("Das Embedding-Modell hat unvollständige Vergleichsvektoren geliefert");
+
+  const cacheKey = target.toLocaleLowerCase("de-DE") + "\\u001f" + candidates.join("\\u001f");
+  let scorePromise = candidateScoreBatchCache.get(cacheKey);
+  if (scorePromise) {
+    // LRU: häufig genutzte Batches bleiben im begrenzten Arbeitsspeicher-Cache.
+    candidateScoreBatchCache.delete(cacheKey);
+    candidateScoreBatchCache.set(cacheKey, scorePromise);
+  } else {
+    scorePromise = (async () => {
+      const result = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
+      if (!Array.isArray(result?.data) || result.data.length !== candidates.length + 1) {
+        throw new Error("Das Embedding-Modell hat unvollständige Vergleichsvektoren geliefert");
+      }
+      const targetVector = result.data[0];
+      return candidates.map((word, index) => ({
+        word,
+        similarity: cosine(targetVector, result.data[index + 1])
+      }));
+    })();
+    candidateScoreBatchCache.set(cacheKey, scorePromise);
+    while (candidateScoreBatchCache.size > 256) {
+      const oldestKey = candidateScoreBatchCache.keys().next().value;
+      if (oldestKey === cacheKey) break;
+      candidateScoreBatchCache.delete(oldestKey);
+    }
+    scorePromise.catch(() => candidateScoreBatchCache.delete(cacheKey));
   }
-  const targetVector = result.data[0];
-  const scores = candidates.map((word, index) => ({
-    word,
-    similarity: cosine(targetVector, result.data[index + 1])
-  }));
+
+  const scores = await scorePromise;
   return json({ scores, model: EMBEDDING_MODEL, ranking: "live-semantic-scores" });
 }
 
