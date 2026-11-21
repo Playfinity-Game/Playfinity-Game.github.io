@@ -2448,7 +2448,7 @@
             const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
             const desiredRank = Number.isFinite(bestCurrentRank)
               ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
-              : 11000;
+              : Math.max(2, Math.floor(this.dictionaryTargetWords.length * 0.72));
 
             const rankedCandidatesForHint = rankedCandidates
               .filter(item => !Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank)
