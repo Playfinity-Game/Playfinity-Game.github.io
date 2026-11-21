@@ -179,12 +179,12 @@
     {
       "name": "Wirtschaft",
       "targetWords": 150,
-      "currentWords": 18
+      "currentWords": 35
     },
     {
       "name": "Werkzeuge",
       "targetWords": 250,
-      "currentWords": 20
+      "currentWords": 39
     },
     {
       "name": "Handwerk",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2443
+  "currentWordCount": 2479
 }
