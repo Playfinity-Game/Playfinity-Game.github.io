@@ -127,39 +127,58 @@ async function getLiveCandidateScores(env, target, candidates) {
 
 async function handleLiveRank(env, body) {
   const target = String(body.target || "").trim();
-  const guess = String(body.guess || "").trim();
   const candidates = Array.isArray(body.candidates)
     ? [...new Set(body.candidates.map(x => String(x || "").trim()).filter(Boolean))]
     : [];
-  if (!target || !guess) return json({ error: "target und guess sind erforderlich" }, 400);
+  const entries = Array.isArray(body.guesses)
+    ? body.guesses.map(item => ({
+        word: String(item?.word || "").trim(),
+        similarity: Number(item?.similarity)
+      })).filter(item => item.word)
+    : [{ word: String(body.guess || "").trim(), similarity: Number(body.similarity) }].filter(item => item.word);
+  if (!target || !entries.length) return json({ error: "target und mindestens ein guess sind erforderlich" }, 400);
   if (!candidates.length || candidates.length > 3000) {
     return json({ error: "Die Vergleichswortliste muss zwischen 1 und 3000 Wörtern enthalten" }, 400);
   }
+
   const targetKey = target.toLocaleLowerCase("de-DE");
-  const guessKey = guess.toLocaleLowerCase("de-DE");
-  if (guessKey === targetKey) {
-    return json({ rank: 1, similarity: 1, universeSize: candidates.length, model: EMBEDDING_MODEL });
+  const scored = await getLiveCandidateScores(env, target, candidates);
+  const missing = entries.filter(item =>
+    item.word.toLocaleLowerCase("de-DE") !== targetKey && !Number.isFinite(item.similarity)
+  );
+  let missingSimilarities = new Map();
+  if (missing.length) {
+    const result = await env.AI.run(EMBEDDING_MODEL, {
+      text: [target, ...missing.map(item => item.word)]
+    });
+    if (!Array.isArray(result?.data) || result.data.length !== missing.length + 1) {
+      throw new Error("Das Embedding-Modell konnte die Rateversuche nicht vollständig bewerten");
+    }
+    missing.forEach((item, index) => {
+      missingSimilarities.set(item.word, cosine(result.data[0], result.data[index + 1]));
+    });
   }
 
-  const scored = await getLiveCandidateScores(env, target, candidates);
-  let similarity = Number(body.similarity);
-  if (!Number.isFinite(similarity)) {
-    const result = await env.AI.run(EMBEDDING_MODEL, { text: [target, guess] });
-    if (!Array.isArray(result?.data) || result.data.length < 2) {
-      throw new Error("Das Embedding-Modell konnte den Rateversuch nicht bewerten");
+  const ranks = entries.map(item => {
+    const guessKey = item.word.toLocaleLowerCase("de-DE");
+    if (guessKey === targetKey) {
+      return { word: item.word, rank: 1, similarity: 1 };
     }
-    similarity = cosine(result.data[0], result.data[1]);
-  }
-  let rank = 1;
-  for (const item of scored) {
-    if (item.similarity > similarity + 1e-7) rank++;
-    else if (Math.abs(item.similarity - similarity) <= 1e-7 &&
-             item.word.localeCompare(guess, "de-DE") < 0) rank++;
-    else if (item.similarity < similarity - 1e-7) break;
-  }
+    const similarity = Number.isFinite(item.similarity)
+      ? item.similarity
+      : missingSimilarities.get(item.word);
+    let rank = 1;
+    for (const candidate of scored) {
+      if (candidate.similarity > similarity + 1e-7) rank++;
+      else if (Math.abs(candidate.similarity - similarity) <= 1e-7 &&
+               candidate.word.localeCompare(item.word, "de-DE") < 0) rank++;
+      else if (candidate.similarity < similarity - 1e-7) break;
+    }
+    return { word: item.word, rank, similarity };
+  });
+
   return json({
-    rank,
-    similarity,
+    ranks,
     universeSize: scored.length,
     model: EMBEDDING_MODEL,
     ranking: "live-semantic-comparison"
