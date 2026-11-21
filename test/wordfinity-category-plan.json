@@ -184,7 +184,7 @@
     {
       "name": "Werkzeuge",
       "targetWords": 250,
-      "currentWords": 39
+      "currentWords": 47
     },
     {
       "name": "Handwerk",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2479
+  "currentWordCount": 2487
 }
