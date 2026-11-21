@@ -2263,23 +2263,22 @@
 
         const submitButton = document.getElementById('kontexto-submit');
         const wordInput = document.getElementById('kontexto-input');
-        this.inputSubmissionInProgress = false;
         const submitFromInput = async () => {
-          if (PauseController.paused || this.inputSubmissionInProgress) return;
+          if (PauseController.paused) return;
           const submittedWord = wordInput.value.trim();
           if (!submittedWord) return;
 
-          // Verhindert doppelte Touch-/Enter-Übermittlungen auf Mobilgeräten.
-          this.inputSubmissionInProgress = true;
-          submitButton.disabled = true;
+          // Eingabefeld sofort freigeben, damit das nächste Wort direkt getippt
+          // werden kann, während die semantische Bewertung im Hintergrund läuft.
+          wordInput.value = '';
           try {
             const accepted = await this.submitGuess(submittedWord);
-            if (accepted && wordInput.value.trim() === submittedWord) wordInput.value = '';
+            // Bei Ablehnung/Fehler das Wort nur zurücklegen, wenn inzwischen
+            // kein neues Wort eingegeben wurde.
+            if (!accepted && !wordInput.value.trim()) wordInput.value = submittedWord;
           } catch (error) {
             console.error('[WORDFINITY] Eingabe konnte nicht verarbeitet werden:', error);
-          } finally {
-            this.inputSubmissionInProgress = false;
-            submitButton.disabled = false;
+            if (!wordInput.value.trim()) wordInput.value = submittedWord;
           }
         };
         submitButton.onclick = submitFromInput;
