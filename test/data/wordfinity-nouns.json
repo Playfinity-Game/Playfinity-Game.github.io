@@ -2484,7 +2484,6 @@
     "Kelle",
     "Spachtel",
     "Tacker",
-    "Cutter",
     "Teppichmesser",
     "Sägeblatt",
     "Akkuschrauber",
@@ -2494,7 +2493,16 @@
     "Seitenschneider",
     "Kombizange",
     "Kneifzange",
-    "Raspel"
+    "Raspel",
+    "Gummihammer",
+    "Gartenschere",
+    "Heckenschere",
+    "Astschere",
+    "Wasserpumpenzange",
+    "Ringschlüssel",
+    "Maulschlüssel",
+    "Steckschlüssel",
+    "Drahtbürste"
   ],
   "Handwerk": [
     "Holz",
