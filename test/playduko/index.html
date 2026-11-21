@@ -14,7 +14,7 @@ a{color:var(--cyan);text-decoration:none;font-weight:700}.wrap{width:min(900px,1
 h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{color:var(--cyan)}.duko{color:var(--pink)}.sub{text-align:center;color:var(--muted);margin:0 0 22px}
 .layout{display:grid;grid-template-columns:minmax(0,1fr);gap:18px;align-items:start}
 .panel{background:#11142be8;border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 12px 36px #0005}
-.board{display:grid;grid-template-columns:repeat(9,1fr);width:100%;aspect-ratio:1;border:2px solid #b7c3ee;border-radius:7px;overflow:hidden;background:#090b1c}
+.board-frame{display:grid;grid-template-columns:26px minmax(0,1fr);grid-template-rows:26px minmax(0,1fr);gap:4px;width:100%;max-width:720px;margin-inline:auto}.col-labels{grid-column:2;grid-row:1;display:grid;grid-template-columns:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:var(--cyan);font-weight:900}.row-labels{grid-column:1;grid-row:2;display:grid;grid-template-rows:repeat(9,minmax(0,1fr));align-items:center;text-align:center;color:var(--pink);font-weight:900}.board{grid-column:2;grid-row:2;display:grid;grid-template-columns:repeat(9,1fr);width:100%;aspect-ratio:1;border:2px solid #b7c3ee;border-radius:7px;overflow:hidden;background:#090b1c}
 .cell{min-width:0;display:grid;place-items:center;border:1px solid #303653;background:#10142b;color:#fff;font-size:clamp(1rem,4.6vw,1.7rem);font-weight:750;cursor:pointer;padding:0;position:relative}
 .cell:nth-child(3n){border-right:2px solid #9ba8d3}.cell:nth-child(9n){border-right:0}.cell:nth-child(n+19):nth-child(-n+27),.cell:nth-child(n+46):nth-child(-n+54){border-bottom:2px solid #9ba8d3}
 .cell.fixed{color:#9feeff;background:#171d3a}.cell.selected{background:#21415a;outline:2px solid var(--cyan);outline-offset:-2px}.cell.peer{background:#19243b}.cell.same{background:#25374b}.cell.conflict{color:#ff8fb7;background:#4a1932}.cell:focus-visible{outline:2px solid white;outline-offset:-2px;z-index:1}
@@ -33,7 +33,7 @@ h1{text-align:center;font-size:clamp(2rem,7vw,3.4rem);margin:12px 0 4px}.play{co
 <p class="sub">Das gemeinsame Zahlenrätsel von Playfinity</p>
 <div class="layout">
 <section class="panel" aria-label="Sudoku-Spiel">
-<div id="board" class="board" role="grid" aria-label="Sudoku 9 mal 9"></div>
+<div class="board-frame" aria-label="Sudoku mit Koordinaten"><div aria-hidden="true"></div><div class="col-labels" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div><div class="row-labels" aria-hidden="true"><span>A</span><span>B</span><span>C</span><span>D</span><span>E</span><span>F</span><span>G</span><span>H</span><span>I</span></div><div id="board" class="board" role="grid" aria-label="Sudoku 9 mal 9"></div></div>
 <div id="numbers" class="numbers" aria-label="Zahl auswählen"></div>
 <div class="actions"><button class="action" id="erase">⌫ Löschen</button><button class="action" id="check">Prüfen</button><button class="action primary" id="new">Neues Rätsel</button></div>
 <div id="status" class="status" role="status" aria-live="polite">Wähle ein leeres Feld und anschließend eine Zahl.</div>
@@ -53,7 +53,7 @@ function conflicts(i,n){const r=row(i),c=col(i),b=box(r,c);return grid.some((v,j
 function say(msg,type=""){status.textContent=msg;status.className="status "+type;}
 function render(){
  board.innerHTML="";
- for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+col(i))+(row(i)+1)+(grid[i]?" "+grid[i]:" leer"));
+ for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));
  if(puzzles[puzzle].p[i]!=="0")b.classList.add("fixed");
  if(i===selected)b.classList.add("selected");
  if(selected>=0&&i!==selected&&(row(i)===row(selected)||col(i)===col(selected)||box(row(i),col(i))===box(row(selected),col(selected))))b.classList.add("peer");
