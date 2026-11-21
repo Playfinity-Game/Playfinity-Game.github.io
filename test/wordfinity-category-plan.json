@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
   "project": "Wordfinity",
-  "status": "category-plan",
+  "status": "wordlist-in-progress",
   "targetWordCount": 10000,
   "totalPlannedSlots": 10000,
   "language": "de",
-  "wordForm": "plural",
+  "wordForm": "singular",
   "rules": [
-    "Nur deutsche Substantive im Plural.",
+    "Nur deutsche Substantive in der Einzahl (Singular).",
     "Nur einzelne Wörter: keine Leerzeichen, Bindestriche oder Satzzeichen.",
     "Nur bekannte Alltagswörter, die Kinder und Jugendliche kennen.",
     "Keine Fachbegriffe, künstlichen Wortbildungen oder unnötig schwierigen Wörter.",
@@ -168,5 +168,6 @@
       "name": "Zeit",
       "targetWords": 150
     }
-  ]
+  ],
+  "currentWordCount": 924
 }
