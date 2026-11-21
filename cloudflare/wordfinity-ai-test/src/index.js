@@ -70,6 +70,102 @@ async function handleSimilarity(env, body) {
   return json({ similarity: cosine(result.data[0], result.data[1]), model: EMBEDDING_MODEL });
 }
 
+
+const liveRankCache = new Map();
+
+async function getLiveCandidateScores(env, target, candidates) {
+  const cacheKey = target.toLocaleLowerCase("de-DE") + "\\u001f" + candidates.join("\\u001f");
+  if (liveRankCache.has(cacheKey)) return liveRankCache.get(cacheKey);
+
+  const work = (async () => {
+    const targetResult = await env.AI.run(EMBEDDING_MODEL, { text: [target] });
+    const targetVector = targetResult?.data?.[0];
+    if (!Array.isArray(targetVector)) throw new Error("Kein Zielwort-Embedding erhalten");
+
+    const scored = new Array(candidates.length);
+    const batchSize = 80;
+    let next = 0;
+    const workers = Array.from({ length: 4 }, async () => {
+      while (true) {
+        const start = next;
+        next += batchSize;
+        if (start >= candidates.length) return;
+        const batch = candidates.slice(start, start + batchSize);
+        const result = await env.AI.run(EMBEDDING_MODEL, { text: batch });
+        if (!Array.isArray(result?.data) || result.data.length !== batch.length) {
+          throw new Error("Das Embedding-Modell hat unvollständige Kandidaten-Vektoren geliefert");
+        }
+        for (let i = 0; i < batch.length; i++) {
+          scored[start + i] = {
+            word: batch[i],
+            similarity: cosine(targetVector, result.data[i])
+          };
+        }
+      }
+    });
+    await Promise.all(workers);
+    scored.sort((a, b) =>
+      b.similarity - a.similarity ||
+      a.word.localeCompare(b.word, "de-DE")
+    );
+    return scored;
+  })();
+
+  liveRankCache.set(cacheKey, work);
+  while (liveRankCache.size > 2) {
+    const oldestKey = liveRankCache.keys().next().value;
+    if (oldestKey === cacheKey) break;
+    liveRankCache.delete(oldestKey);
+  }
+  try {
+    return await work;
+  } catch (error) {
+    liveRankCache.delete(cacheKey);
+    throw error;
+  }
+}
+
+async function handleLiveRank(env, body) {
+  const target = String(body.target || "").trim();
+  const guess = String(body.guess || "").trim();
+  const candidates = Array.isArray(body.candidates)
+    ? [...new Set(body.candidates.map(x => String(x || "").trim()).filter(Boolean))]
+    : [];
+  if (!target || !guess) return json({ error: "target und guess sind erforderlich" }, 400);
+  if (!candidates.length || candidates.length > 3000) {
+    return json({ error: "Die Vergleichswortliste muss zwischen 1 und 3000 Wörtern enthalten" }, 400);
+  }
+  const targetKey = target.toLocaleLowerCase("de-DE");
+  const guessKey = guess.toLocaleLowerCase("de-DE");
+  if (guessKey === targetKey) {
+    return json({ rank: 1, similarity: 1, universeSize: candidates.length, model: EMBEDDING_MODEL });
+  }
+
+  const scored = await getLiveCandidateScores(env, target, candidates);
+  let similarity = Number(body.similarity);
+  if (!Number.isFinite(similarity)) {
+    const result = await env.AI.run(EMBEDDING_MODEL, { text: [target, guess] });
+    if (!Array.isArray(result?.data) || result.data.length < 2) {
+      throw new Error("Das Embedding-Modell konnte den Rateversuch nicht bewerten");
+    }
+    similarity = cosine(result.data[0], result.data[1]);
+  }
+  let rank = 1;
+  for (const item of scored) {
+    if (item.similarity > similarity + 1e-7) rank++;
+    else if (Math.abs(item.similarity - similarity) <= 1e-7 &&
+             item.word.localeCompare(guess, "de-DE") < 0) rank++;
+    else if (item.similarity < similarity - 1e-7) break;
+  }
+  return json({
+    rank,
+    similarity,
+    universeSize: scored.length,
+    model: EMBEDDING_MODEL,
+    ranking: "live-semantic-comparison"
+  });
+}
+
 async function handleWord(env, body) {
   const excluded = Array.isArray(body.exclude)
     ? body.exclude.slice(-300).map(x => String(x).toLocaleLowerCase("de-DE"))
@@ -205,6 +301,7 @@ export default {
     try {
       switch (url.pathname) {
         case "/api/similarity": return await handleSimilarity(env, body);
+        case "/api/rank": return await handleLiveRank(env, body);
         case "/api/hints": return await handleHints(env, body);
         case "/api/category": return await handleCategory(env, body);
         case "/api/word": return await handleWord(env, body);
