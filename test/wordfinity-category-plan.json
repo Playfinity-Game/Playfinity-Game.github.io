@@ -1,172 +1,206 @@
 {
   "schemaVersion": 1,
   "project": "Wordfinity",
-  "status": "category-plan",
-  "targetWordCount": 10000,
-  "totalPlannedSlots": 10000,
+  "status": "wordlist-in-progress",
+  "targetWordCount": 9850,
+  "totalPlannedSlots": 9850,
   "language": "de",
-  "wordForm": "plural",
+  "wordForm": "singular",
   "rules": [
-    "Nur deutsche Substantive im Plural.",
+    "Nur deutsche Substantive in der Einzahl (Singular).",
     "Nur einzelne Wörter: keine Leerzeichen, Bindestriche oder Satzzeichen.",
     "Nur bekannte Alltagswörter, die Kinder und Jugendliche kennen.",
     "Keine Fachbegriffe, künstlichen Wortbildungen oder unnötig schwierigen Wörter.",
     "Keine doppelten Wörter über Kategorien hinweg.",
-    "38 einfache Kategorien mit insgesamt 10.000 Wörtern als Ziel.",
+    "37 einfache Kategorien mit insgesamt 9.850 Wörtern als Planwert.",
     "Die Zielzahlen sind Planwerte und dürfen bei Bedarf sinnvoll angepasst werden."
   ],
   "categories": [
     {
       "name": "Tiere",
-      "targetWords": 700
+      "targetWords": 700,
+      "currentWords": 194
     },
     {
       "name": "Pflanzen",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 163
     },
     {
       "name": "Natur",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 95
     },
     {
       "name": "Essen",
-      "targetWords": 700
+      "targetWords": 700,
+      "currentWords": 160
     },
     {
       "name": "Getränke",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 43
     },
     {
       "name": "Haushalt",
-      "targetWords": 400
+      "targetWords": 400,
+      "currentWords": 100
     },
     {
       "name": "Wohnen",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 97
     },
     {
       "name": "Kleidung",
-      "targetWords": 400
+      "targetWords": 400,
+      "currentWords": 87
     },
     {
       "name": "Körper",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 87
     },
     {
       "name": "Gesundheit",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 79
     },
     {
       "name": "Sport",
-      "targetWords": 500
+      "targetWords": 500,
+      "currentWords": 114
     },
     {
       "name": "Freizeit",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 58
     },
     {
       "name": "Technik",
-      "targetWords": 450
+      "targetWords": 450,
+      "currentWords": 34
     },
     {
       "name": "Elektronik",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 31
     },
     {
       "name": "Fahrzeuge",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 48
     },
     {
       "name": "Verkehr",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 46
     },
     {
       "name": "Berufe",
-      "targetWords": 350
+      "targetWords": 350,
+      "currentWords": 58
     },
     {
       "name": "Arbeit",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 45
     },
     {
       "name": "Schule",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 47
     },
     {
       "name": "Bildung",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 63
     },
     {
       "name": "Musik",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 70
     },
     {
       "name": "Kunst",
-      "targetWords": 150
-    },
-    {
-      "name": "Kultur",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 47
     },
     {
       "name": "Medien",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 33
     },
     {
       "name": "Spiele",
-      "targetWords": 300
+      "targetWords": 300,
+      "currentWords": 58
     },
     {
       "name": "Familie",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 57
     },
     {
       "name": "Menschen",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 67
     },
     {
       "name": "Gebäude",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 86
     },
     {
       "name": "Orte",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 91
     },
     {
       "name": "Reisen",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 51
     },
     {
       "name": "Wetter",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 71
     },
     {
       "name": "Wissenschaft",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 45
     },
     {
       "name": "Weltraum",
-      "targetWords": 100
+      "targetWords": 100,
+      "currentWords": 30
     },
     {
       "name": "Wirtschaft",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 35
     },
     {
       "name": "Werkzeuge",
-      "targetWords": 250
+      "targetWords": 250,
+      "currentWords": 47
     },
     {
       "name": "Handwerk",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 6
     },
     {
       "name": "Gefühle",
-      "targetWords": 200
+      "targetWords": 200,
+      "currentWords": 22
     },
     {
       "name": "Zeit",
-      "targetWords": 150
+      "targetWords": 150,
+      "currentWords": 22
     }
-  ]
+  ],
+  "currentWordCount": 2487
 }
