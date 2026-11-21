@@ -139,12 +139,12 @@
     {
       "name": "Familie",
       "targetWords": 150,
-      "currentWords": 22
+      "currentWords": 57
     },
     {
       "name": "Menschen",
       "targetWords": 250,
-      "currentWords": 20
+      "currentWords": 67
     },
     {
       "name": "Gebäude",
@@ -202,5 +202,5 @@
       "currentWords": 22
     }
   ],
-  "currentWordCount": 2069
+  "currentWordCount": 2151
 }
