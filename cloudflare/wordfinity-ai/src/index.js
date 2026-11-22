@@ -169,6 +169,76 @@ async function handlePrecomputeEmbeddings(request, env, body) {
   return json({ stored: rows.length, skipped: words.length - rows.length, category, model: EMBEDDING_MODEL, dictionary_sha: dictionarySha });
 }
 
+
+function parseDescriptionList(text, words, category) {
+  let parsed;
+  try {
+    const match = text.match(/\[[\s\S]*\]/);
+    if (match) parsed = JSON.parse(match[0]);
+  } catch (_) {}
+  const byWord = new Map();
+  if (Array.isArray(parsed)) {
+    for (const item of parsed) {
+      const word = String(item?.word || "").normalize("NFC").trim().toLocaleLowerCase("de-DE");
+      const description = String(item?.description || "").trim();
+      if (word && description.length >= 20 && description.length <= 500) byWord.set(word, description);
+    }
+  }
+  return words.map(word => ({
+    word,
+    description: byWord.get(word.toLocaleLowerCase("de-DE"))
+      || (word + " ist ein gebräuchlicher Begriff aus dem Bereich " + category + ". Gemeint ist die Sache selbst mit ihren typischen Eigenschaften, Verwendungen und Zusammenhängen im Alltag.")
+  }));
+}
+
+async function handlePrecomputeSemanticEmbeddings(request, env, body) {
+  if (!requirePrecomputeAuth(request, env)) return json({ error: "Nicht autorisiert" }, 401);
+  const category = String(body.category || "").trim();
+  const dictionarySha = String(body.dictionary_sha || "").toLowerCase();
+  const words = Array.isArray(body.words)
+    ? [...new Map(body.words.map(value => {
+        const word = String(value || "").normalize("NFC").trim();
+        return [word.toLocaleLowerCase("de-DE"), word];
+      }).filter(([key, word]) => key && /^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word)).map(([key, word]) => [key, word])).values()]
+    : [];
+  if (!category || category.length > 80 || !validDictionarySha(dictionarySha) || !words.length || words.length > 32) {
+    return json({ error: "category, SHA-256 und 1 bis 32 gültige Wörter sind erforderlich" }, 400);
+  }
+
+  const prompt = await generate(
+    env,
+    "Du bist ein Lexikograf für ein deutsches Wort-Assoziationsspiel. Erstelle für jedes angegebene deutsche Einzelwort eine sachlich korrekte, eigenständige Bedeutungsbeschreibung auf Deutsch. Beschreibe die Bedeutung des Wortes, nicht seine Schreibweise. Nenne typische Oberbegriffe, Unterarten, Eigenschaften, Funktionen, Lebensräume, Herstellung oder typische Zusammenhänge, soweit passend. Keine bloßen Wortbestandteile, keine erfundenen Fakten, keine langen Ausschweifungen. Gib ausschließlich valides JSON als Array aus: [{\"word\":\"...\",\"description\":\"...\"}]. Übernimm jedes Wort exakt.",
+    "Kategorie: " + category + "\nWörter: " + JSON.stringify(words) + "\nErzeuge für jedes Wort eine Beschreibung von 1 bis 3 kurzen Sätzen. Bei mehrdeutigen Wörtern nimm die gebräuchlichste Alltagsbedeutung.",
+    1800
+  );
+  const descriptions = parseDescriptionList(prompt, words, category);
+  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: descriptions.map(item => item.description) });
+  if (!Array.isArray(embedded?.data) || embedded.data.length !== words.length) {
+    throw new Error("BGE-M3 hat nicht für alle Bedeutungsbeschreibungen ein Embedding geliefert");
+  }
+  const rows = descriptions.map((item, index) => {
+    const vector = embedded.data[index];
+    if (!Array.isArray(vector) || vector.length !== 1024 || vector.some(value => !Number.isFinite(Number(value)))) {
+      throw new Error("BGE-M3 lieferte für " + item.word + " keinen gültigen Bedeutungsvektor");
+    }
+    return {
+      word_key: item.word.toLocaleLowerCase("de-DE"),
+      word: item.word,
+      category,
+      dictionary_sha: dictionarySha,
+      model: EMBEDDING_MODEL,
+      semantic_text: item.description,
+      semantic_embedding_vector: "[" + vector.join(",") + "]"
+    };
+  });
+  await supabaseRequest(env, "wordfinity_word_embeddings?on_conflict=word_key", {
+    method: "POST",
+    prefer: "resolution=merge-duplicates,return=minimal",
+    body: JSON.stringify(rows)
+  });
+  return json({ stored: rows.length, category, model: EMBEDDING_MODEL, dictionary_sha: dictionarySha });
+}
+
 async function handlePrecomputeTarget(request, env, body) {
   if (!requirePrecomputeAuth(request, env)) return json({ error: "Nicht autorisiert" }, 401);
   const target = String(body.target_word || "").normalize("NFC").trim();
@@ -351,6 +421,7 @@ export default {
 
     try {
       if (url.pathname === "/api/precomputed-rank") return await handlePrecomputedRank(env, body);
+      if (url.pathname === "/api/admin/semantic-embeddings") return await handlePrecomputeSemanticEmbeddings(request, env, body);
       if (url.pathname === "/api/admin/embeddings") {
         if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
         return await handlePrecomputeEmbeddings(request, env, body);
