@@ -2,6 +2,12 @@ name: Wordfinity Apfel-Test
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - cloudflare/wordfinity-ai/src/index.js
+      - .github/workflows/wordfinity-apfel-test.yml
 
 permissions:
   contents: read
