@@ -2206,6 +2206,9 @@
       candidateEmbeddingsPromise: null,
       featureExtractor: null,
       embeddingCache: new Map(),
+      semanticCacheDb: null,
+      semanticCacheDbPromise: null,
+      semanticCacheVersion: 'minilm-multilingual-minilm-l12-v2-v1',
       modelName: 'Xenova/paraphrase-multilingual-MiniLM-L12-v2',
       targetWord: '',
       guesses: [],
@@ -2279,6 +2282,7 @@
           if (!dictionaryLoaded) return false;
           await this.loadEmbeddingModel();
           await this.pickNewTarget();
+          const loader=document.getElementById('kontexto-loader');if(loader)loader.style.display='none';
           return !!this.targetWord && this.targetRankMap.size > 0;
         })().catch(error => {
           console.error('[WORDFINITY] MiniLM-Initialisierung fehlgeschlagen:',error);
@@ -2464,7 +2468,8 @@
           return;
         }
         // Zielwörter kommen ausschließlich aus der kuratierten Wortliste.
-        // Ränge werden mit MiniLM live berechnet; historische BGE-Rangdateien werden ignoriert.
+        // MiniLM-Ranglisten werden pro Zielwort einmal erzeugt und danach lokal in IndexedDB geladen.
+        // Historische BGE-Rangdateien werden bewusst nicht verwendet.
         let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
         if(!availableWords.length){
           const lastUsedTarget=previousTarget||[...this.usedTargets].pop()||'';
@@ -2498,6 +2503,7 @@
         if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
         if(letterDisplay){letterDisplay.hidden=true;letterDisplay.textContent='';}
         this.guesses=[];
+        const loader=document.getElementById('kontexto-loader');if(loader)loader.style.display='flex';
         try {
           await this.loadTargetRanks(this.targetWord);
           if (requestedRoundId !== this.roundId) return;
@@ -2508,6 +2514,8 @@
           if (statusText) statusText.textContent = 'Rangliste konnte nicht geladen werden: ' + (error?.message || 'Bitte neu starten.');
           this.targetRankMap = new Map();
           this.targetRankWords = [];
+        } finally {
+          if(loader)loader.style.display='none';
         }
         const result=document.getElementById('kontexto-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
@@ -2527,10 +2535,50 @@
             const file=progress.file||'Modell';
             status.textContent=Number.isFinite(progress.progress)?file+' · '+Math.round(progress.progress)+'%':'Lade '+file+' …';
           }});
-          this.aiReady=false;if(status)status.textContent='MiniLM geladen · Wortvektoren werden vorbereitet';return true;
+          this.aiReady=false;if(status)status.textContent='MiniLM geladen · lokaler Wortschatz-Cache wird geprüft';return true;
         }catch(error){
           this.aiReady=false;if(status)status.textContent='MiniLM konnte nicht geladen werden: '+(error?.message||'Netzwerk-/Browserfehler');throw error;
-        }finally{if(loader)loader.style.display='none';}
+        }
+      },
+
+      async openSemanticCache() {
+        if(this.semanticCacheDb)return this.semanticCacheDb;
+        if(this.semanticCacheDbPromise)return this.semanticCacheDbPromise;
+        this.semanticCacheDbPromise=new Promise((resolve,reject)=>{
+          if(!('indexedDB' in window)){reject(new Error('Dieser Browser unterstützt keinen lokalen Ranglisten-Cache.'));return;}
+          const request=indexedDB.open('playfinity-wordfinity-minilm',1);
+          request.onupgradeneeded=()=>{
+            const db=request.result;
+            if(!db.objectStoreNames.contains('embeddings'))db.createObjectStore('embeddings');
+            if(!db.objectStoreNames.contains('ranks'))db.createObjectStore('ranks');
+          };
+          request.onsuccess=()=>{this.semanticCacheDb=request.result;resolve(request.result);};
+          request.onerror=()=>reject(request.error||new Error('Lokaler Cache konnte nicht geöffnet werden.'));
+        });
+        try{return await this.semanticCacheDbPromise;}finally{this.semanticCacheDbPromise=null;}
+      },
+
+      async readSemanticCache(storeName,key) {
+        try{
+          const db=await this.openSemanticCache();
+          return await new Promise((resolve,reject)=>{
+            const request=db.transaction(storeName,'readonly').objectStore(storeName).get(key);
+            request.onsuccess=()=>resolve(request.result??null);
+            request.onerror=()=>reject(request.error);
+          });
+        }catch(error){console.warn('[WORDFINITY] Cache-Lesen fehlgeschlagen:',error);return null;}
+      },
+
+      async writeSemanticCache(storeName,key,value) {
+        try{
+          const db=await this.openSemanticCache();
+          await new Promise((resolve,reject)=>{
+            const tx=db.transaction(storeName,'readwrite');
+            tx.objectStore(storeName).put(value,key);
+            tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);tx.onabort=()=>reject(tx.error);
+          });
+          return true;
+        }catch(error){console.warn('[WORDFINITY] Cache-Speichern fehlgeschlagen:',error);return false;}
       },
 
       async ensureCandidateEmbeddings() {
@@ -2541,15 +2589,22 @@
           const candidateWords=[...new Map([...this.dictionaryTargetWords,...extraWords].map(word=>[
             word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),word
           ])).values()];
+          const status=document.getElementById('model-status-text'),cacheKey=this.semanticCacheVersion+':embeddings';
+          const saved=await this.readSemanticCache('embeddings',cacheKey);
+          if(saved&&saved.version===this.semanticCacheVersion&&Array.isArray(saved.entries)){
+            for(const [key,vector] of saved.entries)if(Array.isArray(vector))this.embeddingCache.set(key,vector);
+          }
           const missing=candidateWords.filter(word=>!this.embeddingCache.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')));
-          const batchSize=32,status=document.getElementById('model-status-text');
+          const batchSize=32;
           for(let offset=0;offset<missing.length;offset+=batchSize){
             const batch=missing.slice(offset,offset+batchSize),output=await this.featureExtractor(batch,{pooling:'mean',normalize:true});
             const width=output.dims[output.dims.length-1];
             for(let i=0;i<batch.length;i++)this.embeddingCache.set(batch[i].normalize('NFC').trim().toLocaleLowerCase('de-DE'),Array.from(output.data.slice(i*width,(i+1)*width)));
             if(status&&(offset===0||offset+batchSize>=missing.length||offset%(batchSize*10)===0))
-              status.textContent='MiniLM analysiert Wortschatz · '+Math.min(offset+batchSize,missing.length).toLocaleString('de-DE')+'/'+missing.length.toLocaleString('de-DE');
+              status.textContent='MiniLM erstellt Wortvektoren · '+Math.min(offset+batchSize,missing.length).toLocaleString('de-DE')+'/'+missing.length.toLocaleString('de-DE');
           }
+          if(status)status.textContent='Speichere MiniLM-Wortvektoren lokal …';
+          await this.writeSemanticCache('embeddings',cacheKey,{version:this.semanticCacheVersion,entries:[...this.embeddingCache.entries()]});
           this.aiReady=true;
           return true;
         })();
@@ -2560,7 +2615,16 @@
       async loadTargetRanks(target) {
         const key=String(target||'').normalize('NFC').trim().toLocaleLowerCase('de-DE');
         if(!key)throw new Error('Kein Zielwort für die semantische Rangliste vorhanden.');
-        const scores=await this.getLiveCandidateScores(target),rankMap=new Map();
+        const cacheKey=this.semanticCacheVersion+':rank:'+key;
+        let scores=await this.readSemanticCache('ranks',cacheKey);
+        if(!Array.isArray(scores)||!scores.length){
+          const status=document.getElementById('model-status-text');
+          if(status)status.textContent='MiniLM erstellt einmalig die Rangliste für „'+target+'“ …';
+          scores=await this.getLiveCandidateScores(target);
+          await this.writeSemanticCache('ranks',cacheKey,scores);
+        }
+        this.rankListCache.set(key,scores);
+        const rankMap=new Map();
         scores.forEach((item,index)=>rankMap.set(item.word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),index+1));
         this.targetRankMap=rankMap;this.targetRankWords=scores.map(item=>item.word);this.aiReady=true;
         const status=document.getElementById('model-status-text');
@@ -2592,6 +2656,9 @@
       },
 
       async getLiveCandidateScores(target) {
+        const targetKey=String(target||'').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        const cached=this.rankListCache.get(targetKey);
+        if(cached)return cached;
         await this.ensureCandidateEmbeddings();
         const targetVector=await this.getEmbedding(target),targetKey=String(target||'').normalize('NFC').trim().toLocaleLowerCase('de-DE');
         const extraWords=this.semanticHintExtras[targetKey]||[];
