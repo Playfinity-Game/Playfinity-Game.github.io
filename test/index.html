@@ -2691,7 +2691,10 @@
         let scorePromise = this.liveCandidateScoreCache.get(targetKey);
         if (!scorePromise) {
           scorePromise = (async () => {
-            await this.loadHorizonModel();
+            const loader = document.getElementById('kontexto-loader');
+            if (loader) loader.style.display = 'flex';
+            try {
+              await this.loadHorizonModel();
             const candidates = this.dictionaryTargetWords;
             const targetEmbedding = await this.getHorizonEmbedding(target);
             const scores = [];
@@ -2716,7 +2719,10 @@
               if (fill) fill.style.width = pct + '%';
               if (offset + chunkSize < candidates.length) await new Promise(resolve => setTimeout(resolve, 0));
             }
-            return scores;
+              return scores;
+            } finally {
+              if (loader) loader.style.display = 'none';
+            }
           })();
           this.liveCandidateScoreCache.set(targetKey, scorePromise);
           while (this.liveCandidateScoreCache.size > 2) {
