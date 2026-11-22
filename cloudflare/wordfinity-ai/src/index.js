@@ -513,7 +513,7 @@ async function handleHints(env, body) {
     "dürfen hoch bewertet werden; bloße Koexistenz oder nur denkbare Situationen nicht. " +
     "Wende dieselben Maßstäbe auf alle Themengebiete an. Bewerte jedes Kandidatenwort unabhängig " +
     "und symmetrisch gegenüber dem Zielwort. Erfinde keine Beziehungen. " +
-    "Gib ausschließlich valides JSON als Array aus: [{""word"":""Kandidat"",""score"":0}]. " +
+    "Gib ausschließlich valides JSON als Array aus: [{\"word\":\"Kandidat\",\"score\":0}]. " +
     "Übernimm jedes Kandidatenwort exakt und gib für jedes genau einen ganzzahligen Wert von 0 bis 100 aus.";
   const scoringInput =
     "Zielwort: " + JSON.stringify(target) +
