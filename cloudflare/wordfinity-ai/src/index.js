@@ -536,7 +536,8 @@ export default {
       if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
       switch (url.pathname) {
         case "/api/similarity": return await handleSimilarity(env, body);
-        case "/api/similarity-semantic": return await handleSemanticSimilarity(env, body);\n        case "/api/similarity-judgement": return await handleSemanticJudgement(env, body);
+        case "/api/similarity-semantic": return await handleSemanticSimilarity(env, body);
+        case "/api/similarity-judgement": return await handleSemanticJudgement(env, body);
         case "/api/hints": return await handleHints(env, body);
         case "/api/category": return await handleCategory(env, body);
         case "/api/word": return await handleWord(env, body);
