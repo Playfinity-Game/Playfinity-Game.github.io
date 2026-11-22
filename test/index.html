@@ -1151,7 +1151,7 @@
       <div class="kontexto-wrap">
         <div class="model-loader" id="kontexto-loader">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">Lokales Sprachmodell wird geladen …</span>
+            <span id="model-status-text">Vorbereitete Rangliste wird geladen …</span>
             <span id="model-status-pct">0%</span>
           </div>
           <div class="model-loader-bar">
@@ -2512,6 +2512,9 @@
               .then(response => {
                 if (!response.ok) throw new Error('Ranglisten-Manifest nicht erreichbar (' + response.status + ')');
                 return response.json();
+              }).catch(error => {
+                this.rankManifestPromise = null;
+                throw error;
               });
           }
           const manifest = await this.rankManifestPromise;
