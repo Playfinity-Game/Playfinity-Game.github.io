@@ -14,14 +14,14 @@ table{width:100%;border-collapse:collapse;margin-top:20px}td,th{padding:12px 8px
 </head>
 <body>
 <h1>🍎 Wordfinity – Apfel-KI-Test</h1>
-<p>Das geheime Zielwort ist hier fest auf <b>Apfel</b> eingestellt. Die Testseite fragt die bestehende Wordfinity-KI direkt ab. Du musst im eigentlichen Spiel nichts umstellen.</p>
+<p>Das geheime Zielwort ist hier fest auf <b>Apfel</b> eingestellt. Die Testseite fragt die neue Bedeutungs-KI direkt ab. Du musst im eigentlichen Spiel nichts umstellen.</p>
 <button id="run">Test starten</button>
 <p class="status" id="status">Bereit für 6 Testwörter.</p>
 <table><thead><tr><th>Wort</th><th>Ähnlichkeit</th><th>Test-Rang</th><th>Farbe</th></tr></thead><tbody id="rows"></tbody></table>
-<p class="status">Hinweis: Die Rangzahl wird mit derselben Umrechnungsformel wie im Spiel aus dem Live-Ähnlichkeitswert abgeleitet. Dieser Test prüft die KI-Bewertung, nicht die vorberechnete Rangliste.</p>
+<p class="status">Hinweis: Die Rangzahl wird mit derselben Umrechnungsformel wie im Spiel aus dem Live-Ähnlichkeitswert abgeleitet. Die Rangzahl ist vorläufig. Dieser Test prüft den Vergleich KI-generierter Bedeutungsbeschreibungen, nicht die vorberechnete Rangliste.</p>
 <script>
 const words=["Birne","Obst","Baum","Kuchen","Auto","Raumschiff"];
-const endpoint="https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity";
+const endpoint="https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity-semantic";
 const rows=document.getElementById("rows"),status=document.getElementById("status"),button=document.getElementById("run");
 button.addEventListener("click",async()=>{
  button.disabled=true;rows.innerHTML="";status.textContent="KI wird abgefragt …";
