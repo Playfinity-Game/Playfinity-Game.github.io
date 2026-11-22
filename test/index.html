@@ -2398,11 +2398,26 @@
             ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')), ...this.pendingGuesses]);
           // scores kommen bereits in der vorberechneten Rangfolge; kein erneutes Sortieren oder O(n²)-Ranking.
           const ranked = scores.map((item, index) => ({ ...item, rank: index + 1 }));
+          const targetKey = requestedTarget.normalize('NFC').trim().toLocaleLowerCase('de-DE');
+          // Automatische Tipps dürfen nur aus dem redaktionell geprüften deutschen
+          // Wortschatz kommen. So fallen englische Wörter, Flexionsreste,
+          // Eigennamen und zufällige Korpus-Treffer aus den Tipps heraus.
+          // Sinnvolle, aber noch nicht als Zielwort gepflegte Milch-Begriffe sind
+          // ausdrücklich als thematische Ausnahmen zugelassen.
+          const hintExceptions = {
+            milch: new Set(['sojamilch', 'melkmaschine'])
+          };
+          const allowedHintWords = hintExceptions[targetKey] || new Set();
           const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
           const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
-          const options = ranked.filter(item => item.rank<bestRank &&
-            !excluded.has(item.word.toLocaleLowerCase('de-DE')) &&
-            !this.wordHintCandidatesTried.has(item.word.toLocaleLowerCase('de-DE')));
+          const options = ranked.filter(item => {
+            const wordKey = item.word.normalize('NFC').trim().toLocaleLowerCase('de-DE');
+            const curatedGermanWord = this.dictionaryWords.has(wordKey);
+            return item.rank < bestRank &&
+              (curatedGermanWord || allowedHintWords.has(wordKey)) &&
+              !excluded.has(wordKey) &&
+              !this.wordHintCandidatesTried.has(wordKey);
+          });
           if (!options.length) return;
           const candidate = options.reduce((best,item)=>!best || Math.abs(item.rank-desiredRank)<Math.abs(best.rank-desiredRank)?item:best,null);
           if (!candidate || requestedRoundId!==this.roundId || PauseController.paused) return;
