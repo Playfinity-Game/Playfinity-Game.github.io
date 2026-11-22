@@ -2742,15 +2742,15 @@
       },
 
       calculateGuessRank(similarity) {
-        // Ausgewogene, deterministische Rangskala:
-        // Gleiche semantische Ähnlichkeit ergibt immer denselben Rang –
-        // unabhängig davon, welche Wörter vorher geraten wurden.
-        // Kleinere Ränge bedeuten größere Nähe zum geheimen Wort.
+        // Alltagsbezogene Rangskala: 0..1 wird linear auf Rang 1001..1 abgebildet.
+        // Damit passen Rangzahlen direkt zu den Farbgrenzen:
+        // Grün ab 0.90 (Rang 1..101), Orange ab 0.65 (Rang 102..351),
+        // Rot unter 0.65 (Rang 352..1001).
         const numericSimilarity = Number(similarity);
         const normalizedSimilarity = Number.isFinite(numericSimilarity)
           ? Math.max(0, Math.min(1, numericSimilarity))
           : 0;
-        return 1 + Math.round(Math.pow(1 - normalizedSimilarity, 1.8) * 15499);
+        return 1 + Math.round((1 - normalizedSimilarity) * 1000);
       },
 
       async submitGuess(word, player = null, options = {}) {
@@ -2815,14 +2815,13 @@
           const row = document.createElement('div');
           row.className = 'guess-row';
 
-          // Farben folgen den angezeigten semantischen Rangnummern:
-          // 1–150 Grün, 151–1000 Orange, ab 1001 Rot.
+          // Farben richten sich direkt nach der Alltagsähnlichkeit:
+          // Grün ab 0.90, Orange ab 0.65, darunter Rot.
           const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
-          const rank = Number(item.rank);
-          let color = '#ff3b5c'; // Rang 1001+: weit entfernt
+          let color = '#ff3b5c';
           let level = 'Weit entfernt';
-          if (Number.isFinite(rank) && rank <= 150) { color = '#00ff9d'; level = 'Sehr nah'; }
-          else if (Number.isFinite(rank) && rank <= 1000) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
+          if (similarityScore >= 0.90) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (similarityScore >= 0.65) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
 
           const pct = Math.max(5, Math.round(similarityScore * 100));
 
