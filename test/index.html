@@ -1109,7 +1109,108 @@
 @media(prefers-reduced-motion:reduce){#pd-win-overlay.active,#pd-win-card{animation:none}.pd-firework-spark{animation-duration:.01ms!important}}
 
 
-  </style>
+  
+    /* WORDFINITY – visuell an das PLAYFINITY-Designsystem angepasst */
+    .wordfinity-wrap{
+      width:100%;max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px;
+    }
+    .wordfinity-title{
+      margin:8px 0 0;text-align:center;font-size:clamp(2.25rem,7vw,3.5rem);
+      line-height:1.08;font-weight:950;letter-spacing:2px;
+      background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple),var(--neon-pink));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+      filter:drop-shadow(0 0 16px rgba(0,240,255,.2));
+    }
+    .wordfinity-subtitle{
+      margin:-7px 0 4px;text-align:center;color:var(--text-muted);font-size:.9rem;line-height:1.45;
+    }
+    .wordfinity-panel{
+      width:100%;padding:18px;background:var(--bg-card);
+      border:1px solid var(--border-glow);border-radius:16px;
+      box-shadow:0 8px 24px rgba(0,0,0,.16);display:flex;flex-direction:column;gap:12px;
+      backdrop-filter:blur(8px);
+    }
+    .wordfinity-topline{
+      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      color:var(--text-main);font-size:.9rem;font-weight:800;
+    }
+    .wordfinity-pill{
+      display:inline-flex;align-items:center;justify-content:center;min-height:28px;
+      padding:5px 10px;border:1px solid rgba(0,240,255,.24);border-radius:999px;
+      background:rgba(0,240,255,.07);color:var(--neon-cyan);font-size:.72rem;font-weight:800;
+      letter-spacing:.02em;
+    }
+    .wordfinity-entry{display:flex;gap:8px;width:100%;align-items:stretch}
+    .wordfinity-entry input{
+      flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid rgba(0,240,255,.3);
+      border-radius:10px;background:rgba(7,8,20,.78);color:#fff;font:600 1rem var(--font-main);
+      outline:none;transition:border-color .2s,box-shadow .2s;user-select:text;
+    }
+    .wordfinity-entry input::placeholder{color:#747d9f}
+    .wordfinity-entry input:focus{border-color:var(--neon-cyan);box-shadow:0 0 15px rgba(0,240,255,.2)}
+    .wordfinity-entry input:disabled{opacity:.55;cursor:wait}
+    .wordfinity-entry button,.wordfinity-actions button,.wordfinity-next{
+      min-height:44px;padding:0 15px;border:1px solid rgba(0,240,255,.35);
+      border-radius:10px;background:rgba(0,240,255,.1);color:var(--neon-cyan);
+      font:800 .86rem var(--font-main);cursor:pointer;transition:all .2s;
+    }
+    .wordfinity-entry button{
+      min-width:94px;border:0;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#001018;
+    }
+    .wordfinity-entry button:hover:not(:disabled),.wordfinity-next:hover:not(:disabled){
+      transform:translateY(-1px);box-shadow:0 0 16px rgba(0,240,255,.25);
+    }
+    .wordfinity-actions{display:flex;gap:8px;flex-wrap:wrap}
+    .wordfinity-actions button{flex:1 1 145px}
+    .wordfinity-actions button:hover:not(:disabled){
+      border-color:var(--neon-purple);background:rgba(176,38,255,.13);color:#e5c7ff;
+    }
+    .wordfinity-entry button:disabled,.wordfinity-actions button:disabled,.wordfinity-next:disabled{
+      opacity:.42;cursor:not-allowed;transform:none;box-shadow:none;
+    }
+    .wordfinity-status{
+      min-height:42px;padding:11px 13px;border:1px solid rgba(255,255,255,.09);
+      border-radius:10px;background:rgba(7,8,20,.45);color:var(--text-muted);
+      font-size:.84rem;line-height:1.45;overflow-wrap:anywhere;
+    }
+    .wordfinity-hintbox{
+      min-height:44px;padding:11px 13px;border:1px solid rgba(176,38,255,.28);
+      border-radius:10px;background:rgba(176,38,255,.08);color:#e5c7ff;
+      font-size:.84rem;font-weight:700;line-height:1.45;overflow-wrap:anywhere;
+    }
+    .wordfinity-guesses{display:flex;flex-direction:column;gap:7px;max-height:48vh;overflow-y:auto}
+    .wordfinity-guess{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      padding:10px 12px;border:1px solid rgba(255,255,255,.09);border-radius:10px;
+      background:rgba(7,8,20,.55);font-size:.86rem;line-height:1.3;
+    }
+    .wordfinity-guess>span{min-width:0;overflow-wrap:anywhere}
+    .wordfinity-guess b{color:#fff;font-size:.94rem}
+    .wordfinity-guess small{margin-top:3px}
+    .wordfinity-guess>strong{flex-shrink:0;color:var(--neon-cyan);font-size:.78rem;text-align:right}
+    .wordfinity-guess.winner{
+      border-color:rgba(0,255,157,.55);background:rgba(0,255,157,.1);
+      box-shadow:0 0 16px rgba(0,255,157,.1);
+    }
+    .wordfinity-guess.winner>strong{color:var(--neon-green)}
+    .wordfinity-next{
+      align-self:center;min-height:46px;padding:0 20px;border-color:rgba(0,240,255,.45);
+      background:rgba(0,240,255,.09);font-size:.88rem;
+    }
+    @media(max-width:520px){
+      .wordfinity-wrap{gap:11px}
+      .wordfinity-panel{padding:14px;border-radius:13px;gap:10px}
+      .wordfinity-title{font-size:clamp(2rem,10vw,2.8rem)}
+      .wordfinity-entry{gap:7px}
+      .wordfinity-entry input{height:46px;padding:0 10px;font-size:16px}
+      .wordfinity-entry button{min-width:76px;padding:0 12px}
+      .wordfinity-actions{display:grid;grid-template-columns:1fr;gap:7px}
+      .wordfinity-actions button{width:100%;min-height:42px}
+      .wordfinity-guess{padding:9px 10px;font-size:.82rem}
+      .wordfinity-guesses{max-height:42vh}
+    }
+
+</style>
 </head>
 
 <body>
