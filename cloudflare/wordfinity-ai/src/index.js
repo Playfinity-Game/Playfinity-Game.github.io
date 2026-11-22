@@ -498,15 +498,60 @@ async function handleHints(env, body) {
     .slice(0, requestedCount);
 
   if (!candidates.length) throw new Error("Die Tipp-KI hat keine gültigen Wörter geliefert");
-  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: [target, ...candidates] });
-  if (!Array.isArray(embedded?.data) || embedded.data.length < candidates.length + 1) {
-    throw new Error("Das Embedding-Modell konnte die Tipps nicht bewerten");
+  // Score generated hint candidates with the same everyday-relationship
+  // judgement used by /api/similarity-judgement, rather than BGE-M3 cosine.
+  const scoringPrompt =
+    "Du bewertest Wortbeziehungen für dasselbe deutsche Alltags-Wortspiel. " +
+    "Nutze eine alltagsbezogene Skala: 100 identisch; 95-99 nahezu synonym oder präziser Ober-/Unterbegriff; " +
+    "85-94 sehr enge Alltagsbeziehung oder prägende Teil-Ganzes-Beziehung; " +
+    "75-84 klar eng verwandte Dinge oder typischer direkter Bestandteil; " +
+    "60-74 gleiche größere Kategorie oder deutlicher typischer Zusammenhang; " +
+    "45-59 nachvollziehbare, eher indirekte Verwendung, Umgebung oder Zutatenbeziehung; " +
+    "25-44 lockere Assoziation; 0-24 kaum Beziehung. " +
+    "Berücksichtige Synonyme, Kategorien, typische Bestandteile, Teil-Ganzes, gemeinsame Funktionen, " +
+    "typische gemeinsame Verwendung, typische Umgebungen und Zutaten. Häufige, prägende Alltagsbeziehungen " +
+    "dürfen hoch bewertet werden; bloße Koexistenz oder nur denkbare Situationen nicht. " +
+    "Wende dieselben Maßstäbe auf alle Themengebiete an. Bewerte jedes Kandidatenwort unabhängig " +
+    "und symmetrisch gegenüber dem Zielwort. Erfinde keine Beziehungen. " +
+    "Gib ausschließlich valides JSON als Array aus: [{\\"word\\":\\"Kandidat\\",\\"score\\":0}]. " +
+    "Übernimm jedes Kandidatenwort exakt und gib für jedes genau einen ganzzahligen Wert von 0 bis 100 aus.";
+  const scoringInput =
+    "Zielwort: " + JSON.stringify(target) +
+    "\\nKandidaten: " + JSON.stringify(candidates) +
+    "\\nBewerte jetzt alle Kandidaten einzeln gegenüber dem Zielwort.";
+  const scoredRaw = await generate(
+    env,
+    scoringPrompt,
+    scoringInput,
+    Math.max(240, requestedCount * 24),
+    0.1
+  );
+  let scored;
+  try {
+    const match = scoredRaw.match(/\\[[\\s\\S]*\\]/);
+    if (match) scored = JSON.parse(match[0]);
+  } catch (_) {}
+  if (!Array.isArray(scored)) {
+    throw new Error("Die Alltagsbewertung konnte die Tipp-Kandidaten nicht auswerten");
+  }
+  const scoreByWord = new Map();
+  for (const item of scored) {
+    const word = String(item?.word || "").toLocaleLowerCase("de-DE").trim();
+    const score = Number(item?.score);
+    if (word && Number.isInteger(score) && score >= 0 && score <= 100) {
+      scoreByWord.set(word, score);
+    }
   }
   const hints = candidates
-    .map((word, i) => ({ word, similarity: cosine(embedded.data[0], embedded.data[i + 1]) }))
+    .filter(word => scoreByWord.has(word.toLocaleLowerCase("de-DE")))
+    .map(word => ({
+      word,
+      similarity: scoreByWord.get(word.toLocaleLowerCase("de-DE")) / 100
+    }))
     .sort((a, b) => b.similarity - a.similarity)
     .slice(0, requestedCount);
-  return json({ hints, level, model: EMBEDDING_MODEL });
+  if (!hints.length) throw new Error("Die Alltagsbewertung lieferte keine gültigen Tipp-Werte");
+  return json({ hints, level, model: TEXT_MODEL, method: "everyday-relationship-judgement" });
 }
 
 export default {
