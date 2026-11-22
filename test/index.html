@@ -2434,7 +2434,30 @@
           if(statusText)statusText.textContent='Die neuen Kategorien sind vorbereitet. Die Pluralwortliste wird gerade aufgebaut.';
           return;
         }
-        let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
+        // Nur Wörter als Ziel wählen, für die tatsächlich eine vorberechnete Rangliste existiert.
+        // Andernfalls startet eine Runde ohne Rangdaten und jede Eingabe schlägt fehl.
+        if (!this.rankManifestPromise) {
+          this.rankManifestPromise = fetch('data/wordfinity-ranks/manifest.json', { cache: 'force-cache' })
+            .then(response => {
+              if (!response.ok) throw new Error('Ranglisten-Manifest nicht erreichbar (' + response.status + ')');
+              return response.json();
+            }).catch(error => {
+              this.rankManifestPromise = null;
+              throw error;
+            });
+        }
+        let manifest;
+        try {
+          manifest = await this.rankManifestPromise;
+        } catch (error) {
+          if (statusText) statusText.textContent = 'Ranglisten konnten nicht geladen werden: ' + (error?.message || 'Bitte Seite neu laden.');
+          return;
+        }
+        const rankableTargets = new Set(Object.keys(manifest.rankings || {}));
+        let availableWords=this.dictionaryTargetWords.filter(word =>
+          rankableTargets.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')) &&
+          !this.usedTargets.has(word.toLocaleLowerCase('de-DE'))
+        );
         if(!availableWords.length){
           // Auch nach einem Neuladen bleibt das zuletzt gespielte Wort erkennbar.
           const lastUsedTarget=previousTarget||[...this.usedTargets].pop()||'';
@@ -2442,7 +2465,10 @@
           // Das zuletzt gespielte Wort bleibt ausgeschlossen, damit es nicht direkt wiederkommt.
           this.usedTargets.clear();
           if(lastUsedTarget) this.usedTargets.add(lastUsedTarget);
-          availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==lastUsedTarget);
+          availableWords=this.dictionaryTargetWords.filter(word =>
+            rankableTargets.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')) &&
+            word.toLocaleLowerCase('de-DE')!==lastUsedTarget
+          );
         }
         if(!availableWords.length){
           if(statusText)statusText.textContent='Keine gültigen Wörter für eine neue Runde vorhanden.';
