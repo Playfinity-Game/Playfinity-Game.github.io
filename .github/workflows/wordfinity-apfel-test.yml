@@ -1,0 +1,31 @@
+name: Wordfinity Apfel-Test
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: wordfinity-apfel-precompute
+  cancel-in-progress: false
+
+jobs:
+  apfel-test:
+    name: Embeddings vorbereiten und Apfel ranken
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - name: Repository auschecken
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Vollständige Wortvektoren erzeugen und nur Apfel ranken
+        env:
+          WORDFINITY_PRECOMPUTE_TOKEN: ${{ secrets.WORDFINITY_PRECOMPUTE_TOKEN }}
+          WORDFINITY_WORKER_URL: https://wordfinity-ai.sdinaj9206.workers.dev
+        run: node scripts/wordfinity-precompute.mjs target Apfel
