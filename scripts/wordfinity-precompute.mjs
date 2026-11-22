@@ -116,7 +116,7 @@ if (MODE === "all" || MODE === "rankings" || MODE === "target") {
       });
       done++;
       if (done % 10 === 0 || done === rankingTotal) {
-        console.log("[Ranglisten]", category, done + "/" + totalWords);
+        console.log("[Ranglisten]", category, done + "/" + rankingTotal);
       }
     }
   }
