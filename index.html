@@ -2808,7 +2808,7 @@
             // vergeben: ein transparenter lokaler Zeichen-/Bigramm-Fallback
             // hält die Rangfolge wenigstens differenziert.
             console.warn('[WORDFINITY] Semantik-API nicht verfügbar; lokaler Fallback:', error);
-            const normalize = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
+            const normalize = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
             const a = normalize(this.targetWord), b = normalize(cleanWord);
             const grams = value => {
               const out = new Set();
