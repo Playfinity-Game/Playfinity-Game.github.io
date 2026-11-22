@@ -2665,7 +2665,7 @@
         const cached=this.rankListCache.get(targetKey);
         if(cached)return cached;
         await this.ensureCandidateEmbeddings();
-        const targetVector=await this.getEmbedding(target),targetKey=String(target||'').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        const targetVector=await this.getEmbedding(target);
         const extraWords=this.semanticHintExtras[targetKey]||[];
         const candidateWords=[...new Map([...this.dictionaryTargetWords,...extraWords].map(word=>[
           word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),word
