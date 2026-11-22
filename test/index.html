@@ -1170,9 +1170,10 @@
           <span><i class="legend-dot legend-green"></i> Sehr nah</span>
         </div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie anzeigen (einmal pro Runde)" title="Kategorie anzeigen – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Besseren Wort-Tipp anzeigen" title="Besseren Wort-Tipp anzeigen">💡</button></span>
+          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie anzeigen (einmal pro Runde)" title="Kategorie anzeigen – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-letter-hint" aria-label="Anfangsbuchstaben anzeigen (einmal pro Runde)" title="Anfangsbuchstaben anzeigen – einmal pro Runde">🔤</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Besseren Wort-Tipp anzeigen" title="Besseren Wort-Tipp anzeigen">💡</button></span>
         </div>
         <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
+        <div class="kontexto-category-hint" id="kontexto-letter-display" aria-live="polite" hidden></div>
         <div class="guesses-list" id="kontexto-guesses"></div>
         <div class="round-result" id="kontexto-round-result"></div>
       </div>
@@ -2214,6 +2215,7 @@
       inputSubmissionInProgress: false,
       roundId: 0,
       categoryHintUsed: false,
+      firstLetterHintUsed: false,
       wordHintUsed: false,
       dictionaryReady: false,
       dictionaryWords: new Set(),
@@ -2304,6 +2306,7 @@
           submitFromInput();
         });
         document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
+        document.getElementById('kontexto-letter-hint').onclick = () => this.showFirstLetterHint();
         document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
@@ -2312,6 +2315,22 @@
         const category = this.categoryAssignments.get(key);
         if (!category) throw new Error('Für dieses Wort ist keine lokale Kategorie hinterlegt.');
         return category;
+      },
+
+      showFirstLetterHint() {
+        if (PauseController.paused || this.firstLetterHintUsed || !this.targetWord) return;
+        const display = document.getElementById('kontexto-letter-display');
+        const button = document.getElementById('kontexto-letter-hint');
+        if (!display) return;
+        const firstLetter = Array.from(this.targetWord.normalize('NFC'))[0];
+        if (!firstLetter) return;
+        this.firstLetterHintUsed = true;
+        display.textContent = 'Anfangsbuchstabe: ' + firstLetter.toLocaleUpperCase('de-DE');
+        display.hidden = false;
+        if (button) {
+          button.disabled = true;
+          button.title = 'Anfangsbuchstaben-Tipp wurde bereits verwendet';
+        }
       },
 
       async showCategoryHint() {
@@ -2367,8 +2386,12 @@
           const scores = await this.getLiveCandidateScores(requestedTarget);
           const excluded = new Set([requestedTarget.toLocaleLowerCase('de-DE'),
             ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')), ...this.pendingGuesses]);
-          const ranked = [...scores].sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'))
-            .map((item,index)=>({...item,rank:index+1}));
+          const sortedScores = [...scores].sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'));
+          const ranked = sortedScores.map(item => ({
+            ...item,
+            rank: 1 + sortedScores.filter(other => other.similarity > item.similarity + 1e-7 ||
+              (Math.abs(other.similarity-item.similarity) <= 1e-7 && String(other.word).localeCompare(String(item.word),'de-DE') < 0)).length
+          }));
           const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
           const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
           const options = ranked.filter(item => item.rank<bestRank &&
@@ -2442,12 +2465,14 @@
         try { localStorage.setItem('wordfinity-used-targets-v2', JSON.stringify([...this.usedTargets])); } catch (_) {}
         if(statusText)statusText.textContent='Neues Lösungswort aus deiner Wortliste geladen';
 
-        this.categoryHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
-        const categoryButton=document.getElementById('kontexto-category-hint'),wordButton=document.getElementById('kontexto-word-hint');
+        this.categoryHintUsed=false;this.firstLetterHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
+        const categoryButton=document.getElementById('kontexto-category-hint'),letterButton=document.getElementById('kontexto-letter-hint'),wordButton=document.getElementById('kontexto-word-hint');
         if(categoryButton){categoryButton.disabled=false;categoryButton.textContent='🏷️';}
+        if(letterButton){letterButton.disabled=false;letterButton.textContent='🔤';letterButton.title='Anfangsbuchstaben anzeigen – einmal pro Runde';}
         if(wordButton){wordButton.disabled=false;wordButton.title='Wort-Tipp – beliebig oft';}
-        const categoryDisplay=document.getElementById('kontexto-category-display');
+        const categoryDisplay=document.getElementById('kontexto-category-display'),letterDisplay=document.getElementById('kontexto-letter-display');
         if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
+        if(letterDisplay){letterDisplay.hidden=true;letterDisplay.textContent='';}
         if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true') this.showCategoryHint();
         this.guesses=[];
         const result=document.getElementById('kontexto-round-result');
