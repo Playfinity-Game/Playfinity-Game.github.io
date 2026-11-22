@@ -2286,7 +2286,12 @@
           return !!this.targetWord && this.targetRankMap.size > 0;
         })().catch(error => {
           console.error('[WORDFINITY] MiniLM-Initialisierung fehlgeschlagen:',error);
+          const status=document.getElementById('model-status-text');
+          if(status)status.textContent='Wordfinity konnte nicht gestartet werden: '+(error?.message||'Unbekannter Fehler');
           return false;
+        }).finally(()=>{
+          const loader=document.getElementById('kontexto-loader');
+          if(loader)loader.style.display='none';
         });
 
         const submitButton = document.getElementById('kontexto-submit');
