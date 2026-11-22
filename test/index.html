@@ -1554,6 +1554,14 @@
           if(node){node.disabled=!this.puzzle;node.title=node.getAttribute('aria-label')||'';}
         });
       },
+      isSuitablePuzzle(data){
+        if(!data||!Array.isArray(data.woerter)||data.woerter.length!==20000||typeof data.kategorie!=='string'||typeof data.woerter[0]!=='string'||!data.woerter[0])return false;
+        const target=this.normalize(data.woerter[0]);
+        const category=this.normalize(data.kategorie);
+        // Explizite Sexualbegriffe und eindeutig pornografische Themen nicht als Zielrätsel verwenden.
+        const unsuitable=/(penis|vagina|vulva|vagina|klitoris|clitoris|vulva|hoden|hodensack|brustwarze|nippel|porn|porno|pornografie|erotik|sexspielzeug|geschlechtsverkehr|性交|masturb|ejakulat|sperma|orgasmus|fellatio| cunnilingus )/iu;
+        return !unsuitable.test(target)&&!unsuitable.test(category);
+      },
       async newRound(){
         const token=++this.roundToken;
         this.puzzle=null;this.guesses=[];this.won=false;
@@ -1563,15 +1571,21 @@
         document.getElementById('wordfinity-guesses').innerHTML='';
         const result=document.getElementById('wordfinity-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
-        const id=Math.floor(Math.random()*5000)+1;
         try{
-          const response=await fetch(this.baseUrl+id+'.json',{cache:'no-store'});
-          if(!response.ok)throw new Error('HTTP '+response.status);
-          const data=await response.json();
-          if(token!==this.roundToken)return;
-          if(!data||!Array.isArray(data.woerter)||data.woerter.length!==20000||typeof data.kategorie!=='string'||typeof data.woerter[0]!=='string'||!data.woerter[0]){
-            throw new Error('Ungültiges Rätsel-JSON');
+          const tried=new Set();
+          let data=null;
+          for(let attempt=0;attempt<40;attempt++){
+            const id=Math.floor(Math.random()*5000)+1;
+            if(tried.has(id))continue;
+            tried.add(id);
+            const response=await fetch(this.baseUrl+id+'.json',{cache:'no-store'});
+            if(!response.ok)continue;
+            const candidate=await response.json();
+            if(token!==this.roundToken)return;
+            if(this.isSuitablePuzzle(candidate)){data=candidate;break;}
           }
+          if(token!==this.roundToken)return;
+          if(!data)throw new Error('Kein geeignetes Rätsel in 40 Versuchen gefunden');
           this.puzzle=data;
           this.setControls(true);
           document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
@@ -1598,6 +1612,7 @@
         if(rank===1){
           this.won=true;this.setControls(false);
           document.getElementById('wordfinity-status').textContent='🏆 '+playerName+' hat das Zielwort „'+word+'“ erraten!';
+          showCorrectAnswerOverlay(word,null,false,'Wort erraten!',playerName);
         }
         PlayfinityPlayerPresence.sendPresence();
         return true;
