@@ -1110,106 +1110,8 @@
 
 
   
-    /* WORDFINITY – visuell an das PLAYFINITY-Designsystem angepasst */
-    .wordfinity-wrap{
-      width:100%;max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:14px;
-    }
-    .wordfinity-title{
-      margin:8px 0 0;text-align:center;font-size:clamp(2.25rem,7vw,3.5rem);
-      line-height:1.08;font-weight:950;letter-spacing:2px;
-      background:linear-gradient(135deg,var(--neon-cyan),var(--neon-purple),var(--neon-pink));
-      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      filter:drop-shadow(0 0 16px rgba(0,240,255,.2));
-    }
-    .wordfinity-subtitle{
-      margin:-7px 0 4px;text-align:center;color:var(--text-muted);font-size:.9rem;line-height:1.45;
-    }
-    .wordfinity-panel{
-      width:100%;padding:18px;background:var(--bg-card);
-      border:1px solid var(--border-glow);border-radius:16px;
-      box-shadow:0 8px 24px rgba(0,0,0,.16);display:flex;flex-direction:column;gap:12px;
-      backdrop-filter:blur(8px);
-    }
-    .wordfinity-topline{
-      display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;
-      color:var(--text-main);font-size:.9rem;font-weight:800;
-    }
-    .wordfinity-pill{
-      display:inline-flex;align-items:center;justify-content:center;min-height:28px;
-      padding:5px 10px;border:1px solid rgba(0,240,255,.24);border-radius:999px;
-      background:rgba(0,240,255,.07);color:var(--neon-cyan);font-size:.72rem;font-weight:800;
-      letter-spacing:.02em;
-    }
-    .wordfinity-entry{display:flex;gap:8px;width:100%;align-items:stretch}
-    .wordfinity-entry input{
-      flex:1;min-width:0;height:48px;padding:0 14px;border:1px solid rgba(0,240,255,.3);
-      border-radius:10px;background:rgba(7,8,20,.78);color:#fff;font:600 1rem var(--font-main);
-      outline:none;transition:border-color .2s,box-shadow .2s;user-select:text;
-    }
-    .wordfinity-entry input::placeholder{color:#747d9f}
-    .wordfinity-entry input:focus{border-color:var(--neon-cyan);box-shadow:0 0 15px rgba(0,240,255,.2)}
-    .wordfinity-entry input:disabled{opacity:.55;cursor:wait}
-    .wordfinity-entry button,.wordfinity-actions button,.wordfinity-next{
-      min-height:44px;padding:0 15px;border:1px solid rgba(0,240,255,.35);
-      border-radius:10px;background:rgba(0,240,255,.1);color:var(--neon-cyan);
-      font:800 .86rem var(--font-main);cursor:pointer;transition:all .2s;
-    }
-    .wordfinity-entry button{
-      min-width:94px;border:0;background:linear-gradient(135deg,var(--neon-cyan),#0077ff);color:#001018;
-    }
-    .wordfinity-entry button:hover:not(:disabled),.wordfinity-next:hover:not(:disabled){
-      transform:translateY(-1px);box-shadow:0 0 16px rgba(0,240,255,.25);
-    }
-    .wordfinity-actions{display:flex;gap:8px;flex-wrap:wrap}
-    .wordfinity-actions button{flex:1 1 145px}
-    .wordfinity-actions button:hover:not(:disabled){
-      border-color:var(--neon-purple);background:rgba(176,38,255,.13);color:#e5c7ff;
-    }
-    .wordfinity-entry button:disabled,.wordfinity-actions button:disabled,.wordfinity-next:disabled{
-      opacity:.42;cursor:not-allowed;transform:none;box-shadow:none;
-    }
-    .wordfinity-status{
-      min-height:42px;padding:11px 13px;border:1px solid rgba(255,255,255,.09);
-      border-radius:10px;background:rgba(7,8,20,.45);color:var(--text-muted);
-      font-size:.84rem;line-height:1.45;overflow-wrap:anywhere;
-    }
-    .wordfinity-hintbox{
-      min-height:44px;padding:11px 13px;border:1px solid rgba(176,38,255,.28);
-      border-radius:10px;background:rgba(176,38,255,.08);color:#e5c7ff;
-      font-size:.84rem;font-weight:700;line-height:1.45;overflow-wrap:anywhere;
-    }
-    .wordfinity-guesses{display:flex;flex-direction:column;gap:7px;max-height:48vh;overflow-y:auto}
-    .wordfinity-guess{
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-      padding:10px 12px;border:1px solid rgba(255,255,255,.09);border-radius:10px;
-      background:rgba(7,8,20,.55);font-size:.86rem;line-height:1.3;
-    }
-    .wordfinity-guess>span{min-width:0;overflow-wrap:anywhere}
-    .wordfinity-guess b{color:#fff;font-size:.94rem}
-    .wordfinity-guess small{margin-top:3px}
-    .wordfinity-guess>strong{flex-shrink:0;color:var(--neon-cyan);font-size:.78rem;text-align:right}
-    .wordfinity-guess.winner{
-      border-color:rgba(0,255,157,.55);background:rgba(0,255,157,.1);
-      box-shadow:0 0 16px rgba(0,255,157,.1);
-    }
-    .wordfinity-guess.winner>strong{color:var(--neon-green)}
-    .wordfinity-next{
-      align-self:center;min-height:46px;padding:0 20px;border-color:rgba(0,240,255,.45);
-      background:rgba(0,240,255,.09);font-size:.88rem;
-    }
-    @media(max-width:520px){
-      .wordfinity-wrap{gap:11px}
-      .wordfinity-panel{padding:14px;border-radius:13px;gap:10px}
-      .wordfinity-title{font-size:clamp(2rem,10vw,2.8rem)}
-      .wordfinity-entry{gap:7px}
-      .wordfinity-entry input{height:46px;padding:0 10px;font-size:16px}
-      .wordfinity-entry button{min-width:76px;padding:0 12px}
-      .wordfinity-actions{display:grid;grid-template-columns:1fr;gap:7px}
-      .wordfinity-actions button{width:100%;min-height:42px}
-      .wordfinity-guess{padding:9px 10px;font-size:.82rem}
-      .wordfinity-guesses{max-height:42vh}
-    }
-
+        .wordfinity-feedback{padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(18,20,44,.72);color:var(--text-muted);font-size:.82rem;line-height:1.4;overflow-wrap:anywhere}
+    .wordfinity-feedback:empty{display:none}
 </style>
 </head>
 
@@ -1431,31 +1333,28 @@
 
     <!-- SCREEN: WORDFINITY -->
     <section class="screen" id="screen-wordfinity">
-      <div class="wordfinity-wrap">
-        <h1 class="wordfinity-title">WORDFINITY</h1>
-        <p class="wordfinity-subtitle">Finde das geheime Wort – Rang 1 gewinnt!</p>
-        <div class="wordfinity-panel">
-          <div class="wordfinity-topline">
-            <span class="wordfinity-pill" id="wordfinity-round-id">Rätsel bereit</span>
-            <span class="wordfinity-pill" id="wordfinity-guess-count">0 Tipps</span>
+      <div class="kontexto-wrap">
+        <div class="model-loader" id="wordfinity-loader">
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:.8rem;">
+            <span id="wordfinity-round-id">Rätsel bereit</span>
+            <span id="wordfinity-guess-count">0 Tipps</span>
           </div>
-          <form class="wordfinity-entry" id="wordfinity-entry" autocomplete="off">
-            <input id="wordfinity-input" type="text" maxlength="60" placeholder="Wort eingeben …" aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
-            <button id="wordfinity-submit" type="submit" disabled>Raten</button>
-          </form>
-          <div class="wordfinity-status" id="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
-          <div class="wordfinity-actions">
-            <button id="wordfinity-category" type="button" disabled>🏷 Kategorie</button>
-            <button id="wordfinity-letter" type="button" disabled>🔤 Anfangsbuchstabe</button>
-            <button id="wordfinity-hint" type="button" disabled>💡 Hinweis</button>
-          </div>
-          <div class="wordfinity-hintbox" id="wordfinity-hintbox" aria-live="polite">Deine Hinweise erscheinen hier.</div>
+          <div class="model-loader-bar"><div class="model-loader-fill" id="wordfinity-progress-fill" style="width:100%"></div></div>
         </div>
-        <div class="wordfinity-panel">
-          <div class="wordfinity-topline"><strong>Deine und die Chat-Tipps</strong><span class="wordfinity-pill">Semantischer Rang</span></div>
-          <div class="wordfinity-guesses" id="wordfinity-guesses" aria-live="polite"><div class="wordfinity-status">Noch keine Tipps.</div></div>
+        <div class="input-box">
+          <input type="text" class="game-input" id="wordfinity-input" maxlength="60" placeholder="Dein Wort..." aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
+          <button type="button" class="btn-action" id="wordfinity-submit" disabled>Tippen</button>
         </div>
-        <button class="wordfinity-next" id="wordfinity-next" type="button">↻ Neues zufälliges Rätsel</button>
+        <div class="wordfinity-feedback" id="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
+        <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
+          <span class="kontexto-inline-hints">
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-category" aria-label="Kategorie anzeigen" title="Kategorie anzeigen" disabled>🏷️</button>
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-letter" aria-label="Anfangsbuchstaben anzeigen" title="Anfangsbuchstaben anzeigen" disabled>🔤</button>
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-hint" aria-label="Ähnliches Wort anzeigen" title="Ähnliches Wort anzeigen" disabled>💡</button>
+          </span>
+        </div>
+        <div class="kontexto-category-hint" id="wordfinity-hintbox" aria-live="polite">Deine Hinweise erscheinen hier.</div>
+        <div class="guesses-list" id="wordfinity-guesses" aria-live="polite"></div>
       </div>
     </section>
 
@@ -1706,8 +1605,8 @@
       renderGuesses(){
         const root=document.getElementById('wordfinity-guesses');
         document.getElementById('wordfinity-guess-count').textContent=this.guesses.length+' Tipps';
-        if(!this.guesses.length){root.innerHTML='<div class="wordfinity-status">Noch keine Tipps.</div>';return;}
-        root.innerHTML=this.guesses.slice(0,40).map(item=>'<div class="wordfinity-guess '+(item.rank===1?'winner':'')+'"><span><b>'+this.escape(item.word)+'</b><small style="display:block;color:var(--text-muted)">'+this.escape(item.player)+'</small></span><strong>'+(item.rank===1?'🏆 Rang 1':'Rang '+item.rank)+'</strong></div>').join('');
+        if(!this.guesses.length){root.innerHTML='';return;}
+        root.innerHTML=this.guesses.slice(0,40).map(item=>'<div class="guess-row"><span class="guess-word">'+this.escape(item.word)+' <small style="color:var(--text-muted);font-size:.72rem">· '+this.escape(item.player)+'</small></span><strong class="guess-rank" style="color:'+(item.rank===1?'var(--neon-green)':'var(--neon-cyan)')+'">'+(item.rank===1?'🏆 Rang 1':'Rang '+item.rank)+'</strong></div>').join('');
       },
       showCategory(){
         if(!this.puzzle)return;
