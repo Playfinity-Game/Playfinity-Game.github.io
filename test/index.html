@@ -1576,6 +1576,8 @@
           // Alle verfügbaren Rätsel-IDs einmal zufällig mischen.
           // Bereits gespielte Zielwörter werden bis zum Ende des Kartenstapels übersprungen.
           if(!this.puzzleDeck.length){
+            // Erst wenn alle IDs des vorherigen Durchlaufs verbraucht sind, Zielwörter zurücksetzen.
+            if(this.usedTargets.size)this.usedTargets.clear();
             this.puzzleDeck=Array.from({length:4254},(_,index)=>index+1);
             for(let i=this.puzzleDeck.length-1;i>0;i--){
               const j=Math.floor(Math.random()*(i+1));
