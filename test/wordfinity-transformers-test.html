@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wordfinity – Lokaler Embedding-Vergleich</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;padding:24px;background:#090b18;color:#f3f5ff;font:16px system-ui;max-width:1000px;margin-inline:auto}
+h1{font-size:1.55rem}p{color:#b9bfd5;line-height:1.5}
+button{padding:13px 18px;border:0;border-radius:10px;background:#00d9e8;color:#071018;font-weight:700;font-size:1rem;cursor:pointer}
+button:disabled{opacity:.5;cursor:wait}
+.status{color:#aab2cc;font-size:.92rem;white-space:pre-wrap}
+.note{padding:12px 14px;border:1px solid #30344c;border-radius:10px;background:#11152a}
+table{width:100%;border-collapse:collapse;margin-top:18px;font-size:.94rem}
+td,th{padding:10px 8px;border-bottom:1px solid #30344c;text-align:left;vertical-align:top}
+.num{font-variant-numeric:tabular-nums;font-weight:700}
+.good{color:#5de0a1}.bad{color:#ff9d9d}
+@media(max-width:650px){body{padding:15px}table{font-size:.82rem}td,th{padding:8px 4px}}
+</style>
+</head>
+<body>
+<h1>🧪 Wordfinity – Lokaler BGE-M3-Vergleich</h1>
+<p>Diese Testseite berechnet Wort-Embeddings direkt in deinem Browser mit Horizon-Labs. Daneben wird derselbe Wortvergleich über den bisherigen BGE-M3-Endpunkt gerechnet. Das eigentliche Spiel wird nicht verändert.</p>
+<div class="note">
+<strong>Modell:</strong> Horizon-Labs/multilingual-embedding-small (Transformers.js, quantisiertes ONNX, 1024 Dimensionen).<br>
+<strong>Erster Start:</strong> Das Modell muss einmalig geladen werden (ca. 269 MB laut Modellkarte). Danach kann der Browser-Cache den erneuten Download vermeiden.
+</div>
+<p><button id="run">Lokalen Vergleich starten</button></p>
+<p class="status" id="status">Bereit. Beim ersten Start wird das Modell heruntergeladen.</p>
+<table>
+<thead><tr><th>Zielwort</th><th>Ratewort</th><th>Horizon lokal</th><th>BGE-M3 Server</th><th>Abweichung</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+<p class="status" id="summary"></p>
+<p><a href="wordfinity-apfel-check.html" style="color:#00d9e8">← Zur bisherigen Apfel-Testseite</a></p>
+<script type="module">
+import { AutoTokenizer, AutoModel } from "https://cdn.jsdelivr.net/npm/@huggingface/transformers@3";
+
+const MODEL_ID = "Horizon-Labs/multilingual-embedding-small";
+const BGE_ENDPOINT = "https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity";
+const pairs = [
+  ["Apfel","Birne"],["Apfel","Obst"],["Apfel","Baum"],["Apfel","Kuchen"],
+  ["Apfel","Auto"],["Hund","Katze"],["Hund","Tier"],["Hammer","Nagel"],
+  ["Zahnbürste","Zahnpasta"],["Brot","Butter"],["Biene","Honig"],["Laptop","Tastatur"]
+];
+const statusEl=document.getElementById("status");
+const rowsEl=document.getElementById("rows");
+const summaryEl=document.getElementById("summary");
+const button=document.getElementById("run");
+let tokenizer=null,model=null;
+
+function cosine(a,b){
+ let dot=0,aa=0,bb=0;
+ for(let i=0;i<a.length;i++){dot+=a[i]*b[i];aa+=a[i]*a[i];bb+=b[i]*b[i];}
+ return aa&&bb?dot/(Math.sqrt(aa)*Math.sqrt(bb)):0;
+}
+async function loadModel(){
+ if(model&&tokenizer)return;
+ statusEl.textContent="Transformers.js wird geladen …";
+ tokenizer=await AutoTokenizer.from_pretrained(MODEL_ID);
+ model=await AutoModel.from_pretrained(MODEL_ID,{dtype:"q8"});
+}
+async function localSimilarity(target,guess){
+ const tokens=await tokenizer([target,guess],{padding:true,truncation:true,max_length:256});
+ const output=await model(tokens);
+ const tensor=output.sentence_embedding;
+ if(!tensor||!tensor.data||!tensor.dims||tensor.dims.length!==2||tensor.dims[0]!==2){
+  throw new Error("Das Modell hat keine zwei gültigen Satzvektoren geliefert.");
+ }
+ const dim=tensor.dims[1],data=tensor.data;
+ const a=Array.from(data.slice(0,dim)),b=Array.from(data.slice(dim,2*dim));
+ return cosine(a,b);
+}
+async function serverSimilarity(target,guess){
+ const response=await fetch(BGE_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({target,guess})});
+ const data=await response.json();
+ if(!response.ok)throw new Error(data.error||"BGE-M3 HTTP "+response.status);
+ const value=Number(data.similarity);
+ if(!Number.isFinite(value))throw new Error("BGE-M3 lieferte keinen gültigen Ähnlichkeitswert.");
+ return value;
+}
+button.addEventListener("click",async()=>{
+ button.disabled=true;rowsEl.replaceChildren();summaryEl.textContent="";
+ let completed=0,failed=0,totalDelta=0;
+ try{
+  await loadModel();
+  for(let i=0;i<pairs.length;i++){
+   const [target,guess]=pairs[i];
+   statusEl.textContent="Vergleiche Wortpaar "+(i+1)+" von "+pairs.length+": "+target+" – "+guess;
+   const tr=document.createElement("tr");
+   for(const value of [target,guess,"…","…","…"]){const td=document.createElement("td");td.textContent=value;tr.appendChild(td);}
+   rowsEl.appendChild(tr);
+   try{
+    const [local,bge]=await Promise.all([localSimilarity(target,guess),serverSimilarity(target,guess)]);
+    const delta=local-bge;totalDelta+=Math.abs(delta);completed++;
+    tr.cells[2].textContent=local.toFixed(4);
+    tr.cells[3].textContent=bge.toFixed(4);
+    tr.cells[4].textContent=(delta>0?"+":"")+delta.toFixed(4);
+    tr.cells[4].className="num "+(Math.abs(delta)<0.05?"good":"");
+   }catch(error){
+    failed++;tr.cells[2].textContent="Fehler";tr.cells[3].textContent="Fehler";tr.cells[4].textContent=error.message;
+   }
+  }
+  statusEl.textContent="Test abgeschlossen: "+completed+" Wortpaare erfolgreich, "+failed+" Fehler.";
+  summaryEl.textContent=completed?"Mittlere absolute Score-Abweichung: "+(totalDelta/completed).toFixed(4)+". Das ist ein erster technischer Vergleich, noch keine Qualitätsfreigabe für die Spiel-Rangliste.":"Es gab keine vollständigen Vergleichsergebnisse.";
+ }catch(error){
+  statusEl.textContent="Lokaler Modellstart fehlgeschlagen: "+error.message+"\nBitte Seite neu laden und erneut versuchen. Es wurde kein Ersatz-Rangwert erfunden.";
+ }finally{button.disabled=false;}
+});
+</script>
+</body>
+</html>
