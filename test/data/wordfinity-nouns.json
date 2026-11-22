@@ -521,7 +521,6 @@
     "Butter",
     "Joghurt",
     "Quark",
-    "Milch",
     "Sahne",
     "Ei",
     "Wurst",
@@ -620,6 +619,7 @@
     "Flammkuchen"
   ],
   "Getränke": [
+    "Milch",
     "Wasser",
     "Saft",
     "Limonade",
