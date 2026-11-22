@@ -130,11 +130,23 @@ async function handlePrecomputeEmbeddings(request, env, body) {
   if (!category || category.length > 80 || !validDictionarySha(dictionarySha) || !words.length || words.length > 32) {
     return json({ error: "category, SHA-256 und 1 bis 32 gültige Wörter sind erforderlich" }, 400);
   }
-  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: words });
-  if (!Array.isArray(embedded?.data) || embedded.data.length !== words.length) {
+  const existingQuery = new URLSearchParams({
+    select: "word_key",
+    dictionary_sha: "eq." + dictionarySha,
+    model: "eq." + EMBEDDING_MODEL,
+    word_key: "in.(" + words.map(word => '"' + word.toLocaleLowerCase("de-DE") + '"').join(",") + ")"
+  });
+  const existingRows = await supabaseRequest(env, "wordfinity_word_embeddings?" + existingQuery.toString());
+  const existingKeys = new Set((Array.isArray(existingRows) ? existingRows : []).map(row => row.word_key));
+  const missingWords = words.filter(word => !existingKeys.has(word.toLocaleLowerCase("de-DE")));
+  if (!missingWords.length) {
+    return json({ stored: 0, skipped: words.length, category, model: EMBEDDING_MODEL, dictionary_sha: dictionarySha });
+  }
+  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: missingWords });
+  if (!Array.isArray(embedded?.data) || embedded.data.length !== missingWords.length) {
     throw new Error("BGE-M3 hat nicht für alle Wörter ein Embedding geliefert");
   }
-  const rows = words.map((word, index) => {
+  const rows = missingWords.map((word, index) => {
     const vector = embedded.data[index];
     if (!Array.isArray(vector) || vector.length !== 1024 || vector.some(value => !Number.isFinite(Number(value)))) {
       throw new Error("BGE-M3 lieferte für " + word + " keinen gültigen 1024-dimensionalen Vektor");
@@ -154,7 +166,7 @@ async function handlePrecomputeEmbeddings(request, env, body) {
     prefer: "resolution=merge-duplicates,return=minimal",
     body: JSON.stringify(rows)
   });
-  return json({ stored: rows.length, category, model: EMBEDDING_MODEL, dictionary_sha: dictionarySha });
+  return json({ stored: rows.length, skipped: words.length - rows.length, category, model: EMBEDDING_MODEL, dictionary_sha: dictionarySha });
 }
 
 async function handlePrecomputeTarget(request, env, body) {
