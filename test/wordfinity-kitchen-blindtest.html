@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Wordfinity – Küchen-Blindtest</title>
+<style>
+body{margin:0;padding:24px;background:#090b18;color:#f3f5ff;font:16px system-ui;max-width:900px;margin-inline:auto}
+h1{font-size:1.5rem}p{color:#b9bfd5;line-height:1.5}
+button{padding:13px 18px;border:0;border-radius:10px;background:#00d9e8;color:#071018;font-weight:700;font-size:1rem}
+section{margin-top:24px}h2{font-size:1.1rem;color:#fff}
+table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.94rem}td,th{padding:10px 7px;border-bottom:1px solid #30344c;text-align:left;vertical-align:top}
+.status{color:#aab2cc;font-size:.9rem}.score{font-variant-numeric:tabular-nums;font-weight:700}
+</style>
+</head>
+<body>
+<h1>🍳 Wordfinity – Küchen-Blindtest</h1>
+<p>Diese unabhängige Testrunde verwendet ausschließlich neue Küchen-Wörter. Sie prüft alltagsbezogene Wortnähe wie gemeinsame Nutzung, typische Inhalte, Bestandteile und thematische Zusammenhänge. Es wird nur der experimentelle Bewertungs-Endpunkt abgefragt; das eigentliche Spiel und seine Rangliste bleiben unverändert.</p>
+<button id="run">Küchentest starten</button>
+<p class="status" id="status">Bereit für 15 Wortpaare.</p>
+<div id="results"></div>
+<script>
+const groups=[
+ {target:"Messer 🔪",word:"Messer",guesses:["Gabel","Löffel","Auto"]},
+ {target:"Topf 🍲",word:"Topf",guesses:["Herd","Suppe","Fenster"]},
+ {target:"Teller 🍽️",word:"Teller",guesses:["Essen","Schrank","Besteck"]},
+ {target:"Kühlschrank 🧊",word:"Kühlschrank",guesses:["Milch","Küche","Fahrrad"]},
+ {target:"Backofen 🔥",word:"Backofen",guesses:["Pizza","Herd","Wolke"]}
+];
+const endpoint="https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity-judgement";
+const results=document.getElementById("results"),status=document.getElementById("status"),button=document.getElementById("run");
+button.addEventListener("click",async()=>{
+ button.disabled=true;results.innerHTML="";let total=groups.reduce((n,g)=>n+g.guesses.length,0),done=0,failed=0;
+ status.textContent="KI wird abgefragt … 0/"+total;
+ for(const group of groups){
+  const section=document.createElement("section"),heading=document.createElement("h2");
+  heading.textContent="Zielwort: "+group.target;section.appendChild(heading);
+  const table=document.createElement("table");table.innerHTML="<thead><tr><th>Ratewort</th><th>KI-Nähe</th><th>Beziehung / Begründung</th></tr></thead><tbody></tbody>";
+  section.appendChild(table);results.appendChild(section);
+  const body=table.querySelector("tbody");
+  for(const guess of group.guesses){
+   const tr=document.createElement("tr");tr.innerHTML="<td></td><td>…</td><td>…</td>";tr.cells[0].textContent=guess;body.appendChild(tr);
+   try{
+    const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({target:group.word,guess})});
+    const data=await response.json();if(!response.ok)throw new Error(data.error||"HTTP "+response.status);
+    tr.cells[1].textContent=Number(data.score)+"/100";tr.cells[1].className="score";
+    tr.cells[2].textContent=(data.relation||"")+(data.reason?" – "+data.reason:"");
+   }catch(e){failed++;tr.cells[1].textContent="Fehler";tr.cells[2].textContent=e.message;}
+   done++;status.textContent="KI wird abgefragt … "+done+"/"+total;
+  }
+ }
+ status.textContent="Test abgeschlossen: "+done+" Wortpaare, "+failed+" Fehler. Bitte Ergebnisse hier kopieren oder fotografieren und mir schicken.";
+ button.disabled=false;
+});
+</script>
+</body>
+</html>
