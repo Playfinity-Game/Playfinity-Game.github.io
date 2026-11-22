@@ -919,6 +919,30 @@
     @keyframes pf-rocket-cross{0%{transform:translate(-25vw,10vh) rotate(-18deg)}100%{transform:translate(130vw,-22vh) rotate(-18deg)}}
     @media(prefers-reduced-motion:reduce){body.pf-admin-shake main,body.pf-admin-glitch main,#pf-admin-effect{animation-duration:.01ms!important}#pf-admin-effect .pf-crossing-emoji{animation-duration:.01ms!important}}
 
+  
+    /* WORDFINITY – semantisches Wort-Ratespiel */
+    .wordfinity-wrap{width:100%;max-width:680px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+    .wordfinity-title{text-align:center;font-size:clamp(2rem,8vw,3rem);font-weight:1000;letter-spacing:.06em;background:linear-gradient(120deg,var(--neon-cyan),var(--neon-pink));-webkit-background-clip:text;background-clip:text;color:transparent}
+    .wordfinity-subtitle{text-align:center;color:var(--text-muted);font-size:.9rem;margin-top:-10px}
+    .wordfinity-panel{padding:15px;border:1px solid rgba(0,240,255,.22);border-radius:14px;background:rgba(18,20,44,.82);display:flex;flex-direction:column;gap:10px}
+    .wordfinity-topline{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+    .wordfinity-pill{padding:5px 9px;border:1px solid rgba(0,240,255,.28);border-radius:99px;color:var(--neon-cyan);font-size:.75rem;font-weight:800}
+    .wordfinity-status{min-height:1.4em;color:var(--text-muted);font-size:.88rem;text-align:center;overflow-wrap:anywhere}
+    .wordfinity-entry{display:flex;gap:8px;width:100%}
+    .wordfinity-entry input{min-width:0;flex:1;padding:13px 14px;border:1px solid rgba(0,240,255,.35);border-radius:10px;background:rgba(7,8,20,.9);color:#fff;font:700 1rem var(--font-main);outline:none}
+    .wordfinity-entry input:focus{border-color:var(--neon-cyan);box-shadow:0 0 12px rgba(0,240,255,.18)}
+    .wordfinity-entry button,.wordfinity-actions button,.wordfinity-next{border:1px solid rgba(0,240,255,.32);border-radius:10px;padding:11px 13px;background:rgba(0,240,255,.1);color:var(--neon-cyan);font-weight:850;cursor:pointer}
+    .wordfinity-entry button:disabled,.wordfinity-actions button:disabled{opacity:.45;cursor:not-allowed}
+    .wordfinity-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+    .wordfinity-actions button{font-size:.83rem;line-height:1.25;min-height:48px}
+    .wordfinity-hintbox{min-height:24px;padding:8px 10px;border-radius:9px;background:rgba(176,38,255,.09);color:#e5c7ff;text-align:center;font-size:.9rem;overflow-wrap:anywhere}
+    .wordfinity-guesses{display:flex;flex-direction:column;gap:7px;max-height:42vh;overflow:auto}
+    .wordfinity-guess{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 12px;border:1px solid rgba(255,255,255,.1);border-radius:9px;background:rgba(255,255,255,.035);font-size:.9rem}
+    .wordfinity-guess strong{color:var(--neon-cyan);font-variant-numeric:tabular-nums;white-space:nowrap}
+    .wordfinity-guess.winner{border-color:rgba(0,255,157,.55);background:rgba(0,255,157,.09)}
+    .wordfinity-next{width:100%;background:linear-gradient(120deg,rgba(0,240,255,.17),rgba(176,38,255,.17))}
+    @media(max-width:480px){.wordfinity-wrap{gap:10px}.wordfinity-panel{padding:12px}.wordfinity-actions{gap:6px}.wordfinity-actions button{padding:9px 5px;font-size:.76rem}.wordfinity-entry input{padding:12px 10px}}
+
   </style>
 </head>
 
@@ -998,6 +1022,17 @@
           <div class="card-footer">
             <span class="btn-play-card" style="color: var(--neon-pink)">Test starten ›</span>
           </div>
+        </div>
+
+
+        <!-- Wordfinity -->
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-purple)">Semantisches Worträtsel</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-pink)">FINITY</span></div>
+            <div class="card-desc">Finde das geheime Wort. Je ähnlicher dein Wort, desto besser dein Rang.</div>
+          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
         </div>
 
         <!-- Hangman Card -->
@@ -1123,6 +1158,37 @@
           <button class="btn-action" id="hangmann-hint" type="button">🏷 Kategorie zeigen</button>
           <button class="btn-action" id="hangmann-new" type="button">Neues Wort</button>
         </div>
+      </div>
+    </section>
+
+
+    <!-- SCREEN: WORDFINITY -->
+    <section class="screen" id="screen-wordfinity">
+      <div class="wordfinity-wrap">
+        <h1 class="wordfinity-title">WORDFINITY</h1>
+        <p class="wordfinity-subtitle">Finde das geheime Wort – Rang 1 gewinnt!</p>
+        <div class="wordfinity-panel">
+          <div class="wordfinity-topline">
+            <span class="wordfinity-pill" id="wordfinity-round-id">Rätsel bereit</span>
+            <span class="wordfinity-pill" id="wordfinity-guess-count">0 Tipps</span>
+          </div>
+          <form class="wordfinity-entry" id="wordfinity-entry" autocomplete="off">
+            <input id="wordfinity-input" type="text" maxlength="60" placeholder="Wort eingeben …" aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
+            <button id="wordfinity-submit" type="submit" disabled>Raten</button>
+          </form>
+          <div class="wordfinity-status" id="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
+          <div class="wordfinity-actions">
+            <button id="wordfinity-category" type="button" disabled>🏷 Kategorie</button>
+            <button id="wordfinity-letter" type="button" disabled>🔤 Anfangsbuchstabe</button>
+            <button id="wordfinity-hint" type="button" disabled>💡 Hinweis</button>
+          </div>
+          <div class="wordfinity-hintbox" id="wordfinity-hintbox" aria-live="polite">Deine Hinweise erscheinen hier.</div>
+        </div>
+        <div class="wordfinity-panel">
+          <div class="wordfinity-topline"><strong>Deine und die Chat-Tipps</strong><span class="wordfinity-pill">Semantischer Rang</span></div>
+          <div class="wordfinity-guesses" id="wordfinity-guesses" aria-live="polite"><div class="wordfinity-status">Noch keine Tipps.</div></div>
+        </div>
+        <button class="wordfinity-next" id="wordfinity-next" type="button">↻ Neues zufälliges Rätsel</button>
       </div>
     </section>
 
@@ -1275,8 +1341,120 @@
       onEnterGame(screenId) {
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
         if (screenId === 'hangmann') HangmannGame.init();
+        if (screenId === 'wordfinity') WordfinityGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
+      }
+    };
+
+
+    /* ==========================================================================
+       WORDFINITY – vorberechnete semantische Ranglisten aus GitHub Pages
+       ========================================================================== */
+    const WordfinityGame = {
+      initialized:false, puzzle:null, guesses:[], roundToken:0, won:false,
+      baseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
+      normalize(value){return String(value||'').trim().toLocaleLowerCase('de-DE');},
+      escape(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));},
+      async init(){
+        if(!this.initialized){
+          document.getElementById('wordfinity-entry').addEventListener('submit',event=>{
+            event.preventDefault();
+            const input=document.getElementById('wordfinity-input');
+            this.submitGuess(input.value,'Du');
+            input.value='';
+            input.focus();
+          });
+          document.getElementById('wordfinity-next').addEventListener('click',()=>this.newRound());
+          document.getElementById('wordfinity-category').addEventListener('click',()=>this.showCategory());
+          document.getElementById('wordfinity-letter').addEventListener('click',()=>this.showFirstLetter());
+          document.getElementById('wordfinity-hint').addEventListener('click',()=>this.showHint());
+          this.initialized=true;
+        }
+        if(!this.puzzle) await this.newRound();
+      },
+      setControls(enabled){
+        ['wordfinity-input','wordfinity-submit','wordfinity-category','wordfinity-letter','wordfinity-hint'].forEach(id=>{
+          const node=document.getElementById(id);if(node)node.disabled=!enabled||this.won;
+        });
+      },
+      async newRound(){
+        const token=++this.roundToken;
+        this.puzzle=null;this.guesses=[];this.won=false;
+        this.setControls(false);
+        document.getElementById('wordfinity-round-id').textContent='Neues Rätsel';
+        document.getElementById('wordfinity-guess-count').textContent='0 Tipps';
+        document.getElementById('wordfinity-status').textContent='Rätsel wird geladen …';
+        document.getElementById('wordfinity-hintbox').textContent='Deine Hinweise erscheinen hier.';
+        document.getElementById('wordfinity-guesses').innerHTML='<div class="wordfinity-status">Noch keine Tipps.</div>';
+        const id=Math.floor(Math.random()*5000)+1;
+        try{
+          const response=await fetch(this.baseUrl+id+'.json',{cache:'no-store'});
+          if(!response.ok)throw new Error('HTTP '+response.status);
+          const data=await response.json();
+          if(token!==this.roundToken)return;
+          if(!data||!Array.isArray(data.woerter)||data.woerter.length!==20000||typeof data.kategorie!=='string'||typeof data.woerter[0]!=='string'||!data.woerter[0]){
+            throw new Error('Ungültiges Rätsel-JSON');
+          }
+          this.puzzle=data;
+          this.setControls(true);
+          document.getElementById('wordfinity-round-id').textContent='Rätsel #'+id;
+          document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
+          document.getElementById('wordfinity-input').focus({preventScroll:true});
+          PlayfinityPlayerPresence.sendPresence();
+        }catch(error){
+          if(token!==this.roundToken)return;
+          console.error('[Wordfinity] Rätsel konnte nicht geladen werden:',error);
+          document.getElementById('wordfinity-status').textContent='Rätsel konnte nicht geladen werden. Prüfe die Datenverbindung und tippe auf „Neues zufälliges Rätsel“.';
+          document.getElementById('wordfinity-round-id').textContent='Ladefehler';
+        }
+      },
+      submitGuess(value,playerName='Du'){
+        if(!this.puzzle||this.won)return;
+        const word=this.normalize(value);
+        if(!word)return;
+        if(/\s/u.test(word)){
+          document.getElementById('wordfinity-status').textContent='Bitte nur ein einzelnes Wort eingeben.';
+          return;
+        }
+        const rank=this.puzzle.woerter.indexOf(word)+1;
+        if(rank===0){
+          document.getElementById('wordfinity-status').textContent='„'+word+'“ – Wort nicht im Wörterbuch';
+          return;
+        }
+        const previous=this.guesses.find(item=>item.word===word);
+        if(previous){
+          document.getElementById('wordfinity-status').textContent='„'+word+'“ wurde bereits auf Rang '+previous.rank+' gefunden.';
+          return;
+        }
+        this.guesses.unshift({word,rank,player:playerName});
+        this.renderGuesses();
+        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':'„'+word+'“ erreicht Rang '+rank+'.';
+        if(rank===1){
+          this.won=true;this.setControls(false);
+          document.getElementById('wordfinity-status').textContent='🏆 '+playerName+' hat das Zielwort „'+word+'“ erraten!';
+        }
+        PlayfinityPlayerPresence.sendPresence();
+      },
+      renderGuesses(){
+        const root=document.getElementById('wordfinity-guesses');
+        document.getElementById('wordfinity-guess-count').textContent=this.guesses.length+' Tipps';
+        if(!this.guesses.length){root.innerHTML='<div class="wordfinity-status">Noch keine Tipps.</div>';return;}
+        root.innerHTML=this.guesses.slice(0,40).map(item=>'<div class="wordfinity-guess '+(item.rank===1?'winner':'')+'"><span><b>'+this.escape(item.word)+'</b><small style="display:block;color:var(--text-muted)">'+this.escape(item.player)+'</small></span><strong>'+(item.rank===1?'🏆 Rang 1':'Rang '+item.rank)+'</strong></div>').join('');
+      },
+      showCategory(){
+        if(!this.puzzle)return;
+        document.getElementById('wordfinity-hintbox').textContent='🏷 Kategorie: '+this.puzzle.kategorie;
+      },
+      showFirstLetter(){
+        if(!this.puzzle)return;
+        const first=Array.from(this.puzzle.woerter[0])[0];
+        document.getElementById('wordfinity-hintbox').textContent='🔤 Der erste Buchstabe ist: '+first.toLocaleUpperCase('de-DE');
+      },
+      showHint(){
+        if(!this.puzzle)return;
+        const index=Math.floor(Math.random()*14)+1;
+        document.getElementById('wordfinity-hintbox').textContent='💡 Ähnliches Wort (Top 15): '+this.puzzle.woerter[index];
       }
     };
 
@@ -1568,6 +1746,8 @@
           WordleGame.submitGuess(text.toUpperCase(), user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
+        } else if (screen === 'wordfinity' && text.trim()) {
+          WordfinityGame.submitGuess(text, user?.name || 'LIVE-Chat');
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
           const chatMessage = text.trim();
           if (/^[A-Za-zÄÖÜäöüß]$/.test(chatMessage)) {
@@ -2520,11 +2700,11 @@
       },
       sendPresence() {
         if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
-        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : '';
+        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : this.game === 'wordfinity' ? WordfinityGame.puzzle?.woerter?.[0] : '';
         this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
       },
       setGame(game) {
-        this.game = ['menu','wordle','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
+        this.game = ['menu','wordle','sizeitup','hangmann','priceisright','wordfinity'].includes(game) ? game : 'menu';
         this.sendPresence();
       },
       showEffect(action) {
