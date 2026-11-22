@@ -1635,8 +1635,8 @@
           const style=this.rankStyle(item.rank);
           const pct=Math.max(5,Math.round(100-(Math.log(Math.max(1,item.rank))/Math.log(20000))*100));
           row.innerHTML='<div class="guess-bar" style="width:'+pct+'%;background:'+style.color+';"></div>'+
-            '<span class="guess-word">'+this.escape(item.word)+(item.isHint?'<span class="guess-hint-tag">💡 TIPP</span>':'')+
-            ' <small style="color:var(--text-muted);font-size:.72rem">· '+this.escape(item.player)+'</small></span>'+
+            '<span class="guess-word">'+this.escape(item.word)+(item.isHint?'<span class="guess-hint-tag">💡 TIPP</span>':'')+'</span>'+
+            '<span class="kontexto-guess-player">'+this.escape(item.player)+'</span>'+
             '<strong class="guess-rank" style="color:'+style.color+';margin-left:auto" title="'+style.level+'">#'+item.rank+'</strong>';
           container.appendChild(row);
         });
