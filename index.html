@@ -2484,127 +2484,77 @@
 
       async showWordHint() {
         if (PauseController.paused || this.wordHintInProgress) return;
-        const normalizedLevel = 'mittel';
         const button = document.getElementById('kontexto-word-hint');
         const requestedRoundId = this.roundId;
         const requestedTarget = this.targetWord;
-        if (!requestedTarget) return;
+        if (!requestedTarget || !this.dictionaryReady) return;
         this.wordHintInProgress = true;
         if (button) button.disabled = true;
 
+        try {
+          if (this.modelReadyPromise) await this.modelReadyPromise;
+          if (requestedRoundId !== this.roundId || PauseController.paused) return;
 
-        const hintController = new AbortController();
-        this.wordHintController = hintController;
-        let timedOut = false;
-        let hintTimeout;
-        const timeoutPromise = new Promise((_, reject) => {
-          hintTimeout = setTimeout(() => {
-            timedOut = true;
-            hintController.abort();
-            const error = new Error('Wort-Tipp überschritt das Zeitlimit von 20 Sekunden');
-            error.name = 'AbortError';
-            reject(error);
-          }, 20000);
-        });
-
-        const hintOperation = (async () => {
-          if (!this.aiReady && this.modelReadyPromise) await this.modelReadyPromise;
-          if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-
-          const targetKey = requestedTarget.toLocaleLowerCase('de-DE');
           const normalize = value => String(value || '').toLocaleLowerCase('de-DE').trim();
+          const targetKey = normalize(requestedTarget);
+          const blocked = new Set([
+            targetKey,
+            ...this.wordHintCandidatesTried,
+            ...this.guesses.map(item => normalize(item.word)),
+            ...this.pendingGuesses
+          ]);
           const relatedToExistingWord = candidate => {
             const key = normalize(candidate).replace(/[^a-zäöüß]/g, '');
-            const blocked = [requestedTarget, ...this.guesses.map(item => item.word), ...this.pendingGuesses]
+            const words = [requestedTarget, ...this.guesses.map(item => item.word)]
               .map(word => normalize(word).replace(/[^a-zäöüß]/g, ''))
               .filter(word => word.length >= 4);
-            return blocked.some(word => key === word || key.includes(word) || word.includes(key));
+            return words.some(word => key === word || key.includes(word) || word.includes(key));
           };
 
-          let batches = 0;
-          while (!timedOut && batches < 8) {
+          // Tipp-Kandidaten stammen aus der bereits geladenen lokalen Wortliste.
+          // Ihre Nähe wird mit exakt derselben Alltags-Engine wie die Spielwertung berechnet.
+          const candidates = this.dictionaryTargetWords
+            .filter(word => {
+              const key = normalize(word);
+              return key && !blocked.has(key) &&
+                /^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(word) &&
+                !relatedToExistingWord(word);
+            })
+            .map(word => {
+              const similarity = this.calculateEverydaySimilarity(requestedTarget, word);
+              return { word, similarity, rank: this.calculateGuessRank(similarity) };
+            });
+
+          const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
+          const desiredRank = Number.isFinite(bestCurrentRank)
+            ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
+            : 11000;
+
+          const rankedCandidates = candidates
+            .filter(item => item.similarity > 0 &&
+              (!Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank))
+            .sort((a, b) =>
+              Math.abs(a.rank - desiredRank) - Math.abs(b.rank - desiredRank) ||
+              a.rank - b.rank
+            );
+
+          for (const candidate of rankedCandidates) {
             if (requestedRoundId !== this.roundId || PauseController.paused) return;
-            const excluded = [...this.wordHintCandidatesTried];
-            this.guesses.forEach(item => excluded.push(item.word));
-            this.pendingGuesses.forEach(word => excluded.push(word));
-
-            const response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/hints', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ target: requestedTarget, level: normalizedLevel, excluded, count: 20 }),
-              signal: hintController.signal
+            const candidateKey = normalize(candidate.word);
+            this.wordHintCandidatesTried.add(candidateKey);
+            const added = await this.submitGuess(candidate.word, null, {
+              isHint: true,
+              requireBetterRank: true,
+              precomputedSimilarity: candidate.similarity
             });
-            const result = await response.json().catch(() => {
-              throw new Error('Ungültige Antwort vom Tipp-Server');
-            });
-            if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-            if (!response.ok) throw new Error(result.error || 'Tipp-Server Fehler ' + response.status);
-            if (!Array.isArray(result.hints)) throw new Error('Keine gültige Tipp-Liste erhalten');
-
-            const candidates = result.hints
-              .filter(item => item && typeof item.word === 'string' && Number.isFinite(Number(item.similarity)))
-              .map(item => ({
-                word: item.word.trim(),
-                similarity: Math.max(0, Math.min(1, Number(item.similarity)))
-              }))
-              .filter(item => {
-                const key = normalize(item.word);
-                if (!key || !/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(item.word) ||
-                    key === targetKey || relatedToExistingWord(item.word) ||
-                    this.wordHintCandidatesTried.has(key) ||
-                    this.guesses.some(guess => normalize(guess.word) === key) ||
-                    this.pendingGuesses.has(key)) return false;
-                return true;
-              })
-              .map(item => ({ ...item, rank: this.calculateGuessRank(item.similarity) }));
-
-            // Kontexto-inspiriertes Prinzip: Der Tipp zielt auf eine bestimmte
-            // Position relativ zum bisherigen Bestwert statt einfach den ähnlichsten
-            // KI-Kandidaten zu nehmen. Ohne bisherigen Versuch bleibt der Tipp bewusst
-            // weiter hinten im Rangfeld.
-            const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
-            const desiredRank = Number.isFinite(bestCurrentRank)
-              ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
-              : 11000;
-
-            const rankedCandidates = candidates
-              .filter(item => !Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank)
-              .sort((a, b) =>
-                Math.abs(a.rank - desiredRank) - Math.abs(b.rank - desiredRank) ||
-                a.rank - b.rank
-              );
-
-            for (const candidate of rankedCandidates) {
-              if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-              const candidateKey = normalize(candidate.word);
-              this.wordHintCandidatesTried.add(candidateKey);
-              const added = await this.submitGuess(candidate.word, null, {
-                isHint: true,
-                requireBetterRank: true,
-                precomputedSimilarity: candidate.similarity
-              });
-              if (added) return;
-            }
-
-            batches++;
-            if (!candidates.length && result.hints.length === 0) break;
+            if (added) return;
           }
-          // Wenn kein passender Tipp gefunden wird, bleibt die Spieloberfläche unverändert.
-        })();
-
-        try {
-          await Promise.race([hintOperation, timeoutPromise]);
+          // Kein passender lokaler Kandidat: keine künstliche Wertung erzeugen.
         } catch (error) {
-          if (error && error.name !== 'AbortError') console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:', error);
-          // Keine Fehlermeldung und kein Tooltip im Spiel; der Button wird unten still freigegeben.
+          console.warn('[WORDFINITY] Lokaler Wort-Tipp fehlgeschlagen:', error);
         } finally {
-          clearTimeout(hintTimeout);
-          // Ein abgebrochener Tipp aus einer älteren Runde darf keinen neueren Tipp entsperren.
-          if (this.wordHintController === hintController) {
-            this.wordHintController = null;
-            this.wordHintInProgress = false;
-            if (requestedRoundId === this.roundId && button) button.disabled = false;
-          }
+          this.wordHintInProgress = false;
+          if (requestedRoundId === this.roundId && button) button.disabled = false;
         }
       },
       async pickNewTarget() {
