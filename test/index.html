@@ -1341,10 +1341,10 @@
           </div>
           <div class="model-loader-bar"><div class="model-loader-fill" id="wordfinity-progress-fill" style="width:100%"></div></div>
         </div>
-        <div class="input-box">
+        <form class="input-box" id="wordfinity-entry" autocomplete="off">
           <input type="text" class="game-input" id="wordfinity-input" maxlength="60" placeholder="Dein Wort..." aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
-          <button type="button" class="btn-action" id="wordfinity-submit" disabled>Tippen</button>
-        </div>
+          <button type="submit" class="btn-action" id="wordfinity-submit" disabled>Tippen</button>
+        </form>
         <div class="wordfinity-feedback" id="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
           <span class="kontexto-inline-hints">
