@@ -2721,6 +2721,61 @@
         return Number(result.similarity);
       },
 
+      calculateEverydaySimilarity(target, guess) {
+        const norm = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();
+        const a = norm(target), b = norm(guess);
+        if (!a || !b) return 0;
+        if (a === b) return 1;
+        const pairKey = (x, y) => [x, y].sort().join('|');
+        const scorePairs = new Map();
+        const addPairs = (score, pairs) => pairs.forEach(([x,y]) => scorePairs.set(pairKey(norm(x), norm(y)), score));
+        // Bewertungsmaßstab der alltagsbezogenen Wordfinity-Logik:
+        // 95-99 Synonyme/klare Ober-Unterbegriffe; 85-94 sehr enge Alltags-/Teil-Ganzes-Beziehung;
+        // 75-84 typische direkte Kombination; 60-74 breite Kategorie/typische Assoziation.
+        addPairs(.97, [
+          ['Einzelkind','Kind'],['Hund','Tier'],['Katze','Tier'],['Pferd','Tier'],
+          ['Apfel','Obst'],['Rose','Blume'],['Tulpe','Blume'],['Eiche','Baum'],
+          ['Auto','Fahrzeug'],['Fahrrad','Fahrzeug'],['Messer','Besteck']
+        ]);
+        addPairs(.91, [
+          ['Baum','Wald'],['Stuhl','Tisch'],['Hund','Katze'],['Auto','Reifen'],
+          ['Teller','Besteck'],['Kühlschrank','Küche'],['Herd','Pfanne'],
+          ['Topf','Suppe'],['Messer','Gabel'],['Messer','Löffel'],
+          ['Backofen','Herd'],['Baum','Gras'],['Baum','Blume']
+        ]);
+        addPairs(.84, [
+          ['Topf','Herd'],['Teller','Essen'],['Kühlschrank','Milch'],
+          ['Backofen','Pizza'],['Auto','Straße'],['Biene','Blume'],
+          ['Biene','Honig'],['Zahnbürste','Zahnpasta'],['Brot','Butter'],
+          ['Brot','Toaster'],['Hammer','Nagel'],['Schere','Papier'],
+          ['Schere','Stoff'],['Regenschirm','Regen'],['Laptop','Tastatur'],
+          ['Kühlschrank','Milch'],['Kühlschrank','Küche']
+        ]);
+        addPairs(.70, [
+          ['Apfel','Kuchen'],['Laptop','Internet'],['Auto','Benzin'],
+          ['Hund','Leine'],['Katze','Katzenfutter'],['Badezimmer','Zahnbürste'],
+          ['Küche','Herd'],['Küche','Backofen'],['Wald','Blume'],
+          ['Kind','Schule'],['Kind','Spielzeug'],['Kind','Eltern']
+        ]);
+        const direct = scorePairs.get(pairKey(a,b));
+        if (Number.isFinite(direct)) return direct;
+
+        // Erkenne eindeutige Komposita-/Bestandteilbeziehungen, ohne beliebige
+        // Teilzeichenfolgen als starke Ähnlichkeit zu werten.
+        const compound = (x,y) => x.length >= 4 && y.length >= 4 && (x.includes(y) || y.includes(x));
+        if (compound(a.replace(/ /g,''), b.replace(/ /g,''))) return .78;
+
+        // Wörter derselben kuratierten Wörterbuchkategorie erhalten eine moderate,
+        // niemals automatisch sehr hohe Alltagsnähe.
+        const ca = this.categoryAssignments.get(a), cb = this.categoryAssignments.get(b);
+        if (ca && cb && ca === cb) return .64;
+
+        // Gemeinsame Wortbestandteile sind nur ein schwaches Signal.
+        const tokensA = a.split(' '), tokensB = b.split(' ');
+        if (tokensA.some(token => token.length > 3 && tokensB.includes(token))) return .48;
+        return .02;
+      },
+
       calculateGuessRank(similarity) {
         // Ausgewogene, deterministische Rangskala:
         // Gleiche semantische Ähnlichkeit ergibt immer denselben Rang –
@@ -2763,31 +2818,13 @@
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
           return true;
         }
-        let sim=0;
-        let precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
-        let precomputedSimilarity = Number.isFinite(options.precomputedSimilarity) ? Number(options.precomputedSimilarity) : null;
-        if (precomputedRank === null) {
-          const storedRank = await this.getPrecomputedRank(this.targetWord, cleanWord);
-          if (storedRank) {
-            precomputedRank = storedRank.rank;
-            precomputedSimilarity = storedRank.similarity;
-          }
-        }
-        if (precomputedRank !== null) {
-          sim = precomputedSimilarity !== null ? precomputedSimilarity : 1 - ((precomputedRank - 1) / 2486);
-        } else if(Number.isFinite(options.precomputedSimilarity))sim=options.precomputedSimilarity;
-        else{
-          try{sim=await this.getSimilarity(this.targetWord,cleanWord);}
-          catch(error){
-            console.warn('[WORDFINITY] Cloudflare KI fehlgeschlagen; lokaler Ersatzwert:',error);
-            const bigrams=value=>{const out=new Set(),v=value.toLocaleLowerCase('de-DE');for(let i=0;i<v.length-1;i++)out.add(v.slice(i,i+2));return out;};
-            const a=new Set([...this.targetWord.toLocaleLowerCase('de-DE')]),b=new Set([...cleanWord.toLocaleLowerCase('de-DE')]);
-            const union=new Set([...a,...b]),overlap=[...a].filter(ch=>b.has(ch)).length/Math.max(1,union.size);
-            const pa=bigrams(this.targetWord),pb=bigrams(cleanWord),pu=new Set([...pa,...pb]);
-            const pairOverlap=[...pa].filter(pair=>pb.has(pair)).length/Math.max(1,pu.size);
-            sim=(overlap*.35+pairOverlap*.65);
-          }
-        }
+        // Lokale Alltags-Engine: keine Cloudflare-/KI-Anfrage und kein Server-Ranking
+        // für reguläre Spielzüge. Die bisherige Serverbewertung bleibt für Vergleich/
+        // Rückfall im Code erhalten, wird hier aber bewusst nicht aufgerufen.
+        const sim = Number.isFinite(options.precomputedSimilarity)
+          ? Math.max(0, Math.min(1, Number(options.precomputedSimilarity)))
+          : this.calculateEverydaySimilarity(this.targetWord, cleanWord);
+        const precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
         if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, sim));
         // Derselbe Rangrechner wird auch für Tipp-Kandidaten vorab verwendet.
