@@ -1151,7 +1151,7 @@
       <div class="kontexto-wrap">
         <div class="model-loader" id="kontexto-loader">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">Cloudflare KI wird verbunden...</span>
+            <span id="model-status-text">Horizon-Modell wird geladen …</span>
             <span id="model-status-pct">0%</span>
           </div>
           <div class="model-loader-bar">
@@ -2202,6 +2202,9 @@
       initialized: false,
       aiReady: false,
       modelReadyPromise: null,
+      horizonTokenizer: null,
+      horizonModel: null,
+      horizonModelId: 'Horizon-Labs/multilingual-embedding-small',
       targetWord: '',
       embeddingCache: new Map(),
       guesses: [],
@@ -2588,23 +2591,99 @@
         PlayfinityPlayerPresence.sendPresence();
       },
 
-      async initModel() {
-        const loader=document.getElementById('kontexto-loader'),statusText=document.getElementById('model-status-text');
-        const statusPct=document.getElementById('model-status-pct'),fill=document.getElementById('model-progress-fill');
-        if(statusText)statusText.textContent='Verbinde mit Cloudflare KI …';
-        if(statusPct)statusPct.textContent='';
-        if(fill)fill.style.width='100%';
-        try{
-          await this.getSimilarity(this.targetWord,this.targetWord);
-          this.aiReady=true;
-          if(statusText)statusText.textContent='Cloudflare KI verbunden';
-        }catch(error){
-          console.warn('[WORDFINITY] Cloudflare KI nicht erreichbar:',error);
-          this.aiReady=false;
-          if(statusText)statusText.textContent='Cloudflare KI nicht erreichbar – lokaler Ersatzmodus aktiv.';
+      async loadHorizonModel() {
+        if (this.horizonTokenizer && this.horizonModel) return;
+        if (!this.modelReadyPromise) {
+          this.modelReadyPromise = (async () => {
+            const statusText = document.getElementById('model-status-text');
+            const statusPct = document.getElementById('model-status-pct');
+            const fill = document.getElementById('model-progress-fill');
+            const updateProgress = (event) => {
+              if (!event || !statusText) return;
+              if (event.status === 'progress' && Number.isFinite(Number(event.progress))) {
+                const pct = Math.max(0, Math.min(100, Math.round(Number(event.progress))));
+                statusText.textContent = 'Horizon-Modell wird geladen …';
+                if (statusPct) statusPct.textContent = pct + '%';
+                if (fill) fill.style.width = pct + '%';
+              } else if (event.status === 'initiate') {
+                statusText.textContent = 'Lade ' + (event.name || 'Horizon-Modell') + ' …';
+              } else if (event.status === 'done') {
+                statusText.textContent = 'Horizon-Modell wird vorbereitet …';
+              }
+            };
+            if (statusText) statusText.textContent = 'Transformers.js wird geladen …';
+            const { AutoTokenizer, AutoModel } = await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3');
+            this.horizonTokenizer = await AutoTokenizer.from_pretrained(this.horizonModelId, { progress_callback: updateProgress });
+            this.horizonModel = await AutoModel.from_pretrained(this.horizonModelId, {
+              dtype: 'q8',
+              progress_callback: updateProgress
+            });
+            if (statusText) statusText.textContent = 'Horizon-Modell bereit';
+            if (statusPct) statusPct.textContent = '100%';
+            if (fill) fill.style.width = '100%';
+          })();
         }
-        if(loader)loader.style.display='none';
-        this.roundLocked=false;
+        try {
+          await this.modelReadyPromise;
+        } catch (error) {
+          this.modelReadyPromise = null;
+          this.horizonTokenizer = null;
+          this.horizonModel = null;
+          throw error;
+        }
+      },
+
+      async embedHorizonBatch(words) {
+        await this.loadHorizonModel();
+        const tokens = await this.horizonTokenizer(words, { padding: true, truncation: true, max_length: 64 });
+        const output = await this.horizonModel(tokens);
+        const tensor = output?.sentence_embedding;
+        if (!tensor?.data || !tensor?.dims || tensor.dims.length !== 2 || tensor.dims[0] !== words.length) {
+          throw new Error('Horizon hat keine gültigen Satz-Embeddings geliefert.');
+        }
+        const dimension = tensor.dims[1];
+        return words.map((_, index) => Array.from(tensor.data.slice(index * dimension, (index + 1) * dimension)));
+      },
+
+      cosineSimilarity(a, b) {
+        let dot = 0, normA = 0, normB = 0;
+        for (let i = 0; i < Math.min(a.length, b.length); i++) {
+          dot += a[i] * b[i];
+          normA += a[i] * a[i];
+          normB += b[i] * b[i];
+        }
+        return normA && normB ? dot / (Math.sqrt(normA) * Math.sqrt(normB)) : 0;
+      },
+
+      async getHorizonEmbedding(word) {
+        const key = String(word || '').toLocaleLowerCase('de-DE').trim();
+        if (this.embeddingCache.has(key)) return this.embeddingCache.get(key);
+        const [embedding] = await this.embedHorizonBatch([String(word || '')]);
+        this.embeddingCache.set(key, embedding);
+        while (this.embeddingCache.size > 256) this.embeddingCache.delete(this.embeddingCache.keys().next().value);
+        return embedding;
+      },
+
+      async initModel() {
+        const loader = document.getElementById('kontexto-loader');
+        const statusText = document.getElementById('model-status-text');
+        const statusPct = document.getElementById('model-status-pct');
+        const fill = document.getElementById('model-progress-fill');
+        if (statusText) statusText.textContent = 'Horizon-Modell wird vorbereitet …';
+        if (statusPct) statusPct.textContent = '';
+        if (fill) fill.style.width = '0%';
+        try {
+          await this.loadHorizonModel();
+          await this.getSimilarity(this.targetWord, this.targetWord);
+          this.aiReady = true;
+          if (statusText) statusText.textContent = 'Horizon-Modell lokal bereit';
+        } catch (error) {
+          console.error('[WORDFINITY] Horizon konnte nicht geladen werden:', error);
+          this.aiReady = false;
+          if (statusText) statusText.textContent = 'Horizon konnte nicht geladen werden: ' + (error?.message || 'Unbekannter Fehler');
+        }
+        if (loader) loader.style.display = 'none';
+        this.roundLocked = false;
       },
 
       async getLiveRanks(target, guesses) {
@@ -2612,38 +2691,38 @@
         let scorePromise = this.liveCandidateScoreCache.get(targetKey);
         if (!scorePromise) {
           scorePromise = (async () => {
+            const loader = document.getElementById('kontexto-loader');
+            if (loader) loader.style.display = 'flex';
+            try {
+              await this.loadHorizonModel();
             const candidates = this.dictionaryTargetWords;
-            const chunkSize = 90;
-            const chunks = [];
-            for (let i = 0; i < candidates.length; i += chunkSize) {
-              chunks.push(candidates.slice(i, i + chunkSize));
-            }
+            const targetEmbedding = await this.getHorizonEmbedding(target);
             const scores = [];
-            let nextChunk = 0;
-            const workers = Array.from({ length: 4 }, async () => {
-              while (true) {
-                const index = nextChunk++;
-                if (index >= chunks.length) return;
-                const response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/scores', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ target, candidates: chunks[index] })
+            const chunkSize = 128;
+            for (let offset = 0; offset < candidates.length; offset += chunkSize) {
+              const chunk = candidates.slice(offset, offset + chunkSize);
+              const embeddings = await this.embedHorizonBatch(chunk);
+              for (let i = 0; i < chunk.length; i++) {
+                scores.push({
+                  word: chunk[i],
+                  similarity: this.cosineSimilarity(targetEmbedding, embeddings[i])
                 });
-                const result = await response.json().catch(() => {
-                  throw new Error('Ungültige Antwort beim semantischen Wortvergleich');
-                });
-                if (!response.ok) throw new Error(result.error || 'Semantikserver Fehler ' + response.status);
-                if (!Array.isArray(result.scores) || result.scores.length !== chunks[index].length ||
-                    result.scores.some(item => !Number.isFinite(Number(item.similarity)))) {
-                  throw new Error('Der Semantikserver hat unvollständige Vergleichswerte geliefert');
-                }
-                scores.push(...result.scores);
-                const status = document.getElementById('model-status-text');
-                if (status) status.textContent = 'BGE-M3 vergleicht Wortliste live: ' + scores.length + ' / ' + candidates.length;
               }
-            });
-            await Promise.all(workers);
-            return scores;
+              const status = document.getElementById('model-status-text');
+              if (status) status.textContent = 'Horizon bewertet Wortliste lokal: ' +
+                Math.min(offset + chunk.length, candidates.length).toLocaleString('de-DE') + ' / ' +
+                candidates.length.toLocaleString('de-DE');
+              const pct = candidates.length ? Math.round(Math.min(offset + chunk.length, candidates.length) / candidates.length * 100) : 100;
+              const statusPct = document.getElementById('model-status-pct');
+              const fill = document.getElementById('model-progress-fill');
+              if (statusPct) statusPct.textContent = pct + '%';
+              if (fill) fill.style.width = pct + '%';
+              if (offset + chunkSize < candidates.length) await new Promise(resolve => setTimeout(resolve, 0));
+            }
+              return scores;
+            } finally {
+              if (loader) loader.style.display = 'none';
+            }
           })();
           this.liveCandidateScoreCache.set(targetKey, scorePromise);
           while (this.liveCandidateScoreCache.size > 2) {
@@ -2661,7 +2740,6 @@
           const guessSimilarity = Number.isFinite(Number(item.similarity))
             ? Number(item.similarity)
             : missingScores[missingIndex++];
-          const guessKey = String(item.word || '').toLocaleLowerCase('de-DE');
           let rank = 1;
           for (const candidate of candidateScores) {
             const candidateSimilarity = Number(candidate.similarity);
@@ -2673,15 +2751,9 @@
         });
       },
 
-      async getSimilarity(target,guess){
-        const response=await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/similarity',{
-          method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target,guess})
-        });
-        let result;
-        try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom KI-Server');}
-        if(!response.ok)throw new Error(result.error||'KI-Server Fehler '+response.status);
-        if(!Number.isFinite(Number(result.similarity)))throw new Error('Kein Ähnlichkeitswert vom KI-Server');
-        return Number(result.similarity);
+      async getSimilarity(target, guess) {
+        const [targetEmbedding, guessEmbedding] = await this.embedHorizonBatch([String(target || ''), String(guess || '')]);
+        return this.cosineSimilarity(targetEmbedding, guessEmbedding);
       },
 
       async submitGuess(word, player = null, options = {}) {
