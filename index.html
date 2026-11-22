@@ -2716,7 +2716,7 @@
       },
 
       calculateEverydaySimilarity(target, guess) {
-        const norm = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();
+        const norm = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/\\p{M}/gu, '').replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();
         const a = norm(target), b = norm(guess);
         if (!a || !b) return 0;
         if (a === b) return 1;
