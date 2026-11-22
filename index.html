@@ -2783,13 +2783,49 @@
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
           return true;
         }
-        // Lokale Alltags-Engine: keine Cloudflare-/KI-Anfrage und kein Server-Ranking
-        // für reguläre Spielzüge. Die bisherige Serverbewertung bleibt für Vergleich/
-        // Rückfall im Code erhalten, wird hier aber bewusst nicht aufgerufen.
-        const sim = Number.isFinite(options.precomputedSimilarity)
-          ? Math.max(0, Math.min(1, Number(options.precomputedSimilarity)))
-          : this.calculateEverydaySimilarity(this.targetWord, cleanWord);
-        const precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
+        // Primär die semantische Wordfinity-Bewertung verwenden. Gespeicherte
+        // Ränge sind kostenlos; ansonsten wird die Similarity-API abgefragt.
+        let sim = 0;
+        let precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
+        let precomputedSimilarity = Number.isFinite(options.precomputedSimilarity)
+          ? Math.max(0, Math.min(1, Number(options.precomputedSimilarity))) : null;
+        if (precomputedRank === null) {
+          const storedRank = await this.getPrecomputedRank(this.targetWord, cleanWord);
+          if (storedRank) {
+            precomputedRank = storedRank.rank;
+            precomputedSimilarity = storedRank.similarity;
+          }
+        }
+        if (precomputedRank !== null) {
+          sim = precomputedSimilarity !== null ? precomputedSimilarity : 1 - ((precomputedRank - 1) / 2486);
+        } else if (precomputedSimilarity !== null) {
+          sim = precomputedSimilarity;
+        } else {
+          try {
+            sim = await this.getSimilarity(this.targetWord, cleanWord);
+          } catch (error) {
+            // Bei ausgeschöpftem Cloudflare-Kontingent niemals pauschal 0,02
+            // vergeben: ein transparenter lokaler Zeichen-/Bigramm-Fallback
+            // hält die Rangfolge wenigstens differenziert.
+            console.warn('[WORDFINITY] Semantik-API nicht verfügbar; lokaler Fallback:', error);
+            const normalize = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\\u0300-\\u036f]/g, '');
+            const a = normalize(this.targetWord), b = normalize(cleanWord);
+            const grams = value => {
+              const out = new Set();
+              for (let i = 0; i < value.length - 1; i++) out.add(value.slice(i, i + 2));
+              return out;
+            };
+            const ga = grams(a), gb = grams(b);
+            const union = new Set([...ga, ...gb]);
+            const bigramScore = union.size ? [...ga].filter(x => gb.has(x)).length / union.size : 0;
+            const charsA = new Set(a), charsB = new Set(b);
+            const charsUnion = new Set([...charsA, ...charsB]);
+            const charScore = charsUnion.size ? [...charsA].filter(x => charsB.has(x)).length / charsUnion.size : 0;
+            sim = Math.max(0, Math.min(1, bigramScore * 0.75 + charScore * 0.25));
+            // Explizite Alltagsbeziehungen bleiben als ergänzendes Signal erhalten.
+            sim = Math.max(sim, this.calculateEverydaySimilarity(this.targetWord, cleanWord));
+          }
+        }
         if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, sim));
         // Derselbe Rangrechner wird auch für Tipp-Kandidaten vorab verwendet.
