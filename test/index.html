@@ -2286,18 +2286,25 @@
           const submittedWord = wordInput.value.trim();
           if (!submittedWord) return;
 
-          // Eingabefeld sofort freigeben, damit das nächste Wort direkt getippt
-          // werden kann, während die semantische Bewertung im Hintergrund läuft.
+          // Eingaben werden nacheinander verarbeitet. So können ein schneller
+          // zweiter Klick und ein laufender Tipp keine Rang-/Runden-Race-Condition
+          // erzeugen. Das Eingabefeld bleibt währenddessen für weiteres Tippen frei.
           wordInput.value = '';
-          try {
-            const accepted = await this.submitGuess(submittedWord);
-            // Bei Ablehnung/Fehler das Wort nur zurücklegen, wenn inzwischen
-            // kein neues Wort eingegeben wurde.
-            if (!accepted && !wordInput.value.trim()) wordInput.value = submittedWord;
-          } catch (error) {
-            console.error('[WORDFINITY] Eingabe konnte nicht verarbeitet werden:', error);
-            if (!wordInput.value.trim()) wordInput.value = submittedWord;
-          }
+          const submittedRoundId = this.roundId;
+          this.inputSubmissionQueue = (this.inputSubmissionQueue || Promise.resolve())
+            .then(async () => {
+              if (submittedRoundId !== this.roundId) return;
+              const accepted = await this.submitGuess(submittedWord);
+              if (!accepted && submittedRoundId === this.roundId && !wordInput.value.trim()) {
+                wordInput.value = submittedWord;
+              }
+            })
+            .catch(error => {
+              console.error('[WORDFINITY] Eingabe konnte nicht verarbeitet werden:', error);
+              if (submittedRoundId === this.roundId && !wordInput.value.trim()) {
+                wordInput.value = submittedWord;
+              }
+            });
         };
         submitButton.onclick = submitFromInput;
 
