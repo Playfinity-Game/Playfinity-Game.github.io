@@ -1151,7 +1151,7 @@
       <div class="kontexto-wrap">
         <div class="model-loader" id="kontexto-loader">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">BGE-M3-Server wird verbunden …</span>
+            <span id="model-status-text">Lokales Sprachmodell wird geladen …</span>
             <span id="model-status-pct">0%</span>
           </div>
           <div class="model-loader-bar">
@@ -2202,6 +2202,9 @@
       initialized: false,
       aiReady: false,
       modelReadyPromise: null,
+      featureExtractor: null,
+      embeddingCache: new Map(),
+      modelName: 'Xenova/paraphrase-multilingual-MiniLM-L12-v2',
       targetWord: '',
       guesses: [],
       roundLocked: false,
@@ -2304,41 +2307,11 @@
         document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
-      async inferCategory(word, signal = null) {
-        const key = String(word || '').normalize('NFC').trim();
-        const normalizedKey = key.toLocaleLowerCase('de-DE');
-        // Die Kategorie aus der aktiven Wortliste hat Vorrang vor einer KI-Schätzung.
-        const assignedCategory = this.categoryAssignments.get(normalizedKey);
-        if (assignedCategory) return assignedCategory;
-        // Nur Wörter außerhalb der Wortliste werden ersatzweise von der KI kategorisiert.
-        try {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 25000);
-          let response;
-          try {
-            response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/category', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ target: key }),
-              signal: signal || controller.signal
-            });
-          } finally {
-            clearTimeout(timeout);
-          }
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok) throw new Error(result.error || 'Kategorie-KI Fehler ' + response.status);
-          const generatedCategory = typeof result.category === 'string' ? result.category.trim() : '';
-          if (!generatedCategory || generatedCategory.length > 48 || !/^[A-Za-zÄÖÜäöüß0-9 &+()/,-]+$/.test(generatedCategory)) {
-            throw new Error('Die KI hat keine gültige Kategorie geliefert');
-          }
-          this.categoryAssignments.set(normalizedKey, generatedCategory);
-          return generatedCategory;
-        } catch (error) {
-          const detail = error && error.name === 'AbortError'
-            ? 'Die Kategorie-KI antwortet zu langsam.'
-            : (error && error.message ? error.message : 'Unbekannter KI-Fehler');
-          throw new Error('Kategorie konnte nicht erstellt werden: ' + detail);
-        }
+      async inferCategory(word) {
+        const key = String(word || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        const category = this.categoryAssignments.get(key);
+        if (!category) throw new Error('Für dieses Wort ist keine lokale Kategorie hinterlegt.');
+        return category;
       },
 
       async showCategoryHint() {
@@ -2383,143 +2356,40 @@
 
       async showWordHint() {
         if (PauseController.paused || this.wordHintInProgress) return;
-        const normalizedLevel = 'mittel';
         const button = document.getElementById('kontexto-word-hint');
-        const requestedRoundId = this.roundId;
-        const requestedTarget = this.targetWord;
+        const requestedRoundId = this.roundId, requestedTarget = this.targetWord;
         if (!requestedTarget) return;
         this.wordHintInProgress = true;
         if (button) button.disabled = true;
-
-
-        const hintController = new AbortController();
-        this.wordHintController = hintController;
-        let timedOut = false;
-        let hintTimeout;
-        const timeoutPromise = new Promise((_, reject) => {
-          hintTimeout = setTimeout(() => {
-            timedOut = true;
-            hintController.abort();
-            const error = new Error('Wort-Tipp überschritt das Zeitlimit von 20 Sekunden');
-            error.name = 'AbortError';
-            reject(error);
-          }, 20000);
-        });
-
-        const hintOperation = (async () => {
-          if (!this.aiReady && this.modelReadyPromise) await this.modelReadyPromise;
-          if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-
-          const targetKey = requestedTarget.toLocaleLowerCase('de-DE');
-          const normalize = value => String(value || '').toLocaleLowerCase('de-DE').trim();
-          const relatedToExistingWord = candidate => {
-            const key = normalize(candidate).replace(/[^a-zäöüß]/g, '');
-            const blocked = [requestedTarget, ...this.guesses.map(item => item.word), ...this.pendingGuesses]
-              .map(word => normalize(word).replace(/[^a-zäöüß]/g, ''))
-              .filter(word => word.length >= 4);
-            return blocked.some(word => key === word || key.includes(word) || word.includes(key));
-          };
-
-          let batches = 0;
-          while (!timedOut && batches < 8) {
-            if (requestedRoundId !== this.roundId || PauseController.paused) return;
-            const excluded = [...this.wordHintCandidatesTried];
-            this.guesses.forEach(item => excluded.push(item.word));
-            this.pendingGuesses.forEach(word => excluded.push(word));
-
-            const response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/hints', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ target: requestedTarget, level: normalizedLevel, excluded, count: 20 }),
-              signal: hintController.signal
-            });
-            const result = await response.json().catch(() => {
-              throw new Error('Ungültige Antwort vom Tipp-Server');
-            });
-            if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-            if (!response.ok) throw new Error(result.error || 'Tipp-Server Fehler ' + response.status);
-            if (!Array.isArray(result.hints)) throw new Error('Keine gültige Tipp-Liste erhalten');
-
-            const candidates = result.hints
-              .filter(item => item && typeof item.word === 'string' && Number.isFinite(Number(item.similarity)))
-              .map(item => ({
-                word: item.word.trim(),
-                similarity: Math.max(0, Math.min(1, Number(item.similarity)))
-              }))
-              .filter(item => {
-                const key = normalize(item.word);
-                if (!key || !/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(item.word) ||
-                    key === targetKey || relatedToExistingWord(item.word) ||
-                    this.wordHintCandidatesTried.has(key) ||
-                    this.guesses.some(guess => normalize(guess.word) === key) ||
-                    this.pendingGuesses.has(key)) return false;
-                return true;
-              });
-
-            const liveRanks = candidates.length
-              ? await this.getLiveRanks(requestedTarget, candidates.map(item => ({
-                  word: item.word,
-                  similarity: item.similarity
-                })))
-              : [];
-            const rankByWord = new Map(liveRanks.map(item => [normalize(item.word), item]));
-            const rankedCandidates = candidates
-              .map(item => {
-                const ranked = rankByWord.get(normalize(item.word));
-                return ranked ? { ...item, rank: Number(ranked.rank) } : null;
-              })
-              .filter(Boolean);
-
-            // Kontexto-inspiriertes Prinzip: Der Tipp zielt auf eine bestimmte
-            // Position relativ zum bisherigen Bestwert statt einfach den ähnlichsten
-            // KI-Kandidaten zu nehmen. Ohne bisherigen Versuch bleibt der Tipp bewusst
-            // weiter hinten im Rangfeld.
-            const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
-            const desiredRank = Number.isFinite(bestCurrentRank)
-              ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
-              : Math.max(2, Math.floor(this.dictionaryTargetWords.length * 0.72));
-
-            const rankedCandidatesForHint = rankedCandidates
-              .filter(item => !Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank)
-              .sort((a, b) =>
-                Math.abs(a.rank - desiredRank) - Math.abs(b.rank - desiredRank) ||
-                a.rank - b.rank
-              );
-
-            for (const candidate of rankedCandidatesForHint) {
-              if (timedOut || requestedRoundId !== this.roundId || PauseController.paused) return;
-              const candidateKey = normalize(candidate.word);
-              this.wordHintCandidatesTried.add(candidateKey);
-              const added = await this.submitGuess(candidate.word, null, {
-                isHint: true,
-                requireBetterRank: true,
-                precomputedSimilarity: candidate.similarity,
-                precomputedRank: candidate.rank
-              });
-              if (added) return;
-            }
-
-            batches++;
-            if (!candidates.length && result.hints.length === 0) break;
-          }
-          // Wenn kein passender Tipp gefunden wird, bleibt die Spieloberfläche unverändert.
-        })();
-
         try {
-          await Promise.race([hintOperation, timeoutPromise]);
-        } catch (error) {
-          if (error && error.name !== 'AbortError') console.warn('[WORDFINITY] KI-Wort-Tipp fehlgeschlagen:', error);
-          // Keine Fehlermeldung und kein Tooltip im Spiel; der Button wird unten still freigegeben.
+          if (!this.aiReady && this.modelReadyPromise) await this.modelReadyPromise;
+          if (requestedRoundId !== this.roundId || PauseController.paused) return;
+          const scores = await this.getLiveCandidateScores(requestedTarget);
+          const excluded = new Set([requestedTarget.toLocaleLowerCase('de-DE'),
+            ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')), ...this.pendingGuesses]);
+          const ranked = [...scores].sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'))
+            .map((item,index)=>({...item,rank:index+1}));
+          const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
+          const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
+          const options = ranked.filter(item => item.rank<bestRank &&
+            !excluded.has(item.word.toLocaleLowerCase('de-DE')) &&
+            !this.wordHintCandidatesTried.has(item.word.toLocaleLowerCase('de-DE')));
+          if (!options.length) return;
+          const candidate = options.reduce((best,item)=>!best || Math.abs(item.rank-desiredRank)<Math.abs(best.rank-desiredRank)?item:best,null);
+          if (!candidate || requestedRoundId!==this.roundId || PauseController.paused) return;
+          this.wordHintCandidatesTried.add(candidate.word.toLocaleLowerCase('de-DE'));
+          await this.submitGuess(candidate.word,null,{isHint:true,requireBetterRank:true,
+            precomputedSimilarity:candidate.similarity,precomputedRank:candidate.rank});
+        } catch(error) {
+          console.warn('[WORDFINITY] Lokaler Wort-Tipp fehlgeschlagen:',error);
+          const status=document.getElementById('model-status-text');
+          if(status)status.textContent='Lokaler Wort-Tipp konnte nicht berechnet werden.';
         } finally {
-          clearTimeout(hintTimeout);
-          // Ein abgebrochener Tipp aus einer älteren Runde darf keinen neueren Tipp entsperren.
-          if (this.wordHintController === hintController) {
-            this.wordHintController = null;
-            this.wordHintInProgress = false;
-            if (requestedRoundId === this.roundId && button) button.disabled = false;
-          }
+          this.wordHintInProgress=false;
+          if(requestedRoundId===this.roundId && button)button.disabled=false;
         }
       },
+
       async pickNewTarget() {
         PauseController.clear('kontexto','roundTimer');
         // Laufende Tipp-Anfragen der vorherigen Runde beenden, damit die neue Runde
@@ -2587,111 +2457,111 @@
       },
 
       async initModel() {
-        const loader = document.getElementById('kontexto-loader');
-        const statusText = document.getElementById('model-status-text');
-        if (statusText) statusText.textContent = 'Verbinde mit dem BGE-M3-Server …';
+        const loader=document.getElementById('kontexto-loader');
+        const status=document.getElementById('model-status-text');
+        const pct=document.getElementById('model-status-pct');
+        if(loader)loader.style.display='flex';
+        if(status)status.textContent='Transformers.js wird geladen …';
         try {
-          // Der Browser lädt kein Modell. Die Embeddings werden serverseitig mit BGE-M3 berechnet.
-          await this.getSimilarity(this.targetWord, this.targetWord);
-          this.aiReady = true;
-          if (statusText) statusText.textContent = 'BGE-M3-Server bereit · Alltagsregeln aktiviert';
-        } catch (error) {
-          console.error('[WORDFINITY] BGE-M3-Server nicht erreichbar:', error);
-          this.aiReady = false;
-          if (statusText) statusText.textContent = 'BGE-M3-Server nicht erreichbar: ' + (error?.message || 'Bitte erneut versuchen.');
+          const {pipeline,env}=await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2');
+          env.allowLocalModels=false; env.useBrowserCache=true;
+          if(status)status.textContent='Mehrsprachiges Modell wird geladen …';
+          this.featureExtractor=await pipeline('feature-extraction',this.modelName,{
+            dtype:'q8',
+            progress_callback:progress=>{
+              if(!progress||!status)return;
+              if(progress.status==='progress'&&Number.isFinite(progress.progress)){
+                status.textContent='Modell-Download: '+Math.round(progress.progress)+'%';
+                if(pct)pct.textContent=Math.round(progress.progress)+'%';
+              } else if(progress.status==='downloading') status.textContent='Modell-Dateien werden heruntergeladen …';
+              else if(progress.status==='ready') status.textContent='Modell wird initialisiert …';
+            }
+          });
+          this.embeddingCache.clear();
+          await this.getEmbedding(this.targetWord);
+          this.aiReady=true;
+          if(status)status.textContent='Transformers.js bereit · Alltagsregeln aktiviert';
+          if(pct)pct.textContent='100%';
+          const fill=document.getElementById('model-progress-fill'); if(fill)fill.style.width='100%';
+        } catch(error) {
+          console.error('[WORDFINITY] Transformers.js konnte nicht geladen werden:',error);
+          this.aiReady=false;
+          if(status)status.textContent='Lokales Modell konnte nicht geladen werden: '+(error?.message||'Bitte erneut versuchen.');
+        } finally {
+          if(loader)loader.style.display='none';
+          this.roundLocked=false;
         }
-        if (loader) loader.style.display = 'none';
-        this.roundLocked = false;
       },
 
-      async getLiveRanks(target, guesses) {
-        const targetKey = String(target || '').toLocaleLowerCase('de-DE').trim();
-        let scorePromise = this.liveCandidateScoreCache.get(targetKey);
-        if (!scorePromise) {
-          scorePromise = (async () => {
-            const loader = document.getElementById('kontexto-loader');
-            if (loader) loader.style.display = 'flex';
+      async getEmbedding(word) {
+        if(!this.featureExtractor)throw new Error('Transformers.js-Modell ist noch nicht bereit.');
+        const key=String(word||'').trim().toLocaleLowerCase('de-DE');
+        if(this.embeddingCache.has(key))return this.embeddingCache.get(key);
+        const output=await this.featureExtractor([String(word)],{pooling:'mean',normalize:true});
+        const rows=output.tolist(), vector=Array.isArray(rows[0])?rows[0]:rows;
+        this.embeddingCache.set(key,vector);
+        while(this.embeddingCache.size>2500)this.embeddingCache.delete(this.embeddingCache.keys().next().value);
+        return vector;
+      },
+
+      async getLiveCandidateScores(target) {
+        const key=String(target||'').toLocaleLowerCase('de-DE').trim();
+        let promise=this.liveCandidateScoreCache.get(key);
+        if(!promise) {
+          promise=(async()=>{
+            if(!this.featureExtractor)throw new Error('Transformers.js-Modell ist nicht geladen.');
+            const loader=document.getElementById('kontexto-loader'); if(loader)loader.style.display='flex';
             try {
-              const candidates = this.dictionaryTargetWords;
-              const scores = [];
-              const chunkSize = 95; // API-Limit des vorhandenen BGE-M3-Workers
-              for (let offset = 0; offset < candidates.length; offset += chunkSize) {
-                const chunk = candidates.slice(offset, offset + chunkSize);
-                const response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/scores', {
-                  method: 'POST',
-                  headers: { 'Content-Type': 'application/json' },
-                  body: JSON.stringify({ target, candidates: chunk })
-                });
-                const result = await response.json().catch(() => {
-                  throw new Error('Ungültige Antwort vom BGE-M3-Server');
-                });
-                if (!response.ok) throw new Error(result.error || 'BGE-M3-Server Fehler ' + response.status);
-                if (!Array.isArray(result.scores) || result.scores.length !== chunk.length) {
-                  throw new Error('Der BGE-M3-Server hat unvollständige Wortlisten-Scores geliefert');
+              const targetVector=await this.getEmbedding(target), candidates=this.dictionaryTargetWords, scores=[], chunkSize=32;
+              for(let offset=0;offset<candidates.length;offset+=chunkSize) {
+                const chunk=candidates.slice(offset,offset+chunkSize);
+                const output=await this.featureExtractor(chunk,{pooling:'mean',normalize:true});
+                const vectors=output.tolist();
+                for(let itemIndex=0;itemIndex<chunk.length;itemIndex++) {
+                  const word=chunk[itemIndex], vector=vectors[itemIndex];
+                  let semantic=0;
+                  for(let i=0;i<Math.min(targetVector.length,vector.length);i++)semantic+=targetVector[i]*vector[i];
+                  semantic=Math.max(0,Math.min(1,semantic));
+                  scores.push({word,similarity:Math.max(semantic,this.calculateEverydaySimilarity(target,word))});
                 }
-                for (const item of result.scores) {
-                  const semantic = Number(item.similarity);
-                  if (!Number.isFinite(semantic)) throw new Error('Ungültiger BGE-M3-Ähnlichkeitswert');
-                  scores.push({
-                    word: item.word,
-                    similarity: Math.max(semantic, this.calculateEverydaySimilarity(target, item.word))
-                  });
-                }
-                const done = Math.min(offset + chunk.length, candidates.length);
-                const status = document.getElementById('model-status-text');
-                if (status) status.textContent = 'BGE-M3 vergleicht Zielwortliste: ' +
-                  done.toLocaleString('de-DE') + ' / ' + candidates.length.toLocaleString('de-DE');
-                const pct = candidates.length ? Math.round(done / candidates.length * 100) : 100;
-                const statusPct = document.getElementById('model-status-pct');
-                const fill = document.getElementById('model-progress-fill');
-                if (statusPct) statusPct.textContent = pct + '%';
-                if (fill) fill.style.width = pct + '%';
+                const done=Math.min(offset+chunk.length,candidates.length), progress=candidates.length?Math.round(done/candidates.length*100):100;
+                const status=document.getElementById('model-status-text'), pct=document.getElementById('model-status-pct'), fill=document.getElementById('model-progress-fill');
+                if(status)status.textContent='Transformers.js bewertet Wortliste: '+done.toLocaleString('de-DE')+' / '+candidates.length.toLocaleString('de-DE');
+                if(pct)pct.textContent=progress+'%'; if(fill)fill.style.width=progress+'%';
+                await new Promise(resolve=>setTimeout(resolve,0));
               }
               return scores;
-            } finally {
-              if (loader) loader.style.display = 'none';
-            }
+            } finally {if(loader)loader.style.display='none';}
           })();
-          this.liveCandidateScoreCache.set(targetKey, scorePromise);
-          while (this.liveCandidateScoreCache.size > 2) {
-            const oldestKey = this.liveCandidateScoreCache.keys().next().value;
-            if (oldestKey === targetKey) break;
-            this.liveCandidateScoreCache.delete(oldestKey);
-          }
-          scorePromise.catch(() => this.liveCandidateScoreCache.delete(targetKey));
+          this.liveCandidateScoreCache.set(key,promise);
+          while(this.liveCandidateScoreCache.size>2){const oldest=this.liveCandidateScoreCache.keys().next().value;if(oldest===key)break;this.liveCandidateScoreCache.delete(oldest);}
+          promise.catch(()=>this.liveCandidateScoreCache.delete(key));
         }
-        const candidateScores = await scorePromise;
-        const missing = guesses.filter(item => !Number.isFinite(Number(item.similarity)));
-        const missingScores = await Promise.all(missing.map(item => this.getSimilarity(target, item.word)));
-        let missingIndex = 0;
-        return guesses.map(item => {
-          const semantic = Number.isFinite(Number(item.similarity))
-            ? Number(item.similarity)
-            : missingScores[missingIndex++];
-          const guessSimilarity = Math.max(semantic, this.calculateEverydaySimilarity(target, item.word));
-          let rank = 1;
-          for (const candidate of candidateScores) {
-            const candidateSimilarity = Number(candidate.similarity);
-            if (candidateSimilarity > guessSimilarity + 1e-7) rank++;
-            else if (Math.abs(candidateSimilarity - guessSimilarity) <= 1e-7 &&
-                     String(candidate.word).localeCompare(String(item.word), 'de-DE') < 0) rank++;
+        return promise;
+      },
+
+      async getLiveRanks(target,guesses) {
+        const candidates=await this.getLiveCandidateScores(target);
+        const missing=guesses.filter(item=>!Number.isFinite(Number(item.similarity)));
+        const missingScores=await Promise.all(missing.map(item=>this.getSimilarity(target,item.word)));
+        let index=0;
+        return guesses.map(item=>{
+          const semantic=Number.isFinite(Number(item.similarity))?Number(item.similarity):missingScores[index++];
+          const score=Math.max(semantic,this.calculateEverydaySimilarity(target,item.word));
+          let rank=1;
+          for(const candidate of candidates) {
+            if(candidate.similarity>score+1e-7)rank++;
+            else if(Math.abs(candidate.similarity-score)<=1e-7 && String(candidate.word).localeCompare(String(item.word),'de-DE')<0)rank++;
           }
-          return { word: item.word, rank, similarity: guessSimilarity };
+          return {word:item.word,rank,similarity:score};
         });
       },
 
-      async getSimilarity(target, guess) {
-        const response = await fetch('https://wordfinity-ai-test.sdinaj9206.workers.dev/api/similarity', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ target, guess })
-        });
-        const result = await response.json().catch(() => {
-          throw new Error('Ungültige Antwort vom BGE-M3-Server');
-        });
-        if (!response.ok) throw new Error(result.error || 'BGE-M3-Server Fehler ' + response.status);
-        if (!Number.isFinite(Number(result.similarity))) throw new Error('Kein BGE-M3-Ähnlichkeitswert erhalten');
-        return Math.max(Number(result.similarity), this.calculateEverydaySimilarity(target, guess));
+      async getSimilarity(target,guess) {
+        const a=await this.getEmbedding(target), b=await this.getEmbedding(guess);
+        let semantic=0;
+        for(let i=0;i<Math.min(a.length,b.length);i++)semantic+=a[i]*b[i];
+        return Math.max(Math.max(0,Math.min(1,semantic)),this.calculateEverydaySimilarity(target,guess));
       },
 
       calculateEverydaySimilarity(target, guess) {
@@ -2709,13 +2579,13 @@
           ['Apfel','Obst'],['Rose','Blume'],['Tulpe','Blume'],['Eiche','Baum'],
           ['Auto','Fahrzeug'],['Fahrrad','Fahrzeug'],['Messer','Besteck']
         ]);
-        addPairs(.91, [
+        addPairs(.90, [
           ['Baum','Wald'],['Stuhl','Tisch'],['Hund','Katze'],['Auto','Reifen'],
           ['Teller','Besteck'],['Kühlschrank','Küche'],['Herd','Pfanne'],
           ['Topf','Suppe'],['Messer','Gabel'],['Messer','Löffel'],
           ['Backofen','Herd'],['Baum','Gras'],['Baum','Blume']
         ]);
-        addPairs(.84, [
+        addPairs(.80, [
           ['Topf','Herd'],['Teller','Essen'],['Kühlschrank','Milch'],
           ['Backofen','Pizza'],['Auto','Straße'],['Biene','Blume'],
           ['Biene','Honig'],['Zahnbürste','Zahnpasta'],['Brot','Butter'],
@@ -2723,7 +2593,7 @@
           ['Schere','Stoff'],['Regenschirm','Regen'],['Laptop','Tastatur'],
           ['Kühlschrank','Milch'],['Kühlschrank','Küche']
         ]);
-        addPairs(.70, [
+        addPairs(.80, [
           ['Apfel','Kuchen'],['Laptop','Internet'],['Auto','Benzin'],
           ['Hund','Leine'],['Katze','Katzenfutter'],['Badezimmer','Zahnbürste'],
           ['Küche','Herd'],['Küche','Backofen'],['Wald','Blume'],
@@ -2733,17 +2603,17 @@
         if (Number.isFinite(direct)) return direct;
 
         const compound = (x,y) => x.length >= 4 && y.length >= 4 && (x.includes(y) || y.includes(x));
-        if (compound(a.replace(/ /g,''), b.replace(/ /g,''))) return .78;
+        if (compound(a.replace(/ /g,''), b.replace(/ /g,''))) return .45;
 
         const originalTargetKey = String(target || '').toLocaleLowerCase('de-DE').trim();
         const originalGuessKey = String(guess || '').toLocaleLowerCase('de-DE').trim();
         const ca = this.categoryAssignments.get(originalTargetKey) || this.categoryAssignments.get(a);
         const cb = this.categoryAssignments.get(originalGuessKey) || this.categoryAssignments.get(b);
-        if (ca && cb && ca === cb) return .64;
+        if (ca && cb && ca === cb) return .65;
 
         const tokensA = a.split(' '), tokensB = b.split(' ');
-        if (tokensA.some(token => token.length > 3 && tokensB.includes(token))) return .48;
-        return .02;
+        if (tokensA.some(token => token.length > 3 && tokensB.includes(token))) return .45;
+        return 0.00;
       },
 
       async submitGuess(word, player = null, options = {}) {
