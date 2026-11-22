@@ -2624,7 +2624,7 @@
         let scores=await this.readSemanticCache('ranks',cacheKey);
         if(!Array.isArray(scores)||!scores.length){
           const status=document.getElementById('model-status-text');
-          if(status)status.textContent='MiniLM erstellt einmalig die Rangliste für „'+target+'“ …';
+          if(status)status.textContent='MiniLM berechnet die semantische Rangliste …';
           scores=await this.getLiveCandidateScores(target);
           await this.writeSemanticCache('ranks',cacheKey,scores);
         }
