@@ -539,42 +539,6 @@
       .wordle-mobile-word{min-height:1.25em;font-weight:800;color:var(--neon-cyan)}
       header{padding:10px 12px;gap:7px}.logo-text{font-size:1.08rem;letter-spacing:1px}.btn-nav-back{padding:5px 8px;font-size:.68rem}.menu-toggle{flex-shrink:0}.screen#screen-wordle{padding:8px 12px 12px;min-height:calc(100dvh - 58px)}.wordle-container{justify-content:flex-start;gap:clamp(6px,1.5vh,12px);padding-top:0}.wordle-grid{margin:0 auto;gap:4px;max-width:min(300px,82vw);overflow:hidden}.wordle-row{gap:4px}.wordle-cell{border-radius:6px;font-size:1.2rem}.keyboard{margin-top:0;gap:4px}.keyboard-row{gap:4px}.key-btn{height:clamp(38px,5.8vh,44px);font-size:.92rem}}
 
-    /* ==========================================================================
-       6. KONTEXTO SCREEN
-       ========================================================================== */
-    .kontexto-wrap {
-      max-width: 520px;
-      width: 100%;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-    }
-
-    .model-loader {
-      background: rgba(18, 20, 44, 0.9);
-      border: 1px solid var(--border-glow);
-      border-radius: 12px;
-      padding: 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .model-loader-bar {
-      height: 8px;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .model-loader-fill {
-      height: 100%;
-      width: 0%;
-      background: linear-gradient(90deg, var(--neon-purple), var(--neon-cyan));
-      transition: width 0.3s ease;
-    }
-
     .input-box {
       display: flex;
       gap: 8px;
@@ -632,61 +596,6 @@
     .btn-action:hover {
       box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
       transform: translateY(-1px);
-    }
-
-    .guesses-list {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-top: 10px;
-      direction: ltr;
-    }
-
-    .guess-row {
-      position: relative;
-      background: rgba(18, 20, 44, 0.85);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 12px 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      overflow: hidden;
-      direction: ltr;
-      text-align: left;
-    }
-
-    .kontexto-hint-controls{display:flex;justify-content:flex-start;align-items:center;gap:8px;width:100%;margin:8px 0 0;box-sizing:border-box}
-    .kontexto-inline-hints{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:100%;margin:0}
-    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;min-width:42px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.32);border-radius:10px;background:rgba(0,240,255,.09);color:var(--neon-cyan);font-size:1.2rem;cursor:pointer;transition:all .2s;box-sizing:border-box}
-    .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
-    .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
-    .kontexto-category-hint{display:block;width:100%;box-sizing:border-box;margin:0;padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700;text-align:center;overflow-wrap:anywhere}
-    .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
-    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
-    .guess-legend span{display:inline-flex;align-items:center;gap:6px}
-    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
-    .legend-red{background:#ff3b5c;box-shadow:0 0 8px rgba(255,59,92,.55)}
-    .legend-orange{background:#ff9f1c;box-shadow:0 0 8px rgba(255,159,28,.55)}
-    .legend-green{background:#00ff9d;box-shadow:0 0 8px rgba(0,255,157,.55)}
-    .guess-bar {
-      position: absolute;
-      top: 0; left: 0; bottom: 0;
-      opacity: 0.38;
-      z-index: 1;
-      transition: width 0.4s ease;
-    }
-
-    .guess-word {
-      font-weight: 700;
-      z-index: 2;
-      color: #fff;
-    }
-
-    .guess-rank {
-      font-weight: 800;
-      z-index: 2;
-      font-variant-numeric: tabular-nums;
     }
 
     /* ==========================================================================
@@ -922,9 +831,7 @@
     .menu-setting{display:flex;align-items:flex-start;gap:10px;padding:12px 16px;color:var(--text-main);font-size:.88rem;line-height:1.4;border-top:1px solid rgba(255,255,255,.08);border-bottom:1px solid rgba(255,255,255,.08);cursor:pointer}
     .menu-setting input{accent-color:var(--neon-cyan);margin-top:3px;flex-shrink:0}
     .round-result .round-result-answer{font-size:clamp(2rem,8vw,3.5rem);font-weight:950;color:var(--neon-cyan);letter-spacing:2px;text-shadow:0 0 22px rgba(0,240,255,.35);margin:10px 0}
-    .kontexto-guess-player{margin-left:auto;padding-left:10px;color:var(--text-muted);font-size:.78rem;white-space:nowrap}
-    .kontexto-stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:var(--text-muted);font-size:.82rem;margin:8px 0}
-    .kontexto-next-round{margin-top:12px;padding:10px 16px;border:1px solid var(--neon-cyan);border-radius:9px;background:rgba(0,240,255,.1);color:var(--neon-cyan);font-weight:800;cursor:pointer}
+    .game-stats{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:var(--text-muted);font-size:.82rem;margin:8px 0}
     .wordle-result-guesses{margin:10px auto;max-width:360px;text-align:left;font-size:.85rem;display:grid;gap:5px}
     .wordle-result-guess{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid rgba(255,255,255,.08);padding:4px 0}
     .pir-correct-winners{margin:10px 0;padding:10px;border:1px solid rgba(0,255,157,.35);border-radius:10px;color:var(--neon-green)}
@@ -1069,19 +976,7 @@
           </div>
         </div>
 
-        <!-- WORDFINITY Card -->
-        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
-          <div>
-            <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
-            <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
-            <div class="card-desc">Finde das geheime Wort über echte künstliche Intelligenz und Wortbedeutung.</div>
-          </div>
-          <div class="card-footer">
-            <span class="btn-play-card" style="color: var(--neon-purple)">Starten ›</span>
-          </div>
-        </div>
-
-        <!-- PLAYDUKO Testversion: eigenständige Seite, unabhängig von Wordfinity -->
+        <!-- PLAYDUKO Testversion -->
         <div class="game-card card-gold" onclick="window.location.href='./playduko/'">
           <div>
             <div class="card-badge" style="color: var(--neon-gold)">Zahlenspiel</div>
@@ -1143,39 +1038,6 @@
           <button id="wordle-streamer-submit" type="submit">Raten</button>
         </form>
         <div class="round-result" id="wordle-round-result"></div>
-      </div>
-    </section>
-
-    <!-- SCREEN 3: KONTEXTO -->
-    <section class="screen" id="screen-wordfinity">
-      <div class="kontexto-wrap">
-        <div class="model-loader" id="kontexto-loader">
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">Vorbereitete Rangliste wird geladen …</span>
-            <span id="model-status-pct">0%</span>
-          </div>
-          <div class="model-loader-bar">
-            <div class="model-loader-fill" id="model-progress-fill"></div>
-          </div>
-        </div>
-
-        <div class="input-box">
-          <input type="text" class="game-input" id="kontexto-input" placeholder="Dein Wort..." autocomplete="off">
-          <button class="btn-action" id="kontexto-submit">Tippen</button>
-        </div>
-
-        <div class="guess-legend" aria-label="Bedeutung der Farben">
-          <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
-          <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
-          <span><i class="legend-dot legend-green"></i> Sehr nah</span>
-        </div>
-        <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie anzeigen (einmal pro Runde)" title="Kategorie anzeigen – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-letter-hint" aria-label="Anfangsbuchstaben anzeigen (einmal pro Runde)" title="Anfangsbuchstaben anzeigen – einmal pro Runde">🔤</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Besseren Wort-Tipp anzeigen" title="Besseren Wort-Tipp anzeigen">💡</button></span>
-        </div>
-        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
-        <div class="kontexto-category-hint" id="kontexto-letter-display" aria-live="polite" hidden></div>
-        <div class="guesses-list" id="kontexto-guesses"></div>
-        <div class="round-result" id="kontexto-round-result"></div>
       </div>
     </section>
 
@@ -1363,19 +1225,15 @@
           if (action === 'settings') {
             const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
               '<label class="menu-setting"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>' +
-              '<label class="menu-setting"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity</span></label>' +
               '<label class="menu-setting"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>' +
               '<label class="menu-setting"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>' +
               '</div><div class="menu-setting-group"><div class="menu-setting-heading">Kategorie anzeigen</div>' +
-              '<label class="menu-setting"><input id="kontexto-auto-category" type="checkbox"> <span>Wordfinity</span></label>' +
               '<label class="menu-setting"><input id="hangmann-auto-category" type="checkbox"> <span>Hangman</span></label></div>';
             showModal('Einstellungen', settingsHtml);
             [
               ['wordle-auto-next','playfinity_wordle_auto_next',true],
-              ['kontexto-auto-next','playfinity_kontexto_auto_next',true],
               ['hangmann-auto-next','playfinity_hangmann_auto_next',true],
               ['priceisright-auto-next','playfinity_priceisright_auto_next',true],
-              ['kontexto-auto-category','playfinity_wordfinity_auto_category',false],
               ['hangmann-auto-category','playfinity_hangmann_auto_category',false]
             ].forEach(([id,key,defaultValue])=>{
               const setting=document.getElementById(id);
@@ -1384,7 +1242,7 @@
               setting.addEventListener('change',()=>localStorage.setItem(key,String(setting.checked)));
             });
           }
-          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>Wordfinity: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
       },
@@ -1398,7 +1256,6 @@
       renderScreen(screenId, isForwardNav) {
         PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
         document.body.classList.toggle('game-active', screenId !== 'menu');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
@@ -1418,7 +1275,6 @@
       onEnterGame(screenId) {
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
         if (screenId === 'hangmann') HangmannGame.init();
-        if (screenId === 'wordfinity' && !KontextoGame.initialized) KontextoGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
       }
@@ -1710,8 +1566,6 @@
         if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
-        } else if (screen === 'wordfinity' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
-          KontextoGame.submitGuess(text, user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
@@ -1911,7 +1765,7 @@
       top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
       escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
       render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
-      showAll() { const games=[['Wordle','wordle'],['Kontexto','kontexto'],['GUESSWHAT','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
+      showAll() { const games=[['Wordle','wordle'],['GUESSWHAT','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
     };
 
     /* ==========================================================================
@@ -2138,7 +1992,7 @@
           CommunityBoard.record('wordle',player);
           const resultBox=document.getElementById('wordle-round-result');
           const guessRows=this.guesses.map(item=>'<div class="wordle-result-guess"><b>'+CommunityBoard.escape(item.word)+'</b><span>'+CommunityBoard.escape(item.player?.name||'Ohne Spielernamen')+'</span></div>').join('');
-          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
+          resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="game-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
           const autoNext=localStorage.getItem('playfinity_wordle_auto_next')!=='false';
           showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), !autoNext, player ? '🏆 Gewonnen von: ' + player.name : '🏆 Gewonnen von: Lokaler Spieler');
@@ -2193,35 +2047,6 @@
         document.querySelectorAll('.key-btn').forEach(b => {
           b.className = 'key-btn' + (b.innerText.length > 1 ? ' wide' : '');
         });
-      }
-    };
-
-    /* ==========================================================================
-       4. WORDFINITY – SAUBERER NEUSTART OHNE KI ODER MODELL
-       ========================================================================== */
-    const KontextoGame = {
-      initialized: false,
-      targetWord: '',
-      init() {
-        if (this.initialized) return;
-        this.initialized = true;
-        try { indexedDB.deleteDatabase('playfinity-wordfinity-minilm'); } catch (_) {}
-        try {
-          localStorage.removeItem('wordfinity-used-targets-v2');
-          localStorage.removeItem('playfinity_wordfinity_auto_category');
-          localStorage.removeItem('playfinity_kontexto_auto_next');
-        } catch (_) {}
-        const status = document.getElementById('model-status-text');
-        if (status) status.textContent = 'Wordfinity wird neu aufgebaut. Die alte KI und die bisherigen Wortdaten sind entfernt.';
-        const loader = document.getElementById('kontexto-loader');
-        if (loader) loader.style.display = 'none';
-        ['kontexto-input','kontexto-submit','kontexto-category-hint','kontexto-letter-hint','kontexto-word-hint']
-          .forEach(id => { const element = document.getElementById(id); if (element) element.disabled = true; });
-        const guesses = document.getElementById('kontexto-guesses');
-        if (guesses) guesses.innerHTML = '';
-      },
-      submitGuess() {
-        return false;
       }
     };
 
@@ -2695,11 +2520,11 @@
       },
       sendPresence() {
         if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
-        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'wordfinity' ? KontextoGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : '';
+        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : '';
         this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
       },
       setGame(game) {
-        this.game = ['menu','wordle','wordfinity','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
+        this.game = ['menu','wordle','sizeitup','hangmann','priceisright'].includes(game) ? game : 'menu';
         this.sendPresence();
       },
       showEffect(action) {
