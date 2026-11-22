@@ -1520,6 +1520,7 @@
        ========================================================================== */
     const WordfinityGame = {
       initialized:false, puzzle:null, guesses:[], roundToken:0, won:false,
+      usedTargets:new Set(), puzzleDeck:[],
       baseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
       normalize(value){return String(value||'').trim().toLocaleLowerCase('de-DE');},
       escape(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));},
@@ -1572,20 +1573,33 @@
         const result=document.getElementById('wordfinity-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
         try{
-          const tried=new Set();
+          // Alle verfügbaren Rätsel-IDs einmal zufällig mischen.
+          // Bereits gespielte Zielwörter werden bis zum Ende des Kartenstapels übersprungen.
+          if(!this.puzzleDeck.length){
+            this.puzzleDeck=Array.from({length:4254},(_,index)=>index+1);
+            for(let i=this.puzzleDeck.length-1;i>0;i--){
+              const j=Math.floor(Math.random()*(i+1));
+              [this.puzzleDeck[i],this.puzzleDeck[j]]=[this.puzzleDeck[j],this.puzzleDeck[i]];
+            }
+          }
           let data=null;
-          for(let attempt=0;attempt<40;attempt++){
-            const id=Math.floor(Math.random()*5000)+1;
-            if(tried.has(id))continue;
-            tried.add(id);
+          let checked=0;
+          while(this.puzzleDeck.length&&checked<4254){
+            const id=this.puzzleDeck.pop();
+            checked++;
             const response=await fetch(this.baseUrl+id+'.json',{cache:'no-store'});
             if(!response.ok)continue;
             const candidate=await response.json();
             if(token!==this.roundToken)return;
-            if(this.isSuitablePuzzle(candidate)){data=candidate;break;}
+            if(!this.isSuitablePuzzle(candidate))continue;
+            const target=this.normalize(candidate.woerter[0]);
+            if(this.usedTargets.has(target))continue;
+            data=candidate;
+            this.usedTargets.add(target);
+            break;
           }
           if(token!==this.roundToken)return;
-          if(!data)throw new Error('Kein geeignetes Rätsel in 40 Versuchen gefunden');
+          if(!data)throw new Error('Keine weiteren neuen Zielwörter im aktuellen Durchlauf gefunden');
           this.puzzle=data;
           this.setControls(true);
           document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
