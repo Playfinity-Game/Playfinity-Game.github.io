@@ -216,6 +216,20 @@ async function handlePrecomputeSemanticEmbeddings(request, env, body) {
   if (!Array.isArray(embedded?.data) || embedded.data.length !== words.length) {
     throw new Error("BGE-M3 hat nicht für alle Bedeutungsbeschreibungen ein Embedding geliefert");
   }
+  // Preserve the required original BGE-M3 embedding when updating semantic fields.
+  const existingQuery = new URLSearchParams({
+    select: "word_key,embedding",
+    dictionary_sha: "eq." + dictionarySha,
+    model: "eq." + EMBEDDING_MODEL,
+    word_key: "in.(" + words.map(word => '"' + word.toLocaleLowerCase("de-DE") + '"').join(",") + ")"
+  });
+  const existingRows = await supabaseRequest(env, "wordfinity_word_embeddings?" + existingQuery.toString());
+  const existingByKey = new Map((Array.isArray(existingRows) ? existingRows : []).map(row => [row.word_key, row.embedding]));
+  const missingOriginal = words.filter(word => !existingByKey.has(word.toLocaleLowerCase("de-DE")));
+  if (missingOriginal.length) {
+    throw new Error("Original-Embedding fehlt für: " + missingOriginal.join(", "));
+  }
+
   const rows = descriptions.map((item, index) => {
     const vector = embedded.data[index];
     if (!Array.isArray(vector) || vector.length !== 1024 || vector.some(value => !Number.isFinite(Number(value)))) {
@@ -227,6 +241,7 @@ async function handlePrecomputeSemanticEmbeddings(request, env, body) {
       category,
       dictionary_sha: dictionarySha,
       model: EMBEDDING_MODEL,
+      embedding: existingByKey.get(item.word.toLocaleLowerCase("de-DE")),
       semantic_text: item.description,
       semantic_embedding_vector: "[" + vector.join(",") + "]"
     };
