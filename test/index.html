@@ -2367,12 +2367,13 @@
           const scores = await this.getLiveCandidateScores(requestedTarget);
           const excluded = new Set([requestedTarget.toLocaleLowerCase('de-DE'),
             ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')), ...this.pendingGuesses]);
-          const ranked = scores.filter(item => !excluded.has(item.word.toLocaleLowerCase('de-DE')) &&
-            !this.wordHintCandidatesTried.has(item.word.toLocaleLowerCase('de-DE')))
-            .sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'));
+          const ranked = [...scores].sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'))
+            .map((item,index)=>({...item,rank:index+1}));
           const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
           const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
-          const options = ranked.map((item,index)=>({...item,rank:index+1})).filter(item=>item.rank<bestRank);
+          const options = ranked.filter(item => item.rank<bestRank &&
+            !excluded.has(item.word.toLocaleLowerCase('de-DE')) &&
+            !this.wordHintCandidatesTried.has(item.word.toLocaleLowerCase('de-DE')));
           if (!options.length) return;
           const candidate = options.reduce((best,item)=>!best || Math.abs(item.rank-desiredRank)<Math.abs(best.rank-desiredRank)?item:best,null);
           if (!candidate || requestedRoundId!==this.roundId || PauseController.paused) return;
@@ -2514,13 +2515,10 @@
               const targetVector=await this.getEmbedding(target), candidates=this.dictionaryTargetWords, scores=[], chunkSize=32;
               for(let offset=0;offset<candidates.length;offset+=chunkSize) {
                 const chunk=candidates.slice(offset,offset+chunkSize);
-                const uncached=chunk.filter(word=>!this.embeddingCache.has(word.toLocaleLowerCase('de-DE')));
-                if(uncached.length) {
-                  const output=await this.featureExtractor(uncached,{pooling:'mean',normalize:true});
-                  output.tolist().forEach((vector,index)=>this.embeddingCache.set(uncached[index].toLocaleLowerCase('de-DE'),vector));
-                }
-                for(const word of chunk) {
-                  const vector=this.embeddingCache.get(word.toLocaleLowerCase('de-DE'));
+                const output=await this.featureExtractor(chunk,{pooling:'mean',normalize:true});
+                const vectors=output.tolist();
+                for(let itemIndex=0;itemIndex<chunk.length;itemIndex++) {
+                  const word=chunk[itemIndex], vector=vectors[itemIndex];
                   let semantic=0;
                   for(let i=0;i<Math.min(targetVector.length,vector.length);i++)semantic+=targetVector[i]*vector[i];
                   semantic=Math.max(0,Math.min(1,semantic));
