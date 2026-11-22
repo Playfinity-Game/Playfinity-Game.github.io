@@ -88,6 +88,11 @@ if (MODE === "all" || MODE === "embeddings" || MODE === "target") {
         dictionary_sha: dictionarySha,
         words: batch
       });
+      await post("/api/admin/semantic-embeddings", {
+        category,
+        dictionary_sha: dictionarySha,
+        words: batch
+      });
       done += batch.length;
       console.log("[Embeddings]", category, done + "/" + totalWords);
     }
