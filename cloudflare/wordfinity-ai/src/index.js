@@ -135,15 +135,15 @@ async function handleSemanticJudgement(env, body) {
 
   const raw = await generate(
     env,
-    "Du bist ein streng kalibrierter Bedeutungsbewerter für ein deutsches Wort-Assoziationsspiel. Bewerte ausschließlich die inhaltliche Nähe der beiden Begriffe, nicht ihre Schreibweise, Buchstaben oder Klang. Vergib einen ganzzahligen Wert von 0 bis 100. Verwende diese Skala konsequent: 100 = identisch oder praktisch synonym; 90-96 = sehr nahe Begriffe derselben konkreten Unterkategorie oder direkte Ober-/Unterbegriffe; 82-89 = eng verwandte Begriffe derselben klaren Kategorie; 65-81 = typische direkte Assoziation, Verwendung oder Bestandteil/Ergebnis; 40-64 = lockerer thematischer Zusammenhang oder gemeinsamer Kontext; 15-39 = nur entfernte Verbindung; 0-14 = inhaltlich kaum oder gar nicht verwandt. Kalibrierungsbeispiele: Apfel/Birne 92; Apfel/Obst 88; Apfel/Obstbaum 78; Apfel/Kuchen 72; Apfel/Baum 55; Apfel/Auto 5; Apfel/Raumschiff 2. Diese Beispiele sind Anker für die Skala, keine Wörterbuchregel. Prüfe, ob ein Begriff eine Oberkategorie, Unterart, typische Verwendung, Eigenschaft oder direkte Assoziation des anderen ist. Sei nicht übermäßig großzügig: bloß dass zwei Dinge beide existieren oder beide im Alltag vorkommen, ist keine Nähe. Gib ausschließlich valides JSON in genau dieser Form aus: {\\"score\\": 0, \\"relation\\": \\"kurze Beziehungsart\\", \\"reason\\": \\"kurze deutsche Begründung\\"}.",
-    "Zielwort: " + JSON.stringify(target) + "\\nRatewort: " + JSON.stringify(guess) + "\\nBewerte jetzt ihre Bedeutungsnähe anhand der Skala. Die Begründung darf höchstens 12 Wörter haben.",
+    "Du bist ein streng kalibrierter Bedeutungsbewerter für ein deutsches Wort-Assoziationsspiel. Bewerte ausschließlich die inhaltliche Nähe der beiden Begriffe, nicht ihre Schreibweise, Buchstaben oder Klang. Vergib einen ganzzahligen Wert von 0 bis 100. Verwende diese Skala konsequent: 100 = identisch oder praktisch synonym; 90-96 = sehr nahe Begriffe derselben konkreten Unterkategorie oder direkte Ober-/Unterbegriffe; 82-89 = eng verwandte Begriffe derselben klaren Kategorie; 65-81 = typische direkte Assoziation, Verwendung oder Bestandteil/Ergebnis; 40-64 = lockerer thematischer Zusammenhang oder gemeinsamer Kontext; 15-39 = nur entfernte Verbindung; 0-14 = inhaltlich kaum oder gar nicht verwandt. Kalibrierungsbeispiele: Apfel/Birne 92; Apfel/Obst 88; Apfel/Obstbaum 78; Apfel/Kuchen 72; Apfel/Baum 55; Apfel/Auto 5; Apfel/Raumschiff 2. Diese Beispiele sind Anker für die Skala, keine Wörterbuchregel. Prüfe, ob ein Begriff eine Oberkategorie, Unterart, typische Verwendung, Eigenschaft oder direkte Assoziation des anderen ist. Sei nicht übermäßig großzügig: bloß dass zwei Dinge beide existieren oder beide im Alltag vorkommen, ist keine Nähe. Gib ausschließlich valides JSON in genau dieser Form aus: {\"score\": 0, \"relation\": \"kurze Beziehungsart\", \"reason\": \"kurze deutsche Begründung\"}.",
+    "Zielwort: " + JSON.stringify(target) + "\nRatewort: " + JSON.stringify(guess) + "\nBewerte jetzt ihre Bedeutungsnähe anhand der Skala. Die Begründung darf höchstens 12 Wörter haben.",
     160,
     0.1
   );
 
   let judgement;
   try {
-    const match = raw.match(/\\{[\\s\\S]*\\}/);
+    const match = raw.match(/\{[\s\S]*\}/);
     if (match) judgement = JSON.parse(match[0]);
   } catch (_) {}
   const score = Number(judgement?.score);
@@ -161,7 +161,6 @@ async function handleSemanticJudgement(env, body) {
     method: "gemma-direct-semantic-judgement"
   });
 }
-
 
 
 function supabaseHeaders(env, prefer = "") {
