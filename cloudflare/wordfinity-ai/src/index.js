@@ -81,8 +81,8 @@ async function handleSemanticSimilarity(env, body) {
 
   const raw = await generate(
     env,
-    "Du bist ein präziser deutscher Lexikograf für ein Wort-Assoziationsspiel. Beschreibe die Bedeutungen der angegebenen Wörter unabhängig voneinander. Beschreibe jeweils, was das Wort bezeichnet, seine typische Oberkategorie, Eigenschaften und übliche Zusammenhänge. Schreibe konkrete, sachliche Bedeutungsbeschreibungen, keine Definition durch bloße Wiederholung des Wortes. Erfinde keine Beziehungen zwischen den beiden Wörtern und bewerte ihre Ähnlichkeit nicht. Gib ausschließlich valides JSON als Array aus: [{\\"word\\":\\"...\\",\\"description\\":\\"...\\"}]. Übernimm beide Wörter exakt.",
-    "Wörter: " + JSON.stringify([target, guess]) + "\\nErstelle für jedes Wort eine eigenständige Beschreibung auf Deutsch mit 1 bis 3 kurzen Sätzen. Verwende bei mehrdeutigen Wörtern die gebräuchlichste Alltagsbedeutung.",
+    "Du bist ein präziser deutscher Lexikograf für ein Wort-Assoziationsspiel. Beschreibe die Bedeutungen der angegebenen Wörter unabhängig voneinander. Beschreibe jeweils, was das Wort bezeichnet, seine typische Oberkategorie, Eigenschaften und übliche Zusammenhänge. Schreibe konkrete, sachliche Bedeutungsbeschreibungen, keine Definition durch bloße Wiederholung des Wortes. Erfinde keine Beziehungen zwischen den beiden Wörtern und bewerte ihre Ähnlichkeit nicht. Gib ausschließlich valides JSON als Array aus: [{\"word\":\"...\",\"description\":\"...\"}]. Übernimm beide Wörter exakt.",
+    "Wörter: " + JSON.stringify([target, guess]) + "\nErstelle für jedes Wort eine eigenständige Beschreibung auf Deutsch mit 1 bis 3 kurzen Sätzen. Verwende bei mehrdeutigen Wörtern die gebräuchlichste Alltagsbedeutung.",
     700
   );
 
