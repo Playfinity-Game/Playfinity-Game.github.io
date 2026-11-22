@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Wordfinity – Kategorien-Blindtest</title>
+<title>Wordfinity – Alltagsbeziehungs-Blindtest</title>
 <style>
 body{margin:0;padding:24px;background:#090b18;color:#f3f5ff;font:16px system-ui;max-width:900px;margin-inline:auto}
 h1{font-size:1.5rem}p{color:#b9bfd5;line-height:1.5}
@@ -14,18 +14,19 @@ table{width:100%;border-collapse:collapse;margin-top:10px;font-size:.94rem}td,th
 </style>
 </head>
 <body>
-<h1>🧠 Wordfinity – Kategorien-Blindtest</h1>
-<p>Dieser Test prüft dieselbe Bewertungslogik in fünf unterschiedlichen Bereichen. Die Testwörter sind nicht als Beispiele im KI-Prompt hinterlegt. Es werden nur Bedeutungswerte abgefragt – das eigentliche Spiel und seine Rangliste bleiben unverändert.</p>
+<h1>🧠 Wordfinity – Alltagsbeziehungs-Blindtest</h1>
+<p>Dieser Test prüft alltagsbezogene Wortnähe: Kategorien, Ober-/Unterbegriffe, Bestandteile, Teil-Ganzes-Beziehungen, typische gemeinsame Nutzung und Zutaten-/Kontextbeziehungen. Die Testpaare stehen nicht als Beispiele im KI-Prompt. Es wird ausschließlich der experimentelle Bewertungs-Endpunkt abgefragt – das eigentliche Spiel und seine Rangliste bleiben unverändert.</p>
 <button id="run">Kategorientest starten</button>
-<p class="status" id="status">Bereit für 30 Wortpaare.</p>
+<p class="status" id="status">Bereit für 49 Wortpaare.</p>
 <div id="results"></div>
 <script>
 const groups=[
- {target:"Apfel 🍎",word:"Apfel",guesses:["Birne","Banane","Erdbeere","Kirsche","Obst","Kuchen","Baum","Auto"]},
- {target:"Hund 🐶",word:"Hund",guesses:["Katze","Pferd","Hase","Tier","Leine","Knochen","Auto"]},
- {target:"Auto 🚗",word:"Auto",guesses:["Bus","Fahrrad","Motorrad","Fahrzeug","Reifen","Straße","Apfel"]},
- {target:"Stuhl 🪑",word:"Stuhl",guesses:["Tisch","Sofa","Schrank","Möbel","Holz","Banane"]},
- {target:"Baum 🌳",word:"Baum",guesses:["Blume","Gras","Wald","Eiche","Pflanze","Garten","Auto"]}
+ {target:"Apfel 🍎",word:"Apfel",guesses:["Birne","Banane","Erdbeere","Kirsche","Obst","Kuchen","Apfelkuchen","Marmelade","Baum","Auto"]},
+ {target:"Hund 🐶",word:"Hund",guesses:["Katze","Pferd","Hase","Tier","Haustier","Wolf","Leine","Knochen","Auto"]},
+ {target:"Auto 🚗",word:"Auto",guesses:["Bus","Fahrrad","Motorrad","Fahrzeug","Reifen","Motor","Straße","Garage","Apfel"]},
+ {target:"Stuhl 🪑",word:"Stuhl",guesses:["Tisch","Sofa","Sessel","Schreibtisch","Schrank","Möbel","Holz","Banane"]},
+ {target:"Baum 🌳",word:"Baum",guesses:["Blume","Gras","Wald","Eiche","Pflanze","Busch","Holz","Garten","Auto"]},
+ {target:"Wald 🌲",word:"Wald",guesses:["Baum","Wildtier","Holz","Wiese"]}
 ];
 const endpoint="https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity-judgement";
 const results=document.getElementById("results"),status=document.getElementById("status"),button=document.getElementById("run");
