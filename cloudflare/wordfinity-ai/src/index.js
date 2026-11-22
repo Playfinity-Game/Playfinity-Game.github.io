@@ -46,14 +46,14 @@ function cleanSingleLine(value, maxLength = 60) {
     .slice(0, maxLength);
 }
 
-async function generate(env, system, user, maxTokens = 80) {
+async function generate(env, system, user, maxTokens = 80, temperature = 0.7) {
   const result = await env.AI.run(TEXT_MODEL, {
     messages: [
       { role: "system", content: system },
       { role: "user", content: user }
     ],
     max_completion_tokens: maxTokens,
-    temperature: 0.7,
+    temperature,
     chat_template_kwargs: { enable_thinking: false }
   });
   return generatedText(result);
@@ -118,6 +118,47 @@ async function handleSemanticSimilarity(env, body) {
     method: "gemma-meaning-descriptions+bge-m3",
     target_description: targetDescription,
     guess_description: guessDescription
+  });
+}
+
+
+async function handleSemanticJudgement(env, body) {
+  const target = String(body.target || "").normalize("NFC").trim();
+  const guess = String(body.guess || "").normalize("NFC").trim();
+  if (!target || !guess) return json({ error: "target und guess sind erforderlich" }, 400);
+  if (target.length > 80 || guess.length > 80) {
+    return json({ error: "target und guess dürfen höchstens 80 Zeichen lang sein" }, 400);
+  }
+  if (target.toLocaleLowerCase("de-DE") === guess.toLocaleLowerCase("de-DE")) {
+    return json({ similarity: 1, score: 100, relation: "identisch", reason: "Dasselbe Wort.", method: "gemma-direct-semantic-judgement" });
+  }
+
+  const raw = await generate(
+    env,
+    "Du bist ein streng kalibrierter Bedeutungsbewerter für ein deutsches Wort-Assoziationsspiel. Bewerte ausschließlich die inhaltliche Nähe der beiden Begriffe, nicht ihre Schreibweise, Buchstaben oder Klang. Vergib einen ganzzahligen Wert von 0 bis 100. Verwende diese Skala konsequent: 100 = identisch oder praktisch synonym; 90-96 = sehr nahe Begriffe derselben konkreten Unterkategorie oder direkte Ober-/Unterbegriffe; 82-89 = eng verwandte Begriffe derselben klaren Kategorie; 65-81 = typische direkte Assoziation, Verwendung oder Bestandteil/Ergebnis; 40-64 = lockerer thematischer Zusammenhang oder gemeinsamer Kontext; 15-39 = nur entfernte Verbindung; 0-14 = inhaltlich kaum oder gar nicht verwandt. Kalibrierungsbeispiele: Apfel/Birne 92; Apfel/Obst 88; Apfel/Obstbaum 78; Apfel/Kuchen 72; Apfel/Baum 55; Apfel/Auto 5; Apfel/Raumschiff 2. Diese Beispiele sind Anker für die Skala, keine Wörterbuchregel. Prüfe, ob ein Begriff eine Oberkategorie, Unterart, typische Verwendung, Eigenschaft oder direkte Assoziation des anderen ist. Sei nicht übermäßig großzügig: bloß dass zwei Dinge beide existieren oder beide im Alltag vorkommen, ist keine Nähe. Gib ausschließlich valides JSON in genau dieser Form aus: {\\"score\\": 0, \\"relation\\": \\"kurze Beziehungsart\\", \\"reason\\": \\"kurze deutsche Begründung\\"}.",
+    "Zielwort: " + JSON.stringify(target) + "\\nRatewort: " + JSON.stringify(guess) + "\\nBewerte jetzt ihre Bedeutungsnähe anhand der Skala. Die Begründung darf höchstens 12 Wörter haben.",
+    160,
+    0.1
+  );
+
+  let judgement;
+  try {
+    const match = raw.match(/\\{[\\s\\S]*\\}/);
+    if (match) judgement = JSON.parse(match[0]);
+  } catch (_) {}
+  const score = Number(judgement?.score);
+  if (!Number.isInteger(score) || score < 0 || score > 100) {
+    throw new Error("Die Bedeutungs-KI hat keinen gültigen Ähnlichkeitswert geliefert");
+  }
+  const relation = String(judgement?.relation || "semantische Beziehung").trim().slice(0, 60);
+  const reason = String(judgement?.reason || "").trim().slice(0, 180);
+  return json({
+    similarity: score / 100,
+    score,
+    relation,
+    reason,
+    model: TEXT_MODEL,
+    method: "gemma-direct-semantic-judgement"
   });
 }
 
@@ -496,7 +537,7 @@ export default {
       if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
       switch (url.pathname) {
         case "/api/similarity": return await handleSimilarity(env, body);
-        case "/api/similarity-semantic": return await handleSemanticSimilarity(env, body);
+        case "/api/similarity-semantic": return await handleSemanticSimilarity(env, body);\n        case "/api/similarity-judgement": return await handleSemanticJudgement(env, body);
         case "/api/hints": return await handleHints(env, body);
         case "/api/category": return await handleCategory(env, body);
         case "/api/word": return await handleWord(env, body);
