@@ -267,6 +267,53 @@
       transition: opacity 0.3s;
     }
 
+    .game-card.wordfinity-closed {
+      cursor: not-allowed;
+      border-color: rgba(255, 190, 65, 0.65);
+      background: linear-gradient(145deg, rgba(46, 35, 52, 0.98), rgba(27, 27, 39, 0.98));
+      isolation: isolate;
+    }
+    .game-card.wordfinity-closed:hover {
+      transform: none;
+      border-color: rgba(255, 190, 65, 0.8);
+      background: linear-gradient(145deg, rgba(46, 35, 52, 0.98), rgba(27, 27, 39, 0.98));
+      box-shadow: 0 8px 22px rgba(0,0,0,0.24);
+    }
+    .wordfinity-closed-copy { position: relative; z-index: 1; padding-right: 96px; }
+    .wordfinity-work-sign {
+      position: absolute; z-index: 2; right: 15px; top: 38px;
+      width: 94px; display: flex; flex-direction: column; align-items: center;
+      transform: rotate(5deg); filter: drop-shadow(0 4px 5px rgba(0,0,0,.4));
+      pointer-events: none;
+    }
+    .wordfinity-work-sign svg { display: block; width: 100%; height: auto; }
+    .wordfinity-work-sign span {
+      margin-top: -5px; padding: 3px 6px; border: 2px solid #20202a;
+      border-radius: 3px; background: #ffd84a; color: #20202a;
+      font-size: 9px; font-weight: 1000; letter-spacing: .08em;
+    }
+    .wordfinity-barrier {
+      position: absolute; z-index: 3; left: -9%; right: -9%; bottom: 43px;
+      height: 23px; overflow: hidden; transform: rotate(-5deg);
+      border-top: 2px solid rgba(25,25,30,.8); border-bottom: 2px solid rgba(25,25,30,.8);
+      background: repeating-linear-gradient(135deg, #f5c842 0 17px, #20202a 17px 34px);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 7px rgba(0,0,0,.35); pointer-events: none;
+    }
+    .wordfinity-barrier span {
+      padding: 1px 7px; background: rgba(255,255,255,.92); color: #20202a;
+      font-size: 8px; line-height: 1.4; font-weight: 1000; letter-spacing: .08em;
+      white-space: nowrap;
+    }
+    .wordfinity-closed .card-footer { position: relative; z-index: 4; }
+    .wordfinity-closed-label {
+      color: #ffd84a !important; cursor: not-allowed; font-size: .78rem;
+    }
+    @media (max-width: 420px) {
+      .wordfinity-closed-copy { padding-right: 82px; }
+      .wordfinity-work-sign { right: 8px; width: 80px; }
+    }
+
     .game-card:hover {
       transform: translateY(-4px);
       background: var(--bg-card-hover);
@@ -1119,15 +1166,28 @@
           </div>
         </div>
 
-        <!-- WORDFINITY Card -->
-        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
-          <div>
-            <div class="card-badge" style="color: var(--neon-purple)">Semantische KI</div>
+        <!-- WORDFINITY – VORÜBERGEHEND GESCHLOSSEN -->
+        <div class="game-card card-purple wordfinity-closed" aria-disabled="true" aria-label="Wordfinity ist vorübergehend geschlossen. Wir arbeiten an einer neuen Version.">
+          <div class="wordfinity-closed-copy">
+            <div class="card-badge" style="color: var(--neon-purple)">Vorübergehend geschlossen</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
-            <div class="card-desc">Finde das geheime Wort über echte künstliche Intelligenz und Wortbedeutung.</div>
+            <div class="card-desc">Hier wird kräftig gewerkelt! Wir bauen Wordfinity komplett neu. Bis alles fertig ist, bleibt das Spiel geschlossen.</div>
           </div>
+          <div class="wordfinity-work-sign" aria-hidden="true">
+            <svg viewBox="0 0 120 112" role="img">
+              <path d="M12 99 L23 18 Q24 12 31 12 H89 Q96 12 97 19 L108 99 Z" fill="#ffd84a" stroke="#20202a" stroke-width="5" stroke-linejoin="round"/>
+              <path d="M25 31 H95 M29 83 H101" stroke="#20202a" stroke-width="5"/>
+              <circle cx="59" cy="43" r="10" fill="none" stroke="#20202a" stroke-width="4"/>
+              <path d="M59 54 L55 75 M57 61 L42 69 M57 62 L72 70 M55 75 L43 88 M55 75 L69 87" fill="none" stroke="#20202a" stroke-width="4" stroke-linecap="round"/>
+              <path d="M73 66 L84 54 M79 51 L89 57" stroke="#20202a" stroke-width="4" stroke-linecap="round"/>
+              <path d="M38 22 L80 22" stroke="#20202a" stroke-width="4" stroke-linecap="round"/>
+              <path d="M48 93 H75" stroke="#20202a" stroke-width="5" stroke-linecap="round"/>
+            </svg>
+            <span>BAUSTELLE</span>
+          </div>
+          <div class="wordfinity-barrier" aria-hidden="true"><span>BAUSTELLE · ZUTRITT VERBOTEN · BAUSTELLE</span></div>
           <div class="card-footer">
-            <span class="btn-play-card" style="color: var(--neon-purple)">Starten ›</span>
+            <span class="btn-play-card wordfinity-closed-label">🚧 Vorübergehend geschlossen</span>
           </div>
         </div>
 
@@ -1475,12 +1535,17 @@
       },
 
       go(screenId) {
+        if (screenId === 'wordfinity') return;
         if (screenId === this.currentScreen) return;
         history.pushState({ screen: screenId }, '', '#' + screenId);
         this.renderScreen(screenId, true);
       },
 
       renderScreen(screenId, isForwardNav) {
+        if (screenId === 'wordfinity') {
+          screenId = 'menu';
+          history.replaceState({ screen: 'menu' }, '', '#menu');
+        }
         PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
