@@ -2220,6 +2220,7 @@
       dictionaryReady: false,
       dictionaryWords: new Set(),
       dictionaryTargetWords: [],
+      semanticHintExtras: { milch: ['Sojamilch','Melkmaschine'] },
       liveCandidateScoreCache: new Map(),
       rankManifestPromise: null,
       targetRankMap: new Map(),
@@ -2278,7 +2279,10 @@
           await this.loadEmbeddingModel();
           await this.pickNewTarget();
           return !!this.targetWord && this.targetRankMap.size > 0;
-        })();
+        })().catch(error => {
+          console.error('[WORDFINITY] MiniLM-Initialisierung fehlgeschlagen:',error);
+          return false;
+        });
 
         const submitButton = document.getElementById('kontexto-submit');
         const wordInput = document.getElementById('kontexto-input');
@@ -2410,12 +2414,13 @@
           };
           const allowedHintWords = hintExceptions[targetKey] || new Set();
           const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
-          const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
+          const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : 2;
           const options = ranked.filter(item => {
             const wordKey = item.word.normalize('NFC').trim().toLocaleLowerCase('de-DE');
             const curatedGermanWord = this.dictionaryWords.has(wordKey);
             return item.rank < bestRank &&
               (curatedGermanWord || allowedHintWords.has(wordKey)) &&
+              !item.spellingOnly &&
               !excluded.has(wordKey) &&
               !this.wordHintCandidatesTried.has(wordKey);
           });
@@ -2529,7 +2534,11 @@
 
       async ensureCandidateEmbeddings() {
         if(!this.featureExtractor)throw new Error('MiniLM-Modell ist noch nicht bereit.');
-        const missing=this.dictionaryTargetWords.filter(word=>!this.embeddingCache.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')));
+        const extraWords=Object.values(this.semanticHintExtras).flat();
+        const candidateWords=[...new Map([...this.dictionaryTargetWords,...extraWords].map(word=>[
+          word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),word
+        ])).values()];
+        const missing=candidateWords.filter(word=>!this.embeddingCache.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')));
         const batchSize=32,status=document.getElementById('model-status-text');
         for(let offset=0;offset<missing.length;offset+=batchSize){
           const batch=missing.slice(offset,offset+batchSize),output=await this.featureExtractor(batch,{pooling:'mean',normalize:true});
@@ -2576,7 +2585,11 @@
       async getLiveCandidateScores(target) {
         await this.ensureCandidateEmbeddings();
         const targetVector=await this.getEmbedding(target),targetKey=String(target||'').normalize('NFC').trim().toLocaleLowerCase('de-DE');
-        const scores=this.dictionaryTargetWords.map(word=>{
+        const extraWords=this.semanticHintExtras[targetKey]||[];
+        const candidateWords=[...new Map([...this.dictionaryTargetWords,...extraWords].map(word=>[
+          word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),word
+        ])).values()];
+        const scores=candidateWords.map(word=>{
           const key=word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),vector=this.embeddingCache.get(key);
           let cosine=0;for(let i=0;i<Math.min(targetVector.length,vector?.length||0);i++)cosine+=targetVector[i]*vector[i];
           const spellingOnly=key!==targetKey&&this.isSpellingOnlyMatch(target,word,cosine);
