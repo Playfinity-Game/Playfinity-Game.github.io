@@ -1339,13 +1339,20 @@
             <span id="wordfinity-round-id">Rätsel bereit</span>
             <span id="wordfinity-guess-count">0 Tipps</span>
           </div>
+          <div id="wordfinity-status" role="status" aria-live="polite" style="font-size:.78rem;color:var(--text-muted);">Bereit für dein Worträtsel.</div>
           <div class="model-loader-bar"><div class="model-loader-fill" id="wordfinity-progress-fill" style="width:100%"></div></div>
         </div>
+
         <form class="input-box" id="wordfinity-entry" autocomplete="off">
           <input type="text" class="game-input" id="wordfinity-input" maxlength="60" placeholder="Dein Wort..." aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
           <button type="submit" class="btn-action" id="wordfinity-submit" disabled>Tippen</button>
         </form>
-        <div class="wordfinity-feedback" id="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
+
+        <div class="guess-legend" aria-label="Bedeutung der Farben">
+          <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
+          <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
+          <span><i class="legend-dot legend-green"></i> Sehr nah</span>
+        </div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
           <span class="kontexto-inline-hints">
             <button type="button" class="kontexto-inline-hint" id="wordfinity-category" aria-label="Kategorie anzeigen" title="Kategorie anzeigen" disabled>🏷️</button>
@@ -1353,8 +1360,10 @@
             <button type="button" class="kontexto-inline-hint" id="wordfinity-hint" aria-label="Ähnliches Wort anzeigen" title="Ähnliches Wort anzeigen" disabled>💡</button>
           </span>
         </div>
-        <div class="kontexto-category-hint" id="wordfinity-hintbox" aria-live="polite">Deine Hinweise erscheinen hier.</div>
+        <div class="kontexto-category-hint" id="wordfinity-category-display" aria-live="polite" hidden></div>
+        <div class="kontexto-category-hint" id="wordfinity-letter-display" aria-live="polite" hidden></div>
         <div class="guesses-list" id="wordfinity-guesses" aria-live="polite"></div>
+        <div class="round-result" id="wordfinity-round-result"></div>
         <button type="button" class="btn-action" id="wordfinity-next" style="min-height:44px;">Neues Rätsel ↻</button>
       </div>
     </section>
@@ -1545,15 +1554,28 @@
           const node=document.getElementById(id);if(node)node.disabled=!enabled||this.won;
         });
       },
+      resetHintDisplays(){
+        ['wordfinity-category-display','wordfinity-letter-display'].forEach(id=>{
+          const node=document.getElementById(id);
+          if(node){node.textContent='';node.hidden=true;}
+        });
+        ['wordfinity-category','wordfinity-letter','wordfinity-hint'].forEach(id=>{
+          const node=document.getElementById(id);
+          if(node){node.disabled=!this.puzzle;node.title=node.getAttribute('aria-label')||'';}
+        });
+      },
       async newRound(){
         const token=++this.roundToken;
         this.puzzle=null;this.guesses=[];this.won=false;
         this.setControls(false);
+        this.resetHintDisplays();
         document.getElementById('wordfinity-round-id').textContent='Neues Rätsel';
         document.getElementById('wordfinity-guess-count').textContent='0 Tipps';
         document.getElementById('wordfinity-status').textContent='Rätsel wird geladen …';
-        document.getElementById('wordfinity-hintbox').textContent='Deine Hinweise erscheinen hier.';
-        document.getElementById('wordfinity-guesses').innerHTML='<div class="wordfinity-status">Noch keine Tipps.</div>';
+        document.getElementById('wordfinity-progress-fill').style.width='35%';
+        document.getElementById('wordfinity-guesses').innerHTML='';
+        const result=document.getElementById('wordfinity-round-result');
+        if(result){result.classList.remove('visible');result.innerHTML='';}
         const id=Math.floor(Math.random()*5000)+1;
         try{
           const response=await fetch(this.baseUrl+id+'.json',{cache:'no-store'});
@@ -1567,61 +1589,96 @@
           this.setControls(true);
           document.getElementById('wordfinity-round-id').textContent='Rätsel #'+id;
           document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
+          document.getElementById('wordfinity-progress-fill').style.width='100%';
           document.getElementById('wordfinity-input').focus({preventScroll:true});
           PlayfinityPlayerPresence.sendPresence();
         }catch(error){
           if(token!==this.roundToken)return;
           console.error('[Wordfinity] Rätsel konnte nicht geladen werden:',error);
-          document.getElementById('wordfinity-status').textContent='Rätsel konnte nicht geladen werden. Prüfe die Datenverbindung und tippe auf „Neues zufälliges Rätsel“.';
+          document.getElementById('wordfinity-status').textContent='Rätsel konnte nicht geladen werden. Prüfe die Datenverbindung und tippe auf „Neues Rätsel“.';
           document.getElementById('wordfinity-round-id').textContent='Ladefehler';
+          document.getElementById('wordfinity-progress-fill').style.width='0%';
         }
       },
-      submitGuess(value,playerName='Du'){
-        if(!this.puzzle||this.won)return;
+      submitGuess(value,playerName='Du',options={}){
+        if(!this.puzzle||this.won)return false;
         const word=this.normalize(value);
-        if(!word)return;
-        if(/\s/u.test(word)){
-          document.getElementById('wordfinity-status').textContent='Bitte nur ein einzelnes Wort eingeben.';
-          return;
-        }
+        if(!word||/\s/u.test(word))return false;
         const rank=this.puzzle.woerter.indexOf(word)+1;
-        if(rank===0){
-          document.getElementById('wordfinity-status').textContent='„'+word+'“ – Wort nicht im Wörterbuch';
-          return;
-        }
+        if(rank===0)return false;
         const previous=this.guesses.find(item=>item.word===word);
-        if(previous){
-          document.getElementById('wordfinity-status').textContent='„'+word+'“ wurde bereits auf Rang '+previous.rank+' gefunden.';
-          return;
-        }
-        this.guesses.unshift({word,rank,player:playerName});
+        if(previous)return false;
+        this.guesses.push({word,rank,player:playerName,isHint:!!options.isHint});
+        this.guesses.sort((a,b)=>a.rank-b.rank);
         this.renderGuesses();
-        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':'„'+word+'“ erreicht Rang '+rank+'.';
+        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp-Wort auf Rang '+rank+' wurde zur Liste hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
         if(rank===1){
           this.won=true;this.setControls(false);
           document.getElementById('wordfinity-status').textContent='🏆 '+playerName+' hat das Zielwort „'+word+'“ erraten!';
         }
         PlayfinityPlayerPresence.sendPresence();
+        return true;
+      },
+      rankStyle(rank){
+        // Rang-basierte Annäherung an die früheren Ähnlichkeits-Farbstufen.
+        if(rank<=100)return {color:'#00ff9d',level:'Sehr nah'};
+        if(rank<=1000)return {color:'#ff9f1c',level:'Auf dem richtigen Weg'};
+        return {color:'#ff3b5c',level:'Weit entfernt'};
       },
       renderGuesses(){
-        const root=document.getElementById('wordfinity-guesses');
+        const container=document.getElementById('wordfinity-guesses');
         document.getElementById('wordfinity-guess-count').textContent=this.guesses.length+' Tipps';
-        if(!this.guesses.length){root.innerHTML='';return;}
-        root.innerHTML=this.guesses.slice(0,40).map(item=>'<div class="guess-row"><span class="guess-word">'+this.escape(item.word)+' <small style="color:var(--text-muted);font-size:.72rem">· '+this.escape(item.player)+'</small></span><strong class="guess-rank" style="color:'+(item.rank===1?'var(--neon-green)':'var(--neon-cyan)')+'">'+(item.rank===1?'🏆 Rang 1':'Rang '+item.rank)+'</strong></div>').join('');
+        container.innerHTML='';
+        this.guesses.slice(0,40).forEach(item=>{
+          const row=document.createElement('div');
+          row.className='guess-row';
+          const style=this.rankStyle(item.rank);
+          const pct=Math.max(5,Math.round(100-(Math.log(Math.max(1,item.rank))/Math.log(20000))*100));
+          row.innerHTML='<div class="guess-bar" style="width:'+pct+'%;background:'+style.color+';"></div>'+
+            '<span class="guess-word">'+this.escape(item.word)+(item.isHint?'<span class="guess-hint-tag">💡 TIPP</span>':'')+
+            ' <small style="color:var(--text-muted);font-size:.72rem">· '+this.escape(item.player)+'</small></span>'+
+            '<strong class="guess-rank" style="color:'+style.color+';margin-left:auto" title="'+style.level+'">#'+item.rank+'</strong>';
+          container.appendChild(row);
+        });
       },
       showCategory(){
         if(!this.puzzle)return;
-        document.getElementById('wordfinity-hintbox').textContent='🏷 Kategorie: '+this.puzzle.kategorie;
+        const display=document.getElementById('wordfinity-category-display');
+        display.textContent='🏷 Kategorie: '+this.puzzle.kategorie;
+        display.hidden=false;
+        document.getElementById('wordfinity-category').disabled=true;
       },
       showFirstLetter(){
         if(!this.puzzle)return;
         const first=Array.from(this.puzzle.woerter[0])[0];
-        document.getElementById('wordfinity-hintbox').textContent='🔤 Der erste Buchstabe ist: '+first.toLocaleUpperCase('de-DE');
+        const display=document.getElementById('wordfinity-letter-display');
+        display.textContent='🔤 Anfangsbuchstabe: '+first.toLocaleUpperCase('de-DE');
+        display.hidden=false;
+        document.getElementById('wordfinity-letter').disabled=true;
       },
       showHint(){
-        if(!this.puzzle)return;
-        const index=Math.floor(Math.random()*14)+1;
-        document.getElementById('wordfinity-hintbox').textContent='💡 Ähnliches Wort (Top 15): '+this.puzzle.woerter[index];
+        if(!this.puzzle||this.won)return;
+        const alreadyUsed=new Set(this.guesses.map(item=>item.rank));
+        const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
+        const desiredRank=Number.isFinite(bestRank)?Math.max(2,Math.round((bestRank+2)/2)):100;
+        const upperBound=Number.isFinite(bestRank)?Math.max(2,bestRank-1):Math.min(19999,this.puzzle.woerter.length-1);
+        let selectedRank=desiredRank;
+        if(alreadyUsed.has(selectedRank)||selectedRank>upperBound){
+          let distance=1,found=false;
+          while(!found&&distance<=this.puzzle.woerter.length){
+            for(const candidate of [desiredRank-distance,desiredRank+distance]){
+              if(candidate>=2&&candidate<=upperBound&&!alreadyUsed.has(candidate)){selectedRank=candidate;found=true;break;}
+            }
+            distance++;
+          }
+          if(!found){document.getElementById('wordfinity-status').textContent='Kein weiterer passender Tipp verfügbar.';return;}
+        }
+        const hintWord=this.puzzle.woerter[selectedRank-1];
+        if(!hintWord||!this.submitGuess(hintWord,'Tipp',{isHint:true})){
+          document.getElementById('wordfinity-status').textContent='Kein neuer Tipp verfügbar.';
+          return;
+        }
+        document.getElementById('wordfinity-hint').disabled=true;
       }
     };
 
