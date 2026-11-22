@@ -1560,7 +1560,6 @@
         this.setControls(false);
         this.resetHintDisplays();
         document.getElementById('wordfinity-status').textContent='Rätsel wird geladen …';
-        document.getElementById('wordfinity-progress-fill').style.width='35%';
         document.getElementById('wordfinity-guesses').innerHTML='';
         const result=document.getElementById('wordfinity-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
@@ -1576,14 +1575,12 @@
           this.puzzle=data;
           this.setControls(true);
           document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
-          document.getElementById('wordfinity-progress-fill').style.width='100%';
           document.getElementById('wordfinity-input').focus({preventScroll:true});
           PlayfinityPlayerPresence.sendPresence();
         }catch(error){
           if(token!==this.roundToken)return;
           console.error('[Wordfinity] Rätsel konnte nicht geladen werden:',error);
           document.getElementById('wordfinity-status').textContent='Rätsel konnte nicht geladen werden. Prüfe die Datenverbindung und tippe auf „Neues Rätsel“.';
-          document.getElementById('wordfinity-progress-fill').style.width='0%';
         }
       },
       submitGuess(value,playerName='Du',options={}){
