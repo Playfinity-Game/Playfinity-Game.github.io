@@ -43,9 +43,9 @@ begin
   with ranked as (
     select e.word,
       row_number() over (
-        order by (e.embedding_vector <=> target_embedding) asc, e.word_key asc
+        order by (e.embedding_vector OPERATOR(extensions.<=>) target_embedding) asc, e.word_key asc
       )::integer as rank,
-      (1 - (e.embedding_vector <=> target_embedding))::double precision as similarity
+      (1 - (e.embedding_vector OPERATOR(extensions.<=>) target_embedding))::double precision as similarity
     from public.wordfinity_word_embeddings e
     where e.dictionary_sha = p_dictionary_sha
       and e.model = '@cf/baai/bge-m3'
