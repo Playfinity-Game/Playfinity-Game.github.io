@@ -4,7 +4,7 @@ const EMBEDDING_MODEL = "@cf/baai/bge-m3";
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET, HEAD, POST, OPTIONS",
-  "Access-Control-Allow-Headers": "Content-Type",
+  "Access-Control-Allow-Headers": "Content-Type, Authorization",
   "Content-Type": "application/json; charset=utf-8"
 };
 
@@ -68,6 +68,142 @@ async function handleSimilarity(env, body) {
     throw new Error("Das Embedding-Modell hat keine gültigen Vektoren geliefert");
   }
   return json({ similarity: cosine(result.data[0], result.data[1]), model: EMBEDDING_MODEL });
+}
+
+
+
+function supabaseHeaders(env, prefer = "") {
+  const key = env.SUPABASE_SERVICE_ROLE_KEY;
+  return {
+    "apikey": key,
+    "Authorization": "Bearer " + key,
+    "Content-Type": "application/json",
+    ...(prefer ? { "Prefer": prefer } : {})
+  };
+}
+
+function secureTokenMatch(expected, supplied) {
+  if (!expected || !supplied || expected.length !== supplied.length) return false;
+  let mismatch = 0;
+  for (let i = 0; i < expected.length; i++) mismatch |= expected.charCodeAt(i) ^ supplied.charCodeAt(i);
+  return mismatch === 0;
+}
+
+function requirePrecomputeAuth(request, env) {
+  const supplied = (request.headers.get("Authorization") || "").replace(/^Bearer\s+/i, "");
+  return secureTokenMatch(env.WORDFINITY_PRECOMPUTE_TOKEN, supplied);
+}
+
+function validDictionarySha(value) {
+  return typeof value === "string" && /^[a-f0-9]{64}$/i.test(value);
+}
+
+async function supabaseRequest(env, path, init = {}) {
+  if (!env.SUPABASE_URL || !env.SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error("Supabase ist im Wordfinity-Worker noch nicht konfiguriert");
+  }
+  const base = env.SUPABASE_URL.replace(/\/+$/, "");
+  const response = await fetch(base + "/rest/v1/" + path, {
+    ...init,
+    headers: { ...supabaseHeaders(env, init.prefer || ""), ...(init.headers || {}) }
+  });
+  const raw = await response.text();
+  let data = null;
+  try { data = raw ? JSON.parse(raw) : null; } catch (_) {}
+  if (!response.ok) {
+    console.error("[WORDFINITY SUPABASE]", response.status, raw.slice(0, 1200));
+    throw new Error("Supabase-Anfrage fehlgeschlagen (" + response.status + ")");
+  }
+  return data;
+}
+
+async function handlePrecomputeEmbeddings(request, env, body) {
+  if (!requirePrecomputeAuth(request, env)) return json({ error: "Nicht autorisiert" }, 401);
+  const category = String(body.category || "").trim();
+  const dictionarySha = String(body.dictionary_sha || "").toLowerCase();
+  const words = Array.isArray(body.words)
+    ? [...new Map(body.words.map(value => {
+        const word = String(value || "").normalize("NFC").trim();
+        return [word.toLocaleLowerCase("de-DE"), word];
+      }).filter(([key, word]) => key && /^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word)).map(([key, word]) => [key, word])).values()]
+    : [];
+  if (!category || category.length > 80 || !validDictionarySha(dictionarySha) || !words.length || words.length > 32) {
+    return json({ error: "category, SHA-256 und 1 bis 32 gültige Wörter sind erforderlich" }, 400);
+  }
+  const embedded = await env.AI.run(EMBEDDING_MODEL, { text: words });
+  if (!Array.isArray(embedded?.data) || embedded.data.length !== words.length) {
+    throw new Error("BGE-M3 hat nicht für alle Wörter ein Embedding geliefert");
+  }
+  const rows = words.map((word, index) => {
+    const vector = embedded.data[index];
+    if (!Array.isArray(vector) || vector.length !== 1024 || vector.some(value => !Number.isFinite(Number(value)))) {
+      throw new Error("BGE-M3 lieferte für " + word + " keinen gültigen 1024-dimensionalen Vektor");
+    }
+    return {
+      word_key: word.toLocaleLowerCase("de-DE"),
+      word,
+      category,
+      dictionary_sha: dictionarySha,
+      model: EMBEDDING_MODEL,
+      embedding: vector,
+      embedding_vector: "[" + vector.join(",") + "]"
+    };
+  });
+  await supabaseRequest(env, "wordfinity_word_embeddings?on_conflict=word_key", {
+    method: "POST",
+    prefer: "resolution=merge-duplicates,return=minimal",
+    body: JSON.stringify(rows)
+  });
+  return json({ stored: rows.length, category, model: EMBEDDING_MODEL, dictionary_sha: dictionarySha });
+}
+
+async function handlePrecomputeTarget(request, env, body) {
+  if (!requirePrecomputeAuth(request, env)) return json({ error: "Nicht autorisiert" }, 401);
+  const target = String(body.target_word || "").normalize("NFC").trim();
+  const dictionarySha = String(body.dictionary_sha || "").toLowerCase();
+  if (!target || target.length > 80 || !validDictionarySha(dictionarySha)) {
+    return json({ error: "target_word und gültiger dictionary_sha sind erforderlich" }, 400);
+  }
+  const result = await supabaseRequest(env, "rpc/wordfinity_compute_semantic_ranking", {
+    method: "POST",
+    body: JSON.stringify({ p_target_word: target, p_dictionary_sha: dictionarySha })
+  });
+  return json({ result });
+}
+
+async function handlePrecomputedRank(env, body) {
+  const target = String(body.target || "").normalize("NFC").trim();
+  const guess = String(body.guess || "").normalize("NFC").trim();
+  if (!target || !guess || target.length > 80 || guess.length > 80) {
+    return json({ error: "target und guess sind erforderlich" }, 400);
+  }
+  const targetKey = target.toLocaleLowerCase("de-DE");
+  const guessKey = guess.toLocaleLowerCase("de-DE");
+  if (targetKey === guessKey) {
+    return json({ precomputed: true, rank: 1, similarity: 1, candidateCount: 0 });
+  }
+  const query = new URLSearchParams({
+    select: "rankings,dictionary_sha,model,candidate_count",
+    target_word: "eq." + targetKey,
+    limit: "1"
+  });
+  const rows = await supabaseRequest(env, "wordfinity_semantic_rankings?" + query.toString());
+  const entry = Array.isArray(rows) ? rows[0] : null;
+  if (!entry || entry.model !== EMBEDDING_MODEL || !Array.isArray(entry.rankings)) {
+    return json({ precomputed: false, rank: null });
+  }
+  const found = entry.rankings.find(item =>
+    String(item?.word || "").normalize("NFC").toLocaleLowerCase("de-DE") === guessKey
+  );
+  if (!found || !Number.isInteger(Number(found.rank))) {
+    return json({ precomputed: false, rank: null, candidateCount: entry.candidate_count });
+  }
+  return json({
+    precomputed: true,
+    rank: Number(found.rank),
+    similarity: Number(found.similarity),
+    candidateCount: Number(entry.candidate_count)
+  });
 }
 
 async function handleWord(env, body) {
@@ -201,8 +337,14 @@ export default {
       return json({ error: "Ungültiger JSON-Request" }, 400);
     }
 
-    if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
     try {
+      if (url.pathname === "/api/precomputed-rank") return await handlePrecomputedRank(env, body);
+      if (url.pathname === "/api/admin/embeddings") {
+        if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
+        return await handlePrecomputeEmbeddings(request, env, body);
+      }
+      if (url.pathname === "/api/admin/rank") return await handlePrecomputeTarget(request, env, body);
+      if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
       switch (url.pathname) {
         case "/api/similarity": return await handleSimilarity(env, body);
         case "/api/hints": return await handleHints(env, body);
