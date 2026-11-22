@@ -71,6 +71,57 @@ async function handleSimilarity(env, body) {
 }
 
 
+async function handleSemanticSimilarity(env, body) {
+  const target = String(body.target || "").normalize("NFC").trim();
+  const guess = String(body.guess || "").normalize("NFC").trim();
+  if (!target || !guess) return json({ error: "target und guess sind erforderlich" }, 400);
+  if (target.length > 80 || guess.length > 80) {
+    return json({ error: "target und guess dürfen höchstens 80 Zeichen lang sein" }, 400);
+  }
+
+  const raw = await generate(
+    env,
+    "Du bist ein präziser deutscher Lexikograf für ein Wort-Assoziationsspiel. Beschreibe die Bedeutungen der angegebenen Wörter unabhängig voneinander. Beschreibe jeweils, was das Wort bezeichnet, seine typische Oberkategorie, Eigenschaften und übliche Zusammenhänge. Schreibe konkrete, sachliche Bedeutungsbeschreibungen, keine Definition durch bloße Wiederholung des Wortes. Erfinde keine Beziehungen zwischen den beiden Wörtern und bewerte ihre Ähnlichkeit nicht. Gib ausschließlich valides JSON als Array aus: [{\"word\":\"...\",\"description\":\"...\"}]. Übernimm beide Wörter exakt.",
+    "Wörter: " + JSON.stringify([target, guess]) + "\nErstelle für jedes Wort eine eigenständige Beschreibung auf Deutsch mit 1 bis 3 kurzen Sätzen. Verwende bei mehrdeutigen Wörtern die gebräuchlichste Alltagsbedeutung.",
+    700
+  );
+
+  let parsed;
+  try {
+    const match = raw.match(/\[[\s\S]*\]/);
+    if (match) parsed = JSON.parse(match[0]);
+  } catch (_) {}
+  if (!Array.isArray(parsed)) {
+    throw new Error("Die Bedeutungs-KI hat keine gültigen Beschreibungen geliefert");
+  }
+  const byWord = new Map(parsed.map(item => [
+    String(item?.word || "").normalize("NFC").trim().toLocaleLowerCase("de-DE"),
+    String(item?.description || "").trim()
+  ]));
+  const targetDescription = byWord.get(target.toLocaleLowerCase("de-DE"));
+  const guessDescription = byWord.get(guess.toLocaleLowerCase("de-DE"));
+  if (!targetDescription || !guessDescription ||
+      targetDescription.length < 20 || guessDescription.length < 20 ||
+      targetDescription.length > 700 || guessDescription.length > 700) {
+    throw new Error("Die Bedeutungs-KI hat unvollständige Beschreibungen geliefert");
+  }
+
+  const embedded = await env.AI.run(EMBEDDING_MODEL, {
+    text: [targetDescription, guessDescription]
+  });
+  if (!Array.isArray(embedded?.data) || embedded.data.length < 2) {
+    throw new Error("Das Embedding-Modell konnte die Bedeutungen nicht vergleichen");
+  }
+  return json({
+    similarity: cosine(embedded.data[0], embedded.data[1]),
+    model: EMBEDDING_MODEL,
+    method: "gemma-meaning-descriptions+bge-m3",
+    target_description: targetDescription,
+    guess_description: guessDescription
+  });
+}
+
+
 
 function supabaseHeaders(env, prefer = "") {
   const key = env.SUPABASE_SERVICE_ROLE_KEY;
@@ -445,6 +496,7 @@ export default {
       if (!env?.AI) return json({ error: "Cloudflare Workers AI Binding 'AI' fehlt" }, 503);
       switch (url.pathname) {
         case "/api/similarity": return await handleSimilarity(env, body);
+        case "/api/similarity-semantic": return await handleSemanticSimilarity(env, body);
         case "/api/hints": return await handleHints(env, body);
         case "/api/category": return await handleCategory(env, body);
         case "/api/word": return await handleWord(env, body);
