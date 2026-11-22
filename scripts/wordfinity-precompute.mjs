@@ -6,6 +6,7 @@
  *   WORDFINITY_PRECOMPUTE_TOKEN=... node scripts/wordfinity-precompute.mjs all
  *   ... node scripts/wordfinity-precompute.mjs embeddings
  *   ... node scripts/wordfinity-precompute.mjs rankings
+ *   ... node scripts/wordfinity-precompute.mjs target Apfel
  *
  * Run from the repository root. Embeddings are created for every unique word
  * first; ranking jobs then run category by category against the full dictionary.
@@ -16,12 +17,16 @@ import { createHash } from "node:crypto";
 const WORKER = (process.env.WORDFINITY_WORKER_URL || "https://wordfinity-ai.sdinaj9206.workers.dev").replace(/\/+$/, "");
 const TOKEN = process.env.WORDFINITY_PRECOMPUTE_TOKEN;
 const MODE = process.argv[2] || "all";
-const DICTIONARY_PATH = process.argv[3] || "test/data/wordfinity-nouns.json";
+const TARGET_INPUT = MODE === "target" ? process.argv[3] : null;
+const DICTIONARY_PATH = (MODE === "target" ? process.argv[4] : process.argv[3]) || "test/data/wordfinity-nouns.json";
 const BATCH_SIZE = 32;
 
 if (!TOKEN) throw new Error("WORDFINITY_PRECOMPUTE_TOKEN fehlt.");
-if (!["all", "embeddings", "rankings"].includes(MODE)) {
-  throw new Error("Modus muss all, embeddings oder rankings sein.");
+if (!["all", "embeddings", "rankings", "target"].includes(MODE)) {
+  throw new Error("Modus muss all, embeddings, rankings oder target sein.");
+}
+if (MODE === "target" && !TARGET_INPUT) {
+  throw new Error("Bitte ein Zielwort angeben, z. B. target Apfel.");
 }
 
 const raw = await readFile(DICTIONARY_PATH);
@@ -73,7 +78,7 @@ async function post(path, body) {
   throw lastError || new Error("Worker-Anfrage fehlgeschlagen");
 }
 
-if (MODE === "all" || MODE === "embeddings") {
+if (MODE === "all" || MODE === "embeddings" || MODE === "target") {
   let done = 0;
   for (const { category, words } of categories) {
     for (let offset = 0; offset < words.length; offset += BATCH_SIZE) {
@@ -89,9 +94,20 @@ if (MODE === "all" || MODE === "embeddings") {
   }
 }
 
-if (MODE === "all" || MODE === "rankings") {
+if (MODE === "all" || MODE === "rankings" || MODE === "target") {
   let done = 0;
-  for (const { category, words } of categories) {
+  const rankingJobs = MODE === "target"
+    ? (() => {
+        const wanted = TARGET_INPUT.normalize("NFC").trim().toLocaleLowerCase("de-DE");
+        for (const group of categories) {
+          const match = group.words.find(word => word.toLocaleLowerCase("de-DE") === wanted);
+          if (match) return [{ category: group.category, words: [match] }];
+        }
+        throw new Error("Zielwort nicht im Wörterbuch gefunden: " + TARGET_INPUT);
+      })()
+    : categories;
+  const rankingTotal = rankingJobs.reduce((sum, item) => sum + item.words.length, 0);
+  for (const { category, words } of rankingJobs) {
     console.log("[Ranglisten] Starte Kategorie:", category, "(" + words.length + " Wörter)");
     for (const target_word of words) {
       await post("/api/admin/rank", {
@@ -99,11 +115,13 @@ if (MODE === "all" || MODE === "rankings") {
         dictionary_sha: dictionarySha
       });
       done++;
-      if (done % 10 === 0 || done === totalWords) {
-        console.log("[Ranglisten]", category, done + "/" + totalWords);
+      if (done % 10 === 0 || done === rankingTotal) {
+        console.log("[Ranglisten]", category, done + "/" + rankingTotal);
       }
     }
   }
 }
 
-console.log("Wordfinity-Vorberechnung abgeschlossen.");
+console.log(MODE === "target"
+  ? "Einzeltest abgeschlossen. Es wurde nur die Rangliste für " + TARGET_INPUT + " berechnet."
+  : "Wordfinity-Vorberechnung abgeschlossen.");
