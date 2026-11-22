@@ -2690,61 +2690,20 @@
         this.roundLocked=false;
       },
 
-      async loadSemanticRankManifest() {
-        if (!this.semanticRankManifestPromise) {
-          this.semanticRankManifestPromise = fetch(this.semanticRankManifestUrl, { cache: 'no-cache' })
-            .then(response => {
-              if (!response.ok) throw new Error('Online-Ranglisten nicht verfügbar: ' + response.status);
-              return response.json();
-            })
-            .then(manifest => {
-              if (manifest?.format !== 'wordfinity-semantic-ranks-v1' ||
-                  !Array.isArray(manifest.candidateWords) || !manifest.rankings ||
-                  !Number.isFinite(manifest.candidateCount)) {
-                throw new Error('Ungültiges Ranglisten-Manifest');
-              }
-              const candidateIds = new Map();
-              manifest.candidateWords.forEach((word, index) => {
-                candidateIds.set(String(word).toLocaleLowerCase('de-DE').trim(), index);
-              });
-              return { ...manifest, candidateIds };
-            });
-        }
-        return this.semanticRankManifestPromise;
-      },
-
       async getPrecomputedRank(target, guess) {
-        const targetKey = String(target || '').toLocaleLowerCase('de-DE').trim();
-        const guessKey = String(guess || '').toLocaleLowerCase('de-DE').trim();
         try {
-          const manifest = await this.loadSemanticRankManifest();
-          const candidateId = manifest.candidateIds.get(guessKey);
-          const entry = manifest.rankings[targetKey];
-          if (!Number.isInteger(candidateId) || !entry?.file) return null;
-
-          let rankPromise = this.semanticRankCache.get(targetKey);
-          if (!rankPromise) {
-            const baseUrl = this.semanticRankManifestUrl.slice(0, this.semanticRankManifestUrl.lastIndexOf('/') + 1);
-            rankPromise = fetch(baseUrl + entry.file + '?v=' + encodeURIComponent(manifest.targetDictionarySha256), { cache: 'force-cache' }).then(async response => {
-              if (!response.ok) throw new Error('Rangdatei nicht verfügbar: ' + response.status);
-              if (typeof DecompressionStream !== 'function') throw new Error('Browser unterstützt gzip-Dekomprimierung nicht');
-              const compressed = await response.arrayBuffer();
-              const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
-              const bytes = await new Response(stream).arrayBuffer();
-              if (bytes.byteLength % 2 !== 0) throw new Error('Ungültige Rangdatei');
-              const view = new DataView(bytes);
-              const ranks = new Map();
-              for (let offset = 0; offset < bytes.byteLength; offset += 2) {
-                ranks.set(view.getUint16(offset, true), offset / 2 + 1);
-              }
-              return ranks;
-            });
-            this.semanticRankCache.set(targetKey, rankPromise);
-          }
-          const ranks = await rankPromise;
-          return ranks.get(candidateId) ?? null;
+          const response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/precomputed-rank', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ target, guess })
+          });
+          const result = await response.json().catch(() => ({}));
+          if (!response.ok) throw new Error(result.error || 'Ranglisten-Server Fehler ' + response.status);
+          if (!result.precomputed || !Number.isInteger(Number(result.rank)) ||
+              !Number.isFinite(Number(result.similarity))) return null;
+          return { rank: Number(result.rank), similarity: Math.max(-1, Math.min(1, Number(result.similarity))) };
         } catch (error) {
-          console.warn('[WORDFINITY] Online-Rangliste nicht nutzbar; verwende KI-Ersatz:', error);
+          console.warn('[WORDFINITY] Gespeicherter Rang nicht verfügbar; verwende Live-Berechnung:', error);
           return null;
         }
       },
@@ -2804,10 +2763,16 @@
         }
         let sim=0;
         let precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
-        if (precomputedRank === null) precomputedRank = await this.getPrecomputedRank(this.targetWord, cleanWord);
+        let precomputedSimilarity = Number.isFinite(options.precomputedSimilarity) ? Number(options.precomputedSimilarity) : null;
+        if (precomputedRank === null) {
+          const storedRank = await this.getPrecomputedRank(this.targetWord, cleanWord);
+          if (storedRank) {
+            precomputedRank = storedRank.rank;
+            precomputedSimilarity = storedRank.similarity;
+          }
+        }
         if (precomputedRank !== null) {
-          const manifest = await this.loadSemanticRankManifest();
-          sim = 1 - ((precomputedRank - 1) / Math.max(1, manifest.candidateCount - 1));
+          sim = precomputedSimilarity !== null ? precomputedSimilarity : 1 - ((precomputedRank - 1) / 2486);
         } else if(Number.isFinite(options.precomputedSimilarity))sim=options.precomputedSimilarity;
         else{
           try{sim=await this.getSimilarity(this.targetWord,cleanWord);}
