@@ -17,24 +17,24 @@ table{width:100%;border-collapse:collapse;margin-top:20px}td,th{padding:12px 8px
 <p>Das geheime Zielwort ist hier fest auf <b>Apfel</b> eingestellt. Die Testseite fragt die neue Bedeutungs-KI direkt ab. Du musst im eigentlichen Spiel nichts umstellen.</p>
 <button id="run">Test starten</button>
 <p class="status" id="status">Bereit für 6 Testwörter.</p>
-<table><thead><tr><th>Wort</th><th>Ähnlichkeit</th><th>Test-Rang</th><th>Farbe</th></tr></thead><tbody id="rows"></tbody></table>
-<p class="status">Hinweis: Die Rangzahl wird mit derselben Umrechnungsformel wie im Spiel aus dem Live-Ähnlichkeitswert abgeleitet. Die Rangzahl ist vorläufig. Dieser Test prüft den Vergleich KI-generierter Bedeutungsbeschreibungen, nicht die vorberechnete Rangliste.</p>
+<table><thead><tr><th>Wort</th><th>KI-Nähe</th><th>Test-Rang</th><th>Beziehung</th><th>Farbe</th></tr></thead><tbody id="rows"></tbody></table>
+<p class="status">Hinweis: Die neue KI bewertet die Bedeutungsbeziehung direkt anhand einer festen Skala. Rangzahlen und Farben sind weiterhin vorläufig und noch nicht mit der vorberechneten Rangliste verbunden.</p>
 <script>
 const words=["Birne","Obst","Baum","Kuchen","Auto","Raumschiff"];
-const endpoint="https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity-semantic";
+const endpoint="https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity-judgement";
 const rows=document.getElementById("rows"),status=document.getElementById("status"),button=document.getElementById("run");
 button.addEventListener("click",async()=>{
  button.disabled=true;rows.innerHTML="";status.textContent="KI wird abgefragt …";
  for(const guess of words){
-  const tr=document.createElement("tr");tr.innerHTML="<td>"+guess+"</td><td>…</td><td>…</td><td>…</td>";rows.appendChild(tr);
+  const tr=document.createElement("tr");tr.innerHTML="<td>"+guess+"</td><td>…</td><td>…</td><td>…</td><td>…</td>";rows.appendChild(tr);
   try{
    const response=await fetch(endpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({target:"Apfel",guess})});
    const data=await response.json();if(!response.ok)throw new Error(data.error||"HTTP "+response.status);
    const sim=Math.max(0,Math.min(1,Number(data.similarity)));
    const rank=1+Math.round(Math.pow(1-sim,1.8)*15499);
    const color=rank<=150?"🟢 Sehr nah":rank<=1000?"🟠 Mittel":"🔴 Weit weg";
-   tr.cells[1].textContent=sim.toFixed(4);tr.cells[2].textContent="#"+rank;tr.cells[3].textContent=color;
-  }catch(e){tr.cells[1].textContent="Fehler";tr.cells[2].textContent="–";tr.cells[3].textContent=e.message;}
+   tr.cells[1].textContent=Number(data.score).toFixed(0)+"/100";tr.cells[2].textContent="#"+rank;tr.cells[3].textContent=(data.relation||"")+(data.reason?" – "+data.reason:"");tr.cells[4].textContent=color;
+  }catch(e){tr.cells[1].textContent="Fehler";tr.cells[2].textContent="–";tr.cells[3].textContent="–";tr.cells[4].textContent=e.message;}
  }
  status.textContent="Test abgeschlossen. Bitte Ergebnisse vergleichen.";button.disabled=false;
 });
