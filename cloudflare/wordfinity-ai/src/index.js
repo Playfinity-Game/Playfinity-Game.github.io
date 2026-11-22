@@ -95,7 +95,7 @@ function requirePrecomputeAuth(request, env) {
 }
 
 function validDictionarySha(value) {
-  return typeof value === "string" && /^[a-f0-9]{64}$/i.test(value);
+  return typeof value === "string" && /^(?:[a-f0-9]{40}|[a-f0-9]{64})$/i.test(value);
 }
 
 async function supabaseRequest(env, path, init = {}) {
