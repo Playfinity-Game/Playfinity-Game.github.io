@@ -2389,12 +2389,8 @@
           const scores = await this.getLiveCandidateScores(requestedTarget);
           const excluded = new Set([requestedTarget.toLocaleLowerCase('de-DE'),
             ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')), ...this.pendingGuesses]);
-          const sortedScores = [...scores].sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'));
-          const ranked = sortedScores.map(item => ({
-            ...item,
-            rank: 1 + sortedScores.filter(other => other.similarity > item.similarity + 1e-7 ||
-              (Math.abs(other.similarity-item.similarity) <= 1e-7 && String(other.word).localeCompare(String(item.word),'de-DE') < 0)).length
-          }));
+          // scores kommen bereits in der vorberechneten Rangfolge; kein erneutes Sortieren oder O(n²)-Ranking.
+          const ranked = scores.map((item, index) => ({ ...item, rank: index + 1 }));
           const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
           const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
           const options = ranked.filter(item => item.rank<bestRank &&
@@ -2476,12 +2472,12 @@
         const categoryDisplay=document.getElementById('kontexto-category-display'),letterDisplay=document.getElementById('kontexto-letter-display');
         if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
         if(letterDisplay){letterDisplay.hidden=true;letterDisplay.textContent='';}
-        if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true') this.showCategoryHint();
         this.guesses=[];
         try {
           await this.loadTargetRanks(this.targetWord);
           if (requestedRoundId !== this.roundId) return;
           if (statusText) statusText.textContent = 'Rangliste bereit · ' + this.targetRankMap.size.toLocaleString('de-DE') + ' Wörter';
+          if (localStorage.getItem('playfinity_wordfinity_auto_category') === 'true') this.showCategoryHint();
         } catch (error) {
           console.error('[WORDFINITY] Rangliste konnte nicht geladen werden:', error);
           if (statusText) statusText.textContent = 'Rangliste konnte nicht geladen werden: ' + (error?.message || 'Bitte neu starten.');
