@@ -1151,7 +1151,7 @@
       <div class="kontexto-wrap">
         <div class="model-loader" id="kontexto-loader">
           <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">Lokales Sprachmodell wird geladen …</span>
+            <span id="model-status-text">Vorbereitete Rangliste wird geladen …</span>
             <span id="model-status-pct">0%</span>
           </div>
           <div class="model-loader-bar">
@@ -2221,6 +2221,10 @@
       dictionaryWords: new Set(),
       dictionaryTargetWords: [],
       liveCandidateScoreCache: new Map(),
+      rankManifestPromise: null,
+      targetRankMap: new Map(),
+      targetRankWords: [],
+      rankListCache: new Map(),
       usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets-v2') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
       wordHintCandidatesTried: new Set(),
       wordHintInProgress: false,
@@ -2272,8 +2276,7 @@
           const dictionaryLoaded = await this.loadDictionary();
           if (!dictionaryLoaded) return false;
           await this.pickNewTarget();
-          if (this.targetWord) await this.initModel();
-          return !!this.targetWord;
+          return !!this.targetWord && this.targetRankMap.size > 0;
         })();
 
         const submitButton = document.getElementById('kontexto-submit');
@@ -2386,12 +2389,8 @@
           const scores = await this.getLiveCandidateScores(requestedTarget);
           const excluded = new Set([requestedTarget.toLocaleLowerCase('de-DE'),
             ...this.guesses.map(item => item.word.toLocaleLowerCase('de-DE')), ...this.pendingGuesses]);
-          const sortedScores = [...scores].sort((x,y) => y.similarity-x.similarity || x.word.localeCompare(y.word,'de-DE'));
-          const ranked = sortedScores.map(item => ({
-            ...item,
-            rank: 1 + sortedScores.filter(other => other.similarity > item.similarity + 1e-7 ||
-              (Math.abs(other.similarity-item.similarity) <= 1e-7 && String(other.word).localeCompare(String(item.word),'de-DE') < 0)).length
-          }));
+          // scores kommen bereits in der vorberechneten Rangfolge; kein erneutes Sortieren oder O(n²)-Ranking.
+          const ranked = scores.map((item, index) => ({ ...item, rank: index + 1 }));
           const bestRank = this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
           const desiredRank = Number.isFinite(bestRank) ? Math.max(2,bestRank-Math.max(1,Math.floor(bestRank*.08))) : Math.max(2,Math.floor(ranked.length*.72));
           const options = ranked.filter(item => item.rank<bestRank &&
@@ -2473,48 +2472,90 @@
         const categoryDisplay=document.getElementById('kontexto-category-display'),letterDisplay=document.getElementById('kontexto-letter-display');
         if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
         if(letterDisplay){letterDisplay.hidden=true;letterDisplay.textContent='';}
-        if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true') this.showCategoryHint();
         this.guesses=[];
+        try {
+          await this.loadTargetRanks(this.targetWord);
+          if (requestedRoundId !== this.roundId) return;
+          if (statusText) statusText.textContent = 'Rangliste bereit · ' + this.targetRankMap.size.toLocaleString('de-DE') + ' Wörter';
+          if (localStorage.getItem('playfinity_wordfinity_auto_category') === 'true') this.showCategoryHint();
+        } catch (error) {
+          console.error('[WORDFINITY] Rangliste konnte nicht geladen werden:', error);
+          if (statusText) statusText.textContent = 'Rangliste konnte nicht geladen werden: ' + (error?.message || 'Bitte neu starten.');
+          this.targetRankMap = new Map();
+          this.targetRankWords = [];
+        }
         const result=document.getElementById('kontexto-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
         this.renderGuesses();
         PlayfinityPlayerPresence.sendPresence();
       },
 
-      async initModel() {
-        const loader=document.getElementById('kontexto-loader');
-        const status=document.getElementById('model-status-text');
-        const pct=document.getElementById('model-status-pct');
-        if(loader)loader.style.display='flex';
-        if(status)status.textContent='Transformers.js wird geladen …';
+      async loadTargetRanks(target) {
+        const key = String(target || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        if (!key) throw new Error('Kein Zielwort für die Rangliste vorhanden.');
+        const cached = this.rankListCache.get(key);
+        if (cached) {
+          this.targetRankMap = cached.rankMap;
+          this.targetRankWords = cached.words;
+          this.aiReady = true;
+          return;
+        }
+        const loader = document.getElementById('kontexto-loader');
+        const status = document.getElementById('model-status-text');
+        const pct = document.getElementById('model-status-pct');
+        if (loader) loader.style.display = 'flex';
+        if (status) status.textContent = 'Rangliste für „' + target + '“ wird geladen …';
+        if (pct) pct.textContent = '0%';
         try {
-          const {pipeline,env}=await import('https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.7.2');
-          env.allowLocalModels=false; env.useBrowserCache=true;
-          if(status)status.textContent='Mehrsprachiges Modell wird geladen …';
-          this.featureExtractor=await pipeline('feature-extraction',this.modelName,{
-            dtype:'q8',
-            progress_callback:progress=>{
-              if(!progress||!status)return;
-              if(progress.status==='progress'&&Number.isFinite(progress.progress)){
-                status.textContent='Modell-Download: '+Math.round(progress.progress)+'%';
-                if(pct)pct.textContent=Math.round(progress.progress)+'%';
-              } else if(progress.status==='downloading') status.textContent='Modell-Dateien werden heruntergeladen …';
-              else if(progress.status==='ready') status.textContent='Modell wird initialisiert …';
-            }
-          });
-          this.embeddingCache.clear();
-          await this.getEmbedding(this.targetWord);
-          this.aiReady=true;
-          if(status)status.textContent='Transformers.js bereit · Alltagsregeln aktiviert';
-          if(pct)pct.textContent='100%';
-          const fill=document.getElementById('model-progress-fill'); if(fill)fill.style.width='100%';
-        } catch(error) {
-          console.error('[WORDFINITY] Transformers.js konnte nicht geladen werden:',error);
-          this.aiReady=false;
-          if(status)status.textContent='Lokales Modell konnte nicht geladen werden: '+(error?.message||'Bitte erneut versuchen.');
+          if (!this.rankManifestPromise) {
+            this.rankManifestPromise = fetch('data/wordfinity-ranks/manifest.json', { cache: 'force-cache' })
+              .then(response => {
+                if (!response.ok) throw new Error('Ranglisten-Manifest nicht erreichbar (' + response.status + ')');
+                return response.json();
+              }).catch(error => {
+                this.rankManifestPromise = null;
+                throw error;
+              });
+          }
+          const manifest = await this.rankManifestPromise;
+          if (manifest.format !== 'wordfinity-semantic-ranks-v1' ||
+              !Array.isArray(manifest.candidateWords) || !manifest.rankings) {
+            throw new Error('Ungültiges Ranglisten-Manifest.');
+          }
+          const entry = manifest.rankings[key];
+          if (!entry || !entry.file) throw new Error('Für das Zielwort „' + target + '“ gibt es keine vorberechnete Rangliste.');
+          const response = await fetch('data/wordfinity-ranks/' + entry.file, { cache: 'force-cache' });
+          if (!response.ok) throw new Error('Ranglistendatei nicht erreichbar (' + response.status + ')');
+          const compressed = await response.arrayBuffer();
+          if (typeof DecompressionStream !== 'function') throw new Error('Dieser Browser unterstützt das Entpacken der Rangliste nicht.');
+          const stream = new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
+          const bytes = await new Response(stream).arrayBuffer();
+          if (bytes.byteLength !== manifest.candidateCount * 2) {
+            throw new Error('Ranglistendatei hat eine unerwartete Größe.');
+          }
+          const view = new DataView(bytes);
+          const words = new Array(manifest.candidateCount);
+          const rankMap = new Map();
+          for (let rankIndex = 0; rankIndex < manifest.candidateCount; rankIndex++) {
+            const candidateIndex = view.getUint16(rankIndex * 2, true);
+            const word = manifest.candidateWords[candidateIndex];
+            if (typeof word !== 'string') throw new Error('Ungültiger Kandidatenindex in Rangliste.');
+            words[rankIndex] = word;
+            rankMap.set(word.normalize('NFC').toLocaleLowerCase('de-DE'), rankIndex + 1);
+          }
+          const result = { rankMap, words };
+          this.rankListCache.set(key, result);
+          while (this.rankListCache.size > 2) this.rankListCache.delete(this.rankListCache.keys().next().value);
+          this.targetRankMap = rankMap;
+          this.targetRankWords = words;
+          this.liveCandidateScoreCache.clear();
+          this.aiReady = true;
+          if (status) status.textContent = 'Rangliste bereit · ' + words.length.toLocaleString('de-DE') + ' Wörter';
+          if (pct) pct.textContent = '100%';
+          const fill = document.getElementById('model-progress-fill');
+          if (fill) fill.style.width = '100%';
         } finally {
-          if(loader)loader.style.display='none';
-          this.roundLocked=false;
+          if (loader) loader.style.display = 'none';
         }
       },
 
@@ -2530,55 +2571,30 @@
       },
 
       async getLiveCandidateScores(target) {
-        const key=String(target||'').toLocaleLowerCase('de-DE').trim();
-        let promise=this.liveCandidateScoreCache.get(key);
-        if(!promise) {
-          promise=(async()=>{
-            if(!this.featureExtractor)throw new Error('Transformers.js-Modell ist nicht geladen.');
-            const loader=document.getElementById('kontexto-loader'); if(loader)loader.style.display='flex';
-            try {
-              const targetVector=await this.getEmbedding(target), candidates=this.dictionaryTargetWords, scores=[], chunkSize=32;
-              for(let offset=0;offset<candidates.length;offset+=chunkSize) {
-                const chunk=candidates.slice(offset,offset+chunkSize);
-                const output=await this.featureExtractor(chunk,{pooling:'mean',normalize:true});
-                const vectors=output.tolist();
-                for(let itemIndex=0;itemIndex<chunk.length;itemIndex++) {
-                  const word=chunk[itemIndex], vector=vectors[itemIndex];
-                  let semantic=0;
-                  for(let i=0;i<Math.min(targetVector.length,vector.length);i++)semantic+=targetVector[i]*vector[i];
-                  semantic=Math.max(0,Math.min(1,semantic));
-                  scores.push({word,similarity:Math.max(semantic,this.calculateEverydaySimilarity(target,word))});
-                }
-                const done=Math.min(offset+chunk.length,candidates.length), progress=candidates.length?Math.round(done/candidates.length*100):100;
-                const status=document.getElementById('model-status-text'), pct=document.getElementById('model-status-pct'), fill=document.getElementById('model-progress-fill');
-                if(status)status.textContent='Transformers.js bewertet Wortliste: '+done.toLocaleString('de-DE')+' / '+candidates.length.toLocaleString('de-DE');
-                if(pct)pct.textContent=progress+'%'; if(fill)fill.style.width=progress+'%';
-                await new Promise(resolve=>setTimeout(resolve,0));
-              }
-              return scores;
-            } finally {if(loader)loader.style.display='none';}
-          })();
-          this.liveCandidateScoreCache.set(key,promise);
-          while(this.liveCandidateScoreCache.size>2){const oldest=this.liveCandidateScoreCache.keys().next().value;if(oldest===key)break;this.liveCandidateScoreCache.delete(oldest);}
-          promise.catch(()=>this.liveCandidateScoreCache.delete(key));
+        const key = String(target || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        if (key !== String(this.targetWord || '').normalize('NFC').trim().toLocaleLowerCase('de-DE') || !this.targetRankWords.length) {
+          await this.loadTargetRanks(target);
         }
-        return promise;
+        return this.targetRankWords.map((word, index) => ({
+          word,
+          similarity: 1 - index / Math.max(1, this.targetRankWords.length)
+        }));
       },
 
-      async getLiveRanks(target,guesses) {
-        const candidates=await this.getLiveCandidateScores(target);
-        const missing=guesses.filter(item=>!Number.isFinite(Number(item.similarity)));
-        const missingScores=await Promise.all(missing.map(item=>this.getSimilarity(target,item.word)));
-        let index=0;
-        return guesses.map(item=>{
-          const semantic=Number.isFinite(Number(item.similarity))?Number(item.similarity):missingScores[index++];
-          const score=Math.max(semantic,this.calculateEverydaySimilarity(target,item.word));
-          let rank=1;
-          for(const candidate of candidates) {
-            if(candidate.similarity>score+1e-7)rank++;
-            else if(Math.abs(candidate.similarity-score)<=1e-7 && String(candidate.word).localeCompare(String(item.word),'de-DE')<0)rank++;
+      async getLiveRanks(target, guesses) {
+        await this.loadTargetRanks(target);
+        const targetKey = String(target || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        return guesses.map(item => {
+          const wordKey = String(item.word || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+          let rank = wordKey === targetKey ? 1 : this.targetRankMap.get(wordKey);
+          if (!rank) {
+            const priorUnknowns = this.guesses.filter(guess => {
+              const priorKey = String(guess.word || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+              return !this.targetRankMap.has(priorKey) && priorKey !== targetKey;
+            }).length;
+            rank = this.targetRankWords.length + priorUnknowns + 1;
           }
-          return {word:item.word,rank,similarity:score};
+          return { word: item.word, rank, similarity: Math.max(0, 1 - (rank - 1) / Math.max(1, this.targetRankWords.length)) };
         });
       },
 
@@ -2712,14 +2728,13 @@
           const row = document.createElement('div');
           row.className = 'guess-row';
 
-          // Farben folgen den angezeigten semantischen Rangnummern:
-          // 1–150 Grün, 151–1000 Orange, ab 1001 Rot.
+          // Farben folgen den angezeigten Rangnummern: 1–300 Grün, 301–1000 Orange, ab 1001 Rot.
           const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
           const rank = Number(item.rank);
           let color = '#ff3b5c'; // Rang 1001+: weit entfernt
           let level = 'Weit entfernt';
-          if (Number.isFinite(rank) && rank <= 100) { color = '#00ff9d'; level = 'Sehr nah'; }
-          else if (Number.isFinite(rank) && rank <= 500) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
+          if (Number.isFinite(rank) && rank <= 300) { color = '#00ff9d'; level = 'Sehr nah'; }
+          else if (Number.isFinite(rank) && rank <= 1000) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
 
           const pct = Math.max(5, Math.round(similarityScore * 100));
 
