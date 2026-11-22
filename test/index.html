@@ -2205,6 +2205,12 @@
       init() {
         if (this.initialized) return;
         this.initialized = true;
+        try { indexedDB.deleteDatabase('playfinity-wordfinity-minilm'); } catch (_) {}
+        try {
+          localStorage.removeItem('wordfinity-used-targets-v2');
+          localStorage.removeItem('playfinity_wordfinity_auto_category');
+          localStorage.removeItem('playfinity_kontexto_auto_next');
+        } catch (_) {}
         const status = document.getElementById('model-status-text');
         if (status) status.textContent = 'Wordfinity wird neu aufgebaut. Die alte KI und die bisherigen Wortdaten sind entfernt.';
         const loader = document.getElementById('kontexto-loader');
