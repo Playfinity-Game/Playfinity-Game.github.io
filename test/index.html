@@ -2203,6 +2203,7 @@
       initialized: false,
       aiReady: false,
       modelReadyPromise: null,
+      candidateEmbeddingsPromise: null,
       featureExtractor: null,
       embeddingCache: new Map(),
       modelName: 'Xenova/paraphrase-multilingual-MiniLM-L12-v2',
@@ -2526,7 +2527,7 @@
             const file=progress.file||'Modell';
             status.textContent=Number.isFinite(progress.progress)?file+' · '+Math.round(progress.progress)+'%':'Lade '+file+' …';
           }});
-          this.aiReady=true;if(status)status.textContent='MiniLM bereit · semantische Bewertung aktiv';return true;
+          this.aiReady=false;if(status)status.textContent='MiniLM geladen · Wortvektoren werden vorbereitet';return true;
         }catch(error){
           this.aiReady=false;if(status)status.textContent='MiniLM konnte nicht geladen werden: '+(error?.message||'Netzwerk-/Browserfehler');throw error;
         }finally{if(loader)loader.style.display='none';}
@@ -2534,19 +2535,26 @@
 
       async ensureCandidateEmbeddings() {
         if(!this.featureExtractor)throw new Error('MiniLM-Modell ist noch nicht bereit.');
-        const extraWords=Object.values(this.semanticHintExtras).flat();
-        const candidateWords=[...new Map([...this.dictionaryTargetWords,...extraWords].map(word=>[
-          word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),word
-        ])).values()];
-        const missing=candidateWords.filter(word=>!this.embeddingCache.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')));
-        const batchSize=32,status=document.getElementById('model-status-text');
-        for(let offset=0;offset<missing.length;offset+=batchSize){
-          const batch=missing.slice(offset,offset+batchSize),output=await this.featureExtractor(batch,{pooling:'mean',normalize:true});
-          const width=output.dims[output.dims.length-1];
-          for(let i=0;i<batch.length;i++)this.embeddingCache.set(batch[i].normalize('NFC').trim().toLocaleLowerCase('de-DE'),Array.from(output.data.slice(i*width,(i+1)*width)));
-          if(status&&(offset===0||offset+batchSize>=missing.length||offset%(batchSize*10)===0))
-            status.textContent='MiniLM analysiert Wortschatz · '+Math.min(offset+batchSize,missing.length).toLocaleString('de-DE')+'/'+missing.length.toLocaleString('de-DE');
-        }
+        if(this.candidateEmbeddingsPromise)return this.candidateEmbeddingsPromise;
+        this.candidateEmbeddingsPromise=(async()=>{
+          const extraWords=Object.values(this.semanticHintExtras).flat();
+          const candidateWords=[...new Map([...this.dictionaryTargetWords,...extraWords].map(word=>[
+            word.normalize('NFC').trim().toLocaleLowerCase('de-DE'),word
+          ])).values()];
+          const missing=candidateWords.filter(word=>!this.embeddingCache.has(word.normalize('NFC').trim().toLocaleLowerCase('de-DE')));
+          const batchSize=32,status=document.getElementById('model-status-text');
+          for(let offset=0;offset<missing.length;offset+=batchSize){
+            const batch=missing.slice(offset,offset+batchSize),output=await this.featureExtractor(batch,{pooling:'mean',normalize:true});
+            const width=output.dims[output.dims.length-1];
+            for(let i=0;i<batch.length;i++)this.embeddingCache.set(batch[i].normalize('NFC').trim().toLocaleLowerCase('de-DE'),Array.from(output.data.slice(i*width,(i+1)*width)));
+            if(status&&(offset===0||offset+batchSize>=missing.length||offset%(batchSize*10)===0))
+              status.textContent='MiniLM analysiert Wortschatz · '+Math.min(offset+batchSize,missing.length).toLocaleString('de-DE')+'/'+missing.length.toLocaleString('de-DE');
+          }
+          this.aiReady=true;
+          return true;
+        })();
+        try{return await this.candidateEmbeddingsPromise;}
+        finally{this.candidateEmbeddingsPromise=null;}
       },
 
       async loadTargetRanks(target) {
