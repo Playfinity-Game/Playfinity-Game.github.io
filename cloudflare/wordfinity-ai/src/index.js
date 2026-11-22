@@ -88,7 +88,7 @@ async function handleSemanticSimilarity(env, body) {
 
   let parsed;
   try {
-    const match = raw.match(/\\[[\\s\\S]*\\]/);
+    const match = raw.match(/\[[\s\S]*\]/);
     if (match) parsed = JSON.parse(match[0]);
   } catch (_) {}
   if (!Array.isArray(parsed)) {
