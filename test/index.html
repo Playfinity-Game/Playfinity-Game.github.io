@@ -703,12 +703,15 @@
       text-align: left;
     }
 
-    .kontexto-hint-controls{display:flex;justify-content:flex-start;align-items:center;gap:8px;width:100%;margin:8px 0 0;box-sizing:border-box}
-    .kontexto-inline-hints{display:flex;align-items:center;justify-content:flex-start;gap:10px;width:100%;margin:0}
-    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 42px;width:42px;height:42px;min-width:42px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.32);border-radius:10px;background:rgba(0,240,255,.09);color:var(--neon-cyan);font-size:1.2rem;cursor:pointer;transition:all .2s;box-sizing:border-box}
+    .kontexto-hint-controls{display:flex;justify-content:flex-start;align-items:center;gap:12px;width:100%;margin:3px 0 0;box-sizing:border-box}
+    .kontexto-inline-hints{display:flex;align-items:center;justify-content:flex-start;gap:7px;flex:0 0 auto;margin:0}
+    .kontexto-inline-hint{display:inline-flex;align-items:center;justify-content:center;flex:0 0 38px;width:38px;height:38px;min-width:38px;padding:0;line-height:1;vertical-align:middle;border:1px solid rgba(0,240,255,.32);border-radius:9px;background:rgba(0,240,255,.09);color:var(--neon-cyan);font-size:1.08rem;cursor:pointer;transition:all .2s;box-sizing:border-box}
     .kontexto-inline-hint:hover:not(:disabled){background:rgba(0,240,255,.16);box-shadow:0 0 12px rgba(0,240,255,.2)}
     .kontexto-inline-hint:disabled{opacity:.4;cursor:default}
-    .kontexto-category-hint{display:block;width:100%;box-sizing:border-box;margin:0;padding:11px 14px;border:1px solid rgba(176,38,255,.35);border-radius:10px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.88rem;font-weight:700;text-align:center;overflow-wrap:anywhere}
+    .kontexto-hint-labels{display:flex;align-items:center;gap:7px;flex:1;min-width:0}
+    .kontexto-category-hint{display:block;flex:1;min-width:0;box-sizing:border-box;margin:0;padding:7px 9px;border:1px solid rgba(176,38,255,.35);border-radius:8px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.72rem;line-height:1.3;font-weight:650;text-align:left;overflow-wrap:anywhere}
+    .kontexto-category-hint[hidden]{display:none}
+    @media(max-width:520px){.kontexto-hint-controls{gap:8px}.kontexto-inline-hints{gap:5px}.kontexto-inline-hint{flex-basis:34px;width:34px;height:34px;min-width:34px}.kontexto-hint-labels{gap:5px}.kontexto-category-hint{padding:6px 7px;font-size:.66rem}}
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
     .guess-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -1340,18 +1343,17 @@
         </form>
 
         <div id="wordfinity-status" role="status" aria-live="polite" style="font-size:.78rem;color:var(--text-muted);text-align:center;min-height:1.2em;">Bereit für dein Worträtsel.</div>
-        <div class="model-loader-bar" id="wordfinity-progress-track" aria-hidden="true"><div class="model-loader-fill" id="wordfinity-progress-fill" style="width:100%"></div></div>
-
-
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
           <span class="kontexto-inline-hints">
             <button type="button" class="kontexto-inline-hint" id="wordfinity-category" aria-label="Kategorie anzeigen" title="Kategorie anzeigen" disabled>🏷️</button>
             <button type="button" class="kontexto-inline-hint" id="wordfinity-letter" aria-label="Anfangsbuchstaben anzeigen" title="Anfangsbuchstaben anzeigen" disabled>🔤</button>
             <button type="button" class="kontexto-inline-hint" id="wordfinity-hint" aria-label="Ähnliches Wort anzeigen" title="Ähnliches Wort anzeigen" disabled>💡</button>
           </span>
+          <div class="kontexto-hint-labels">
+            <div class="kontexto-category-hint" id="wordfinity-category-display" aria-live="polite" hidden></div>
+            <div class="kontexto-category-hint" id="wordfinity-letter-display" aria-live="polite" hidden></div>
+          </div>
         </div>
-        <div class="kontexto-category-hint" id="wordfinity-category-display" aria-live="polite" hidden></div>
-        <div class="kontexto-category-hint" id="wordfinity-letter-display" aria-live="polite" hidden></div>
         <div class="guesses-list" id="wordfinity-guesses" aria-live="polite"></div>
         <div class="round-result" id="wordfinity-round-result"></div>
       </div>
@@ -1595,7 +1597,7 @@
         this.guesses.push({word,rank,player:playerName,isHint:!!options.isHint});
         this.guesses.sort((a,b)=>a.rank-b.rank);
         this.renderGuesses();
-        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp-Wort auf Rang '+rank+' wurde zur Liste hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
+        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
         if(rank===1){
           this.won=true;this.setControls(false);
           document.getElementById('wordfinity-status').textContent='🏆 '+playerName+' hat das Zielwort „'+word+'“ erraten!';
@@ -1661,7 +1663,6 @@
           document.getElementById('wordfinity-status').textContent='Kein neuer Tipp verfügbar.';
           return;
         }
-        document.getElementById('wordfinity-hint').disabled=true;
       }
     };
 
