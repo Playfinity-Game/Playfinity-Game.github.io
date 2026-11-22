@@ -2676,18 +2676,12 @@
       async initModel() {
         const loader=document.getElementById('kontexto-loader'),statusText=document.getElementById('model-status-text');
         const statusPct=document.getElementById('model-status-pct'),fill=document.getElementById('model-progress-fill');
-        if(statusText)statusText.textContent='Verbinde mit Cloudflare KI …';
+        if(statusText)statusText.textContent='Lokale Alltags-Bewertung wird vorbereitet …';
         if(statusPct)statusPct.textContent='';
         if(fill)fill.style.width='100%';
-        try{
-          await this.getSimilarity(this.targetWord,this.targetWord);
-          this.aiReady=true;
-          if(statusText)statusText.textContent='Cloudflare KI verbunden';
-        }catch(error){
-          console.warn('[WORDFINITY] Cloudflare KI nicht erreichbar:',error);
-          this.aiReady=false;
-          if(statusText)statusText.textContent='Cloudflare KI nicht erreichbar – lokaler Ersatzmodus aktiv.';
-        }
+        // Die Spielwertung läuft lokal im Browser; kein KI-Modell und kein Worker-Aufruf nötig.
+        this.aiReady=true;
+        if(statusText)statusText.textContent='Lokale Wordfinity-Bewertung aktiv';
         if(loader)loader.style.display='none';
         this.roundLocked=false;
       },
