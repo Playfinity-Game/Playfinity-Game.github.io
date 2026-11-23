@@ -2377,9 +2377,7 @@
       }
     };
 
-    /* ==========================================================================
-       4. KONTEXTO ENGINE (ECHTE SEMANTISCHE KI MIT TRANSFORMERS.JS)
-       ========================================================================== */
+    /* ==========================================================================\n       4. WORDFINITY ENGINE (LOKALE WORTLISTE UND LOKALE WERTUNG)\n       ========================================================================== */
     const KontextoGame = {
       initialized: false,
       aiReady: false,
@@ -2473,41 +2471,11 @@
         document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
       },
 
-      async inferCategory(word, signal = null) {
-        const key = String(word || '').normalize('NFC').trim();
-        const normalizedKey = key.toLocaleLowerCase('de-DE');
-        // Die Kategorie aus der aktiven Wortliste hat Vorrang vor einer KI-Schätzung.
-        const assignedCategory = this.categoryAssignments.get(normalizedKey);
+      async inferCategory(word) {
+        const key = String(word || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
+        const assignedCategory = this.categoryAssignments.get(key);
         if (assignedCategory) return assignedCategory;
-        // Nur Wörter außerhalb der Wortliste werden ersatzweise von der KI kategorisiert.
-        try {
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 25000);
-          let response;
-          try {
-            response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/category', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ target: key }),
-              signal: signal || controller.signal
-            });
-          } finally {
-            clearTimeout(timeout);
-          }
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok) throw new Error(result.error || 'Kategorie-KI Fehler ' + response.status);
-          const generatedCategory = typeof result.category === 'string' ? result.category.trim() : '';
-          if (!generatedCategory || generatedCategory.length > 48 || !/^[A-Za-zÄÖÜäöüß0-9 &+()/,-]+$/.test(generatedCategory)) {
-            throw new Error('Die KI hat keine gültige Kategorie geliefert');
-          }
-          this.categoryAssignments.set(normalizedKey, generatedCategory);
-          return generatedCategory;
-        } catch (error) {
-          const detail = error && error.name === 'AbortError'
-            ? 'Die Kategorie-KI antwortet zu langsam.'
-            : (error && error.message ? error.message : 'Unbekannter KI-Fehler');
-          throw new Error('Kategorie konnte nicht erstellt werden: ' + detail);
-        }
+        throw new Error('Für dieses Wort ist keine lokale Kategorie hinterlegt.');
       },
 
       showFirstLetterHint() {
@@ -2543,7 +2511,7 @@
         display.hidden = false;
         try {
           if (!this.aiReady && this.modelReadyPromise) {
-            display.textContent = 'KI-Modell wird noch geladen …';
+            display.textContent = 'Wortliste wird noch geladen …';
             await this.modelReadyPromise;
           }
           if (requestedRoundId !== this.roundId || PauseController.paused) return;
@@ -2722,35 +2690,6 @@
         this.roundLocked=false;
       },
 
-      async getPrecomputedRank(target, guess) {
-        try {
-          const response = await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/precomputed-rank', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ target, guess })
-          });
-          const result = await response.json().catch(() => ({}));
-          if (!response.ok) throw new Error(result.error || 'Ranglisten-Server Fehler ' + response.status);
-          if (!result.precomputed || !Number.isInteger(Number(result.rank)) ||
-              !Number.isFinite(Number(result.similarity))) return null;
-          return { rank: Number(result.rank), similarity: Math.max(-1, Math.min(1, Number(result.similarity))) };
-        } catch (error) {
-          console.warn('[WORDFINITY] Gespeicherter Rang nicht verfügbar; verwende Live-Berechnung:', error);
-          return null;
-        }
-      },
-
-      async getSimilarity(target,guess){
-        const response=await fetch('https://wordfinity-ai.sdinaj9206.workers.dev/api/similarity',{
-          method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({target,guess})
-        });
-        let result;
-        try{result=await response.json();}catch(error){throw new Error('Ungültige Antwort vom KI-Server');}
-        if(!response.ok)throw new Error(result.error||'KI-Server Fehler '+response.status);
-        if(!Number.isFinite(Number(result.similarity)))throw new Error('Kein Ähnlichkeitswert vom KI-Server');
-        return Number(result.similarity);
-      },
-
       calculateEverydaySimilarity(target, guess) {
         const norm = value => String(value || '').toLocaleLowerCase('de-DE').replace(/[äöü]/g, ch => ({ä:'a',ö:'o',ü:'u'}[ch])).replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();
         const a = norm(target), b = norm(guess);
@@ -2848,49 +2787,13 @@
           if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
           return true;
         }
-        // Primär die semantische Wordfinity-Bewertung verwenden. Gespeicherte
-        // Ränge sind kostenlos; ansonsten wird die Similarity-API abgefragt.
-        let sim = 0;
-        let precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
-        let precomputedSimilarity = Number.isFinite(options.precomputedSimilarity)
+        // Die Wertung läuft vollständig lokal; es werden keine KI- oder Worker-Dienste aufgerufen.
+        const precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
+        const precomputedSimilarity = Number.isFinite(options.precomputedSimilarity)
           ? Math.max(0, Math.min(1, Number(options.precomputedSimilarity))) : null;
-        if (precomputedRank === null) {
-          const storedRank = await this.getPrecomputedRank(this.targetWord, cleanWord);
-          if (storedRank) {
-            precomputedRank = storedRank.rank;
-            precomputedSimilarity = storedRank.similarity;
-          }
-        }
-        if (precomputedRank !== null) {
-          sim = precomputedSimilarity !== null ? precomputedSimilarity : 1 - ((precomputedRank - 1) / 2486);
-        } else if (precomputedSimilarity !== null) {
-          sim = precomputedSimilarity;
-        } else {
-          try {
-            sim = await this.getSimilarity(this.targetWord, cleanWord);
-          } catch (error) {
-            // Bei ausgeschöpftem Cloudflare-Kontingent niemals pauschal 0,02
-            // vergeben: ein transparenter lokaler Zeichen-/Bigramm-Fallback
-            // hält die Rangfolge wenigstens differenziert.
-            console.warn('[WORDFINITY] Semantik-API nicht verfügbar; lokaler Fallback:', error);
-            const normalize = value => String(value || '').toLocaleLowerCase('de-DE').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-            const a = normalize(this.targetWord), b = normalize(cleanWord);
-            const grams = value => {
-              const out = new Set();
-              for (let i = 0; i < value.length - 1; i++) out.add(value.slice(i, i + 2));
-              return out;
-            };
-            const ga = grams(a), gb = grams(b);
-            const union = new Set([...ga, ...gb]);
-            const bigramScore = union.size ? [...ga].filter(x => gb.has(x)).length / union.size : 0;
-            const charsA = new Set(a), charsB = new Set(b);
-            const charsUnion = new Set([...charsA, ...charsB]);
-            const charScore = charsUnion.size ? [...charsA].filter(x => charsB.has(x)).length / charsUnion.size : 0;
-            sim = Math.max(0, Math.min(1, bigramScore * 0.75 + charScore * 0.25));
-            // Explizite Alltagsbeziehungen bleiben als ergänzendes Signal erhalten.
-            sim = Math.max(sim, this.calculateEverydaySimilarity(this.targetWord, cleanWord));
-          }
-        }
+        const sim = precomputedSimilarity !== null
+          ? precomputedSimilarity
+          : this.calculateEverydaySimilarity(this.targetWord, cleanWord);
         if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
         const normalizedSimilarity = Math.max(0, Math.min(1, sim));
         // Derselbe Rangrechner wird auch für Tipp-Kandidaten vorab verwendet.
