@@ -3187,7 +3187,6 @@
       const helpersNode=document.getElementById('pf-winner-helpers');
       const next=document.getElementById('pf-winner-next');
       if(!overlay)return;
-      const awardKey='playfinity_awarded_'+Date.now()+'_'+Math.random().toString(36).slice(2);
       if(winner&&winner!=='Lokaler Spieler')PlayfinityScores.award(winner,3);
       if(Array.isArray(helpers))helpers.slice(0,3).forEach(item=>{if(item.player&&item.player!==winner)PlayfinityScores.award(item.player,1);});
       brand.textContent='PLAYFINITY • '+String(game).toUpperCase();
