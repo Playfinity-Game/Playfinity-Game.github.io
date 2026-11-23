@@ -712,6 +712,31 @@
     .kontexto-category-hint{display:block;flex:1;min-width:0;box-sizing:border-box;margin:0;padding:7px 9px;border:1px solid rgba(176,38,255,.35);border-radius:8px;background:rgba(176,38,255,.09);color:#e5c7ff;font-size:.72rem;line-height:1.3;font-weight:650;text-align:left;overflow-wrap:anywhere}
     .kontexto-category-hint[hidden]{display:none}
     @media(max-width:520px){.kontexto-hint-controls{gap:8px}.kontexto-inline-hints{gap:5px}.kontexto-inline-hint{flex-basis:34px;width:34px;height:34px;min-width:34px}.kontexto-hint-labels{gap:5px}.kontexto-category-hint{padding:6px 7px;font-size:.66rem}}
+    /* Wordfinity: kompakte Hinweisleiste direkt über der Eingabe */
+    #screen-wordfinity .kontexto-wrap{gap:12px}
+    #screen-wordfinity .kontexto-hint-controls{display:flex;flex-direction:column;align-items:stretch;gap:9px;width:100%;margin:0}
+    #screen-wordfinity .kontexto-inline-hints{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;width:100%}
+    #screen-wordfinity .kontexto-inline-hint{width:100%;min-width:0;height:54px;min-height:54px;flex:initial;display:flex;flex-direction:row;gap:7px;padding:0 10px;border:1px solid rgba(0,229,255,.24);border-radius:13px;background:linear-gradient(145deg,rgba(18,29,58,.94),rgba(13,17,39,.96));color:#eafaff;font-size:1.05rem;box-shadow:inset 0 1px rgba(255,255,255,.05);transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+    #screen-wordfinity .kontexto-inline-hint small{font-size:.72rem;font-weight:800;letter-spacing:.01em;color:#b9c7e8}
+    #screen-wordfinity .kontexto-inline-hint:hover:not(:disabled){transform:translateY(-2px);border-color:var(--neon-cyan);background:linear-gradient(145deg,rgba(0,130,170,.24),rgba(25,22,65,.98));box-shadow:0 5px 18px rgba(0,229,255,.13)}
+    #screen-wordfinity .kontexto-inline-hint:disabled{opacity:.48}
+    #screen-wordfinity .kontexto-hint-labels{display:flex;gap:8px;width:100%}
+    #screen-wordfinity .kontexto-category-hint{padding:9px 11px;border-radius:10px;font-size:.78rem;text-align:center;background:rgba(176,38,255,.12);border-color:rgba(176,38,255,.35)}
+    #screen-wordfinity .wordfinity-entry{display:flex;gap:9px;width:100%;padding:7px;border:1px solid rgba(0,229,255,.22);border-radius:16px;background:rgba(10,14,32,.78);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    #screen-wordfinity .wordfinity-entry .game-input{min-width:0;height:50px;border:1px solid rgba(0,229,255,.22);border-radius:11px;background:rgba(5,8,22,.8);font-size:1rem}
+    #screen-wordfinity .wordfinity-entry .btn-action{min-width:128px;height:50px;border-radius:11px;padding:0 15px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:.82rem;letter-spacing:.035em;box-shadow:0 4px 14px rgba(0,170,255,.18)}
+    #screen-wordfinity .wordfinity-entry .btn-action:disabled{opacity:.45;filter:saturate(.55);cursor:not-allowed;box-shadow:none}
+    #screen-wordfinity .wordfinity-status{min-height:1.2em;color:var(--text-muted);font-size:.78rem;line-height:1.4;text-align:center}
+    @media(max-width:520px){
+      #screen-wordfinity .kontexto-wrap{gap:10px}
+      #screen-wordfinity .kontexto-inline-hints{gap:6px}
+      #screen-wordfinity .kontexto-inline-hint{height:48px;min-height:48px;gap:5px;padding:0 5px;font-size:1rem}
+      #screen-wordfinity .kontexto-inline-hint small{font-size:.65rem}
+      #screen-wordfinity .wordfinity-entry{gap:6px;padding:5px}
+      #screen-wordfinity .wordfinity-entry .game-input{height:46px;padding:0 10px;font-size:16px}
+      #screen-wordfinity .wordfinity-entry .btn-action{height:46px;min-width:105px;padding:0 10px;font-size:.72rem}
+    }
+
     .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
     .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
     .guess-legend span{display:inline-flex;align-items:center;gap:6px}
@@ -1337,23 +1362,24 @@
     <!-- SCREEN: WORDFINITY -->
     <section class="screen" id="screen-wordfinity">
       <div class="kontexto-wrap">
-        <form class="input-box" id="wordfinity-entry" autocomplete="off">
-          <input type="text" class="game-input" id="wordfinity-input" maxlength="60" placeholder="Dein Wort..." aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
-          <button type="submit" class="btn-action" id="wordfinity-submit" disabled>Tippen</button>
-        </form>
-
-        <div id="wordfinity-status" role="status" aria-live="polite" style="font-size:.78rem;color:var(--text-muted);text-align:center;min-height:1.2em;">Bereit für dein Worträtsel.</div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints">
-            <button type="button" class="kontexto-inline-hint" id="wordfinity-category" aria-label="Kategorie anzeigen" title="Kategorie anzeigen" disabled>🏷️</button>
-            <button type="button" class="kontexto-inline-hint" id="wordfinity-letter" aria-label="Anfangsbuchstaben anzeigen" title="Anfangsbuchstaben anzeigen" disabled>🔤</button>
-            <button type="button" class="kontexto-inline-hint" id="wordfinity-hint" aria-label="Ähnliches Wort anzeigen" title="Ähnliches Wort anzeigen" disabled>💡</button>
-          </span>
+          <div class="kontexto-inline-hints">
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-category" aria-label="Kategorie anzeigen" title="Kategorie anzeigen" disabled><span>🏷️</span><small>Kategorie</small></button>
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-letter" aria-label="Anfangsbuchstaben anzeigen" title="Anfangsbuchstaben anzeigen" disabled><span>🔤</span><small>Buchstabe</small></button>
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-hint" aria-label="Ähnliches Wort anzeigen" title="Ähnliches Wort anzeigen" disabled><span>💡</span><small>Tipp</small></button>
+          </div>
           <div class="kontexto-hint-labels">
             <div class="kontexto-category-hint" id="wordfinity-category-display" aria-live="polite" hidden></div>
             <div class="kontexto-category-hint" id="wordfinity-letter-display" aria-live="polite" hidden></div>
           </div>
         </div>
+
+        <form class="input-box wordfinity-entry" id="wordfinity-entry" autocomplete="off">
+          <input type="text" class="game-input" id="wordfinity-input" maxlength="60" placeholder="Dein Wort eingeben …" aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
+          <button type="submit" class="btn-action" id="wordfinity-submit" disabled>ABSENDEN <span aria-hidden="true">➜</span></button>
+        </form>
+
+        <div id="wordfinity-status" class="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
         <div class="guesses-list" id="wordfinity-guesses" aria-live="polite"></div>
         <div class="round-result" id="wordfinity-round-result"></div>
       </div>
