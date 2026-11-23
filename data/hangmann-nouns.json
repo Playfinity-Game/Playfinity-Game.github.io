@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus vierzehn Kategorien. Die Kategorie Filme & Serien enthält bekannte Filme, Serien und Figuren; mehrteilige Namen sind ohne Leerzeichen und Bindestriche zusammengeschrieben.",
+  "description": "Deutsche Begriffe für Hangman aus fünfzehn Kategorien. Die Kategorie Filme & Serien enthält bekannte Filme, Serien und Figuren; mehrteilige Namen sind ohne Leerzeichen und Bindestriche zusammengeschrieben. Die Kategorie Gaming enthält bekannte Videospiele.",
   "words": [
     {
       "word": "Affe",
@@ -27024,6 +27024,1206 @@
     {
       "word": "Thanos",
       "category": "Filme & Serien"
+    },
+    {
+      "word": "Minecraft",
+      "category": "Gaming"
+    },
+    {
+      "word": "Fortnite",
+      "category": "Gaming"
+    },
+    {
+      "word": "Roblox",
+      "category": "Gaming"
+    },
+    {
+      "word": "Terraria",
+      "category": "Gaming"
+    },
+    {
+      "word": "StardewValley",
+      "category": "Gaming"
+    },
+    {
+      "word": "AmongUs",
+      "category": "Gaming"
+    },
+    {
+      "word": "Zelda",
+      "category": "Gaming"
+    },
+    {
+      "word": "Pokemon",
+      "category": "Gaming"
+    },
+    {
+      "word": "Sonic",
+      "category": "Gaming"
+    },
+    {
+      "word": "MarioKart",
+      "category": "Gaming"
+    },
+    {
+      "word": "SuperMarioBros",
+      "category": "Gaming"
+    },
+    {
+      "word": "SuperMarioOdyssey",
+      "category": "Gaming"
+    },
+    {
+      "word": "SuperMarioWonder",
+      "category": "Gaming"
+    },
+    {
+      "word": "SuperMarioGalaxy",
+      "category": "Gaming"
+    },
+    {
+      "word": "SuperMarioWorld",
+      "category": "Gaming"
+    },
+    {
+      "word": "MarioParty",
+      "category": "Gaming"
+    },
+    {
+      "word": "LuigisMansion",
+      "category": "Gaming"
+    },
+    {
+      "word": "DonkeyKong",
+      "category": "Gaming"
+    },
+    {
+      "word": "Kirby",
+      "category": "Gaming"
+    },
+    {
+      "word": "Metroid",
+      "category": "Gaming"
+    },
+    {
+      "word": "AnimalCrossing",
+      "category": "Gaming"
+    },
+    {
+      "word": "Splatoon",
+      "category": "Gaming"
+    },
+    {
+      "word": "Pikmin",
+      "category": "Gaming"
+    },
+    {
+      "word": "FireEmblem",
+      "category": "Gaming"
+    },
+    {
+      "word": "XenobladeChronicles",
+      "category": "Gaming"
+    },
+    {
+      "word": "SuperSmashBros",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonGo",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonLegendsArceus",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonScarlet",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonViolet",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonSword",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonShield",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonEmerald",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonPlatinum",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonCrystal",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokemonSnap",
+      "category": "Gaming"
+    },
+    {
+      "word": "PokkenTournament",
+      "category": "Gaming"
+    },
+    {
+      "word": "CallOfDuty",
+      "category": "Gaming"
+    },
+    {
+      "word": "ModernWarfare",
+      "category": "Gaming"
+    },
+    {
+      "word": "BlackOps",
+      "category": "Gaming"
+    },
+    {
+      "word": "Warzone",
+      "category": "Gaming"
+    },
+    {
+      "word": "Battlefield",
+      "category": "Gaming"
+    },
+    {
+      "word": "Battlefield2042",
+      "category": "Gaming"
+    },
+    {
+      "word": "ApexLegends",
+      "category": "Gaming"
+    },
+    {
+      "word": "Overwatch",
+      "category": "Gaming"
+    },
+    {
+      "word": "Overwatch2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Valorant",
+      "category": "Gaming"
+    },
+    {
+      "word": "CounterStrike",
+      "category": "Gaming"
+    },
+    {
+      "word": "CounterStrike2",
+      "category": "Gaming"
+    },
+    {
+      "word": "TeamFortress2",
+      "category": "Gaming"
+    },
+    {
+      "word": "RainbowSixSiege",
+      "category": "Gaming"
+    },
+    {
+      "word": "Destiny",
+      "category": "Gaming"
+    },
+    {
+      "word": "Destiny2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Halo",
+      "category": "Gaming"
+    },
+    {
+      "word": "HaloInfinite",
+      "category": "Gaming"
+    },
+    {
+      "word": "GearsOfWar",
+      "category": "Gaming"
+    },
+    {
+      "word": "Titanfall",
+      "category": "Gaming"
+    },
+    {
+      "word": "Titanfall2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Doom",
+      "category": "Gaming"
+    },
+    {
+      "word": "DoomEternal",
+      "category": "Gaming"
+    },
+    {
+      "word": "Quake",
+      "category": "Gaming"
+    },
+    {
+      "word": "Wolfenstein",
+      "category": "Gaming"
+    },
+    {
+      "word": "FarCry",
+      "category": "Gaming"
+    },
+    {
+      "word": "FarCry3",
+      "category": "Gaming"
+    },
+    {
+      "word": "FarCry5",
+      "category": "Gaming"
+    },
+    {
+      "word": "Crysis",
+      "category": "Gaming"
+    },
+    {
+      "word": "Borderlands",
+      "category": "Gaming"
+    },
+    {
+      "word": "Borderlands2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Borderlands3",
+      "category": "Gaming"
+    },
+    {
+      "word": "BioShock",
+      "category": "Gaming"
+    },
+    {
+      "word": "BioShockInfinite",
+      "category": "Gaming"
+    },
+    {
+      "word": "Fallout",
+      "category": "Gaming"
+    },
+    {
+      "word": "Fallout3",
+      "category": "Gaming"
+    },
+    {
+      "word": "Fallout4",
+      "category": "Gaming"
+    },
+    {
+      "word": "Fallout76",
+      "category": "Gaming"
+    },
+    {
+      "word": "Skyrim",
+      "category": "Gaming"
+    },
+    {
+      "word": "Oblivion",
+      "category": "Gaming"
+    },
+    {
+      "word": "Morrowind",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheElderScrollsOnline",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheWitcher2",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheWitcher3",
+      "category": "Gaming"
+    },
+    {
+      "word": "Cyberpunk2077",
+      "category": "Gaming"
+    },
+    {
+      "word": "RedDeadRedemption",
+      "category": "Gaming"
+    },
+    {
+      "word": "RedDeadRedemption2",
+      "category": "Gaming"
+    },
+    {
+      "word": "GrandTheftAuto",
+      "category": "Gaming"
+    },
+    {
+      "word": "GTA3",
+      "category": "Gaming"
+    },
+    {
+      "word": "GTAViceCity",
+      "category": "Gaming"
+    },
+    {
+      "word": "GTASanAndreas",
+      "category": "Gaming"
+    },
+    {
+      "word": "GTA4",
+      "category": "Gaming"
+    },
+    {
+      "word": "GTA5",
+      "category": "Gaming"
+    },
+    {
+      "word": "GTAOnline",
+      "category": "Gaming"
+    },
+    {
+      "word": "MaxPayne",
+      "category": "Gaming"
+    },
+    {
+      "word": "LABNoire",
+      "category": "Gaming"
+    },
+    {
+      "word": "Bully",
+      "category": "Gaming"
+    },
+    {
+      "word": "AssassinsCreed",
+      "category": "Gaming"
+    },
+    {
+      "word": "AssassinsCreed2",
+      "category": "Gaming"
+    },
+    {
+      "word": "BlackFlag",
+      "category": "Gaming"
+    },
+    {
+      "word": "Origins",
+      "category": "Gaming"
+    },
+    {
+      "word": "Odyssey",
+      "category": "Gaming"
+    },
+    {
+      "word": "Valhalla",
+      "category": "Gaming"
+    },
+    {
+      "word": "Mirage",
+      "category": "Gaming"
+    },
+    {
+      "word": "WatchDogs",
+      "category": "Gaming"
+    },
+    {
+      "word": "WatchDogs2",
+      "category": "Gaming"
+    },
+    {
+      "word": "FIFA",
+      "category": "Gaming"
+    },
+    {
+      "word": "EAFC",
+      "category": "Gaming"
+    },
+    {
+      "word": "MaddenNFL",
+      "category": "Gaming"
+    },
+    {
+      "word": "NBA2K",
+      "category": "Gaming"
+    },
+    {
+      "word": "WWE2K",
+      "category": "Gaming"
+    },
+    {
+      "word": "PES",
+      "category": "Gaming"
+    },
+    {
+      "word": "RocketLeague",
+      "category": "Gaming"
+    },
+    {
+      "word": "FallGuys",
+      "category": "Gaming"
+    },
+    {
+      "word": "Brawlhalla",
+      "category": "Gaming"
+    },
+    {
+      "word": "MultiVersus",
+      "category": "Gaming"
+    },
+    {
+      "word": "LeagueOfLegends",
+      "category": "Gaming"
+    },
+    {
+      "word": "Dota2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Smite",
+      "category": "Gaming"
+    },
+    {
+      "word": "WorldOfWarcraft",
+      "category": "Gaming"
+    },
+    {
+      "word": "Hearthstone",
+      "category": "Gaming"
+    },
+    {
+      "word": "StarCraft",
+      "category": "Gaming"
+    },
+    {
+      "word": "StarCraft2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Warcraft3",
+      "category": "Gaming"
+    },
+    {
+      "word": "Diablo",
+      "category": "Gaming"
+    },
+    {
+      "word": "Diablo2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Diablo3",
+      "category": "Gaming"
+    },
+    {
+      "word": "Diablo4",
+      "category": "Gaming"
+    },
+    {
+      "word": "PathOfExile",
+      "category": "Gaming"
+    },
+    {
+      "word": "Runescape",
+      "category": "Gaming"
+    },
+    {
+      "word": "OldSchoolRunescape",
+      "category": "Gaming"
+    },
+    {
+      "word": "GuildWars2",
+      "category": "Gaming"
+    },
+    {
+      "word": "FinalFantasy",
+      "category": "Gaming"
+    },
+    {
+      "word": "FinalFantasy7",
+      "category": "Gaming"
+    },
+    {
+      "word": "FinalFantasyX",
+      "category": "Gaming"
+    },
+    {
+      "word": "FinalFantasy14",
+      "category": "Gaming"
+    },
+    {
+      "word": "KingdomHearts",
+      "category": "Gaming"
+    },
+    {
+      "word": "Persona5",
+      "category": "Gaming"
+    },
+    {
+      "word": "Persona4",
+      "category": "Gaming"
+    },
+    {
+      "word": "NierAutomata",
+      "category": "Gaming"
+    },
+    {
+      "word": "MonsterHunter",
+      "category": "Gaming"
+    },
+    {
+      "word": "MonsterHunterWorld",
+      "category": "Gaming"
+    },
+    {
+      "word": "MonsterHunterRise",
+      "category": "Gaming"
+    },
+    {
+      "word": "DarkSouls",
+      "category": "Gaming"
+    },
+    {
+      "word": "DarkSouls2",
+      "category": "Gaming"
+    },
+    {
+      "word": "DarkSouls3",
+      "category": "Gaming"
+    },
+    {
+      "word": "EldenRing",
+      "category": "Gaming"
+    },
+    {
+      "word": "Bloodborne",
+      "category": "Gaming"
+    },
+    {
+      "word": "Sekiro",
+      "category": "Gaming"
+    },
+    {
+      "word": "DemonSouls",
+      "category": "Gaming"
+    },
+    {
+      "word": "LiesOfP",
+      "category": "Gaming"
+    },
+    {
+      "word": "HollowKnight",
+      "category": "Gaming"
+    },
+    {
+      "word": "Cuphead",
+      "category": "Gaming"
+    },
+    {
+      "word": "Celeste",
+      "category": "Gaming"
+    },
+    {
+      "word": "Hades",
+      "category": "Gaming"
+    },
+    {
+      "word": "DeadCells",
+      "category": "Gaming"
+    },
+    {
+      "word": "Undertale",
+      "category": "Gaming"
+    },
+    {
+      "word": "Deltarune",
+      "category": "Gaming"
+    },
+    {
+      "word": "Omori",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheBindingOfIsaac",
+      "category": "Gaming"
+    },
+    {
+      "word": "EnterTheGungeon",
+      "category": "Gaming"
+    },
+    {
+      "word": "SlayTheSpire",
+      "category": "Gaming"
+    },
+    {
+      "word": "Balatro",
+      "category": "Gaming"
+    },
+    {
+      "word": "VampireSurvivors",
+      "category": "Gaming"
+    },
+    {
+      "word": "RiskOfRain2",
+      "category": "Gaming"
+    },
+    {
+      "word": "DontStarve",
+      "category": "Gaming"
+    },
+    {
+      "word": "Subnautica",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheForest",
+      "category": "Gaming"
+    },
+    {
+      "word": "SonsOfTheForest",
+      "category": "Gaming"
+    },
+    {
+      "word": "Rust",
+      "category": "Gaming"
+    },
+    {
+      "word": "DayZ",
+      "category": "Gaming"
+    },
+    {
+      "word": "ARK",
+      "category": "Gaming"
+    },
+    {
+      "word": "Palworld",
+      "category": "Gaming"
+    },
+    {
+      "word": "Valheim",
+      "category": "Gaming"
+    },
+    {
+      "word": "Grounded",
+      "category": "Gaming"
+    },
+    {
+      "word": "Raft",
+      "category": "Gaming"
+    },
+    {
+      "word": "SeaOfThieves",
+      "category": "Gaming"
+    },
+    {
+      "word": "NoMansSky",
+      "category": "Gaming"
+    },
+    {
+      "word": "EliteDangerous",
+      "category": "Gaming"
+    },
+    {
+      "word": "Starfield",
+      "category": "Gaming"
+    },
+    {
+      "word": "MassEffect",
+      "category": "Gaming"
+    },
+    {
+      "word": "MassEffect2",
+      "category": "Gaming"
+    },
+    {
+      "word": "MassEffect3",
+      "category": "Gaming"
+    },
+    {
+      "word": "DragonAge",
+      "category": "Gaming"
+    },
+    {
+      "word": "DragonAgeInquisition",
+      "category": "Gaming"
+    },
+    {
+      "word": "BaldursGate3",
+      "category": "Gaming"
+    },
+    {
+      "word": "DivinityOriginalSin2",
+      "category": "Gaming"
+    },
+    {
+      "word": "DiscoElysium",
+      "category": "Gaming"
+    },
+    {
+      "word": "OuterWilds",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheOuterWorlds",
+      "category": "Gaming"
+    },
+    {
+      "word": "Control",
+      "category": "Gaming"
+    },
+    {
+      "word": "AlanWake",
+      "category": "Gaming"
+    },
+    {
+      "word": "AlanWake2",
+      "category": "Gaming"
+    },
+    {
+      "word": "ResidentEvil",
+      "category": "Gaming"
+    },
+    {
+      "word": "ResidentEvil2",
+      "category": "Gaming"
+    },
+    {
+      "word": "ResidentEvil4",
+      "category": "Gaming"
+    },
+    {
+      "word": "ResidentEvil7",
+      "category": "Gaming"
+    },
+    {
+      "word": "ResidentEvilVillage",
+      "category": "Gaming"
+    },
+    {
+      "word": "SilentHill",
+      "category": "Gaming"
+    },
+    {
+      "word": "SilentHill2",
+      "category": "Gaming"
+    },
+    {
+      "word": "DeadByDaylight",
+      "category": "Gaming"
+    },
+    {
+      "word": "Phasmophobia",
+      "category": "Gaming"
+    },
+    {
+      "word": "Outlast",
+      "category": "Gaming"
+    },
+    {
+      "word": "Amnesia",
+      "category": "Gaming"
+    },
+    {
+      "word": "LittleNightmares",
+      "category": "Gaming"
+    },
+    {
+      "word": "LittleNightmares2",
+      "category": "Gaming"
+    },
+    {
+      "word": "FiveNightsAtFreddys",
+      "category": "Gaming"
+    },
+    {
+      "word": "PoppyPlaytime",
+      "category": "Gaming"
+    },
+    {
+      "word": "BendyAndTheInkMachine",
+      "category": "Gaming"
+    },
+    {
+      "word": "HelloNeighbor",
+      "category": "Gaming"
+    },
+    {
+      "word": "Granny",
+      "category": "Gaming"
+    },
+    {
+      "word": "Slender",
+      "category": "Gaming"
+    },
+    {
+      "word": "UntilDawn",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheQuarry",
+      "category": "Gaming"
+    },
+    {
+      "word": "DetroitBecomeHuman",
+      "category": "Gaming"
+    },
+    {
+      "word": "HeavyRain",
+      "category": "Gaming"
+    },
+    {
+      "word": "BeyondTwoSouls",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheLastOfUsPart2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Uncharted",
+      "category": "Gaming"
+    },
+    {
+      "word": "Uncharted2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Uncharted4",
+      "category": "Gaming"
+    },
+    {
+      "word": "TombRaider",
+      "category": "Gaming"
+    },
+    {
+      "word": "RiseOfTheTombRaider",
+      "category": "Gaming"
+    },
+    {
+      "word": "ShadowOfTheTombRaider",
+      "category": "Gaming"
+    },
+    {
+      "word": "GodOfWar",
+      "category": "Gaming"
+    },
+    {
+      "word": "GodOfWarRagnarok",
+      "category": "Gaming"
+    },
+    {
+      "word": "HorizonZeroDawn",
+      "category": "Gaming"
+    },
+    {
+      "word": "HorizonForbiddenWest",
+      "category": "Gaming"
+    },
+    {
+      "word": "GhostOfTsushima",
+      "category": "Gaming"
+    },
+    {
+      "word": "MilesMorales",
+      "category": "Gaming"
+    },
+    {
+      "word": "SpiderMan2",
+      "category": "Gaming"
+    },
+    {
+      "word": "BatmanArkham",
+      "category": "Gaming"
+    },
+    {
+      "word": "ArkhamCity",
+      "category": "Gaming"
+    },
+    {
+      "word": "ArkhamKnight",
+      "category": "Gaming"
+    },
+    {
+      "word": "Injustice",
+      "category": "Gaming"
+    },
+    {
+      "word": "MortalKombat",
+      "category": "Gaming"
+    },
+    {
+      "word": "MortalKombat11",
+      "category": "Gaming"
+    },
+    {
+      "word": "StreetFighter",
+      "category": "Gaming"
+    },
+    {
+      "word": "StreetFighter6",
+      "category": "Gaming"
+    },
+    {
+      "word": "Tekken",
+      "category": "Gaming"
+    },
+    {
+      "word": "Tekken8",
+      "category": "Gaming"
+    },
+    {
+      "word": "SoulCalibur",
+      "category": "Gaming"
+    },
+    {
+      "word": "GuiltyGear",
+      "category": "Gaming"
+    },
+    {
+      "word": "GranTurismo",
+      "category": "Gaming"
+    },
+    {
+      "word": "ForzaHorizon",
+      "category": "Gaming"
+    },
+    {
+      "word": "ForzaHorizon5",
+      "category": "Gaming"
+    },
+    {
+      "word": "ForzaMotorsport",
+      "category": "Gaming"
+    },
+    {
+      "word": "NeedForSpeed",
+      "category": "Gaming"
+    },
+    {
+      "word": "Burnout",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheCrew",
+      "category": "Gaming"
+    },
+    {
+      "word": "Trackmania",
+      "category": "Gaming"
+    },
+    {
+      "word": "F1",
+      "category": "Gaming"
+    },
+    {
+      "word": "DirtRally",
+      "category": "Gaming"
+    },
+    {
+      "word": "AssettoCorsa",
+      "category": "Gaming"
+    },
+    {
+      "word": "EuroTruckSimulator",
+      "category": "Gaming"
+    },
+    {
+      "word": "AmericanTruckSimulator",
+      "category": "Gaming"
+    },
+    {
+      "word": "FarmingSimulator",
+      "category": "Gaming"
+    },
+    {
+      "word": "MicrosoftFlightSimulator",
+      "category": "Gaming"
+    },
+    {
+      "word": "TrainSimulator",
+      "category": "Gaming"
+    },
+    {
+      "word": "BeamNGdrive",
+      "category": "Gaming"
+    },
+    {
+      "word": "Wreckfest",
+      "category": "Gaming"
+    },
+    {
+      "word": "SnowRunner",
+      "category": "Gaming"
+    },
+    {
+      "word": "MudRunner",
+      "category": "Gaming"
+    },
+    {
+      "word": "TonyHawksProSkater",
+      "category": "Gaming"
+    },
+    {
+      "word": "Skate3",
+      "category": "Gaming"
+    },
+    {
+      "word": "SSX",
+      "category": "Gaming"
+    },
+    {
+      "word": "Descenders",
+      "category": "Gaming"
+    },
+    {
+      "word": "TrialsRising",
+      "category": "Gaming"
+    },
+    {
+      "word": "JustDance",
+      "category": "Gaming"
+    },
+    {
+      "word": "GuitarHero",
+      "category": "Gaming"
+    },
+    {
+      "word": "RockBand",
+      "category": "Gaming"
+    },
+    {
+      "word": "WiiSports",
+      "category": "Gaming"
+    },
+    {
+      "word": "Portal",
+      "category": "Gaming"
+    },
+    {
+      "word": "Portal2",
+      "category": "Gaming"
+    },
+    {
+      "word": "HalfLife",
+      "category": "Gaming"
+    },
+    {
+      "word": "HalfLife2",
+      "category": "Gaming"
+    },
+    {
+      "word": "Left4Dead",
+      "category": "Gaming"
+    },
+    {
+      "word": "Left4Dead2",
+      "category": "Gaming"
+    },
+    {
+      "word": "GarrysMod",
+      "category": "Gaming"
+    },
+    {
+      "word": "AgeOfEmpires",
+      "category": "Gaming"
+    },
+    {
+      "word": "AgeOfEmpires2",
+      "category": "Gaming"
+    },
+    {
+      "word": "AgeOfEmpires4",
+      "category": "Gaming"
+    },
+    {
+      "word": "Civilization",
+      "category": "Gaming"
+    },
+    {
+      "word": "Civilization6",
+      "category": "Gaming"
+    },
+    {
+      "word": "XCOM2",
+      "category": "Gaming"
+    },
+    {
+      "word": "CommandAndConquer",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheSims",
+      "category": "Gaming"
+    },
+    {
+      "word": "TheSims4",
+      "category": "Gaming"
+    },
+    {
+      "word": "SimCity",
+      "category": "Gaming"
+    },
+    {
+      "word": "CitiesSkylines",
+      "category": "Gaming"
+    },
+    {
+      "word": "PlanetZoo",
+      "category": "Gaming"
+    },
+    {
+      "word": "PlanetCoaster",
+      "category": "Gaming"
+    },
+    {
+      "word": "RollerCoasterTycoon",
+      "category": "Gaming"
+    },
+    {
+      "word": "ZooTycoon",
+      "category": "Gaming"
+    },
+    {
+      "word": "TwoPointHospital",
+      "category": "Gaming"
+    },
+    {
+      "word": "TwoPointCampus",
+      "category": "Gaming"
+    },
+    {
+      "word": "PrisonArchitect",
+      "category": "Gaming"
+    },
+    {
+      "word": "Factorio",
+      "category": "Gaming"
+    },
+    {
+      "word": "Satisfactory",
+      "category": "Gaming"
+    },
+    {
+      "word": "RimWorld",
+      "category": "Gaming"
+    },
+    {
+      "word": "OxygenNotIncluded",
+      "category": "Gaming"
+    },
+    {
+      "word": "Frostpunk",
+      "category": "Gaming"
+    },
+    {
+      "word": "Frostpunk2",
+      "category": "Gaming"
     }
   ]
 }
