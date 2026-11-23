@@ -1699,7 +1699,7 @@
         return true;
       },
       triggerChatWordEffect(word){
-        const effects={frosch:'frog',rakete:'rocket',geist:'ghost',skelett:'skeleton'};
+        const effects={frosch:'frog',rakete:'rocket',geist:'ghost',skelett:'skeleton',hund:'dog',katze:'cat',pinguin:'penguin',affe:'monkey',hai:'shark',banane:'banana',ente:'duck',pizza:'pizza',ufo:'ufo',roboter:'robot',huhn:'chicken',blitz:'lightning',konfetti:'confetti',kartoffel:'potato',feuer:'fire'};
         const action=effects[word],now=Date.now();
         if(!action||now-this.lastKeywordEffectAt<6000)return;
         this.lastKeywordEffectAt=now;
@@ -3035,8 +3035,8 @@
         document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
         root.className = '';
         root.innerHTML = '<div class="pf-effect-label"></div>';
-        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!'};
-        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700};
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',dog:'🐶 Wuff! Ein Hund!',cat:'🐱 Miau! Eine Katze!',penguin:'🐧 Pinguin auf dem Eis!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Bananen-Party!',duck:'🦆 Quak! Eine Ente!',pizza:'🍕 Pizza-Zeit!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter-Modus!',chicken:'🐔 Das Huhn rennt!',lightning:'⚡ Blitz-Effekt!',potato:'🥔 Kartoffel-Power!',fire:'🔥 Feuer frei!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,dog:4200,cat:4200,penguin:4400,monkey:4200,shark:4200,banana:4200,duck:4200,pizza:4200,ufo:4200,robot:4200,chicken:4200,lightning:1800,potato:4200,fire:3000};
         if (action === 'shake') document.body.classList.add('pf-admin-shake');
         else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
         else if (action === 'invert') document.body.classList.add('pf-admin-invert');
@@ -3045,8 +3045,8 @@
         else if (action === 'ice') { document.body.classList.add('pf-admin-ice'); root.classList.add('ice'); }
         else if (['confetti','fog','static'].includes(action)) root.classList.add(action);
         else if (action === 'googly') { root.classList.add('googly'); root.insertAdjacentHTML('afterbegin','<div class="pf-googly-eyes" aria-hidden="true">👀</div>'); }
-        else if (['frog','skeleton','ghost','rocket'].includes(action)) {
-          const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀'};
+        else if (['frog','skeleton','ghost','rocket','dog','cat','penguin','monkey','shark','banana','duck','pizza','ufo','robot','chicken','lightning','potato','fire'].includes(action)) {
+          const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀',dog:'🐶',cat:'🐱',penguin:'🐧',monkey:'🐒',shark:'🦈',banana:'🍌',duck:'🦆',pizza:'🍕',ufo:'🛸',robot:'🤖',chicken:'🐔',lightning:'⚡',potato:'🥔',fire:'🔥'};
           root.classList.add(action);
           const sprite = document.createElement('div');
           sprite.className = 'pf-crossing-emoji ' + action;
