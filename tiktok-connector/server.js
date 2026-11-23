@@ -25,8 +25,9 @@ function playerSnapshot() {
     if (player.socket.readyState !== WebSocket.OPEN || now - player.lastSeenAt > 10 * 60_000) activePlayers.delete(id);
     else if (now - player.lastSeenAt > 60_000) player.active = false;
   }
-  return [...activePlayers.values()].filter(p => p.active && p.game !== 'menu').map(p => ({
-    playerId:p.id, name:p.name, streamerUsername:p.streamerUsername || null, game:p.game, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt, solution:p.solution || ''
+  return [...activePlayers.values()].filter(p => p.game !== 'menu').map(p => ({
+    playerId:p.id, name:p.name, streamerUsername:p.streamerUsername || null, game:p.game,
+    active:p.active, connectedAt:p.connectedAt, lastSeenAt:p.lastSeenAt, solution:p.solution || ''
   }));
 }
 
@@ -397,6 +398,41 @@ const server = http.createServer(async (request, response) => {
     return sendJson(response, 200, { connections, players: playerSnapshot() });
   }
 
+  if (url.pathname === "/internal/admin-streamer-action" && request.method === "POST") {
+    const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+    if (!expected || request.headers.authorization !== `Bearer ${expected}`) return sendJson(response, 401, { error: "Nicht autorisiert." });
+    let raw = "";
+    for await (const chunk of request) { raw += chunk; if (Buffer.byteLength(raw, "utf8") > 1024) return sendJson(response, 413, { error: "Anfrage zu groß." }); }
+    let body; try { body = JSON.parse(raw || "{}"); } catch { return sendJson(response, 400, { error: "Ungültige Anfrage." }); }
+    const username = normalizeUsername(body.username);
+    if (!username || !STREAMER_TROLL_ACTIONS.has(body.action)) return sendJson(response, 400, { error: "Ungültiger Streamer oder Troll-Effekt." });
+    const targets = [...sessions.values()].filter(session => !session.stopped && session.username.toLowerCase() === username.toLowerCase());
+    let delivered = 0;
+    const message = JSON.stringify({ type: "admin_action", action: body.action, issuedAt: new Date().toISOString() });
+    for (const session of targets) for (const client of session.clients) {
+      if (client.readyState === WebSocket.OPEN) { client.send(message); delivered += 1; }
+    }
+    if (!delivered) return sendJson(response, 404, { error: "Für diesen Streamer ist gerade kein PLAYFINITY-Spiel verbunden." });
+    return sendJson(response, 200, { ok: true, username, action: body.action, delivered });
+  }
+
+  if (url.pathname === "/internal/admin-nudge" && request.method === "POST") {
+    const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+    if (!expected || request.headers.authorization !== `Bearer ${expected}`) return sendJson(response, 401, { error: "Nicht autorisiert." });
+    let raw = "";
+    for await (const chunk of request) { raw += chunk; if (Buffer.byteLength(raw, "utf8") > 512) return sendJson(response, 413, { error: "Anfrage zu groß." }); }
+    let body; try { body = JSON.parse(raw || "{}"); } catch { return sendJson(response, 400, { error: "Ungültige Anfrage." }); }
+    const username = normalizeUsername(body.username);
+    if (!username) return sendJson(response, 400, { error: "Ungültiger Streamer-Name." });
+    const targets = [...sessions.values()].filter(session => !session.stopped && session.username.toLowerCase() === username.toLowerCase());
+    let delivered = 0;
+    const message = JSON.stringify({ type: "admin_nudge", issuedAt: new Date().toISOString() });
+    for (const session of targets) for (const client of session.clients) {
+      if (client.readyState === WebSocket.OPEN) { client.send(message); delivered += 1; }
+    }
+    return sendJson(response, 200, { ok: true, username, delivered });
+  }
+
   if (url.pathname === "/internal/admin-troll" && request.method === "POST") {
     const expected = process.env.ADMIN_DATA_BRIDGE_TOKEN;
     if (!expected || request.headers.authorization !== `Bearer ${expected}`) return sendJson(response, 401, { error: "Nicht autorisiert." });
@@ -404,7 +440,7 @@ const server = http.createServer(async (request, response) => {
     for await (const chunk of request) { raw += chunk; if (Buffer.byteLength(raw,"utf8") > 1024) return sendJson(response,413,{error:"Anfrage zu groß."}); }
     let body; try { body = JSON.parse(raw || "{}"); } catch { return sendJson(response,400,{error:"Ungültige Anfrage."}); }
     const player = activePlayers.get(String(body.playerId || ""));
-    if (!player || player.socket.readyState !== WebSocket.OPEN || !player.active) return sendJson(response,404,{error:"Spieler ist nicht mehr verbunden."});
+    if (!player || player.socket.readyState !== WebSocket.OPEN || Date.now() - player.lastSeenAt > 10 * 60_000 || player.game === "menu") return sendJson(response,404,{error:"Spieler ist nicht mehr verbunden."});
     if (!PLAYER_TROLL_ACTIONS.has(body.action)) return sendJson(response,400,{error:"Unbekannte Troll-Aktion."});
     player.socket.send(JSON.stringify({type:"admin_troll",action:body.action}));
     return sendJson(response,200,{ok:true,playerId:player.id,action:body.action});
