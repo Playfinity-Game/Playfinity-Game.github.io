@@ -1699,8 +1699,11 @@
       submitGuess(value,playerName='Du',options={}){
         if(!this.puzzle||this.won)return false;
         const word=this.normalize(value);
+        if(options.source==='chat'){
+          const chatWords=String(value).split(/[^\p{L}\p{N}]+/u).map(part=>this.normalize(part)).filter(Boolean);
+          for(const chatWord of chatWords)this.triggerChatWordEffect(chatWord);
+        }
         if(!word||/\s/u.test(word))return false;
-        if(options.source==='chat')this.triggerChatWordEffect(word);
         const rank=this.puzzle.woerter.indexOf(word)+1;
         if(rank===0)return false;
         const previous=this.guesses.find(item=>item.word===word);
