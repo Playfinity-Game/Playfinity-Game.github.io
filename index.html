@@ -314,6 +314,25 @@
       .wordfinity-work-sign { right: 8px; width: 80px; }
     }
 
+    /* Wordfinity: halb geöffnetes Baustellenband + wartender Strichmann */
+    .wordfinity-card { min-height: 206px; isolation: isolate; }
+    .wordfinity-card-copy { position: relative; z-index: 2; padding-right: 92px; }
+    .wordfinity-card-scene { position:absolute; inset:auto 0 0; height:112px; z-index:1; pointer-events:none; overflow:hidden; }
+    .wordfinity-barrier-half { position:absolute; bottom:24px; height:15px; width:47%; border-top:1px solid #171717; border-bottom:1px solid #171717; background:repeating-linear-gradient(135deg,#f4ca45 0 12px,#171717 12px 24px); box-shadow:0 2px 5px #0008; }
+    .wordfinity-barrier-half.left { left:-2%; transform:rotate(-3deg); clip-path:polygon(0 0,100% 0,97% 78%,94% 100%,0 100%); }
+    .wordfinity-barrier-half.right { right:-2%; transform:rotate(3deg); clip-path:polygon(3% 0,100% 0,100% 100%,6% 100%,0 75%); }
+    .wordfinity-card-smoker { position:absolute; right:9px; bottom:27px; width:92px; height:112px; overflow:visible; filter:drop-shadow(0 2px 1px #9aa0b522); }
+    .wordfinity-card-smoker .wf-figure { fill:none; stroke:#03040a; stroke-width:7; stroke-linecap:round; stroke-linejoin:round; }
+    .wordfinity-card-smoker .wf-head { fill:#03040a; stroke:#03040a; stroke-width:2; }
+    .wordfinity-card-smoker .wf-cigarette { stroke:#03040a; stroke-width:3; stroke-linecap:round; }
+    .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.8; }
+    .wordfinity-card-footer { position:relative; z-index:3; }
+    @media(max-width:420px) {
+      .wordfinity-card { min-height:210px; }
+      .wordfinity-card-copy { padding-right:78px; }
+      .wordfinity-card-smoker { right:5px; width:82px; height:104px; }
+    }
+
     .game-card:hover {
       transform: translateY(-4px);
       background: var(--bg-card-hover);
@@ -1238,14 +1257,26 @@
           </div>
         </div>
 
-        <!-- WORDFINITY – VORÜBERGEHEND GESCHLOSSEN -->
-        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
-          <div>
+        <!-- WORDFINITY – Baustellenband halb durchtrennt, Aufsicht wartet noch -->
+        <div class="game-card card-purple wordfinity-card" onclick="PlayfinityRouter.go('wordfinity')">
+          <div class="wordfinity-card-copy">
             <div class="card-badge" style="color:var(--neon-purple)">Semantisches Worträtsel</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-pink)">FINITY</span></div>
             <div class="card-desc">Finde das geheime Wort. Je ähnlicher dein Wort, desto besser dein Rang.</div>
           </div>
-          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
+          <div class="wordfinity-card-scene" aria-hidden="true">
+            <div class="wordfinity-barrier-half left"></div>
+            <div class="wordfinity-barrier-half right"></div>
+            <svg class="wordfinity-card-smoker" viewBox="0 0 112 132" role="img" aria-label="">
+              <circle class="wf-head" cx="55" cy="22" r="12"/>
+              <path class="wf-figure" d="M55 36 L57 75 M55 43 L42 36 L34 31 M57 46 L77 56 L91 52 M57 75 L38 99 L25 101 M57 75 L76 88 L94 85"/>
+              <path class="wf-figure" d="M42 36 L47 29 M91 52 L99 49"/>
+              <path class="wf-cigarette" d="M35 31 L23 29"/>
+              <path class="wf-smoke" d="M22 25 C17 20 25 17 20 12 C17 9 20 6 23 4 M14 27 C10 23 15 20 12 17"/>
+              <path class="wf-figure" d="M25 101 L15 101 M94 85 L104 85"/>
+            </svg>
+          </div>
+          <div class="card-footer wordfinity-card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
         </div>
 
         <!-- PlayDuko -->
