@@ -2632,8 +2632,8 @@
               document.getElementById('wordfinity-status').textContent='Diese Runde ist bereits gelöst. Starte ein neues Rätsel.';
               return;
             }
-            if(!this.dictionarySet||!this.dictionarySet.has(word)){
-              document.getElementById('wordfinity-status').textContent='Bitte gib ein Wort ein, das im Wörterbuch steht!';
+            if(!/^[\\p{L}\\p{N}]+(?:[-'][\\p{L}\\p{N}]+)*$/u.test(word)){
+              document.getElementById('wordfinity-status').textContent='Bitte gib ein einzelnes Wort ohne Leerzeichen ein.';
               input.select();
               return;
             }
@@ -2692,103 +2692,184 @@
         return !unsuitable.test(target)&&!unsuitable.test(category)&&!nonNounTargets.has(target);
       },
       datasetCacheName:'wordfinity-dataset-cache',
-      datasetCacheVersion:1,
-      async readCachedDataset(){
+      datasetCacheVersion:2,
+      puzzleManifestUrl:'https://dinaj-1992.github.io/wordfinity-daten/puzzle-index.json',
+      puzzleBaseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
+      puzzleManifest:null,
+      usedTargetsLoaded:false,
+      puzzleCache:new Map(),
+      async openLocalDB(){
         if(!('indexedDB' in window))return null;
         return new Promise(resolve=>{
           let request;
-          try{request=indexedDB.open(this.datasetCacheName,1);}catch(error){resolve(null);return;}
-          request.onupgradeneeded=()=>{const db=request.result;if(!db.objectStoreNames.contains('datasets'))db.createObjectStore('datasets',{keyPath:'url'});};
-          request.onerror=()=>resolve(null);
-          request.onsuccess=()=>{
-            const db=request.result;
-            if(!db.objectStoreNames.contains('datasets')){db.close();resolve(null);return;}
-            let transaction;
-            try{transaction=db.transaction('datasets','readonly');}catch(error){db.close();resolve(null);return;}
-            const get=transaction.objectStore('datasets').get(this.datasetUrl);
-            get.onsuccess=()=>{const record=get.result||null;db.close();resolve(record);};
-            get.onerror=()=>{db.close();resolve(null);};
+          try{request=indexedDB.open(this.datasetCacheName,this.datasetCacheVersion);}catch(error){resolve(null);return;}
+          request.onupgradeneeded=()=>{
+            const db=request.result,tx=request.transaction;
+            if(!db.objectStoreNames.contains('puzzles'))db.createObjectStore('puzzles',{keyPath:'id'});
+            if(!db.objectStoreNames.contains('meta'))db.createObjectStore('meta',{keyPath:'key'});
+            // Alte 69-MB-Gesamtliste entfernen, sobald das neue Cache-Schema angelegt wird.
+            if(db.objectStoreNames.contains('datasets'))tx.objectStore('datasets').clear();
           };
+          request.onerror=()=>resolve(null);
+          request.onblocked=()=>resolve(null);
+          request.onsuccess=()=>resolve(request.result);
         });
       },
-      async writeCachedDataset(data){
-        if(!('indexedDB' in window))return false;
+      async readLocal(store,key){
+        const db=await this.openLocalDB();if(!db)return null;
         return new Promise(resolve=>{
           let request;
-          try{request=indexedDB.open(this.datasetCacheName,1);}catch(error){resolve(false);return;}
-          request.onupgradeneeded=()=>{const db=request.result;if(!db.objectStoreNames.contains('datasets'))db.createObjectStore('datasets',{keyPath:'url'});};
-          request.onerror=()=>resolve(false);
-          request.onsuccess=()=>{
-            const db=request.result;
-            let transaction;
-            try{transaction=db.transaction('datasets','readwrite');transaction.objectStore('datasets').put({url:this.datasetUrl,version:this.datasetCacheVersion,savedAt:Date.now(),data});}
-            catch(error){db.close();resolve(false);return;}
-            transaction.oncomplete=()=>{db.close();resolve(true);};
-            transaction.onerror=()=>{db.close();resolve(false);};
-            transaction.onabort=()=>{db.close();resolve(false);};
-          };
+          try{request=db.transaction(store,'readonly').objectStore(store).get(key);}
+          catch(error){db.close();resolve(null);return;}
+          request.onsuccess=()=>{const value=request.result||null;db.close();resolve(value);};
+          request.onerror=()=>{db.close();resolve(null);};
         });
       },
-      isValidDataset(data){
-        return !!(data&&Array.isArray(data.woerterbuch)&&data.woerterbuch.length>=100&&data.ziele&&typeof data.ziele==='object'&&Object.keys(data.ziele).length);
+      async writeLocal(store,value){
+        const db=await this.openLocalDB();if(!db)return false;
+        return new Promise(resolve=>{
+          let tx;
+          try{tx=db.transaction(store,'readwrite');tx.objectStore(store).put(value);}
+          catch(error){db.close();resolve(false);return;}
+          tx.oncomplete=()=>{db.close();resolve(true);};
+          tx.onerror=()=>{db.close();resolve(false);};
+          tx.onabort=()=>{db.close();resolve(false);};
+        });
       },
-      async loadDataset(){
-        if(this.dataset)return this.dataset;
-        const cached=await this.readCachedDataset();
-        const cacheIsFresh=cached&&cached.version===this.datasetCacheVersion&&Date.now()-cached.savedAt<7*24*60*60*1000&&this.isValidDataset(cached.data);
-        if(cacheIsFresh){
-          this.dataset=cached.data;
-          this.dictionarySet=new Set(this.dataset.woerterbuch.map(word=>this.normalize(word)));
-          console.info('[Wordfinity] Wortliste aus lokalem Speicher geladen:',this.dataset.woerterbuch.length,'Wörter.');
-          return this.dataset;
-        }
-        const response=await fetch(this.datasetUrl);
-        if(!response.ok)throw new Error('Wortliste konnte nicht geladen werden (HTTP '+response.status+').');
-        if(typeof DecompressionStream!=='function')throw new Error('Dieser Browser unterstützt das Entpacken der gzip-Wortliste nicht.');
-        const compressed=await response.arrayBuffer();
-        const stream=new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
-        const json=await new Response(stream).text();
-        const data=JSON.parse(json);
-        if(!this.isValidDataset(data))throw new Error('Die Wortliste hat nicht das erwartete Format oder ist unvollständig.');
-        this.dataset=data;
-        this.dictionarySet=new Set(data.woerterbuch.map(word=>this.normalize(word)));
-        this.writeCachedDataset(data).then(saved=>console.info(saved?'[Wordfinity] Wortliste lokal gespeichert.':'[Wordfinity] Lokales Speichern nicht möglich; Browser-Speicher prüfen.'));
-        console.info('[Wordfinity] Wortliste geladen:',data.woerterbuch.length,'Wörter,',Object.keys(data.ziele).length,'Ziele.');
+      isValidManifest(data){
+        return !!(data&&Array.isArray(data.puzzleIds)&&data.puzzleIds.length>0&&data.puzzleIds.every(id=>Number.isInteger(id)&&id>0));
+      },
+      isValidPuzzle(data,id){
+        return !!(data&&Number(data.id)===Number(id)&&Array.isArray(data.woerter)&&data.woerter.length===20000&&typeof data.kategorie==='string'&&typeof data.woerter[0]==='string'&&data.woerter[0].trim());
+      },
+      loadUsedTargets(){
+        if(this.usedTargetsLoaded)return;
+        this.usedTargetsLoaded=true;
+        try{
+          const saved=JSON.parse(localStorage.getItem('wordfinity-used-targets-v1')||'[]');
+          if(Array.isArray(saved))this.usedTargets=new Set(saved.filter(value=>typeof value==='string').map(value=>this.normalize(value)));
+        }catch(error){console.warn('[Wordfinity] Gespielte Zielwörter konnten nicht gelesen werden.',error);}
+      },
+      saveUsedTargets(){
+        try{localStorage.setItem('wordfinity-used-targets-v1',JSON.stringify([...this.usedTargets].slice(-5000)));}
+        catch(error){console.warn('[Wordfinity] Gespielte Zielwörter konnten nicht gespeichert werden.',error);}
+      },
+      async fetchManifest(){
+        const response=await fetch(this.puzzleManifestUrl,{cache:'no-cache'});
+        if(!response.ok)throw new Error('Rätsel-Index konnte nicht geladen werden (HTTP '+response.status+').');
+        const data=await response.json();
+        if(!this.isValidManifest(data))throw new Error('Der Rätsel-Index ist ungültig.');
+        const record={key:'manifest',version:1,savedAt:Date.now(),data};
+        await this.writeLocal('meta',record);
+        this.puzzleManifest=data;
         return data;
+      },
+      async refreshManifestInBackground(savedAt=0){
+        if(Date.now()-savedAt<6*60*60*1000)return;
+        try{
+          const data=await this.fetchManifest();
+          this.puzzleDeck=this.puzzleDeck.filter(id=>data.puzzleIds.includes(id));
+          console.info('[Wordfinity] Rätsel-Index im Hintergrund aktualisiert:',data.puzzleIds.length,'Rätsel.');
+        }catch(error){console.warn('[Wordfinity] Hintergrund-Aktualisierung des Rätsel-Index fehlgeschlagen.',error);}
+      },
+      async loadPuzzleManifest(){
+        if(this.puzzleManifest)return this.puzzleManifest;
+        const cached=await this.readLocal('meta','manifest');
+        if(cached&&cached.version===1&&this.isValidManifest(cached.data)){
+          this.puzzleManifest=cached.data;
+          this.refreshManifestInBackground(cached.savedAt);
+          return this.puzzleManifest;
+        }
+        return this.fetchManifest();
+      },
+      async fetchPuzzle(id){
+        const response=await fetch(this.puzzleBaseUrl+encodeURIComponent(id)+'.json',{cache:'no-cache'});
+        if(!response.ok)throw new Error('Rätsel '+id+' konnte nicht geladen werden (HTTP '+response.status+').');
+        const data=await response.json();
+        if(!this.isValidPuzzle(data,id))throw new Error('Rätsel '+id+' hat ein ungültiges Format.');
+        await this.writeLocal('puzzles',{id:Number(id),version:1,savedAt:Date.now(),data});
+        this.puzzleCache.set(Number(id),data);
+        return data;
+      },
+      async refreshPuzzleInBackground(id,savedAt){
+        if(Date.now()-savedAt<24*60*60*1000)return;
+        try{
+          const response=await fetch(this.puzzleBaseUrl+encodeURIComponent(id)+'.json',{cache:'no-cache'});
+          if(!response.ok)return;
+          const data=await response.json();
+          if(!this.isValidPuzzle(data,id))return;
+          await this.writeLocal('puzzles',{id:Number(id),version:1,savedAt:Date.now(),data});
+          this.puzzleCache.set(Number(id),data);
+          console.info('[Wordfinity] Rätsel',id,'im Hintergrund aktualisiert.');
+        }catch(error){console.warn('[Wordfinity] Hintergrund-Aktualisierung von Rätsel',id,'fehlgeschlagen.',error);}
+      },
+      async loadPuzzle(id){
+        if(this.puzzleCache.has(Number(id)))return {data:this.puzzleCache.get(Number(id)),source:'memory'};
+        const cached=await this.readLocal('puzzles',Number(id));
+        if(cached&&cached.version===1&&this.isValidPuzzle(cached.data,id)){
+          this.puzzleCache.set(Number(id),cached.data);
+          this.refreshPuzzleInBackground(id,cached.savedAt||0);
+          return {data:cached.data,source:'local'};
+        }
+        return {data:await this.fetchPuzzle(id),source:'network'};
+      },
+      shufflePuzzleDeck(ids){
+        const deck=[...ids];
+        for(let i=deck.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[deck[i],deck[j]]=[deck[j],deck[i]];}
+        return deck;
       },
       async newRound(){
         const token=++this.roundToken;
         this.puzzle=null;this.guesses=[];this.extraWords=[];this.won=false;
         this.setControls(false);
         this.resetHintDisplays();
-        document.getElementById('wordfinity-status').textContent='Wortliste wird geladen …';
+        document.getElementById('wordfinity-status').textContent='Rätsel-Auswahl wird geladen …';
         document.getElementById('wordfinity-guesses').innerHTML='';
         const result=document.getElementById('wordfinity-round-result');
         if(result){result.classList.remove('visible');result.innerHTML='';}
         try{
-          const data=await this.loadDataset();
+          this.loadUsedTargets();
+          const manifest=await this.loadPuzzleManifest();
           if(token!==this.roundToken)return;
-          const targets=Object.keys(data.ziele).filter(word=>typeof word==='string'&&data.ziele[word]&&Array.isArray(data.ziele[word].r)&&data.ziele[word].r.length);
-          const available=targets.filter(word=>!this.usedTargets.has(this.normalize(word)));
-          if(!available.length){this.usedTargets.clear();}
-          const pool=available.length?available:targets;
-          const target=pool[Math.floor(Math.random()*pool.length)];
-          const entry=data.ziele[target];
-          const ranked=entry.r.map(index=>data.woerterbuch[index]).filter(word=>typeof word==='string').map(word=>this.normalize(word));
-          const unique=[...new Set(ranked)];
-          const normalizedTarget=this.normalize(target);
-          const words=[normalizedTarget,...unique.filter(word=>word!==normalizedTarget)];
-          if(words.length<2)throw new Error('Für das ausgewählte Zielwort fehlen Ranglisteneinträge.');
-          this.usedTargets.add(normalizedTarget);
-          this.puzzle={woerter:words,kategorie:String(entry.k||'Allgemein'),target:normalizedTarget};
+          let selected=null,source='network';
+          // Zufällige Einzelrätsel laden, statt die komplette 69-MB-Wortdatenbank zu holen.
+          for(let attempts=0;attempts<manifest.puzzleIds.length;attempts++){
+            if(!this.puzzleDeck.length)this.puzzleDeck=this.shufflePuzzleDeck(manifest.puzzleIds);
+            const id=this.puzzleDeck.pop();
+            document.getElementById('wordfinity-status').textContent='Lade Rätsel '+id+' …';
+            const loaded=await this.loadPuzzle(id);
+            if(token!==this.roundToken)return;
+            const data=loaded.data;
+            if(!this.isSuitablePuzzle(data))continue;
+            const target=this.normalize(data.woerter[0]);
+            if(this.usedTargets.has(target))continue;
+            selected={data,target};source=loaded.source;break;
+          }
+          if(!selected&&this.usedTargets.size){
+            this.usedTargets.clear();this.saveUsedTargets();this.puzzleDeck=this.shufflePuzzleDeck(manifest.puzzleIds);
+            for(let attempts=0;attempts<manifest.puzzleIds.length;attempts++){
+              const id=this.puzzleDeck.pop();
+              document.getElementById('wordfinity-status').textContent='Suche ein neues Rätsel …';
+              const loaded=await this.loadPuzzle(id);
+              if(token!==this.roundToken)return;
+              if(!this.isSuitablePuzzle(loaded.data))continue;
+              selected={data:loaded.data,target:this.normalize(loaded.data.woerter[0])};source=loaded.source;break;
+            }
+          }
+          if(!selected)throw new Error('Es wurde kein geeignetes Rätsel gefunden.');
+          const data=selected.data;
+          const words=[...new Set(data.woerter.map(word=>this.normalize(word)).filter(Boolean))];
+          if(words.length<2)throw new Error('Für das ausgewählte Rätsel fehlen Ranglisteneinträge.');
+          this.usedTargets.add(selected.target);this.saveUsedTargets();
+          this.puzzle={woerter:words,kategorie:data.kategorie,target:selected.target,id:data.id};
           this.setControls(true);
-          document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
+          document.getElementById('wordfinity-status').textContent=source==='network'?'Los geht’s! Rätsel geladen und lokal gespeichert.':'Los geht’s! Rätsel aus deinem Speicher geladen.';
           document.getElementById('wordfinity-input').focus({preventScroll:true});
           PlayfinityPlayerPresence.sendPresence();
         }catch(error){
           if(token!==this.roundToken)return;
-          console.error('[Wordfinity] Datensatz konnte nicht geladen werden:',error);
-          document.getElementById('wordfinity-status').textContent='Wortliste konnte nicht geladen werden. Bitte Seite neu laden oder später erneut versuchen.';
+          console.error('[Wordfinity] Rätsel konnte nicht geladen werden:',error);
+          document.getElementById('wordfinity-status').textContent='Rätsel konnte nicht geladen werden. Bitte Verbindung prüfen und erneut versuchen.';
         }
       },
       submitGuess(value,playerName='Du',options={}){
@@ -2798,8 +2879,8 @@
         if((options.source==='chat'||options.source==='manual')&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
         if(!this.puzzle||this.won)return false;
         if(!word||/\s/u.test(word))return false;
-        if(!this.dictionarySet||!this.dictionarySet.has(word)){
-          if(options.source==='chat'||options.source==='manual')document.getElementById('wordfinity-status').textContent='Bitte gib ein Wort ein, das im Wörterbuch steht!';
+        if(!/^[\\p{L}\\p{N}]+(?:[-'][\\p{L}\\p{N}]+)*$/u.test(word)){
+          if(options.source==='chat'||options.source==='manual')document.getElementById('wordfinity-status').textContent='Bitte nur ein einzelnes Wort ohne Leerzeichen eingeben.';
           return false;
         }
         const previous=this.guesses.find(item=>item.word===word);
