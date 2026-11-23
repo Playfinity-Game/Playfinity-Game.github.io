@@ -2605,6 +2605,7 @@
         }
       },
       submitGuess(value,playerName='Du',options={}){
+        const displayName=typeof playerName==='string'?playerName:String(playerName?.name||playerName?.nickname||playerName?.uniqueId||playerName?.unique_id||playerName?.username||'Zuschauer');
         const word=this.normalize(value);
         // Einzelne Schlüsselwörter lösen beim lokalen Testen und im TikTok-Chat Effekte aus.
         if((options.source==='chat'||options.source==='manual')&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
@@ -2619,18 +2620,18 @@
           if(extraIndex===-1)this.extraWords.push(word);
           rank=this.puzzle.woerter.length+(extraIndex===-1?this.extraWords.length:extraIndex+1);
         }
-        this.guesses.push({word,rank,player:playerName,isHint:!!options.isHint});
+        this.guesses.push({word,rank,player:displayName,isHint:!!options.isHint});
         this.guesses.sort((a,b)=>a.rank-b.rank);
         if(options.source==='chat'){
-          this.lastChatGuess={word,rank,player:playerName};
+          this.lastChatGuess={word,rank,player:displayName};
           this.renderLastChatGuess();
         }
         this.renderGuesses();
-        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
+        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+displayName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
         if(rank===1){
           this.won=true;this.setControls(false);
-          document.getElementById('wordfinity-status').textContent='🏆 '+playerName+' hat das Zielwort „'+word+'“ erraten!';
-          showCorrectAnswerOverlay(word,null,false,'Wort erraten!',playerName);
+          document.getElementById('wordfinity-status').textContent='🏆 '+displayName+' hat das Zielwort „'+word+'“ erraten!';
+          showCorrectAnswerOverlay(word,null,false,'Wort erraten!',displayName);
         }
         PlayfinityPlayerPresence.sendPresence();
         return true;
