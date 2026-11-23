@@ -1265,6 +1265,21 @@
 @media(prefers-reduced-motion:reduce){#pd-win-overlay.active,#pd-win-card{animation:none}.pd-firework-spark{animation-duration:.01ms!important}}
 
 
+    /* Einheitliches PLAYFINITY-Gewinnerfenster (Bigsize bleibt ausgeschlossen) */
+    #pf-winner-overlay{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(4,7,16,.82);backdrop-filter:blur(7px)}
+    #pf-winner-overlay.active{display:flex;animation:pfWinnerFade .22s ease-out}
+    #pf-winner-card{position:relative;width:min(390px,100%);max-height:min(82vh,620px);overflow:auto;padding:22px 20px 16px;text-align:center;background:#141824;border:1px solid rgba(251,191,36,.62);border-radius:18px;box-shadow:0 0 32px rgba(251,191,36,.13),0 18px 60px #0009;animation:pfWinnerPop .38s cubic-bezier(.2,1.35,.4,1)}
+    #pf-winner-brand{font-size:.76rem;font-weight:950;letter-spacing:.13em;background:linear-gradient(100deg,#38bdf8,#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+    #pf-winner-crown{font-size:3rem;line-height:1.25;margin:8px 0 2px;color:#fbbf24;filter:drop-shadow(0 0 10px #fbbf2488)}
+    #pf-winner-name{font-size:clamp(1.65rem,7vw,2.25rem);font-weight:1000;color:#fff;overflow-wrap:anywhere;line-height:1.1;margin:4px 0 12px}
+    #pf-winner-answer{display:none;margin:0 auto 10px;padding:8px 12px;max-width:100%;border-radius:999px;background:#102b32;border:1px solid rgba(45,212,191,.35);color:#5eead4;font-size:.85rem;font-weight:900;overflow-wrap:anywhere}
+    #pf-winner-meta{color:#d1d5db;font-size:.85rem;margin:8px 0 12px}
+    #pf-winner-helpers{display:none;text-align:left;margin:12px 0;padding:10px 12px;background:#0d111b;border:1px solid #303746;border-radius:12px;color:#d1d5db;font-size:.78rem;line-height:1.65}
+    #pf-winner-helpers strong{display:block;color:#fbbf24;text-align:center;font-size:.72rem;letter-spacing:.08em;margin-bottom:4px}
+    #pf-winner-next{width:100%;margin-top:6px;padding:11px 16px;border:1px solid #fbbf24;border-radius:11px;background:rgba(251,191,36,.08);color:#fbbf24;font-weight:950;font-size:.92rem;cursor:pointer}
+    #pf-winner-footer{margin-top:11px;color:#778092;font-size:.66rem;letter-spacing:.05em}
+    @keyframes pfWinnerFade{from{opacity:0}to{opacity:1}} @keyframes pfWinnerPop{from{opacity:0;transform:translateY(12px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @media(prefers-reduced-motion:reduce){#pf-winner-overlay.active,#pf-winner-card{animation:none}}
   </style>
 </head>
 
@@ -1589,6 +1604,18 @@
 
   <div id="pause-overlay" class="pause-overlay" hidden><div class="pause-overlay-card"><div class="pause-overlay-title">SPIEL PAUSIERT</div><p>Chat-Eingaben und Rundentimer sind angehalten.</p><button type="button" id="pause-resume" class="btn-action">Fortsetzen</button></div></div>
 
+  <div id="pf-winner-overlay" role="dialog" aria-modal="true" aria-labelledby="pf-winner-brand">
+    <div id="pf-winner-card">
+      <div id="pf-winner-brand">PLAYFINITY • WORDFINITY</div>
+      <div id="pf-winner-crown" aria-hidden="true">♛</div>
+      <div id="pf-winner-name">Gewinner</div>
+      <div id="pf-winner-answer"></div>
+      <div id="pf-winner-meta"></div>
+      <div id="pf-winner-helpers"></div>
+      <button id="pf-winner-next" type="button">Nächste Runde ›</button>
+      <div id="pf-winner-footer">playfinity-game.github.io</div>
+    </div>
+  </div>
   <div id="correct-answer-overlay" class="correct-answer-overlay" role="alertdialog" aria-modal="true" aria-labelledby="correct-answer-message">
     <div class="correct-answer-card">
       <div class="correct-answer-kicker">🎉 RICHTIG!</div>
@@ -1719,7 +1746,7 @@
 
     /* PLAYDUKO – eigenes Spielmodul, nutzt den bestehenden TikTok-Nachrichtenfluss */
     const PlayDukoGame = (() => {
-      let currentPuzzle=null,grid=[],selected=-1,lastPuzzle="",hintedIndex=-1,checked=false,pendingNumber=null,initialized=false,roundWon=false,roundStartedAt=0;
+      let currentPuzzle=null,grid=[],selected=-1,lastPuzzle="",hintedIndex=-1,checked=false,pendingNumber=null,initialized=false,roundWon=false,roundStartedAt=0,lastChatPlayer="";
       let board,numbers,difficulty,submitButton,winOverlay,fireworksRoot,autoNextTimeout=null,autoNextInterval=null;
       const row=i=>Math.floor(i/9),col=i=>i%9,box=(r,c)=>Math.floor(r/3)*3+Math.floor(c/3);
       const shuffle=a=>{for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;};
@@ -1733,15 +1760,15 @@
       function render(){if(!currentPuzzle)return;board.innerHTML="";board.classList.toggle("solved",checked&&grid.every((v,i)=>String(v)===currentPuzzle.s[i]));for(let i=0;i<81;i++){const b=document.createElement("button");b.type="button";b.className="pd-cell";b.setAttribute("role","gridcell");b.setAttribute("aria-label",String.fromCharCode(65+row(i))+(col(i)+1)+(grid[i]?" "+grid[i]:" leer"));if(currentPuzzle.p[i]!=="0")b.classList.add("fixed");else if(grid[i]&&String(grid[i])===currentPuzzle.s[i])b.classList.add("correct");if(i===selected)b.classList.add("selected");if(grid[i]&&conflicts(i,grid[i])&&String(grid[i])!==currentPuzzle.s[i])b.classList.add("conflict");if(checked&&grid[i]&&String(grid[i])!==currentPuzzle.s[i])b.classList.add("incorrect");if(i===hintedIndex)b.classList.add("hinted");b.textContent=grid[i]||"";b.disabled=roundWon;b.addEventListener("click",()=>{if(roundWon)return;selected=i;render();});board.appendChild(b);}submitButton.disabled=roundWon||selected<0||currentPuzzle.p[selected]!=="0"||pendingNumber===null;}
       function chooseNumber(n){pendingNumber=n;renderNumbers();if(submitButton)submitButton.disabled=selected<0||currentPuzzle.p[selected]!=="0";}
       function setNumber(n){const target=selected;if(roundWon||target<0||currentPuzzle.p[target]!=="0")return;if(n&&conflicts(target,n))return;const nextGrid=grid.slice();nextGrid[target]=n;grid=nextGrid;pendingNumber=null;checked=false;hintedIndex=-1;renderNumbers();render();checkForWin();}
-      function fresh(){hideWin();roundWon=false;const button=document.getElementById("pd-new");button.disabled=true;setTimeout(()=>{try{let next;for(let attempt=0;attempt<4;attempt++){next=generatePuzzle(Number(difficulty.value));if(next.p!==lastPuzzle)break;}currentPuzzle=next;roundStartedAt=Date.now();lastPuzzle=next.p;grid=currentPuzzle.p.split("").map(Number);selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();}catch(err){console.error("[PlayDuko]",err);}button.disabled=false;},20);}
+      function fresh(){hideWin();roundWon=false;lastChatPlayer="";const button=document.getElementById("pd-new");button.disabled=true;setTimeout(()=>{try{let next;for(let attempt=0;attempt<4;attempt++){next=generatePuzzle(Number(difficulty.value));if(next.p!==lastPuzzle)break;}currentPuzzle=next;roundStartedAt=Date.now();lastPuzzle=next.p;grid=currentPuzzle.p.split("").map(Number);selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();}catch(err){console.error("[PlayDuko]",err);}button.disabled=false;},20);}
       function init(){if(!initialized){board=document.getElementById("pd-board");numbers=document.getElementById("pd-numbers");difficulty=document.getElementById("pd-difficulty");submitButton=document.getElementById("pd-submit-number");winOverlay=document.getElementById("pd-win-overlay");fireworksRoot=document.getElementById("pd-fireworks");document.getElementById("pd-win-next").addEventListener("click",fresh);for(let n=1;n<=9;n++){const b=document.createElement("button");b.type="button";b.textContent=n;b.addEventListener("click",()=>chooseNumber(n));numbers.appendChild(b);}submitButton.addEventListener("click",()=>{if(pendingNumber!==null)setNumber(pendingNumber);});document.getElementById("pd-erase").addEventListener("click",()=>setNumber(0));document.getElementById("pd-check").addEventListener("click",()=>{checked=true;render();checkForWin();});document.getElementById("pd-hint").addEventListener("click",showHint);document.getElementById("pd-new").addEventListener("click",fresh);document.addEventListener("keydown",e=>{if(PlayfinityRouter.currentScreen!=="playduko"||selected<0||roundWon)return;if(/^[1-9]$/.test(e.key))chooseNumber(Number(e.key));else if(e.key==="Enter"&&pendingNumber!==null)setNumber(pendingNumber);else if(e.key==="Backspace"||e.key==="Delete")setNumber(0);else if(e.key==="ArrowUp"&&row(selected)>0)selected-=9;else if(e.key==="ArrowDown"&&row(selected)<8)selected+=9;else if(e.key==="ArrowLeft"&&col(selected)>0)selected--;else if(e.key==="ArrowRight"&&col(selected)<8)selected++;else return;render();});initialized=true;}if(!currentPuzzle)fresh();else render();}
       function showHint(){if(!currentPuzzle||roundWon)return;const empty=[];for(let i=0;i<81;i++)if(currentPuzzle.p[i]==="0"&&!grid[i])empty.push(i);if(!empty.length)return;const i=empty[Math.floor(Math.random()*empty.length)];grid[i]=Number(currentPuzzle.s[i]);selected=-1;pendingNumber=null;hintedIndex=i;checked=false;renderNumbers();render();checkForWin();}
       function checkForWin(){if(roundWon||!currentPuzzle||!grid.every(Boolean)||!grid.every((v,i)=>String(v)===currentPuzzle.s[i]))return;roundWon=true;checked=true;selected=-1;pendingNumber=null;renderNumbers();render();showWin();}
-      function showWin(){if(!winOverlay)return;winOverlay.classList.add("active");launchFireworks();playVictorySound();const subtitle=document.getElementById("pd-win-subtitle");const autoNext=localStorage.getItem("playfinity_playduko_auto_next")!=="false";const elapsedSeconds=Math.max(0,Math.floor((Date.now()-roundStartedAt)/1000));const hours=Math.floor(elapsedSeconds/3600);const minutes=Math.floor((elapsedSeconds%3600)/60);const seconds=elapsedSeconds%60;const duration=hours>0?hours+":"+String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0"):String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");const resultText="Sudoku gelöst – starke Leistung! 🏆 Deine Zeit: "+duration;if(subtitle){if(autoNext){let remaining=10;subtitle.textContent=resultText+" · Neues Rätsel in "+remaining+" Sekunden …";autoNextInterval=setInterval(()=>{remaining--;if(remaining<=0){clearInterval(autoNextInterval);autoNextInterval=null;fresh();return;}subtitle.textContent=resultText+" · Neues Rätsel in "+remaining+" Sekunden …";},1000);}else subtitle.textContent=resultText;}}
+      function showWin(){if(!winOverlay)return;playVictorySound();const elapsedSeconds=Math.max(0,Math.floor((Date.now()-roundStartedAt)/1000));const minutes=Math.floor(elapsedSeconds/60),seconds=elapsedSeconds%60;const duration=String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");showPlayfinityWinner({game:'PLAYDUKO',winner:lastChatPlayer||'Lokaler Spieler',meta:'Zeit: '+duration+' Min. • Runde gelöst • +3 Punkte',onNext:fresh});}
       function hideWin(){if(autoNextTimeout){clearTimeout(autoNextTimeout);autoNextTimeout=null;}if(autoNextInterval){clearInterval(autoNextInterval);autoNextInterval=null;}if(winOverlay)winOverlay.classList.remove("active");if(fireworksRoot)fireworksRoot.innerHTML="";}
       function launchFireworks(){if(!fireworksRoot)return;fireworksRoot.innerHTML="";const colors=["#00f0ff","#ff007f","#ffd000","#b026ff","#00ff9d","#ffffff"];const bursts=[{x:20,y:28,delay:0},{x:78,y:24,delay:180},{x:50,y:12,delay:360},{x:34,y:48,delay:560},{x:68,y:46,delay:740}];bursts.forEach(burst=>{const group=document.createElement("div");group.className="pd-firework-burst";group.style.left=burst.x+"%";group.style.top=burst.y+"%";for(let i=0;i<22;i++){const spark=document.createElement("span");spark.className="pd-firework-spark";spark.style.setProperty("--spark-angle",(i*360/22)+"deg");spark.style.setProperty("--spark-distance",(-48-Math.random()*58)+"px");spark.style.setProperty("--spark-delay",(burst.delay+Math.random()*100)+"ms");spark.style.setProperty("--spark-color",colors[Math.floor(Math.random()*colors.length)]);group.appendChild(spark);}fireworksRoot.appendChild(group);});}
       function playVictorySound(){try{const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)return;const context=new AudioContextClass();const now=context.currentTime;const master=context.createGain();master.gain.setValueAtTime(.0001,now);master.gain.exponentialRampToValueAtTime(.16,now+.04);master.gain.exponentialRampToValueAtTime(.0001,now+2.15);master.connect(context.destination);[523.25,659.25,783.99,1046.5,1318.51].forEach((frequency,index)=>{const oscillator=context.createOscillator();const gain=context.createGain();const start=now+.08+index*.19;oscillator.type="sine";oscillator.frequency.setValueAtTime(frequency,start);gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.7,start+.035);gain.gain.exponentialRampToValueAtTime(.0001,start+.42);oscillator.connect(gain);gain.connect(master);oscillator.start(start);oscillator.stop(start+.45);});setTimeout(()=>context.close().catch(()=>{}),2500);}catch(error){console.warn("[PlayDuko] Siegesound konnte nicht abgespielt werden.",error);}}
-      function handleChat(text){const match=String(text||"").match(/^\s*([A-I])([1-9])\s+([1-9])\s*$/i);if(roundWon||!match||!currentPuzzle||PlayfinityRouter.currentScreen!=="playduko")return false;const r=match[1].toUpperCase().charCodeAt(0)-65,c=Number(match[2])-1,n=Number(match[3]),i=r*9+c;if(currentPuzzle.p[i]!=="0"||(String(n)!==currentPuzzle.s[i]&&conflicts(i,n)))return false;const nextGrid=grid.slice();nextGrid[i]=n;grid=nextGrid;selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();checkForWin();return true;}
+      function handleChat(text,user){const match=String(text||"").match(/^\s*([A-I])([1-9])\s+([1-9])\s*$/i);if(roundWon||!match||!currentPuzzle||PlayfinityRouter.currentScreen!=="playduko")return false;const r=match[1].toUpperCase().charCodeAt(0)-65,c=Number(match[2])-1,n=Number(match[3]),i=r*9+c;if(currentPuzzle.p[i]!=="0"||(String(n)!==currentPuzzle.s[i]&&conflicts(i,n)))return false;const nextGrid=grid.slice();nextGrid[i]=n;grid=nextGrid;lastChatPlayer=String(user?.name||user?.nickname||user?.uniqueId||user?.unique_id||user?.username||"Zuschauer");selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();checkForWin();return true;}
       return {init,handleChat};
     })();
 
@@ -2033,7 +2060,7 @@
             PlayfinityPlayerPresence.showEffect('elite');
             return;
           }
-          PlayDukoGame.handleChat(text);
+          PlayDukoGame.handleChat(text,user);
           return;
         }
         // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
@@ -2696,9 +2723,8 @@
         if(rank===1){
           this.won=true;this.setControls(false);
           document.getElementById('wordfinity-status').textContent='🏆 '+displayName+' hat das Zielwort „'+word+'“ erraten!';
-          showCorrectAnswerOverlay(word,()=>this.newRound(),true,'Wort erraten!',displayName);
-          const nextButton=document.getElementById('correct-answer-continue');
-          if(nextButton)nextButton.textContent='Neues Spiel';
+          const helpers=this.guesses.filter(item=>item.player&&item.player!==displayName&&!item.isHint).sort((a,b)=>a.rank-b.rank).filter((item,index,array)=>array.findIndex(other=>other.player===item.player)===index).slice(0,3).map(item=>({rank:item.rank,player:item.player,word:item.word}));
+          showPlayfinityWinner({game:'WORDFINITY',winner:displayName,answer:word,meta:(this.guesses.length)+' . Versuch • +3 Punkte',helpers,onNext:()=>this.newRound()});
         }
         PlayfinityPlayerPresence.sendPresence();
         return true;
@@ -3102,6 +3128,43 @@
     /* ==========================================================================
        7. GLOBAL MODAL HELPER
        ========================================================================== */
+    function showPlayfinityWinner({game='WORDFINITY',winner='Lokaler Spieler',answer='',meta='',helpers=[],onNext=()=>{}}={}){
+      const overlay=document.getElementById('pf-winner-overlay');
+      const brand=document.getElementById('pf-winner-brand');
+      const name=document.getElementById('pf-winner-name');
+      const answerNode=document.getElementById('pf-winner-answer');
+      const metaNode=document.getElementById('pf-winner-meta');
+      const helpersNode=document.getElementById('pf-winner-helpers');
+      const next=document.getElementById('pf-winner-next');
+      if(!overlay)return;
+      brand.textContent='PLAYFINITY • '+String(game).toUpperCase();
+      name.textContent=winner||'Lokaler Spieler';
+      answerNode.textContent=answer?'LÖSUNGSWORT: '+answer:'';
+      answerNode.style.display=answer?'block':'none';
+      metaNode.textContent=meta||'Runde gewonnen • +3 Punkte';
+      helpersNode.innerHTML='';
+      if(Array.isArray(helpers)&&helpers.length){
+        const heading=document.createElement('strong');heading.textContent='TOP-HELFER DER RUNDE';helpersNode.appendChild(heading);
+        helpers.slice(0,3).forEach(item=>{
+          const line=document.createElement('div');
+          line.textContent='Platz #'+item.rank+' @'+item.player+' — '+item.word+' (+1)';
+          helpersNode.appendChild(line);
+        });
+        helpersNode.style.display='block';
+      }else helpersNode.style.display='none';
+      next.textContent='Nächste Runde ›';
+      next.onclick=()=>{overlay.classList.remove('active');onNext();};
+      overlay.classList.add('active');
+      try{
+        if(typeof window.confetti==='function'){
+          window.confetti({particleCount:110,spread:78,origin:{y:.62},colors:['#fbbf24','#38bdf8','#c084fc','#ffffff']});
+        }else if(!window.__pfConfettiLoading){
+          window.__pfConfettiLoading=true;
+          const script=document.createElement('script');script.src='https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js';script.onload=()=>{if(overlay.classList.contains('active')&&typeof window.confetti==='function')window.confetti({particleCount:110,spread:78,origin:{y:.62},colors:['#fbbf24','#38bdf8','#c084fc','#ffffff']});};document.head.appendChild(script);
+        }
+      }catch(error){console.warn('[PLAYFINITY] Konfetti konnte nicht gestartet werden.',error);}
+    }
+
     function hideCorrectAnswerOverlay() {
       const overlay = document.getElementById('correct-answer-overlay');
       if (overlay) overlay.classList.remove('active');
