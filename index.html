@@ -2655,7 +2655,9 @@
         if(rank===1){
           this.won=true;this.setControls(false);
           document.getElementById('wordfinity-status').textContent='🏆 '+displayName+' hat das Zielwort „'+word+'“ erraten!';
-          showCorrectAnswerOverlay(word,null,false,'Wort erraten!',displayName);
+          showCorrectAnswerOverlay(word,()=>this.newRound(),true,'Wort erraten!',displayName);
+          const nextButton=document.getElementById('correct-answer-continue');
+          if(nextButton)nextButton.textContent='Neues Spiel';
         }
         PlayfinityPlayerPresence.sendPresence();
         return true;
