@@ -1420,10 +1420,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Flügel",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Keyboard",
       "category": "Musikinstrumente"
     },
@@ -1436,27 +1432,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Melodica",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cembalo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Spinett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Synthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Mundharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Harmonika",
       "category": "Musikinstrumente"
     },
     {
@@ -1472,18 +1448,6 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Akustikgitarre",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Konzertgitarre",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Westerngitarre",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Ukulele",
       "category": "Musikinstrumente"
     },
@@ -1492,35 +1456,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Mandoline",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Laute",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Harfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Balalaika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sitar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Koto",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shamisen",
       "category": "Musikinstrumente"
     },
     {
@@ -1536,63 +1472,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Viola",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Cello",
       "category": "Musikinstrumente"
     },
     {
-      "word": "Violoncello",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Kontrabass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fidel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Erhu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rebec",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Nyckelharpa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gambe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Drehleier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Psalter",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hackbrett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sarangi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sarod",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tabla",
       "category": "Musikinstrumente"
     },
     {
@@ -1608,15 +1492,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Basstrommel",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Pauke",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kesselpauke",
       "category": "Musikinstrumente"
     },
     {
@@ -1625,14 +1501,6 @@
     },
     {
       "word": "Conga",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Djembe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Timbales",
       "category": "Musikinstrumente"
     },
     {
@@ -1648,43 +1516,11 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "HiHat",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Xylophon",
       "category": "Musikinstrumente"
     },
     {
-      "word": "Marimbaphon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vibraphon",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Glockenspiel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Celesta",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Röhrenglocken",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Steelpan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hang",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Handpan",
       "category": "Musikinstrumente"
     },
     {
@@ -1696,59 +1532,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Claves",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Guiro",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Agogo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ratsche",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schellenring",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Maultrommel",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Didgeridoo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schlitztrommel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gong",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "TamTam",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shaker",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cabasa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Regenmacher",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rassel",
       "category": "Musikinstrumente"
     },
     {
@@ -1760,39 +1544,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Piccoloflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Panflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Okarina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Nasenflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bambusflöte",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Klarinette",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassklarinette",
       "category": "Musikinstrumente"
     },
     {
@@ -1800,15 +1552,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Englischhorn",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Fagott",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kontrafagott",
       "category": "Musikinstrumente"
     },
     {
@@ -1816,39 +1560,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Sopranino",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopransaxofon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altsaxofon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenorsaxofon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Baritonsaxofon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Basssaxofon",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Trompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kornett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Flügelhorn",
       "category": "Musikinstrumente"
     },
     {
@@ -1856,159 +1568,7 @@
       "category": "Musikinstrumente"
     },
     {
-      "word": "Bassposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Waldhorn",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Tuba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Euphonium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenorhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Baritonhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sousaphon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mellophon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dudelsack",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schalmei",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zurna",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gaita",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hirtenflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jagdhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Signalhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Posthorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fanfare",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Naturhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ventilhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cornamuse",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Krummhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rankett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Serpent",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ophikleide",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kazoo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Stimmgabel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Leier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lyra",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Guzheng",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Guqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pipa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ruan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Biwa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kantele",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kora",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mbira",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kalimba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Balafon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Berimbau",
       "category": "Musikinstrumente"
     },
     {
@@ -13512,551 +13072,7 @@
       "category": "Technik & Digitales"
     },
     {
-      "word": "Akkordeonbass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altblockflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Althorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bandoneon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Banjolele",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Barockgitarre",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassblockflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassukulele",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassetthorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Blechblasinstrument",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bongo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bouzouki",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cimbalom",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Clavichord",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Concertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cornett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Handharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Harmonium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Heckelphon",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Horn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jagdflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kemençe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kinnor",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Klangschale",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kniegeige",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lure",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mandola",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Maracas",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Marimba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mellotron",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Metallophon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mirliton",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mizmar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mundbogen",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Musette",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Nay",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Oktobass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orgelpositiv",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pikkoloflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rahmentrommel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rebab",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sackbut",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Santoor",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sarrusophon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schellenbaum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schlüsselfiedel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schofar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sheng",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopranblockflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopranposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Steeldrum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Streichbass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Streichpsalter",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Strohvioline",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Taiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenorblockflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Theorbe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Theremin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trumscheit",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vibrafon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Waschbrett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Waterphone",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Xylofon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zimbal",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zugposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zupfgeige",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Alphorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassmarimba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Blechharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Blechklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bordunlaute",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chorflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Drehleierbass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fanfarenhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Flageolett",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Geigenlaute",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Halslaute",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Naturtrompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterbecken",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterglocke",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterklarinette",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchestertuba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Piccolotrompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rauschpfeife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Stabspiel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Stahlzungentrommel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tasteninstrument",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tiefbassposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Waldzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Windmaschine",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zungentrommel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Akkordzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bordunzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bügelhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chalumeau",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chororgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Crotales",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dulcimer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Eintonflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fiedel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Flötenuhr",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Glasharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gusli",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hakenharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Halszither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Helikon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Holzquerflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hornpipe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Leierkasten",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lippenpfeife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Längsflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mandoloncello",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Musikbogen",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterpauke",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchesterposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orchestertrommel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Renaissanceflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trommelpfeife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Wasserflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zitherharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zupflaute",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassglockenspiel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassmarimbaphon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassschalmei",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Basszither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bügelharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chorposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doppelhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doppelquerflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Flötenregister",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Glockenharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Klangstab",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Konzertflügel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Konzertorgel",
       "category": "Musikinstrumente"
     },
     {
@@ -21008,1558 +20024,6 @@
       "category": "Sport"
     },
     {
-      "word": "Akkordflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altquerflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassquerflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kontrabassflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Subkontrabassflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kontrabassklarinette",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kontraaltklarinette",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassoboe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Baritonoboe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lupophon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Musetteoboe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Piccolooboe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenoroboe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopraninooboe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopranschalmei",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altschalmei",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenorschalmei",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sopraninozink",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zink",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cornetto",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassophikleide",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kontrabassposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kontrabasshorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Wagnertuba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cimbasso",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassflügelhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Basstrompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Drehventiltrompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trompetenposaune",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Barocktrompete",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trompetenflügelhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Basshorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Parforcehorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Büchel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Büchelflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Alpenbüchel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yidaki",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Maringa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vuvuzela",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kabinettorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Truhenorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Portativ",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Positiv",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pfeifenorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Elektronenorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sakralorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hammondorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Theaterorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jahrmarktsorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kirchenorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hausorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kinoorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Wurlitzer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Claviorganum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orgelspinet",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pedalharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doppelpedalharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Volksharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Konzertpedalharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Paraguayharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Andenharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Llaneraharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Leierharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schoßharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rahmenharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Winkelharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bogenharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Winkelzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Alpenzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Salterio",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Scheitholt",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Scheitholz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Santur",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yangqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yatga",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kankles",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kokle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kannel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Autoharp",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bergzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Streichzither",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Monochord",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Marimbula",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Glasharfe",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Glasorgel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Verrophon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trautonium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Clavioline",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ondium",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ätherophon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tannerin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chamberlin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Optigan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Omnichord",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Stylophone",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ondomo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Monotron",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Minimoog",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Modularsynthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Analogsynthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Digitalsynthesizer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sampler",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Drumcomputer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Groovebox",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sequenzer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Keytar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Klangcomputer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vocoder",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Talkbox",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ringmodulator",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arpeggiator",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Samplerkeyboard",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Workstationkeyboard",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Stagepiano",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Digitalpiano",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Clavinova",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Clavinet",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pianola",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Selbstspielklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tafelklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hammerklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tangentenflügel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fortepiano",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pantaleon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pyramidenflügel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Glasflügel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tischklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pedalklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Orphica",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Virginal",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Muselaar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ottavino",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lautenklavier",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lyraflügel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bandonion",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schwyzerörgeli",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Knopfakkordeon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pianoakkordeon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Konzertina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bajan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Garmon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bayan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Melodeon",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tremoloharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassmundharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Akkordmundharmonika",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mundflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sackpfeife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zampogna",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bock",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hümmelchen",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Schäferpfeife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Marktsackpfeife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dudey",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pommer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bassetpommer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Altpommer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenorpommer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Basspommer",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dulzian",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kortholt",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Crumhorn",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fife",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Traversflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Barocktraversflöte",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Syrinx",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Quena",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Siku",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Antara",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tarka",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pinkillo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pincullo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bansuri",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Venu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shakuhachi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shinobue",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ryuteki",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Nokan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dizi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Xiao",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hulusi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bawu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Xun",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Guan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Suona",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Lusheng",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Khaen",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pungi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Been",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Algoza",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Satara",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Morsing",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kubing",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Genggong",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doromb",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vargan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Khomus",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Guzhengbass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sanxian",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Liuqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zhongruan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Daruan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yueqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Qinqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Konghou",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Se",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zheng",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gottan",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sanshin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jushichigen",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Taishogoto",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ichigenkin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yamatogoto",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gayageum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Geomungo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Haegeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ajaeng",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Daegeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Junggeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sogeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Danso",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Piri",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Taepyeongso",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yanggeum",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jing",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Buk",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Janggu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sogo",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bak",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pyeonjong",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pyeongyeong",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hichiriki",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sho",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kakko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Shoko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Odaiko",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tsuzumi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kotsuzumi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Otsuzumi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Atarigane",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hyoshigi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kane",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chappa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Suzu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bendir",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Daf",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dayereh",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Riq",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bodhrán",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Darbuka",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doumbek",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mridangam",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ghatam",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kanjira",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chenda",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Maddalam",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Idakka",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Thavil",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Udukku",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Parai",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tavil",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dhol",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dholak",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Nagara",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dafli",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Duff",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zarb",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tombak",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doyra",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Doira",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Qanun",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Oud",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Barbat",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Setar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dotar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dutar",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tanbur",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Baglama",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Saz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cura",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cumbus",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kanun",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kamancheh",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rabab",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Rubab",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sarinda",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Esraj",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dilruba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Taus",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ravanhatta",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kobyz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Komuz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dombra",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dombura",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tembur",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kopuz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sazbush",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Choghur",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gopuz",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Panduri",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chonguri",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tschuniri",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kobza",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bandura",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Trembita",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Vielle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Barockcello",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Piccolovioline",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pochette",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kit",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Baryton",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Arpeggione",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Violotta",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Octobass",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Strohgeige",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Geigenwerk",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bogenpsalter",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hardingfele",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Hardangerfiedel",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Fele",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Talharpa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tagelharpa",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Crwth",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Crowd",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gadulka",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gusle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gusla",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gudok",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kamancha",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Pferdekopfgeige",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Igil",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ikili",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Chikara",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ravanahatha",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zhonghu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gaohu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jinghu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Jing'erhu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Banhu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Yehu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dahu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gehu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dihu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Huqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sihu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sanhu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Leiqin",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zhuihu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Diyingehu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kokyu",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ravanastron",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tromba",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Buisine",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Olifant",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Basszink",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenorzink",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Diskantzink",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sordun",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Bombarde",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Biniou",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Veuze",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gaida",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gajda",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gajdy",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Surle",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Piffero",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Piffaro",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ciaramella",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Cromorno",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Dulzaina",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Gralla",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tarota",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tenora",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tible",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Kaval",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ney",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Sipsi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Mey",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Balaban",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Duduk",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Zourna",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Ghaita",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Algaita",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Oja",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Opi",
-      "category": "Musikinstrumente"
-    },
-    {
-      "word": "Tambin",
-      "category": "Musikinstrumente"
-    },
-    {
       "word": "Küchenregal",
       "category": "Dinge im Haushalt"
     },
@@ -23492,11 +20956,6 @@
       "category": "Länder"
     },
     {
-      "word": "Antigua und Barbuda",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Äquatorialguinea",
       "category": "Länder",
       "hard": true
@@ -23559,11 +21018,6 @@
       "category": "Länder"
     },
     {
-      "word": "Bosnien und Herzegowina",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Botswana",
       "category": "Länder"
     },
@@ -23580,10 +21034,6 @@
       "category": "Länder"
     },
     {
-      "word": "Burkina Faso",
-      "category": "Länder"
-    },
-    {
       "word": "Burundi",
       "category": "Länder"
     },
@@ -23596,17 +21046,8 @@
       "category": "Länder"
     },
     {
-      "word": "Costa Rica",
-      "category": "Länder"
-    },
-    {
       "word": "Dänemark",
       "category": "Länder"
-    },
-    {
-      "word": "Demokratische Republik Kongo",
-      "category": "Länder",
-      "hard": true
     },
     {
       "word": "Deutschland",
@@ -23617,21 +21058,12 @@
       "category": "Länder"
     },
     {
-      "word": "Dominikanische Republik",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Dschibuti",
       "category": "Länder",
       "hard": true
     },
     {
       "word": "Ecuador",
-      "category": "Länder"
-    },
-    {
-      "word": "El Salvador",
       "category": "Länder"
     },
     {
@@ -23695,11 +21127,6 @@
     {
       "word": "Guinea",
       "category": "Länder"
-    },
-    {
-      "word": "Guinea Bissau",
-      "category": "Länder",
-      "hard": true
     },
     {
       "word": "Guyana",
@@ -23771,10 +21198,6 @@
     },
     {
       "word": "Kanada",
-      "category": "Länder"
-    },
-    {
-      "word": "Kap Verde",
       "category": "Länder"
     },
     {
@@ -24006,11 +21429,6 @@
       "category": "Länder"
     },
     {
-      "word": "Papua Neuguinea",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Paraguay",
       "category": "Länder"
     },
@@ -24056,20 +21474,6 @@
       "category": "Länder"
     },
     {
-      "word": "San Marino",
-      "category": "Länder"
-    },
-    {
-      "word": "Sao Tome und Principe",
-      "category": "Länder",
-      "hard": true
-    },
-    {
-      "word": "Saudi Arabien",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Schweden",
       "category": "Länder"
     },
@@ -24087,11 +21491,6 @@
     },
     {
       "word": "Seychellen",
-      "category": "Länder",
-      "hard": true
-    },
-    {
-      "word": "Sierra Leone",
       "category": "Länder",
       "hard": true
     },
@@ -24118,24 +21517,6 @@
     {
       "word": "Spanien",
       "category": "Länder"
-    },
-    {
-      "word": "Sri Lanka",
-      "category": "Länder"
-    },
-    {
-      "word": "St Kitts und Nevis",
-      "category": "Länder",
-      "hard": true
-    },
-    {
-      "word": "St Lucia",
-      "category": "Länder"
-    },
-    {
-      "word": "St Vincent und die Grenadinen",
-      "category": "Länder",
-      "hard": true
     },
     {
       "word": "Südafrika",
@@ -24175,22 +21556,12 @@
       "category": "Länder"
     },
     {
-      "word": "Timor Leste",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Togo",
       "category": "Länder"
     },
     {
       "word": "Tonga",
       "category": "Länder"
-    },
-    {
-      "word": "Trinidad und Tobago",
-      "category": "Länder",
-      "hard": true
     },
     {
       "word": "Tschad",
@@ -24248,27 +21619,8 @@
       "category": "Länder"
     },
     {
-      "word": "Vereinigte Arabische Emirate",
-      "category": "Länder",
-      "hard": true
-    },
-    {
-      "word": "Vereinigte Staaten",
-      "category": "Länder"
-    },
-    {
-      "word": "Vereinigtes Königreich",
-      "category": "Länder",
-      "hard": true
-    },
-    {
       "word": "Vietnam",
       "category": "Länder"
-    },
-    {
-      "word": "Zentralafrikanische Republik",
-      "category": "Länder",
-      "hard": true
     },
     {
       "word": "Zypern",
@@ -24560,11 +21912,6 @@
       "category": "Städte"
     },
     {
-      "word": "Bergisch Gladbach",
-      "category": "Städte",
-      "hard": true
-    },
-    {
       "word": "Jena",
       "category": "Städte"
     },
@@ -24635,11 +21982,6 @@
     {
       "word": "Flensburg",
       "category": "Städte"
-    },
-    {
-      "word": "Villingen Schwenningen",
-      "category": "Städte",
-      "hard": true
     },
     {
       "word": "Marl",
@@ -24718,10 +22060,6 @@
       "category": "Städte"
     },
     {
-      "word": "Baden Baden",
-      "category": "Städte"
-    },
-    {
       "word": "Paris",
       "category": "Städte"
     },
@@ -24755,10 +22093,6 @@
     },
     {
       "word": "Rotterdam",
-      "category": "Städte"
-    },
-    {
-      "word": "Den Haag",
       "category": "Städte"
     },
     {
@@ -24990,22 +22324,12 @@
       "category": "Städte"
     },
     {
-      "word": "Sankt Petersburg",
-      "category": "Städte",
-      "hard": true
-    },
-    {
       "word": "Kasan",
       "category": "Städte"
     },
     {
       "word": "Sotschi",
       "category": "Städte"
-    },
-    {
-      "word": "Nischni Nowgorod",
-      "category": "Städte",
-      "hard": true
     },
     {
       "word": "Wladiwostok",
@@ -25040,19 +22364,6 @@
       "category": "Städte"
     },
     {
-      "word": "Andorra la Vella",
-      "category": "Städte",
-      "hard": true
-    },
-    {
-      "word": "New York",
-      "category": "Städte"
-    },
-    {
-      "word": "Los Angeles",
-      "category": "Städte"
-    },
-    {
       "word": "Chicago",
       "category": "Städte"
     },
@@ -25069,19 +22380,7 @@
       "category": "Städte"
     },
     {
-      "word": "San Antonio",
-      "category": "Städte"
-    },
-    {
-      "word": "San Diego",
-      "category": "Städte"
-    },
-    {
       "word": "Dallas",
-      "category": "Städte"
-    },
-    {
-      "word": "San Jose",
       "category": "Städte"
     },
     {
@@ -25090,10 +22389,6 @@
     },
     {
       "word": "Jacksonville",
-      "category": "Städte"
-    },
-    {
-      "word": "Fort Worth",
       "category": "Städte"
     },
     {
@@ -25106,10 +22401,6 @@
     },
     {
       "word": "Indianapolis",
-      "category": "Städte"
-    },
-    {
-      "word": "San Francisco",
       "category": "Städte"
     },
     {
@@ -25138,10 +22429,6 @@
     },
     {
       "word": "Portland",
-      "category": "Städte"
-    },
-    {
-      "word": "Las Vegas",
       "category": "Städte"
     },
     {
@@ -25182,14 +22469,6 @@
     },
     {
       "word": "Milwaukee",
-      "category": "Städte"
-    },
-    {
-      "word": "Kansas City",
-      "category": "Städte"
-    },
-    {
-      "word": "New Orleans",
       "category": "Städte"
     },
     {
@@ -25245,10 +22524,6 @@
       "category": "Städte"
     },
     {
-      "word": "Mexiko Stadt",
-      "category": "Städte"
-    },
-    {
       "word": "Guadalajara",
       "category": "Städte"
     },
@@ -25265,27 +22540,6 @@
       "category": "Städte"
     },
     {
-      "word": "Santo Domingo",
-      "category": "Städte"
-    },
-    {
-      "word": "San Juan",
-      "category": "Städte",
-      "hard": true
-    },
-    {
-      "word": "Panama Stadt",
-      "category": "Städte"
-    },
-    {
-      "word": "San José",
-      "category": "Städte"
-    },
-    {
-      "word": "Guatemala Stadt",
-      "category": "Städte"
-    },
-    {
       "word": "Tegucigalpa",
       "category": "Städte",
       "hard": true
@@ -25295,17 +22549,8 @@
       "category": "Städte"
     },
     {
-      "word": "San Salvador",
-      "category": "Städte"
-    },
-    {
       "word": "Kingston",
       "category": "Städte"
-    },
-    {
-      "word": "Port of Spain",
-      "category": "Städte",
-      "hard": true
     },
     {
       "word": "Bogota",
@@ -25340,24 +22585,11 @@
       "category": "Städte"
     },
     {
-      "word": "La Paz",
-      "category": "Städte"
-    },
-    {
-      "word": "Santa Cruz",
-      "category": "Städte",
-      "hard": true
-    },
-    {
       "word": "Santiago",
       "category": "Städte"
     },
     {
       "word": "Valparaiso",
-      "category": "Städte"
-    },
-    {
-      "word": "Buenos Aires",
       "category": "Städte"
     },
     {
@@ -25377,25 +22609,12 @@
       "category": "Städte"
     },
     {
-      "word": "Rio de Janeiro",
-      "category": "Städte"
-    },
-    {
-      "word": "Sao Paulo",
-      "category": "Städte"
-    },
-    {
       "word": "Brasilia",
       "category": "Städte"
     },
     {
       "word": "Salvador",
       "category": "Städte"
-    },
-    {
-      "word": "Belo Horizonte",
-      "category": "Städte",
-      "hard": true
     },
     {
       "word": "Recife",
@@ -25412,11 +22631,6 @@
     {
       "word": "Curitiba",
       "category": "Städte"
-    },
-    {
-      "word": "Porto Alegre",
-      "category": "Städte",
-      "hard": true
     },
     {
       "word": "Belem",
@@ -25547,10 +22761,6 @@
       "category": "Städte"
     },
     {
-      "word": "Xi An",
-      "category": "Städte"
-    },
-    {
       "word": "Nanjing",
       "category": "Städte"
     },
@@ -25592,24 +22802,7 @@
       "category": "Städte"
     },
     {
-      "word": "Ho Chi Minh Stadt",
-      "category": "Städte",
-      "hard": true
-    },
-    {
-      "word": "Da Nang",
-      "category": "Städte"
-    },
-    {
       "word": "Hue",
-      "category": "Städte"
-    },
-    {
-      "word": "Phnom Penh",
-      "category": "Städte"
-    },
-    {
-      "word": "Siem Reap",
       "category": "Städte"
     },
     {
@@ -25618,10 +22811,6 @@
     },
     {
       "word": "Bangkok",
-      "category": "Städte"
-    },
-    {
-      "word": "Chiang Mai",
       "category": "Städte"
     },
     {
@@ -25634,19 +22823,6 @@
     },
     {
       "word": "Mandalay",
-      "category": "Städte"
-    },
-    {
-      "word": "Kuala Lumpur",
-      "category": "Städte",
-      "hard": true
-    },
-    {
-      "word": "George Town",
-      "category": "Städte"
-    },
-    {
-      "word": "Johor Bahru",
       "category": "Städte"
     },
     {
@@ -25678,21 +22854,12 @@
       "category": "Städte"
     },
     {
-      "word": "Quezon City",
-      "category": "Städte"
-    },
-    {
       "word": "Cebu",
       "category": "Städte"
     },
     {
       "word": "Davao",
       "category": "Städte"
-    },
-    {
-      "word": "Bandar Seri Begawan",
-      "category": "Städte",
-      "hard": true
     },
     {
       "word": "Dhaka",
@@ -25713,10 +22880,6 @@
     },
     {
       "word": "Thimphu",
-      "category": "Städte"
-    },
-    {
-      "word": "Neu Delhi",
       "category": "Städte"
     },
     {
@@ -25891,10 +23054,6 @@
     },
     {
       "word": "Dubai",
-      "category": "Städte"
-    },
-    {
-      "word": "Abu Dhabi",
       "category": "Städte"
     },
     {
