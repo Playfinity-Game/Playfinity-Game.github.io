@@ -732,6 +732,21 @@
     #screen-wordfinity .wordfinity-entry .btn-action{min-width:128px;height:50px;border-radius:11px;padding:0 15px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:.82rem;letter-spacing:.035em;box-shadow:0 4px 14px rgba(0,170,255,.18)}
     #screen-wordfinity .wordfinity-entry .btn-action:disabled{opacity:.45;filter:saturate(.55);cursor:not-allowed;box-shadow:none}
     #screen-wordfinity .wordfinity-status{min-height:1.2em;color:var(--text-muted);font-size:.78rem;line-height:1.4;text-align:center}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed{animation:wordfinity-hint-open .32s cubic-bezier(.2,.8,.2,1) both;transform-origin:center top}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed strong{animation:wordfinity-hint-text .38s .08s ease-out both}
+    @keyframes wordfinity-hint-open{0%{opacity:.55;transform:translateY(5px) scale(.96)}65%{transform:translateY(-2px) scale(1.015)}100%{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes wordfinity-hint-text{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .wordfinity-last-chat{--last-guess-color:var(--neon-cyan);width:100%;margin:5px 0 2px;padding:10px 13px;border:1px solid color-mix(in srgb,var(--last-guess-color) 48%,transparent);border-left:4px solid var(--last-guess-color);border-radius:11px;background:linear-gradient(100deg,color-mix(in srgb,var(--last-guess-color) 12%,rgba(18,20,44,.88)),rgba(18,20,44,.78));box-shadow:0 5px 18px rgba(0,0,0,.16)}
+    .wordfinity-last-chat[hidden]{display:none}
+    .wordfinity-last-chat-heading{font-size:.62rem;font-weight:900;letter-spacing:.12em;color:var(--text-muted);margin-bottom:5px}
+    .wordfinity-last-chat-row{display:flex;align-items:center;gap:8px;min-width:0}
+    .wordfinity-last-chat-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.9rem;color:#fff}
+    .wordfinity-last-chat-rank{margin-left:auto;flex:none;padding:3px 8px;border-radius:7px;background:color-mix(in srgb,var(--last-guess-color) 16%,transparent);color:var(--last-guess-color);font-size:.76rem;font-weight:950;font-variant-numeric:tabular-nums}
+    .wordfinity-last-chat-word{margin-top:4px;color:var(--last-guess-color);font-size:1.05rem;font-weight:900;letter-spacing:.035em;overflow-wrap:anywhere}
+    .wordfinity-last-chat.is-updating{animation:wordfinity-chat-update .42s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes wordfinity-chat-update{0%{opacity:.45;transform:translateY(5px) scale(.985)}70%{transform:translateY(-2px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}
+    .kontexto-guess-player{max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 7px;border:1px solid color-mix(in srgb,var(--player-rank-color) 38%,transparent);border-radius:7px;background:color-mix(in srgb,var(--player-rank-color) 10%,transparent);color:#dce5ff;font-size:.7rem;font-weight:750}
+    @media(prefers-reduced-motion:reduce){#screen-wordfinity .kontexto-inline-hint.is-revealed,#screen-wordfinity .kontexto-inline-hint.is-revealed strong,.wordfinity-last-chat.is-updating{animation:none!important}}
     @media(max-width:520px){
       #screen-wordfinity .kontexto-wrap{gap:10px}
       #screen-wordfinity .kontexto-inline-hints{gap:6px}
@@ -1385,6 +1400,7 @@
         </form>
 
         <div id="wordfinity-status" class="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
+        <div id="wordfinity-last-chat" class="wordfinity-last-chat" aria-live="polite" hidden></div>
         <div class="guesses-list" id="wordfinity-guesses" aria-live="polite"></div>
         <div class="round-result" id="wordfinity-round-result"></div>
       </div>
@@ -1551,6 +1567,7 @@
        ========================================================================== */
     const WordfinityGame = {
       initialized:false, puzzle:null, guesses:[], roundToken:0, won:false,
+      lastChatGuess:null, lastKeywordEffectAt:0,
       usedTargets:new Set(), puzzleDeck:[],
       baseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
       normalize(value){return String(value||'').trim().toLocaleLowerCase('de-DE');},
@@ -1660,12 +1677,17 @@
         if(!this.puzzle||this.won)return false;
         const word=this.normalize(value);
         if(!word||/\s/u.test(word))return false;
+        if(options.source==='chat')this.triggerChatWordEffect(word);
         const rank=this.puzzle.woerter.indexOf(word)+1;
         if(rank===0)return false;
         const previous=this.guesses.find(item=>item.word===word);
         if(previous)return false;
         this.guesses.push({word,rank,player:playerName,isHint:!!options.isHint});
         this.guesses.sort((a,b)=>a.rank-b.rank);
+        if(options.source==='chat'){
+          this.lastChatGuess={word,rank,player:playerName};
+          this.renderLastChatGuess();
+        }
         this.renderGuesses();
         document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
         if(rank===1){
@@ -1675,6 +1697,25 @@
         }
         PlayfinityPlayerPresence.sendPresence();
         return true;
+      },
+      triggerChatWordEffect(word){
+        const effects={frosch:'frog',rakete:'rocket',geist:'ghost',skelett:'skeleton'};
+        const action=effects[word],now=Date.now();
+        if(!action||now-this.lastKeywordEffectAt<6000)return;
+        this.lastKeywordEffectAt=now;
+        PlayfinityPlayerPresence.showEffect(action);
+      },
+      renderLastChatGuess(){
+        const panel=document.getElementById('wordfinity-last-chat');
+        if(!panel||!this.lastChatGuess)return;
+        const item=this.lastChatGuess,style=this.rankStyle(item.rank);
+        panel.hidden=false;
+        panel.style.setProperty('--last-guess-color',style.color);
+        panel.innerHTML='<div class="wordfinity-last-chat-heading">LETZTER TIKTOK-CHAT</div>'+
+          '<div class="wordfinity-last-chat-row"><strong class="wordfinity-last-chat-name">'+this.escape(item.player||'Zuschauer')+'</strong>'+
+          '<span class="wordfinity-last-chat-rank" title="'+style.level+'">#'+item.rank+'</span></div>'+
+          '<div class="wordfinity-last-chat-word">'+this.escape(item.word)+'</div>';
+        panel.classList.remove('is-updating');void panel.offsetWidth;panel.classList.add('is-updating');
       },
       rankStyle(rank){
         // Rang-basierte Annäherung an die früheren Ähnlichkeits-Farbstufen.
@@ -1692,7 +1733,7 @@
           const pct=Math.max(5,Math.round(100-(Math.log(Math.max(1,item.rank))/Math.log(20000))*100));
           row.innerHTML='<div class="guess-bar" style="width:'+pct+'%;background:'+style.color+';"></div>'+
             '<span class="guess-word">'+this.escape(item.word)+(item.isHint?'<span class="guess-hint-tag">💡 TIPP</span>':'')+'</span>'+
-            '<span class="kontexto-guess-player">'+this.escape(item.player)+'</span>'+
+            '<span class="kontexto-guess-player" style="--player-rank-color:'+style.color+'">'+this.escape(item.player)+'</span>'+
             '<strong class="guess-rank" style="color:'+style.color+';margin-left:auto" title="'+style.level+'">#'+item.rank+'</strong>';
           container.appendChild(row);
         });
@@ -2028,7 +2069,7 @@
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
         } else if (screen === 'wordfinity' && text.trim()) {
-          WordfinityGame.submitGuess(text, user?.name || 'LIVE-Chat');
+          WordfinityGame.submitGuess(text, user?.name || 'LIVE-Chat', {source:'chat'});
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
           const chatMessage = text.trim();
           if (/^[A-Za-zÄÖÜäöüß]$/.test(chatMessage)) {
