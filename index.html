@@ -736,6 +736,78 @@
       font-variant-numeric: tabular-nums;
     }
 
+    /* Wordfinity: kompakte Hinweisleiste direkt über der Eingabe */
+    #screen-wordfinity .kontexto-wrap{gap:12px}
+    #screen-wordfinity .kontexto-hint-controls{display:flex;flex-direction:column;align-items:stretch;gap:9px;width:100%;margin:0}
+    #screen-wordfinity .kontexto-inline-hints{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px;width:100%}
+    #screen-wordfinity .kontexto-inline-hint{width:100%;min-width:0;height:54px;min-height:54px;flex:initial;display:flex;flex-direction:row;gap:7px;padding:0 10px;border:1px solid rgba(0,229,255,.24);border-radius:13px;background:linear-gradient(145deg,rgba(18,29,58,.94),rgba(13,17,39,.96));color:#eafaff;font-size:1.05rem;box-shadow:inset 0 1px rgba(255,255,255,.05);transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+    #screen-wordfinity .kontexto-inline-hint small{font-size:.72rem;font-weight:800;letter-spacing:.01em;color:#b9c7e8}
+    #screen-wordfinity .kontexto-inline-hint:hover:not(:disabled){transform:translateY(-2px);border-color:var(--neon-cyan);background:linear-gradient(145deg,rgba(0,130,170,.24),rgba(25,22,65,.98));box-shadow:0 5px 18px rgba(0,229,255,.13)}
+    #screen-wordfinity .kontexto-inline-hint:disabled{opacity:.48}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed{height:auto;min-height:66px;padding:8px 9px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:7px;row-gap:2px;align-content:center;justify-content:start;text-align:left;border-color:rgba(0,229,255,.42);background:linear-gradient(145deg,rgba(0,125,155,.2),rgba(28,22,65,.98));opacity:1}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed>span{grid-row:1 / 3;align-self:center}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed small{font-size:.61rem;line-height:1.1;color:#9fb6d9}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed strong{min-width:0;color:#fff;font-size:.77rem;line-height:1.2;font-weight:850;overflow-wrap:anywhere}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed:disabled{cursor:default}
+    #screen-wordfinity .kontexto-hint-labels{display:flex;gap:8px;width:100%}
+    #screen-wordfinity .kontexto-category-hint{padding:9px 11px;border-radius:10px;font-size:.78rem;text-align:center;background:rgba(176,38,255,.12);border-color:rgba(176,38,255,.35)}
+    #screen-wordfinity .wordfinity-entry{display:flex;gap:9px;width:100%;padding:7px;border:1px solid rgba(0,229,255,.22);border-radius:16px;background:rgba(10,14,32,.78);box-shadow:0 8px 24px rgba(0,0,0,.18)}
+    #screen-wordfinity .wordfinity-entry .game-input{min-width:0;height:50px;border:1px solid rgba(0,229,255,.22);border-radius:11px;background:rgba(5,8,22,.8);font-size:1rem}
+    #screen-wordfinity .wordfinity-entry .btn-action{min-width:128px;height:50px;border-radius:11px;padding:0 15px;display:flex;align-items:center;justify-content:center;gap:9px;font-size:.82rem;letter-spacing:.035em;box-shadow:0 4px 14px rgba(0,170,255,.18)}
+    #screen-wordfinity .wordfinity-entry .btn-action:disabled{opacity:.45;filter:saturate(.55);cursor:not-allowed;box-shadow:none}
+    #screen-wordfinity .wordfinity-status{min-height:1.2em;color:var(--text-muted);font-size:.78rem;line-height:1.4;text-align:center}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed{animation:wordfinity-hint-open .32s cubic-bezier(.2,.8,.2,1) both;transform-origin:center top}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed strong{animation:wordfinity-hint-text .38s .08s ease-out both}
+    @keyframes wordfinity-hint-open{0%{opacity:.55;transform:translateY(5px) scale(.96)}65%{transform:translateY(-2px) scale(1.015)}100%{opacity:1;transform:translateY(0) scale(1)}}
+    @keyframes wordfinity-hint-text{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:translateY(0)}}
+    .wordfinity-last-chat{--last-guess-color:var(--neon-cyan);width:100%;margin:5px 0 2px;padding:10px 13px;border:1px solid color-mix(in srgb,var(--last-guess-color) 48%,transparent);border-left:4px solid var(--last-guess-color);border-radius:11px;background:linear-gradient(100deg,color-mix(in srgb,var(--last-guess-color) 12%,rgba(18,20,44,.88)),rgba(18,20,44,.78));box-shadow:0 5px 18px rgba(0,0,0,.16)}
+    .wordfinity-last-chat[hidden]{display:none}
+    .wordfinity-last-chat-heading{font-size:.62rem;font-weight:900;letter-spacing:.12em;color:var(--text-muted);margin-bottom:5px}
+    .wordfinity-last-chat-row{display:flex;align-items:center;gap:8px;min-width:0}
+    .wordfinity-last-chat-name{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.9rem;color:#fff}
+    .wordfinity-last-chat-rank{margin-left:auto;flex:none;padding:3px 8px;border-radius:7px;background:color-mix(in srgb,var(--last-guess-color) 16%,transparent);color:var(--last-guess-color);font-size:.76rem;font-weight:950;font-variant-numeric:tabular-nums}
+    .wordfinity-last-chat-word{margin-top:4px;color:var(--last-guess-color);font-size:1.05rem;font-weight:900;letter-spacing:.035em;overflow-wrap:anywhere}
+    .wordfinity-last-chat.is-updating{animation:wordfinity-chat-update .42s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes wordfinity-chat-update{0%{opacity:.45;transform:translateY(5px) scale(.985)}70%{transform:translateY(-2px) scale(1.005)}100%{opacity:1;transform:translateY(0) scale(1)}}
+    .kontexto-guess-player{max-width:34%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;padding:3px 7px;border:1px solid color-mix(in srgb,var(--player-rank-color) 38%,transparent);border-radius:7px;background:color-mix(in srgb,var(--player-rank-color) 10%,transparent);color:#dce5ff;font-size:.7rem;font-weight:750}
+    @media(prefers-reduced-motion:reduce){#screen-wordfinity .kontexto-inline-hint.is-revealed,#screen-wordfinity .kontexto-inline-hint.is-revealed strong,.wordfinity-last-chat.is-updating{animation:none!important}}
+    @media(max-width:520px){
+      #screen-wordfinity .kontexto-wrap{gap:10px}
+      #screen-wordfinity .kontexto-inline-hints{gap:6px}
+      #screen-wordfinity .kontexto-inline-hint{height:48px;min-height:48px;gap:5px;padding:0 5px;font-size:1rem}
+      #screen-wordfinity .kontexto-inline-hint small{font-size:.65rem}
+      #screen-wordfinity .wordfinity-entry{gap:6px;padding:5px}
+      #screen-wordfinity .wordfinity-entry .game-input{height:46px;padding:0 10px;font-size:16px}
+      #screen-wordfinity .wordfinity-entry .btn-action{height:46px;min-width:105px;padding:0 10px;font-size:.72rem}
+    }
+
+    .guess-hint-tag{margin-left:8px;color:var(--neon-gold);font-size:.65rem;font-weight:800;letter-spacing:.06em}
+    .guess-legend{display:flex;flex-wrap:wrap;gap:8px 14px;margin:12px 0 4px;color:var(--text-muted);font-size:.72rem}
+    .guess-legend span{display:inline-flex;align-items:center;gap:6px}
+    .legend-dot{display:inline-block;width:9px;height:9px;border-radius:50%}
+    .legend-red{background:#ff3b5c;box-shadow:0 0 8px rgba(255,59,92,.55)}
+    .legend-orange{background:#ff9f1c;box-shadow:0 0 8px rgba(255,159,28,.55)}
+    .legend-green{background:#00ff9d;box-shadow:0 0 8px rgba(0,255,157,.55)}
+    .guess-bar {
+      position: absolute;
+      top: 0; left: 0; bottom: 0;
+      opacity: 0.38;
+      z-index: 1;
+      transition: width 0.4s ease;
+    }
+
+    .guess-word {
+      font-weight: 700;
+      z-index: 2;
+      color: #fff;
+    }
+
+    .guess-rank {
+      font-weight: 800;
+      z-index: 2;
+      font-variant-numeric: tabular-nums;
+    }
+
     /* ==========================================================================
        7. SIZE IT UP SCREEN
        ========================================================================== */
@@ -1167,28 +1239,13 @@
         </div>
 
         <!-- WORDFINITY – VORÜBERGEHEND GESCHLOSSEN -->
-        <div class="game-card card-purple wordfinity-closed" aria-disabled="true" aria-label="Wordfinity ist vorübergehend geschlossen. Wir arbeiten an einer neuen Version.">
-          <div class="wordfinity-closed-copy">
-            <div class="card-badge" style="color: var(--neon-purple)">Vorübergehend geschlossen</div>
-            <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-purple)">FINITY</span></div>
-            <div class="card-desc">Hier wird kräftig gewerkelt! Wir bauen Wordfinity komplett neu. Bis alles fertig ist, bleibt das Spiel geschlossen.</div>
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-purple)">Semantisches Worträtsel</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-pink)">FINITY</span></div>
+            <div class="card-desc">Finde das geheime Wort. Je ähnlicher dein Wort, desto besser dein Rang.</div>
           </div>
-          <div class="wordfinity-work-sign" aria-hidden="true">
-            <svg viewBox="0 0 120 112" role="img">
-              <path d="M12 99 L23 18 Q24 12 31 12 H89 Q96 12 97 19 L108 99 Z" fill="#ffd84a" stroke="#20202a" stroke-width="5" stroke-linejoin="round"/>
-              <path d="M25 31 H95 M29 83 H101" stroke="#20202a" stroke-width="5"/>
-              <circle cx="59" cy="43" r="10" fill="none" stroke="#20202a" stroke-width="4"/>
-              <path d="M59 54 L55 75 M57 61 L42 69 M57 62 L72 70 M55 75 L43 88 M55 75 L69 87" fill="none" stroke="#20202a" stroke-width="4" stroke-linecap="round"/>
-              <path d="M73 66 L84 54 M79 51 L89 57" stroke="#20202a" stroke-width="4" stroke-linecap="round"/>
-              <path d="M38 22 L80 22" stroke="#20202a" stroke-width="4" stroke-linecap="round"/>
-              <path d="M48 93 H75" stroke="#20202a" stroke-width="5" stroke-linecap="round"/>
-            </svg>
-            <span>BAUSTELLE</span>
-          </div>
-          <div class="wordfinity-barrier" aria-hidden="true"><span>BAUSTELLE · ZUTRITT VERBOTEN · BAUSTELLE</span></div>
-          <div class="card-footer">
-            <span class="btn-play-card wordfinity-closed-label">🚧 Vorübergehend geschlossen</span>
-          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
         </div>
 
         <!-- PlayDuko -->
@@ -1289,36 +1346,30 @@
       </div>
     </section>
 
-    <!-- SCREEN 3: KONTEXTO -->
+    <!-- SCREEN: WORDFINITY -->
     <section class="screen" id="screen-wordfinity">
       <div class="kontexto-wrap">
-        <div class="model-loader" id="kontexto-loader">
-          <div style="display:flex; justify-content:space-between; font-size:0.8rem;">
-            <span id="model-status-text">Cloudflare KI wird verbunden...</span>
-            <span id="model-status-pct">0%</span>
-          </div>
-          <div class="model-loader-bar">
-            <div class="model-loader-fill" id="model-progress-fill"></div>
-          </div>
-        </div>
-
-        <div class="input-box">
-          <input type="text" class="game-input" id="kontexto-input" placeholder="Dein Wort..." autocomplete="off">
-          <button class="btn-action" id="kontexto-submit">Tippen</button>
-        </div>
-
-        <div class="guess-legend" aria-label="Bedeutung der Farben">
-          <span><i class="legend-dot legend-red"></i> Weit entfernt</span>
-          <span><i class="legend-dot legend-orange"></i> Auf dem richtigen Weg</span>
-          <span><i class="legend-dot legend-green"></i> Sehr nah</span>
-        </div>
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
-          <span class="kontexto-inline-hints"><button type="button" class="kontexto-inline-hint" id="kontexto-category-hint" aria-label="Kategorie anzeigen (einmal pro Runde)" title="Kategorie anzeigen – einmal pro Runde">🏷️</button><button type="button" class="kontexto-inline-hint" id="kontexto-letter-hint" aria-label="Anfangsbuchstaben anzeigen (einmal pro Runde)" title="Anfangsbuchstaben anzeigen – einmal pro Runde">🔤</button><button type="button" class="kontexto-inline-hint" id="kontexto-word-hint" aria-label="Besseren Wort-Tipp anzeigen" title="Besseren Wort-Tipp anzeigen">💡</button></span>
+          <div class="kontexto-inline-hints">
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-category" aria-label="Kategorie anzeigen" title="Kategorie anzeigen" disabled><span>🏷️</span><small>Kategorie</small></button>
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-letter" aria-label="Anfangsbuchstaben anzeigen" title="Anfangsbuchstaben anzeigen" disabled><span>🔤</span><small>Buchstabe</small></button>
+            <button type="button" class="kontexto-inline-hint" id="wordfinity-hint" aria-label="Ähnliches Wort anzeigen" title="Ähnliches Wort anzeigen" disabled><span>💡</span><small>Tipp</small></button>
+          </div>
+          <div class="kontexto-hint-labels">
+            <div class="kontexto-category-hint" id="wordfinity-category-display" aria-live="polite" hidden></div>
+            <div class="kontexto-category-hint" id="wordfinity-letter-display" aria-live="polite" hidden></div>
+          </div>
         </div>
-        <div class="kontexto-category-hint" id="kontexto-category-display" aria-live="polite" hidden></div>
-        <div class="kontexto-category-hint" id="kontexto-letter-display" aria-live="polite" hidden></div>
-        <div class="guesses-list" id="kontexto-guesses"></div>
-        <div class="round-result" id="kontexto-round-result"></div>
+
+        <form class="input-box wordfinity-entry" id="wordfinity-entry" autocomplete="off">
+          <input type="text" class="game-input" id="wordfinity-input" maxlength="60" placeholder="Dein Wort eingeben …" aria-label="Wort eingeben" autocomplete="off" autocapitalize="none" spellcheck="false" disabled>
+          <button type="submit" class="btn-action" id="wordfinity-submit" disabled>ABSENDEN <span aria-hidden="true">➜</span></button>
+        </form>
+
+        <div id="wordfinity-status" class="wordfinity-status" role="status" aria-live="polite">Bereit für dein Worträtsel.</div>
+        <div id="wordfinity-last-chat" class="wordfinity-last-chat" aria-live="polite" hidden></div>
+        <div class="guesses-list" id="wordfinity-guesses" aria-live="polite"></div>
+        <div class="round-result" id="wordfinity-round-result"></div>
       </div>
     </section>
 
@@ -1506,21 +1557,17 @@
           if (action === 'settings') {
             const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
               '<label class="menu-setting"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>' +
-              '<label class="menu-setting"><input id="kontexto-auto-next" type="checkbox"> <span>Wordfinity</span></label>' +
               '<label class="menu-setting"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>' +
               '<label class="menu-setting"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>' +
               '<label class="menu-setting"><input id="playduko-auto-next" type="checkbox"> <span>PlayDuko</span></label>' +
               '</div><div class="menu-setting-group"><div class="menu-setting-heading">Kategorie anzeigen</div>' +
-              '<label class="menu-setting"><input id="kontexto-auto-category" type="checkbox"> <span>Wordfinity</span></label>' +
               '<label class="menu-setting"><input id="hangmann-auto-category" type="checkbox"> <span>Hangman</span></label></div>';
             showModal('Einstellungen', settingsHtml);
             [
               ['wordle-auto-next','playfinity_wordle_auto_next',true],
-              ['kontexto-auto-next','playfinity_kontexto_auto_next',true],
               ['hangmann-auto-next','playfinity_hangmann_auto_next',true],
               ['priceisright-auto-next','playfinity_priceisright_auto_next',true],
               ['playduko-auto-next','playfinity_playduko_auto_next',true],
-              ['kontexto-auto-category','playfinity_wordfinity_auto_category',false],
               ['hangmann-auto-category','playfinity_hangmann_auto_category',false]
             ].forEach(([id,key,defaultValue])=>{
               const setting=document.getElementById(id);
@@ -1542,13 +1589,8 @@
       },
 
       renderScreen(screenId, isForwardNav) {
-        if (screenId === 'wordfinity') {
-          screenId = 'menu';
-          history.replaceState({ screen: 'menu' }, '', '#menu');
-        }
         PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-        document.body.classList.toggle('kontexto-active', screenId === 'wordfinity');
         document.body.classList.toggle('game-active', screenId !== 'menu');
         const target = document.getElementById('screen-' + screenId);
         if (target) {
@@ -1568,7 +1610,7 @@
       onEnterGame(screenId) {
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
         if (screenId === 'hangmann') HangmannGame.init();
-        if (screenId === 'wordfinity' && !KontextoGame.initialized) KontextoGame.init();
+        if (screenId === 'wordfinity') WordfinityGame.init();
         if (screenId === 'sizeitup' && !SizeItUpGame.initialized) SizeItUpGame.init();
         if (screenId === 'priceisright' && !PriceIsRightGame.initialized) PriceIsRightGame.init();
         if (screenId === 'playduko') PlayDukoGame.init();
@@ -1892,7 +1934,7 @@
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
         } else if (screen === 'wordfinity' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
-          KontextoGame.submitGuess(text, user);
+          WordfinityGame.submitGuess(text, user, {source:'chat'});
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
@@ -2378,465 +2420,224 @@
     };
 
     /* ==========================================================================\n       4. WORDFINITY ENGINE (LOKALE WORTLISTE UND LOKALE WERTUNG)\n       ========================================================================== */
-    const KontextoGame = {
-      initialized: false,
-      aiReady: false,
-      modelReadyPromise: null,
-      targetWord: '',
-      embeddingCache: new Map(),
-      guesses: [],
-      roundLocked: false,
-      roundTimer: null,
-      solvedRounds: 0,
-      pendingGuesses: new Set(),
-      roundId: 0,
-      categoryHintUsed: false,
-      firstLetterHintUsed: false,
-      wordHintUsed: false,
-      dictionaryReady: false,
-      dictionaryWords: new Set(),
-      dictionaryTargetWords: [],
-      usedTargets: new Set((() => { try { return JSON.parse(localStorage.getItem('wordfinity-used-targets-v2') || '[]').map(word => String(word).toLocaleLowerCase('de-DE')); } catch (_) { return []; } })()),
-      wordHintCandidatesTried: new Set(),
-      wordHintInProgress: false,
-      wordHintController: null,
-      categoryEmbeddingCache: null,
-      semanticRankManifestPromise: null,
-      semanticRankCache: new Map(),
-      semanticRankManifestUrl: 'https://raw.githubusercontent.com/Playfinity-Game/Playfinity-Game.github.io/wordfinity-rank-data/manifest.json',
-      categoryAssignments: new Map(),
-      async loadDictionary() {
-        const statusText = document.getElementById('model-status-text');
-        try {
-          const response = await fetch('data/wordfinity-nouns.json', { cache: 'no-store' });
-          if (!response.ok) throw new Error('Wortliste konnte nicht geladen werden');
-          const groupedWords = await response.json();
-          if (!groupedWords || Array.isArray(groupedWords) || typeof groupedWords !== 'object') {
-            throw new Error('Wortliste muss ein Objekt mit Kategorien und Wortlisten sein');
+    const WordfinityGame = {
+      initialized:false, puzzle:null, guesses:[], roundToken:0, won:false,
+      lastChatGuess:null, lastKeywordEffectAt:0, extraWords:[],
+      usedTargets:new Set(), puzzleDeck:[],
+      baseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
+      normalize(value){return String(value||'').trim().toLocaleLowerCase('de-DE');},
+      escape(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));},
+      async init(){
+        if(!this.initialized){
+          document.getElementById('wordfinity-entry').addEventListener('submit',event=>{
+            event.preventDefault();
+            const input=document.getElementById('wordfinity-input');
+            this.submitGuess(input.value,'Du',{source:'manual'});
+            input.value='';
+            input.focus();
+          });
+          document.getElementById('wordfinity-category').addEventListener('click',()=>this.showCategory());
+          document.getElementById('wordfinity-letter').addEventListener('click',()=>this.showFirstLetter());
+          document.getElementById('wordfinity-hint').addEventListener('click',()=>this.showHint());
+          this.initialized=true;
+        }
+        if(!this.puzzle) await this.newRound();
+      },
+      setControls(enabled){
+        ['wordfinity-input','wordfinity-submit','wordfinity-category','wordfinity-letter','wordfinity-hint'].forEach(id=>{
+          const node=document.getElementById(id);if(node)node.disabled=!enabled||this.won;
+        });
+      },
+      resetHintDisplays(){
+        ['wordfinity-category-display','wordfinity-letter-display'].forEach(id=>{
+          const node=document.getElementById(id);
+          if(node){node.textContent='';node.hidden=true;}
+        });
+        ['wordfinity-category','wordfinity-letter','wordfinity-hint'].forEach(id=>{
+          const node=document.getElementById(id);
+          if(node){
+            node.disabled=!this.puzzle;
+            node.title=node.getAttribute('aria-label')||'';
+            node.classList.remove('is-revealed');
+            if(id==='wordfinity-category')node.innerHTML='<span>🏷️</span><small>Kategorie</small>';
+            if(id==='wordfinity-letter')node.innerHTML='<span>🔤</span><small>Buchstabe</small>';
+            if(id==='wordfinity-hint')node.innerHTML='<span>💡</span><small>Tipp</small>';
           }
-          const uniqueWordsByKey = new Map();
-          const assignments = new Map();
-          for (const [category, words] of Object.entries(groupedWords)) {
-            if (!Array.isArray(words)) throw new Error('Ungültige Wortliste in Kategorie: ' + category);
-            for (const value of words) {
-              const word = String(value).trim().normalize('NFC');
-              if (!/^[A-Za-zÄÖÜäöüß-]{2,}$/.test(word)) continue;
-              const key = word.toLocaleLowerCase('de-DE');
-              if (!uniqueWordsByKey.has(key)) uniqueWordsByKey.set(key, word);
-              if (!assignments.has(key)) assignments.set(key, category);
+        });
+      },
+      isSuitablePuzzle(data){
+        if(!data||!Array.isArray(data.woerter)||data.woerter.length!==20000||typeof data.kategorie!=='string'||typeof data.woerter[0]!=='string'||!data.woerter[0])return false;
+        const target=this.normalize(data.woerter[0]);
+        const category=this.normalize(data.kategorie);
+        // Explizite Sexualbegriffe und eindeutig pornografische Themen nicht als Zielrätsel verwenden.
+        const unsuitable=/(penis|vagina|vulva|klitoris|clitoris|hoden|hodensack|brustwarze|nippel|porn|porno|pornografie|erotik|sexspielzeug|geschlechtsverkehr|性交|masturb|ejakulat|sperma|orgasmus|fellatio|cunnilingus)/iu;
+        // Konservative Sperrliste: eindeutig als Nicht-Nomen geprüfte Zielwörter.
+        // Keine Endungs-Heuristik verwenden: substantivierte Verben wie „Essen“ können Nomen sein.
+        const nonNounTargets=new Set(['bekommen','gesehen','kleine','eigenen','gewesen','ausserdem','ganzen','würden']);
+        return !unsuitable.test(target)&&!unsuitable.test(category)&&!nonNounTargets.has(target);
+      },
+      async newRound(){
+        const token=++this.roundToken;
+        this.puzzle=null;this.guesses=[];this.extraWords=[];this.won=false;
+        this.setControls(false);
+        this.resetHintDisplays();
+        document.getElementById('wordfinity-status').textContent='Rätsel wird geladen …';
+        document.getElementById('wordfinity-guesses').innerHTML='';
+        const result=document.getElementById('wordfinity-round-result');
+        if(result){result.classList.remove('visible');result.innerHTML='';}
+        try{
+          // Alle verfügbaren Rätsel-IDs einmal zufällig mischen.
+          // Bereits gespielte Zielwörter werden bis zum Ende des Kartenstapels übersprungen.
+          if(!this.puzzleDeck.length){
+            // Erst wenn alle IDs des vorherigen Durchlaufs verbraucht sind, Zielwörter zurücksetzen.
+            if(this.usedTargets.size)this.usedTargets.clear();
+            // Nur IDs verwenden, für die aktuell tatsächlich eine Rätseldatei existiert.
+            const missingPuzzleIds=new Set([1,2,3,9,10,14,15,16,20,21,22,31,32,33,34,36,41,42,44,45,46,47,49,50,54,56,58,59,61,64,70,71,73,74,76,77,82,85,86,94,98,112,113,118,120,121,123,129,130,133,134,135,136,137,138,140,141,142,145,146,147,150,154,156,159,162,165,167,168,169,171,172,174,175,176,179,187,192,197,198,202,204,207,208,212,213,215,223,225]);
+            this.puzzleDeck=Array.from({length:4254},(_,index)=>index+1).filter(id=>!missingPuzzleIds.has(id));
+            for(let i=this.puzzleDeck.length-1;i>0;i--){
+              const j=Math.floor(Math.random()*(i+1));
+              [this.puzzleDeck[i],this.puzzleDeck[j]]=[this.puzzleDeck[j],this.puzzleDeck[i]];
             }
           }
-          const uniqueWords = [...uniqueWordsByKey.values()];
-          if (uniqueWords.length < 1000) throw new Error('Wortliste fehlt oder ist unvollständig');
-          this.dictionaryWords = new Set(uniqueWords.map(word => word.toLocaleLowerCase('de-DE')));
-          this.dictionaryTargetWords = uniqueWords;
-          this.categoryAssignments = assignments;
-          this.usedTargets = new Set([...this.usedTargets].filter(key => this.dictionaryWords.has(key)));
-          this.dictionaryReady = true;
-          if (statusText) statusText.textContent = uniqueWords.length.toLocaleString('de-DE') + ' Wörter aus ' + Object.keys(groupedWords).length + ' Kategorien geladen';
-          return true;
-        } catch (error) {
-          console.error('[WORDFINITY] Wörterbuch konnte nicht geladen werden:', error);
-          if (statusText) statusText.innerText = 'Wörterbuch nicht verfügbar – bitte Seite neu laden.';
-          return false;
-        }
-      },
-
-      init() {
-        this.initialized = true;
-        // Ein einziges, sofort verfügbares Promise verhindert Klick-Rennen,
-        // während Wörterbuch und KI-Modell initialisiert werden.
-        this.modelReadyPromise = (async () => {
-          const dictionaryLoaded = await this.loadDictionary();
-          if (!dictionaryLoaded) return false;
-          await this.pickNewTarget();
-          if (this.targetWord) await this.initModel();
-          return !!this.targetWord;
-        })();
-
-        document.getElementById('kontexto-submit').onclick = () => {
-          if(PauseController.paused)return;
-          const inp = document.getElementById('kontexto-input');
-          if (inp.value.trim()) {
-            this.submitGuess(inp.value.trim());
-            inp.value = '';
+          let data=null;
+          let checked=0;
+          while(this.puzzleDeck.length&&checked<4254){
+            const id=this.puzzleDeck.pop();
+            checked++;
+            const response=await fetch(this.baseUrl+id+'.json',{cache:'no-store'});
+            if(!response.ok)continue;
+            const candidate=await response.json();
+            if(token!==this.roundToken)return;
+            if(!this.isSuitablePuzzle(candidate))continue;
+            const target=this.normalize(candidate.woerter[0]);
+            if(this.usedTargets.has(target))continue;
+            data=candidate;
+            this.usedTargets.add(target);
+            break;
           }
-        };
-
-        document.getElementById('kontexto-input').addEventListener('keydown', (e) => {
-          if (e.key === 'Enter') document.getElementById('kontexto-submit').click();
-        });
-        document.getElementById('kontexto-category-hint').onclick = () => this.showCategoryHint();
-        document.getElementById('kontexto-letter-hint').onclick = () => this.showFirstLetterHint();
-        document.getElementById('kontexto-word-hint').onclick = () => this.showWordHint();
-      },
-
-      async inferCategory(word) {
-        const key = String(word || '').normalize('NFC').trim().toLocaleLowerCase('de-DE');
-        const assignedCategory = this.categoryAssignments.get(key);
-        if (assignedCategory) return assignedCategory;
-        throw new Error('Für dieses Wort ist keine lokale Kategorie hinterlegt.');
-      },
-
-      showFirstLetterHint() {
-        if (PauseController.paused || this.firstLetterHintUsed || !this.targetWord) return;
-        const display = document.getElementById('kontexto-letter-display');
-        const button = document.getElementById('kontexto-letter-hint');
-        if (!display) return;
-        const firstLetter = Array.from(this.targetWord.normalize('NFC'))[0];
-        if (!firstLetter) return;
-        this.firstLetterHintUsed = true;
-        display.textContent = 'Anfangsbuchstabe: ' + firstLetter.toLocaleUpperCase('de-DE');
-        display.hidden = false;
-        if (button) {
-          button.disabled = true;
-          button.title = 'Anfangsbuchstaben-Tipp wurde bereits verwendet';
+          if(token!==this.roundToken)return;
+          if(!data)throw new Error('Keine weiteren neuen Zielwörter im aktuellen Durchlauf gefunden');
+          this.puzzle=data;
+          this.setControls(true);
+          document.getElementById('wordfinity-status').textContent='Los geht’s! Welches Wort passt am besten?';
+          document.getElementById('wordfinity-input').focus({preventScroll:true});
+          PlayfinityPlayerPresence.sendPresence();
+        }catch(error){
+          if(token!==this.roundToken)return;
+          console.error('[Wordfinity] Rätsel konnte nicht geladen werden:',error);
+          document.getElementById('wordfinity-status').textContent='Rätsel konnte nicht geladen werden. Prüfe die Datenverbindung und tippe auf „Neues Rätsel“.';
         }
       },
-
-      async showCategoryHint() {
-        if (PauseController.paused || this.categoryHintUsed) return;
-        const display = document.getElementById('kontexto-category-display');
-        const button = document.getElementById('kontexto-category-hint');
-        if (!display) return;
-        const requestedRoundId = this.roundId;
-        const requestedTarget = this.targetWord;
-        if (!requestedTarget) {
-          display.textContent = 'Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
-          display.hidden = false;
-          return;
+      submitGuess(value,playerName='Du',options={}){
+        const word=this.normalize(value);
+        // Einzelne Schlüsselwörter lösen beim lokalen Testen und im TikTok-Chat Effekte aus.
+        if((options.source==='chat'||options.source==='manual')&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
+        if(!this.puzzle||this.won)return false;
+        if(!word||/\s/u.test(word))return false;
+        const previous=this.guesses.find(item=>item.word===word);
+        if(previous)return false;
+        const preparedRank=this.puzzle.woerter.indexOf(word)+1;
+        let rank=preparedRank;
+        if(rank===0){
+          const extraIndex=this.extraWords.indexOf(word);
+          if(extraIndex===-1)this.extraWords.push(word);
+          rank=this.puzzle.woerter.length+(extraIndex===-1?this.extraWords.length:extraIndex+1);
         }
-        if (button) button.disabled = true;
-        display.textContent = 'Kategorie wird ermittelt …';
-        display.hidden = false;
-        try {
-          if (!this.aiReady && this.modelReadyPromise) {
-            display.textContent = 'Wortliste wird noch geladen …';
-            await this.modelReadyPromise;
-          }
-          if (requestedRoundId !== this.roundId || PauseController.paused) return;
-          const category = await this.inferCategory(requestedTarget);
-          if (requestedRoundId !== this.roundId) return;
-          if (PauseController.paused) {
-            if (button) button.disabled = false;
-            return;
-          }
-          this.categoryHintUsed = true;
-          display.textContent = 'Kategorie: ' + category;
-          if (button) button.title = 'Kategorie-Tipp wurde bereits angezeigt';
-        } catch (error) {
-          console.warn('[WORDFINITY] Kategorie konnte nicht ermittelt werden:', error);
-          // Fehler bleiben für Spieler unsichtbar; die Ladeanzeige wird still entfernt.
-          display.textContent = '';
-          display.hidden = true;
-        } finally {
-          if (requestedRoundId === this.roundId && !this.categoryHintUsed && button) button.disabled = false;
+        this.guesses.push({word,rank,player:playerName,isHint:!!options.isHint});
+        this.guesses.sort((a,b)=>a.rank-b.rank);
+        if(options.source==='chat'){
+          this.lastChatGuess={word,rank,player:playerName};
+          this.renderLastChatGuess();
         }
-      },
-
-      async showWordHint() {
-        if (PauseController.paused || this.wordHintInProgress) return;
-        const button = document.getElementById('kontexto-word-hint');
-        const requestedRoundId = this.roundId;
-        const requestedTarget = this.targetWord;
-        if (!requestedTarget || !this.dictionaryReady) return;
-        this.wordHintInProgress = true;
-        if (button) button.disabled = true;
-
-        try {
-          if (this.modelReadyPromise) await this.modelReadyPromise;
-          if (requestedRoundId !== this.roundId || PauseController.paused) return;
-
-          const normalize = value => String(value || '').toLocaleLowerCase('de-DE').trim();
-          const targetKey = normalize(requestedTarget);
-          const blocked = new Set([
-            targetKey,
-            ...this.wordHintCandidatesTried,
-            ...this.guesses.map(item => normalize(item.word)),
-            ...this.pendingGuesses
-          ]);
-          const relatedToExistingWord = candidate => {
-            const key = normalize(candidate).replace(/[^a-zäöüß]/g, '');
-            const words = [requestedTarget, ...this.guesses.map(item => item.word)]
-              .map(word => normalize(word).replace(/[^a-zäöüß]/g, ''))
-              .filter(word => word.length >= 4);
-            return words.some(word => key === word || key.includes(word) || word.includes(key));
-          };
-
-          // Tipp-Kandidaten stammen aus der bereits geladenen lokalen Wortliste.
-          // Ihre Nähe wird mit exakt derselben Alltags-Engine wie die Spielwertung berechnet.
-          const candidates = this.dictionaryTargetWords
-            .filter(word => {
-              const key = normalize(word);
-              return key && !blocked.has(key) &&
-                /^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(word) &&
-                !relatedToExistingWord(word);
-            })
-            .map(word => {
-              const similarity = this.calculateEverydaySimilarity(requestedTarget, word);
-              return { word, similarity, rank: this.calculateGuessRank(similarity) };
-            });
-
-          const bestCurrentRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
-          const desiredRank = Number.isFinite(bestCurrentRank)
-            ? Math.max(2, bestCurrentRank - Math.max(1, Math.floor(bestCurrentRank * 0.08)))
-            : 11000;
-
-          const rankedCandidates = candidates
-            .filter(item => item.similarity > 0 &&
-              (!Number.isFinite(bestCurrentRank) || item.rank < bestCurrentRank))
-            .sort((a, b) =>
-              Math.abs(a.rank - desiredRank) - Math.abs(b.rank - desiredRank) ||
-              a.rank - b.rank
-            );
-
-          for (const candidate of rankedCandidates) {
-            if (requestedRoundId !== this.roundId || PauseController.paused) return;
-            const candidateKey = normalize(candidate.word);
-            this.wordHintCandidatesTried.add(candidateKey);
-            const added = await this.submitGuess(candidate.word, null, {
-              isHint: true,
-              requireBetterRank: true,
-              precomputedSimilarity: candidate.similarity
-            });
-            if (added) return;
-          }
-          // Kein passender lokaler Kandidat: keine künstliche Wertung erzeugen.
-        } catch (error) {
-          console.warn('[WORDFINITY] Lokaler Wort-Tipp fehlgeschlagen:', error);
-        } finally {
-          this.wordHintInProgress = false;
-          if (requestedRoundId === this.roundId && button) button.disabled = false;
-        }
-      },
-      async pickNewTarget() {
-        PauseController.clear('kontexto','roundTimer');
-        // Laufende Tipp-Anfragen der vorherigen Runde beenden, damit die neue Runde
-        // sofort wieder einen Tipp anfordern kann.
-        if (this.wordHintController) {
-          this.wordHintController.abort();
-          this.wordHintController = null;
-        }
-        this.wordHintInProgress = false;
-        this.roundId++;
-        this.wordHintCandidatesTried.clear();
-        const requestedRoundId=this.roundId;
-        this.roundLocked=false;
-        this.pendingGuesses.clear();
-        const previousTarget=this.targetWord.toLocaleLowerCase('de-DE');
-        this.targetWord='';
-        const statusText=document.getElementById('model-status-text');
-        if(statusText)statusText.textContent='Prüfe Wortliste und wähle ein Lösungswort …';
-        if(!this.dictionaryReady || !this.dictionaryTargetWords.length){
-          if(statusText)statusText.textContent='Wortliste nicht verfügbar – bitte Seite neu laden.';
-          return;
-        }
-        let availableWords=this.dictionaryTargetWords.filter(word=>!this.usedTargets.has(word.toLocaleLowerCase('de-DE')));
-        if(!availableWords.length){
-          // Auch nach einem Neuladen bleibt das zuletzt gespielte Wort erkennbar.
-          const lastUsedTarget=previousTarget||[...this.usedTargets].pop()||'';
-          // Erst nach einem vollständigen Durchlauf wird der Pool zurückgesetzt.
-          // Das zuletzt gespielte Wort bleibt ausgeschlossen, damit es nicht direkt wiederkommt.
-          this.usedTargets.clear();
-          if(lastUsedTarget) this.usedTargets.add(lastUsedTarget);
-          availableWords=this.dictionaryTargetWords.filter(word=>word.toLocaleLowerCase('de-DE')!==lastUsedTarget);
-        }
-        if(!availableWords.length){
-          if(statusText)statusText.textContent='Keine gültigen Wörter für eine neue Runde vorhanden.';
-          return;
-        }
-        const randomIndex=max=>{
-          const cryptoApi=window.crypto;
-          if(cryptoApi&&cryptoApi.getRandomValues){
-            const range=0x100000000,limit=range-(range%max),value=new Uint32Array(1);
-            do{cryptoApi.getRandomValues(value);}while(value[0]>=limit);
-            return value[0]%max;
-          }
-          return Math.floor(Math.random()*max);
-        };
-        const selectedWord=availableWords[randomIndex(availableWords.length)];
-        if(requestedRoundId!==this.roundId)return;
-        this.targetWord=selectedWord;
-        this.usedTargets.add(selectedWord.toLocaleLowerCase('de-DE'));
-        try { localStorage.setItem('wordfinity-used-targets-v2', JSON.stringify([...this.usedTargets])); } catch (_) {}
-        if(statusText)statusText.textContent='Neues Lösungswort aus deiner Wortliste geladen';
-
-        this.categoryHintUsed=false;this.firstLetterHintUsed=false;this.wordHintUsed=false;this.wordHintCandidatesTried.clear();
-        const categoryButton=document.getElementById('kontexto-category-hint'),letterButton=document.getElementById('kontexto-letter-hint'),wordButton=document.getElementById('kontexto-word-hint');
-        if(categoryButton){categoryButton.disabled=false;categoryButton.textContent='🏷️';}
-        if(letterButton){letterButton.disabled=false;letterButton.textContent='🔤';letterButton.title='Anfangsbuchstaben anzeigen – einmal pro Runde';}
-        if(wordButton){wordButton.disabled=false;wordButton.title='Wort-Tipp – beliebig oft';}
-        const categoryDisplay=document.getElementById('kontexto-category-display'),letterDisplay=document.getElementById('kontexto-letter-display');
-        if(categoryDisplay){categoryDisplay.hidden=true;categoryDisplay.textContent='';}
-        if(letterDisplay){letterDisplay.hidden=true;letterDisplay.textContent='';}
-        if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true') this.showCategoryHint();
-        this.guesses=[];
-        const result=document.getElementById('kontexto-round-result');
-        if(result){result.classList.remove('visible');result.innerHTML='';}
         this.renderGuesses();
+        document.getElementById('wordfinity-status').textContent=rank===1?'🎉 '+playerName+' hat das Zielwort gefunden!':(options.isHint?'💡 Tipp hinzugefügt.':'„'+word+'“ erreicht Rang '+rank+'.');
+        if(rank===1){
+          this.won=true;this.setControls(false);
+          document.getElementById('wordfinity-status').textContent='🏆 '+playerName+' hat das Zielwort „'+word+'“ erraten!';
+          showCorrectAnswerOverlay(word,null,false,'Wort erraten!',playerName);
+        }
         PlayfinityPlayerPresence.sendPresence();
-      },
-
-      async initModel() {
-        const loader=document.getElementById('kontexto-loader'),statusText=document.getElementById('model-status-text');
-        const statusPct=document.getElementById('model-status-pct'),fill=document.getElementById('model-progress-fill');
-        if(statusText)statusText.textContent='Lokale Alltags-Bewertung wird vorbereitet …';
-        if(statusPct)statusPct.textContent='';
-        if(fill)fill.style.width='100%';
-        // Die Spielwertung läuft lokal im Browser; kein KI-Modell und kein Worker-Aufruf nötig.
-        this.aiReady=true;
-        if(statusText)statusText.textContent='Lokale Wordfinity-Bewertung aktiv';
-        if(loader)loader.style.display='none';
-        this.roundLocked=false;
-      },
-
-      calculateEverydaySimilarity(target, guess) {
-        const norm = value => String(value || '').toLocaleLowerCase('de-DE').replace(/[äöü]/g, ch => ({ä:'a',ö:'o',ü:'u'}[ch])).replace(/ß/g, 'ss').replace(/[^a-z0-9]+/g, ' ').trim();
-        const a = norm(target), b = norm(guess);
-        if (!a || !b) return 0;
-        if (a === b) return 1;
-        const pairKey = (x, y) => [x, y].sort().join('|');
-        const scorePairs = new Map();
-        const addPairs = (score, pairs) => pairs.forEach(([x,y]) => scorePairs.set(pairKey(norm(x), norm(y)), score));
-        // Bewertungsmaßstab der alltagsbezogenen Wordfinity-Logik:
-        // 95-99 Synonyme/klare Ober-Unterbegriffe; 85-94 sehr enge Alltags-/Teil-Ganzes-Beziehung;
-        // 75-84 typische direkte Kombination; 60-74 breite Kategorie/typische Assoziation.
-        addPairs(.97, [
-          ['Einzelkind','Kind'],['Hund','Tier'],['Katze','Tier'],['Pferd','Tier'],
-          ['Apfel','Obst'],['Rose','Blume'],['Tulpe','Blume'],['Eiche','Baum'],
-          ['Auto','Fahrzeug'],['Fahrrad','Fahrzeug'],['Messer','Besteck']
-        ]);
-        addPairs(.91, [
-          ['Baum','Wald'],['Stuhl','Tisch'],['Hund','Katze'],['Auto','Reifen'],
-          ['Teller','Besteck'],['Kühlschrank','Küche'],['Herd','Pfanne'],
-          ['Topf','Suppe'],['Messer','Gabel'],['Messer','Löffel'],
-          ['Backofen','Herd'],['Baum','Gras'],['Baum','Blume']
-        ]);
-        addPairs(.84, [
-          ['Topf','Herd'],['Teller','Essen'],['Kühlschrank','Milch'],
-          ['Backofen','Pizza'],['Auto','Straße'],['Biene','Blume'],
-          ['Biene','Honig'],['Zahnbürste','Zahnpasta'],['Brot','Butter'],
-          ['Brot','Toaster'],['Hammer','Nagel'],['Schere','Papier'],
-          ['Schere','Stoff'],['Regenschirm','Regen'],['Laptop','Tastatur'],
-          ['Kühlschrank','Milch'],['Kühlschrank','Küche']
-        ]);
-        addPairs(.70, [
-          ['Apfel','Kuchen'],['Laptop','Internet'],['Auto','Benzin'],
-          ['Hund','Leine'],['Katze','Katzenfutter'],['Badezimmer','Zahnbürste'],
-          ['Küche','Herd'],['Küche','Backofen'],['Wald','Blume'],
-          ['Kind','Schule'],['Kind','Spielzeug'],['Kind','Eltern']
-        ]);
-        const direct = scorePairs.get(pairKey(a,b));
-        if (Number.isFinite(direct)) return direct;
-
-        // Erkenne eindeutige Komposita-/Bestandteilbeziehungen, ohne beliebige
-        // Teilzeichenfolgen als starke Ähnlichkeit zu werten.
-        const compound = (x,y) => x.length >= 4 && y.length >= 4 && (x.includes(y) || y.includes(x));
-        if (compound(a.replace(/ /g,''), b.replace(/ /g,''))) return .78;
-
-        // Wörter derselben kuratierten Wörterbuchkategorie erhalten eine moderate,
-        // niemals automatisch sehr hohe Alltagsnähe.
-        const ca = this.categoryAssignments.get(a), cb = this.categoryAssignments.get(b);
-        if (ca && cb && ca === cb) return .64;
-
-        // Gemeinsame Wortbestandteile sind nur ein schwaches Signal.
-        const tokensA = a.split(' '), tokensB = b.split(' ');
-        if (tokensA.some(token => token.length > 3 && tokensB.includes(token))) return .48;
-        return .02;
-      },
-
-      calculateGuessRank(similarity) {
-        // Alltagsbezogene Rangskala: 0..1 wird linear auf Rang 1001..1 abgebildet.
-        // Damit passen Rangzahlen direkt zu den Farbgrenzen:
-        // Grün ab 0.90 (Rang 1..101), Orange ab 0.65 (Rang 102..351),
-        // Rot unter 0.65 (Rang 352..1001).
-        const numericSimilarity = Number(similarity);
-        const normalizedSimilarity = Number.isFinite(numericSimilarity)
-          ? Math.max(0, Math.min(1, numericSimilarity))
-          : 0;
-        return 1 + Math.round((1 - normalizedSimilarity) * 1000);
-      },
-
-      async submitGuess(word, player = null, options = {}) {
-        if (PauseController.paused) return;
-        if (!this.targetWord) {
-          const status = document.getElementById('model-status-text');
-          if (status) status.textContent = 'Kein geheimes Zielwort geladen. Bitte starte eine neue Runde.';
-          return false;
-        }
-        const cleanWord = String(word || '').trim().normalize('NFC');
-        if ((this.roundLocked && !options.isHint) || !/^[A-Za-zÄÖÜäöüß-]+$/.test(cleanWord)) return false;
-        const key = cleanWord.toLocaleLowerCase('de-DE');
-        // Semantische Bewertung ist unabhängig von der kuratierten Zielwortliste:
-        // Auch gültige deutsche Wörter außerhalb des Wörterbuchs dürfen geraten werden.
-        // Die Wortliste bleibt für Zielwörter und kuratierte Inhalte bestehen.
-        if (this.guesses.some(item => item.word.toLocaleLowerCase('de-DE') === key) || this.pendingGuesses.has(key)) return false;
-        this.pendingGuesses.add(key);
-        const submittedRoundId = this.roundId;
-        if (key === this.targetWord.toLocaleLowerCase('de-DE')) {
-          this.guesses.unshift({ word: cleanWord, rank: 1, similarity: 1.0, isHint: !!options.isHint, player: player || null });
-          this.solvedRounds++;
-          this.renderGuesses();
-          this.roundLocked = true;
-          CommunityBoard.record('kontexto', player);
-          const resultBox = document.getElementById('kontexto-round-result');
-          const autoAdvance=localStorage.getItem('playfinity_kontexto_auto_next')!=='false';
-          resultBox.innerHTML='<div class="round-result-title">🎯 GEHEIMWORT GEFUNDEN!</div><div class="round-result-answer">'+CommunityBoard.escape(this.targetWord)+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('kontexto',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Geratene Wörter: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div id="kontexto-community-list"></div>'+(autoAdvance?'':'');
-          resultBox.classList.add('visible');CommunityBoard.render('kontexto','kontexto-community-list');
-          showCorrectAnswerOverlay(this.targetWord, () => this.pickNewTarget(), !autoAdvance, '🎯 GEHEIMWORT GEFUNDEN!', player?.name || 'Lokaler Spieler');
-          if(autoAdvance)PauseController.schedule('kontexto','roundTimer',()=>{hideCorrectAnswerOverlay();this.pickNewTarget();},7000);
-          return true;
-        }
-        // Die Wertung läuft vollständig lokal; es werden keine KI- oder Worker-Dienste aufgerufen.
-        const precomputedRank = Number.isFinite(options.precomputedRank) ? Number(options.precomputedRank) : null;
-        const precomputedSimilarity = Number.isFinite(options.precomputedSimilarity)
-          ? Math.max(0, Math.min(1, Number(options.precomputedSimilarity))) : null;
-        const sim = precomputedSimilarity !== null
-          ? precomputedSimilarity
-          : this.calculateEverydaySimilarity(this.targetWord, cleanWord);
-        if (PauseController.paused || submittedRoundId !== this.roundId || (this.roundLocked && !options.isHint)) { this.pendingGuesses.delete(key); return; }
-        const normalizedSimilarity = Math.max(0, Math.min(1, sim));
-        // Derselbe Rangrechner wird auch für Tipp-Kandidaten vorab verwendet.
-        const calculatedRank = precomputedRank !== null ? precomputedRank : this.calculateGuessRank(normalizedSimilarity);
-        // Wort-Tipps nur übernehmen, wenn sie den aktuell besten Rang verbessern.
-        const bestExistingRank = this.guesses.reduce((best, item) => Math.min(best, item.rank), Infinity);
-        if (options.requireBetterRank && calculatedRank >= bestExistingRank) {
-          this.pendingGuesses.delete(key);
-          return false;
-        }
-        this.guesses.push({word:cleanWord,rank:calculatedRank,similarity:sim,isHint:!!options.isHint,player:player||null});
-        this.guesses.sort((a, b) => a.rank - b.rank || b.similarity - a.similarity);
-        this.pendingGuesses.delete(key);
-        this.renderGuesses();
         return true;
       },
-
-      renderGuesses() {
-        const container = document.getElementById('kontexto-guesses');
-        container.innerHTML = '';
-
-        this.guesses.forEach(item => {
-          const row = document.createElement('div');
-          row.className = 'guess-row';
-
-          // Farben richten sich direkt nach der Alltagsähnlichkeit:
-          // Grün ab 0.90, Orange ab 0.65, darunter Rot.
-          const similarityScore = Math.max(0, Math.min(1, Number(item.similarity)));
-          let color = '#ff3b5c';
-          let level = 'Weit entfernt';
-          if (similarityScore >= 0.90) { color = '#00ff9d'; level = 'Sehr nah'; }
-          else if (similarityScore >= 0.65) { color = '#ff9f1c'; level = 'Auf dem richtigen Weg'; }
-
-          const pct = Math.max(5, Math.round(similarityScore * 100));
-
-          row.innerHTML = `
-            <div class="guess-bar" style="width: ${pct}%; background: ${color};"></div>
-            <span class="guess-word">${CommunityBoard.escape(item.word)}${item.isHint ? '<span class="guess-hint-tag">💡 TIPP</span>' : ''}</span>
-            <span class="kontexto-guess-player">${item.player ? CommunityBoard.escape(item.player.name) : "—"}</span>
-            <span class="guess-rank" style="color: ${color}; margin-left:auto" title="${level}">#${item.rank}</span>
-          `;
+      triggerChatWordEffect(word){
+        const effects={frosch:'frog',rakete:'rocket',geist:'ghost',skelett:'skeleton',hund:'dog',katze:'cat',pinguin:'penguin',affe:'monkey',hai:'shark',banane:'banana',ente:'duck',pizza:'pizza',ufo:'ufo',roboter:'robot',huhn:'chicken',blitz:'lightning',konfetti:'confetti',kartoffel:'potato',feuer:'fire'};
+        const action=effects[word],now=Date.now();
+        if(!action||now-this.lastKeywordEffectAt<6000)return;
+        this.lastKeywordEffectAt=now;
+        PlayfinityPlayerPresence.showEffect(action);
+      },
+      renderLastChatGuess(){
+        const panel=document.getElementById('wordfinity-last-chat');
+        if(!panel||!this.lastChatGuess)return;
+        const item=this.lastChatGuess,style=this.rankStyle(item.rank);
+        panel.hidden=false;
+        panel.style.setProperty('--last-guess-color',style.color);
+        panel.innerHTML='<div class="wordfinity-last-chat-heading">LETZTER TIKTOK-CHAT</div>'+
+          '<div class="wordfinity-last-chat-row"><strong class="wordfinity-last-chat-name">'+this.escape(item.player||'Zuschauer')+'</strong>'+
+          '<span class="wordfinity-last-chat-rank" title="'+style.level+'">#'+item.rank+'</span></div>'+
+          '<div class="wordfinity-last-chat-word">'+this.escape(item.word)+'</div>';
+        panel.classList.remove('is-updating');void panel.offsetWidth;panel.classList.add('is-updating');
+      },
+      rankStyle(rank){
+        // Rang-basierte Annäherung an die früheren Ähnlichkeits-Farbstufen.
+        if(rank<=100)return {color:'#00ff9d',level:'Sehr nah'};
+        if(rank<=1000)return {color:'#ff9f1c',level:'Auf dem richtigen Weg'};
+        return {color:'#ff3b5c',level:'Weit entfernt'};
+      },
+      renderGuesses(){
+        const container=document.getElementById('wordfinity-guesses');
+        container.innerHTML='';
+        this.guesses.slice(0,40).forEach(item=>{
+          const row=document.createElement('div');
+          row.className='guess-row';
+          const style=this.rankStyle(item.rank);
+          const pct=Math.max(5,Math.round(100-(Math.log(Math.max(1,item.rank))/Math.log(20000))*100));
+          row.innerHTML='<div class="guess-bar" style="width:'+pct+'%;background:'+style.color+';"></div>'+
+            '<span class="guess-word">'+this.escape(item.word)+(item.isHint?'<span class="guess-hint-tag">💡 TIPP</span>':'')+'</span>'+
+            '<span class="kontexto-guess-player" style="--player-rank-color:'+style.color+'">'+this.escape(item.player)+'</span>'+
+            '<strong class="guess-rank" style="color:'+style.color+';margin-left:auto" title="'+style.level+'">#'+item.rank+'</strong>';
           container.appendChild(row);
         });
+      },
+      showCategory(){
+        if(!this.puzzle)return;
+        const button=document.getElementById('wordfinity-category');
+        button.classList.add('is-revealed');
+        button.innerHTML='<span aria-hidden="true">🏷️</span><small>Kategorie</small><strong>'+this.escape(this.puzzle.kategorie)+'</strong>';
+        button.title='Kategorie: '+this.puzzle.kategorie;
+        button.disabled=true;
+      },
+      showFirstLetter(){
+        if(!this.puzzle)return;
+        const first=Array.from(this.puzzle.woerter[0])[0].toLocaleUpperCase('de-DE');
+        const button=document.getElementById('wordfinity-letter');
+        button.classList.add('is-revealed');
+        button.innerHTML='<span aria-hidden="true">🔤</span><small>Buchstabe</small><strong>'+this.escape(first)+'</strong>';
+        button.title='Anfangsbuchstabe: '+first;
+        button.disabled=true;
+      },
+      showHint(){
+        if(!this.puzzle||this.won)return;
+        const alreadyUsed=new Set(this.guesses.map(item=>item.rank));
+        const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
+        const desiredRank=Number.isFinite(bestRank)?Math.max(2,Math.round((bestRank+2)/2)):100;
+        const upperBound=Number.isFinite(bestRank)?Math.max(2,bestRank-1):Math.min(19999,this.puzzle.woerter.length-1);
+        let selectedRank=desiredRank;
+        if(alreadyUsed.has(selectedRank)||selectedRank>upperBound){
+          let distance=1,found=false;
+          while(!found&&distance<=this.puzzle.woerter.length){
+            for(const candidate of [desiredRank-distance,desiredRank+distance]){
+              if(candidate>=2&&candidate<=upperBound&&!alreadyUsed.has(candidate)){selectedRank=candidate;found=true;break;}
+            }
+            distance++;
+          }
+          if(!found){document.getElementById('wordfinity-status').textContent='Kein weiterer passender Tipp verfügbar.';return;}
+        }
+        const hintWord=this.puzzle.woerter[selectedRank-1];
+        if(!hintWord||!this.submitGuess(hintWord,'Tipp',{isHint:true})){
+          document.getElementById('wordfinity-status').textContent='Kein neuer Tipp verfügbar.';
+          return;
+        }
       }
     };
 
@@ -3310,7 +3111,7 @@
       },
       sendPresence() {
         if (!this.socket || this.socket.readyState !== WebSocket.OPEN) return;
-        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'wordfinity' ? KontextoGame.targetWord : this.game === 'hangmann' ? HangmannGame.target?.word : '';
+        const solution = this.game === 'wordle' ? WordleGame.targetWord : this.game === 'wordfinity' ? (WordfinityGame.puzzle?.woerter?.[0] || '') : this.game === 'hangmann' ? HangmannGame.target?.word : '';
         this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
       },
       setGame(game) {
