@@ -1615,7 +1615,6 @@
       },
 
       go(screenId) {
-        if (screenId === 'wordfinity') return;
         if (screenId === this.currentScreen) return;
         history.pushState({ screen: screenId }, '', '#' + screenId);
         this.renderScreen(screenId, true);
