@@ -720,6 +720,11 @@
     #screen-wordfinity .kontexto-inline-hint small{font-size:.72rem;font-weight:800;letter-spacing:.01em;color:#b9c7e8}
     #screen-wordfinity .kontexto-inline-hint:hover:not(:disabled){transform:translateY(-2px);border-color:var(--neon-cyan);background:linear-gradient(145deg,rgba(0,130,170,.24),rgba(25,22,65,.98));box-shadow:0 5px 18px rgba(0,229,255,.13)}
     #screen-wordfinity .kontexto-inline-hint:disabled{opacity:.48}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed{height:auto;min-height:66px;padding:8px 9px;display:grid;grid-template-columns:auto 1fr;grid-template-rows:auto auto;column-gap:7px;row-gap:2px;align-content:center;justify-content:start;text-align:left;border-color:rgba(0,229,255,.42);background:linear-gradient(145deg,rgba(0,125,155,.2),rgba(28,22,65,.98));opacity:1}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed>span{grid-row:1 / 3;align-self:center}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed small{font-size:.61rem;line-height:1.1;color:#9fb6d9}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed strong{min-width:0;color:#fff;font-size:.77rem;line-height:1.2;font-weight:850;overflow-wrap:anywhere}
+    #screen-wordfinity .kontexto-inline-hint.is-revealed:disabled{cursor:default}
     #screen-wordfinity .kontexto-hint-labels{display:flex;gap:8px;width:100%}
     #screen-wordfinity .kontexto-category-hint{padding:9px 11px;border-radius:10px;font-size:.78rem;text-align:center;background:rgba(176,38,255,.12);border-color:rgba(176,38,255,.35)}
     #screen-wordfinity .wordfinity-entry{display:flex;gap:9px;width:100%;padding:7px;border:1px solid rgba(0,229,255,.22);border-radius:16px;background:rgba(10,14,32,.78);box-shadow:0 8px 24px rgba(0,0,0,.18)}
@@ -1578,7 +1583,14 @@
         });
         ['wordfinity-category','wordfinity-letter','wordfinity-hint'].forEach(id=>{
           const node=document.getElementById(id);
-          if(node){node.disabled=!this.puzzle;node.title=node.getAttribute('aria-label')||'';}
+          if(node){
+            node.disabled=!this.puzzle;
+            node.title=node.getAttribute('aria-label')||'';
+            node.classList.remove('is-revealed');
+            if(id==='wordfinity-category')node.innerHTML='<span>🏷️</span><small>Kategorie</small>';
+            if(id==='wordfinity-letter')node.innerHTML='<span>🔤</span><small>Buchstabe</small>';
+            if(id==='wordfinity-hint')node.innerHTML='<span>💡</span><small>Tipp</small>';
+          }
         });
       },
       isSuitablePuzzle(data){
@@ -1682,18 +1694,20 @@
       },
       showCategory(){
         if(!this.puzzle)return;
-        const display=document.getElementById('wordfinity-category-display');
-        display.textContent='🏷 Kategorie: '+this.puzzle.kategorie;
-        display.hidden=false;
-        document.getElementById('wordfinity-category').disabled=true;
+        const button=document.getElementById('wordfinity-category');
+        button.classList.add('is-revealed');
+        button.innerHTML='<span aria-hidden="true">🏷️</span><small>Kategorie</small><strong>'+this.escape(this.puzzle.kategorie)+'</strong>';
+        button.title='Kategorie: '+this.puzzle.kategorie;
+        button.disabled=true;
       },
       showFirstLetter(){
         if(!this.puzzle)return;
-        const first=Array.from(this.puzzle.woerter[0])[0];
-        const display=document.getElementById('wordfinity-letter-display');
-        display.textContent='🔤 Anfangsbuchstabe: '+first.toLocaleUpperCase('de-DE');
-        display.hidden=false;
-        document.getElementById('wordfinity-letter').disabled=true;
+        const first=Array.from(this.puzzle.woerter[0])[0].toLocaleUpperCase('de-DE');
+        const button=document.getElementById('wordfinity-letter');
+        button.classList.add('is-revealed');
+        button.innerHTML='<span aria-hidden="true">🔤</span><small>Buchstabe</small><strong>'+this.escape(first)+'</strong>';
+        button.title='Anfangsbuchstabe: '+first;
+        button.disabled=true;
       },
       showHint(){
         if(!this.puzzle||this.won)return;
