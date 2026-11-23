@@ -2028,7 +2028,15 @@
       routeLiveChat(user, text, source = 'tikfinity') {
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
-        if (screen === 'playduko') { PlayDukoGame.handleChat(text); return; }
+        if (screen === 'playduko') {
+          // Reiner Show-Trigger: "elite" darf im PlayDuko-Chat keine Sudoku-Eingabe auslösen.
+          if (/^\s*elite\s*$/i.test(String(text || ''))) {
+            PlayfinityPlayerPresence.showEffect('elite');
+            return;
+          }
+          PlayDukoGame.handleChat(text);
+          return;
+        }
         // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
         if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
         if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
