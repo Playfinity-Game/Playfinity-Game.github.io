@@ -2508,9 +2508,33 @@
           document.getElementById('wordfinity-entry').addEventListener('submit',event=>{
             event.preventDefault();
             const input=document.getElementById('wordfinity-input');
-            this.submitGuess(input.value,'Du',{source:'manual'});
-            input.value='';
-            input.focus();
+            const word=this.normalize(input.value);
+            if(!word){
+              document.getElementById('wordfinity-status').textContent='Bitte gib zuerst ein Wort ein.';
+              input.focus();
+              return;
+            }
+            if(!this.puzzle){
+              document.getElementById('wordfinity-status').textContent='Das Rätsel ist noch nicht bereit. Bitte warte kurz oder starte ein neues Rätsel.';
+              return;
+            }
+            if(this.won){
+              document.getElementById('wordfinity-status').textContent='Diese Runde ist bereits gelöst. Starte ein neues Rätsel.';
+              return;
+            }
+            if(this.guesses.some(item=>item.word===word)){
+              document.getElementById('wordfinity-status').textContent='Dieses Wort wurde bereits eingegeben. Versuch ein anderes Wort.';
+              input.select();
+              return;
+            }
+            const accepted=this.submitGuess(word,'Streamer',{source:'manual'});
+            if(accepted){
+              input.value='';
+              input.focus();
+            }else{
+              document.getElementById('wordfinity-status').textContent='Dein Tipp wurde nicht übernommen. Bitte versuche es erneut.';
+              input.focus();
+            }
           });
           document.getElementById('wordfinity-category').addEventListener('click',()=>this.showCategory());
           document.getElementById('wordfinity-letter').addEventListener('click',()=>this.showFirstLetter());
