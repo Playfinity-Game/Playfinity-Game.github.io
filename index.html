@@ -326,6 +326,13 @@
     .wordfinity-card.wordfinity-closed .wordfinity-card-copy { padding-right:112px; }
     .wordfinity-barrier-full { position:absolute; left:-5%; right:-5%; bottom:36px; z-index:5; height:23px; display:flex; align-items:center; justify-content:center; overflow:hidden; transform:rotate(-3deg); border-top:2px solid #171717; border-bottom:2px solid #171717; background:repeating-linear-gradient(135deg,#f5c842 0 17px,#20202a 17px 34px); box-shadow:0 2px 7px rgba(0,0,0,.45); }
     .wordfinity-barrier-full span { padding:1px 7px; background:rgba(255,255,255,.94); color:#20202a; font-size:8px; line-height:1.4; font-weight:1000; letter-spacing:.06em; white-space:nowrap; }
+    .wordfinity-barrier-full { display:none; }
+    .wordfinity-tear { position:absolute; bottom:36px; z-index:5; height:23px; width:53%; border-top:2px solid #171717; border-bottom:2px solid #171717; background:repeating-linear-gradient(135deg,#f5c842 0 17px,#20202a 17px 34px); box-shadow:0 2px 7px rgba(0,0,0,.45); pointer-events:none; }
+    .wordfinity-tear.left { left:-2%; transform:rotate(-3deg); clip-path:polygon(0 0,100% 0,96% 38%,100% 62%,94% 100%,0 100%); animation:wordfinity-tear-left 1.25s cubic-bezier(.2,.75,.25,1) both; }
+    .wordfinity-tear.right { right:-2%; transform:rotate(3deg); clip-path:polygon(4% 0,100% 0,100% 100%,6% 100%,0 62%,5% 38%); animation:wordfinity-tear-right 1.25s cubic-bezier(.2,.75,.25,1) both; }
+    @keyframes wordfinity-tear-left { 0%{transform:rotate(-3deg) translateX(0)} 45%{transform:rotate(-9deg) translateX(-22%) translateY(-5px)} 100%{transform:rotate(-13deg) translateX(-115%) translateY(13px);opacity:.25} }
+    @keyframes wordfinity-tear-right { 0%{transform:rotate(3deg) translateX(0)} 45%{transform:rotate(9deg) translateX(22%) translateY(-5px)} 100%{transform:rotate(13deg) translateX(115%) translateY(13px);opacity:.25} }
+    @media(prefers-reduced-motion:reduce){.wordfinity-tear{animation:none!important;opacity:.15}}
     .wordfinity-card.wordfinity-closed .wordfinity-card-footer { position:relative; z-index:6; justify-content:flex-end; }
     .wordfinity-card.wordfinity-closed .wordfinity-closed-label { color:#ffd84a; font-size:.72rem; font-weight:900; text-align:right; }
     .wordfinity-mini-sign {
@@ -1315,12 +1322,12 @@
           </div>
         </div>
 
-        <!-- WORDFINITY – vorübergehend geschlossen, Baustellenband vollständig -->
-        <div class="game-card card-purple wordfinity-card wordfinity-closed" aria-disabled="true" aria-label="Wordfinity ist vorübergehend geschlossen">
+        <!-- WORDFINITY – wieder freigegeben; das Baustellenband zerreißt beim Öffnen -->
+        <div class="game-card card-purple wordfinity-card" onclick="PlayfinityRouter.go('wordfinity')" role="button" tabindex="0" aria-label="Wordfinity starten" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();PlayfinityRouter.go('wordfinity')}">
           <div class="wordfinity-card-copy">
-            <div class="card-badge" style="color:var(--neon-purple)">Vorübergehend geschlossen</div>
+            <div class="card-badge" style="color:var(--neon-purple)">Worträtsel</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-pink)">FINITY</span></div>
-            <div class="card-desc">Wir überarbeiten den Wortpool, damit die gesuchten Wörter eindeutig und fair bleiben.</div>
+            <div class="card-desc">Finde das geheime Wort und entdecke, wie nah deine Tipps an der Lösung liegen.</div>
           </div>
           <div class="wordfinity-card-scene" aria-hidden="true">
             <div class="wordfinity-mini-sign" aria-hidden="true">
@@ -1336,9 +1343,9 @@
               <path class="wf-smoke" d="M50 23 C45 18 53 15 48 10 C45 7 48 4 51 2 M42 25 C38 21 43 18 40 15"/>
               <path class="wf-figure" d="M43 100 L31 100 M98 96 L106 96"/>
             </svg>
-            <div class="wordfinity-barrier-full"><span>ZUTRITT VERBOTEN · WORDFINITY GESCHLOSSEN</span></div>
+            <div class="wordfinity-tear left"></div><div class="wordfinity-tear right"></div>
           </div>
-          <div class="card-footer wordfinity-card-footer"><span class="wordfinity-closed-label">🔒 GESPERRT – BITTE SPÄTER WIEDERKOMMEN</span></div>
+          <div class="card-footer wordfinity-card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
         </div>
 
         <!-- PlayDuko -->
@@ -1675,20 +1682,12 @@
       },
 
       go(screenId) {
-        if (screenId === 'wordfinity') {
-          if (this.currentScreen !== 'menu') this.renderScreen('menu', false);
-          return;
-        }
         if (screenId === this.currentScreen) return;
         history.pushState({ screen: screenId }, '', '#' + screenId);
         this.renderScreen(screenId, true);
       },
 
       renderScreen(screenId, isForwardNav) {
-        if (screenId === 'wordfinity') {
-          screenId = 'menu';
-          if (location.hash !== '#menu') history.replaceState({ screen: 'menu' }, '', '#menu');
-        }
         PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('game-active', screenId !== 'menu');
