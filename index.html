@@ -3175,6 +3175,11 @@
     }
 
     function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!', winnerName = '') {
+      const screen=PlayfinityRouter.currentScreen;
+      const gameNames={wordle:'WORDLE',hangmann:'HANGMANN'};
+      const game=gameNames[screen]||String(screen||'SPIEL').toUpperCase();
+      showPlayfinityWinner({game,winner:winnerName||'Lokaler Spieler',answer,meta:message,onNext:onContinue||(()=>{})});
+      return;
       const overlay = document.getElementById('correct-answer-overlay');
       const title = document.getElementById('correct-answer-message');
       const word = document.getElementById('correct-answer-word');
