@@ -1171,7 +1171,18 @@
     #pf-admin-effect .pf-crossing-emoji.chicken{animation:pf-object-bounce 4s ease-in-out forwards}
     #pf-admin-effect .pf-crossing-emoji.lightning{animation:pf-object-lightning 1.8s ease-out forwards}
     #pf-admin-effect .pf-crossing-emoji.potato{animation:pf-object-spin 3.6s ease-in forwards}
-    #pf-admin-effect .pf-crossing-emoji.koala{animation:pf-object-koala 5s cubic-bezier(.2,.8,.25,1) forwards}
+    #pf-admin-effect .pf-crossing-emoji.koala{display:none}
+    #pf-admin-effect .pf-koala-rig{position:absolute;top:-3vh;left:0;width:clamp(5rem,12vw,9rem);height:clamp(12rem,30vh,19rem);transform-origin:50% 0;animation:pf-koala-liana 5.6s cubic-bezier(.35,.02,.3,1) forwards;filter:drop-shadow(0 8px 10px #0008)}
+    #pf-admin-effect .pf-koala-vine{position:absolute;left:50%;top:0;height:68%;width:8px;border-radius:100%;background:linear-gradient(90deg,#245b32,#76c85a,#245b32);transform:translateX(-50%) rotate(4deg);box-shadow:0 0 8px #65d66a88}
+    #pf-admin-effect .pf-koala-vine:before,#pf-admin-effect .pf-koala-vine:after{content:"";position:absolute;width:34px;height:15px;background:#54b85b;border-radius:100% 0 100% 0;left:-28px;top:35%;transform:rotate(-25deg)}
+    #pf-admin-effect .pf-koala-vine:after{left:4px;top:58%;transform:rotate(35deg) scaleX(-1)}
+    #pf-admin-effect .pf-koala-hanger{position:absolute;left:50%;top:61%;transform:translateX(-50%);font-size:clamp(4.5rem,10vw,7rem);white-space:nowrap;text-shadow:0 5px 8px #0009}
+    #pf-admin-effect.elite{background:radial-gradient(ellipse at center,#7b4d00aa 0%,#11152ddd 50%,#050711ee 100%)}
+    #pf-admin-effect .pf-elite-title{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) scale(.25) rotate(-8deg);font-size:clamp(5rem,19vw,15rem);font-weight:1000;letter-spacing:.08em;line-height:.9;color:#ffe68a;-webkit-text-stroke:2px #fff4c2;text-shadow:0 0 8px #fff,0 0 22px #ffc52e,0 0 52px #ff8c00,0 12px 0 #6b3500;white-space:nowrap;animation:pf-elite-pop 1s cubic-bezier(.15,1.6,.35,1) forwards}
+    #pf-admin-effect .pf-elite-subtitle{position:absolute;left:50%;top:61%;transform:translate(-50%,30px) rotate(-5deg);font-size:clamp(2.2rem,8vw,6rem);font-weight:1000;color:#fff;text-shadow:0 0 12px #00eaff,0 0 30px #00eaff,4px 5px 0 #171b42;white-space:nowrap;animation:pf-elite-hello .65s .65s cubic-bezier(.2,1.5,.4,1) both}
+    @keyframes pf-elite-pop{0%{transform:translate(-50%,-50%) scale(.25) rotate(-8deg);opacity:0}75%{transform:translate(-50%,-50%) scale(1.12) rotate(3deg);opacity:1}100%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1}}
+    @keyframes pf-elite-hello{0%{transform:translate(-50%,30px) rotate(-5deg) scale(.2);opacity:0}70%{transform:translate(-50%,-8px) rotate(4deg) scale(1.12);opacity:1}100%{transform:translate(-50%,0) rotate(-2deg) scale(1);opacity:1}}
+    @keyframes pf-koala-liana{0%{transform:translate(-25vw,-2vh) rotate(-52deg);opacity:0}10%{opacity:1}27%{transform:translate(24vw,2vh) rotate(48deg)}48%{transform:translate(51vw,0) rotate(-42deg)}68%{transform:translate(77vw,1vh) rotate(36deg)}88%{transform:translate(104vw,2vh) rotate(-25deg)}100%{transform:translate(130vw,4vh) rotate(15deg);opacity:0}}
     #pf-admin-effect .pf-crossing-emoji.fire{animation:pf-object-fire 3.2s ease-out forwards}
     @keyframes pf-object-cross{0%{transform:translate(-22vw,0) rotate(-8deg)}50%{transform:translate(55vw,-5vh) rotate(8deg)}100%{transform:translate(125vw,0) rotate(-8deg)}}
     @keyframes pf-object-bounce{0%{transform:translate(-22vw,0)}20%{transform:translate(5vw,-15vh) rotate(8deg)}42%{transform:translate(40vw,0) rotate(-8deg)}65%{transform:translate(75vw,-13vh) rotate(8deg)}100%{transform:translate(125vw,0)}}
@@ -1182,7 +1193,7 @@
     @keyframes pf-object-robot{0%{transform:translate(-22vw,0) rotate(-10deg)}25%{transform:translate(25vw,-2vh) rotate(10deg)}50%{transform:translate(55vw,0) rotate(-10deg)}75%{transform:translate(90vw,-2vh) rotate(10deg)}100%{transform:translate(125vw,0)}}
     @keyframes pf-object-lightning{0%{transform:translate(-22vw,-5vh) scale(.6);opacity:0}20%{opacity:1}55%{transform:translate(55vw,4vh) scale(1.4)}100%{transform:translate(125vw,-8vh) scale(.8);opacity:0}}
     @keyframes pf-object-fire{0%{transform:translate(-22vw,5vh) scale(.7);opacity:.5}45%{transform:translate(55vw,-6vh) scale(1.25);opacity:1}100%{transform:translate(125vw,0) scale(.9);opacity:.2}}
-    @keyframes pf-object-koala{0%{transform:translate(-24vw,18vh) rotate(-35deg) scale(.7);opacity:0}12%{transform:translate(2vw,-5vh) rotate(18deg) scale(1.15);opacity:1}28%{transform:translate(28vw,3vh) rotate(-18deg) scale(1.05)}43%{transform:translate(48vw,-10vh) rotate(25deg) scale(1.2)}62%{transform:translate(72vw,-2vh) rotate(390deg) scale(1.1)}82%{transform:translate(98vw,-13vh) rotate(720deg) scale(.95)}100%{transform:translate(128vw,4vh) rotate(900deg) scale(.8);opacity:0}}
+
     @keyframes pf-cat-cross{0%{transform:translate(-24vw,2vh) scale(.85) rotate(-8deg)}15%{transform:translate(4vw,-5vh) scale(1) rotate(5deg)}35%{transform:translate(34vw,1vh) scale(1.08) rotate(-4deg)}55%{transform:translate(64vw,-6vh) scale(1) rotate(5deg)}78%{transform:translate(94vw,1vh) scale(1.08) rotate(-4deg)}100%{transform:translate(130vw,-3vh) scale(.95) rotate(6deg)}}
     @keyframes pf-frog-cross{0%{transform:translate(-20vw,0) rotate(-12deg)}18%{transform:translate(5vw,-19vh) rotate(8deg)}36%{transform:translate(32vw,0) rotate(-7deg)}58%{transform:translate(61vw,-17vh) rotate(8deg)}78%{transform:translate(88vw,0) rotate(-5deg)}100%{transform:translate(125vw,-8vh) rotate(12deg)}}
     @keyframes pf-skeleton-cross{0%{transform:translate(-22vw,0) rotate(-8deg)}20%{transform:translate(8vw,-3vh) rotate(8deg)}40%{transform:translate(42vw,2vh) rotate(-8deg)}60%{transform:translate(72vw,-3vh) rotate(8deg)}80%{transform:translate(100vw,1vh) rotate(-8deg)}100%{transform:translate(125vw,0) rotate(8deg)}}
@@ -2665,7 +2676,7 @@
         return true;
       },
       triggerChatWordEffect(word){
-        const effects={frosch:'frog',rakete:'rocket',geist:'ghost',skelett:'skeleton',hund:'dog',katze:'cat',pinguin:'penguin',affe:'monkey',hai:'shark',banane:'banana',ente:'duck',pizza:'pizza',ufo:'ufo',roboter:'robot',huhn:'chicken',blitz:'lightning',konfetti:'confetti',kartoffel:'potato',kanoffel:'potato',koala:'koala',feuer:'fire'};
+        const effects={frosch:'frog',rakete:'rocket',geist:'ghost',skelett:'skeleton',hund:'dog',katze:'cat',pinguin:'penguin',affe:'monkey',hai:'shark',banane:'banana',ente:'duck',pizza:'pizza',ufo:'ufo',roboter:'robot',huhn:'chicken',blitz:'lightning',konfetti:'confetti',kartoffel:'potato',kanoffel:'potato',koala:'koala',elite:'elite',feuer:'fire'};
         const action=effects[word],now=Date.now();
         if(!action||now-this.lastKeywordEffectAt<6000)return;
         this.lastKeywordEffectAt=now;
@@ -3229,8 +3240,8 @@
         document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
         root.className = '';
         root.innerHTML = '<div class="pf-effect-label"></div>';
-        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Konfetti-Explosion!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!',dog:'🐶 Wuff! Der Hund kommt!',penguin:'🐧 Pinguin auf Abwegen!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Banane im Anflug!',duck:'🦆 Quak! Die Ente kommt!',pizza:'🍕 Pizza-Lieferung!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter aktiviert!',chicken:'🐔 Hühner-Alarm!',lightning:'⚡ Blitzeinschlag!',potato:'🥔 Kanoffel-Rakete!',koala:'🐨 KOALA-KARATE! Blätterwirbel!',fire:'🔥 Feuer frei!'};
-        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200,dog:4200,penguin:4400,monkey:3900,shark:3600,banana:3300,duck:4200,pizza:3600,ufo:3400,robot:3900,chicken:4000,lightning:1800,potato:3600,koala:5000,fire:3200};
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Konfetti-Explosion!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!',dog:'🐶 Wuff! Der Hund kommt!',penguin:'🐧 Pinguin auf Abwegen!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Banane im Anflug!',duck:'🦆 Quak! Die Ente kommt!',pizza:'🍕 Pizza-Lieferung!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter aktiviert!',chicken:'🐔 Hühner-Alarm!',lightning:'⚡ Blitzeinschlag!',potato:'🥔 Kanoffel-Rakete!',koala:'🐨 Lianen-Koala im Anflug!',elite:'⭐ ELITE – HALLOOOO?!',fire:'🔥 Feuer frei!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200,dog:4200,penguin:4400,monkey:3900,shark:3600,banana:3300,duck:4200,pizza:3600,ufo:3400,robot:3900,chicken:4000,lightning:1800,potato:3600,koala:5600,elite:4800,fire:3200};
         if (action === 'shake') document.body.classList.add('pf-admin-shake');
         else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
         else if (action === 'invert') document.body.classList.add('pf-admin-invert');
@@ -3239,7 +3250,9 @@
         else if (action === 'ice') { document.body.classList.add('pf-admin-ice'); root.classList.add('ice'); }
         else if (['confetti','fog','static'].includes(action)) root.classList.add(action);
         else if (action === 'googly') { root.classList.add('googly'); root.insertAdjacentHTML('afterbegin','<div class="pf-googly-eyes" aria-hidden="true">👀</div>'); }
-        else if (['frog','skeleton','ghost','rocket','cat','dog','penguin','monkey','shark','banana','duck','pizza','ufo','robot','chicken','lightning','potato','koala','fire'].includes(action)) {
+        else if (action === 'elite') { root.classList.add('elite'); const title=document.createElement('div');title.className='pf-elite-title';title.textContent='ELITE';const subtitle=document.createElement('div');subtitle.className='pf-elite-subtitle';subtitle.textContent='HALLOOOO?!';root.append(title,subtitle); }
+        else if (action === 'koala') { const rig=document.createElement('div');rig.className='pf-koala-rig';const vine=document.createElement('div');vine.className='pf-koala-vine';const hanger=document.createElement('div');hanger.className='pf-koala-hanger';hanger.textContent='🐨';rig.append(vine,hanger);root.appendChild(rig); }
+        else if (['frog','skeleton','ghost','rocket','cat','dog','penguin','monkey','shark','banana','duck','pizza','ufo','robot','chicken','lightning','potato','fire'].includes(action)) {
           const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀',cat:'🐱',dog:'🐶',penguin:'🐧',monkey:'🐒',shark:'🦈',banana:'🍌',duck:'🦆',pizza:'🍕',ufo:'🛸',robot:'🤖',chicken:'🐔',lightning:'⚡',potato:'🥔',koala:'🐨🌿',fire:'🔥'};
           root.classList.add(action);
           const sprite = document.createElement('div');
