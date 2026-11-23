@@ -114,11 +114,11 @@
     {
       "id": "pf-013",
       "cat": "Deutschland",
-      "q": "Wie viele Einwohner hatte Deutschland Ende 2023 ungefähr?",
-      "a": 84000000,
+      "q": "Wie viele Einwohner hatte Deutschland am 31. Dezember 2023 laut revidiertem Stand ungefähr?",
+      "a": 83500000,
       "u": "Einwohner",
-      "exp": "Die Bevölkerungszahl lag Ende 2023 bei rund 84,7 Millionen.",
-      "source": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/_inhalt.html"
+      "exp": "Auf Basis des Zensus 2022 wurde die Bevölkerungszahl für Ende 2023 später auf 83.456.045 Personen revidiert.",
+      "source": "https://www.destatis.de/DE/Themen/Gesellschaft-Umwelt/Bevoelkerung/Bevoelkerungsstand/Tabellen/zensus-geschlecht-staatsangehoerigkeit-2023-basis-2022.html"
     },
     {
       "id": "pf-014",
@@ -384,7 +384,7 @@
     {
       "id": "pf-043",
       "cat": "Tiere",
-      "q": "Wie viele Mägen hat eine Kuh?",
+      "q": "Wie viele Magenabschnitte hat eine Kuh?",
       "a": 4,
       "u": "Magenabschnitte",
       "exp": "Wiederkäuer wie Kühe haben vier Magenabschnitte.",
@@ -577,7 +577,7 @@
       "a": 105,
       "u": "Tasten",
       "exp": "Viele deutsche Standardtastaturen besitzen 105 Tasten; Layouts unterscheiden sich.",
-      "source": "https://www.iso.org/standard/"
+      "source": "https://www.logitech.com/de-de/discover/a/ansi-vs-iso-keyboards"
     },
     {
       "id": "pf-065",
@@ -634,15 +634,6 @@
       "source": "https://www.britannica.com/topic/Titanic"
     },
     {
-      "id": "pf-071",
-      "cat": "Geschichte",
-      "q": "In welchem Jahr wurde die erste Mondlandung durchgeführt?",
-      "a": 1969,
-      "u": "Jahr",
-      "exp": "Apollo 11 brachte die ersten Menschen auf die Mondoberfläche.",
-      "source": "https://www.nasa.gov/mission/apollo-11/"
-    },
-    {
       "id": "pf-072",
       "cat": "Geschichte",
       "q": "In welchem Jahr wurde die Unabhängigkeitserklärung der USA verabschiedet?",
@@ -658,7 +649,7 @@
       "a": 1896,
       "u": "Jahr",
       "exp": "Die ersten Olympischen Spiele der Neuzeit fanden 1896 in Athen statt.",
-      "source": "https://olympics.com/ioc/ancient-olympic-games"
+      "source": "https://www.olympics.com/ioc/news/athens-1896-the-revival-of-the-olympic-games"
     },
     {
       "id": "pf-074",
@@ -686,15 +677,6 @@
       "u": "Pyramiden",
       "exp": "Die Hauptgruppe besteht aus den Pyramiden von Cheops, Chephren und Mykerinos.",
       "source": "https://www.britannica.com/place/Pyramids-of-Giza"
-    },
-    {
-      "id": "pf-077",
-      "cat": "Geschichte",
-      "q": "In welchem Jahr wurde die Berliner Mauer geöffnet?",
-      "a": 1989,
-      "u": "Jahr",
-      "exp": "Die Grenzübergänge wurden am 9. November 1989 geöffnet.",
-      "source": "https://www.chronik-der-mauer.de/"
     },
     {
       "id": "pf-078",
@@ -861,7 +843,7 @@
     {
       "id": "pf-096",
       "cat": "Essen",
-      "q": "Wie viele Gramm Zucker stecken in einem Würfelzucker ungefähr?",
+      "q": "Wie viel wiegt ein typischer Würfelzucker ungefähr?",
       "a": 3,
       "u": "Gramm",
       "exp": "Ein typischer Würfelzucker wiegt ungefähr drei Gramm; Größen variieren je nach Land.",
@@ -906,7 +888,7 @@
     {
       "id": "pf-101",
       "cat": "Essen",
-      "q": "Wie viele Milliliter fasst ein deutsches Standardglas für Bier oft?",
+      "q": "Wie viele Milliliter fasst ein Halbliter-Bierglas?",
       "a": 500,
       "u": "Milliliter",
       "exp": "Ein halber Liter ist eine verbreitete Ausschankgröße; Gläser variieren regional.",
@@ -915,10 +897,10 @@
     {
       "id": "pf-102",
       "cat": "Essen",
-      "q": "Wie viele Sekunden benötigt Licht ungefähr, um einen Kilometer zurückzulegen?",
-      "a": 0.0000033,
-      "u": "Sekunden",
-      "exp": "Licht legt einen Kilometer in rund 3,3 Mikrosekunden zurück.",
+      "q": "Wie viele Mikrosekunden benötigt Licht ungefähr für einen Kilometer?",
+      "a": 3.3,
+      "u": "Mikrosekunden",
+      "exp": "Licht legt einen Kilometer im Vakuum in rund 3,34 Mikrosekunden zurück.",
       "source": "https://www.nist.gov/pml/owm/metric-si/si-units-time"
     },
     {
@@ -996,7 +978,7 @@
     {
       "id": "pf-111",
       "cat": "Natur",
-      "q": "Wie viele Meter kann ein Blitzkanal lang sein?",
+      "q": "Wie viele Kilometer lang kann ein Blitzkanal ungefähr sein?",
       "a": 5,
       "u": "Kilometer",
       "exp": "Blitze können mehrere Kilometer lang sein; einzelne Entladungen reichen noch weiter.",
@@ -1041,7 +1023,7 @@
     {
       "id": "pf-116",
       "cat": "Rekorde",
-      "q": "Wie lang ist die Golden Gate Bridge ungefähr?",
+      "q": "Wie lang ist die Golden Gate Bridge einschließlich ihrer Zufahrten ungefähr?",
       "a": 2737,
       "u": "Meter",
       "exp": "Die gesamte Brücke ist einschließlich Zufahrten etwa 2.737 Meter lang.",
@@ -1356,20 +1338,11 @@
     {
       "id": "pf-151",
       "cat": "Deutschland",
-      "q": "Wie viele Tage liegen zwischen dem 1. Januar und dem Tag der Deutschen Einheit am 3. Oktober eines normalen Jahres?",
+      "q": "Wie viele volle Tage vergehen vom 1. Januar bis zum 3. Oktober eines normalen Jahres?",
       "a": 275,
       "u": "Tage",
       "exp": "Der 3. Oktober ist der Tag der Deutschen Einheit; in einem normalen Jahr liegt er 275 Tage nach dem 1. Januar, wenn der 1. Januar als Tag null gerechnet wird.",
       "source": "https://www.bundesregierung.de/breg-de/themen/deutsche-einheit"
-    },
-    {
-      "id": "pf-152",
-      "cat": "Geografie",
-      "q": "Wie viele Kilometer beträgt der Erdumfang am Äquator ungefähr?",
-      "a": 40075,
-      "u": "km",
-      "exp": "Der Äquatorumfang der Erde beträgt ungefähr 40.075 Kilometer.",
-      "source": "https://oceanservice.noaa.gov/facts/earth-round.html"
     },
     {
       "id": "pf-153",
@@ -1437,10 +1410,10 @@
     {
       "id": "pf-160",
       "cat": "Biologie",
-      "q": "Wie viele Knochen befinden sich im Mittelohr eines Menschen insgesamt?",
+      "q": "Wie viele Gehörknöchelchen befinden sich in beiden Ohren eines Menschen zusammen?",
       "a": 6,
       "u": "Knochen",
-      "exp": "Jedes Ohr hat drei Gehörknöchelchen: Hammer, Amboss und Steigbügel.",
+      "exp": "Jedes Ohr hat drei Gehörknöchelchen: Hammer, Amboss und Steigbügel. Zusammen sind es sechs.",
       "source": "https://www.nidcd.nih.gov/health/how-do-we-hear"
     },
     {
@@ -1559,15 +1532,6 @@
       "u": "Ordnungszahl",
       "exp": "Gold besitzt die Ordnungszahl 79.",
       "source": "https://iupac.org/what-we-do/periodic-table-of-elements/"
-    },
-    {
-      "id": "pf-175",
-      "cat": "Natur",
-      "q": "Wie viele Stunden dauert ein mittlerer Sonnentag auf der Erde?",
-      "a": 24,
-      "u": "Stunden",
-      "exp": "Ein mittlerer Sonnentag dauert 24 Stunden.",
-      "source": "https://science.nasa.gov/earth/facts/"
     },
     {
       "id": "pf-176",
@@ -1698,11 +1662,11 @@
     {
       "id": "pf-190",
       "cat": "Sport",
-      "q": "Wie viele Runden umfasst ein olympischer Boxkampf der Männer im aktuellen Format?",
+      "q": "Wie viele Runden dauerte ein olympischer Männer-Boxkampf bei den Spielen 2024 in Paris?",
       "a": 3,
       "u": "Runden",
-      "exp": "Olympische Boxkämpfe werden in drei Runden ausgetragen.",
-      "source": "https://olympics.com/en/sports/boxing/"
+      "exp": "Bei den Olympischen Spielen 2024 in Paris wurden Boxkämpfe über drei Runden ausgetragen.",
+      "source": "https://library.olympics.com/digitalCollection/DigitalCollectionAttachmentDownloadHandler.ashx?documentId=3416177&parentDocumentId=3416166&skipCopyright=true&skipWatermark=true"
     },
     {
       "id": "pf-191",
@@ -1851,7 +1815,7 @@
     {
       "id": "pf-207",
       "cat": "Essen",
-      "q": "Wie viele Liter Milch gibt eine Milchkuh in einer modernen Milchviehhaltung pro Tag ungefähr?",
+      "q": "Wie viele Liter Milch gibt eine Hochleistungskuh in moderner Milchviehhaltung pro Tag ungefähr?",
       "a": 30,
       "u": "Liter",
       "exp": "Die tägliche Milchleistung variiert stark; moderne Milchkühe können im Mittel um 30 Liter täglich geben.",
@@ -1860,7 +1824,7 @@
     {
       "id": "pf-208",
       "cat": "Rekorde",
-      "q": "Wie viele Meter hoch ist der höchste Baum der Welt, Hyperion, ungefähr?",
+      "q": "Wie viele Meter hoch ist der derzeit höchste bekannte Baum, Hyperion, ungefähr?",
       "a": 116,
       "u": "Meter",
       "exp": "Der Küstenmammutbaum Hyperion ist etwas mehr als 115 Meter hoch.",
@@ -1941,7 +1905,7 @@
     {
       "id": "pf-218",
       "cat": "Tiere",
-      "q": "Welche Geschwindigkeit kann ein Wanderfalke im Sturzflug ungefähr erreichen?",
+      "q": "Welche Geschwindigkeit erreicht ein Wanderfalke im Sturzflug ungefähr?",
       "a": 320,
       "u": "km/h",
       "exp": "Wanderfalken erreichen im Sturzflug Geschwindigkeiten von über 300 km/h.",
