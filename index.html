@@ -2633,7 +2633,7 @@
               return;
             }
             if(!this.dictionarySet||!this.dictionarySet.has(word)){
-              document.getElementById('wordfinity-status').textContent='Bitte nur bekannte Hauptwörter (Nomen) in der Einzahl eingeben!';
+              document.getElementById('wordfinity-status').textContent='Bitte gib ein Wort ein, das im Wörterbuch steht!';
               input.select();
               return;
             }
@@ -2691,19 +2691,68 @@
         const nonNounTargets=new Set(['bekommen','gesehen','kleine','eigenen','gewesen','ausserdem','ganzen','würden']);
         return !unsuitable.test(target)&&!unsuitable.test(category)&&!nonNounTargets.has(target);
       },
+      datasetCacheName:'wordfinity-dataset-cache',
+      datasetCacheVersion:1,
+      async readCachedDataset(){
+        if(!('indexedDB' in window))return null;
+        return new Promise(resolve=>{
+          let request;
+          try{request=indexedDB.open(this.datasetCacheName,1);}catch(error){resolve(null);return;}
+          request.onupgradeneeded=()=>{const db=request.result;if(!db.objectStoreNames.contains('datasets'))db.createObjectStore('datasets',{keyPath:'url'});};
+          request.onerror=()=>resolve(null);
+          request.onsuccess=()=>{
+            const db=request.result;
+            if(!db.objectStoreNames.contains('datasets')){db.close();resolve(null);return;}
+            let transaction;
+            try{transaction=db.transaction('datasets','readonly');}catch(error){db.close();resolve(null);return;}
+            const get=transaction.objectStore('datasets').get(this.datasetUrl);
+            get.onsuccess=()=>{const record=get.result||null;db.close();resolve(record);};
+            get.onerror=()=>{db.close();resolve(null);};
+          };
+        });
+      },
+      async writeCachedDataset(data){
+        if(!('indexedDB' in window))return false;
+        return new Promise(resolve=>{
+          let request;
+          try{request=indexedDB.open(this.datasetCacheName,1);}catch(error){resolve(false);return;}
+          request.onupgradeneeded=()=>{const db=request.result;if(!db.objectStoreNames.contains('datasets'))db.createObjectStore('datasets',{keyPath:'url'});};
+          request.onerror=()=>resolve(false);
+          request.onsuccess=()=>{
+            const db=request.result;
+            let transaction;
+            try{transaction=db.transaction('datasets','readwrite');transaction.objectStore('datasets').put({url:this.datasetUrl,version:this.datasetCacheVersion,savedAt:Date.now(),data});}
+            catch(error){db.close();resolve(false);return;}
+            transaction.oncomplete=()=>{db.close();resolve(true);};
+            transaction.onerror=()=>{db.close();resolve(false);};
+            transaction.onabort=()=>{db.close();resolve(false);};
+          };
+        });
+      },
+      isValidDataset(data){
+        return !!(data&&Array.isArray(data.woerterbuch)&&data.woerterbuch.length>=100&&data.ziele&&typeof data.ziele==='object'&&Object.keys(data.ziele).length);
+      },
       async loadDataset(){
         if(this.dataset)return this.dataset;
-        const response=await fetch(this.datasetUrl,{cache:'no-store'});
+        const cached=await this.readCachedDataset();
+        const cacheIsFresh=cached&&cached.version===this.datasetCacheVersion&&Date.now()-cached.savedAt<7*24*60*60*1000&&this.isValidDataset(cached.data);
+        if(cacheIsFresh){
+          this.dataset=cached.data;
+          this.dictionarySet=new Set(this.dataset.woerterbuch.map(word=>this.normalize(word)));
+          console.info('[Wordfinity] Wortliste aus lokalem Speicher geladen:',this.dataset.woerterbuch.length,'Wörter.');
+          return this.dataset;
+        }
+        const response=await fetch(this.datasetUrl);
         if(!response.ok)throw new Error('Wortliste konnte nicht geladen werden (HTTP '+response.status+').');
         if(typeof DecompressionStream!=='function')throw new Error('Dieser Browser unterstützt das Entpacken der gzip-Wortliste nicht.');
         const compressed=await response.arrayBuffer();
         const stream=new Blob([compressed]).stream().pipeThrough(new DecompressionStream('gzip'));
         const json=await new Response(stream).text();
         const data=JSON.parse(json);
-        if(!data||!Array.isArray(data.woerterbuch)||!data.ziele||typeof data.ziele!=='object')throw new Error('Die Wortliste hat nicht das erwartete Format (woerterbuch/ziele).');
-        if(data.woerterbuch.length<100||!Object.keys(data.ziele).length)throw new Error('Die Wortliste ist unvollständig.');
+        if(!this.isValidDataset(data))throw new Error('Die Wortliste hat nicht das erwartete Format oder ist unvollständig.');
         this.dataset=data;
         this.dictionarySet=new Set(data.woerterbuch.map(word=>this.normalize(word)));
+        this.writeCachedDataset(data).then(saved=>console.info(saved?'[Wordfinity] Wortliste lokal gespeichert.':'[Wordfinity] Lokales Speichern nicht möglich; Browser-Speicher prüfen.'));
         console.info('[Wordfinity] Wortliste geladen:',data.woerterbuch.length,'Wörter,',Object.keys(data.ziele).length,'Ziele.');
         return data;
       },
@@ -2750,7 +2799,7 @@
         if(!this.puzzle||this.won)return false;
         if(!word||/\s/u.test(word))return false;
         if(!this.dictionarySet||!this.dictionarySet.has(word)){
-          if(options.source==='chat'||options.source==='manual')document.getElementById('wordfinity-status').textContent='Bitte nur bekannte Hauptwörter (Nomen) in der Einzahl eingeben!';
+          if(options.source==='chat'||options.source==='manual')document.getElementById('wordfinity-status').textContent='Bitte gib ein Wort ein, das im Wörterbuch steht!';
           return false;
         }
         const previous=this.guesses.find(item=>item.word===word);
