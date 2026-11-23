@@ -316,21 +316,21 @@
 
     /* Wordfinity: halb geöffnetes Baustellenband + wartender Strichmann */
     .wordfinity-card { min-height: 206px; isolation: isolate; }
-    .wordfinity-card-copy { position: relative; z-index: 2; padding-right: 92px; }
-    .wordfinity-card-scene { position:absolute; inset:auto 0 0; height:112px; z-index:1; pointer-events:none; overflow:hidden; }
+    .wordfinity-card-copy { position: relative; z-index: 3; padding-right: 112px; }
+    .wordfinity-card-scene { position:absolute; inset:auto 0 0; height:140px; z-index:2; pointer-events:none; overflow:visible; }
     .wordfinity-barrier-half { position:absolute; bottom:24px; height:15px; width:47%; border-top:1px solid #171717; border-bottom:1px solid #171717; background:repeating-linear-gradient(135deg,#f4ca45 0 12px,#171717 12px 24px); box-shadow:0 2px 5px #0008; }
     .wordfinity-barrier-half.left { left:-2%; transform:rotate(-3deg); clip-path:polygon(0 0,100% 0,97% 78%,94% 100%,0 100%); }
     .wordfinity-barrier-half.right { right:-2%; transform:rotate(3deg); clip-path:polygon(3% 0,100% 0,100% 100%,6% 100%,0 75%); }
-    .wordfinity-card-smoker { position:absolute; right:9px; bottom:27px; width:92px; height:112px; overflow:visible; filter:drop-shadow(0 2px 1px #9aa0b522); }
+    .wordfinity-card-smoker { position:absolute; right:-7px; bottom:0; width:116px; height:138px; overflow:visible; filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 2px 2px #000); }
     .wordfinity-card-smoker .wf-figure { fill:none; stroke:#03040a; stroke-width:7; stroke-linecap:round; stroke-linejoin:round; }
     .wordfinity-card-smoker .wf-head { fill:#03040a; stroke:#03040a; stroke-width:2; }
     .wordfinity-card-smoker .wf-cigarette { stroke:#03040a; stroke-width:3; stroke-linecap:round; }
-    .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.8; }
-    .wordfinity-card-footer { position:relative; z-index:3; }
+    .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.95; }
+    .wordfinity-card-footer { position:relative; z-index:4; }
     @media(max-width:420px) {
       .wordfinity-card { min-height:210px; }
-      .wordfinity-card-copy { padding-right:78px; }
-      .wordfinity-card-smoker { right:5px; width:82px; height:104px; }
+      .wordfinity-card-copy { padding-right:94px; }
+      .wordfinity-card-smoker { right:-5px; width:106px; height:126px; }
     }
 
     .game-card:hover {
