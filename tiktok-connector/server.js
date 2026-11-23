@@ -17,8 +17,8 @@ const sessions = new Map();
 
 const activePlayers = new Map();
 const PLAYER_GAMES = new Set(["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"]);
-const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly","frog","skeleton","ghost","rocket","cat","dog","penguin","monkey","shark","banana","duck","pizza","ufo","robot","chicken","lightning","potato","koala","fire"]);
-const STREAMER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly","frog","skeleton","ghost","rocket","cat","dog","penguin","monkey","shark","banana","duck","pizza","ufo","robot","chicken","lightning","potato","koala","fire"]);
+const PLAYER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly","frog","skeleton","ghost","rocket","cat","dog","penguin","monkey","shark","banana","duck","pizza","ufo","robot","chicken","lightning","potato","koala","elite","fire"]);
+const STREAMER_TROLL_ACTIONS = new Set(["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly","frog","skeleton","ghost","rocket","cat","dog","penguin","monkey","shark","banana","duck","pizza","ufo","robot","chicken","lightning","potato","koala","elite","fire"]);
 function playerSnapshot() {
   const now = Date.now();
   for (const [id, player] of activePlayers) {
