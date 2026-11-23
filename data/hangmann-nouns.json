@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus fünfzehn Kategorien. Die Kategorie Filme & Serien enthält bekannte Filme, Serien und Figuren; mehrteilige Namen sind ohne Leerzeichen und Bindestriche zusammengeschrieben. Die Kategorie Gaming enthält bekannte Videospiele.",
+  "description": "Deutsche Begriffe für Hangman aus sechzehn Kategorien. Die Kategorie Filme & Serien enthält bekannte Filme, Serien und Figuren; mehrteilige Namen sind ohne Leerzeichen und Bindestriche zusammengeschrieben. Die Kategorie Gaming enthält bekannte Videospiele. Die Kategorie Superhelden & Schurken enthält bekannte Comic- und Superheldenfiguren.",
   "words": [
     {
       "word": "Affe",
@@ -28224,6 +28224,1206 @@
     {
       "word": "Frostpunk2",
       "category": "Gaming"
+    },
+    {
+      "word": "Flash",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Aquaman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "GreenLantern",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MartianManhunter",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "GreenArrow",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Supergirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Batgirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nightwing",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Robin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Cyborg",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Shazam",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hawkman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hawkgirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Zatanna",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Constantine",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlueBeetle",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BoosterGold",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Firestorm",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Atom",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "PlasticMan",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Raven",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Starfire",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BeastBoy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DonnaTroy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Superboy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "PowerGirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "RedHood",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Batwoman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Huntress",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlackCanary",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Vixen",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Static",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MisterTerrific",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DoctorFate",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Spectre",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SwampThing",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AnimalMan",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Orion",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MisterMiracle",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BigBarda",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Lobo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Deathstroke",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Deadshot",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Riddler",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Penguin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TwoFace",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Bane",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Scarecrow",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "PoisonIvy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Catwoman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TaliaAlGhul",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hush",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Clayface",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "KillerCroc",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ManBat",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MrFreeze",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlackMask",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Firefly",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MadHatter",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "HugoStrange",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SolomonGrundy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Darkseid",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Steppenwolf",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Doomsday",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Brainiac",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "LexLuthor",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "GeneralZod",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Metallo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Parasite",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Bizarro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sinestro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ReverseFlash",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "CaptainCold",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "HeatWave",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "GorillaGrodd",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Cheetah",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ares",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Circe",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlackAdam",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DoctorSivana",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlackManta",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "OceanMaster",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Despero",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Starro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AntiMonitor",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Trigon",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Eclipso",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nekron",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Parallax",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Mongul",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Toyman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Livewire",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Prometheus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Cheshire",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "LadyShiva",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Azrael",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "RedTornado",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TheQuestion",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MisterMxyzptlk",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Punisher",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "LukeCage",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "IronFist",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ScarletWitch",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Vision",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Wasp",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Shuri",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Falcon",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "WinterSoldier",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hawkeye",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "KateBishop",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MsMarvel",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SheHulk",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MoonKnight",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "GhostRider",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Blade",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ShangChi",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Namor",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SilverSurfer",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nova",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "StarLord",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Gamora",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Drax",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "RocketGroot",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Mantis",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AdamWarlock",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sentry",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Quicksilver",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Cyclops",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "JeanGrey",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Storm",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Rogue",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Gambit",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nightcrawler",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Colossus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "KittyPryde",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Iceman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Beast",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Angel",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Psylocke",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Jubilee",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Bishop",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Cable",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Magik",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "EmmaFrost",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ProfessorX",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Magneto",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Mystique",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sabretooth",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Juggernaut",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Apocalypse",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MisterSinister",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sentinels",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nimrod",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Onslaught",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DarkPhoenix",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "GreenGoblin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hobgoblin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Venom",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Carnage",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Morbius",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kraven",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Lizard",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sandman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Electro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Vulture",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Mysterio",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Rhino",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Scorpion",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Shocker",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kingpin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Bullseye",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DoctorOctopus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Chameleon",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlackCat",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Tombstone",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Taskmaster",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Crossbones",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "RedSkull",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BaronZemo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MODOK",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Abomination",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Leader",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ultron",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kang",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hela",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ronan",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Korath",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nebula",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ego",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Dormammu",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Mephisto",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nightmare",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ShumaGorath",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Galactus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Annihilus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SuperSkrull",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Skrull",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kree",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Yondu",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Killmonger",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Namorita",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Attuma",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BaronMordo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kaecilius",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AgathaHarkness",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "HighEvolutionary",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ArnimZola",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Whiplash",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Mandarin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Yellowjacket",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ghost",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Titania",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AbsorbingMan",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Enchantress",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Malekith",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Gorr",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Knull",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Surtur",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ulik",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kurse",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ScorpionKing",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hellboy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Spawn",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Invincible",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "OmniMan",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AtomEve",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BattleBeast",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Conquest",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Thragg",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MarkGrayson",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "CecilStedman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Robot",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "RexSplode",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DupliKate",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "MonsterGirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AllenTheAlien",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Witchblade",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TheTick",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "DarkwingDuck",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "KickAss",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "HitGirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "JudgeDredd",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TankGirl",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TheMask",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SamuraiJack",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Popeye",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Zorro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "ThePhantom",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "FlashGordon",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BuckRogers",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Rocketeer",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Shadowman",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Bloodshot",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "XOMowgli",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AstroBoy",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Goku",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Piccolo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Gohan",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Frieza",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Cell",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Buu",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sasuke",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sakura",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kakashi",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Zoro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Sanji",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Ichigo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Rukia",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Saitama",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Genos",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Deku",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Bakugo",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Todoroki",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "AllMight",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Endeavor",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Shoto",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Tanjiro",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Nezuko",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Inuyasha",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Kenshin",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "EdwardElric",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Alphonse",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Yusuke",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Hiei",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorMars",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorVenus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorJupiter",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorMercury",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorSaturn",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorUranus",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorNeptune",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "SailorPluto",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "TuxedoMask",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "BlackBolt",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Medusa",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Crystal",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Karnak",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Gorgon",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Lockjaw",
+      "category": "Superhelden & Schurken"
+    },
+    {
+      "word": "Maximus",
+      "category": "Superhelden & Schurken"
     }
   ]
 }
