@@ -321,6 +321,20 @@
     .wordfinity-barrier-half { position:absolute; bottom:24px; height:15px; width:47%; border-top:1px solid #171717; border-bottom:1px solid #171717; background:repeating-linear-gradient(135deg,#f4ca45 0 12px,#171717 12px 24px); box-shadow:0 2px 5px #0008; }
     .wordfinity-barrier-half.left { left:-2%; transform:rotate(-3deg); clip-path:polygon(0 0,100% 0,97% 78%,94% 100%,0 100%); }
     .wordfinity-barrier-half.right { right:-2%; transform:rotate(3deg); clip-path:polygon(3% 0,100% 0,100% 100%,6% 100%,0 75%); }
+    .wordfinity-mini-sign {
+      position:absolute; left:10px; bottom:7px; z-index:1; width:76px; height:48px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      transform:rotate(-5deg); pointer-events:none; filter:drop-shadow(0 2px 2px #0009);
+    }
+    .wordfinity-mini-sign-board {
+      width:76px; padding:4px 3px; border:2px solid #171717; border-radius:2px;
+      background:repeating-linear-gradient(135deg,#f4ca45 0 7px,#171717 7px 14px);
+      color:#171717; text-align:center; font-size:7px; line-height:1.15; font-weight:1000;
+      letter-spacing:.02em;
+    }
+    .wordfinity-mini-sign-board span { display:block; margin-top:2px; padding:2px 1px; background:#fff1bd; }
+    .wordfinity-mini-sign-pole { width:4px; height:12px; background:#b8bdc8; border:1px solid #30323a; }
+
     .wordfinity-card-smoker { position:absolute; right:-7px; bottom:0; width:116px; height:138px; overflow:visible; filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 2px 2px #000); }
     .wordfinity-card-smoker .wf-figure { fill:none; stroke:#03040a; stroke-width:7; stroke-linecap:round; stroke-linejoin:round; }
     .wordfinity-card-smoker .wf-head { fill:#03040a; stroke:#03040a; stroke-width:2; }
@@ -1267,6 +1281,10 @@
           <div class="wordfinity-card-scene" aria-hidden="true">
             <div class="wordfinity-barrier-half left"></div>
             <div class="wordfinity-barrier-half right"></div>
+            <div class="wordfinity-mini-sign" aria-hidden="true">
+              <div class="wordfinity-mini-sign-board">BAUSTELLE<span>PAUSE – WIR ARBEITEN NICHT 😎</span></div>
+              <div class="wordfinity-mini-sign-pole"></div>
+            </div>
             <svg class="wordfinity-card-smoker" viewBox="0 0 112 132" role="img" aria-label="">
               <!-- Lässiger Pausenarbeiter: Schulter am Banner, Gewicht auf einem Bein -->
               <path d="M101 18 L101 116" fill="none" stroke="#171717" stroke-width="3" opacity=".75"/>
