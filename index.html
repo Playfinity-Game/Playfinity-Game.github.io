@@ -2101,6 +2101,8 @@
                 TikFinity.routeLiveChat(user, String(message.comment || '').trim(), 'tiktok');
               } else if (message.type === 'admin_action') {
                 PlayfinityPlayerPresence.showEffect(message.action);
+              } else if (message.type === 'admin_nudge') {
+                PlayfinityPlayerPresence.showEffect('shake');
               } else if (message.type === 'connector_reconnected') {
                 this.setStatus('TikTok LIVE wurde neu verbunden.', 'connected');
               } else if (message.type === 'connector_error') {
