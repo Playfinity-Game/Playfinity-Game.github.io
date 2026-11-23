@@ -1,7 +1,7 @@
 {
   "version": 1,
   "language": "de",
-  "description": "Deutsche Begriffe für Hangman aus zwölf Kategorien. Neue Kategorie Städte mit bekannten Großstädten weltweit; schwierige Städtenamen sind mit ☠️☠️ markiert. Leerzeichen in mehrteiligen Namen werden im Hangman-Spiel automatisch als Wortabstand angezeigt.",
+  "description": "Deutsche Begriffe für Hangman aus vierzehn Kategorien. Die Kategorie Filme & Serien enthält bekannte Filme, Serien und Figuren; mehrteilige Namen sind ohne Leerzeichen und Bindestriche zusammengeschrieben.",
   "words": [
     {
       "word": "Affe",
