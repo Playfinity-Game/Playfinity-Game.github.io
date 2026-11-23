@@ -2700,18 +2700,28 @@
       async openLocalDB(){
         if(!('indexedDB' in window))return null;
         return new Promise(resolve=>{
-          let request;
+          let request,clearLegacy=false;
           try{request=indexedDB.open(this.datasetCacheName,this.datasetCacheVersion);}catch(error){resolve(null);return;}
-          request.onupgradeneeded=event=>{
-            const db=request.result,tx=event.target.transaction;
+          request.onupgradeneeded=()=>{
+            const db=request.result;
             if(!db.objectStoreNames.contains('puzzles'))db.createObjectStore('puzzles',{keyPath:'id'});
             if(!db.objectStoreNames.contains('meta'))db.createObjectStore('meta',{keyPath:'key'});
-            // Alte 69-MB-Gesamtliste entfernen, sobald das neue Cache-Schema angelegt wird.
-            if(db.objectStoreNames.contains('datasets'))tx.objectStore('datasets').clear();
+            // Alte 69-MB-Gesamtliste nach dem Upgrade entfernen.
+            clearLegacy=db.objectStoreNames.contains('datasets');
           };
           request.onerror=()=>resolve(null);
           request.onblocked=()=>resolve(null);
-          request.onsuccess=()=>resolve(request.result);
+          request.onsuccess=()=>{
+            const db=request.result;
+            if(!clearLegacy){resolve(db);return;}
+            try{
+              const tx=db.transaction('datasets','readwrite');
+              tx.objectStore('datasets').clear();
+              tx.oncomplete=()=>resolve(db);
+              tx.onerror=()=>resolve(db);
+              tx.onabort=()=>resolve(db);
+            }catch(error){resolve(db);}
+          };
         });
       },
       async readLocal(store,key){
