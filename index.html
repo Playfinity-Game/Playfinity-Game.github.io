@@ -2609,8 +2609,7 @@
     const WordfinityGame = {
       initialized:false, puzzle:null, guesses:[], roundToken:0, won:false,
       lastChatGuess:null, lastKeywordEffectAt:0, extraWords:[],
-      usedTargets:new Set(), puzzleDeck:[], dataset:null, dictionarySet:null,
-      datasetUrl:'https://dinaj-1992.github.io/wordfinity-daten/wordfinity_daten.json.gz',
+      usedTargets:new Set(), puzzleDeck:[],
       normalize(value){return String(value||'').trim().toLocaleLowerCase('de-DE');},
       escape(value){return String(value).replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));},
       async init(){
@@ -2632,7 +2631,7 @@
               document.getElementById('wordfinity-status').textContent='Diese Runde ist bereits gelöst. Starte ein neues Rätsel.';
               return;
             }
-            if(!/^[\\p{L}\\p{N}]+(?:[-'][\\p{L}\\p{N}]+)*$/u.test(word)){
+            if(!/^[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*$/u.test(word)){
               document.getElementById('wordfinity-status').textContent='Bitte gib ein einzelnes Wort ohne Leerzeichen ein.';
               input.select();
               return;
@@ -2879,7 +2878,7 @@
         if((options.source==='chat'||options.source==='manual')&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
         if(!this.puzzle||this.won)return false;
         if(!word||/\s/u.test(word))return false;
-        if(!/^[\\p{L}\\p{N}]+(?:[-'][\\p{L}\\p{N}]+)*$/u.test(word)){
+        if(!/^[\p{L}\p{N}]+(?:[-'][\p{L}\p{N}]+)*$/u.test(word)){
           if(options.source==='chat'||options.source==='manual')document.getElementById('wordfinity-status').textContent='Bitte nur ein einzelnes Wort ohne Leerzeichen eingeben.';
           return false;
         }
