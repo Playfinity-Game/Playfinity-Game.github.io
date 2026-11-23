@@ -1697,12 +1697,10 @@
         }
       },
       submitGuess(value,playerName='Du',options={}){
-        if(!this.puzzle||this.won)return false;
         const word=this.normalize(value);
-        if(options.source==='chat'){
-          const chatWords=String(value).split(/[^\p{L}\p{N}]+/u).map(part=>this.normalize(part)).filter(Boolean);
-          for(const chatWord of chatWords)this.triggerChatWordEffect(chatWord);
-        }
+        // Chat-Effekte nur bei einer einzelnen Nachricht aus genau einem Schlüsselwort auslösen.
+        if(options.source==='chat'&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
+        if(!this.puzzle||this.won)return false;
         if(!word||/\s/u.test(word))return false;
         const rank=this.puzzle.woerter.indexOf(word)+1;
         if(rank===0)return false;
