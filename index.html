@@ -1265,6 +1265,13 @@
 @media(prefers-reduced-motion:reduce){#pd-win-overlay.active,#pd-win-card{animation:none}.pd-firework-spark{animation-duration:.01ms!important}}
 
 
+    #pf-leaderboard-button{border:1px solid rgba(251,191,36,.38);background:#171b29;color:#fbbf24;border-radius:10px;padding:6px 10px;font-size:1rem;cursor:pointer;line-height:1}
+    #pf-leaderboard-button:hover{background:#292438;border-color:#fbbf24}
+    #app-modal .pf-leaderboard-list{list-style:none;padding:0;margin:12px 0;text-align:left}
+    #app-modal .pf-leaderboard-list li{display:flex;align-items:center;gap:10px;padding:9px 10px;border-bottom:1px solid #303746;color:#e5e7eb}
+    #app-modal .pf-leaderboard-rank{width:25px;color:#fbbf24;font-weight:950}
+    #app-modal .pf-leaderboard-points{margin-left:auto;color:#5eead4;font-weight:900;white-space:nowrap}
+    #app-modal .pf-leaderboard-note{font-size:.72rem;color:var(--text-muted);margin-top:10px}
     /* Einheitliches PLAYFINITY-Gewinnerfenster (Bigsize bleibt ausgeschlossen) */
     #pf-winner-overlay{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(4,7,16,.82);backdrop-filter:blur(7px)}
     #pf-winner-overlay.active{display:flex;animation:pfWinnerFade .22s ease-out}
@@ -1295,6 +1302,7 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
+    <button id="pf-leaderboard-button" type="button" aria-label="PLAYFINITY Rangliste öffnen" title="PLAYFINITY Rangliste">🏆</button>
     <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
@@ -1664,6 +1672,7 @@
         document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
 
         document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
+        document.getElementById('pf-leaderboard-button')?.addEventListener('click',()=>PlayfinityScores.show());
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
@@ -1679,7 +1688,7 @@
           }
           menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
           if (action === 'home') this.go('menu');
-          if (action === 'leaderboard') CommunityBoard.showAll();
+          if (action === 'leaderboard') PlayfinityScores.show();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') {
             const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
@@ -2259,6 +2268,47 @@
         if (socket) socket.close(1000, 'Vom Streamer getrennt');
         TikFinity.pausedForTikTok = false;
         if (!TikFinity.connected) TikFinity.connect();
+      }
+    };
+
+    const PlayfinityScores = {
+      url:'https://vfandcnxeiuakxmjewmr.supabase.co',
+      key:'sb_publishable_xKoGwElLMCcZ42q-Q5jbmA_uhllFi1H',
+      async award(playerName,points){
+        const name=String(playerName||'').trim().replace(/^@/,'').slice(0,40);
+        if(!name||!['1','3'].includes(String(points)))return false;
+        try{
+          const response=await fetch(this.url+'/rest/v1/rpc/award_rangliste_points',{
+            method:'POST',
+            headers:{'apikey':this.key,'Authorization':'Bearer '+this.key,'Content-Type':'application/json'},
+            body:JSON.stringify({p_spielername:name,p_punkte:Number(points)})
+          });
+          if(!response.ok)throw new Error('Punkte konnten nicht gespeichert werden ('+response.status+').');
+          return true;
+        }catch(error){console.error('[PLAYFINITY Rangliste] Punkte konnten nicht gespeichert werden:',error);return false;}
+      },
+      async topTen(){
+        const response=await fetch(this.url+'/rest/v1/rangliste?select=spielername,punkte&order=punkte.desc,spielername.asc&limit=10',{
+          headers:{'apikey':this.key,'Authorization':'Bearer '+this.key}
+        });
+        if(!response.ok)throw new Error('Rangliste konnte nicht geladen werden ('+response.status+').');
+        const rows=await response.json();
+        if(!Array.isArray(rows))throw new Error('Ungültige Ranglisten-Antwort.');
+        return rows;
+      },
+      async show(){
+        showModal('🏆 PLAYFINITY · TOP 10','<p>Die gemeinsame Rangliste wird geladen …</p>');
+        const content=document.getElementById('modal-content');
+        try{
+          const rows=await this.topTen();
+          if(!content)return;
+          content.innerHTML=rows.length
+            ? '<ol class="pf-leaderboard-list">'+rows.map((row,index)=>'<li><span class="pf-leaderboard-rank">#'+(index+1)+'</span><b>'+CommunityBoard.escape(row.spielername)+'</b><span class="pf-leaderboard-points">'+Number(row.punkte||0)+' Punkte</span></li>').join('')+'</ol><div class="pf-leaderboard-note">Spielübergreifend · live aus der PLAYFINITY-Datenbank</div>'
+            : '<p>Noch keine Punkte gesammelt. Der erste Rundensieg bringt 3 Punkte!</p>';
+        }catch(error){
+          if(content)content.innerHTML='<p>Die Rangliste ist gerade nicht erreichbar. Bitte versuche es gleich noch einmal.</p>';
+          console.error('[PLAYFINITY Rangliste]',error);
+        }
       }
     };
 
@@ -3119,7 +3169,7 @@
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
         const autoNext=localStorage.getItem('playfinity_priceisright_auto_next')!=='false';
-        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), !autoNext, 'Richtig geraten!');
+        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), !autoNext, 'Richtig geraten!', correctPlayers[0].player?.name || '');
         if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
         else if(!correctPlayers.length)document.getElementById('pir-next-btn').style.display='block';
       }
@@ -3137,6 +3187,9 @@
       const helpersNode=document.getElementById('pf-winner-helpers');
       const next=document.getElementById('pf-winner-next');
       if(!overlay)return;
+      const awardKey='playfinity_awarded_'+Date.now()+'_'+Math.random().toString(36).slice(2);
+      if(winner&&winner!=='Lokaler Spieler')PlayfinityScores.award(winner,3);
+      if(Array.isArray(helpers))helpers.slice(0,3).forEach(item=>{if(item.player&&item.player!==winner)PlayfinityScores.award(item.player,1);});
       brand.textContent='PLAYFINITY • '+String(game).toUpperCase();
       name.textContent=winner||'Lokaler Spieler';
       answerNode.textContent=answer?'LÖSUNGSWORT: '+answer:'';
