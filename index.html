@@ -1962,7 +1962,7 @@
         const autoNext=localStorage.getItem('playfinity_hangmann_auto_next')!=='false';
         if(won){
           if(player)CommunityBoard.record('hangmann',player);
-          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,player?'🏆 Gewonnen von '+CommunityBoard.escape(player.name)+'!':'🎉 Richtig geraten!');
+          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,'Wort erraten • +3 Punkte',player?.name||'');
           if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
         }else{
           document.getElementById('hangmann-status').textContent='😭 Oh nein!';
@@ -2550,7 +2550,7 @@
           resultBox.innerHTML='<div class="round-result-title">🎉 Wort erraten!</div><div class="round-result-answer">'+this.targetWord+'</div><div>'+(player?'Gewonnen von <b>'+CommunityBoard.escape(player.name)+'</b> · bereits <b>'+CommunityBoard.winsForPlayer('wordle',player)+'×</b> richtig geraten':'Rätsel gelöst!')+'</div><div class="kontexto-stats"><span>Versuche: '+this.guesses.length+'</span><span>Gelöste Runden: '+this.solvedRounds+'</span></div><div class="wordle-result-guesses">'+guessRows+'</div><div id="wordle-community-list"></div>';
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
           const autoNext=localStorage.getItem('playfinity_wordle_auto_next')!=='false';
-          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), !autoNext, player ? '🏆 Gewonnen von: ' + player.name : '🏆 Gewonnen von: Lokaler Spieler');
+          showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), !autoNext, 'Versuche: '+this.guesses.length+' • +3 Punkte', player?.name||'');
           if(autoNext)PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
         }
       },
@@ -3169,7 +3169,9 @@
         }
         CommunityBoard.render('priceisright', 'pir-community-list');
         const autoNext=localStorage.getItem('playfinity_priceisright_auto_next')!=='false';
-        if (correctPlayers.length) showCorrectAnswerOverlay(this.currentQuestion.a + ' ' + this.currentQuestion.u, () => this.nextQuestion(), !autoNext, 'Richtig geraten!', correctPlayers[0].player?.name || '');
+        const roundWinner=correctPlayers[0]||winner;
+        const roundHelpers=correctPlayers.slice(1,4).map((item,index)=>({rank:index+2,player:item.player.name,word:String(item.value)}));
+        showPlayfinityWinner({game:'GUESSWHAT',winner:roundWinner.player?.name||'Lokaler Spieler',answer:String(this.currentQuestion.a)+' '+this.currentQuestion.u,meta:(correctPlayers.length?'Volltreffer':'Am nächsten dran')+' • Schätzung: '+roundWinner.value+' • Abweichung: '+Math.abs(roundWinner.value-this.currentQuestion.a)+' '+this.currentQuestion.u+' • +3 Punkte',helpers:roundHelpers,onNext:()=>this.nextQuestion()});
         if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
         else if(!correctPlayers.length)document.getElementById('pir-next-btn').style.display='block';
       }
@@ -3218,6 +3220,7 @@
     }
 
     function hideCorrectAnswerOverlay() {
+      document.getElementById('pf-winner-overlay')?.classList.remove('active');
       const overlay = document.getElementById('correct-answer-overlay');
       if (overlay) overlay.classList.remove('active');
       const winner = document.getElementById('correct-answer-winner');
@@ -3228,7 +3231,7 @@
 
     function showCorrectAnswerOverlay(answer, onContinue, manualContinue = false, message = 'Du hast das Wort erraten!', winnerName = '') {
       const screen=PlayfinityRouter.currentScreen;
-      const gameNames={wordle:'WORDLE',hangmann:'HANGMANN'};
+      const gameNames={wordle:'FIVE-X',hangmann:'HANGMAN',priceisright:'GUESSWHAT'};
       const game=gameNames[screen]||String(screen||'SPIEL').toUpperCase();
       showPlayfinityWinner({game,winner:winnerName||'Lokaler Spieler',answer,meta:message,onNext:onContinue||(()=>{})});
       return;
