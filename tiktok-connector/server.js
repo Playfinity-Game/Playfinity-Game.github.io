@@ -327,23 +327,50 @@ const server = http.createServer(async (request, response) => {
       }
     }
 
+    if (request.method === "POST" && url.pathname === "/admin/streamer-action") {
+      if (adminState.isStopped()) return sendJson(response, 423, { error: "Not-Aus ist aktiv. Bitte erst im Kontrollzentrum freigeben." });
+      let body;
+      try { body = await readJsonBody(request, 1024); }
+      catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
+      const username = normalizeUsername(body.username);
+      const action = typeof body.action === "string" ? body.action : "";
+      if (!username || !["shake","confetti","glitch","fog","invert","pixel","spin","ice","static","googly"].includes(action)) return sendJson(response, 400, { error: "Ungültiger Streamer oder Troll-Effekt." });
+      const bridgeToken = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+      if (!bridgeToken) return sendJson(response, 503, { error: "Produktionsdaten sind noch nicht verbunden." });
+      try {
+        const upstream = await fetch("https://playfinity-game-github-io.onrender.com/internal/admin-streamer-action", {
+          method: "POST",
+          headers: { authorization: `Bearer ${bridgeToken}`, "content-type": "application/json" },
+          body: JSON.stringify({ username, action }),
+          signal: AbortSignal.timeout(8000),
+          cache: "no-store"
+        });
+        const result = await upstream.json().catch(() => ({}));
+        if (!upstream.ok) return sendJson(response, upstream.status, { error: result.error || "Streamer-Effekt konnte nicht zugestellt werden." });
+        return sendJson(response, 200, result);
+      } catch { return sendJson(response, 502, { error: "Verbindung zum Spielserver fehlgeschlagen." }); }
+    }
+
     if (request.method === "POST" && url.pathname === "/admin/nudge") {
       let body;
       try { body = await readJsonBody(request, 256); }
       catch (error) { return sendJson(response, error.statusCode || 400, { error: "Ungültige Anfrage." }); }
       const username = normalizeUsername(body.username);
       if (!username) return sendJson(response, 400, { error: "Ungültiger Streamer-Name." });
-      const targets = [...sessions.values()].filter((session) =>
-        !session.stopped && session.username.toLowerCase() === username.toLowerCase()
-      );
-      let delivered = 0;
-      for (const session of targets) {
-        const message = JSON.stringify({ type: "admin_nudge", issuedAt: new Date().toISOString() });
-        for (const client of session.clients) {
-          if (client.readyState === WebSocket.OPEN) { client.send(message); delivered += 1; }
-        }
-      }
-      return sendJson(response, 200, { ok: true, delivered });
+      const bridgeToken = process.env.ADMIN_DATA_BRIDGE_TOKEN;
+      if (!bridgeToken) return sendJson(response, 503, { error: "Produktionsdaten sind noch nicht verbunden." });
+      try {
+        const upstream = await fetch("https://playfinity-game-github-io.onrender.com/internal/admin-nudge", {
+          method: "POST",
+          headers: { authorization: `Bearer ${bridgeToken}`, "content-type": "application/json" },
+          body: JSON.stringify({ username }),
+          signal: AbortSignal.timeout(8000),
+          cache: "no-store"
+        });
+        const result = await upstream.json().catch(() => ({}));
+        if (!upstream.ok) return sendJson(response, upstream.status, { error: result.error || "Anstupsen fehlgeschlagen." });
+        return sendJson(response, 200, result);
+      } catch { return sendJson(response, 502, { error: "Verbindung zum Spielserver fehlgeschlagen." }); }
     }
 
     if (request.method === "POST" && url.pathname === "/admin/emergency-stop") {
