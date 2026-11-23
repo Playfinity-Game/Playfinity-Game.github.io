@@ -1590,7 +1590,7 @@
        ========================================================================== */
     const WordfinityGame = {
       initialized:false, puzzle:null, guesses:[], roundToken:0, won:false,
-      lastChatGuess:null, lastKeywordEffectAt:0,
+      lastChatGuess:null, lastKeywordEffectAt:0, extraWords:[],
       usedTargets:new Set(), puzzleDeck:[],
       baseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
       normalize(value){return String(value||'').trim().toLocaleLowerCase('de-DE');},
@@ -1600,7 +1600,7 @@
           document.getElementById('wordfinity-entry').addEventListener('submit',event=>{
             event.preventDefault();
             const input=document.getElementById('wordfinity-input');
-            this.submitGuess(input.value,'Du');
+            this.submitGuess(input.value,'Du',{source:'manual'});
             input.value='';
             input.focus();
           });
@@ -1646,7 +1646,7 @@
       },
       async newRound(){
         const token=++this.roundToken;
-        this.puzzle=null;this.guesses=[];this.won=false;
+        this.puzzle=null;this.guesses=[];this.extraWords=[];this.won=false;
         this.setControls(false);
         this.resetHintDisplays();
         document.getElementById('wordfinity-status').textContent='Rätsel wird geladen …';
@@ -1698,14 +1698,19 @@
       },
       submitGuess(value,playerName='Du',options={}){
         const word=this.normalize(value);
-        // Chat-Effekte nur bei einer einzelnen Nachricht aus genau einem Schlüsselwort auslösen.
-        if(options.source==='chat'&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
+        // Einzelne Schlüsselwörter lösen beim lokalen Testen und im TikTok-Chat Effekte aus.
+        if((options.source==='chat'||options.source==='manual')&&/^[\p{L}\p{N}]+$/u.test(word))this.triggerChatWordEffect(word);
         if(!this.puzzle||this.won)return false;
         if(!word||/\s/u.test(word))return false;
-        const rank=this.puzzle.woerter.indexOf(word)+1;
-        if(rank===0)return false;
         const previous=this.guesses.find(item=>item.word===word);
         if(previous)return false;
+        const preparedRank=this.puzzle.woerter.indexOf(word)+1;
+        let rank=preparedRank;
+        if(rank===0){
+          const extraIndex=this.extraWords.indexOf(word);
+          if(extraIndex===-1)this.extraWords.push(word);
+          rank=this.puzzle.woerter.length+(extraIndex===-1?this.extraWords.length:extraIndex+1);
+        }
         this.guesses.push({word,rank,player:playerName,isHint:!!options.isHint});
         this.guesses.sort((a,b)=>a.rank-b.rank);
         if(options.source==='chat'){
