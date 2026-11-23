@@ -1158,6 +1158,8 @@
     #pf-admin-effect .pf-crossing-emoji.skeleton{animation:pf-skeleton-cross 3.9s linear forwards}
     #pf-admin-effect .pf-crossing-emoji.ghost{animation:pf-ghost-cross 4.2s ease-in-out forwards}
     #pf-admin-effect .pf-crossing-emoji.rocket{animation:pf-rocket-cross 2.7s ease-in forwards}
+    #pf-admin-effect .pf-crossing-emoji.cat{animation:pf-cat-cross 4.2s ease-in-out forwards}
+    @keyframes pf-cat-cross{0%{transform:translate(-24vw,2vh) scale(.85) rotate(-8deg)}15%{transform:translate(4vw,-5vh) scale(1) rotate(5deg)}35%{transform:translate(34vw,1vh) scale(1.08) rotate(-4deg)}55%{transform:translate(64vw,-6vh) scale(1) rotate(5deg)}78%{transform:translate(94vw,1vh) scale(1.08) rotate(-4deg)}100%{transform:translate(130vw,-3vh) scale(.95) rotate(6deg)}}
     @keyframes pf-frog-cross{0%{transform:translate(-20vw,0) rotate(-12deg)}18%{transform:translate(5vw,-19vh) rotate(8deg)}36%{transform:translate(32vw,0) rotate(-7deg)}58%{transform:translate(61vw,-17vh) rotate(8deg)}78%{transform:translate(88vw,0) rotate(-5deg)}100%{transform:translate(125vw,-8vh) rotate(12deg)}}
     @keyframes pf-skeleton-cross{0%{transform:translate(-22vw,0) rotate(-8deg)}20%{transform:translate(8vw,-3vh) rotate(8deg)}40%{transform:translate(42vw,2vh) rotate(-8deg)}60%{transform:translate(72vw,-3vh) rotate(8deg)}80%{transform:translate(100vw,1vh) rotate(-8deg)}100%{transform:translate(125vw,0) rotate(8deg)}}
     @keyframes pf-ghost-cross{0%{transform:translate(-20vw,8vh);opacity:0}12%{opacity:1}35%{transform:translate(32vw,-8vh)}65%{transform:translate(78vw,5vh)}88%{opacity:1}100%{transform:translate(125vw,-6vh);opacity:0}}
@@ -3176,8 +3178,8 @@
         document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
         root.className = '';
         root.innerHTML = '<div class="pf-effect-label"></div>';
-        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!'};
-        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700};
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Überraschung!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200};
         if (action === 'shake') document.body.classList.add('pf-admin-shake');
         else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
         else if (action === 'invert') document.body.classList.add('pf-admin-invert');
@@ -3186,8 +3188,8 @@
         else if (action === 'ice') { document.body.classList.add('pf-admin-ice'); root.classList.add('ice'); }
         else if (['confetti','fog','static'].includes(action)) root.classList.add(action);
         else if (action === 'googly') { root.classList.add('googly'); root.insertAdjacentHTML('afterbegin','<div class="pf-googly-eyes" aria-hidden="true">👀</div>'); }
-        else if (['frog','skeleton','ghost','rocket'].includes(action)) {
-          const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀'};
+        else if (['frog','skeleton','ghost','rocket','cat'].includes(action)) {
+          const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀',cat:'🐱'};
           root.classList.add(action);
           const sprite = document.createElement('div');
           sprite.className = 'pf-crossing-emoji ' + action;
