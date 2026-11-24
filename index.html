@@ -1695,14 +1695,6 @@
           <span class="guessmoji-difficulty" id="guessmoji-difficulty"></span>
         </div>
         <div class="guessmoji-emojis" id="guessmoji-emojis">🎲</div>
-        <div class="guessmoji-settings">
-          <label for="guessmoji-duration">⏱ ZEIT PRO RUNDE</label>
-          <select id="guessmoji-duration" aria-label="Timerdauer für GUESSMOJI">
-            <option value="10">10 Sekunden</option><option value="15">15 Sekunden</option>
-            <option value="20" selected>20 Sekunden</option><option value="30">30 Sekunden</option>
-            <option value="45">45 Sekunden</option><option value="60">60 Sekunden</option>
-          </select>
-        </div>
         <div class="guessmoji-question">Welches Wort suchen wir?</div>
         <form class="guessmoji-entry" id="guessmoji-entry" autocomplete="off">
           <input id="guessmoji-input" type="text" maxlength="60" placeholder="Deine Lösung …" aria-label="Deine Lösung" autocomplete="off" spellcheck="false">
@@ -2102,14 +2094,15 @@
         document.getElementById('hangmann-status').innerHTML=won?'<strong>🎉 Richtig! Das Wort lautet '+CommunityBoard.escape(this.target.word)+'.</strong>':'Nicht ganz! Das gesuchte Wort war <strong>'+CommunityBoard.escape(this.target.word)+'</strong>.';
         document.getElementById('hangmann-hint').disabled=true;
         const autoNext=localStorage.getItem('playfinity_hangmann_auto_next')!=='false';
+        const nextDelay=Number(localStorage.getItem('playfinity_hangmann_next_delay')||7000);
         if(won){
           if(player)PlayfinityScores.awardHangmann(player,10,this.roundId,'word-solved');
           showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,'Wort erraten • +10 Punkte',player?.name||'');
-          if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
+          if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},nextDelay);
         }else{
           document.getElementById('hangmann-status').textContent='😭 Oh nein!';
           const reveal=document.getElementById('hangmann-reveal');if(reveal){reveal.innerHTML='Das Wort war: <strong>'+CommunityBoard.escape(this.target.word)+'</strong>';reveal.classList.add('visible');}
-          if(autoNext)this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},10000);
+          if(autoNext)this.fallTimer=setTimeout(()=>{this.fallTimer=null;this.newRound();},Number(localStorage.getItem('playfinity_hangmann_next_delay')||10000));
         }
       }
     };
@@ -2157,16 +2150,8 @@
             const guess=input.value.trim();input.value='';input.focus();
             if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
           });
-          const durationSelect=document.getElementById('guessmoji-duration');
           try{this.duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);}catch(_){this.duration=20;}
           if(![10,15,20,30,45,60].includes(this.duration))this.duration=20;
-          if(durationSelect){durationSelect.value=String(this.duration);durationSelect.addEventListener('change',()=>{
-            const chosen=Number(durationSelect.value);
-            if(![10,15,20,30,45,60].includes(chosen))return;
-            this.duration=chosen;
-            try{localStorage.setItem('playfinity_guessmoji_duration',String(chosen));}catch(_){}
-            if(!this.timer&&this.roundOpen){this.remaining=this.duration;this.updateTimer();}
-          });}
           this.initialized=true;
         }
         if(!this.current)this.loadPuzzles().then(()=>this.nextRound());
@@ -2192,7 +2177,7 @@
         document.getElementById('guessmoji-guesses').innerHTML='';
       },
       startTimer(){
-        if(!this.roundOpen||this.timer)return;
+        if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'||!this.roundOpen||this.timer)return;
         this.remaining=this.duration;this.updateTimer();
         this.timer=setInterval(()=>{
           if(PauseController.paused)return;
@@ -2237,6 +2222,10 @@
         document.getElementById('pf-winner-helpers').style.display='none';
         document.getElementById('pf-winner-next').onclick=()=>{overlay.classList.remove('active');this.nextRound();};
         overlay.classList.add('active');
+        if(localStorage.getItem('playfinity_guessmoji_auto_next')==='true'){
+          const delay=Number(localStorage.getItem('playfinity_guessmoji_next_delay')||5000);
+          PauseController.schedule('guessmoji','autoNext',()=>{overlay.classList.remove('active');this.nextRound();},delay);
+        }
       }
     };
 
@@ -2933,7 +2922,7 @@
           resultBox.classList.add('visible');CommunityBoard.render('wordle','wordle-community-list');
           const autoNext=localStorage.getItem('playfinity_wordle_auto_next')!=='false';
           showCorrectAnswerOverlay(this.targetWord, () => this.startNewGame(), !autoNext, 'Versuche: '+this.guesses.length+' • +3 Punkte', player?.name||'');
-          if(autoNext)PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },7000);
+          if(autoNext)PauseController.schedule('wordle','roundTimer',()=>{ hideCorrectAnswerOverlay(); this.startNewGame(); },Number(localStorage.getItem('playfinity_fivex_next_delay')||7000));
         }
       },
 
@@ -3306,6 +3295,7 @@
           document.getElementById('wordfinity-status').textContent='🏆 '+displayName+' hat das Zielwort „'+word+'“ erraten!';
           const helpers=this.guesses.filter(item=>item.player&&item.player!==displayName&&!item.isHint).sort((a,b)=>a.rank-b.rank).filter((item,index,array)=>array.findIndex(other=>other.player===item.player)===index).slice(0,3).map(item=>({rank:item.rank,player:item.player,word:item.word}));
           showPlayfinityWinner({game:'WORDFINITY',winner:displayName,answer:word,meta:(this.guesses.length)+' . Versuch • +3 Punkte',helpers,onNext:()=>this.newRound()});
+          if(localStorage.getItem('playfinity_wordfinity_auto_next')!=='false')PauseController.schedule('wordfinity','autoNext',()=>{document.getElementById('pf-winner-overlay').classList.remove('active');this.newRound();},Number(localStorage.getItem('playfinity_wordfinity_next_delay')||7000));
         }
         PlayfinityPlayerPresence.sendPresence();
         return true;
@@ -3639,7 +3629,7 @@
         if (!this.roundOpen) {
           this.roundOpen = true;
           this.guesses = [];
-          PauseController.schedule('guesswhat','roundTimer',()=>this.finishRound(),15000);
+          if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false')PauseController.schedule('guesswhat','roundTimer',()=>this.finishRound(),Number(localStorage.getItem('playfinity_guesswhat_timer')||15000));
         }
         const identity = player || { id: 'local-player', name: 'Lokaler Spieler' };
         const existingIndex = this.guesses.findIndex(item => String(item.player.id) === String(identity.id));
@@ -3703,7 +3693,7 @@
         const roundWinner=correctPlayers[0]||winner;
         const roundHelpers=correctPlayers.slice(1,4).map((item,index)=>({rank:index+2,player:item.player.name,word:String(item.value)}));
         showPlayfinityWinner({game:'GUESSWHAT',winner:roundWinner.player?.name||'Lokaler Spieler',answer:String(this.currentQuestion.a)+' '+this.currentQuestion.u,meta:(correctPlayers.length?'Volltreffer':'Am nächsten dran')+' • Schätzung: '+roundWinner.value+' • Abweichung: '+Math.abs(roundWinner.value-this.currentQuestion.a)+' '+this.currentQuestion.u+' • +3 Punkte',helpers:roundHelpers,onNext:()=>this.nextQuestion()});
-        if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},7000);
+        if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},Number(localStorage.getItem('playfinity_guesswhat_next_delay')||7000));
         else if(!correctPlayers.length)document.getElementById('pir-next-btn').style.display='block';
       }
     };
