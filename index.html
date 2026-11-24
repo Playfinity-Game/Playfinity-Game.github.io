@@ -3253,6 +3253,7 @@
           this.usedTargets.add(selected.target);this.saveUsedTargets();
           this.puzzle={woerter:words,kategorie:data.kategorie,target:selected.target,id:data.id};
           this.setControls(true);
+          if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true')this.showCategory();
           document.getElementById('wordfinity-status').textContent=source==='network'?'Los geht’s! Rätsel geladen und lokal gespeichert.':'Los geht’s! Rätsel aus deinem Speicher geladen.';
           document.getElementById('wordfinity-input').focus({preventScroll:true});
           PlayfinityPlayerPresence.sendPresence();
