@@ -613,7 +613,7 @@
     },
     {
       "emojis": "🌮",
-      "answer": "T taco",
+      "answer": "Taco",
       "category": "Essen & Trinken",
       "difficulty": "leicht",
       "aliases": []
@@ -3505,350 +3505,1400 @@
     {
       "emojis": "👠🎃",
       "answer": "Aschenputtel",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "schwer",
       "aliases": []
     },
     {
       "emojis": "🍎😴",
       "answer": "Schneewittchen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "👸🐸",
       "answer": "Froschkönig",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐺🧺",
       "answer": "Rotkäppchen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🍬🏠",
       "answer": "Hänsel und Gretel",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧜‍♀️🫧",
       "answer": "Die kleine Meerjungfrau",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧞‍♂️🪔",
       "answer": "Aladin",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🪶🦢",
       "answer": "Das hässliche Entlein",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧒🌳",
       "answer": "Peter Pan",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧙‍♀️🍭",
       "answer": "Hexe",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "schwer",
       "aliases": []
     },
     {
       "emojis": "🐻🍯",
       "answer": "Honig ums Maul schmieren",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐷💰",
       "answer": "Schwein haben",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐈🌧️",
       "answer": "Es regnet Katzen und Hunde",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🪵👁️",
       "answer": "Ein Brett vor dem Kopf haben",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦷👅",
       "answer": "Auf den Zahn fühlen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐘🪰",
       "answer": "Aus einer Mücke einen Elefanten machen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🐟🚫",
       "answer": "Wie ein Fisch auf dem Trockenen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧂🩹",
       "answer": "Salz in die Wunde streuen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🥔🔥",
       "answer": "Die Kartoffeln aus dem Feuer holen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "schwer",
       "aliases": []
     },
     {
       "emojis": "🐦✋",
       "answer": "Ein Spatz in der Hand",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🌳🍎",
       "answer": "Der Apfel fällt nicht weit vom Stamm",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦴🐕",
       "answer": "Einem Hund einen Knochen hinwerfen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🧊💧",
       "answer": "Das Eis brechen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐖🛫",
       "answer": "Wenn Schweine fliegen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🪡🌾",
       "answer": "Die Nadel im Heuhaufen suchen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🦶👄",
       "answer": "Ins Fettnäpfchen treten",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦉🌙",
       "answer": "Eulen nach Athen tragen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧹🚪",
       "answer": "Vor der eigenen Tür kehren",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "schwer",
       "aliases": []
     },
     {
       "emojis": "🐴🎁",
       "answer": "Einem geschenkten Gaul",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🌧️☂️",
       "answer": "Nach Regen kommt Sonne",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦊🐔",
       "answer": "Den Fuchs zum Hühnerstall lassen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🐻🧊",
       "answer": "Auf dünnem Eis stehen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧠🪵",
       "answer": "Ein Brett vorm Kopf",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐝🍯",
       "answer": "Fleißig wie eine Biene",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🐌🏃",
       "answer": "In Schneckentempo",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐓🌅",
       "answer": "Morgenstund hat Gold im Mund",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🪙🔄",
       "answer": "Geld zum Fenster hinauswerfen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "schwer",
       "aliases": []
     },
     {
       "emojis": "👂🧱",
       "answer": "Auf taube Ohren stoßen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦴🧥",
       "answer": "Sich einen Knochen verdienen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐸👄",
       "answer": "Einen Frosch im Hals haben",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🧂🍲",
       "answer": "Das Salz in der Suppe",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐱👜",
       "answer": "Die Katze aus dem Sack lassen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦶🛏️",
       "answer": "Ins Bett fallen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "👀🧅",
       "answer": "Tomaten auf den Augen haben",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧵🔴",
       "answer": "Der rote Faden",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🦷🪥",
       "answer": "Auf dem Zahnfleisch gehen",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "schwer",
       "aliases": []
     },
     {
       "emojis": "🌰🐿️",
       "answer": "Kleinvieh macht auch Mist",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🧊🫀",
       "answer": "Ein Herz aus Eis",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "leicht",
       "aliases": []
     },
     {
       "emojis": "🐑🐺",
       "answer": "Ein Wolf im Schafspelz",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
       "difficulty": "mittel",
       "aliases": []
     },
     {
       "emojis": "🐦🌅",
       "answer": "Der frühe Vogel fängt den Wurm",
-      "category": "Märchen & Redewendungen",
+      "category": "Märchen & Figuren",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗼🇫🇷",
+      "answer": "Eiffelturm",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🗽🇺🇸",
+      "answer": "Freiheitsstatue",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇮🇹",
+      "answer": "Kolosseum",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇩🇪",
+      "answer": "Neuschwanstein",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏯🇯🇵",
+      "answer": "Himeji Burg",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🕌🇮🇳",
+      "answer": "Taj Mahal",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏟️🇬🇷",
+      "answer": "Akropolis",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛪🇫🇷",
+      "answer": "Notre Dame",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌉🇺🇸",
+      "answer": "Golden Gate Bridge",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🕰️🇬🇧",
+      "answer": "Big Ben",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇺🇸",
+      "answer": "Weißes Haus",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏢🇦🇪",
+      "answer": "Burj Khalifa",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗿🇨🇱",
+      "answer": "Moai",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛕🇰🇭",
+      "answer": "Angkor Wat",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏯🇨🇳",
+      "answer": "Verbotene Stadt",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏟️🇮🇹",
+      "answer": "Schiefer Turm von Pisa",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛩️🇯🇵",
+      "answer": "Torii",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇫🇷",
+      "answer": "Schloss Versailles",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌉🇬🇧",
+      "answer": "Tower Bridge",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇬🇷",
+      "answer": "Parthenon",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🕌🇹🇷",
+      "answer": "Blaue Moschee",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "⛪🇻🇦",
+      "answer": "Petersdom",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇪🇸",
+      "answer": "Alhambra",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗼🇯🇵",
+      "answer": "Tokyo Tower",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌉🇦🇺",
+      "answer": "Sydney Harbour Bridge",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏟️🇧🇷",
+      "answer": "Maracana",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🛕🇲🇽",
+      "answer": "Chichen Itza",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗿🌊",
+      "answer": "Osterinsel Statuen",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇪🇬",
+      "answer": "Bibliothek von Alexandria",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🔺🇪🇬",
+      "answer": "Pyramiden von Gizeh",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱🇨🇳",
+      "answer": "Chinesische Mauer",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇩🇰",
+      "answer": "Schloss Kronborg",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏯🇰🇷",
+      "answer": "Gyeongbokgung",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🕌🇪🇸",
+      "answer": "Mezquita Córdoba",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇺🇸",
+      "answer": "Lincoln Memorial",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗽🗽",
+      "answer": "Christusstatue Rio",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇬🇧",
+      "answer": "Windsor Castle",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "⛪🇮🇹",
+      "answer": "Mailänder Dom",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇦🇹",
+      "answer": "Schloss Schönbrunn",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏟️🇬🇧",
+      "answer": "Wembley Stadion",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌉🇫🇷",
+      "answer": "Pont Neuf",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗼🇨🇦",
+      "answer": "CN Tower",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇨🇿",
+      "answer": "Prager Burg",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕌🇲🇾",
+      "answer": "Petronas Towers",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇷🇺",
+      "answer": "Basilius Kathedrale",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰🇵🇹",
+      "answer": "Turm von Belém",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🏯🇯🇵",
+      "answer": "Osaka Burg",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🛕🇮🇩",
+      "answer": "Borobudur",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️🇺🇸",
+      "answer": "Kapitol",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌉🇨🇳",
+      "answer": "Danyang Kunshan Brücke",
+      "category": "Berühmte Bauwerke",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🪐🔴",
+      "answer": "Mars",
+      "category": "Allgemeinwissen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🌍🌙",
+      "answer": "Mond",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "💧🧪",
+      "answer": "Wasser",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧲🧭",
+      "answer": "Magnetismus",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡🔋",
+      "answer": "Elektrizität",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌡️🔥",
+      "answer": "Temperatur",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦴🧍",
+      "answer": "Skelett",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🫀🩸",
+      "answer": "Herz",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧠💭",
+      "answer": "Gehirn",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "👁️🌈",
+      "answer": "Auge",
+      "category": "Allgemeinwissen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🫁💨",
+      "answer": "Lunge",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦷🪥",
+      "answer": "Zähne",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🩸🅰️",
+      "answer": "Blutgruppe",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌱☀️",
+      "answer": "Photosynthese",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌋🌍",
+      "answer": "Erdbeben",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊🌕",
+      "answer": "Gezeiten",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧭🗺️",
+      "answer": "Kompass",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧪⚗️",
+      "answer": "Chemie",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🔢➗",
+      "answer": "Mathematik",
+      "category": "Allgemeinwissen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "📐📏",
+      "answer": "Geometrie",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌌🔭",
+      "answer": "Astronomie",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦕🦴",
+      "answer": "Dinosaurier",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐝🌼",
+      "answer": "Bestäubung",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌍♻️",
+      "answer": "Klimawandel",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊🌡️",
+      "answer": "Eisschmelze",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌈💧",
+      "answer": "Lichtbrechung",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🎨🔴",
+      "answer": "Grundfarben",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🎼🎵",
+      "answer": "Musik",
+      "category": "Allgemeinwissen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "📖✍️",
+      "answer": "Literatur",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️📜",
+      "answer": "Geschichte",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗣️🌐",
+      "answer": "Sprache",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💶🏦",
+      "answer": "Wirtschaft",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "⚖️📚",
+      "answer": "Recht",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🗳️🏛️",
+      "answer": "Demokratie",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧑‍🚀🌑",
+      "answer": "Raumfahrt",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🛰️📡",
+      "answer": "Satellit",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌐💻",
+      "answer": "Internet",
+      "category": "Allgemeinwissen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖🧠",
+      "answer": "Künstliche Intelligenz",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "📸💡",
+      "answer": "Fotografie",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧬🔬",
+      "answer": "DNA",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦠🧫",
+      "answer": "Bakterien",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧪🧬",
+      "answer": "Genetik",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌡️🌪️",
+      "answer": "Wetter",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗺️🌍",
+      "answer": "Geografie",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "⏳⌛",
+      "answer": "Zeit",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🔭⭐",
+      "answer": "Sternbild",
+      "category": "Allgemeinwissen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🧯🔥",
+      "answer": "Brandschutz",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🚦🚗",
+      "answer": "Verkehrsregeln",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧮🔢",
+      "answer": "Zahlen",
+      "category": "Allgemeinwissen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏅🥇",
+      "answer": "Olympische Spiele",
+      "category": "Allgemeinwissen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐷🍀",
+      "answer": "Schwein haben",
+      "category": "Redewendungen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊🗣️",
+      "answer": "Das Eis brechen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐘🦟",
+      "answer": "Aus einer Mücke einen Elefanten machen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐦✋",
+      "answer": "Ein Spatz in der Hand",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍎🌳",
+      "answer": "Der Apfel fällt nicht weit vom Stamm",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🪡🌾",
+      "answer": "Die Nadel im Heuhaufen suchen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦶🧈",
+      "answer": "Ins Fettnäpfchen treten",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦉🏛️",
+      "answer": "Eulen nach Athen tragen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹🏠",
+      "answer": "Vor der eigenen Tür kehren",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐴🎁",
+      "answer": "Einem geschenkten Gaul schaut man nicht ins Maul",
+      "category": "Redewendungen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🐱👜",
+      "answer": "Die Katze aus dem Sack lassen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "👀🍅",
+      "answer": "Tomaten auf den Augen haben",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧵🔴",
+      "answer": "Der rote Faden",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐸🗣️",
+      "answer": "Einen Frosch im Hals haben",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧂🍲",
+      "answer": "Das Salz in der Suppe",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺🐑",
+      "answer": "Ein Wolf im Schafspelz",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐓🥚",
+      "answer": "Das Gelbe vom Ei",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦷👅",
+      "answer": "Auf den Zahn fühlen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🪵🧠",
+      "answer": "Ein Brett vor dem Kopf haben",
+      "category": "Redewendungen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🐌🏃",
+      "answer": "In Schneckentempo",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐝💪",
+      "answer": "Fleißig wie eine Biene",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟🏜️",
+      "answer": "Wie ein Fisch auf dem Trockenen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦴🐕",
+      "answer": "Einem Hund einen Knochen hinwerfen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌧️☀️",
+      "answer": "Nach Regen kommt Sonne",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐖✈️",
+      "answer": "Wenn Schweine fliegen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊👣",
+      "answer": "Auf dünnem Eis stehen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🪙🪟",
+      "answer": "Geld zum Fenster hinauswerfen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "👂🧱",
+      "answer": "Auf taube Ohren stoßen",
+      "category": "Redewendungen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🐑🐺",
+      "answer": "Das schwarze Schaf sein",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦶👄",
+      "answer": "Auf großem Fuß leben",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧄🧛",
+      "answer": "Knoblauch gegen Vampire",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧂🩹",
+      "answer": "Salz in die Wunde streuen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧺🧼",
+      "answer": "Die Wäsche reinwaschen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐻🕺",
+      "answer": "Den Bären aufbinden",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧠🧊",
+      "answer": "Einen kühlen Kopf bewahren",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🦴🦴",
+      "answer": "Sich etwas aus den Rippen schneiden",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🐈🌧️",
+      "answer": "Es regnet Bindfäden",
+      "category": "Redewendungen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🌰🐿️",
+      "answer": "Kleinvieh macht auch Mist",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🪰🧴",
+      "answer": "Eine Fliege machen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🥔🔥",
+      "answer": "Die Kartoffeln aus dem Feuer holen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐔🐣",
+      "answer": "Da lachen ja die Hühner",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧯🗣️",
+      "answer": "Öl ins Feuer gießen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧤🫱",
+      "answer": "Jemandem unter die Arme greifen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦆💦",
+      "answer": "Wie Wasser an einer Ente",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱🧱",
+      "answer": "Mit dem Kopf durch die Wand",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🪣🌊",
+      "answer": "Ein Tropfen auf den heißen Stein",
+      "category": "Redewendungen",
+      "difficulty": "schwer",
+      "aliases": []
+    },
+    {
+      "emojis": "🕳️🐍",
+      "answer": "In die Höhle des Löwen gehen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹🧍",
+      "answer": "Reinen Tisch machen",
+      "category": "Redewendungen",
+      "difficulty": "leicht",
+      "aliases": []
+    },
+    {
+      "emojis": "🌙🛌",
+      "answer": "Über Nacht",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎯🪰",
+      "answer": "Den Nagel auf den Kopf treffen",
+      "category": "Redewendungen",
       "difficulty": "leicht",
       "aliases": []
     }
