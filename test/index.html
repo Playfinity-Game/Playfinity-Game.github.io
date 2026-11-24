@@ -2142,7 +2142,7 @@
       },
       nextRound(){
         clearInterval(this.timer);this.timer=null;clearTimeout(this.autoNext);
-        if(this.round>=this.totalRounds){this.round=0;this.used.clear();this.scores.clear();}
+        if(this.round>=this.totalRounds){this.round=0;this.used.clear();}
         this.round++;this.current=this.choosePuzzle();this.remaining=20;this.roundOpen=true;this.solvedPlayers.clear();
         document.getElementById('guessmoji-category').textContent='🎯 '+this.current.category;
         const hard=this.current.difficulty==='schwer';
