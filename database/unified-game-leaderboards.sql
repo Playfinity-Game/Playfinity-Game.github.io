@@ -5,35 +5,27 @@ create unique index if not exists playfinity_game_scores_event_award_uq
 on public.playfinity_game_scores (game_key, player_key, (metadata->>'event_id'), (metadata->>'award_key'))
 where metadata ? 'event_id' and metadata ? 'award_key';
 
-do $$
-begin
-  if not exists (
-    select 1 from pg_policies
-    where schemaname='public' and tablename='playfinity_game_scores'
-      and policyname='Public can submit supported game scores'
-  ) then
-    create policy "Public can submit supported game scores"
-    on public.playfinity_game_scores
-    for insert to anon, authenticated
-    with check (
-      game_key in ('playdoku','wordfinity','guesswhat','guessmoji','fivex')
-      and points in (1,3,5,10)
-      and char_length(trim(player_key)) between 1 and 80
-      and char_length(trim(display_name)) between 1 and 40
-      and metadata ? 'event_id'
-      and metadata ? 'award_key'
-      and char_length(metadata->>'event_id') between 1 and 100
-      and char_length(metadata->>'award_key') between 1 and 32
-      and (
-        (game_key='guessmoji' and points in (5,10))
-        or (game_key='playdoku' and points=1)
-        or (game_key='fivex' and points=5)
-        or (game_key='wordfinity' and points in (1,10))
-        or (game_key='guesswhat' and points in (5,10))
-      )
-    );
-  end if;
-end $$;
+drop policy if exists "Public can submit supported game scores" on public.playfinity_game_scores;
+create policy "Public can submit supported game scores"
+on public.playfinity_game_scores
+for insert to anon, authenticated
+with check (
+  game_key in ('playdoku','wordfinity','guesswhat','guessmoji','fivex')
+  and points in (1,3,5,10)
+  and char_length(trim(player_key)) between 1 and 80
+  and char_length(trim(display_name)) between 1 and 40
+  and metadata ? 'event_id'
+  and metadata ? 'award_key'
+  and char_length(metadata->>'event_id') between 1 and 100
+  and char_length(metadata->>'award_key') between 1 and 32
+  and (
+    (game_key='guessmoji' and points in (5,10))
+    or (game_key='playdoku' and points=1)
+    or (game_key='fivex' and points=5)
+    or (game_key='wordfinity' and points in (1,10))
+    or (game_key='guesswhat' and points in (5,10))
+  )
+);
 
 create or replace function public.award_game_points(
   p_game_key text,
