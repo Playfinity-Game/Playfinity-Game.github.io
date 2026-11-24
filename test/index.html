@@ -1224,6 +1224,33 @@
   
         .wordfinity-feedback{padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(18,20,44,.72);color:var(--text-muted);font-size:.82rem;line-height:1.4;overflow-wrap:anywhere}
     .wordfinity-feedback:empty{display:none}
+
+    .guessmoji-brand{font-size:clamp(2rem,8vw,3rem);font-weight:1000;letter-spacing:.04em;text-align:center;margin:8px 0 2px}
+    .guessmoji-brand .guess{color:var(--neon-cyan);text-shadow:0 0 18px rgba(0,240,255,.35)}
+    .guessmoji-brand .moji{color:var(--neon-pink);text-shadow:0 0 18px rgba(255,0,127,.35)}
+    .guessmoji-subtitle{text-align:center;color:var(--text-muted);font-size:.85rem;margin-bottom:18px}
+    .guessmoji-card{width:100%;max-width:620px;margin:0 auto;padding:18px;border:1px solid rgba(176,38,255,.35);border-radius:18px;background:linear-gradient(145deg,rgba(18,20,44,.94),rgba(25,14,48,.94));box-shadow:0 0 24px rgba(176,38,255,.10)}
+    .guessmoji-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
+    .guessmoji-category{border:1px solid rgba(0,240,255,.35);background:rgba(0,240,255,.08);color:var(--neon-cyan);border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:850}
+    .guessmoji-difficulty{font-size:.72rem;font-weight:900;letter-spacing:.08em;color:#ff9cbd}
+    .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:26px 4px 18px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
+    .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:14px}
+    .guessmoji-entry{display:flex;gap:8px}
+    .guessmoji-entry input{flex:1;min-width:0;border:1px solid rgba(176,38,255,.45);border-radius:11px;padding:13px;background:rgba(7,8,20,.88);color:#fff;font:600 1rem var(--font-main);outline:none;user-select:text}
+    .guessmoji-entry input:focus{border-color:var(--neon-pink);box-shadow:0 0 12px rgba(255,0,127,.18)}
+    .guessmoji-entry button{border:0;border-radius:11px;padding:0 16px;background:linear-gradient(135deg,var(--neon-cyan),#6b7dff);color:#07101d;font-weight:950;cursor:pointer}
+    .guessmoji-timer-row{display:flex;justify-content:space-between;gap:8px;margin:14px 0 7px;font-size:.8rem;color:var(--text-muted)}
+    .guessmoji-timer-track{height:9px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden}
+    .guessmoji-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--neon-green),var(--neon-gold),var(--neon-pink));transition:width .2s linear}
+    .guessmoji-status{text-align:center;min-height:28px;padding:10px 2px 4px;color:#cbd5ff;font-size:.88rem}
+    .guessmoji-guesses{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-height:180px;overflow:auto}
+    .guessmoji-guess{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.045);font-size:.82rem}
+    .guessmoji-guess.correct{border:1px solid rgba(0,255,157,.3);color:var(--neon-green)}
+    .guessmoji-score{text-align:center;color:var(--neon-gold);font-weight:900;margin-top:12px;font-size:.9rem}
+    .guessmoji-next{display:block;width:100%;margin-top:12px}
+    .game-card.card-guessmoji:hover{border-color:var(--neon-purple);box-shadow:0 10px 25px rgba(176,38,255,.25)}
+    .game-card.card-guessmoji::before{background:linear-gradient(90deg,transparent,var(--neon-purple),transparent)}
+    @media(max-width:420px){.guessmoji-card{padding:14px}.guessmoji-entry button{padding:0 12px}}
 </style>
 </head>
 
@@ -1324,6 +1351,16 @@
             <div class="card-desc">Errate das gesuchte Nomen Buchstabe für Buchstabe – mit Kategorie-Tipp und Galgenfigur.</div>
           </div>
           <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
+        </div>
+
+        <!-- GUESSMOJI Card -->
+        <div class="game-card card-guessmoji" onclick="PlayfinityRouter.go('guessmoji')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-purple)">Emoji-Worträtsel</div>
+            <div class="card-title"><span style="color:var(--neon-cyan)">GUESS</span><span style="color:var(--neon-pink)">MOJI</span></div>
+            <div class="card-desc">Errate zufällige Wörter aus Emoji-Kombinationen. Jede richtige Lösung bringt 10 Punkte!</div>
+          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Jetzt raten ›</span></div>
         </div>
 
         <!-- Zahlen schätzen Card -->
@@ -1497,6 +1534,29 @@
         </div>
       </div>
     </section>
+
+    <section class="screen" id="screen-guessmoji">
+      <div class="guessmoji-brand"><span class="guess">GUESS</span><span class="moji">MOJI</span></div>
+      <div class="guessmoji-subtitle">Ein Emoji-Rätsel. Ein geheimes Wort. 10 Punkte für jede richtige Lösung!</div>
+      <div class="guessmoji-card">
+        <div class="guessmoji-top">
+          <span class="guessmoji-category" id="guessmoji-category">Kategorie wird gezogen …</span>
+          <span class="guessmoji-difficulty" id="guessmoji-difficulty"></span>
+        </div>
+        <div class="guessmoji-emojis" id="guessmoji-emojis">🎲</div>
+        <div class="guessmoji-question">Welches Wort suchen wir?</div>
+        <form class="guessmoji-entry" id="guessmoji-entry" autocomplete="off">
+          <input id="guessmoji-input" type="text" maxlength="60" placeholder="Deine Lösung …" aria-label="Deine Lösung" autocomplete="off" spellcheck="false">
+          <button type="submit">RATEN</button>
+        </form>
+        <div class="guessmoji-timer-row"><span id="guessmoji-timer-label">⏱️ Wartet auf den ersten Guess</span><strong id="guessmoji-round-label">Runde 1 / 10</strong></div>
+        <div class="guessmoji-timer-track"><div class="guessmoji-timer-fill" id="guessmoji-timer-fill"></div></div>
+        <div class="guessmoji-status" id="guessmoji-status" role="status" aria-live="polite">Der 20-Sekunden-Timer startet mit dem ersten Tipp.</div>
+        <div class="guessmoji-guesses" id="guessmoji-guesses" aria-live="polite"></div>
+        <div class="guessmoji-score" id="guessmoji-score">⭐ 0 Punkte</div>
+        <button type="button" class="btn-action btn-block guessmoji-next" id="guessmoji-next" hidden>Nächste Runde ›</button>
+      </div>
+    </section>
   </main>
 
   <div id="pause-overlay" class="pause-overlay" hidden><div class="pause-overlay-card"><div class="pause-overlay-title">SPIEL PAUSIERT</div><p>Chat-Eingaben und Rundentimer sind angehalten.</p><button type="button" id="pause-resume" class="btn-action">Fortsetzen</button></div></div>
@@ -1617,6 +1677,7 @@
       },
 
       onEnterGame(screenId) {
+        if (screenId === 'guessmoji') GuessmojiGame.init();
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
         if (screenId === 'hangmann') HangmannGame.init();
         if (screenId === 'wordfinity') WordfinityGame.init();
@@ -2042,6 +2103,120 @@
     };
 
     /* ==========================================================================
+       GUESSMOJI – 10 zufällige Emoji-Worträtsel
+       ========================================================================== */
+    const GuessmojiGame = {
+      initialized:false, round:0, totalRounds:10, current:null, timer:null, remaining:20,
+      roundOpen:false, scores:new Map(), solvedPlayers:new Set(), used:new Set(), autoNext:null,
+      puzzles:[
+        {emojis:'🦷 + 🧚‍♀️',answer:'Zahnfee',category:'Märchen & Figuren',difficulty:'leicht',aliases:[]},
+        {emojis:'☀️ + 👓',answer:'Sonnenbrille',category:'Alltag',difficulty:'leicht',aliases:['sonnen brille']},
+        {emojis:'🍎 + 🥧',answer:'Apfelkuchen',category:'Essen & Trinken',difficulty:'mittel',aliases:['apfel kuchen']},
+        {emojis:'🐝 + 🏠',answer:'Bienenstock',category:'Tiere & Natur',difficulty:'mittel',aliases:['bienenhaus']},
+        {emojis:'🧊 + 🍵',answer:'Eistee',category:'Essen & Trinken',difficulty:'leicht',aliases:['eis tee']},
+        {emojis:'🌧️ + ☂️',answer:'Regenschirm',category:'Alltag',difficulty:'mittel',aliases:['regen schirm']},
+        {emojis:'🐌 + 🏁',answer:'Schneckenrennen',category:'Sport & Freizeit',difficulty:'schwer',aliases:['schnecken rennen']},
+        {emojis:'🌙 + 🚶',answer:'Nachtwanderung',category:'Freizeit',difficulty:'schwer',aliases:['nacht wanderung']},
+        {emojis:'🐱 + 🥛',answer:'Katzenmilch',category:'Tiere',difficulty:'mittel',aliases:['katzen milch']},
+        {emojis:'🚗 + 🏁',answer:'Autorennen',category:'Fahrzeuge & Sport',difficulty:'schwer',aliases:['auto rennen']}
+      ],
+      normalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLocaleLowerCase('de-DE').replace(/[^a-z0-9]/g,'');},
+      init(){
+        if(!this.initialized){
+          document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
+            event.preventDefault();
+            const input=document.getElementById('guessmoji-input');
+            this.submitGuess(input.value,{id:'local-player',name:'Du'},'local');
+            input.value='';input.focus();
+          });
+          document.getElementById('guessmoji-next').addEventListener('click',()=>this.nextRound());
+          this.initialized=true;
+        }
+        if(!this.current)this.nextRound();
+      },
+      choosePuzzle(){
+        let available=this.puzzles.map((_,i)=>i).filter(i=>!this.used.has(i));
+        if(!available.length){this.used.clear();available=this.puzzles.map((_,i)=>i);}
+        const index=available[Math.floor(Math.random()*available.length)];
+        this.used.add(index);return this.puzzles[index];
+      },
+      nextRound(){
+        clearInterval(this.timer);this.timer=null;clearTimeout(this.autoNext);
+        if(this.round>=this.totalRounds){this.round=0;this.used.clear();this.scores.clear();}
+        this.round++;this.current=this.choosePuzzle();this.remaining=20;this.roundOpen=true;this.solvedPlayers.clear();
+        document.getElementById('guessmoji-category').textContent='🎯 '+this.current.category;
+        const hard=this.current.difficulty==='schwer';
+        const marker=document.getElementById('guessmoji-difficulty');
+        marker.textContent=hard?'☠️ SCHWER':'';
+        marker.hidden=!hard;
+        document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
+        document.getElementById('guessmoji-round-label').textContent='Runde '+this.round+' / '+this.totalRounds;
+        document.getElementById('guessmoji-timer-label').textContent='⏱️ Wartet auf den ersten Guess';
+        document.getElementById('guessmoji-timer-fill').style.width='100%';
+        document.getElementById('guessmoji-status').textContent='Der 20-Sekunden-Timer startet mit dem ersten Tipp.';
+        document.getElementById('guessmoji-guesses').innerHTML='';
+        document.getElementById('guessmoji-next').hidden=true;
+        document.getElementById('guessmoji-input').disabled=false;
+        this.renderScore();
+      },
+      startTimer(){
+        if(!this.roundOpen||this.timer)return;
+        this.remaining=20;this.updateTimer();
+        this.timer=setInterval(()=>{
+          if(PauseController.paused)return;
+          this.remaining=Math.max(0,this.remaining-0.1);this.updateTimer();
+          if(this.remaining<=0)this.finishRound();
+        },100);
+      },
+      updateTimer(){
+        document.getElementById('guessmoji-timer-label').textContent='⏱️ '+Math.ceil(this.remaining)+' Sekunden';
+        document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/20*100)+'%';
+      },
+      submitGuess(value,player){
+        if(!this.roundOpen||!this.current||PauseController.paused)return false;
+        const guess=this.normalize(value);
+        if(!guess)return false;
+        this.startTimer();
+        const identity=player||{id:'unknown',name:'Zuschauer'};
+        const correct=guess===this.normalize(this.current.answer)||(this.current.aliases||[]).some(alias=>guess===this.normalize(alias));
+        const list=document.getElementById('guessmoji-guesses');
+        const row=document.createElement('div');row.className='guessmoji-guess'+(correct?' correct':'');
+        const name=document.createElement('span');name.textContent=identity.name||'Zuschauer';
+        const result=document.createElement('span');result.textContent=correct?'✓ RICHTIG · +10':String(value).slice(0,48);
+        row.append(name,result);list.prepend(row);
+        if(correct){
+          const key=String(identity.id||identity.name||'unknown');
+          if(!this.solvedPlayers.has(key)){
+            this.solvedPlayers.add(key);
+            this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
+            if(key!=='local-player')CommunityBoard.record('guessmoji',identity,10);
+            this.renderScore();
+          }
+          document.getElementById('guessmoji-status').textContent='🎉 '+(identity.name||'Ein Spieler')+' hat die Lösung gefunden! Alle dürfen weiter mitraten.';
+        }else{
+          document.getElementById('guessmoji-status').textContent=(identity.name||'Ein Spieler')+' hat geraten – weiter geht’s!';
+        }
+        return true;
+      },
+      renderScore(){
+        const rows=[...this.scores.values()].sort((a,b)=>b.points-a.points);
+        const local=this.scores.get('local-player')?.points||0;
+        const others=rows.filter(r=>r.name!=='Du').slice(0,3).map(r=>r.name+': '+r.points).join(' · ');
+        document.getElementById('guessmoji-score').textContent='⭐ Deine Punkte: '+local+(others?' | '+others:'');
+      },
+      finishRound(){
+        if(!this.roundOpen)return;
+        this.roundOpen=false;clearInterval(this.timer);this.timer=null;
+        document.getElementById('guessmoji-input').disabled=true;
+        document.getElementById('guessmoji-timer-label').textContent='⏱️ Zeit abgelaufen';
+        document.getElementById('guessmoji-timer-fill').style.width='0%';
+        document.getElementById('guessmoji-status').textContent='🔎 Gesucht war: '+this.current.answer+' · Nächste Runde in 3 Sekunden …';
+        document.getElementById('guessmoji-next').hidden=false;
+        this.autoNext=setTimeout(()=>{if(PlayfinityRouter.currentScreen==='guessmoji')this.nextRound();},3000);
+      }
+    };
+
+    /* ==========================================================================
        2. TIKFINITY LIVE-CHAT WEBSOCKET ENGINE
        ========================================================================== */
     let activeLiveSource = 'none';
@@ -2134,7 +2309,8 @@
         const screen = PlayfinityRouter.currentScreen;
         // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
         if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
-        if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
+        if (screen === 'guessmoji' && text.trim()) { GuessmojiGame.submitGuess(text, user); }
+        else if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
           PriceIsRightGame.submitChatGuess(Number(text.replace(',', '.')), user);
@@ -2332,9 +2508,9 @@
     const CommunityBoard = {
       key: 'playfinity_community_scores_v1', windowMs: 86400000,
       read() { try { return (JSON.parse(localStorage.getItem(this.key) || '[]')).filter(e => Date.now() - e.at < this.windowMs); } catch (e) { return []; } },
-      record(game, player) { if (!player || !player.id || player.id === 'unknown') return; const rows = this.read(); rows.push({game, id:player.id, name:player.name || 'Zuschauer', at:Date.now(), points:1}); localStorage.setItem(this.key, JSON.stringify(rows)); },
+      record(game, player, points=1) { if (!player || !player.id || player.id === 'unknown') return; const rows = this.read(); rows.push({game, id:player.id, name:player.name || 'Zuschauer', at:Date.now(), points:Math.max(1,Number(points)||1)}); localStorage.setItem(this.key, JSON.stringify(rows)); },
       winsForPlayer(game, player) { if (!player || !player.id || player.id === 'unknown') return 0; return this.read().filter(e => e.game === game && e.id === player.id).length; },
-      top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points++; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
+      top(game) { const map = new Map(); this.read().filter(e => e.game === game).forEach(e => { const row = map.get(e.id) || {name:e.name,points:0}; row.name=e.name; row.points+=Number(e.points)||1; map.set(e.id,row); }); return [...map.values()].sort((a,b)=>b.points-a.points || a.name.localeCompare(b.name)).slice(0,5); },
       escape(value) { return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])); },
       render(game, id) { const el=document.getElementById(id); if(!el)return; const rows=this.top(game); el.innerHTML='<div class="community-board"><h4>🏆 Community · letzte 24 Stunden</h4>'+(rows.length?'<ol>'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' '+(r.points===1?'Sieg':'Siege')+'</li>').join('')+'</ol>':'<div class="community-note">Noch keine Siege in den letzten 24 Stunden.</div>')+'<div class="community-note">Gespeichert auf diesem Streamer-Browser.</div></div>'; },
       showAll() { const games=[['Wordle','wordle'],['GUESSWHAT','priceisright']]; const html=games.map(pair=>{const rows=this.top(pair[1]);return '<h3 style="color:var(--neon-cyan);margin:10px 0 5px">'+pair[0]+'</h3>'+(rows.length?'<ol style="text-align:left;padding-left:24px">'+rows.map(r=>'<li>'+this.escape(r.name)+' · '+r.points+' Siege</li>').join('')+'</ol>':'<p>Noch keine Siege</p>');}).join(''); showModal('Community-Ranglisten · 24 Stunden',html+'<p style="font-size:.75rem;color:var(--text-muted);margin-top:10px">Gespeichert auf diesem Streamer-Browser.</p>'); }
@@ -3096,7 +3272,7 @@
         this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
       },
       setGame(game) {
-        this.game = ['menu','wordle','sizeitup','hangmann','priceisright','wordfinity'].includes(game) ? game : 'menu';
+        this.game = ['menu','wordle','sizeitup','hangmann','priceisright','wordfinity','guessmoji'].includes(game) ? game : 'menu';
         this.sendPresence();
       },
       showEffect(action) {
