@@ -116,6 +116,7 @@
     .pf-rank-category small{font-size:.68rem;color:var(--text-muted);text-align:center}
     .pf-rank-back{margin:0 0 10px;border:1px solid rgba(0,240,255,.25);background:rgba(0,240,255,.07);color:var(--neon-cyan);border-radius:9px;padding:8px 12px;cursor:pointer}
     @media(max-width:380px){.pf-rank-categories{gap:8px}.pf-rank-category{min-height:124px;padding:10px}.pf-rank-category svg{width:58px;height:58px}}
+    .pf-settings-intro{color:var(--text-muted);font-size:.84rem;margin:0 0 12px}.pf-settings-games{display:grid;grid-template-columns:1fr 1fr;gap:9px}.pf-settings-games button{border:1px solid rgba(0,240,255,.22);border-radius:11px;background:linear-gradient(135deg,rgba(0,240,255,.07),rgba(255,42,133,.06));color:#fff;padding:14px 12px;text-align:left;font-weight:850;cursor:pointer}.pf-settings-games button span{float:right;color:var(--neon-cyan)}.pf-settings-title{color:var(--neon-cyan);margin:12px 0}.pf-settings-back{border:1px solid rgba(0,240,255,.25);background:rgba(0,240,255,.07);color:var(--neon-cyan);border-radius:8px;padding:8px 11px;cursor:pointer}.pf-setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 4px;border-bottom:1px solid rgba(255,255,255,.08);font-size:.88rem}.pf-setting-row input[type=checkbox],.pf-settings-general input{width:19px;height:19px;accent-color:var(--neon-cyan)}.pf-setting-row select{max-width:145px;background:#0b0d20;color:#fff;border:1px solid rgba(176,38,255,.4);border-radius:8px;padding:7px}.pf-settings-general{display:grid;gap:10px;margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.1);font-size:.86rem}.pf-settings-general label{display:flex;align-items:center;gap:9px}.pf-settings-general button{border:1px solid rgba(255,0,127,.35);background:rgba(255,0,127,.08);color:#ff9cbd;border-radius:8px;padding:9px;cursor:pointer}
     .app-menu{display:none;position:fixed;top:68px;right:14px;z-index:180;width:min(300px,calc(100vw - 28px));padding:12px;background:rgba(10,12,28,.98);border:1px solid var(--border-glow);border-radius:14px;box-shadow:0 14px 40px rgba(0,0,0,.5);backdrop-filter:blur(16px);flex-direction:column;gap:6px}
     .app-menu.open{display:flex}.app-menu button{width:100%;border:0;border-radius:9px;padding:12px;color:var(--text-main);background:rgba(255,255,255,.045);text-align:left;font:700 .9rem var(--font-main);cursor:pointer}.app-menu button:hover{background:rgba(0,240,255,.1);color:var(--neon-cyan)}.menu-status{color:var(--text-muted);font-size:.75rem;padding:8px 10px 4px;display:flex;align-items:center;gap:9px}.menu-status .status-dot{flex:none}
     .tiktok-connector-panel{padding:10px;border:1px solid rgba(0,240,255,.2);border-radius:10px;background:rgba(0,240,255,.045);display:flex;flex-direction:column;gap:8px}
@@ -1828,26 +1829,26 @@
           if (action === 'leaderboard') PlayfinityScores.showCategories();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') {
-            const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
-              '<label class="menu-setting"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>' +
-              '<label class="menu-setting"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>' +
-              '<label class="menu-setting"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>' +
-              '<label class="menu-setting"><input id="playduko-auto-next" type="checkbox"> <span>PlayDuko</span></label>' +
-              '</div><div class="menu-setting-group"><div class="menu-setting-heading">Kategorie anzeigen</div>' +
-              '<label class="menu-setting"><input id="hangmann-auto-category" type="checkbox"> <span>Hangman</span></label></div>';
-            showModal('Einstellungen', settingsHtml);
-            [
-              ['wordle-auto-next','playfinity_wordle_auto_next',true],
-              ['hangmann-auto-next','playfinity_hangmann_auto_next',true],
-              ['priceisright-auto-next','playfinity_priceisright_auto_next',true],
-              ['playduko-auto-next','playfinity_playduko_auto_next',true],
-              ['hangmann-auto-category','playfinity_hangmann_auto_category',false]
-            ].forEach(([id,key,defaultValue])=>{
-              const setting=document.getElementById(id);
-              if(!setting)return;
-              setting.checked=localStorage.getItem(key)===null ? defaultValue : localStorage.getItem(key)==='true';
-              setting.addEventListener('change',()=>localStorage.setItem(key,String(setting.checked)));
+            const gameSettings = {
+              hangman:{title:'⚔️ Hangman',items:[['Kategorie anzeigen','playfinity_hangmann_auto_category',false],['Automatisch weiter','playfinity_hangmann_auto_next',true],['Weiter nach','playfinity_hangmann_next_delay',10000,'select',[['3000','3 Sekunden'],['5000','5 Sekunden'],['7000','7 Sekunden'],['10000','10 Sekunden']]]]},
+              guesswhat:{title:'🤔 GUESSWHAT',items:[['Timer aktivieren','playfinity_guesswhat_timer_enabled',true],['Zeitlimit','playfinity_guesswhat_timer',15000,'select',[['10000','10 Sekunden'],['15000','15 Sekunden'],['20000','20 Sekunden'],['30000','30 Sekunden'],['45000','45 Sekunden'],['60000','60 Sekunden']]],['Automatisch weiter','playfinity_priceisright_auto_next',true],['Weiter nach','playfinity_guesswhat_next_delay',7000,'select',[['3000','3 Sekunden'],['5000','5 Sekunden'],['7000','7 Sekunden'],['10000','10 Sekunden']]]]},
+              wordfinity:{title:'🔤 Wordfinity',items:[['Automatisch weiter','playfinity_wordfinity_auto_next',true],['Kategorie anzeigen','playfinity_wordfinity_auto_category',false],['Weiter nach','playfinity_wordfinity_next_delay',7000,'select',[['3000','3 Sekunden'],['5000','5 Sekunden'],['7000','7 Sekunden'],['10000','10 Sekunden']]]]},
+              guessmoji:{title:'🧩 GUESSMOJI',items:[['Timer aktivieren','playfinity_guessmoji_timer_enabled',true],['Zeitlimit','playfinity_guessmoji_duration',20,'select', [['10','10 Sekunden'],['15','15 Sekunden'],['20','20 Sekunden'],['30','30 Sekunden'],['45','45 Sekunden'],['60','60 Sekunden']]],['Automatisch weiter','playfinity_guessmoji_auto_next',false],['Weiter nach','playfinity_guessmoji_next_delay',5000,'select',[['3000','3 Sekunden'],['5000','5 Sekunden'],['7000','7 Sekunden'],['10000','10 Sekunden']]]]},
+              playdoku:{title:'🔢 Playdoku',items:[['Fehler anzeigen','playfinity_playdoku_show_errors',true],['Timer anzeigen','playfinity_playdoku_show_timer',false]]},
+              fivex:{title:'🔠 FIVE-X',items:[['Automatisch weiter','playfinity_wordle_auto_next',true],['Weiter nach','playfinity_fivex_next_delay',7000,'select',[['3000','3 Sekunden'],['5000','5 Sekunden'],['7000','7 Sekunden'],['10000','10 Sekunden']]]]}
+            };
+            const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+            const renderHome=()=>'<div class="pf-settings-intro">Wähle ein Spiel, um seine Einstellungen zu ändern.</div><div class="pf-settings-games">'+Object.entries(gameSettings).map(([key,g])=>'<button type="button" data-settings-game="'+key+'">'+g.title+' <span>›</span></button>').join('')+'</div><div class="pf-settings-general"><b>Allgemein</b><label><input type="checkbox" data-setting-key="playfinity_sound_enabled" checked> Soundeffekte</label><label><input type="checkbox" data-setting-key="playfinity_animations_enabled" checked> Animationen</label><button type="button" data-settings-reset>Alle Einstellungen zurücksetzen</button></div>';
+            const renderGame=key=>{const g=gameSettings[key];return '<button type="button" class="pf-settings-back" data-settings-home>‹ Alle Spiele</button><h3 class="pf-settings-title">'+g.title+'</h3>'+g.items.map(([label,store,def,type,options])=>{const value=localStorage.getItem(store);const current=value===null?def:(type==='select'?value:value==='true');if(type==='select')return '<label class="pf-setting-row"><span>'+label+'</span><select data-setting-key="'+store+'">'+options.map(([v,t])=>'<option value="'+v+'" '+(String(current)===v?'selected':'')+'>'+t+'</option>').join('')+'</select></label>';return '<label class="pf-setting-row"><span>'+label+'</span><input type="checkbox" data-setting-key="'+store+'" '+(current?'checked':'')+'></label>';}).join('');};
+            showModal('⚙️ Spieleinstellungen',renderHome());
+            const content=document.getElementById('modal-content');
+            content.addEventListener('click',event=>{
+              const game=event.target.closest('[data-settings-game]')?.dataset.settingsGame;
+              if(game)content.innerHTML=renderGame(game);
+              if(event.target.closest('[data-settings-home]'))content.innerHTML=renderHome();
+              if(event.target.closest('[data-settings-reset]')){Object.values(gameSettings).flatMap(g=>g.items.map(x=>x[1])).concat(['playfinity_sound_enabled','playfinity_animations_enabled']).forEach(k=>localStorage.removeItem(k));content.innerHTML=renderHome();}
             });
+            content.addEventListener('change',event=>{const el=event.target;if(!el.matches('[data-setting-key]'))return;localStorage.setItem(el.dataset.settingKey,el.type==='checkbox'?String(el.checked):el.value);if(el.dataset.settingKey==='playfinity_guessmoji_duration'){const v=Number(el.value);if([10,15,20,30,45,60].includes(v)){GuessmojiGame.duration=v;if(!GuessmojiGame.timer&&GuessmojiGame.roundOpen){GuessmojiGame.remaining=v;GuessmojiGame.updateTimer();}}}if(el.dataset.settingKey==='playfinity_guesswhat_timer'&&GuessWhatGame.roundOpen){PauseController.clear('guesswhat','roundTimer');if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false')PauseController.schedule('guesswhat','roundTimer',()=>GuessWhatGame.finishRound(),Number(el.value));}});
           }
           if (action === 'help') showModal('Hilfe & Chat-Befehle', 'FIVEX: ein Wort mit genau fünf Buchstaben.<br>Wordfinity: ein einzelnes Wort ohne Leerzeichen.<br>GUESSWHAT: Schätze den Zahlenwert. Die erste Schätzung startet das 15-Sekunden-Antwortfenster.');
         });
