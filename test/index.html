@@ -1247,9 +1247,7 @@
     .guessmoji-guesses{display:flex;flex-direction:column;gap:6px;margin-top:2px;max-height:180px;overflow:auto}
     .guessmoji-guess{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.045);font-size:.82rem}
     .guessmoji-guess.correct{border:1px solid rgba(0,255,157,.3);color:var(--neon-green)}
-    .guessmoji-score{text-align:center;color:var(--neon-gold);font-weight:900;margin-top:2px;font-size:.9rem}
-    .guessmoji-next{display:block;width:100%;margin-top:4px}
-    .game-card.card-guessmoji:hover{border-color:var(--neon-purple);box-shadow:0 10px 25px rgba(176,38,255,.25)}
+        .game-card.card-guessmoji:hover{border-color:var(--neon-purple);box-shadow:0 10px 25px rgba(176,38,255,.25)}
     .game-card.card-guessmoji::before{background:linear-gradient(90deg,transparent,var(--neon-purple),transparent)}
     @media(max-width:420px){.guessmoji-card{padding:16px}.guessmoji-entry button{padding:0 12px}}
 </style>
@@ -1551,12 +1549,11 @@
           <input id="guessmoji-input" type="text" maxlength="60" placeholder="Deine Lösung …" aria-label="Deine Lösung" autocomplete="off" spellcheck="false">
           <button type="submit">RATEN</button>
         </form>
-        <div class="guessmoji-timer-row"><span id="guessmoji-timer-label">⏱️ Wartet auf den ersten Guess</span><strong id="guessmoji-round-label">Runde 1 / 10</strong></div>
+        <div class="guessmoji-timer-row"><span id="guessmoji-timer-label">⏱️ Wartet auf den ersten Guess</span></div>
         <div class="guessmoji-timer-track"><div class="guessmoji-timer-fill" id="guessmoji-timer-fill"></div></div>
         <div class="guessmoji-status" id="guessmoji-status" role="status" aria-live="polite">Der 20-Sekunden-Timer startet mit dem ersten Tipp.</div>
         <div class="guessmoji-guesses" id="guessmoji-guesses" aria-live="polite"></div>
-        <div class="guessmoji-score" id="guessmoji-score">⭐ 0 Punkte</div>
-        <button type="button" class="btn-action btn-block guessmoji-next" id="guessmoji-next" hidden>Nächste Runde ›</button>
+
       </div>
     </section>
   </main>
@@ -2146,18 +2143,16 @@
         clearInterval(this.timer);this.timer=null;clearTimeout(this.autoNext);
         if(this.round>=this.totalRounds){this.round=0;this.used.clear();}
         this.round++;this.current=this.choosePuzzle();this.remaining=20;this.roundOpen=true;this.solvedPlayers.clear();
-        document.getElementById('guessmoji-category').textContent='🎯 '+this.current.category;
+        document.getElementById('guessmoji-category').textContent=this.current.category;
         const hard=this.current.difficulty==='schwer';
         const marker=document.getElementById('guessmoji-difficulty');
         marker.textContent=hard?'☠️ SCHWER':'';
         marker.hidden=!hard;
         document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
-        document.getElementById('guessmoji-round-label').textContent='Runde '+this.round+' / '+this.totalRounds;
         document.getElementById('guessmoji-timer-label').textContent='⏱️ Wartet auf den ersten Guess';
         document.getElementById('guessmoji-timer-fill').style.width='100%';
         document.getElementById('guessmoji-status').textContent='Der 20-Sekunden-Timer startet mit dem ersten Tipp.';
         document.getElementById('guessmoji-guesses').innerHTML='';
-        document.getElementById('guessmoji-next').hidden=true;
         document.getElementById('guessmoji-input').disabled=false;
         this.renderScore();
       },
@@ -2204,7 +2199,7 @@
         const rows=[...this.scores.values()].sort((a,b)=>b.points-a.points);
         const local=this.scores.get('local-player')?.points||0;
         const others=rows.filter(r=>r.name!=='Du').slice(0,3).map(r=>r.name+': '+r.points).join(' · ');
-        document.getElementById('guessmoji-score').textContent='⭐ Deine Punkte: '+local+(others?' | '+others:'');
+        document.getElementById('guessmoji-score').textContent='Deine Punkte: '+local+(others?' | '+others:'');
       },
       finishRound(){
         if(!this.roundOpen)return;
@@ -2212,9 +2207,17 @@
         document.getElementById('guessmoji-input').disabled=true;
         document.getElementById('guessmoji-timer-label').textContent='⏱️ Zeit abgelaufen';
         document.getElementById('guessmoji-timer-fill').style.width='0%';
-        document.getElementById('guessmoji-status').textContent='🔎 Gesucht war: '+this.current.answer+' · Nächste Runde in 3 Sekunden …';
-        document.getElementById('guessmoji-next').hidden=false;
-        this.autoNext=setTimeout(()=>{if(PlayfinityRouter.currentScreen==='guessmoji')this.nextRound();},3000);
+        document.getElementById('guessmoji-status').textContent='Die Runde ist beendet.';
+        const local=this.scores.get('local-player')?.points||0;
+        showCorrectAnswerOverlay(this.current.answer, null, false, 'Runde beendet!');
+        const score=document.getElementById('correct-answer-winner');
+        score.textContent='Deine Punktzahl: '+local+' Punkte';
+        score.hidden=false;
+        document.getElementById('correct-answer-timer').textContent='Bereit für die nächste Runde?';
+        const next=document.getElementById('correct-answer-continue');
+        next.textContent='Nächste Runde ›';
+        next.hidden=false;
+        next.onclick=()=>{hideCorrectAnswerOverlay();this.nextRound();};
       }
     };
 
