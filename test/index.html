@@ -2151,14 +2151,16 @@
       init(){
         if(!this.initialized){
           const input=document.getElementById('guessmoji-input');
+          input.disabled=false;
           input.addEventListener('input',()=>{
-            input.value=input.value.replace(/[\\u0000-\\u001F\\u007F]/g,'');
+            input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');
           });
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
-            this.submitGuess(input.value,{id:'local-player',name:'Du'},'local');
+            const guess=input.value.trim();
             input.value='';
             input.focus();
+            if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
           });
           this.initialized=true;
         }
