@@ -1234,7 +1234,7 @@
     .guessmoji-top{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;min-height:42px;padding:2px 76px}
     .guessmoji-category{display:inline-flex;align-items:center;justify-content:center;max-width:100%;font-size:clamp(.88rem,3.5vw,1.02rem);line-height:1.25;font-weight:950;letter-spacing:.045em;text-align:center;color:#fff;background:linear-gradient(100deg,rgba(0,240,255,.16),rgba(176,38,255,.18),rgba(255,0,127,.16));border:1px solid rgba(0,240,255,.58);padding:8px 18px;border-radius:999px;text-shadow:0 0 9px rgba(0,240,255,.55),0 0 12px rgba(255,0,127,.3);box-shadow:0 0 13px rgba(0,240,255,.12),inset 0 0 12px rgba(176,38,255,.1);overflow-wrap:anywhere}
     .guessmoji-difficulty{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.72rem;font-weight:950;letter-spacing:.08em;color:#ff9cbd;text-shadow:0 0 9px rgba(255,0,127,.5)}
-    .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
+    .guessmoji-custom-emoji{width:1.08em;height:1.08em;vertical-align:-.16em;display:inline-block;filter:drop-shadow(0 0 5px rgba(0,240,255,.24))}\n    .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
     .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2px}
     .guessmoji-entry{display:flex;gap:8px}
     .guessmoji-entry input{flex:1;min-width:0;border:1px solid rgba(176,38,255,.45);border-radius:11px;padding:13px;background:rgba(7,8,20,.88);color:#fff;font:600 1rem var(--font-main);outline:none;user-select:text}
@@ -2191,7 +2191,8 @@
         const hard=this.current.difficulty==='schwer';
         const marker=document.getElementById('guessmoji-difficulty');
         marker.textContent=hard?'☠️ SCHWER':'';marker.hidden=!hard;
-        document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
+        const emojiNode=document.getElementById('guessmoji-emojis');
+        if(this.current.emojis.includes('[ESEL]')){const safe=this.current.emojis.split('[ESEL]').map(part=>part.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])));emojiNode.innerHTML=safe.join('<img class="guessmoji-custom-emoji" src="./assets/guessmoji-esel.svg" alt="Esel">');}else{emojiNode.textContent=this.current.emojis;}
         document.getElementById('guessmoji-timer-fill').style.width='100%';
         document.getElementById('guessmoji-input').disabled=false;
         document.getElementById('guessmoji-guesses').innerHTML='';
