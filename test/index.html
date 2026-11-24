@@ -1231,9 +1231,9 @@
     .guessmoji-title .moji{color:var(--neon-pink);text-shadow:0 0 10px rgba(255,0,127,.45),0 0 26px rgba(255,0,127,.18)}
     .guessmoji-card{position:relative;isolation:isolate;overflow:hidden;background:rgba(18,20,44,.62);border:1px solid var(--border-glow);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto;width:100%}
     .guessmoji-card>*{position:relative;z-index:1}
-    .guessmoji-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-    .guessmoji-category{font-size:.75rem;font-weight:800;color:var(--neon-cyan);background:rgba(0,240,255,.10);border:1px solid rgba(0,240,255,.3);padding:4px 12px;border-radius:20px}
-    .guessmoji-difficulty{font-size:.72rem;font-weight:900;letter-spacing:.08em;color:#ff9cbd}
+    .guessmoji-top{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;min-height:42px;padding:2px 76px}
+    .guessmoji-category{display:inline-flex;align-items:center;justify-content:center;max-width:100%;font-size:clamp(.88rem,3.5vw,1.02rem);line-height:1.25;font-weight:950;letter-spacing:.045em;text-align:center;color:#fff;background:linear-gradient(100deg,rgba(0,240,255,.16),rgba(176,38,255,.18),rgba(255,0,127,.16));border:1px solid rgba(0,240,255,.58);padding:8px 18px;border-radius:999px;text-shadow:0 0 9px rgba(0,240,255,.55),0 0 12px rgba(255,0,127,.3);box-shadow:0 0 13px rgba(0,240,255,.12),inset 0 0 12px rgba(176,38,255,.1);overflow-wrap:anywhere}
+    .guessmoji-difficulty{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.72rem;font-weight:950;letter-spacing:.08em;color:#ff9cbd;text-shadow:0 0 9px rgba(255,0,127,.5)}
     .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
     .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2px}
     .guessmoji-entry{display:flex;gap:8px}
