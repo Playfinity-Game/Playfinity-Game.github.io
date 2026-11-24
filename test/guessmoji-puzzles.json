@@ -2026,6 +2026,564 @@
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
+    },
+    {
+      "emojis": "⛏️ + 🧱",
+      "answer": "Minecraft",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 🏎️",
+      "answer": "Mario Kart",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 👨‍🔧",
+      "answer": "Super Mario",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🟡",
+      "answer": "Pac-Man",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱 + 🟦",
+      "answer": "Tetris",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗡️ + 🛡️",
+      "answer": "The Legend of Zelda",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Zelda"
+      ]
+    },
+    {
+      "emojis": "⚡ + 🐭",
+      "answer": "Pokémon",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Pokemon"
+      ]
+    },
+    {
+      "emojis": "🚀 + ⚽",
+      "answer": "Rocket League",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔫 + 🪂",
+      "answer": "Fortnite",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍🚀 + 🔪",
+      "answer": "Among Us",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💎 + 💎",
+      "answer": "Bejeweled",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍬 + 💥",
+      "answer": "Candy Crush",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Candy Crush Saga"
+      ]
+    },
+    {
+      "emojis": "🐦 + 😠",
+      "answer": "Angry Birds",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌱 + 🧟",
+      "answer": "Plants vs. Zombies",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Plants vs Zombies"
+      ]
+    },
+    {
+      "emojis": "🏃 + 🚇",
+      "answer": "Subway Surfers",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏃 + 🏛️",
+      "answer": "Temple Run",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤠 + 🐎",
+      "answer": "Red Dead Redemption",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🔫",
+      "answer": "Grand Theft Auto",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "GTA"
+      ]
+    },
+    {
+      "emojis": "⚽ + 🥅",
+      "answer": "FIFA",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "EA Sports FC"
+      ]
+    },
+    {
+      "emojis": "🧙 + 🪄",
+      "answer": "Hogwarts Legacy",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + ⚔️",
+      "answer": "The Witcher",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐉 + 🏔️",
+      "answer": "Skyrim",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "The Elder Scrolls V: Skyrim"
+      ]
+    },
+    {
+      "emojis": "💍 + ⚔️",
+      "answer": "Elden Ring",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🗡️",
+      "answer": "Ghost of Tsushima",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖 + 🏹",
+      "answer": "Horizon Zero Dawn",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪓 + 🧔",
+      "answer": "God of War",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕷️ + 🕸️",
+      "answer": "Spider-Man",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦇 + 🃏",
+      "answer": "Batman",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 🧟",
+      "answer": "The Last of Us",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🐍",
+      "answer": "Metal Gear Solid",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👽 + 🔫",
+      "answer": "Halo",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👹 + 🔫",
+      "answer": "Doom",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☢️ + 👍",
+      "answer": "Fallout",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌌 + 🚀",
+      "answer": "Starfield",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦾 + 🌃",
+      "answer": "Cyberpunk 2077",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏝️ + 🦝",
+      "answer": "Animal Crossing",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍🌾 + 🌻",
+      "answer": "Stardew Valley",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍👩‍👧‍👦 + 🏠",
+      "answer": "Die Sims",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "The Sims"
+      ]
+    },
+    {
+      "emojis": "🎢 + 🎡",
+      "answer": "RollerCoaster Tycoon",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🏗️",
+      "answer": "SimCity",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️ + 🌍",
+      "answer": "Civilization",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Sid Meier's Civilization"
+      ]
+    },
+    {
+      "emojis": "⚔️ + 🏰",
+      "answer": "Age of Empires",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⭐ + 🛸",
+      "answer": "StarCraft",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👹 + ⚔️",
+      "answer": "Diablo",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧙 + ⚔️",
+      "answer": "World of Warcraft",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "WoW"
+      ]
+    },
+    {
+      "emojis": "🃏 + 🔥",
+      "answer": "Hearthstone",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛡️ + 🔫",
+      "answer": "Overwatch",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔫 + 💣",
+      "answer": "Counter-Strike",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Counter Strike",
+        "CS"
+      ]
+    },
+    {
+      "emojis": "🔫 + 🧪",
+      "answer": "Valorant",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + ⚔️",
+      "answer": "League of Legends",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "LoL"
+      ]
+    },
+    {
+      "emojis": "🏰 + 💥",
+      "answer": "Clash of Clans",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🃏",
+      "answer": "Clash Royale",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌵 + 🔫",
+      "answer": "Brawl Stars",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱 + 🧑",
+      "answer": "Roblox",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕺 + 🎶",
+      "answer": "Just Dance",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎸 + 🤘",
+      "answer": "Guitar Hero",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 🥋",
+      "answer": "Street Fighter",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐉 + 🥋",
+      "answer": "Mortal Kombat",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👊 + 🏆",
+      "answer": "Tekken",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦔 + 💨",
+      "answer": "Sonic",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Sonic the Hedgehog"
+      ]
+    },
+    {
+      "emojis": "🦊 + 🥭",
+      "answer": "Crash Bandicoot",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐉 + 🔥",
+      "answer": "Spyro",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Spyro the Dragon"
+      ]
+    },
+    {
+      "emojis": "🏴‍☠️ + 🦜",
+      "answer": "Sea of Thieves",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥷 + 🗡️",
+      "answer": "Assassin’s Creed",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Assassin's Creed"
+      ]
+    },
+    {
+      "emojis": "🏹 + 💎",
+      "answer": "Tomb Raider",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧭 + 💎",
+      "answer": "Uncharted",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏎️ + 🏁",
+      "answer": "Gran Turismo",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🏎️",
+      "answer": "Need for Speed",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌾 + 🚜",
+      "answer": "Landwirtschafts-Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚛 + 🛣️",
+      "answer": "Euro Truck Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🌍",
+      "answer": "Microsoft Flight Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Flight Simulator"
+      ]
+    },
+    {
+      "emojis": "🐐 + 🤪",
+      "answer": "Goat Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦆 + 🔫",
+      "answer": "Duck Hunt",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏓 + ⚪",
+      "answer": "Pong",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💣 + 👨",
+      "answer": "Bomberman",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
     }
   ]
 }
