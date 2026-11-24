@@ -2128,7 +2128,6 @@
             this.submitGuess(input.value,{id:'local-player',name:'Du'},'local');
             input.value='';input.focus();
           });
-          document.getElementById('guessmoji-next').addEventListener('click',()=>this.nextRound());
           this.initialized=true;
         }
         if(!this.current)this.nextRound();
