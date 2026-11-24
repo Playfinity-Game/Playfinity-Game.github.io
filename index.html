@@ -1668,8 +1668,13 @@
       currentScreen: 'menu',
 
       init() {
-        // PopState-Event fängt die Browser- und Android-Zurück-Taste ab
+        // Android-/Browser-Zurück schließt zuerst das geöffnete Menü.
         window.addEventListener('popstate', (e) => {
+          if (this.menuHistoryEntry || menu.classList.contains('open')) {
+            this.menuHistoryEntry = false;
+            this.setMenuOpen(false, false);
+            return;
+          }
           const targetScreen = (e.state && e.state.screen) ? e.state.screen : 'menu';
           this.renderScreen(targetScreen, false);
         });
@@ -1682,7 +1687,30 @@
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
-        toggle.addEventListener('click', () => { menu.classList.toggle('open'); toggle.setAttribute('aria-expanded', menu.classList.contains('open') ? 'true' : 'false'); });
+        this.menuHistoryEntry = false;
+        this.setMenuOpen = (open, manageHistory = true) => {
+          const isOpen = menu.classList.contains('open');
+          if (open === isOpen) return;
+          menu.classList.toggle('open', open);
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+          if (open && manageHistory) {
+            history.pushState({ screen: this.currentScreen, menuOpen: true }, '', location.href);
+            this.menuHistoryEntry = true;
+          } else if (!open && manageHistory && this.menuHistoryEntry) {
+            // Den Menü-History-Eintrag über popstate entfernen; die Seite bleibt unverändert.
+            history.back();
+          }
+        };
+        toggle.addEventListener('click', () => this.setMenuOpen(!menu.classList.contains('open')));
+        document.addEventListener('pointerdown', event => {
+          if (!menu.classList.contains('open')) return;
+          if (menu.contains(event.target) || toggle.contains(event.target)) return;
+          this.setMenuOpen(false);
+        });
+        document.addEventListener('keydown', event => {
+          if (event.key === 'Escape' && menu.classList.contains('open')) this.setMenuOpen(false);
+        });
         menu.addEventListener('click', (event) => {
           const action = event.target.closest('[data-menu-action]')?.dataset.menuAction;
           if (!action) return;
@@ -1692,7 +1720,7 @@
             event.target.closest('[data-menu-action]').setAttribute('aria-expanded', panel.hidden ? 'false' : 'true');
             return;
           }
-          menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
+          this.setMenuOpen(false);
           if (action === 'home') this.go('menu');
           if (action === 'leaderboard') PlayfinityScores.showCategories();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
