@@ -129,7 +129,7 @@
       "aliases": []
     },
     {
-      "emojis": "🐿️",
+      "emojis": "🐿️ + 🌳",
       "answer": "Eichhörnchen",
       "category": "Tiere & Natur",
       "difficulty": "schwer",
@@ -756,7 +756,7 @@
       "aliases": []
     },
     {
-      "emojis": "☂️",
+      "emojis": "☂️ + 🏠",
       "answer": "Regenschirm",
       "category": "Alltag & Gegenstände",
       "difficulty": "leicht",
@@ -805,14 +805,14 @@
       "aliases": []
     },
     {
-      "emojis": "🛏️",
+      "emojis": "🛏️ + 🏠",
       "answer": "Bett",
       "category": "Alltag & Gegenstände",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🛋️",
+      "emojis": "🛋️ + 🏠",
       "answer": "Sofa",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -854,7 +854,7 @@
       "aliases": []
     },
     {
-      "emojis": "🕯️",
+      "emojis": "🕯️ + 🏠",
       "answer": "Kerze",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -924,21 +924,21 @@
       "aliases": []
     },
     {
-      "emojis": "✏️",
+      "emojis": "✏️ + 🏠",
       "answer": "Bleistift",
       "category": "Alltag & Gegenstände",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🖊️",
+      "emojis": "🖊️ + 🏠",
       "answer": "Kugelschreiber",
       "category": "Alltag & Gegenstände",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "✂️",
+      "emojis": "✂️ + 🏠",
       "answer": "Schere",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -994,7 +994,7 @@
       "aliases": []
     },
     {
-      "emojis": "🗝️",
+      "emojis": "🗝️ + 🏠",
       "answer": "Türschlüssel",
       "category": "Alltag & Gegenstände",
       "difficulty": "leicht",
@@ -1050,287 +1050,287 @@
       "aliases": []
     },
     {
-      "emojis": "🕶️",
+      "emojis": "🕶️ + 🏠",
       "answer": "Sonnenbrille",
       "category": "Alltag & Gegenstände",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇩🇪",
+      "emojis": "🇩🇪 + 🗺️",
       "answer": "Deutschland",
       "category": "Länder & Orte",
       "difficulty": "schwer",
       "aliases": []
     },
     {
-      "emojis": "🇫🇷",
+      "emojis": "🇫🇷 + 🗺️",
       "answer": "Frankreich",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇮🇹",
+      "emojis": "🇮🇹 + 🗺️",
       "answer": "Italien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇪🇸",
+      "emojis": "🇪🇸 + 🗺️",
       "answer": "Spanien",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇵🇹",
+      "emojis": "🇵🇹 + 🗺️",
       "answer": "Portugal",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇬🇧",
+      "emojis": "🇬🇧 + 🗺️",
       "answer": "Großbritannien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇮🇪",
+      "emojis": "🇮🇪 + 🗺️",
       "answer": "Irland",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇳🇱",
+      "emojis": "🇳🇱 + 🗺️",
       "answer": "Niederlande",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇧🇪",
+      "emojis": "🇧🇪 + 🗺️",
       "answer": "Belgien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇨🇭",
+      "emojis": "🇨🇭 + 🗺️",
       "answer": "Schweiz",
       "category": "Länder & Orte",
       "difficulty": "schwer",
       "aliases": []
     },
     {
-      "emojis": "🇦🇹",
+      "emojis": "🇦🇹 + 🗺️",
       "answer": "Österreich",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇵🇱",
+      "emojis": "🇵🇱 + 🗺️",
       "answer": "Polen",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇬🇷",
+      "emojis": "🇬🇷 + 🗺️",
       "answer": "Griechenland",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇹🇷",
+      "emojis": "🇹🇷 + 🗺️",
       "answer": "Türkei",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇸🇪",
+      "emojis": "🇸🇪 + 🗺️",
       "answer": "Schweden",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇳🇴",
+      "emojis": "🇳🇴 + 🗺️",
       "answer": "Norwegen",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇫🇮",
+      "emojis": "🇫🇮 + 🗺️",
       "answer": "Finnland",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇩🇰",
+      "emojis": "🇩🇰 + 🗺️",
       "answer": "Dänemark",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇺🇸",
+      "emojis": "🇺🇸 + 🗺️",
       "answer": "USA",
       "category": "Länder & Orte",
       "difficulty": "schwer",
       "aliases": []
     },
     {
-      "emojis": "🇨🇦",
+      "emojis": "🇨🇦 + 🗺️",
       "answer": "Kanada",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇲🇽",
+      "emojis": "🇲🇽 + 🗺️",
       "answer": "Mexiko",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇧🇷",
+      "emojis": "🇧🇷 + 🗺️",
       "answer": "Brasilien",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇦🇷",
+      "emojis": "🇦🇷 + 🗺️",
       "answer": "Argentinien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇯🇵",
+      "emojis": "🇯🇵 + 🗺️",
       "answer": "Japan",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇨🇳",
+      "emojis": "🇨🇳 + 🗺️",
       "answer": "China",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇰🇷",
+      "emojis": "🇰🇷 + 🗺️",
       "answer": "Südkorea",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇮🇳",
+      "emojis": "🇮🇳 + 🗺️",
       "answer": "Indien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇹🇭",
+      "emojis": "🇹🇭 + 🗺️",
       "answer": "Thailand",
       "category": "Länder & Orte",
       "difficulty": "schwer",
       "aliases": []
     },
     {
-      "emojis": "🇦🇺",
+      "emojis": "🇦🇺 + 🗺️",
       "answer": "Australien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇳🇿",
+      "emojis": "🇳🇿 + 🗺️",
       "answer": "Neuseeland",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇪🇬",
+      "emojis": "🇪🇬 + 🗺️",
       "answer": "Ägypten",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇿🇦",
+      "emojis": "🇿🇦 + 🗺️",
       "answer": "Südafrika",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇲🇦",
+      "emojis": "🇲🇦 + 🗺️",
       "answer": "Marokko",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇮🇸",
+      "emojis": "🇮🇸 + 🗺️",
       "answer": "Island",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🇺🇦",
+      "emojis": "🇺🇦 + 🗺️",
       "answer": "Ukraine",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇨🇿",
+      "emojis": "🇨🇿 + 🗺️",
       "answer": "Tschechien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇭🇺",
+      "emojis": "🇭🇺 + 🗺️",
       "answer": "Ungarn",
       "category": "Länder & Orte",
       "difficulty": "schwer",
       "aliases": []
     },
     {
-      "emojis": "🇷🇴",
+      "emojis": "🇷🇴 + 🗺️",
       "answer": "Rumänien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇭🇷",
+      "emojis": "🇭🇷 + 🗺️",
       "answer": "Kroatien",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🇨🇾",
+      "emojis": "🇨🇾 + 🗺️",
       "answer": "Zypern",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -1358,7 +1358,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏖️",
+      "emojis": "🏖️ + 🗺️",
       "answer": "Mallorca",
       "category": "Länder & Orte",
       "difficulty": "leicht",
@@ -1379,14 +1379,14 @@
       "aliases": []
     },
     {
-      "emojis": "🏜️",
+      "emojis": "🏜️ + 🗺️",
       "answer": "Sahara",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🏔️",
+      "emojis": "🏔️ + 🗺️",
       "answer": "Alpen",
       "category": "Länder & Orte",
       "difficulty": "leicht",
@@ -1400,14 +1400,14 @@
       "aliases": []
     },
     {
-      "emojis": "🏝️",
+      "emojis": "🏝️ + 🗺️",
       "answer": "Malediven",
       "category": "Länder & Orte",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "❤️",
+      "emojis": "❤️ + 💬",
       "answer": "Liebe",
       "category": "Liebe & Gefühle",
       "difficulty": "schwer",
@@ -1743,7 +1743,7 @@
       "aliases": []
     },
     {
-      "emojis": "🕊️",
+      "emojis": "🕊️ + 💬",
       "answer": "Frieden",
       "category": "Liebe & Gefühle",
       "difficulty": "mittel",
@@ -1771,14 +1771,14 @@
       "aliases": []
     },
     {
-      "emojis": "⛏️",
+      "emojis": "⛏️ + 🎮",
       "answer": "Minecraft",
       "category": "Games",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🏝️",
+      "emojis": "🏝️ + 🎮",
       "answer": "Animal Crossing",
       "category": "Games",
       "difficulty": "mittel",
@@ -1799,7 +1799,7 @@
       "aliases": []
     },
     {
-      "emojis": "⚔️",
+      "emojis": "⚔️ + 🎮",
       "answer": "The Legend of Zelda",
       "category": "Games",
       "difficulty": "mittel",
@@ -1820,7 +1820,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏎️",
+      "emojis": "🏎️ + 🎮",
       "answer": "Mario Kart",
       "category": "Games",
       "difficulty": "schwer",
@@ -1862,7 +1862,7 @@
       "aliases": []
     },
     {
-      "emojis": "🧟‍♂️",
+      "emojis": "🧟‍♂️ + 🎮",
       "answer": "Plants vs Zombies",
       "category": "Games",
       "difficulty": "mittel",
@@ -1904,7 +1904,7 @@
       "aliases": []
     },
     {
-      "emojis": "🧑‍🚀",
+      "emojis": "🧑‍🚀 + 🎮",
       "answer": "No Man's Sky",
       "category": "Games",
       "difficulty": "mittel",
@@ -1953,7 +1953,7 @@
       "aliases": []
     },
     {
-      "emojis": "🕵️",
+      "emojis": "🕵️ + 🎮",
       "answer": "L.A. Noire",
       "category": "Games",
       "difficulty": "leicht",
@@ -1967,14 +1967,14 @@
       "aliases": []
     },
     {
-      "emojis": "🧟‍♀️",
+      "emojis": "🧟‍♀️ + 🎮",
       "answer": "Left 4 Dead",
       "category": "Games",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🛡️",
+      "emojis": "🛡️ + 🎮",
       "answer": "Overwatch",
       "category": "Games",
       "difficulty": "leicht",
@@ -1995,7 +1995,7 @@
       "aliases": []
     },
     {
-      "emojis": "🧙‍♂️",
+      "emojis": "🧙‍♂️ + 🎮",
       "answer": "Diablo",
       "category": "Games",
       "difficulty": "leicht",
@@ -2051,7 +2051,7 @@
       "aliases": []
     },
     {
-      "emojis": "🧑‍🌾",
+      "emojis": "🧑‍🌾 + 🎮",
       "answer": "Stardew Valley",
       "category": "Games",
       "difficulty": "mittel",
@@ -2177,7 +2177,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏎️",
+      "emojis": "🏎️ + 🛣️",
       "answer": "Rennwagen",
       "category": "Fahrzeuge",
       "difficulty": "leicht",
@@ -2198,7 +2198,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏍️",
+      "emojis": "🏍️ + 🛣️",
       "answer": "Motorrad",
       "category": "Fahrzeuge",
       "difficulty": "leicht",
@@ -2275,14 +2275,14 @@
       "aliases": []
     },
     {
-      "emojis": "✈️",
+      "emojis": "✈️ + 🛣️",
       "answer": "Flugzeug",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🛩️",
+      "emojis": "🛩️ + 🛣️",
       "answer": "Propellerflugzeug",
       "category": "Fahrzeuge",
       "difficulty": "leicht",
@@ -2317,14 +2317,14 @@
       "aliases": []
     },
     {
-      "emojis": "🛥️",
+      "emojis": "🛥️ + 🛣️",
       "answer": "Yacht",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🛳️",
+      "emojis": "🛳️ + 🛣️",
       "answer": "Kreuzfahrtschiff",
       "category": "Fahrzeuge",
       "difficulty": "leicht",
@@ -2569,7 +2569,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏌️",
+      "emojis": "🏌️ + 🏆",
       "answer": "Golfen",
       "category": "Sport & Freizeit",
       "difficulty": "leicht",
@@ -2583,7 +2583,7 @@
       "aliases": []
     },
     {
-      "emojis": "⛸️",
+      "emojis": "⛸️ + 🏆",
       "answer": "Eislaufen",
       "category": "Sport & Freizeit",
       "difficulty": "schwer",
@@ -2660,7 +2660,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏋️",
+      "emojis": "🏋️ + 🏆",
       "answer": "Gewichtheben",
       "category": "Sport & Freizeit",
       "difficulty": "leicht",
@@ -2702,7 +2702,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏕️",
+      "emojis": "🏕️ + 🏆",
       "answer": "Camping",
       "category": "Sport & Freizeit",
       "difficulty": "leicht",
@@ -2807,56 +2807,56 @@
       "aliases": []
     },
     {
-      "emojis": "☀️",
+      "emojis": "☀️ + 🌍",
       "answer": "Sonnenschein",
       "category": "Natur & Wetter",
       "difficulty": "schwer",
       "aliases": []
     },
     {
-      "emojis": "🌧️",
+      "emojis": "🌧️ + 🌍",
       "answer": "Regen",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "⛈️",
+      "emojis": "⛈️ + 🌍",
       "answer": "Gewitter",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🌩️",
+      "emojis": "🌩️ + 🌍",
       "answer": "Blitz",
       "category": "Natur & Wetter",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "❄️",
+      "emojis": "❄️ + 🌍",
       "answer": "Schnee",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🌨️",
+      "emojis": "🌨️ + 🌍",
       "answer": "Schneesturm",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🌪️",
+      "emojis": "🌪️ + 🌍",
       "answer": "Tornado",
       "category": "Natur & Wetter",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🌫️",
+      "emojis": "🌫️ + 🌍",
       "answer": "Nebel",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
@@ -2891,28 +2891,28 @@
       "aliases": []
     },
     {
-      "emojis": "🏔️",
+      "emojis": "🏔️ + 🌍",
       "answer": "Berg",
       "category": "Natur & Wetter",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "⛰️",
+      "emojis": "⛰️ + 🌍",
       "answer": "Gebirge",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🏜️",
+      "emojis": "🏜️ + 🌍",
       "answer": "Wüste",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🏝️",
+      "emojis": "🏝️ + 🌍",
       "answer": "Insel",
       "category": "Natur & Wetter",
       "difficulty": "mittel",
@@ -3115,14 +3115,14 @@
       "aliases": []
     },
     {
-      "emojis": "🌡️",
+      "emojis": "🌡️ + 🌍",
       "answer": "Thermometer",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
       "aliases": []
     },
     {
-      "emojis": "🌬️",
+      "emojis": "🌬️ + 🌍",
       "answer": "Windstoß",
       "category": "Natur & Wetter",
       "difficulty": "schwer",
@@ -3143,14 +3143,14 @@
       "aliases": []
     },
     {
-      "emojis": "🌤️",
+      "emojis": "🌤️ + 🌍",
       "answer": "Wolkenlos",
       "category": "Natur & Wetter",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🌥️",
+      "emojis": "🌥️ + 🌍",
       "answer": "Wolkenhimmel",
       "category": "Natur & Wetter",
       "difficulty": "leicht",
