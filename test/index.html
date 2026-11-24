@@ -2150,11 +2150,15 @@
       normalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLocaleLowerCase('de-DE').replace(/[^a-z0-9]/g,'');},
       init(){
         if(!this.initialized){
+          const input=document.getElementById('guessmoji-input');
+          input.addEventListener('input',()=>{
+            input.value=input.value.replace(/[\\u0000-\\u001F\\u007F]/g,'');
+          });
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
-            const input=document.getElementById('guessmoji-input');
             this.submitGuess(input.value,{id:'local-player',name:'Du'},'local');
-            input.value='';input.focus();
+            input.value='';
+            input.focus();
           });
           this.initialized=true;
         }
@@ -2181,7 +2185,6 @@
         document.getElementById('guessmoji-status').textContent='Der 20-Sekunden-Timer startet mit dem ersten Tipp.';
         document.getElementById('guessmoji-guesses').innerHTML='';
         document.getElementById('guessmoji-input').disabled=false;
-        this.renderScore();
       },
       startTimer(){
         if(!this.roundOpen||this.timer)return;
@@ -2214,19 +2217,12 @@
             this.solvedPlayers.add(key);
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
             if(key!=='local-player')CommunityBoard.record('guessmoji',identity,10);
-            this.renderScore();
           }
           document.getElementById('guessmoji-status').textContent='🎉 '+(identity.name||'Ein Spieler')+' hat die Lösung gefunden! Alle dürfen weiter mitraten.';
         }else{
           document.getElementById('guessmoji-status').textContent=(identity.name||'Ein Spieler')+' hat geraten – weiter geht’s!';
         }
         return true;
-      },
-      renderScore(){
-        const rows=[...this.scores.values()].sort((a,b)=>b.points-a.points);
-        const local=this.scores.get('local-player')?.points||0;
-        const others=rows.filter(r=>r.name!=='Du').slice(0,3).map(r=>r.name+': '+r.points).join(' · ');
-        document.getElementById('guessmoji-score').textContent='Deine Punkte: '+local+(others?' | '+others:'');
       },
       finishRound(){
         if(!this.roundOpen)return;
@@ -2235,14 +2231,13 @@
         document.getElementById('guessmoji-timer-label').textContent='⏱️ Zeit abgelaufen';
         document.getElementById('guessmoji-timer-fill').style.width='0%';
         document.getElementById('guessmoji-status').textContent='Die Runde ist beendet.';
-        const local=this.scores.get('local-player')?.points||0;
         const overlay=document.getElementById('pf-winner-overlay');
         document.getElementById('pf-winner-brand').textContent='PLAYFINITY • GUESSMOJI';
         document.getElementById('pf-winner-name').textContent='Runde beendet!';
         const answer=document.getElementById('pf-winner-answer');
         answer.textContent='LÖSUNGSWORT: '+this.current.answer;
         answer.style.display='block';
-        document.getElementById('pf-winner-meta').textContent='Deine Punktzahl: '+local+' Punkte';
+        document.getElementById('pf-winner-meta').textContent='';
         document.getElementById('pf-winner-helpers').style.display='none';
         document.getElementById('pf-winner-next').onclick=()=>{overlay.classList.remove('active');this.nextRound();};
         overlay.classList.add('active');
