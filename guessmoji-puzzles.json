@@ -15,7 +15,4553 @@
     "Märchen & Figuren",
     "Berühmte Bauwerke",
     "Allgemeinwissen",
-    "Redewendungen"
+    "Redewendungen",
+    "Bands & Künstler",
+    "Bekannte Songs"
   ],
-  "puzzles": []
+  "puzzles": [
+    {
+      "emojis": "💧 + 🏃",
+      "answer": "Wasserläufer",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🐗",
+      "answer": "Wildschwein",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🐱",
+      "answer": "Wildkatze",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🦆",
+      "answer": "Wildente",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🦢",
+      "answer": "Wildgans",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🐴",
+      "answer": "Wildpferd",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🐝",
+      "answer": "Wildbiene",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🌹",
+      "answer": "Wildrose",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🍒",
+      "answer": "Wildkirsche",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪵 + 🐭",
+      "answer": "Waldmaus",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🦉",
+      "answer": "Waldkauz",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🍓",
+      "answer": "Walderdbeere",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🍄",
+      "answer": "Waldpilz",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🐜",
+      "answer": "Waldameise",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🌿",
+      "answer": "Waldmeister",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏜️ + 🦊",
+      "answer": "Wüstenfuchs",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏜️ + 🐭",
+      "answer": "Wüstenrennmaus",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏜️ + 🌹",
+      "answer": "Wüstenrose",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏜️ + 🦎",
+      "answer": "Wüstenleguan",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏜️ + 🌵",
+      "answer": "Wüstenkaktus",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏜️ + 🦂",
+      "answer": "Wüstenskorpion",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🦅",
+      "answer": "Steinadler",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🐐",
+      "answer": "Steinbock",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🍄",
+      "answer": "Steinpilz",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🐟",
+      "answer": "Steinbutt",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🦉",
+      "answer": "Steinkauz",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🦡",
+      "answer": "Steinmarder",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🌿",
+      "answer": "Steinbrech",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🐍",
+      "answer": "Königskobra",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🐧",
+      "answer": "Königspinguin",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🐯",
+      "answer": "Königstiger",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🦅",
+      "answer": "Königsadler",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🦀",
+      "answer": "Königskrabbe",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🐟",
+      "answer": "Königslachs",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🌴",
+      "answer": "Königspalme",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🦈",
+      "answer": "Tigerhai",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🐍",
+      "answer": "Tigerpython",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🐈",
+      "answer": "Tigerkatze",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🦆",
+      "answer": "Tigerente",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🕷️",
+      "answer": "Tigerspinne",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🐟",
+      "answer": "Tigerfisch",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐅 + 🦎",
+      "answer": "Tigergecko",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦓 + 🦈",
+      "answer": "Zebrahai",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦓 + 🐟",
+      "answer": "Zebrafisch",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦓 + 🐦",
+      "answer": "Zebrafink",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 🕷️",
+      "answer": "Wolfsspinne",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 🐟",
+      "answer": "Wolfsbarsch",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 🐶",
+      "answer": "Wolfshund",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 🌿",
+      "answer": "Wolfsmilch",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐘 + 🦤",
+      "answer": "Elefantenvogel",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐘 + 🦭",
+      "answer": "See-Elefant",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐘 + 🐢",
+      "answer": "Elefantenschildkröte",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐘 + 🐭",
+      "answer": "Elefantenspitzmaus",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐘 + 🪲",
+      "answer": "Elefantenkäfer",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦋 + 🐟",
+      "answer": "Schmetterlingsfisch",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐈 + 🦈",
+      "answer": "Katzenhai",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐈 + 🐼",
+      "answer": "Katzenbär",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐕 + 🦈",
+      "answer": "Hundshai",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🪰",
+      "answer": "Pferdebremse",
+      "category": "Tiere & Natur",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍎 + 🥧",
+      "answer": "Apfelkuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍎 + 🧃",
+      "answer": "Apfelsaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍎 + 🌳",
+      "answer": "Apfelbaum",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍎 + 🍷",
+      "answer": "Apfelwein",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🍎",
+      "answer": "Bratapfel",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍌 + 🍞",
+      "answer": "Bananenbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍌 + 🥛",
+      "answer": "Bananenmilch",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍓 + 🍰",
+      "answer": "Erdbeerkuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍓 + 🍦",
+      "answer": "Erdbeereis",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍓 + 🥛",
+      "answer": "Erdbeermilch",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍒 + 🍰",
+      "answer": "Kirschkuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍒 + 🧃",
+      "answer": "Kirschsaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍋 + 🧃",
+      "answer": "Zitronensaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍋 + 🍰",
+      "answer": "Zitronenkuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍊 + 🧃",
+      "answer": "Orangensaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍑 + 🧃",
+      "answer": "Pfirsichsaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍍 + 🧃",
+      "answer": "Ananassaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍇 + 🧃",
+      "answer": "Traubensaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥥 + 🥛",
+      "answer": "Kokosmilch",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥥 + 💧",
+      "answer": "Kokoswasser",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥔 + 🥗",
+      "answer": "Kartoffelsalat",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥔 + 🥣",
+      "answer": "Kartoffelsuppe",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥔 + 🥞",
+      "answer": "Kartoffelpuffer",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥔 + 🍞",
+      "answer": "Kartoffelbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍅 + 🥣",
+      "answer": "Tomatensuppe",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍅 + 🥗",
+      "answer": "Tomatensalat",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍅 + 🧃",
+      "answer": "Tomatensaft",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥕 + 🍰",
+      "answer": "Karottenkuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥕 + 🥣",
+      "answer": "Karottensuppe",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧅 + 🥣",
+      "answer": "Zwiebelsuppe",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧅 + 🍞",
+      "answer": "Zwiebelbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧄 + 🍞",
+      "answer": "Knoblauchbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 🥣",
+      "answer": "Pilzsuppe",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌽 + 🍞",
+      "answer": "Maisbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥒 + 🥗",
+      "answer": "Gurkensalat",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥬 + 🥗",
+      "answer": "Kopfsalat",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧀 + 🍰",
+      "answer": "Käsekuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧀 + 🍞",
+      "answer": "Käsebrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧀 + 🍲",
+      "answer": "Käsefondue",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥛 + 🍫",
+      "answer": "Schokomilch",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥛 + ☕",
+      "answer": "Milchkaffee",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥛 + 🍚",
+      "answer": "Milchreis",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍫 + 🍰",
+      "answer": "Schokokuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍫 + 🍦",
+      "answer": "Schokoeis",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍫 + 🍪",
+      "answer": "Schokokeks",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍫 + 🍲",
+      "answer": "Schokofondue",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍯 + 🍞",
+      "answer": "Honigbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍯 + 🥛",
+      "answer": "Honigmilch",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍯 + 🍰",
+      "answer": "Honigkuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍯 + 🍷",
+      "answer": "Honigwein",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + ☕",
+      "answer": "Eiskaffee",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🍵",
+      "answer": "Eistee",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🍫",
+      "answer": "Eisschokolade",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + 🍉",
+      "answer": "Wassermelone",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + 🍦",
+      "answer": "Wassereis",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🍷",
+      "answer": "Glühwein",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌭 + 🐶",
+      "answer": "Hotdog",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥚 + 🥣",
+      "answer": "Rührei",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍳 + 🥚",
+      "answer": "Spiegelei",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟 + 🍔",
+      "answer": "Fischburger",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟 + 🥖",
+      "answer": "Fischbrötchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐔 + 🥣",
+      "answer": "Hühnersuppe",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌭 + 🥗",
+      "answer": "Wurstsalat",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧈 + 🍞",
+      "answer": "Butterbrot",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥨 + 🧂",
+      "answer": "Salzbrezel",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧂 + 🥔",
+      "answer": "Salzkartoffel",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍬 + ☁️",
+      "answer": "Zuckerwatte",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☕ + 🍰",
+      "answer": "Kaffeekuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍺 + 🌳",
+      "answer": "Biergarten",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌰 + 🍰",
+      "answer": "Nusskuchen",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌰 + 🍫",
+      "answer": "Nussschokolade",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥜 + 🧈",
+      "answer": "Erdnussbutter",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🫐 + 🧁",
+      "answer": "Blaubeermuffin",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍑 + 🍦",
+      "answer": "Pfirsicheis",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥭 + 🥤",
+      "answer": "Mangolassi",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍋 + 💧",
+      "answer": "Zitronenwasser",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍵 + 🌿",
+      "answer": "Grüntee",
+      "category": "Essen & Trinken",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔑 + ⛓️",
+      "answer": "Schlüsselbund",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔑 + 🕳️",
+      "answer": "Schlüsselloch",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔑 + 📦",
+      "answer": "Schlüsselkasten",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚪 + 🔔",
+      "answer": "Türklingel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚪 + 🔒",
+      "answer": "Türschloss",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚪 + 🦶",
+      "answer": "Fußmatte",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦷 + 🪥",
+      "answer": "Zahnbürste",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦷 + 🧴",
+      "answer": "Zahnpasta",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦷 + 🧵",
+      "answer": "Zahnseide",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦷 + 🥤",
+      "answer": "Zahnputzbecher",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✋ + 🧤",
+      "answer": "Handschuh",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✋ + 👜",
+      "answer": "Handtasche",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✋ + 📱",
+      "answer": "Handy",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✋ + 🧴",
+      "answer": "Handcreme",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✋ + 🧹",
+      "answer": "Handfeger",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👝 + 🔪",
+      "answer": "Taschenmesser",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👝 + 🧻",
+      "answer": "Taschentuch",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👝 + 📖",
+      "answer": "Taschenbuch",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👝 + 🧮",
+      "answer": "Taschenrechner",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛏️ + 👕",
+      "answer": "Schlafanzug",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛏️ + 🎒",
+      "answer": "Schlafsack",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛏️ + 💊",
+      "answer": "Schlaftablette",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛏️ + 🎭",
+      "answer": "Schlafmaske",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☕ + 🥄",
+      "answer": "Kaffeelöffel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☕ + 🧻",
+      "answer": "Kaffeefilter",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☕ + ⚙️",
+      "answer": "Kaffeemaschine",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☕ + 🫘",
+      "answer": "Kaffeebohne",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍵 + 🫖",
+      "answer": "Teekanne",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍵 + 🕯️",
+      "answer": "Teelicht",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍵 + 🥄",
+      "answer": "Teelöffel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍵 + 👝",
+      "answer": "Teebeutel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍳 + 🥄",
+      "answer": "Kochlöffel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍳 + 📖",
+      "answer": "Kochbuch",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍳 + 🎩",
+      "answer": "Kochmütze",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍳 + 👕",
+      "answer": "Kochschürze",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹 + 🗑️",
+      "answer": "Mülleimer",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹 + 🛍️",
+      "answer": "Müllbeutel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹 + 🚛",
+      "answer": "Müllwagen",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🔑",
+      "answer": "Autoschlüssel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🛞",
+      "answer": "Autoreifen",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 💺",
+      "answer": "Autositz",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚲 + 🪖",
+      "answer": "Fahrradhelm",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚲 + 🔒",
+      "answer": "Fahrradschloss",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚲 + 🧺",
+      "answer": "Fahrradkorb",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚲 + 💡",
+      "answer": "Fahrradlicht",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🎟️",
+      "answer": "Flugticket",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🚢",
+      "answer": "Flugzeugträger",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🏠",
+      "answer": "Flughafen",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚂 + 🏠",
+      "answer": "Bahnhof",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚂 + 🎟️",
+      "answer": "Fahrkarte",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📱 + 🔌",
+      "answer": "Ladekabel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📱 + 🛡️",
+      "answer": "Handyhülle",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💻 + 🖱️",
+      "answer": "Computermaus",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💻 + ⌨️",
+      "answer": "Computertastatur",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📷 + ⚙️",
+      "answer": "Fotoapparat",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📸 + 📔",
+      "answer": "Fotoalbum",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🖼️ + 🪵",
+      "answer": "Bilderrahmen",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕯️ + 🪑",
+      "answer": "Kerzenständer",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💡 + 🍐",
+      "answer": "Glühbirne",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⏰ + 📻",
+      "answer": "Radiowecker",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👂 + 🎧",
+      "answer": "Kopfhörer",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👃 + 👓",
+      "answer": "Nasenfahrrad",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦶 + ⚽",
+      "answer": "Fußball",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦶 + 🪑",
+      "answer": "Fußbank",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + 🔫",
+      "answer": "Wasserpistole",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + 🎈",
+      "answer": "Wasserballon",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + 🍾",
+      "answer": "Wasserflasche",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🧯",
+      "answer": "Feuerlöscher",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🚨",
+      "answer": "Feuermelder",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🪵",
+      "answer": "Feuerholz",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌳 + 🏠",
+      "answer": "Baumhaus",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌳 + 🪚",
+      "answer": "Baumsäge",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎨 + 🖌️",
+      "answer": "Malpinsel",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✏️ + 📦",
+      "answer": "Federmäppchen",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✂️ + 📄",
+      "answer": "Papierschere",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗑️ + 📄",
+      "answer": "Papierkorb",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 📄",
+      "answer": "Papierflieger",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💰 + 🐷",
+      "answer": "Sparschwein",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💰 + 📦",
+      "answer": "Geldkassette",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💳 + 👝",
+      "answer": "Geldbörse",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✉️ + 📦",
+      "answer": "Briefkasten",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✉️ + ⚖️",
+      "answer": "Briefwaage",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✉️ + 🔪",
+      "answer": "Brieföffner",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧼 + 🫧",
+      "answer": "Seifenblase",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛁 + 🦆",
+      "answer": "Badeente",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛁 + 🧣",
+      "answer": "Badetuch",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛁 + 🧂",
+      "answer": "Badesalz",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪞 + 🗄️",
+      "answer": "Spiegelschrank",
+      "category": "Alltag & Gegenstände",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍝 + 🇮🇹",
+      "answer": "Italien",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐂 + 🇪🇸",
+      "answer": "Spanien",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧀 + 🇳🇱",
+      "answer": "Holland",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍁 + 🇨🇦",
+      "answer": "Kanada",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦘 + 🇦🇺",
+      "answer": "Australien",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍣 + 🇯🇵",
+      "answer": "Japan",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐼 + 🇨🇳",
+      "answer": "China",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌮 + 🇲🇽",
+      "answer": "Mexiko",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💃 + 🇧🇷",
+      "answer": "Brasilien",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗽 + 🇺🇸",
+      "answer": "Amerika",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏺 + 🇬🇷",
+      "answer": "Griechenland",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐻 + 🏙️",
+      "answer": "Berlin",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐖 + 🏰",
+      "answer": "Hamburg",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛪ + 🏙️",
+      "answer": "Köln",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐂 + 🌊",
+      "answer": "Oxford",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍎 + 🗽",
+      "answer": "New York",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 🏙️",
+      "answer": "Singapur",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏞️ + 🌉",
+      "answer": "Innsbruck",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧂 + 🏰",
+      "answer": "Salzburg",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚢 + 🌉",
+      "answer": "Kiel",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎶 + 🎻",
+      "answer": "Wien",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + ❄️",
+      "answer": "Königswinter",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌹 + 🏠",
+      "answer": "Rosenheim",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛁 + 🛁",
+      "answer": "Baden-Baden",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 🏰",
+      "answer": "Wolfsburg",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🌉",
+      "answer": "Saarbrücken",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🌳",
+      "answer": "Meerbusch",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🏘️",
+      "answer": "Oberstdorf",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏥 + 🏠",
+      "answer": "Krankenhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏫 + 🏠",
+      "answer": "Schulhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️ + 🏠",
+      "answer": "Rathaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛪ + 🏠",
+      "answer": "Gotteshaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚒 + 🏠",
+      "answer": "Feuerwehrhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🏠",
+      "answer": "Forsthaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🛖",
+      "answer": "Berghütte",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏖️ + 🏠",
+      "answer": "Strandhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🏠",
+      "answer": "Seehaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍷 + 🏠",
+      "answer": "Weinhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍺 + 🏠",
+      "answer": "Brauhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☕ + 🏠",
+      "answer": "Kaffeehaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍞 + 🏠",
+      "answer": "Backhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎭 + 🏠",
+      "answer": "Schauspielhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎶 + 🏠",
+      "answer": "Opernhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📖 + 🏠",
+      "answer": "Verlagshaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛍️ + 🏠",
+      "answer": "Kaufhaus",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚽ + 🏟️",
+      "answer": "Fußballstadion",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 🏢",
+      "answer": "Schwimmbad",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎢 + 🎡",
+      "answer": "Freizeitpark",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 🌳",
+      "answer": "Tierpark",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰 + 🌳",
+      "answer": "Schlosspark",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🌳",
+      "answer": "Stadtpark",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛺ + 🌲",
+      "answer": "Campingplatz",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚢 + 🏙️",
+      "answer": "Hafenstadt",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏝️ + 🌊",
+      "answer": "Inselwelt",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🌊",
+      "answer": "Bergsee",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🌊",
+      "answer": "Waldsee",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🌊",
+      "answer": "Eismeer",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☀️ + 🏖️",
+      "answer": "Sonnenstrand",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🏔️",
+      "answer": "Skigebiet",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌋 + 🏝️",
+      "answer": "Vulkaninsel",
+      "category": "Länder & Orte",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛏️ + 🧱",
+      "answer": "Minecraft",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 🏎️",
+      "answer": "Mario Kart",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 👨‍🔧",
+      "answer": "Super Mario",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🟡",
+      "answer": "Pac-Man",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱 + 🟦",
+      "answer": "Tetris",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗡️ + 🛡️",
+      "answer": "The Legend of Zelda",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Zelda"
+      ]
+    },
+    {
+      "emojis": "⚡ + 🐭",
+      "answer": "Pokémon",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚀 + ⚽",
+      "answer": "Rocket League",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔫 + 🪂",
+      "answer": "Fortnite",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍🚀 + 🔪",
+      "answer": "Among Us",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💎 + 💎",
+      "answer": "Bejeweled",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍬 + 💥",
+      "answer": "Candy Crush",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Candy Crush Saga"
+      ]
+    },
+    {
+      "emojis": "🐦 + 😠",
+      "answer": "Angry Birds",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌱 + 🧟",
+      "answer": "Plants vs. Zombies",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏃 + 🚇",
+      "answer": "Subway Surfers",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏃 + 🏛️",
+      "answer": "Temple Run",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤠 + 🐎",
+      "answer": "Red Dead Redemption",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🔫",
+      "answer": "Grand Theft Auto",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "GTA"
+      ]
+    },
+    {
+      "emojis": "⚽ + 🥅",
+      "answer": "FIFA",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "EA Sports FC"
+      ]
+    },
+    {
+      "emojis": "🧙 + 🪄",
+      "answer": "Hogwarts Legacy",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + ⚔️",
+      "answer": "The Witcher",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐉 + 🏔️",
+      "answer": "Skyrim",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "The Elder Scrolls V: Skyrim"
+      ]
+    },
+    {
+      "emojis": "💍 + ⚔️",
+      "answer": "Elden Ring",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🗡️",
+      "answer": "Ghost of Tsushima",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖 + 🏹",
+      "answer": "Horizon Zero Dawn",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪓 + 🧔",
+      "answer": "God of War",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕷️ + 🕸️",
+      "answer": "Spider-Man",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦇 + 🏙️ + 🏎️",
+      "answer": "Batman: Arkham Knight",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍄 + 🧟",
+      "answer": "The Last of Us",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🐍",
+      "answer": "Metal Gear Solid",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👽 + 🔫",
+      "answer": "Halo",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👹 + 🔫",
+      "answer": "Doom",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☢️ + 👍",
+      "answer": "Fallout",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌌 + 🚀",
+      "answer": "Starfield",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦾 + 🌃",
+      "answer": "Cyberpunk 2077",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏝️ + 🦝",
+      "answer": "Animal Crossing",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍🌾 + 🌻",
+      "answer": "Stardew Valley",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍👩‍👧‍👦 + 🏠",
+      "answer": "Die Sims",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "The Sims"
+      ]
+    },
+    {
+      "emojis": "🎢 + 🎡",
+      "answer": "RollerCoaster Tycoon",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🏗️",
+      "answer": "SimCity",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏛️ + 🌍",
+      "answer": "Civilization",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Sid Meier's Civilization"
+      ]
+    },
+    {
+      "emojis": "⚔️ + 🏰",
+      "answer": "Age of Empires",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⭐ + 🛸",
+      "answer": "StarCraft",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👹 + ⚔️",
+      "answer": "Diablo",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧙 + ⚔️",
+      "answer": "World of Warcraft",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "WoW"
+      ]
+    },
+    {
+      "emojis": "🃏 + 🔥",
+      "answer": "Hearthstone",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛡️ + 🔫",
+      "answer": "Overwatch",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔫 + 💣",
+      "answer": "Counter-Strike",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "CS"
+      ]
+    },
+    {
+      "emojis": "🔫 + 🧪",
+      "answer": "Valorant",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + ⚔️",
+      "answer": "League of Legends",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "LoL"
+      ]
+    },
+    {
+      "emojis": "🏰 + 💥",
+      "answer": "Clash of Clans",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🃏",
+      "answer": "Clash Royale",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌵 + 🔫",
+      "answer": "Brawl Stars",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱 + 🧑",
+      "answer": "Roblox",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕺 + 🎶",
+      "answer": "Just Dance",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎸 + 🤘",
+      "answer": "Guitar Hero",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 🥋",
+      "answer": "Street Fighter",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐉 + 🥋",
+      "answer": "Mortal Kombat",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👊 + 🏆",
+      "answer": "Tekken",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦔 + 💨",
+      "answer": "Sonic",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Sonic the Hedgehog"
+      ]
+    },
+    {
+      "emojis": "🦊 + 🥭",
+      "answer": "Crash Bandicoot",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐉 + 🔥",
+      "answer": "Spyro",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Spyro the Dragon"
+      ]
+    },
+    {
+      "emojis": "🏴‍☠️ + 🦜",
+      "answer": "Sea of Thieves",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥷 + 🗡️",
+      "answer": "Assassin’s Creed",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏹 + 💎",
+      "answer": "Tomb Raider",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧭 + 💎",
+      "answer": "Uncharted",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏎️ + 🏁",
+      "answer": "Gran Turismo",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🏎️",
+      "answer": "Need for Speed",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌾 + 🚜",
+      "answer": "Landwirtschafts-Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚛 + 🛣️",
+      "answer": "Euro Truck Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🌍",
+      "answer": "Microsoft Flight Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": [
+        "Flight Simulator"
+      ]
+    },
+    {
+      "emojis": "🐐 + 🤪",
+      "answer": "Goat Simulator",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦆 + 🔫",
+      "answer": "Duck Hunt",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏓 + ⚪",
+      "answer": "Pong",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💣 + 👨",
+      "answer": "Bomberman",
+      "category": "Games",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🚗",
+      "answer": "Feuerwehrauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🚗",
+      "answer": "Polizeiauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏥 + 🚗",
+      "answer": "Krankenwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏫 + 🚌",
+      "answer": "Schulbus",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🚌",
+      "answer": "Flughafenbus",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧳 + 🚌",
+      "answer": "Reisebus",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚚",
+      "answer": "Lieferwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛣️ + 🚛",
+      "answer": "Lastwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🛻",
+      "answer": "Pferdeanhänger",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌾 + 🚜",
+      "answer": "Traktor",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🚜",
+      "answer": "Schneepflug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏠 + 🚗",
+      "answer": "Wohnmobil",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛺ + 🚗",
+      "answer": "Wohnwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏁 + 🏎️",
+      "answer": "Rennwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚗",
+      "answer": "Elektroauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛰️ + 🚙",
+      "answer": "Geländewagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚲",
+      "answer": "Elektrofahrrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🚲",
+      "answer": "Mountainbike",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏁 + 🚲",
+      "answer": "Rennrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚲",
+      "answer": "Lastenrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🛵",
+      "answer": "Lieferroller",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏁 + 🏍️",
+      "answer": "Rennmotorrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🛴",
+      "answer": "Elektroroller",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "♨️ + 🚂",
+      "answer": "Dampflok",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚂",
+      "answer": "Elektrolok",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚄",
+      "answer": "Schnellzug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🚇",
+      "answer": "U-Bahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🚊",
+      "answer": "Straßenbahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🚞",
+      "answer": "Bergbahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪢 + 🚡",
+      "answer": "Seilbahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☁️ + 🚟",
+      "answer": "Schwebebahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚂",
+      "answer": "Güterzug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌙 + 🚂",
+      "answer": "Nachtzug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👥 + ✈️",
+      "answer": "Passagierflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + ✈️",
+      "answer": "Frachtflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + ✈️",
+      "answer": "Wasserflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + 🛩️",
+      "answer": "Düsenflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏥 + 🚁",
+      "answer": "Rettungshubschrauber",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🚁",
+      "answer": "Polizeihubschrauber",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🎈",
+      "answer": "Heißluftballon",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌌 + 🚀",
+      "answer": "Weltraumrakete",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏖️ + 🚢",
+      "answer": "Kreuzfahrtschiff",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚢",
+      "answer": "Containerschiff",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🚢",
+      "answer": "Autofähre",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🚢",
+      "answer": "Eisbrecher",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + ⛵",
+      "answer": "Segelboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🛥️",
+      "answer": "Schnellboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🚤",
+      "answer": "Polizeiboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚣 + 🌊",
+      "answer": "Ruderboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟 + 🛥️",
+      "answer": "Fischerboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🚢",
+      "answer": "U-Boot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🛵",
+      "answer": "Wassermotorrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🛵",
+      "answer": "Schneemobil",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐶 + 🛷",
+      "answer": "Hundeschlitten",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🛒",
+      "answer": "Pferdekutsche",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🛒",
+      "answer": "Königskutsche",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌾 + 🚜 + ⚙️",
+      "answer": "Mähdrescher",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏗️ + 🚛",
+      "answer": "Betonmischer",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🏗️",
+      "answer": "Autokran",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹 + 🚛",
+      "answer": "Kehrmaschine",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍴 + 🚜",
+      "answer": "Gabelstapler",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🦽",
+      "answer": "Elektrorollstuhl",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👶 + 🛒",
+      "answer": "Kinderwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📮 + 🚚",
+      "answer": "Postauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍦 + 🚚",
+      "answer": "Eiswagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍔 + 🚚",
+      "answer": "Imbisswagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛽ + 🚛",
+      "answer": "Tankwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🚛",
+      "answer": "Holztransporter",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐄 + 🚛",
+      "answer": "Tiertransporter",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛟 + 🚤",
+      "answer": "Rettungsboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏴‍☠️ + 🚢",
+      "answer": "Piratenschiff",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎾 + ⚽",
+      "answer": "Tennisball",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛳ + ⚽",
+      "answer": "Golfball",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎳 + ⚽",
+      "answer": "Bowlingkugel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎱 + ⚽",
+      "answer": "Billardkugel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏓 + 🏟️",
+      "answer": "Tischtennis",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🏒",
+      "answer": "Eishockey",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌿 + 🏑",
+      "answer": "Feldhockey",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🏃",
+      "answer": "Skilanglauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🎿",
+      "answer": "Skifahren",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🏄",
+      "answer": "Wellenreiten",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + 🏄",
+      "answer": "Windsurfen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪁 + 🏄",
+      "answer": "Kitesurfen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + ⛸️",
+      "answer": "Eiskunstlauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + ⛸️",
+      "answer": "Eisschnelllauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 👖",
+      "answer": "Badehose",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 🧢",
+      "answer": "Badekappe",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 🕶️",
+      "answer": "Schwimmbrille",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤿 + 🕶️",
+      "answer": "Taucherbrille",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤿 + 👕",
+      "answer": "Taucheranzug",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚲 + 🏁",
+      "answer": "Radrennen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🏁",
+      "answer": "Pferderennen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🏁",
+      "answer": "Autorennen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏃 + 🏁",
+      "answer": "Wettlauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🧗",
+      "answer": "Bergsteigen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🧗",
+      "answer": "Felsklettern",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 🧤",
+      "answer": "Boxhandschuh",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 💍",
+      "answer": "Boxring",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏹 + 🎯",
+      "answer": "Bogenschießen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "♟️ + 🎲",
+      "answer": "Brettspiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🃏 + 🎴",
+      "answer": "Kartenspiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧩 + 🎲",
+      "answer": "Puzzlespiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💻 + 🎮",
+      "answer": "Computerspiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📺 + 🎮",
+      "answer": "Videospiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥾 + 🎒",
+      "answer": "Wanderrucksack",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥾 + 🦯",
+      "answer": "Wanderstock",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗺️ + 🧭",
+      "answer": "Wanderkarte",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎣 + 🦯",
+      "answer": "Angelrute",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎣 + 🪝",
+      "answer": "Angelhaken",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎣 + 👥",
+      "answer": "Anglerverein",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎸 + 🏫",
+      "answer": "Musikschule",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎨 + 📚",
+      "answer": "Malkurs",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💃 + 🏫",
+      "answer": "Tanzschule",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧘 + 🟩",
+      "answer": "Yogamatte",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏋️ + 💪",
+      "answer": "Krafttraining",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤸 + 🏟️",
+      "answer": "Bodenturnen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎪 + 🤸",
+      "answer": "Zirkusartist",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎡 + 🎟️",
+      "answer": "Riesenrad",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎬 + 🏠",
+      "answer": "Kinoabend",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍿 + 🎬",
+      "answer": "Kinofilm",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📖 + 🪑",
+      "answer": "Lesesessel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📷 + 🚶",
+      "answer": "Fototour",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🚌",
+      "answer": "Stadtrundfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚢 + 🌊",
+      "answer": "Bootsfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎈 + 💨",
+      "answer": "Ballonfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛷 + 🏔️",
+      "answer": "Schlittenfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + ⛄",
+      "answer": "Schneemann",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰 + 🏖️",
+      "answer": "Sandburg",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪁 + 💨",
+      "answer": "Drachensteigen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🪵",
+      "answer": "Lagerfeuer",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧺 + 🌳",
+      "answer": "Picknickkorb",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧖 + 🛁",
+      "answer": "Wellnessbad",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💆 + 🧖",
+      "answer": "Wellness",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏆 + 🏅",
+      "answer": "Siegerehrung",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 👑",
+      "answer": "Der König der Löwen",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 👸",
+      "answer": "Die Eiskönigin",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Frozen"
+      ]
+    },
+    {
+      "emojis": "🚢 + 🧊",
+      "answer": "Titanic",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧙 + 💍",
+      "answer": "Der Herr der Ringe",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Herr der Ringe"
+      ]
+    },
+    {
+      "emojis": "⭐ + ⚔️",
+      "answer": "Star Wars",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦖 + 🏞️",
+      "answer": "Jurassic Park",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🚫",
+      "answer": "Ghostbusters",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤡 + 🎈",
+      "answer": "Es",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "IT"
+      ]
+    },
+    {
+      "emojis": "🏴‍☠️ + 🏝️",
+      "answer": "Fluch der Karibik",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟 + 🔍",
+      "answer": "Findet Nemo",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐀 + 👨‍🍳",
+      "answer": "Ratatouille",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎈 + 🏠",
+      "answer": "Oben",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Up"
+      ]
+    },
+    {
+      "emojis": "🧸 + 🍺",
+      "answer": "Ted",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧛 + 🐺",
+      "answer": "Twilight",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Twilight – Biss zum Morgengrauen"
+      ]
+    },
+    {
+      "emojis": "🧟 + 🚶",
+      "answer": "The Walking Dead",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧪 + 👨‍🏫",
+      "answer": "Breaking Bad",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🐉",
+      "answer": "Game of Thrones",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Das Lied von Eis und Feuer"
+      ]
+    },
+    {
+      "emojis": "🦑 + 🎮",
+      "answer": "Squid Game",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 👓 + 🪄",
+      "answer": "Harry Potter",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤠 + 🚀 + 🧸",
+      "answer": "Toy Story",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 🧙 + 🚪",
+      "answer": "Die Chroniken von Narnia",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Narnia"
+      ]
+    },
+    {
+      "emojis": "🍫 + 🏭 + 🎩",
+      "answer": "Charlie und die Schokoladenfabrik",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👠 + 🎃 + 🕛",
+      "answer": "Cinderella",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Aschenputtel"
+      ]
+    },
+    {
+      "emojis": "🍎 + 🪞 + 👸",
+      "answer": "Schneewittchen",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Schneewittchen und die sieben Zwerge"
+      ]
+    },
+    {
+      "emojis": "🌹 + 👹 + 🕯️",
+      "answer": "Die Schöne und das Biest",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧜‍♀️ + 🦀 + 🌊",
+      "answer": "Arielle, die Meerjungfrau",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Arielle"
+      ]
+    },
+    {
+      "emojis": "🧞 + 🪔 + 🐒",
+      "answer": "Aladdin",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐼 + 🥋 + 🥟",
+      "answer": "Kung Fu Panda",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + ⚡ + 🏁",
+      "answer": "Cars",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖 + 🌱 + 🚀",
+      "answer": "WALL·E",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👽 + 🚲 + 🌕",
+      "answer": "E.T. – Der Außerirdische",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "ET"
+      ]
+    },
+    {
+      "emojis": "🦈 + 🏊 + 🏖️",
+      "answer": "Der weiße Hai",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 🪜 + 🏆",
+      "answer": "Rocky",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎩 + 🐍 + 🏺",
+      "answer": "Indiana Jones",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏎️ + ⏱️ + ⚡",
+      "answer": "Zurück in die Zukunft",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎭 + 💰 + 🇪🇸",
+      "answer": "Haus des Geldes",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "La Casa de Papel"
+      ]
+    },
+    {
+      "emojis": "🚲 + 👾 + 🙃",
+      "answer": "Stranger Things",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍👩‍👧‍👦 + 🛋️ + 🍩",
+      "answer": "Die Simpsons",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Simpsons"
+      ]
+    },
+    {
+      "emojis": "🟥 + 👒",
+      "answer": "Rotkäppchen",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌹 + 😴",
+      "answer": "Dornröschen",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👩‍🦰 + 🗼",
+      "answer": "Rapunzel",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏠 + 🍬 + 🧙",
+      "answer": "Hänsel und Gretel",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐸 + 👑",
+      "answer": "Der Froschkönig",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👢 + 🐱",
+      "answer": "Der gestiefelte Kater",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👠 + 🎃 + 🕛",
+      "answer": "Aschenputtel",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Cinderella"
+      ]
+    },
+    {
+      "emojis": "🐥 + 🦢",
+      "answer": "Das hässliche Entlein",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Das hässliche junge Entlein"
+      ]
+    },
+    {
+      "emojis": "🧜‍♀️ + 🌊",
+      "answer": "Die kleine Meerjungfrau",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Arielle"
+      ]
+    },
+    {
+      "emojis": "🤥 + 🪵",
+      "answer": "Pinocchio",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧚 + 👦",
+      "answer": "Peter Pan",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏴‍☠️ + 🪝",
+      "answer": "Kapitän Hook",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Captain Hook"
+      ]
+    },
+    {
+      "emojis": "🐻 + 🍯",
+      "answer": "Pu der Bär",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Winnie Puuh",
+        "Winnie the Pooh"
+      ]
+    },
+    {
+      "emojis": "🏹 + 🌳",
+      "answer": "Robin Hood",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 7️⃣ + 🐐",
+      "answer": "Der Wolf und die sieben Geißlein",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Die sieben Geißlein"
+      ]
+    },
+    {
+      "emojis": "[ESEL] + 🐕 + 🐈 + 🐓",
+      "answer": "Die Bremer Stadtmusikanten",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Bremer Stadtmusikanten"
+      ]
+    },
+    {
+      "emojis": "🫛 + 🛏️ + 👸",
+      "answer": "Die Prinzessin auf der Erbse",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✂️ + 🧵 + 💪",
+      "answer": "Das tapfere Schneiderlein",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌟 + 💰",
+      "answer": "Sterntaler",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 👸",
+      "answer": "Die Schneekönigin",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐀 + 🪈",
+      "answer": "Der Rattenfänger von Hameln",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Rattenfänger"
+      ]
+    },
+    {
+      "emojis": "🪄 + 🪔",
+      "answer": "Aladin und die Wunderlampe",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Aladdin"
+      ]
+    },
+    {
+      "emojis": "🐷 + 🐷 + 🐷 + 🐺",
+      "answer": "Die drei kleinen Schweinchen",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Drei kleine Schweinchen"
+      ]
+    },
+    {
+      "emojis": "🐱 + 🎒",
+      "answer": "Die Katze im Sack kaufen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Katze im Sack kaufen",
+        "Katze im Sack"
+      ]
+    },
+    {
+      "emojis": "🐷 + 🍀",
+      "answer": "Schwein gehabt",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Glück gehabt"
+      ]
+    },
+    {
+      "emojis": "🍅 + 👀",
+      "answer": "Tomaten auf den Augen haben",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Tomaten auf den Augen"
+      ]
+    },
+    {
+      "emojis": "🦟 + 🐘",
+      "answer": "Aus einer Mücke einen Elefanten machen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Mücke zum Elefanten machen"
+      ]
+    },
+    {
+      "emojis": "🦊 + 🐇 + 🌙",
+      "answer": "Wo sich Fuchs und Hase gute Nacht sagen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Fuchs und Hase sagen sich gute Nacht",
+        "Wo Fuchs und Hase sich gute Nacht sagen"
+      ]
+    },
+    {
+      "emojis": "🐶 + 🌧️",
+      "answer": "Es regnet junge Hunde",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Es regnet Hunde",
+        "Junge Hunde regnen"
+      ]
+    },
+    {
+      "emojis": "🐟 + 💧 + 😊",
+      "answer": "Sich wie ein Fisch im Wasser fühlen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Wie ein Fisch im Wasser fühlen",
+        "Fisch im Wasser"
+      ]
+    },
+    {
+      "emojis": "🐻 + 🍽️",
+      "answer": "Einen Bärenhunger haben",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Bärenhunger haben",
+        "Bärenhunger"
+      ]
+    },
+    {
+      "emojis": "🐴 + ❌ + 💰",
+      "answer": "Auf das falsche Pferd setzen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Falsches Pferd setzen"
+      ]
+    },
+    {
+      "emojis": "🐦 + ✋ + 🕊️ + 🏠",
+      "answer": "Lieber den Spatz in der Hand als die Taube auf dem Dach",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Spatz in der Hand"
+      ]
+    },
+    {
+      "emojis": "🍎 + 🌳",
+      "answer": "Der Apfel fällt nicht weit vom Stamm",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Apfel fällt nicht weit vom Stamm"
+      ]
+    },
+    {
+      "emojis": "🔨 + 🔩 + 🎯",
+      "answer": "Den Nagel auf den Kopf treffen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Nagel auf den Kopf treffen"
+      ]
+    },
+    {
+      "emojis": "🛢️ + 🔥",
+      "answer": "Öl ins Feuer gießen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + 🔥 + 🪨",
+      "answer": "Ein Tropfen auf den heißen Stein",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Tropfen auf den heißen Stein"
+      ]
+    },
+    {
+      "emojis": "🧊 + 🔨",
+      "answer": "Das Eis brechen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Eis brechen"
+      ]
+    },
+    {
+      "emojis": "🌧️ + ☀️",
+      "answer": "Nach Regen folgt Sonnenschein",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Nach Regen kommt Sonnenschein"
+      ]
+    },
+    {
+      "emojis": "☁️ + 7️⃣ + 😍",
+      "answer": "Auf Wolke sieben schweben",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Auf Wolke 7 schweben",
+        "Wolke sieben"
+      ]
+    },
+    {
+      "emojis": "🌅 + 🐦 + 🪱",
+      "answer": "Der frühe Vogel fängt den Wurm",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Früher Vogel fängt den Wurm"
+      ]
+    },
+    {
+      "emojis": "🤐 + 🥇",
+      "answer": "Reden ist Silber, Schweigen ist Gold",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Schweigen ist Gold"
+      ]
+    },
+    {
+      "emojis": "🥣 + 🔥 + 🗣️",
+      "answer": "Um den heißen Brei herumreden",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Um den heißen Brei reden",
+        "Heißen Brei herumreden"
+      ]
+    },
+    {
+      "emojis": "🧀 + 👎",
+      "answer": "Alles Käse",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Das ist alles Käse"
+      ]
+    },
+    {
+      "emojis": "🚂 + 💨 + 🛑",
+      "answer": "Der Zug ist abgefahren",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Zug ist abgefahren"
+      ]
+    },
+    {
+      "emojis": "💡 + 🧠",
+      "answer": "Mir geht ein Licht auf",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Ein Licht geht mir auf",
+        "Licht aufgegangen"
+      ]
+    },
+    {
+      "emojis": "🐊 + 😭",
+      "answer": "Krokodilstränen weinen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Krokodilstränen"
+      ]
+    },
+    {
+      "emojis": "🍀 + 🍄",
+      "answer": "Ein Glückspilz sein",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Glückspilz",
+        "Ein Glückspilz"
+      ]
+    },
+    {
+      "emojis": "👑 + 🐝",
+      "answer": "Queen",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐞 + 🎸",
+      "answer": "The Beatles",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🔄 + 👅",
+      "answer": "The Rolling Stones",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🐒",
+      "answer": "Arctic Monkeys",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔴 + 🔥 + 🌶️",
+      "answer": "Red Hot Chili Peppers",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔫 + 🌹",
+      "answer": "Guns N’ Roses",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💭 + 🐉",
+      "answer": "Imagine Dragons",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🎭",
+      "answer": "Coldplay",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 📅",
+      "answer": "Green Day",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔗 + 🏞️",
+      "answer": "Linkin Park",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🔌",
+      "answer": "AC/DC",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🩷 + 🌊",
+      "answer": "Pink Floyd",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📻 + 🗣️",
+      "answer": "Radiohead",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏝️ + 🌴 + 👦 + 👦",
+      "answer": "The Beach Boys",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": [
+        "Beach Boys"
+      ]
+    },
+    {
+      "emojis": "🔙 + 🛣️ + 👦 + 👦",
+      "answer": "Backstreet Boys",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌶️ + 👧",
+      "answer": "Spice Girls",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🖤 + 👁️ + 🫛",
+      "answer": "Black Eyed Peas",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖 + 🪖",
+      "answer": "Daft Punk",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 👩 + 👶",
+      "answer": "Wolfmother",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🎨 + 🎬",
+      "answer": "Ocean Colour Scene",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦊 + 🚢",
+      "answer": "Fleet Foxes",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦍 + 🎶",
+      "answer": "Gorillaz",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐝 + 🐝",
+      "answer": "Bee Gees",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧪 + 💘",
+      "answer": "My Chemical Romance",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💀 + 🌹",
+      "answer": "Grateful Dead",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🟡 + 🤿",
+      "answer": "Yellow Submarine",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👁️ + 🐯",
+      "answer": "Eye of the Tiger",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕺 + 👑",
+      "answer": "Dancing Queen",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☔ + 💜",
+      "answer": "Purple Rain",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚀 + 👨",
+      "answer": "Rocket Man",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 💍",
+      "answer": "Ring of Fire",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🧊",
+      "answer": "Ice Ice Baby",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎉 + 🇺🇸",
+      "answer": "Party in the U.S.A.",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💎 + ✨",
+      "answer": "Diamonds",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Diamonds (Rihanna)"
+      ]
+    },
+    {
+      "emojis": "☂️ + 🌧️",
+      "answer": "Umbrella",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 😴",
+      "answer": "The Lion Sleeps Tonight",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🚫",
+      "answer": "Ghostbusters",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎂 + 🎉",
+      "answer": "Happy Birthday",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎄 + 🎶",
+      "answer": "Last Christmas",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 👸 + 🎤",
+      "answer": "Let It Go",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Let It Go (Frozen)"
+      ]
+    },
+    {
+      "emojis": "🌙 + 🚂 + 🍑",
+      "answer": "Midnight Train to Georgia",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Midnight Train"
+      ]
+    },
+    {
+      "emojis": "☀️ + 🏖️",
+      "answer": "Summer of ’69",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⏰ + 🛏️",
+      "answer": "Wake Me Up",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Wake Me Up (Avicii)"
+      ]
+    },
+    {
+      "emojis": "💃 + 🌙",
+      "answer": "Dancing in the Moonlight",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌑 + ☀️ + ❤️",
+      "answer": "Total Eclipse of the Heart",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🌉",
+      "answer": "Bridge Over Troubled Water",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛣️ + 😈",
+      "answer": "Highway to Hell",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪜 + ☁️",
+      "answer": "Stairway to Heaven",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦅 + 🏨",
+      "answer": "Hotel California",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍭 + 🍬",
+      "answer": "Sugar, Sugar",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    }
+  ]
 }
