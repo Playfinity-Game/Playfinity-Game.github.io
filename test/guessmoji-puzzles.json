@@ -15,7 +15,9 @@
     "Märchen & Figuren",
     "Berühmte Bauwerke",
     "Allgemeinwissen",
-    "Redewendungen"
+    "Redewendungen",
+    "Bands & Künstler",
+    "Bekannte Songs"
   ],
   "puzzles": [
     {
@@ -4243,6 +4245,372 @@
         "Glückspilz",
         "Ein Glückspilz"
       ]
+    },
+    {
+      "emojis": "👑 + 🐝",
+      "answer": "Queen",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐞 + 🎸",
+      "answer": "The Beatles",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 👅",
+      "answer": "The Rolling Stones",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🐒",
+      "answer": "Arctic Monkeys",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌶️ + 🌶️",
+      "answer": "Red Hot Chili Peppers",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔫 + 🌹",
+      "answer": "Guns N’ Roses",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": [
+        "Guns N Roses"
+      ]
+    },
+    {
+      "emojis": "💭 + 🐉",
+      "answer": "Imagine Dragons",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🎭",
+      "answer": "Coldplay",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 📅",
+      "answer": "Green Day",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔗 + 🏞️",
+      "answer": "Linkin Park",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🔌",
+      "answer": "AC/DC",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🩷 + 🌊",
+      "answer": "Pink Floyd",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📻 + 🗣️",
+      "answer": "Radiohead",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏝️ + 🌴",
+      "answer": "The Beach Boys",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": [
+        "Beach Boys"
+      ]
+    },
+    {
+      "emojis": "🔙 + 🧑‍🤝‍🧑",
+      "answer": "Backstreet Boys",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌶️ + 👧",
+      "answer": "Spice Girls",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🖤 + 👁️ + 🫛",
+      "answer": "Black Eyed Peas",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖 + 🪖",
+      "answer": "Daft Punk",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌕 + 🐺 + 👩",
+      "answer": "Wolfmother",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🎨 + 🎬",
+      "answer": "Ocean Colour Scene",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦊 + 🚢",
+      "answer": "Fleet Foxes",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦍 + 🎶",
+      "answer": "Gorillaz",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐝 + 🐝",
+      "answer": "Bee Gees",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧪 + 💘",
+      "answer": "My Chemical Romance",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💀 + 🌹",
+      "answer": "Grateful Dead",
+      "category": "Bands & Künstler",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🟡 + 🤿",
+      "answer": "Yellow Submarine",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👁️ + 🐯",
+      "answer": "Eye of the Tiger",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🕺 + 👑",
+      "answer": "Dancing Queen",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☔ + 💜",
+      "answer": "Purple Rain",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚀 + 👨",
+      "answer": "Rocket Man",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 💍",
+      "answer": "Ring of Fire",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🧊",
+      "answer": "Ice Ice Baby",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎉 + 🇺🇸",
+      "answer": "Party in the U.S.A.",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Party in the USA"
+      ]
+    },
+    {
+      "emojis": "💎 + ✨",
+      "answer": "Diamonds",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Diamonds (Rihanna)"
+      ]
+    },
+    {
+      "emojis": "☂️ + 🌧️",
+      "answer": "Umbrella",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 😴",
+      "answer": "The Lion Sleeps Tonight",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🚫",
+      "answer": "Ghostbusters",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎂 + 🎉",
+      "answer": "Happy Birthday",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎄 + 🎶",
+      "answer": "Last Christmas",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + ⛄",
+      "answer": "Let It Go",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Let It Go (Frozen)"
+      ]
+    },
+    {
+      "emojis": "🌙 + 🚂 + 🍑",
+      "answer": "Midnight Train to Georgia",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Midnight Train"
+      ]
+    },
+    {
+      "emojis": "☀️ + 🏖️",
+      "answer": "Summer of ’69",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Summer of 69"
+      ]
+    },
+    {
+      "emojis": "⏰ + 🛏️",
+      "answer": "Wake Me Up",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": [
+        "Wake Me Up (Avicii)"
+      ]
+    },
+    {
+      "emojis": "💃 + 🌙",
+      "answer": "Dancing in the Moonlight",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌑 + ☀️ + ❤️",
+      "answer": "Total Eclipse of the Heart",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🌉",
+      "answer": "Bridge Over Troubled Water",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛣️ + 😈",
+      "answer": "Highway to Hell",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪜 + ☁️",
+      "answer": "Stairway to Heaven",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦅 + 🏨",
+      "answer": "Hotel California",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍭 + 🍬",
+      "answer": "Sugar, Sugar",
+      "category": "Bekannte Songs",
+      "difficulty": "mittel",
+      "aliases": []
     }
   ]
 }
