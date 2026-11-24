@@ -1332,6 +1332,7 @@
     .guessmoji-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
     .guessmoji-category{font-size:.75rem;font-weight:800;color:var(--neon-cyan);background:rgba(0,240,255,.10);border:1px solid rgba(0,240,255,.3);padding:4px 12px;border-radius:20px}
     .guessmoji-difficulty{font-size:.72rem;font-weight:900;letter-spacing:.08em;color:#ff9cbd}
+    .guessmoji-custom-emoji{width:1.08em;height:1.08em;vertical-align:-.16em;display:inline-block;filter:drop-shadow(0 0 5px rgba(0,240,255,.24))}
     .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
     .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2px}
     .guessmoji-entry{display:flex;gap:8px}
@@ -1468,14 +1469,14 @@
           <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
         </div>
 
-        <!-- GUESSMOJI Card: vorübergehend gesperrt -->
-        <div class="game-card card-guessmoji wordfinity-closed" aria-disabled="true" role="button" tabindex="0" onclick="showModal('GUESSMOJI','GUESSMOJI ist demnächst verfügbar. Das Spiel ist aktuell noch gesperrt.',()=>{})">
+        <!-- GUESSMOJI -->
+        <div class="game-card card-guessmoji" role="button" tabindex="0" onclick="PlayfinityRouter.go('guessmoji')">
           <div>
             <div class="card-badge" style="color:var(--neon-purple)">Emoji-Worträtsel</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">GUESS</span><span style="color:var(--neon-pink)">MOJI</span></div>
-            <div class="card-desc">Demnächst verfügbar</div>
+            <div class="card-desc">Errate Wörter anhand von Emoji-Hinweisen.</div>
           </div>
-          <div class="card-footer"><span class="wordfinity-closed-label">🔒 DEMNÄCHST VERFÜGBAR</span></div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Spielen ›</span></div>
         </div>
 
         <!-- Zahlen schätzen Card -->
@@ -1856,20 +1857,12 @@
       },
 
       go(screenId) {
-        if (screenId === 'guessmoji') {
-          showModal('GUESSMOJI', 'GUESSMOJI ist demnächst verfügbar. Das Spiel ist aktuell noch gesperrt.', () => {});
-          return;
-        }
         if (screenId === this.currentScreen) return;
         history.pushState({ screen: screenId }, '', '#' + screenId);
         this.renderScreen(screenId, true);
       },
 
       renderScreen(screenId, isForwardNav) {
-        if (screenId === 'guessmoji') {
-          screenId = 'menu';
-          history.replaceState({ screen: 'menu' }, '', '#menu');
-        }
         PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('game-active', screenId !== 'menu');
@@ -2135,8 +2128,8 @@
           const valid = Array.isArray(data.puzzles) ? data.puzzles.filter(p => p && typeof p.emojis==='string' && typeof p.answer==='string' && typeof p.category==='string' && p.emojis.trim() && p.answer.trim()) : [];
           const counts = {};
           valid.forEach(p => counts[p.category]=(counts[p.category]||0)+1);
-          const complete = Object.keys(counts).length >= 10 && Object.values(counts).every(n => n >= 50);
-          if (!complete) throw new Error('Rätselpool unvollständig');
+          const complete = valid.length >= 1 && Object.keys(counts).length >= 1;
+          if (!complete) throw new Error('Rätselpool enthält keine gültigen Rätsel');
           this.puzzles = valid.map(p => ({...p, difficulty:p.difficulty==='schwer'?'schwer':(p.difficulty||'mittel'), aliases:Array.isArray(p.aliases)?p.aliases:[]}));
           console.info('[GUESSMOJI] Geladen:', this.puzzles.length, 'Rätsel in', Object.keys(counts).length, 'Kategorien');
         } catch(error) {
@@ -2193,7 +2186,8 @@
         const hard=this.current.difficulty==='schwer';
         const marker=document.getElementById('guessmoji-difficulty');
         marker.textContent=hard?'☠️ SCHWER':'';marker.hidden=!hard;
-        document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
+        const emojiNode=document.getElementById('guessmoji-emojis');
+        if(this.current.emojis.includes('[ESEL]')){const safe=this.current.emojis.split('[ESEL]').map(part=>part.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])));emojiNode.innerHTML=safe.join('<img class="guessmoji-custom-emoji" src="./assets/guessmoji-esel.svg" alt="Esel">');}else{emojiNode.textContent=this.current.emojis;}
         document.getElementById('guessmoji-timer-fill').style.width='100%';
         document.getElementById('guessmoji-input').disabled=false;
         document.getElementById('guessmoji-guesses').innerHTML='';
@@ -2222,8 +2216,9 @@
           const key=String(identity.id||identity.name||'unknown');
           if(!this.solvedPlayers.has(key)){
             this.solvedPlayers.add(key);this.correctPlayers.set(key,identity.name||'Zuschauer');
-            this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
-            if(key!=='local-player'){CommunityBoard.record('guessmoji',identity,10);PlayfinityScores.awardGuessmoji(identity,10,this.roundId);}
+            const points=this.correctPlayers.size===0?10:5;
+            this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+points});
+            if(key!=='local-player'){CommunityBoard.record('guessmoji',identity,points);PlayfinityScores.awardGuessmoji(identity,points,this.roundId,points===10?'first-correct':'additional-correct');}
           }
         }
         return true;
@@ -2578,11 +2573,12 @@
           return await response.json();
         }catch(error){console.error('[PLAYFINITY '+gameKey+' Punkte]',error);return false;}
       },
-      async awardGuessmoji(player,points,roundId){
+      async awardGuessmoji(player,points,roundId,awardKey){
         const playerKey=String(player?.id||'').trim().replace(/^@/,'').slice(0,80);
         const displayName=String(player?.name||playerKey).trim().replace(/^@/,'').slice(0,40);
-        if(!playerKey||playerKey==='local-player'||playerKey.toLowerCase()==='unknown'||!displayName||Number(points)!==10||!roundId)return false;
-        return this.awardGame('guessmoji',playerKey,displayName,10,roundId,'correct-answer');
+        const value=Number(points);
+        if(!playerKey||playerKey==='local-player'||playerKey.toLowerCase()==='unknown'||!displayName||![5,10].includes(value)||!roundId||!['first-correct','additional-correct'].includes(awardKey))return false;
+        return this.awardGame('guessmoji',playerKey,displayName,value,roundId,awardKey);
       },
       async topGame(gameKey,period){
         const response=await fetch(this.url+'/rest/v1/rpc/get_game_leaderboard',{
