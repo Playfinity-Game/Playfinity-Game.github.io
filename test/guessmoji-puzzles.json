@@ -2584,6 +2584,510 @@
       "category": "Games",
       "difficulty": "mittel",
       "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🚗",
+      "answer": "Feuerwehrauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🚗",
+      "answer": "Polizeiauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏥 + 🚗",
+      "answer": "Krankenwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏫 + 🚌",
+      "answer": "Schulbus",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "✈️ + 🚌",
+      "answer": "Flughafenbus",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧳 + 🚌",
+      "answer": "Reisebus",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚚",
+      "answer": "Lieferwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛣️ + 🚛",
+      "answer": "Lastwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🛻",
+      "answer": "Pferdeanhänger",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌾 + 🚜",
+      "answer": "Traktor",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🚜",
+      "answer": "Schneepflug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏠 + 🚗",
+      "answer": "Wohnmobil",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛺ + 🚗",
+      "answer": "Wohnwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏁 + 🏎️",
+      "answer": "Rennwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚗",
+      "answer": "Elektroauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛰️ + 🚙",
+      "answer": "Geländewagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚲",
+      "answer": "Elektrofahrrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🚲",
+      "answer": "Mountainbike",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏁 + 🚲",
+      "answer": "Rennrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚲",
+      "answer": "Lastenrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🛵",
+      "answer": "Lieferroller",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏁 + 🏍️",
+      "answer": "Rennmotorrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🛴",
+      "answer": "Elektroroller",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "♨️ + 🚂",
+      "answer": "Dampflok",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚂",
+      "answer": "Elektrolok",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🚄",
+      "answer": "Schnellzug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🚇",
+      "answer": "U-Bahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🚊",
+      "answer": "Straßenbahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🚞",
+      "answer": "Bergbahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪢 + 🚡",
+      "answer": "Seilbahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "☁️ + 🚟",
+      "answer": "Schwebebahn",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚂",
+      "answer": "Güterzug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌙 + 🚂",
+      "answer": "Nachtzug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👥 + ✈️",
+      "answer": "Passagierflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + ✈️",
+      "answer": "Frachtflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💧 + ✈️",
+      "answer": "Wasserflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + 🛩️",
+      "answer": "Düsenflugzeug",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏥 + 🚁",
+      "answer": "Rettungshubschrauber",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🚁",
+      "answer": "Polizeihubschrauber",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🎈",
+      "answer": "Heißluftballon",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌌 + 🚀",
+      "answer": "Weltraumrakete",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏖️ + 🚢",
+      "answer": "Kreuzfahrtschiff",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📦 + 🚢",
+      "answer": "Containerschiff",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🚢",
+      "answer": "Autofähre",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🚢",
+      "answer": "Eisbrecher",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + ⛵",
+      "answer": "Segelboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🛥️",
+      "answer": "Schnellboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚓 + 🚤",
+      "answer": "Polizeiboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚣 + 🛶",
+      "answer": "Ruderboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟 + 🛥️",
+      "answer": "Fischerboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🚢",
+      "answer": "U-Boot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🛵",
+      "answer": "Wassermotorrad",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + 🏄",
+      "answer": "Windsurfer",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🛵",
+      "answer": "Schneemobil",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐶 + 🛷",
+      "answer": "Hundeschlitten",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🛒",
+      "answer": "Pferdekutsche",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🛒",
+      "answer": "Königskutsche",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌾 + 🌾",
+      "answer": "Mähdrescher",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧱 + 🚛",
+      "answer": "Betonmischer",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🏗️",
+      "answer": "Autokran",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧹 + 🚛",
+      "answer": "Kehrmaschine",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍴 + 🚜",
+      "answer": "Gabelstapler",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 🦽",
+      "answer": "Elektrorollstuhl",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👶 + 🛒",
+      "answer": "Kinderwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📮 + 🚚",
+      "answer": "Postauto",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍦 + 🚚",
+      "answer": "Eiswagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍔 + 🚚",
+      "answer": "Imbisswagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛽ + 🚛",
+      "answer": "Tankwagen",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌲 + 🚛",
+      "answer": "Holztransporter",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐄 + 🚛",
+      "answer": "Tiertransporter",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛟 + 🚤",
+      "answer": "Rettungsboot",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏴‍☠️ + 🚢",
+      "answer": "Piratenschiff",
+      "category": "Fahrzeuge",
+      "difficulty": "mittel",
+      "aliases": []
     }
   ]
 }
