@@ -2180,7 +2180,6 @@
         marker.hidden=!hard;
         document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
         document.getElementById('guessmoji-timer-fill').style.width='100%';
-        document.getElementById('guessmoji-guesses').innerHTML='';
         document.getElementById('guessmoji-input').disabled=false;
       },
       startTimer(){
@@ -2206,10 +2205,10 @@
           const key=String(identity.id||identity.name||'unknown');
           if(!this.solvedPlayers.has(key)){
             this.solvedPlayers.add(key);
+            this.correctPlayers.set(key,identity.name||'Zuschauer');
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
             if(key!=='local-player')CommunityBoard.record('guessmoji',identity,10);
           }
-         }else{
          }
         return true;
       },
