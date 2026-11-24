@@ -1703,11 +1703,17 @@
           }
         };
         toggle.addEventListener('click', () => this.setMenuOpen(!menu.classList.contains('open')));
-        document.addEventListener('pointerdown', event => {
+        const closeMenuFromOutside = event => {
           if (!menu.classList.contains('open')) return;
-          if (menu.contains(event.target) || toggle.contains(event.target)) return;
+          const path = typeof event.composedPath === 'function' ? event.composedPath() : [];
+          if (menu.contains(event.target) || toggle.contains(event.target) || path.includes(menu) || path.includes(toggle)) return;
           this.setMenuOpen(false);
-        });
+        };
+        // Capture-Phase + Touch-Fallback: funktioniert auch bei mobilen Browsern,
+        // die Pointer-Events auf Touchscreens nicht zuverlässig weiterreichen.
+        document.addEventListener('pointerdown', closeMenuFromOutside, true);
+        document.addEventListener('touchstart', closeMenuFromOutside, { capture: true, passive: true });
+        document.addEventListener('click', closeMenuFromOutside, true);
         document.addEventListener('keydown', event => {
           if (event.key === 'Escape' && menu.classList.contains('open')) this.setMenuOpen(false);
         });
