@@ -2215,8 +2215,8 @@
         if(correct){
           const key=String(identity.id||identity.name||'unknown');
           if(!this.solvedPlayers.has(key)){
-            this.solvedPlayers.add(key);this.correctPlayers.set(key,identity.name||'Zuschauer');
             const points=this.correctPlayers.size===0?10:5;
+            this.solvedPlayers.add(key);this.correctPlayers.set(key,identity.name||'Zuschauer');
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+points});
             if(key!=='local-player'){CommunityBoard.record('guessmoji',identity,points);PlayfinityScores.awardGuessmoji(identity,points,this.roundId,points===10?'first-correct':'additional-correct');}
           }
