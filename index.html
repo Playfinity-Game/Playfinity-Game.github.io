@@ -1342,7 +1342,6 @@
     .guessmoji-settings{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;padding:10px 12px;border:1px solid rgba(0,240,255,.2);border-radius:11px;background:rgba(0,240,255,.045);color:var(--text-muted);font-size:.82rem}
     .guessmoji-settings label{font-weight:800;color:var(--neon-cyan)}
     .guessmoji-settings select{border:1px solid rgba(176,38,255,.45);border-radius:8px;padding:7px 10px;background:#0b0d20;color:#fff;font:700 .85rem var(--font-main);outline:none}
-    .guessmoji-rank-button{width:100%;border:1px solid rgba(255,0,127,.35);border-radius:10px;padding:11px;background:rgba(255,0,127,.08);color:#ff8cbd;font-weight:900;cursor:pointer}
     .guessmoji-timer-row{display:flex;justify-content:space-between;gap:8px;margin:2px 0 -10px;font-size:.8rem;color:var(--text-muted)}
     .guessmoji-timer-track{height:9px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden}
     .guessmoji-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple),var(--neon-pink));box-shadow:0 0 12px rgba(176,38,255,.35);transition:width .2s linear}
@@ -1710,7 +1709,6 @@
         </form>
         <div class="guessmoji-timer-track"><div class="guessmoji-timer-fill" id="guessmoji-timer-fill"></div></div>
         <div class="guessmoji-guesses" id="guessmoji-guesses" aria-live="polite"></div>
-        <button class="guessmoji-rank-button" type="button" onclick="PlayfinityScores.showGuessmoji()">🏆 GUESSMOJI-RANGLISTE</button>
 
       </div>
     </section>
@@ -2591,7 +2589,6 @@
         if(!Array.isArray(rows))throw new Error('Ungültige Ranglisten-Antwort.');
         return rows;
       },
-      async showGuessmoji(){return this.showGame('guessmoji');},
       async showGame(gameKey){
         const labels={playdoku:'PLAYDOKU',wordfinity:'WORDFINITY',guesswhat:'GUESSWHAT',guessmoji:'GUESSMOJI'};
         const label=labels[gameKey]||String(gameKey).toUpperCase();
