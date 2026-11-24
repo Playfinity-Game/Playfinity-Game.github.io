@@ -2134,7 +2134,7 @@
        ========================================================================== */
     const GuessmojiGame = {
       initialized:false, round:0, totalRounds:10, current:null, timer:null, remaining:20,
-      roundOpen:false, scores:new Map(), solvedPlayers:new Set(), used:new Set(), autoNext:null,
+      roundOpen:false, scores:new Map(), solvedPlayers:new Set(), correctPlayers:new Map(), used:new Set(), autoNext:null,
       puzzles:[
         {emojis:'🦷 + 🧚‍♀️',answer:'Zahnfee',category:'Märchen & Figuren',difficulty:'leicht',aliases:[]},
         {emojis:'☀️ + 👓',answer:'Sonnenbrille',category:'Alltag',difficulty:'leicht',aliases:['sonnen brille']},
@@ -2175,7 +2175,7 @@
       nextRound(){
         clearInterval(this.timer);this.timer=null;clearTimeout(this.autoNext);
         if(this.round>=this.totalRounds){this.round=0;this.used.clear();}
-        this.round++;this.current=this.choosePuzzle();this.remaining=20;this.roundOpen=true;this.solvedPlayers.clear();
+        this.round++;this.current=this.choosePuzzle();this.remaining=20;this.roundOpen=true;this.solvedPlayers.clear();this.correctPlayers.clear();
         document.getElementById('guessmoji-category').textContent=this.current.category;
         const hard=this.current.difficulty==='schwer';
         const marker=document.getElementById('guessmoji-difficulty');
