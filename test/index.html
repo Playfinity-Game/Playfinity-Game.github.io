@@ -1250,6 +1250,22 @@
         .game-card.card-guessmoji:hover{border-color:var(--neon-purple);box-shadow:0 10px 25px rgba(176,38,255,.25)}
     .game-card.card-guessmoji::before{background:linear-gradient(90deg,transparent,var(--neon-purple),transparent)}
     @media(max-width:420px){.guessmoji-card{padding:16px}.guessmoji-entry button{padding:0 12px}}
+    /* Einheitliches PLAYFINITY-Gewinnerfenster (Bigsize bleibt ausgeschlossen) */
+    #pf-winner-overlay{position:fixed;inset:0;z-index:1200;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(4,7,16,.82);backdrop-filter:blur(7px)}
+    #pf-winner-overlay.active{display:flex;animation:pfWinnerFade .22s ease-out}
+    #pf-winner-card{position:relative;width:min(390px,100%);max-height:min(82vh,620px);overflow:auto;padding:22px 20px 16px;text-align:center;background:#141824;border:1px solid rgba(251,191,36,.62);border-radius:18px;box-shadow:0 0 32px rgba(251,191,36,.13),0 18px 60px #0009;animation:pfWinnerPop .38s cubic-bezier(.2,1.35,.4,1)}
+    #pf-winner-brand{font-size:.76rem;font-weight:950;letter-spacing:.13em;background:linear-gradient(100deg,#38bdf8,#c084fc);-webkit-background-clip:text;background-clip:text;color:transparent}
+    #pf-winner-crown{font-size:3rem;line-height:1.25;margin:8px 0 2px;color:#fbbf24;filter:drop-shadow(0 0 10px #fbbf2488)}
+    #pf-winner-name{font-size:clamp(1.65rem,7vw,2.25rem);font-weight:1000;color:#fff;overflow-wrap:anywhere;line-height:1.1;margin:4px 0 12px}
+    #pf-winner-answer{display:none;margin:0 auto 10px;padding:8px 12px;max-width:100%;border-radius:999px;background:#102b32;border:1px solid rgba(45,212,191,.35);color:#5eead4;font-size:.85rem;font-weight:900;overflow-wrap:anywhere}
+    #pf-winner-meta{color:#d1d5db;font-size:.85rem;margin:8px 0 12px}
+    #pf-winner-helpers{display:none;text-align:left;margin:12px 0;padding:10px 12px;background:#0d111b;border:1px solid #303746;border-radius:12px;color:#d1d5db;font-size:.78rem;line-height:1.65}
+    #pf-winner-helpers strong{display:block;color:#fbbf24;text-align:center;font-size:.72rem;letter-spacing:.08em;margin-bottom:4px}
+    #pf-winner-next{width:100%;margin-top:6px;padding:11px 16px;border:1px solid #fbbf24;border-radius:11px;background:rgba(251,191,36,.08);color:#fbbf24;font-weight:950;font-size:.92rem;cursor:pointer}
+    #pf-winner-footer{margin-top:11px;color:#778092;font-size:.66rem;letter-spacing:.05em}
+    @keyframes pfWinnerFade{from{opacity:0}to{opacity:1}} @keyframes pfWinnerPop{from{opacity:0;transform:translateY(12px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
+    @media(prefers-reduced-motion:reduce){#pf-winner-overlay.active,#pf-winner-card{animation:none}}
+
 </style>
 </head>
 
@@ -1558,6 +1574,18 @@
     </section>
   </main>
 
+  <div id="pf-winner-overlay" role="dialog" aria-modal="true" aria-labelledby="pf-winner-brand">
+    <div id="pf-winner-card">
+      <div id="pf-winner-brand">PLAYFINITY • GUESSMOJI</div>
+      <div id="pf-winner-crown" aria-hidden="true">♛</div>
+      <div id="pf-winner-name">Runde beendet!</div>
+      <div id="pf-winner-answer"></div>
+      <div id="pf-winner-meta"></div>
+      <div id="pf-winner-helpers"></div>
+      <button id="pf-winner-next" type="button">Nächste Runde ›</button>
+      <div id="pf-winner-footer">playfinity-game.github.io</div>
+    </div>
+  </div>
   <div id="pause-overlay" class="pause-overlay" hidden><div class="pause-overlay-card"><div class="pause-overlay-title">SPIEL PAUSIERT</div><p>Chat-Eingaben und Rundentimer sind angehalten.</p><button type="button" id="pause-resume" class="btn-action">Fortsetzen</button></div></div>
 
   <div id="correct-answer-overlay" class="correct-answer-overlay" role="alertdialog" aria-modal="true" aria-labelledby="correct-answer-message">
@@ -2208,15 +2236,16 @@
         document.getElementById('guessmoji-timer-fill').style.width='0%';
         document.getElementById('guessmoji-status').textContent='Die Runde ist beendet.';
         const local=this.scores.get('local-player')?.points||0;
-        showCorrectAnswerOverlay(this.current.answer, null, false, 'Runde beendet!');
-        const score=document.getElementById('correct-answer-winner');
-        score.textContent='Deine Punktzahl: '+local+' Punkte';
-        score.hidden=false;
-        document.getElementById('correct-answer-timer').textContent='Bereit für die nächste Runde?';
-        const next=document.getElementById('correct-answer-continue');
-        next.textContent='Nächste Runde ›';
-        next.hidden=false;
-        next.onclick=()=>{hideCorrectAnswerOverlay();this.nextRound();};
+        const overlay=document.getElementById('pf-winner-overlay');
+        document.getElementById('pf-winner-brand').textContent='PLAYFINITY • GUESSMOJI';
+        document.getElementById('pf-winner-name').textContent='Runde beendet!';
+        const answer=document.getElementById('pf-winner-answer');
+        answer.textContent='LÖSUNGSWORT: '+this.current.answer;
+        answer.style.display='block';
+        document.getElementById('pf-winner-meta').textContent='Deine Punktzahl: '+local+' Punkte';
+        document.getElementById('pf-winner-helpers').style.display='none';
+        document.getElementById('pf-winner-next').onclick=()=>{overlay.classList.remove('active');this.nextRound();};
+        overlay.classList.add('active');
       }
     };
 
