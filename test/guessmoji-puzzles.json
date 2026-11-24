@@ -2057,9 +2057,7 @@
       "answer": "Pokémon",
       "category": "Games",
       "difficulty": "mittel",
-      "aliases": [
-        "Pokemon"
-      ]
+      "aliases": []
     },
     {
       "emojis": "🚀 + ⚽",
@@ -2110,9 +2108,7 @@
       "answer": "Plants vs. Zombies",
       "category": "Games",
       "difficulty": "mittel",
-      "aliases": [
-        "Plants vs Zombies"
-      ]
+      "aliases": []
     },
     {
       "emojis": "🏃 + 🚇",
@@ -2216,9 +2212,7 @@
       "answer": "Batman: Arkham Knight",
       "category": "Games",
       "difficulty": "mittel",
-      "aliases": [
-        "Batman Arkham Knight"
-      ]
+      "aliases": []
     },
     {
       "emojis": "🍄 + 🧟",
@@ -2365,7 +2359,6 @@
       "category": "Games",
       "difficulty": "mittel",
       "aliases": [
-        "Counter Strike",
         "CS"
       ]
     },
@@ -2485,9 +2478,7 @@
       "answer": "Assassin’s Creed",
       "category": "Games",
       "difficulty": "mittel",
-      "aliases": [
-        "Assassin's Creed"
-      ]
+      "aliases": []
     },
     {
       "emojis": "🏹 + 💎",
@@ -2961,7 +2952,7 @@
       "aliases": []
     },
     {
-      "emojis": "🌾 + 🚜",
+      "emojis": "🌾 + 🚜 + ⚙️",
       "answer": "Mähdrescher",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
@@ -3734,10 +3725,7 @@
       "answer": "WALL·E",
       "category": "Filme & Serien",
       "difficulty": "mittel",
-      "aliases": [
-        "WALL-E",
-        "Walle"
-      ]
+      "aliases": []
     },
     {
       "emojis": "👽 + 🚲 + 🌕",
@@ -3745,8 +3733,7 @@
       "category": "Filme & Serien",
       "difficulty": "mittel",
       "aliases": [
-        "ET",
-        "E.T."
+        "ET"
       ]
     },
     {
@@ -4076,8 +4063,7 @@
       "category": "Redewendungen",
       "difficulty": "mittel",
       "aliases": [
-        "Spatz in der Hand",
-        "Lieber den Spatz in der Hand als die Taube auf dem Dach"
+        "Spatz in der Hand"
       ]
     },
     {
@@ -4103,9 +4089,7 @@
       "answer": "Öl ins Feuer gießen",
       "category": "Redewendungen",
       "difficulty": "mittel",
-      "aliases": [
-        "Öl ins Feuer gießen"
-      ]
+      "aliases": []
     },
     {
       "emojis": "💧 + 🔥 + 🪨",
@@ -4159,8 +4143,7 @@
       "category": "Redewendungen",
       "difficulty": "mittel",
       "aliases": [
-        "Schweigen ist Gold",
-        "Reden ist Silber Schweigen ist Gold"
+        "Schweigen ist Gold"
       ]
     },
     {
@@ -4260,9 +4243,7 @@
       "answer": "Guns N’ Roses",
       "category": "Bands & Künstler",
       "difficulty": "mittel",
-      "aliases": [
-        "Guns N Roses"
-      ]
+      "aliases": []
     },
     {
       "emojis": "💭 + 🐉",
@@ -4453,9 +4434,7 @@
       "answer": "Party in the U.S.A.",
       "category": "Bekannte Songs",
       "difficulty": "mittel",
-      "aliases": [
-        "Party in the USA"
-      ]
+      "aliases": []
     },
     {
       "emojis": "💎 + ✨",
@@ -4524,9 +4503,7 @@
       "answer": "Summer of ’69",
       "category": "Bekannte Songs",
       "difficulty": "mittel",
-      "aliases": [
-        "Summer of 69"
-      ]
+      "aliases": []
     },
     {
       "emojis": "⏰ + 🛏️",
