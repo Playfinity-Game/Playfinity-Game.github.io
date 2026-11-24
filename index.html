@@ -1836,6 +1836,7 @@
             const renderHome=()=>'<div class="pf-settings-intro">Wähle ein Spiel, um seine Einstellungen zu ändern.</div><div class="pf-settings-games">'+Object.entries(gameSettings).map(([key,g])=>'<button type="button" data-settings-game="'+key+'">'+g.title+' <span>›</span></button>').join('')+'</div><div class="pf-settings-general"><b>Allgemein</b><label><input type="checkbox" data-setting-key="playfinity_sound_enabled" checked> Soundeffekte</label><label><input type="checkbox" data-setting-key="playfinity_animations_enabled" checked> Animationen</label><button type="button" data-settings-reset>Alle Einstellungen zurücksetzen</button></div>';
             const renderGame=key=>{const g=gameSettings[key];return '<button type="button" class="pf-settings-back" data-settings-home>‹ Alle Spiele</button><h3 class="pf-settings-title">'+g.title+'</h3>'+g.items.map(([label,store,def,type,options])=>{const value=localStorage.getItem(store);const current=value===null?def:(type==='select'?value:value==='true');if(type==='select')return '<label class="pf-setting-row"><span>'+label+'</span><select data-setting-key="'+store+'">'+options.map(([v,t])=>'<option value="'+v+'" '+(String(current)===v?'selected':'')+'>'+t+'</option>').join('')+'</select></label>';return '<label class="pf-setting-row"><span>'+label+'</span><input type="checkbox" data-setting-key="'+store+'" '+(current?'checked':'')+'></label>';}).join('');};
             showModal('⚙️ Spieleinstellungen',renderHome());
+            document.getElementById('modal-btn-action').textContent='Zurück zum Spiel';
             const content=document.getElementById('modal-content');
             content.addEventListener('click',event=>{
               const game=event.target.closest('[data-settings-game]')?.dataset.settingsGame;
@@ -3807,6 +3808,7 @@
       content.innerHTML = text;
       content.scrollTop = 0;
       const btn = document.getElementById('modal-btn-action');
+      btn.textContent = 'Neues Spiel';
       btn.onclick = () => {
         modal.classList.remove('active');
         document.body.classList.remove('modal-open');
