@@ -2639,7 +2639,8 @@
           const render=(rows)=>rows.length
             ? '<ol class="pf-leaderboard-list">'+rows.map((row,index)=>'<li><span class="pf-leaderboard-rank">#'+(index+1)+'</span><b>'+CommunityBoard.escape(row.display_name||row.player_key)+'</b><span class="pf-leaderboard-points">'+Number(row.points||0)+' Punkte</span></li>').join('')+'</ol>'
             : '<p class="pf-leaderboard-note">Noch keine Punkte in diesem Zeitraum.</p>';
-          content.innerHTML='<h3>Letzte 24 Stunden</h3>'+render(daily)+'<h3>Diese Woche · Montag bis Sonntag</h3>'+render(weekly)+'<div class="pf-leaderboard-note">Wochenwertung nach deutscher Zeit (Europe/Berlin).</div>';
+          content.innerHTML='<h3>Letzte 24 Stunden</h3>'+render(daily)+'<h3>Diese Woche · Montag bis Sonntag</h3>'+render(weekly)+'<div class="pf-leaderboard-note">Wochenwertung nach deutscher Zeit (Europe/Berlin).</div><button class="pf-rank-back" id="pf-rank-back" type="button">‹ Zurück zu den Kategorien</button>';
+          document.getElementById('pf-rank-back')?.addEventListener('click',()=>this.showCategories());
         }catch(error){
           if(content)content.innerHTML='<p>Die Hangman-Ranglisten sind gerade nicht erreichbar. Bitte versuche es gleich noch einmal.</p>';
           console.error('[PLAYFINITY Hangman Ranglisten]',error);
