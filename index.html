@@ -1435,14 +1435,14 @@
           <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-gold)">Starten ›</span></div>
         </div>
 
-        <!-- GUESSMOJI Card -->
-        <div class="game-card card-guessmoji" onclick="PlayfinityRouter.go('guessmoji')">
+        <!-- GUESSMOJI Card: vorübergehend gesperrt -->
+        <div class="game-card card-guessmoji wordfinity-closed" aria-disabled="true" role="button" tabindex="0" onclick="showModal('GUESSMOJI','GUESSMOJI ist demnächst verfügbar. Das Spiel ist aktuell noch gesperrt.',()=>{})">
           <div>
             <div class="card-badge" style="color:var(--neon-purple)">Emoji-Worträtsel</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">GUESS</span><span style="color:var(--neon-pink)">MOJI</span></div>
-            <div class="card-desc">Errate zufällige Wörter aus Emoji-Kombinationen. Jede richtige Lösung bringt 10 Punkte!</div>
+            <div class="card-desc">Demnächst verfügbar</div>
           </div>
-          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Jetzt raten ›</span></div>
+          <div class="card-footer"><span class="wordfinity-closed-label">🔒 DEMNÄCHST VERFÜGBAR</span></div>
         </div>
 
         <!-- Zahlen schätzen Card -->
@@ -1814,12 +1814,20 @@
       },
 
       go(screenId) {
+        if (screenId === 'guessmoji') {
+          showModal('GUESSMOJI', 'GUESSMOJI ist demnächst verfügbar. Das Spiel ist aktuell noch gesperrt.', () => {});
+          return;
+        }
         if (screenId === this.currentScreen) return;
         history.pushState({ screen: screenId }, '', '#' + screenId);
         this.renderScreen(screenId, true);
       },
 
       renderScreen(screenId, isForwardNav) {
+        if (screenId === 'guessmoji') {
+          screenId = 'menu';
+          history.replaceState({ screen: 'menu' }, '', '#menu');
+        }
         PlayfinityPlayerPresence.setGame(screenId);
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         document.body.classList.toggle('game-active', screenId !== 'menu');
