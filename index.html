@@ -1309,6 +1309,10 @@
     .guessmoji-entry input{flex:1;min-width:0;border:1px solid rgba(176,38,255,.45);border-radius:11px;padding:13px;background:rgba(7,8,20,.88);color:#fff;font:600 1rem var(--font-main);outline:none;user-select:text}
     .guessmoji-entry input:focus{border-color:var(--neon-pink);box-shadow:0 0 12px rgba(255,0,127,.18)}
     .guessmoji-entry button{border:0;border-radius:11px;padding:0 16px;background:linear-gradient(135deg,var(--neon-cyan),#6b7dff);color:#07101d;font-weight:950;cursor:pointer}
+    .guessmoji-settings{display:flex;align-items:center;justify-content:center;gap:9px;flex-wrap:wrap;padding:10px 12px;border:1px solid rgba(0,240,255,.2);border-radius:11px;background:rgba(0,240,255,.045);color:var(--text-muted);font-size:.82rem}
+    .guessmoji-settings label{font-weight:800;color:var(--neon-cyan)}
+    .guessmoji-settings select{border:1px solid rgba(176,38,255,.45);border-radius:8px;padding:7px 10px;background:#0b0d20;color:#fff;font:700 .85rem var(--font-main);outline:none}
+    .guessmoji-rank-button{width:100%;border:1px solid rgba(255,0,127,.35);border-radius:10px;padding:11px;background:rgba(255,0,127,.08);color:#ff8cbd;font-weight:900;cursor:pointer}
     .guessmoji-timer-row{display:flex;justify-content:space-between;gap:8px;margin:2px 0 -10px;font-size:.8rem;color:var(--text-muted)}
     .guessmoji-timer-track{height:9px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden}
     .guessmoji-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple),var(--neon-pink));box-shadow:0 0 12px rgba(176,38,255,.35);transition:width .2s linear}
@@ -1661,6 +1665,14 @@
           <span class="guessmoji-difficulty" id="guessmoji-difficulty"></span>
         </div>
         <div class="guessmoji-emojis" id="guessmoji-emojis">🎲</div>
+        <div class="guessmoji-settings">
+          <label for="guessmoji-duration">⏱ ZEIT PRO RUNDE</label>
+          <select id="guessmoji-duration" aria-label="Timerdauer für GUESSMOJI">
+            <option value="10">10 Sekunden</option><option value="15">15 Sekunden</option>
+            <option value="20" selected>20 Sekunden</option><option value="30">30 Sekunden</option>
+            <option value="45">45 Sekunden</option><option value="60">60 Sekunden</option>
+          </select>
+        </div>
         <div class="guessmoji-question">Welches Wort suchen wir?</div>
         <form class="guessmoji-entry" id="guessmoji-entry" autocomplete="off">
           <input id="guessmoji-input" type="text" maxlength="60" placeholder="Deine Lösung …" aria-label="Deine Lösung" autocomplete="off" spellcheck="false">
@@ -1668,6 +1680,7 @@
         </form>
         <div class="guessmoji-timer-track"><div class="guessmoji-timer-fill" id="guessmoji-timer-fill"></div></div>
         <div class="guessmoji-guesses" id="guessmoji-guesses" aria-live="polite"></div>
+        <button class="guessmoji-rank-button" type="button" onclick="PlayfinityScores.showGuessmoji()">🏆 GUESSMOJI-RANGLISTE</button>
 
       </div>
     </section>
@@ -2081,7 +2094,7 @@
     };
 
     const GuessmojiGame = {
-      initialized:false, round:0, totalRounds:700, current:null, timer:null, remaining:20,
+      initialized:false, round:0, totalRounds:700, current:null, timer:null, remaining:20, duration:20, roundId:'',
       roundOpen:false, scores:new Map(), solvedPlayers:new Set(), correctPlayers:new Map(), used:new Set(), autoNext:null,
       puzzles:[],
       normalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLocaleLowerCase('de-DE').replace(/[^a-z0-9]/g,'');},
@@ -2123,6 +2136,16 @@
             const guess=input.value.trim();input.value='';input.focus();
             if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
           });
+          const durationSelect=document.getElementById('guessmoji-duration');
+          try{this.duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);}catch(_){this.duration=20;}
+          if(![10,15,20,30,45,60].includes(this.duration))this.duration=20;
+          if(durationSelect){durationSelect.value=String(this.duration);durationSelect.addEventListener('change',()=>{
+            const chosen=Number(durationSelect.value);
+            if(![10,15,20,30,45,60].includes(chosen))return;
+            this.duration=chosen;
+            try{localStorage.setItem('playfinity_guessmoji_duration',String(chosen));}catch(_){}
+            if(!this.timer&&this.roundOpen){this.remaining=this.duration;this.updateTimer();}
+          });}
           this.initialized=true;
         }
         if(!this.current)this.loadPuzzles().then(()=>this.nextRound());
@@ -2136,7 +2159,7 @@
       nextRound(){
         clearInterval(this.timer);this.timer=null;clearTimeout(this.autoNext);
         if(this.round>=this.totalRounds){this.round=0;this.used.clear();}
-        this.round++;this.current=this.choosePuzzle();this.remaining=20;this.roundOpen=true;this.solvedPlayers.clear();this.correctPlayers.clear();
+        this.round++;this.roundId='gm-'+Date.now()+'-'+this.round;this.current=this.choosePuzzle();this.remaining=this.duration;this.roundOpen=true;this.solvedPlayers.clear();this.correctPlayers.clear();
         document.getElementById('guessmoji-category').textContent=this.current.category;
         const hard=this.current.difficulty==='schwer';
         const marker=document.getElementById('guessmoji-difficulty');
@@ -2148,14 +2171,14 @@
       },
       startTimer(){
         if(!this.roundOpen||this.timer)return;
-        this.remaining=20;this.updateTimer();
+        this.remaining=this.duration;this.updateTimer();
         this.timer=setInterval(()=>{
           if(PauseController.paused)return;
           this.remaining=Math.max(0,this.remaining-0.1);this.updateTimer();
           if(this.remaining<=0)this.finishRound();
         },100);
       },
-      updateTimer(){document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/20*100)+'%';},
+      updateTimer(){document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/this.duration*100)+'%';},
       submitGuess(value,player){
         if(!this.roundOpen||!this.current||PauseController.paused)return false;
         const guess=this.normalize(value);if(!guess)return false;this.startTimer();
@@ -2171,7 +2194,7 @@
           if(!this.solvedPlayers.has(key)){
             this.solvedPlayers.add(key);this.correctPlayers.set(key,identity.name||'Zuschauer');
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
-            if(key!=='local-player')CommunityBoard.record('guessmoji',identity,10);
+            if(key!=='local-player'){CommunityBoard.record('guessmoji',identity,10);PlayfinityScores.awardGuessmoji(identity,10,this.roundId);}
           }
         }
         return true;
@@ -2512,6 +2535,47 @@
           return true;
         }catch(error){console.error('[PLAYFINITY Rangliste] Punkte konnten nicht gespeichert werden:',error);return false;}
       },
+      async awardGuessmoji(player,points,roundId){
+        const playerKey=String(player?.id||'').trim().replace(/^@/,'').slice(0,80);
+        const displayName=String(player?.name||playerKey).trim().replace(/^@/,'').slice(0,40);
+        if(!playerKey||playerKey==='local-player'||playerKey.toLowerCase()==='unknown'||!displayName||Number(points)!==10||!roundId)return false;
+        try{
+          const response=await fetch(this.url+'/rest/v1/rpc/award_guessmoji_points',{
+            method:'POST',
+            headers:{'apikey':this.key,'Authorization':'Bearer '+this.key,'Content-Type':'application/json'},
+            body:JSON.stringify({p_player_key:playerKey,p_display_name:displayName,p_points:10,p_round_id:roundId})
+          });
+          if(!response.ok)throw new Error('GUESSMOJI-Punkte konnten nicht gespeichert werden ('+response.status+').');
+          return await response.json();
+        }catch(error){console.error('[PLAYFINITY GUESSMOJI]',error);return false;}
+      },
+      async topGuessmoji(period){
+        const response=await fetch(this.url+'/rest/v1/rpc/get_guessmoji_leaderboard',{
+          method:'POST',
+          headers:{'apikey':this.key,'Authorization':'Bearer '+this.key,'Content-Type':'application/json'},
+          body:JSON.stringify({p_period:period})
+        });
+        if(!response.ok)throw new Error('GUESSMOJI-Rangliste konnte nicht geladen werden ('+response.status+').');
+        const rows=await response.json();
+        if(!Array.isArray(rows))throw new Error('Ungültige GUESSMOJI-Ranglisten-Antwort.');
+        return rows;
+      },
+      async showGuessmoji(){
+        showModal('🏆 GUESSMOJI · RANGLISTE','<p>Die gemeinsame Rangliste wird geladen …</p>');
+        const content=document.getElementById('modal-content');
+        try{
+          const [daily,weekly,all]=await Promise.all([this.topGuessmoji('last24hours'),this.topGuessmoji('weekly'),this.topGuessmoji('all')]);
+          if(!content)return;
+          const render=rows=>rows.length
+            ? '<ol class="pf-leaderboard-list">'+rows.map((row,index)=>'<li><span class="pf-leaderboard-rank">#'+(index+1)+'</span><b>'+CommunityBoard.escape(row.display_name||row.player_key)+'</b><span class="pf-leaderboard-points">'+Number(row.points||0)+' Punkte</span></li>').join('')+'</ol>'
+            : '<p class="pf-leaderboard-note">Noch keine Punkte gesammelt.</p>';
+          content.innerHTML='<h3>Letzte 24 Stunden</h3>'+render(daily)+'<h3>Diese Woche</h3>'+render(weekly)+'<h3>Gesamt</h3>'+render(all)+'<div class="pf-leaderboard-note">Jede richtige Lösung bringt 10 Punkte · live aus der PLAYFINITY-Datenbank.</div><button class="pf-rank-back" id="pf-rank-back" type="button">‹ Zurück zu den Kategorien</button>';
+          document.getElementById('pf-rank-back')?.addEventListener('click',()=>this.showCategories());
+        }catch(error){
+          if(content)content.innerHTML='<p>Die GUESSMOJI-Rangliste ist gerade nicht erreichbar. Bitte versuche es gleich noch einmal.</p>';
+          console.error('[PLAYFINITY GUESSMOJI Rangliste]',error);
+        }
+      },
       async awardHangmann(player,points,roundId,awardKey){
         const playerKey=String(player?.id||'').trim().replace(/^@/,'').slice(0,80);
         const displayName=String(player?.name||playerKey).trim().replace(/^@/,'').slice(0,40);
@@ -2566,17 +2630,18 @@
           '<button class="pf-rank-category" type="button" data-rank-game="playdoku" aria-label="Playdoku Rangliste"><svg viewBox="0 0 100 100" role="img" aria-label="3 mal 3 Zahlenraster"><defs><linearGradient id="pfRankGradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#ff2a85"/></linearGradient></defs><rect x="13" y="13" width="74" height="74" rx="10" fill="none" stroke="url(#pfRankGradient)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M37.7 13V87M62.3 13V87M13 37.7H87M13 62.3H87" fill="none" stroke="url(#pfRankGradient)" stroke-width="2.5" stroke-linecap="round"/><text x="25" y="32" fill="url(#pfRankGradient)" font-size="19" font-weight="700" text-anchor="middle">9</text></svg><strong>Playdoku</strong></button>'+
           '<button class="pf-rank-category" type="button" data-rank-game="wordfinity" aria-label="Wordfinity Rangliste"><svg viewBox="0 0 100 100" role="img" aria-label="Unendlichkeitszeichen"><defs><linearGradient id="pfRankGradient2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#ff2a85"/></linearGradient></defs><path d="M50 50C35 32 27 25 17 31C4 39 10 65 25 68C36 70 43 59 50 50C57 41 65 30 77 32C93 35 94 63 78 68C66 72 58 60 50 50Z" fill="none" stroke="url(#pfRankGradient2)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Wordfinity</strong></button>'+
           '<button class="pf-rank-category" type="button" data-rank-game="hangman" aria-label="Hangman Rangliste"><svg viewBox="0 0 100 100" role="img" aria-label="A mit drei Rate-Strichen und Herz"><defs><linearGradient id="pfRankGradient3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#ff2a85"/></linearGradient></defs><path d="M22 78L42 27Q45 20 49 27L69 78M31 58H60M12 88H32M39 88H59M66 88H88M70 19C70 10 83 10 84 19C85 10 98 10 97 20C96 28 84 35 84 35S70 28 70 19Z" transform="translate(-4 0)" fill="none" stroke="url(#pfRankGradient3)" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>Hangman</strong></button>'+
-          '<button class="pf-rank-category" type="button" data-rank-game="guesswhat" aria-label="GuessWhat Rangliste"><svg viewBox="0 0 100 100" role="img" aria-label="Sprechblase mit Fragezeichen"><defs><linearGradient id="pfRankGradient4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#ff2a85"/></linearGradient></defs><path d="M15 17Q15 10 23 10H77Q85 10 85 18V65Q85 73 77 73H58L77 91L72 73H23Q15 73 15 65Z" fill="none" stroke="url(#pfRankGradient4)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 34C39 21 61 20 61 35C61 43 50 45 50 54M50 63V64" fill="none" stroke="url(#pfRankGradient4)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>GuessWhat</strong></button></div>');
+          '<button class="pf-rank-category" type="button" data-rank-game="guesswhat" aria-label="GuessWhat Rangliste"><svg viewBox="0 0 100 100" role="img" aria-label="Sprechblase mit Fragezeichen"><defs><linearGradient id="pfRankGradient4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#ff2a85"/></linearGradient></defs><path d="M15 17Q15 10 23 10H77Q85 10 85 18V65Q85 73 77 73H58L77 91L72 73H23Q15 73 15 65Z" fill="none" stroke="url(#pfRankGradient4)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M39 34C39 21 61 20 61 35C61 43 50 45 50 54M50 63V64" fill="none" stroke="url(#pfRankGradient4)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg><strong>GuessWhat</strong></button><button class="pf-rank-category" type="button" data-rank-game="guessmoji" aria-label="Guessmoji Rangliste"><svg viewBox="0 0 100 100" role="img" aria-label="Emoji-Rätsel"><defs><linearGradient id="pfRankGradient5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00f0ff"/><stop offset="100%" stop-color="#ff2a85"/></linearGradient></defs><circle cx="50" cy="50" r="34" fill="none" stroke="url(#pfRankGradient5)" stroke-width="3.5"/><path d="M36 42h.1M64 42h.1M37 61q13 12 26 0" fill="none" stroke="url(#pfRankGradient5)" stroke-width="5" stroke-linecap="round"/></svg><strong>GUESSMOJI</strong></button></div>');
         const content=document.getElementById('modal-content');
         if(!content)return;
         content.querySelectorAll('[data-rank-game]').forEach(button=>button.addEventListener('click',()=>{
           const game=button.dataset.rankGame;
           if(game==='hangman'){this.showHangmann();return;}
+          if(game==='guessmoji'){this.showGuessmoji();return;}
           this.showCategoryComingSoon(game);
         }));
       },
       showCategoryComingSoon(game){
-        const labels={playdoku:'Playdoku',wordfinity:'Wordfinity',guesswhat:'GuessWhat'};
+        const labels={playdoku:'Playdoku',wordfinity:'Wordfinity',guesswhat:'GuessWhat',guessmoji:'GUESSMOJI'};
         showModal('🏆 '+labels[game].toUpperCase()+' · RANGLISTE','<p>Diese Rangliste wird gerade vorbereitet.</p><button class="pf-rank-back" type="button" id="pf-rank-back">‹ Zurück zu den Kategorien</button>');
         document.getElementById('pf-rank-back')?.addEventListener('click',()=>this.showCategories());
       },
