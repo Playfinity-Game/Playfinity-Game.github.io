@@ -3825,6 +3825,188 @@
       "aliases": [
         "Simpsons"
       ]
+    },
+    {
+      "emojis": "🟥 + 👒",
+      "answer": "Rotkäppchen",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌵 + 🌹",
+      "answer": "Dornröschen",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👩‍🦰 + 🗼",
+      "answer": "Rapunzel",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏠 + 🍬 + 🧙",
+      "answer": "Hänsel und Gretel",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐸 + 👑",
+      "answer": "Der Froschkönig",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👢 + 🐱",
+      "answer": "Der gestiefelte Kater",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👠 + 🎃 + 🕛",
+      "answer": "Aschenputtel",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Cinderella"
+      ]
+    },
+    {
+      "emojis": "🐥 + 🦢",
+      "answer": "Das hässliche Entlein",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Das hässliche junge Entlein"
+      ]
+    },
+    {
+      "emojis": "🧜‍♀️ + 🌊",
+      "answer": "Die kleine Meerjungfrau",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Arielle"
+      ]
+    },
+    {
+      "emojis": "🤥 + 🪵",
+      "answer": "Pinocchio",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧚 + 👦",
+      "answer": "Peter Pan",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏴‍☠️ + 🪝",
+      "answer": "Kapitän Hook",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Captain Hook"
+      ]
+    },
+    {
+      "emojis": "🐻 + 🍯",
+      "answer": "Pu der Bär",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Winnie Puuh",
+        "Winnie the Pooh"
+      ]
+    },
+    {
+      "emojis": "🏹 + 🌳",
+      "answer": "Robin Hood",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐺 + 7️⃣ + 🐐",
+      "answer": "Der Wolf und die sieben Geißlein",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Die sieben Geißlein"
+      ]
+    },
+    {
+      "emojis": "[ESEL] + 🐕 + 🐈 + 🐓",
+      "answer": "Die Bremer Stadtmusikanten",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Bremer Stadtmusikanten"
+      ]
+    },
+    {
+      "emojis": "🫛 + 🛏️ + 👸",
+      "answer": "Die Prinzessin auf der Erbse",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧵 + ✂️",
+      "answer": "Das tapfere Schneiderlein",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌟 + 💰",
+      "answer": "Sterntaler",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 👸",
+      "answer": "Die Schneekönigin",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐀 + 🪈",
+      "answer": "Der Rattenfänger von Hameln",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Rattenfänger"
+      ]
+    },
+    {
+      "emojis": "🪄 + 🪔",
+      "answer": "Aladin und die Wunderlampe",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Aladdin"
+      ]
+    },
+    {
+      "emojis": "🐷 + 🐷 + 🐷 + 🐺",
+      "answer": "Die drei kleinen Schweinchen",
+      "category": "Märchen & Figuren",
+      "difficulty": "mittel",
+      "aliases": [
+        "Drei kleine Schweinchen"
+      ]
     }
   ]
 }
