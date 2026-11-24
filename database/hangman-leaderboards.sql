@@ -36,7 +36,47 @@ begin
   end if;
   if not (
     (clean_award_key = 'word-solved' and p_points = 10)
-    or (clean_award_key like 'letter:%' and pg_catalog.char_length(clean_award_key) = 8 and p_points = 1)
+    or (clean_award_key ~ '^letter:[A-ZÄÖÜẞ]
+    raise exception 'Ungültige Hangman-Punktevergabe';
+  end if;
+  insert into private.hangman_score_events (round_id, player_key, display_name, points, award_key)
+  values (clean_round_id, clean_player_key, clean_display_name, p_points, clean_award_key)
+  on conflict (round_id, player_key, award_key) do nothing;
+  return found;
+end;
+$function$;
+
+revoke execute on function public.award_hangman_points(text, text, integer, text, text) from public, anon, authenticated;
+grant execute on function public.award_hangman_points(text, text, integer, text, text) to anon, authenticated;
+
+create or replace function public.get_hangman_leaderboard(p_period text)
+returns table (player_key text, display_name text, points bigint)
+language plpgsql stable security definer set search_path = ''
+as $function$
+declare
+  period_start timestamptz;
+begin
+  if p_period = 'last24hours' then
+    period_start := pg_catalog.now() - interval '24 hours';
+  elsif p_period = 'weekly' then
+    period_start := pg_catalog.date_trunc('week', pg_catalog.timezone('Europe/Berlin', pg_catalog.now()))
+                    at time zone 'Europe/Berlin';
+  else
+    raise exception 'Unbekannter Ranglistenzeitraum';
+  end if;
+  return query
+    select e.player_key, pg_catalog.max(e.display_name), pg_catalog.sum(e.points)::bigint
+    from private.hangman_score_events e
+    where e.created_at >= period_start
+    group by e.player_key
+    order by pg_catalog.sum(e.points) desc, pg_catalog.max(e.display_name) asc
+    limit 10;
+end;
+$function$;
+
+revoke execute on function public.get_hangman_leaderboard(text) from public, anon, authenticated;
+grant execute on function public.get_hangman_leaderboard(text) to anon, authenticated;
+ and p_points = 1)
   ) then
     raise exception 'Ungültige Hangman-Punktevergabe';
   end if;
