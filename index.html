@@ -1274,8 +1274,6 @@
 @media(prefers-reduced-motion:reduce){#pd-win-overlay.active,#pd-win-card{animation:none}.pd-firework-spark{animation-duration:.01ms!important}}
 
 
-    #pf-leaderboard-button{border:1px solid rgba(251,191,36,.38);background:#171b29;color:#fbbf24;border-radius:10px;padding:6px 10px;font-size:1rem;cursor:pointer;line-height:1}
-    #pf-leaderboard-button:hover{background:#292438;border-color:#fbbf24}
     #app-modal .pf-leaderboard-list{list-style:none;padding:0;margin:12px 0;text-align:left}
     #app-modal .pf-leaderboard-list li{display:flex;align-items:center;gap:10px;padding:9px 10px;border-bottom:1px solid #303746;color:#e5e7eb}
     #app-modal .pf-leaderboard-rank{width:25px;color:#fbbf24;font-weight:950}
@@ -1311,7 +1309,6 @@
     <button class="btn-nav-back" id="btn-back">
       <span>‹ Zurück zum Hub</span>
     </button>
-    <button id="pf-leaderboard-button" type="button" aria-label="PLAYFINITY Rangliste öffnen" title="PLAYFINITY Rangliste">🏆</button>
     <button class="pause-toggle" id="pause-toggle" type="button" aria-pressed="false" aria-label="Spiel pausieren">Ⅱ</button>
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
@@ -1682,7 +1679,6 @@
         document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
 
         document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
-        document.getElementById('pf-leaderboard-button')?.addEventListener('click',()=>PlayfinityScores.showCategories());
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
         const menu = document.getElementById('app-menu');
         const toggle = document.getElementById('menu-toggle');
