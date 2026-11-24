@@ -1373,7 +1373,7 @@
     <button class="menu-toggle" id="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">☰</button>
   </header>
   <nav class="app-menu" id="app-menu" aria-label="PLAYFINITY Menü">
-    <button data-menu-action="home">⌂ &nbsp; Startseite</button>
+    <button data-menu-action="home" id="menu-home-action">⌂ &nbsp; Startseite</button>
     <button data-menu-action="leaderboard">🏆 &nbsp; Community-Ranglisten</button>
     <button data-menu-action="connect" aria-expanded="false" aria-controls="tiktok-connector-panel">🔴 &nbsp; TikTok LIVE verbinden</button>
     <div id="tiktok-connector-panel" class="tiktok-connector-panel" hidden>
@@ -1782,6 +1782,8 @@
           const isOpen = menu.classList.contains('open');
           if (open === isOpen) return;
           menu.classList.toggle('open', open);
+          const homeAction=document.getElementById('menu-home-action');
+          if(homeAction){const inGame=this.currentScreen&&this.currentScreen!=='menu';homeAction.textContent=inGame?'▶  Zurück zum Spiel':'⌂  Startseite';}
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
           toggle.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
           if (open && manageHistory) {
@@ -1817,6 +1819,7 @@
             return;
           }
           this.setMenuOpen(false);
+          if (action === 'home' && this.currentScreen !== 'menu') return;
           if (action === 'home') this.go('menu');
           if (action === 'leaderboard') PlayfinityScores.showCategories();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
