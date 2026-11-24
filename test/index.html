@@ -2131,7 +2131,7 @@
        GUESSMOJI – 10 zufällige Emoji-Worträtsel
        ========================================================================== */
     const GuessmojiGame = {
-      initialized:false, round:0, totalRounds:10, current:null, timer:null, remaining:20,
+      initialized:false, round:0, totalRounds:700, current:null, timer:null, remaining:20,
       roundOpen:false, scores:new Map(), solvedPlayers:new Set(), correctPlayers:new Map(), used:new Set(), autoNext:null,
       puzzles:[],
       normalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLocaleLowerCase('de-DE').replace(/[^a-z0-9]/g,'');},
