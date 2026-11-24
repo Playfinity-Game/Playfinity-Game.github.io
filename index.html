@@ -2915,14 +2915,24 @@
         }catch(error){console.warn('[Wordfinity] Hintergrund-Aktualisierung von Rätsel',id,'fehlgeschlagen.',error);}
       },
       async loadPuzzle(id){
-        if(this.puzzleCache.has(Number(id)))return {data:this.puzzleCache.get(Number(id)),source:'memory'};
-        const cached=await this.readLocal('puzzles',Number(id));
-        if(cached&&cached.version===1&&this.isValidPuzzle(cached.data,id)){
-          this.puzzleCache.set(Number(id),cached.data);
+        const numericId=Number(id);
+        // Puzzle 2096 wurde redaktionell korrigiert. Veraltete lokale Kopien
+        // mit dem alten Plural-Ziel oder der alten Kategorie dürfen nicht weiterlaufen.
+        const isCurrentPuzzleData=data=>numericId!==2096||(this.normalize(data?.woerter?.[0]||'')==='löwe'&&data?.kategorie==='Tiere');
+        if(this.puzzleCache.has(numericId)){
+          const memoryData=this.puzzleCache.get(numericId);
+          if(isCurrentPuzzleData(memoryData))return {data:memoryData,source:'memory'};
+          this.puzzleCache.delete(numericId);
+        }
+        const cached=await this.readLocal('puzzles',numericId);
+        if(cached&&cached.version===1&&this.isValidPuzzle(cached.data,id)&&isCurrentPuzzleData(cached.data)){
+          this.puzzleCache.set(numericId,cached.data);
           this.refreshPuzzleInBackground(id,cached.savedAt||0);
           return {data:cached.data,source:'local'};
         }
-        return {data:await this.fetchPuzzle(id),source:'network'};
+        const data=await this.fetchPuzzle(id);
+        this.puzzleCache.set(numericId,data);
+        return {data,source:'network'};
       },
       shufflePuzzleDeck(ids){
         const deck=[...ids];
