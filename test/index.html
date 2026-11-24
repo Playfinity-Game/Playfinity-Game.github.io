@@ -1565,10 +1565,7 @@
           <input id="guessmoji-input" type="text" maxlength="60" placeholder="Deine Lösung …" aria-label="Deine Lösung" autocomplete="off" spellcheck="false">
           <button type="submit">RATEN</button>
         </form>
-        <div class="guessmoji-timer-row"><span id="guessmoji-timer-label">⏱️ Wartet auf den ersten Guess</span></div>
         <div class="guessmoji-timer-track"><div class="guessmoji-timer-fill" id="guessmoji-timer-fill"></div></div>
-        <div class="guessmoji-status" id="guessmoji-status" role="status" aria-live="polite">Der 20-Sekunden-Timer startet mit dem ersten Tipp.</div>
-        <div class="guessmoji-guesses" id="guessmoji-guesses" aria-live="polite"></div>
 
       </div>
     </section>
@@ -2220,10 +2217,8 @@
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
             if(key!=='local-player')CommunityBoard.record('guessmoji',identity,10);
           }
-          document.getElementById('guessmoji-status').textContent='🎉 '+(identity.name||'Ein Spieler')+' hat die Lösung gefunden! Alle dürfen weiter mitraten.';
-        }else{
-          document.getElementById('guessmoji-status').textContent=(identity.name||'Ein Spieler')+' hat geraten – weiter geht’s!';
-        }
+         }else{
+         }
         return true;
       },
       finishRound(){
