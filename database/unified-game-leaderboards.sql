@@ -17,14 +17,20 @@ begin
     for insert to anon, authenticated
     with check (
       game_key in ('playdoku','wordfinity','guesswhat','guessmoji','fivex')
-      and points in (1,3,10)
+      and points in (1,3,5,10)
       and char_length(trim(player_key)) between 1 and 80
       and char_length(trim(display_name)) between 1 and 40
       and metadata ? 'event_id'
       and metadata ? 'award_key'
       and char_length(metadata->>'event_id') between 1 and 100
       and char_length(metadata->>'award_key') between 1 and 32
-      and ((game_key='guessmoji' and points=10) or (game_key<>'guessmoji' and points in (1,3)))
+      and (
+        (game_key='guessmoji' and points in (5,10))
+        or (game_key='playdoku' and points=1)
+        or (game_key='fivex' and points=5)
+        or (game_key='wordfinity' and points in (1,10))
+        or (game_key='guesswhat' and points in (5,10))
+      )
     );
   end if;
 end $$;
@@ -54,8 +60,11 @@ begin
      or clean_event is null or clean_event = ''
      or clean_award is null or clean_award = ''
      or not (
-       (clean_game='guessmoji' and p_points=10)
-       or (clean_game<>'guessmoji' and p_points in (1,3))
+       (clean_game='guessmoji' and p_points in (5,10))
+       or (clean_game='playdoku' and p_points=1)
+       or (clean_game='fivex' and p_points=5)
+       or (clean_game='wordfinity' and p_points in (1,10))
+       or (clean_game='guesswhat' and p_points in (5,10))
      ) then
     return false;
   end if;
@@ -98,3 +107,27 @@ $function$;
 
 grant execute on function public.award_game_points(text,text,text,integer,text,text) to anon, authenticated;
 grant execute on function public.get_game_leaderboard(text,text) to anon, authenticated;
+
+
+-- Global leaderboard also accepts the updated 5- and 10-point awards.
+create or replace function public.award_rangliste_points(p_spielername text, p_punkte integer)
+returns void
+language plpgsql
+security definer
+set search_path = ''
+as $function$
+declare
+  clean_name text := pg_catalog.left(pg_catalog.btrim(p_spielername), 40);
+begin
+  if clean_name is null or clean_name = '' then
+    raise exception 'Spielername fehlt';
+  end if;
+  if p_punkte not in (1, 3, 5, 10) then
+    raise exception 'Nur 1, 3, 5 oder 10 Punkte sind erlaubt';
+  end if;
+  insert into public.rangliste (spielername, punkte)
+  values (clean_name, p_punkte)
+  on conflict (spielername)
+  do update set punkte = public.rangliste.punkte + excluded.punkte;
+end;
+$function$;
