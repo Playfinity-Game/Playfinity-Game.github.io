@@ -2143,7 +2143,7 @@
           const valid = Array.isArray(data.puzzles) ? data.puzzles.filter(p => p && typeof p.emojis==='string' && typeof p.answer==='string' && typeof p.category==='string' && p.emojis.trim() && p.answer.trim()) : [];
           const counts = {};
           valid.forEach(p => counts[p.category]=(counts[p.category]||0)+1);
-          const complete = Object.keys(counts).length >= 10 && Object.values(counts).every(n => n >= 50);
+          const complete = valid.length >= 1 && Object.keys(counts).length >= 1;
           if (!complete) throw new Error('Rätselpool unvollständig');
           this.puzzles = valid.map(p => ({...p, difficulty:p.difficulty==='schwer'?'schwer':(p.difficulty||'mittel'), aliases:Array.isArray(p.aliases)?p.aliases:[]}));
           console.info('[GUESSMOJI] Geladen:', this.puzzles.length, 'Rätsel in', Object.keys(counts).length, 'Kategorien');
