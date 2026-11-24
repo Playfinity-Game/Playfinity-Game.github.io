@@ -2133,36 +2133,49 @@
     const GuessmojiGame = {
       initialized:false, round:0, totalRounds:10, current:null, timer:null, remaining:20,
       roundOpen:false, scores:new Map(), solvedPlayers:new Set(), correctPlayers:new Map(), used:new Set(), autoNext:null,
-      puzzles:[
-        {emojis:'🦷 + 🧚‍♀️',answer:'Zahnfee',category:'Märchen & Figuren',difficulty:'leicht',aliases:[]},
-        {emojis:'☀️ + 👓',answer:'Sonnenbrille',category:'Alltag',difficulty:'leicht',aliases:['sonnen brille']},
-        {emojis:'🍎 + 🥧',answer:'Apfelkuchen',category:'Essen & Trinken',difficulty:'mittel',aliases:['apfel kuchen']},
-        {emojis:'🐝 + 🏠',answer:'Bienenstock',category:'Tiere & Natur',difficulty:'mittel',aliases:['bienenhaus']},
-        {emojis:'🧊 + 🍵',answer:'Eistee',category:'Essen & Trinken',difficulty:'leicht',aliases:['eis tee']},
-        {emojis:'🌧️ + ☂️',answer:'Regenschirm',category:'Alltag',difficulty:'mittel',aliases:['regen schirm']},
-        {emojis:'🐌 + 🏁',answer:'Schneckenrennen',category:'Sport & Freizeit',difficulty:'schwer',aliases:['schnecken rennen']},
-        {emojis:'🌙 + 🚶',answer:'Nachtwanderung',category:'Freizeit',difficulty:'schwer',aliases:['nacht wanderung']},
-        {emojis:'🐱 + 🥛',answer:'Katzenmilch',category:'Tiere',difficulty:'mittel',aliases:['katzen milch']},
-        {emojis:'🚗 + 🏁',answer:'Autorennen',category:'Fahrzeuge & Sport',difficulty:'schwer',aliases:['auto rennen']}
-      ],
+      puzzles:[],
       normalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLocaleLowerCase('de-DE').replace(/[^a-z0-9]/g,'');},
+      async loadPuzzles(){
+        try {
+          const response = await fetch('./guessmoji-puzzles.json', {cache:'no-store'});
+          if (!response.ok) throw new Error('Rätseldatei nicht erreichbar');
+          const data = await response.json();
+          const valid = Array.isArray(data.puzzles) ? data.puzzles.filter(p => p && typeof p.emojis==='string' && typeof p.answer==='string' && typeof p.category==='string' && p.emojis.trim() && p.answer.trim()) : [];
+          const counts = {};
+          valid.forEach(p => counts[p.category]=(counts[p.category]||0)+1);
+          const complete = Object.keys(counts).length >= 10 && Object.values(counts).every(n => n >= 50);
+          if (!complete) throw new Error('Rätselpool unvollständig');
+          this.puzzles = valid.map(p => ({...p, difficulty:p.difficulty==='schwer'?'schwer':(p.difficulty||'mittel'), aliases:Array.isArray(p.aliases)?p.aliases:[]}));
+          console.info('[GUESSMOJI] Geladen:', this.puzzles.length, 'Rätsel in', Object.keys(counts).length, 'Kategorien');
+        } catch(error) {
+          console.error('[GUESSMOJI] Rätselpool konnte nicht geladen werden:', error);
+          this.puzzles = [
+            {emojis:'🦷 + 🧚‍♀️',answer:'Zahnfee',category:'Märchen & Figuren',difficulty:'leicht',aliases:[]},
+            {emojis:'☀️ + 👓',answer:'Sonnenbrille',category:'Alltag',difficulty:'leicht',aliases:['sonnen brille']},
+            {emojis:'🍎 + 🥧',answer:'Apfelkuchen',category:'Essen & Trinken',difficulty:'mittel',aliases:['apfel kuchen']},
+            {emojis:'🐝 + 🏠',answer:'Bienenstock',category:'Tiere & Natur',difficulty:'mittel',aliases:['bienenhaus']},
+            {emojis:'🧊 + 🍵',answer:'Eistee',category:'Essen & Trinken',difficulty:'leicht',aliases:['eis tee']},
+            {emojis:'🌧️ + ☂️',answer:'Regenschirm',category:'Alltag',difficulty:'mittel',aliases:['regen schirm']},
+            {emojis:'🐌 + 🏁',answer:'Schneckenrennen',category:'Sport & Freizeit',difficulty:'schwer',aliases:['schnecken rennen']},
+            {emojis:'🌙 + 🚶',answer:'Nachtwanderung',category:'Freizeit',difficulty:'schwer',aliases:['nacht wanderung']},
+            {emojis:'🐱 + 🥛',answer:'Katzenmilch',category:'Tiere',difficulty:'mittel',aliases:['katzen milch']},
+            {emojis:'🚗 + 🏁',answer:'Autorennen',category:'Fahrzeuge & Sport',difficulty:'schwer',aliases:['auto rennen']}
+          ];
+        }
+      },
       init(){
         if(!this.initialized){
           const input=document.getElementById('guessmoji-input');
           input.disabled=false;
-          input.addEventListener('input',()=>{
-            input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');
-          });
+          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');});
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
-            const guess=input.value.trim();
-            input.value='';
-            input.focus();
+            const guess=input.value.trim();input.value='';input.focus();
             if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
           });
           this.initialized=true;
         }
-        if(!this.current)this.nextRound();
+        if(!this.current)this.loadPuzzles().then(()=>this.nextRound());
       },
       choosePuzzle(){
         let available=this.puzzles.map((_,i)=>i).filter(i=>!this.used.has(i));
@@ -2177,8 +2190,7 @@
         document.getElementById('guessmoji-category').textContent=this.current.category;
         const hard=this.current.difficulty==='schwer';
         const marker=document.getElementById('guessmoji-difficulty');
-        marker.textContent=hard?'☠️ SCHWER':'';
-        marker.hidden=!hard;
+        marker.textContent=hard?'☠️ SCHWER':'';marker.hidden=!hard;
         document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
         document.getElementById('guessmoji-timer-fill').style.width='100%';
         document.getElementById('guessmoji-input').disabled=false;
@@ -2193,14 +2205,10 @@
           if(this.remaining<=0)this.finishRound();
         },100);
       },
-      updateTimer(){
-        document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/20*100)+'%';
-      },
+      updateTimer(){document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/20*100)+'%';},
       submitGuess(value,player){
         if(!this.roundOpen||!this.current||PauseController.paused)return false;
-        const guess=this.normalize(value);
-        if(!guess)return false;
-        this.startTimer();
+        const guess=this.normalize(value);if(!guess)return false;this.startTimer();
         const identity=player||{id:'unknown',name:'Zuschauer'};
         const correct=guess===this.normalize(this.current.answer)||(this.current.aliases||[]).some(alias=>guess===this.normalize(alias));
         const list=document.getElementById('guessmoji-guesses');
@@ -2211,12 +2219,11 @@
         if(correct){
           const key=String(identity.id||identity.name||'unknown');
           if(!this.solvedPlayers.has(key)){
-            this.solvedPlayers.add(key);
-            this.correctPlayers.set(key,identity.name||'Zuschauer');
+            this.solvedPlayers.add(key);this.correctPlayers.set(key,identity.name||'Zuschauer');
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+10});
             if(key!=='local-player')CommunityBoard.record('guessmoji',identity,10);
           }
-         }
+        }
         return true;
       },
       finishRound(){
@@ -2228,9 +2235,7 @@
         const overlay=document.getElementById('pf-winner-overlay');
         document.getElementById('pf-winner-brand').textContent='PLAYFINITY • GUESSMOJI';
         document.getElementById('pf-winner-name').textContent='Runde beendet!';
-        const answer=document.getElementById('pf-winner-answer');
-        answer.textContent='LÖSUNGSWORT: '+this.current.answer;
-        answer.style.display='block';
+        const answer=document.getElementById('pf-winner-answer');answer.textContent='LÖSUNGSWORT: '+this.current.answer;answer.style.display='block';
         const winners=[...this.correctPlayers.values()];
         document.getElementById('pf-winner-meta').textContent=(winners.length?'Richtig geraten: '+winners.join(', '):'Niemand hat die richtige Antwort gefunden.')+' · Deine Punktzahl: '+local+' Punkte';
         document.getElementById('pf-winner-helpers').style.display='none';
