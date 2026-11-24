@@ -24,3 +24,5 @@ Die SQL-Definition liegt in `database/hangman-leaderboards.sql`. Sie wurde auf d
 
 ## Hinweis
 Die bestehende spielübergreifende PLAYFINITY-Gesamtrangliste bleibt unverändert. Die Hangman-Ranglisten sind davon getrennt.
+
+Die Punktevergabe nutzt – wie die vorhandene PLAYFINITY-Rangliste – ein öffentlich erreichbares Supabase-RPC mit dem Publishable Key. Die Datenbank verhindert doppelte Awards pro Spieler/Runde und prüft die erlaubten Punktwerte. Das ist jedoch kein vollständiger Cheat-Schutz: Ein technisch versierter Besucher könnte die öffentliche RPC-Schnittstelle direkt aufrufen. Für manipulationssichere Wertung müsste die Spielrunde vollständig serverseitig validiert werden.
