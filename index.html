@@ -1577,6 +1577,7 @@
         <div class="hangmann-actions">
           <button class="btn-action" id="hangmann-hint" type="button">🏷 Kategorie zeigen</button>
           <button class="btn-action" id="hangmann-new" type="button">Neues Wort</button>
+          <button class="btn-action" id="hangmann-leaderboard" type="button">🏆 Ranglisten</button>
         </div>
       </div>
     </section>
@@ -1785,12 +1786,13 @@
        HANGMANN GAME
        ========================================================================== */
     const HangmannGame = {
-      initialized:false, words:[], wordQueue:[], target:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null,
+      initialized:false, words:[], wordQueue:[], target:null, roundId:null, guessed:new Set(), errors:0, locked:false, hintShown:false, chatGuessEnabled:false, fallTimer:null,
       normalize(value){return value.replace(/ß/g,'ẞ').toLocaleUpperCase('de-DE');},
       async init(){
         if(!this.initialized){
           document.getElementById('hangmann-new').addEventListener('click',()=>this.newRound());
           document.getElementById('hangmann-hint').addEventListener('click',()=>this.showHint());
+          document.getElementById('hangmann-leaderboard').addEventListener('click',()=>PlayfinityScores.showHangmann());
           document.getElementById('hangmann-solution-form').addEventListener('submit',e=>{
             e.preventDefault();
             const input=document.getElementById('hangmann-solution-input');
@@ -1885,6 +1887,7 @@
         const candidates=otherCategoryIndexes.length?otherCategoryIndexes:this.wordQueue.map((_,index)=>index);
         const selectedIndex=candidates[randomIndex(candidates.length)];
         this.target=this.wordQueue.splice(selectedIndex,1)[0];
+        this.roundId=window.crypto?.randomUUID?.()||('hangmann-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2));
         try{
           localStorage.setItem(queueKey,JSON.stringify(this.wordQueue.map(item=>wordKey(item))));
           localStorage.setItem(categoryKey,this.target.category);
@@ -1924,14 +1927,15 @@
           if(input){input.select();}
         }
       },
-      guess(letter){
+      guess(letter,player=null){
         if(!this.target||this.locked)return;
         const key=this.normalize(letter);
         if(!/^[A-ZÄÖÜẞ]$/.test(key)||this.guessed.has(key))return;
         this.guessed.add(key);
         if(this.normalize(this.target.word).includes(key)){
+          if(player)PlayfinityScores.awardHangmann(player,1,this.roundId,'letter:'+key);
           this.renderWord();
-          if(Array.from(this.normalize(this.target.word)).every(ch=>ch===' '||this.guessed.has(ch)))this.finish(true);
+          if(Array.from(this.normalize(this.target.word)).every(ch=>ch===' '||this.guessed.has(ch)))this.finish(true,player);
         }else{
           this.errors++;const part=document.querySelector('[data-part="'+this.errors+'"]');if(part)part.classList.add('shown');
           document.getElementById('hangmann-errors').textContent='Versuche: '+(10-this.errors);
@@ -1961,8 +1965,8 @@
         document.getElementById('hangmann-hint').disabled=true;
         const autoNext=localStorage.getItem('playfinity_hangmann_auto_next')!=='false';
         if(won){
-          if(player)CommunityBoard.record('hangmann',player);
-          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,'Wort erraten • +3 Punkte',player?.name||'');
+          if(player)PlayfinityScores.awardHangmann(player,10,this.roundId,'word-solved');
+          showCorrectAnswerOverlay(this.target.word,()=>this.newRound(),!autoNext,'Wort erraten • +10 Punkte',player?.name||'');
           if(autoNext)PauseController.schedule('hangmann','winnerTimer',()=>{hideCorrectAnswerOverlay();this.newRound();},7000);
         }else{
           document.getElementById('hangmann-status').textContent='😭 Oh nein!';
@@ -2083,7 +2087,7 @@
         } else if (screen === 'hangmann' && HangmannGame.chatGuessEnabled && text.trim()) {
           const chatMessage = text.trim();
           if (/^[A-Za-zÄÖÜäöüß]$/.test(chatMessage)) {
-            HangmannGame.guess(chatMessage);
+            HangmannGame.guess(chatMessage,user);
           } else {
             HangmannGame.submitChatGuess(user, chatMessage);
           }
@@ -2286,6 +2290,46 @@
           if(!response.ok)throw new Error('Punkte konnten nicht gespeichert werden ('+response.status+').');
           return true;
         }catch(error){console.error('[PLAYFINITY Rangliste] Punkte konnten nicht gespeichert werden:',error);return false;}
+      },
+      async awardHangmann(player,points,roundId,awardKey){
+        const playerKey=String(player?.id||'').trim().replace(/^@/,'').slice(0,80);
+        const displayName=String(player?.name||playerKey).trim().replace(/^@/,'').slice(0,40);
+        if(!playerKey||playerKey.toLowerCase()==='unknown'||!displayName||![1,10].includes(Number(points))||!roundId||!awardKey)return false;
+        try{
+          const response=await fetch(this.url+'/rest/v1/rpc/award_hangman_points',{
+            method:'POST',
+            headers:{'apikey':this.key,'Authorization':'Bearer '+this.key,'Content-Type':'application/json'},
+            body:JSON.stringify({p_player_key:playerKey,p_display_name:displayName,p_points:Number(points),p_round_id:roundId,p_award_key:awardKey})
+          });
+          if(!response.ok)throw new Error('Hangman-Punkte konnten nicht gespeichert werden ('+response.status+').');
+          return true;
+        }catch(error){console.error('[PLAYFINITY Hangman] Punkte konnten nicht gespeichert werden:',error);return false;}
+      },
+      async topHangmann(period){
+        const response=await fetch(this.url+'/rest/v1/rpc/get_hangman_leaderboard',{
+          method:'POST',
+          headers:{'apikey':this.key,'Authorization':'Bearer '+this.key,'Content-Type':'application/json'},
+          body:JSON.stringify({p_period:period})
+        });
+        if(!response.ok)throw new Error('Hangman-Rangliste konnte nicht geladen werden ('+response.status+').');
+        const rows=await response.json();
+        if(!Array.isArray(rows))throw new Error('Ungültige Hangman-Ranglisten-Antwort.');
+        return rows;
+      },
+      async showHangmann(){
+        showModal('🏆 HANGMAN · RANGLISTEN','<p>Die beiden Ranglisten werden geladen …</p>');
+        const content=document.getElementById('modal-content');
+        try{
+          const [daily,weekly]=await Promise.all([this.topHangmann('last24hours'),this.topHangmann('weekly')]);
+          if(!content)return;
+          const render=(rows)=>rows.length
+            ? '<ol class="pf-leaderboard-list">'+rows.map((row,index)=>'<li><span class="pf-leaderboard-rank">#'+(index+1)+'</span><b>'+CommunityBoard.escape(row.display_name||row.player_key)+'</b><span class="pf-leaderboard-points">'+Number(row.points||0)+' Punkte</span></li>').join('')+'</ol>'
+            : '<p class="pf-leaderboard-note">Noch keine Punkte in diesem Zeitraum.</p>';
+          content.innerHTML='<h3>Letzte 24 Stunden</h3>'+render(daily)+'<h3>Diese Woche · Montag bis Sonntag</h3>'+render(weekly)+'<div class="pf-leaderboard-note">Wochenwertung nach deutscher Zeit (Europe/Berlin).</div>';
+        }catch(error){
+          if(content)content.innerHTML='<p>Die Hangman-Ranglisten sind gerade nicht erreichbar. Bitte versuche es gleich noch einmal.</p>';
+          console.error('[PLAYFINITY Hangman Ranglisten]',error);
+        }
       },
       async topTen(){
         const response=await fetch(this.url+'/rest/v1/rangliste?select=spielername,punkte&order=punkte.desc,spielername.asc&limit=10',{
@@ -3328,7 +3372,7 @@
       const helpersNode=document.getElementById('pf-winner-helpers');
       const next=document.getElementById('pf-winner-next');
       if(!overlay)return;
-      if(winner&&winner!=='Lokaler Spieler')PlayfinityScores.award(winner,3);
+      if(winner&&winner!=='Lokaler Spieler'&&String(game).toUpperCase()!=='HANGMAN')PlayfinityScores.award(winner,3);
       if(Array.isArray(helpers))helpers.slice(0,3).forEach(item=>{if(item.player&&item.player!==winner)PlayfinityScores.award(item.player,1);});
       brand.textContent='PLAYFINITY • '+String(game).toUpperCase();
       name.textContent=winner||'Lokaler Spieler';
