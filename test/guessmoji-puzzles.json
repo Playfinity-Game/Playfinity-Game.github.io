@@ -3529,6 +3529,302 @@
       "category": "Sport & Freizeit",
       "difficulty": "mittel",
       "aliases": []
+    },
+    {
+      "emojis": "🦁 + 👑",
+      "answer": "Der König der Löwen",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 👸",
+      "answer": "Die Eiskönigin",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Frozen"
+      ]
+    },
+    {
+      "emojis": "🚢 + 🧊",
+      "answer": "Titanic",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧙 + 💍",
+      "answer": "Der Herr der Ringe",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Herr der Ringe"
+      ]
+    },
+    {
+      "emojis": "⭐ + ⚔️",
+      "answer": "Star Wars",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦖 + 🏞️",
+      "answer": "Jurassic Park",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👻 + 🚫",
+      "answer": "Ghostbusters",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤡 + 🎈",
+      "answer": "Es",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "IT"
+      ]
+    },
+    {
+      "emojis": "🏴‍☠️ + 🏝️",
+      "answer": "Fluch der Karibik",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐟 + 🔍",
+      "answer": "Findet Nemo",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐀 + 👨‍🍳",
+      "answer": "Ratatouille",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎈 + 🏠",
+      "answer": "Oben",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Up"
+      ]
+    },
+    {
+      "emojis": "🧸 + 🍺",
+      "answer": "Ted",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧛 + 🐺",
+      "answer": "Twilight",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Twilight – Biss zum Morgengrauen"
+      ]
+    },
+    {
+      "emojis": "🧟 + 🚶",
+      "answer": "The Walking Dead",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧪 + 👨‍🏫",
+      "answer": "Breaking Bad",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👑 + 🐉",
+      "answer": "Game of Thrones",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Das Lied von Eis und Feuer"
+      ]
+    },
+    {
+      "emojis": "🦑 + 🎮",
+      "answer": "Squid Game",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + 👓 + 🪄",
+      "answer": "Harry Potter",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤠 + 🚀 + 🧸",
+      "answer": "Toy Story",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🦁 + 🧙 + 🚪",
+      "answer": "Die Chroniken von Narnia",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Narnia"
+      ]
+    },
+    {
+      "emojis": "🍫 + 🏭 + 🎩",
+      "answer": "Charlie und die Schokoladenfabrik",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👠 + 🎃 + 🕛",
+      "answer": "Cinderella",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Aschenputtel"
+      ]
+    },
+    {
+      "emojis": "🍎 + 🪞 + 👸",
+      "answer": "Schneewittchen",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Schneewittchen und die sieben Zwerge"
+      ]
+    },
+    {
+      "emojis": "🌹 + 👹 + 🕯️",
+      "answer": "Die Schöne und das Biest",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧜‍♀️ + 🦀 + 🌊",
+      "answer": "Arielle, die Meerjungfrau",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Arielle"
+      ]
+    },
+    {
+      "emojis": "🧞 + 🪔 + 🐒",
+      "answer": "Aladdin",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐼 + 🥋 + 🥟",
+      "answer": "Kung Fu Panda",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + ⚡ + 🏁",
+      "answer": "Cars",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤖 + 🌱 + 🚀",
+      "answer": "WALL·E",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "WALL-E",
+        "Walle"
+      ]
+    },
+    {
+      "emojis": "👽 + 🚲 + 🌕",
+      "answer": "E.T. – Der Außerirdische",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "ET",
+        "E.T."
+      ]
+    },
+    {
+      "emojis": "🦈 + 🏊 + 🏖️",
+      "answer": "Der weiße Hai",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 🪜 + 🏆",
+      "answer": "Rocky",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎩 + 🐍 + 🏺",
+      "answer": "Indiana Jones",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏎️ + ⏱️ + ⚡",
+      "answer": "Zurück in die Zukunft",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎭 + 💰 + 🇪🇸",
+      "answer": "Haus des Geldes",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "La Casa de Papel"
+      ]
+    },
+    {
+      "emojis": "🚲 + 👾 + 🙃",
+      "answer": "Stranger Things",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "👨‍👩‍👧‍👦 + 🛋️ + 🍩",
+      "answer": "Die Simpsons",
+      "category": "Filme & Serien",
+      "difficulty": "mittel",
+      "aliases": [
+        "Simpsons"
+      ]
     }
   ]
 }
