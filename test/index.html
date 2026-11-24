@@ -1225,32 +1225,33 @@
         .wordfinity-feedback{padding:10px 12px;border:1px solid rgba(255,255,255,.08);border-radius:8px;background:rgba(18,20,44,.72);color:var(--text-muted);font-size:.82rem;line-height:1.4;overflow-wrap:anywhere}
     .wordfinity-feedback:empty{display:none}
 
-    .guessmoji-brand{font-size:clamp(2rem,8vw,3rem);font-weight:1000;letter-spacing:.04em;text-align:center;margin:8px 0 2px}
-    .guessmoji-brand .guess{color:var(--neon-cyan);text-shadow:0 0 18px rgba(0,240,255,.35)}
-    .guessmoji-brand .moji{color:var(--neon-pink);text-shadow:0 0 18px rgba(255,0,127,.35)}
-    .guessmoji-subtitle{text-align:center;color:var(--text-muted);font-size:.85rem;margin-bottom:18px}
-    .guessmoji-card{width:100%;max-width:620px;margin:0 auto;padding:18px;border:1px solid rgba(176,38,255,.35);border-radius:18px;background:linear-gradient(145deg,rgba(18,20,44,.94),rgba(25,14,48,.94));box-shadow:0 0 24px rgba(176,38,255,.10)}
+    .guessmoji-brand{ text-align:center; padding:2px 0 4px; }
+    .guessmoji-title{font-size:clamp(1.8rem,6vw,2.5rem);line-height:1.05;font-weight:1000;letter-spacing:.12em;}
+    .guessmoji-title .guess{color:var(--neon-cyan);text-shadow:0 0 10px rgba(0,229,255,.45),0 0 26px rgba(0,229,255,.18)}
+    .guessmoji-title .moji{color:var(--neon-pink);text-shadow:0 0 10px rgba(255,0,127,.45),0 0 26px rgba(255,0,127,.18)}
+    .guessmoji-card{position:relative;isolation:isolate;overflow:hidden;background:rgba(18,20,44,.62);border:1px solid var(--border-glow);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto;width:100%}
+    .guessmoji-card>*{position:relative;z-index:1}
     .guessmoji-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-    .guessmoji-category{border:1px solid rgba(0,240,255,.35);background:rgba(0,240,255,.08);color:var(--neon-cyan);border-radius:999px;padding:7px 12px;font-size:.78rem;font-weight:850}
+    .guessmoji-category{font-size:.75rem;font-weight:800;color:var(--neon-cyan);background:rgba(0,240,255,.10);border:1px solid rgba(0,240,255,.3);padding:4px 12px;border-radius:20px}
     .guessmoji-difficulty{font-size:.72rem;font-weight:900;letter-spacing:.08em;color:#ff9cbd}
-    .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:26px 4px 18px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
-    .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:14px}
+    .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
+    .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2px}
     .guessmoji-entry{display:flex;gap:8px}
     .guessmoji-entry input{flex:1;min-width:0;border:1px solid rgba(176,38,255,.45);border-radius:11px;padding:13px;background:rgba(7,8,20,.88);color:#fff;font:600 1rem var(--font-main);outline:none;user-select:text}
     .guessmoji-entry input:focus{border-color:var(--neon-pink);box-shadow:0 0 12px rgba(255,0,127,.18)}
     .guessmoji-entry button{border:0;border-radius:11px;padding:0 16px;background:linear-gradient(135deg,var(--neon-cyan),#6b7dff);color:#07101d;font-weight:950;cursor:pointer}
-    .guessmoji-timer-row{display:flex;justify-content:space-between;gap:8px;margin:14px 0 7px;font-size:.8rem;color:var(--text-muted)}
+    .guessmoji-timer-row{display:flex;justify-content:space-between;gap:8px;margin:2px 0 -10px;font-size:.8rem;color:var(--text-muted)}
     .guessmoji-timer-track{height:9px;background:rgba(255,255,255,.09);border-radius:99px;overflow:hidden}
-    .guessmoji-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--neon-green),var(--neon-gold),var(--neon-pink));transition:width .2s linear}
-    .guessmoji-status{text-align:center;min-height:28px;padding:10px 2px 4px;color:#cbd5ff;font-size:.88rem}
-    .guessmoji-guesses{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-height:180px;overflow:auto}
+    .guessmoji-timer-fill{height:100%;width:100%;background:linear-gradient(90deg,var(--neon-cyan),var(--neon-purple),var(--neon-pink));box-shadow:0 0 12px rgba(176,38,255,.35);transition:width .2s linear}
+    .guessmoji-status{text-align:center;min-height:28px;padding:2px;color:#cbd5ff;font-size:.88rem}
+    .guessmoji-guesses{display:flex;flex-direction:column;gap:6px;margin-top:2px;max-height:180px;overflow:auto}
     .guessmoji-guess{display:flex;justify-content:space-between;gap:10px;padding:8px 10px;border-radius:9px;background:rgba(255,255,255,.045);font-size:.82rem}
     .guessmoji-guess.correct{border:1px solid rgba(0,255,157,.3);color:var(--neon-green)}
-    .guessmoji-score{text-align:center;color:var(--neon-gold);font-weight:900;margin-top:12px;font-size:.9rem}
-    .guessmoji-next{display:block;width:100%;margin-top:12px}
+    .guessmoji-score{text-align:center;color:var(--neon-gold);font-weight:900;margin-top:2px;font-size:.9rem}
+    .guessmoji-next{display:block;width:100%;margin-top:4px}
     .game-card.card-guessmoji:hover{border-color:var(--neon-purple);box-shadow:0 10px 25px rgba(176,38,255,.25)}
     .game-card.card-guessmoji::before{background:linear-gradient(90deg,transparent,var(--neon-purple),transparent)}
-    @media(max-width:420px){.guessmoji-card{padding:14px}.guessmoji-entry button{padding:0 12px}}
+    @media(max-width:420px){.guessmoji-card{padding:16px}.guessmoji-entry button{padding:0 12px}}
 </style>
 </head>
 
@@ -1536,9 +1537,10 @@
     </section>
 
     <section class="screen" id="screen-guessmoji">
-      <div class="guessmoji-brand"><span class="guess">GUESS</span><span class="moji">MOJI</span></div>
-      <div class="guessmoji-subtitle">Ein Emoji-Rätsel. Ein geheimes Wort. 10 Punkte für jede richtige Lösung!</div>
       <div class="guessmoji-card">
+        <div class="guessmoji-brand">
+          <div class="guessmoji-title"><span class="guess">GUESS</span><span class="moji">MOJI</span></div>
+        </div>
         <div class="guessmoji-top">
           <span class="guessmoji-category" id="guessmoji-category">Kategorie wird gezogen …</span>
           <span class="guessmoji-difficulty" id="guessmoji-difficulty"></span>
