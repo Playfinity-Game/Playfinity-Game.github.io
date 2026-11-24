@@ -1846,7 +1846,7 @@
             });
             content.addEventListener('change',event=>{const el=event.target;if(!el.matches('[data-setting-key]'))return;localStorage.setItem(el.dataset.settingKey,el.type==='checkbox'?String(el.checked):el.value);if(el.dataset.settingKey==='playfinity_guessmoji_duration'){const v=Number(el.value);if([10,15,20,30,45,60].includes(v)){GuessmojiGame.duration=v;if(!GuessmojiGame.timer&&GuessmojiGame.roundOpen){GuessmojiGame.remaining=v;GuessmojiGame.updateTimer();}}}if(el.dataset.settingKey==='playfinity_guesswhat_timer'&&GuessWhatGame.roundOpen){PauseController.clear('guesswhat','roundTimer');if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false')PauseController.schedule('guesswhat','roundTimer',()=>GuessWhatGame.finishRound(),Number(el.value));}});
           }
-          if (action === 'help') showModal('Hilfe & Chat-Befehle', '<b>So spielst du</b><br><b>Hangman:</b> Buchstaben oder ganzes Wort raten. Richtiges Wort: +10 Punkte.<br><b>FIVE-X:</b> Deutsches Wort mit genau 5 Buchstaben eingeben. Rundensieg: +3 Punkte.<br><b>Wordfinity:</b> Passende Wörter einzeln in den Chat schreiben. Sieger: +3, Helfer: +1 Punkt.<br><b>GUESSWHAT:</b> Zahl schätzen und als Zahl senden. Sieger: +3, Helfer: +1 Punkt.<br><b>GUESSMOJI:</b> Emoji-Rätsel lösen und Antwort schreiben. Erste richtige Antwort: +10, weitere richtige Spieler: +5 Punkte.<br><b>Playdoku:</b> Feld und Zahl senden, z. B. <b>A1 5</b>. Rundensieg: +3 Punkte.<br><br><b>Chat</b><br>Verbinde TikFinity mit deinem LIVE-Chat. Während eines Spiels werden passende Nachrichten automatisch als Tipps gewertet. Keine Extra-Befehle nötig.');
+          if (action === 'help') showModal('Hilfe & Chat-Befehle', '<b>So spielst du</b><br><b>Hangman:</b> Buchstaben oder ganzes Wort raten. Richtiger Buchstabe: +1, gelöstes Wort: +10 Punkte.<br><b>FIVE-X:</b> Deutsches Wort mit genau 5 Buchstaben eingeben. Lösung: +5 Punkte.<br><b>Wordfinity:</b> Passende Wörter einzeln in den Chat schreiben. Lösung: +10 Punkte, Helfer: +1 Punkt.<br><b>GUESSWHAT:</b> Zahl schätzen und als Zahl senden. Erster Volltreffer: +10, jeder weitere Volltreffer: +5 Punkte.<br><b>GUESSMOJI:</b> Emoji-Rätsel lösen und Antwort schreiben. Erste richtige Antwort: +10, weitere richtige Spieler: +5 Punkte.<br><b>Playdoku:</b> Feld und Zahl senden, z. B. <b>A1 5</b>. Jede passende Zahl: +1 Punkt.<br><br><b>Chat</b><br>Verbinde TikFinity mit deinem LIVE-Chat. Während eines Spiels werden passende Nachrichten automatisch als Tipps gewertet. Keine Extra-Befehle nötig.');
         });
         history.replaceState({ screen: 'menu' }, '', '#menu');
       },
@@ -1908,11 +1908,11 @@
       function init(){if(!initialized){board=document.getElementById("pd-board");numbers=document.getElementById("pd-numbers");difficulty=document.getElementById("pd-difficulty");submitButton=document.getElementById("pd-submit-number");winOverlay=document.getElementById("pd-win-overlay");fireworksRoot=document.getElementById("pd-fireworks");document.getElementById("pd-win-next").addEventListener("click",fresh);for(let n=1;n<=9;n++){const b=document.createElement("button");b.type="button";b.textContent=n;b.addEventListener("click",()=>chooseNumber(n));numbers.appendChild(b);}submitButton.addEventListener("click",()=>{if(pendingNumber!==null)setNumber(pendingNumber);});document.getElementById("pd-erase").addEventListener("click",()=>setNumber(0));document.getElementById("pd-check").addEventListener("click",()=>{if(roundWon||!currentPuzzle)return;if(grid.some((value,index)=>value&&String(value)!==currentPuzzle.s[index]))errorCount++;checked=true;render();checkForWin();});document.getElementById("pd-hint").addEventListener("click",showHint);document.getElementById("pd-new").addEventListener("click",fresh);document.addEventListener("keydown",e=>{if(PlayfinityRouter.currentScreen!=="playduko"||selected<0||roundWon)return;if(/^[1-9]$/.test(e.key))chooseNumber(Number(e.key));else if(e.key==="Enter"&&pendingNumber!==null)setNumber(pendingNumber);else if(e.key==="Backspace"||e.key==="Delete")setNumber(0);else if(e.key==="ArrowUp"&&row(selected)>0)selected-=9;else if(e.key==="ArrowDown"&&row(selected)<8)selected+=9;else if(e.key==="ArrowLeft"&&col(selected)>0)selected--;else if(e.key==="ArrowRight"&&col(selected)<8)selected++;else return;render();});initialized=true;}if(!currentPuzzle)fresh();else render();}
       function showHint(){if(!currentPuzzle||roundWon)return;const empty=[];for(let i=0;i<81;i++)if(currentPuzzle.p[i]==="0"&&!grid[i])empty.push(i);if(!empty.length)return;const i=empty[Math.floor(Math.random()*empty.length)];grid[i]=Number(currentPuzzle.s[i]);selected=-1;pendingNumber=null;hintedIndex=i;checked=false;renderNumbers();render();checkForWin();}
       function checkForWin(){if(roundWon||!currentPuzzle||!grid.every(Boolean)||!grid.every((v,i)=>String(v)===currentPuzzle.s[i]))return;roundWon=true;checked=true;selected=-1;pendingNumber=null;renderNumbers();render();showWin();}
-      function showWin(){if(!winOverlay)return;playVictorySound();const elapsedSeconds=Math.max(0,Math.floor((Date.now()-roundStartedAt)/1000));const minutes=Math.floor(elapsedSeconds/60),seconds=elapsedSeconds%60;const duration=String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");showPlayfinityWinner({game:'PLAYDUKO',winner:lastChatPlayer||'Lokaler Spieler',meta:'Zeit: '+duration+' Min. • Fehler: '+errorCount+' • +3 Punkte',onNext:fresh});}
+      function showWin(){if(!winOverlay)return;playVictorySound();const elapsedSeconds=Math.max(0,Math.floor((Date.now()-roundStartedAt)/1000));const minutes=Math.floor(elapsedSeconds/60),seconds=elapsedSeconds%60;const duration=String(minutes).padStart(2,"0")+":"+String(seconds).padStart(2,"0");showPlayfinityWinner({game:'PLAYDUKO',winner:lastChatPlayer||'Lokaler Spieler',meta:'Zeit: '+duration+' Min. • Fehler: '+errorCount+' • Punkte gibt es für jede richtige Chat-Zahl',onNext:fresh});}
       function hideWin(){if(autoNextTimeout){clearTimeout(autoNextTimeout);autoNextTimeout=null;}if(autoNextInterval){clearInterval(autoNextInterval);autoNextInterval=null;}if(winOverlay)winOverlay.classList.remove("active");if(fireworksRoot)fireworksRoot.innerHTML="";}
       function launchFireworks(){if(!fireworksRoot)return;fireworksRoot.innerHTML="";const colors=["#00f0ff","#ff007f","#ffd000","#b026ff","#00ff9d","#ffffff"];const bursts=[{x:20,y:28,delay:0},{x:78,y:24,delay:180},{x:50,y:12,delay:360},{x:34,y:48,delay:560},{x:68,y:46,delay:740}];bursts.forEach(burst=>{const group=document.createElement("div");group.className="pd-firework-burst";group.style.left=burst.x+"%";group.style.top=burst.y+"%";for(let i=0;i<22;i++){const spark=document.createElement("span");spark.className="pd-firework-spark";spark.style.setProperty("--spark-angle",(i*360/22)+"deg");spark.style.setProperty("--spark-distance",(-48-Math.random()*58)+"px");spark.style.setProperty("--spark-delay",(burst.delay+Math.random()*100)+"ms");spark.style.setProperty("--spark-color",colors[Math.floor(Math.random()*colors.length)]);group.appendChild(spark);}fireworksRoot.appendChild(group);});}
       function playVictorySound(){try{const AudioContextClass=window.AudioContext||window.webkitAudioContext;if(!AudioContextClass)return;const context=new AudioContextClass();const now=context.currentTime;const master=context.createGain();master.gain.setValueAtTime(.0001,now);master.gain.exponentialRampToValueAtTime(.16,now+.04);master.gain.exponentialRampToValueAtTime(.0001,now+2.15);master.connect(context.destination);[523.25,659.25,783.99,1046.5,1318.51].forEach((frequency,index)=>{const oscillator=context.createOscillator();const gain=context.createGain();const start=now+.08+index*.19;oscillator.type="sine";oscillator.frequency.setValueAtTime(frequency,start);gain.gain.setValueAtTime(.0001,start);gain.gain.exponentialRampToValueAtTime(.7,start+.035);gain.gain.exponentialRampToValueAtTime(.0001,start+.42);oscillator.connect(gain);gain.connect(master);oscillator.start(start);oscillator.stop(start+.45);});setTimeout(()=>context.close().catch(()=>{}),2500);}catch(error){console.warn("[PlayDuko] Siegesound konnte nicht abgespielt werden.",error);}}
-      function handleChat(text,user){const match=String(text||"").match(/^\s*([A-I])([1-9])\s+([1-9])\s*$/i);if(roundWon||!match||!currentPuzzle||PlayfinityRouter.currentScreen!=="playduko")return false;const r=match[1].toUpperCase().charCodeAt(0)-65,c=Number(match[2])-1,n=Number(match[3]),i=r*9+c;if(currentPuzzle.p[i]!=="0"||(String(n)!==currentPuzzle.s[i]&&conflicts(i,n)))return false;const nextGrid=grid.slice();nextGrid[i]=n;grid=nextGrid;lastChatPlayer=String(user?.name||user?.nickname||user?.uniqueId||user?.unique_id||user?.username||"Zuschauer");selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();checkForWin();return true;}
+      function handleChat(text,user){const match=String(text||"").match(/^\s*([A-I])([1-9])\s+([1-9])\s*$/i);if(roundWon||!match||!currentPuzzle||PlayfinityRouter.currentScreen!=="playduko")return false;const r=match[1].toUpperCase().charCodeAt(0)-65,c=Number(match[2])-1,n=Number(match[3]),i=r*9+c;if(currentPuzzle.p[i]!=="0"||(String(n)!==currentPuzzle.s[i]&&conflicts(i,n)))return false;const nextGrid=grid.slice();nextGrid[i]=n;grid=nextGrid;lastChatPlayer=String(user?.name||user?.nickname||user?.uniqueId||user?.unique_id||user?.username||"Zuschauer");const playerKey=String(user?.id||user?.uniqueId||user?.unique_id||user?.username||user?.name||'');PlayfinityScores.award(lastChatPlayer,1);PlayfinityScores.awardGame('playdoku',playerKey,lastChatPlayer,1,'playdoku-'+Date.now()+'-'+Math.random().toString(36).slice(2,8),'correct-number');selected=-1;pendingNumber=null;hintedIndex=-1;checked=false;renderNumbers();render();checkForWin();return true;}
       return {init,handleChat};
     })();
 
@@ -2540,7 +2540,7 @@
       key:'sb_publishable_xKoGwElLMCcZ42q-Q5jbmA_uhllFi1H',
       async award(playerName,points){
         const name=String(playerName||'').trim().replace(/^@/,'').slice(0,40);
-        if(!name||!['1','3'].includes(String(points)))return false;
+        if(!name||![1,3,5,10].includes(Number(points)))return false;
         try{
           const response=await fetch(this.url+'/rest/v1/rpc/award_rangliste_points',{
             method:'POST',
@@ -3299,7 +3299,7 @@
           this.won=true;this.setControls(false);
           document.getElementById('wordfinity-status').textContent='🏆 '+displayName+' hat das Zielwort „'+word+'“ erraten!';
           const helpers=this.guesses.filter(item=>item.player&&item.player!==displayName&&!item.isHint).sort((a,b)=>a.rank-b.rank).filter((item,index,array)=>array.findIndex(other=>other.player===item.player)===index).slice(0,3).map(item=>({rank:item.rank,player:item.player,word:item.word}));
-          showPlayfinityWinner({game:'WORDFINITY',winner:displayName,answer:word,meta:(this.guesses.length)+' . Versuch • +3 Punkte',helpers,onNext:()=>this.newRound()});
+          showPlayfinityWinner({game:'WORDFINITY',winner:displayName,answer:word,meta:(this.guesses.length)+' . Versuch • +10 Punkte',helpers,onNext:()=>this.newRound()});
           if(localStorage.getItem('playfinity_wordfinity_auto_next')!=='false')PauseController.schedule('wordfinity','autoNext',()=>{document.getElementById('pf-winner-overlay').classList.remove('active');this.newRound();},Number(localStorage.getItem('playfinity_wordfinity_next_delay')||7000));
         }
         PlayfinityPlayerPresence.sendPresence();
@@ -3696,8 +3696,8 @@
         CommunityBoard.render('priceisright', 'pir-community-list');
         const autoNext=localStorage.getItem('playfinity_priceisright_auto_next')!=='false';
         const roundWinner=correctPlayers[0]||winner;
-        const roundHelpers=correctPlayers.slice(1,4).map((item,index)=>({rank:index+2,player:item.player.name,word:String(item.value)}));
-        showPlayfinityWinner({game:'GUESSWHAT',winner:roundWinner.player?.name||'Lokaler Spieler',answer:String(this.currentQuestion.a)+' '+this.currentQuestion.u,meta:(correctPlayers.length?'Volltreffer':'Am nächsten dran')+' • Schätzung: '+roundWinner.value+' • Abweichung: '+Math.abs(roundWinner.value-this.currentQuestion.a)+' '+this.currentQuestion.u+' • +3 Punkte',helpers:roundHelpers,onNext:()=>this.nextQuestion()});
+        const roundHelpers=correctPlayers.slice(1).map((item,index)=>({rank:index+2,player:item.player.name,word:String(item.value),points:5}));
+        showPlayfinityWinner({game:'GUESSWHAT',winner:roundWinner.player?.name||'Lokaler Spieler',answer:String(this.currentQuestion.a)+' '+this.currentQuestion.u,meta:(correctPlayers.length?'Volltreffer':'Am nächsten dran')+' • Schätzung: '+roundWinner.value+' • Abweichung: '+Math.abs(roundWinner.value-this.currentQuestion.a)+' '+this.currentQuestion.u+' • +10 Punkte',helpers:roundHelpers,onNext:()=>this.nextQuestion()});
         if(autoNext)PauseController.schedule('guesswhat','revealTimer',()=>{hideCorrectAnswerOverlay();this.nextQuestion();},Number(localStorage.getItem('playfinity_guesswhat_next_delay')||7000));
         else if(!correctPlayers.length)document.getElementById('pir-next-btn').style.display='block';
       }
@@ -3719,14 +3719,17 @@
       const gameKeys={'PLAYDUKO':'playdoku','PLAYDOKU':'playdoku','WORDFINITY':'wordfinity','GUESSWHAT':'guesswhat','GUESSMOJI':'guessmoji','FIVE-X':'fivex'};
       const gameKey=gameKeys[gameLabel]||'';
       const eventId=gameKey?gameKey+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,10):'';
-      if(winner&&winner!=='Lokaler Spieler'&&gameLabel!=='HANGMAN'){
-        PlayfinityScores.award(winner,3);
-        if(gameKey)PlayfinityScores.awardGame(gameKey,winner,winner,3,eventId,'winner');
+      const winnerPoints=gameLabel==='WORDFINITY'?10:gameLabel==='FIVE-X'?5:gameLabel==='GUESSWHAT'?10:3;
+      const helperPoints=gameLabel==='GUESSWHAT'?5:1;
+      if(winner&&winner!=='Lokaler Spieler'&&gameLabel!=='HANGMAN'&&gameLabel!=='PLAYDUKO'){
+        PlayfinityScores.award(winner,winnerPoints);
+        if(gameKey)PlayfinityScores.awardGame(gameKey,winner,winner,winnerPoints,eventId,'winner');
       }
-      if(Array.isArray(helpers))helpers.slice(0,3).forEach((item,index)=>{
+      if(Array.isArray(helpers))helpers.forEach((item,index)=>{
         if(item.player&&item.player!==winner){
-          PlayfinityScores.award(item.player,1);
-          if(gameKey)PlayfinityScores.awardGame(gameKey,item.player,item.player,1,eventId,'helper-'+(index+1));
+          const points=Number(item.points)||helperPoints;
+          PlayfinityScores.award(item.player,points);
+          if(gameKey)PlayfinityScores.awardGame(gameKey,item.player,item.player,points,eventId,'helper-'+(index+1));
         }
       });
       brand.textContent='PLAYFINITY • '+String(game).toUpperCase();
@@ -3739,7 +3742,7 @@
         const heading=document.createElement('strong');heading.textContent='TOP-HELFER DER RUNDE';helpersNode.appendChild(heading);
         helpers.slice(0,3).forEach(item=>{
           const line=document.createElement('div');
-          line.textContent='Platz #'+item.rank+' @'+item.player+' — '+item.word+' (+1)';
+          line.textContent='Platz #'+item.rank+' @'+item.player+' — '+item.word+' (+'+(Number(item.points)||helperPoints)+')';
           helpersNode.appendChild(line);
         });
         helpersNode.style.display='block';
