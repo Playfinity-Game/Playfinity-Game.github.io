@@ -84,13 +84,6 @@
       "aliases": []
     },
     {
-      "emojis": "🌲 + 🧄",
-      "answer": "Wildknoblauch",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
       "emojis": "🪵 + 🐭",
       "answer": "Waldmaus",
       "category": "Tiere & Natur",
@@ -254,13 +247,6 @@
     {
       "emojis": "👑 + 🦀",
       "answer": "Königskrabbe",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "👑 + 🐍",
-      "answer": "Königspython",
       "category": "Tiere & Natur",
       "difficulty": "mittel",
       "aliases": []
@@ -931,13 +917,6 @@
       "aliases": []
     },
     {
-      "emojis": "🥂 + 🍊",
-      "answer": "Sektorange",
-      "category": "Essen & Trinken",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
       "emojis": "🌰 + 🍰",
       "answer": "Nusskuchen",
       "category": "Essen & Trinken",
@@ -1029,7 +1008,7 @@
       "aliases": []
     },
     {
-      "emojis": "🦶 + 🧶",
+      "emojis": "🚪 + 🦶",
       "answer": "Fußmatte",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -1694,7 +1673,7 @@
       "aliases": []
     },
     {
-      "emojis": "🍔 + 🏰",
+      "emojis": "🐖 + 🏰",
       "answer": "Hamburg",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -1729,7 +1708,7 @@
       "aliases": []
     },
     {
-      "emojis": "🌊 + 🌉",
+      "emojis": "🏞️ + 🌉",
       "answer": "Innsbruck",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -1757,7 +1736,7 @@
       "aliases": []
     },
     {
-      "emojis": "👑 + 🏰",
+      "emojis": "👑 + ❄️",
       "answer": "Königswinter",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -1771,7 +1750,7 @@
       "aliases": []
     },
     {
-      "emojis": "🦡 + 🛁",
+      "emojis": "🛁 + 🛁",
       "answer": "Baden-Baden",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -2233,11 +2212,13 @@
       "aliases": []
     },
     {
-      "emojis": "🦇 + 🃏",
-      "answer": "Batman",
+      "emojis": "🦇 + 🏙️ + 🏎️",
+      "answer": "Batman: Arkham Knight",
       "category": "Games",
       "difficulty": "mittel",
-      "aliases": []
+      "aliases": [
+        "Batman Arkham Knight"
+      ]
     },
     {
       "emojis": "🍄 + 🧟",
@@ -2924,7 +2905,7 @@
       "aliases": []
     },
     {
-      "emojis": "🚣 + 🛶",
+      "emojis": "🚣 + 🌊",
       "answer": "Ruderboot",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
@@ -2947,13 +2928,6 @@
     {
       "emojis": "🌊 + 🛵",
       "answer": "Wassermotorrad",
-      "category": "Fahrzeuge",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "💨 + 🏄",
-      "answer": "Windsurfer",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
       "aliases": []
@@ -2987,14 +2961,14 @@
       "aliases": []
     },
     {
-      "emojis": "🌾 + 🌾",
+      "emojis": "🌾 + 🚜",
       "answer": "Mähdrescher",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "🧱 + 🚛",
+      "emojis": "🏗️ + 🚛",
       "answer": "Betonmischer",
       "category": "Fahrzeuge",
       "difficulty": "mittel",
@@ -3120,7 +3094,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏓 + 🎾",
+      "emojis": "🏓 + 🏟️",
       "answer": "Tischtennis",
       "category": "Sport & Freizeit",
       "difficulty": "mittel",
@@ -3372,7 +3346,7 @@
       "aliases": []
     },
     {
-      "emojis": "🎨 + 🖌️",
+      "emojis": "🎨 + 📚",
       "answer": "Malkurs",
       "category": "Sport & Freizeit",
       "difficulty": "mittel",
@@ -3414,7 +3388,7 @@
       "aliases": []
     },
     {
-      "emojis": "🎡 + 🎠",
+      "emojis": "🎡 + 🎟️",
       "answer": "Riesenrad",
       "category": "Sport & Freizeit",
       "difficulty": "mittel",
@@ -3449,7 +3423,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏙️ + 🚶",
+      "emojis": "🏙️ + 🚌",
       "answer": "Stadtrundfahrt",
       "category": "Sport & Freizeit",
       "difficulty": "mittel",
@@ -3836,7 +3810,7 @@
       "aliases": []
     },
     {
-      "emojis": "🌵 + 🌹",
+      "emojis": "🌹 + 😴",
       "answer": "Dornröschen",
       "category": "Märchen & Figuren",
       "difficulty": "mittel",
@@ -3963,7 +3937,7 @@
       "aliases": []
     },
     {
-      "emojis": "🧵 + ✂️",
+      "emojis": "✂️ + 🧵 + 💪",
       "answer": "Das tapfere Schneiderlein",
       "category": "Märchen & Figuren",
       "difficulty": "mittel",
@@ -4261,7 +4235,7 @@
       "aliases": []
     },
     {
-      "emojis": "🪨 + 👅",
+      "emojis": "🪨 + 🔄 + 👅",
       "answer": "The Rolling Stones",
       "category": "Bands & Künstler",
       "difficulty": "mittel",
@@ -4275,7 +4249,7 @@
       "aliases": []
     },
     {
-      "emojis": "🌶️ + 🌶️",
+      "emojis": "🔴 + 🔥 + 🌶️",
       "answer": "Red Hot Chili Peppers",
       "category": "Bands & Künstler",
       "difficulty": "mittel",
@@ -4340,7 +4314,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏝️ + 🌴",
+      "emojis": "🏝️ + 🌴 + 👦 + 👦",
       "answer": "The Beach Boys",
       "category": "Bands & Künstler",
       "difficulty": "mittel",
@@ -4349,7 +4323,7 @@
       ]
     },
     {
-      "emojis": "🔙 + 🧑‍🤝‍🧑",
+      "emojis": "🔙 + 🛣️ + 👦 + 👦",
       "answer": "Backstreet Boys",
       "category": "Bands & Künstler",
       "difficulty": "mittel",
@@ -4377,7 +4351,7 @@
       "aliases": []
     },
     {
-      "emojis": "🌕 + 🐺 + 👩",
+      "emojis": "🐺 + 👩 + 👶",
       "answer": "Wolfmother",
       "category": "Bands & Künstler",
       "difficulty": "mittel",
@@ -4528,7 +4502,7 @@
       "aliases": []
     },
     {
-      "emojis": "❄️ + ⛄",
+      "emojis": "❄️ + 👸 + 🎤",
       "answer": "Let It Go",
       "category": "Bekannte Songs",
       "difficulty": "mittel",
