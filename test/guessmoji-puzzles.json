@@ -124,27 +124,6 @@
       "aliases": []
     },
     {
-      "emojis": "🌲 + 🐦",
-      "answer": "Waldvogel",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🌲 + 🐍",
-      "answer": "Waldschlange",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🌲 + 🦌",
-      "answer": "Waldhirsch",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
       "emojis": "🌲 + 🌿",
       "answer": "Waldmeister",
       "category": "Tiere & Natur",
@@ -175,13 +154,6 @@
     {
       "emojis": "🏜️ + 🦎",
       "answer": "Wüstenleguan",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🏜️ + 🐍",
-      "answer": "Wüstenschlange",
       "category": "Tiere & Natur",
       "difficulty": "mittel",
       "aliases": []
@@ -327,22 +299,8 @@
       "aliases": []
     },
     {
-      "emojis": "🐅 + 🪲",
-      "answer": "Tigerkäfer",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
       "emojis": "🐅 + 🦆",
       "answer": "Tigerente",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🐅 + 🦋",
-      "answer": "Tigerfalter",
       "category": "Tiere & Natur",
       "difficulty": "mittel",
       "aliases": []
@@ -385,13 +343,6 @@
     {
       "emojis": "🦓 + 🐦",
       "answer": "Zebrafink",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🦓 + 🐍",
-      "answer": "Zebraschlange",
       "category": "Tiere & Natur",
       "difficulty": "mittel",
       "aliases": []
@@ -460,13 +411,6 @@
       "aliases": []
     },
     {
-      "emojis": "🐝 + 🕷️",
-      "answer": "Wespenspinne",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
       "emojis": "🦋 + 🐟",
       "answer": "Schmetterlingsfisch",
       "category": "Tiere & Natur",
@@ -497,13 +441,6 @@
     {
       "emojis": "🐎 + 🪰",
       "answer": "Pferdebremse",
-      "category": "Tiere & Natur",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🐖 + 🐶",
-      "answer": "Schweinehund",
       "category": "Tiere & Natur",
       "difficulty": "mittel",
       "aliases": []
@@ -908,14 +845,7 @@
       "aliases": []
     },
     {
-      "emojis": "🌭 + 🍞",
-      "answer": "Würstchenbrot",
-      "category": "Essen & Trinken",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🥚 + 🍳",
+      "emojis": "🥚 + 🥣",
       "answer": "Rührei",
       "category": "Essen & Trinken",
       "difficulty": "mittel",
@@ -950,7 +880,7 @@
       "aliases": []
     },
     {
-      "emojis": "🥩 + 🥗",
+      "emojis": "🌭 + 🥗",
       "answer": "Wurstsalat",
       "category": "Essen & Trinken",
       "difficulty": "mittel",
@@ -978,7 +908,7 @@
       "aliases": []
     },
     {
-      "emojis": "🍬 + 🍭",
+      "emojis": "🍬 + ☁️",
       "answer": "Zuckerwatte",
       "category": "Essen & Trinken",
       "difficulty": "mittel",
@@ -994,13 +924,6 @@
     {
       "emojis": "🍺 + 🌳",
       "answer": "Biergarten",
-      "category": "Essen & Trinken",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🍷 + 🍇",
-      "answer": "Weintraube",
       "category": "Essen & Trinken",
       "difficulty": "mittel",
       "aliases": []
@@ -1174,28 +1097,28 @@
       "aliases": []
     },
     {
-      "emojis": "👖 + 🔪",
+      "emojis": "👝 + 🔪",
       "answer": "Taschenmesser",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "👖 + 🧻",
+      "emojis": "👝 + 🧻",
       "answer": "Taschentuch",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "👖 + 📖",
+      "emojis": "👝 + 📖",
       "answer": "Taschenbuch",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
       "aliases": []
     },
     {
-      "emojis": "👖 + 🧮",
+      "emojis": "👝 + 🧮",
       "answer": "Taschenrechner",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -1244,7 +1167,7 @@
       "aliases": []
     },
     {
-      "emojis": "☕ + 🤖",
+      "emojis": "☕ + ⚙️",
       "answer": "Kaffeemaschine",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -1447,7 +1370,7 @@
       "aliases": []
     },
     {
-      "emojis": "📸 + 📷",
+      "emojis": "📷 + ⚙️",
       "answer": "Fotoapparat",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -1461,7 +1384,7 @@
       "aliases": []
     },
     {
-      "emojis": "🖼️ + 🖼️",
+      "emojis": "🖼️ + 🪵",
       "answer": "Bilderrahmen",
       "category": "Alltag & Gegenstände",
       "difficulty": "mittel",
@@ -1783,7 +1706,7 @@
       "aliases": []
     },
     {
-      "emojis": "🐂 + 🌉",
+      "emojis": "🐂 + 🌊",
       "answer": "Oxford",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -1804,7 +1727,7 @@
       "aliases": []
     },
     {
-      "emojis": "❄️ + 🌉",
+      "emojis": "🌊 + 🌉",
       "answer": "Innsbruck",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -1853,29 +1776,8 @@
       "aliases": []
     },
     {
-      "emojis": "🌲 + 🏰",
-      "answer": "Freiburg",
-      "category": "Länder & Orte",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
       "emojis": "🐺 + 🏰",
       "answer": "Wolfsburg",
-      "category": "Länder & Orte",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🐖 + 🚪",
-      "answer": "Schweinfurt",
-      "category": "Länder & Orte",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🐂 + 🚪",
-      "answer": "Ochsenfurt",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
@@ -1897,20 +1799,6 @@
     {
       "emojis": "🏔️ + 🏘️",
       "answer": "Oberstdorf",
-      "category": "Länder & Orte",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "✈️ + 🏠",
-      "answer": "Flughafen",
-      "category": "Länder & Orte",
-      "difficulty": "mittel",
-      "aliases": []
-    },
-    {
-      "emojis": "🚂 + 🏠",
-      "answer": "Bahnhof",
       "category": "Länder & Orte",
       "difficulty": "mittel",
       "aliases": []
@@ -2042,7 +1930,7 @@
       "aliases": []
     },
     {
-      "emojis": "🏊 + 🏊",
+      "emojis": "🏊 + 🏢",
       "answer": "Schwimmbad",
       "category": "Länder & Orte",
       "difficulty": "mittel",
@@ -2084,7 +1972,7 @@
       "aliases": []
     },
     {
-      "emojis": "✈️ + 🌊",
+      "emojis": "🚢 + 🏙️",
       "answer": "Hafenstadt",
       "category": "Länder & Orte",
       "difficulty": "mittel",
