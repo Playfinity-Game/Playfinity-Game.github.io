@@ -4007,6 +4007,242 @@
       "aliases": [
         "Drei kleine Schweinchen"
       ]
+    },
+    {
+      "emojis": "🐱 + 🎒",
+      "answer": "Die Katze im Sack kaufen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Katze im Sack kaufen",
+        "Katze im Sack"
+      ]
+    },
+    {
+      "emojis": "🐷 + 🍀",
+      "answer": "Schwein gehabt",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Glück gehabt"
+      ]
+    },
+    {
+      "emojis": "🍅 + 👀",
+      "answer": "Tomaten auf den Augen haben",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Tomaten auf den Augen"
+      ]
+    },
+    {
+      "emojis": "🦟 + 🐘",
+      "answer": "Aus einer Mücke einen Elefanten machen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Mücke zum Elefanten machen"
+      ]
+    },
+    {
+      "emojis": "🦊 + 🐇 + 🌙",
+      "answer": "Wo sich Fuchs und Hase gute Nacht sagen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Fuchs und Hase sagen sich gute Nacht",
+        "Wo Fuchs und Hase sich gute Nacht sagen"
+      ]
+    },
+    {
+      "emojis": "🐶 + 🌧️",
+      "answer": "Es regnet junge Hunde",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Es regnet Hunde",
+        "Junge Hunde regnen"
+      ]
+    },
+    {
+      "emojis": "🐟 + 💧 + 😊",
+      "answer": "Sich wie ein Fisch im Wasser fühlen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Wie ein Fisch im Wasser fühlen",
+        "Fisch im Wasser"
+      ]
+    },
+    {
+      "emojis": "🐻 + 🍽️",
+      "answer": "Einen Bärenhunger haben",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Bärenhunger haben",
+        "Bärenhunger"
+      ]
+    },
+    {
+      "emojis": "🐴 + ❌ + 💰",
+      "answer": "Auf das falsche Pferd setzen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Falsches Pferd setzen"
+      ]
+    },
+    {
+      "emojis": "🐦 + ✋ + 🕊️ + 🏠",
+      "answer": "Lieber den Spatz in der Hand als die Taube auf dem Dach",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Spatz in der Hand",
+        "Lieber den Spatz in der Hand als die Taube auf dem Dach"
+      ]
+    },
+    {
+      "emojis": "🍎 + 🌳",
+      "answer": "Der Apfel fällt nicht weit vom Stamm",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Apfel fällt nicht weit vom Stamm"
+      ]
+    },
+    {
+      "emojis": "🔨 + 🔩 + 🎯",
+      "answer": "Den Nagel auf den Kopf treffen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Nagel auf den Kopf treffen"
+      ]
+    },
+    {
+      "emojis": "🛢️ + 🔥",
+      "answer": "Öl ins Feuer gießen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Öl ins Feuer gießen"
+      ]
+    },
+    {
+      "emojis": "💧 + 🔥 + 🪨",
+      "answer": "Ein Tropfen auf den heißen Stein",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Tropfen auf den heißen Stein"
+      ]
+    },
+    {
+      "emojis": "🧊 + 🔨",
+      "answer": "Das Eis brechen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Eis brechen"
+      ]
+    },
+    {
+      "emojis": "🌧️ + ☀️",
+      "answer": "Nach Regen folgt Sonnenschein",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Nach Regen kommt Sonnenschein"
+      ]
+    },
+    {
+      "emojis": "☁️ + 7️⃣ + 😍",
+      "answer": "Auf Wolke sieben schweben",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Auf Wolke 7 schweben",
+        "Wolke sieben"
+      ]
+    },
+    {
+      "emojis": "🌅 + 🐦 + 🪱",
+      "answer": "Der frühe Vogel fängt den Wurm",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Früher Vogel fängt den Wurm"
+      ]
+    },
+    {
+      "emojis": "🤐 + 🥇",
+      "answer": "Reden ist Silber, Schweigen ist Gold",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Schweigen ist Gold",
+        "Reden ist Silber Schweigen ist Gold"
+      ]
+    },
+    {
+      "emojis": "🥣 + 🔥 + 🗣️",
+      "answer": "Um den heißen Brei herumreden",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Um den heißen Brei reden",
+        "Heißen Brei herumreden"
+      ]
+    },
+    {
+      "emojis": "🧀 + 👎",
+      "answer": "Alles Käse",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Das ist alles Käse"
+      ]
+    },
+    {
+      "emojis": "🚂 + 💨 + 🛑",
+      "answer": "Der Zug ist abgefahren",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Zug ist abgefahren"
+      ]
+    },
+    {
+      "emojis": "💡 + 🧠",
+      "answer": "Mir geht ein Licht auf",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Ein Licht geht mir auf",
+        "Licht aufgegangen"
+      ]
+    },
+    {
+      "emojis": "🐊 + 😭",
+      "answer": "Krokodilstränen weinen",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Krokodilstränen"
+      ]
+    },
+    {
+      "emojis": "🍀 + 🍄",
+      "answer": "Ein Glückspilz sein",
+      "category": "Redewendungen",
+      "difficulty": "mittel",
+      "aliases": [
+        "Glückspilz",
+        "Ein Glückspilz"
+      ]
     }
   ]
 }
