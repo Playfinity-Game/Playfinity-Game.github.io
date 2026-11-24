@@ -2179,9 +2179,7 @@
         marker.textContent=hard?'☠️ SCHWER':'';
         marker.hidden=!hard;
         document.getElementById('guessmoji-emojis').textContent=this.current.emojis;
-        document.getElementById('guessmoji-timer-label').textContent='⏱️ Wartet auf den ersten Guess';
         document.getElementById('guessmoji-timer-fill').style.width='100%';
-        document.getElementById('guessmoji-status').textContent='Der 20-Sekunden-Timer startet mit dem ersten Tipp.';
         document.getElementById('guessmoji-guesses').innerHTML='';
         document.getElementById('guessmoji-input').disabled=false;
       },
@@ -2195,7 +2193,6 @@
         },100);
       },
       updateTimer(){
-        document.getElementById('guessmoji-timer-label').textContent='⏱️ '+Math.ceil(this.remaining)+' Sekunden';
         document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/20*100)+'%';
       },
       submitGuess(value,player){
@@ -2205,11 +2202,6 @@
         this.startTimer();
         const identity=player||{id:'unknown',name:'Zuschauer'};
         const correct=guess===this.normalize(this.current.answer)||(this.current.aliases||[]).some(alias=>guess===this.normalize(alias));
-        const list=document.getElementById('guessmoji-guesses');
-        const row=document.createElement('div');row.className='guessmoji-guess'+(correct?' correct':'');
-        const name=document.createElement('span');name.textContent=identity.name||'Zuschauer';
-        const result=document.createElement('span');result.textContent=correct?'✓ RICHTIG · +10':String(value).slice(0,48);
-        row.append(name,result);list.prepend(row);
         if(correct){
           const key=String(identity.id||identity.name||'unknown');
           if(!this.solvedPlayers.has(key)){
@@ -2225,9 +2217,7 @@
         if(!this.roundOpen)return;
         this.roundOpen=false;clearInterval(this.timer);this.timer=null;
         document.getElementById('guessmoji-input').disabled=true;
-        document.getElementById('guessmoji-timer-label').textContent='⏱️ Zeit abgelaufen';
         document.getElementById('guessmoji-timer-fill').style.width='0%';
-        document.getElementById('guessmoji-status').textContent='Die Runde ist beendet.';
         const local=this.scores.get('local-player')?.points||0;
         const overlay=document.getElementById('pf-winner-overlay');
         document.getElementById('pf-winner-brand').textContent='PLAYFINITY • GUESSMOJI';
@@ -2235,7 +2225,8 @@
         const answer=document.getElementById('pf-winner-answer');
         answer.textContent='LÖSUNGSWORT: '+this.current.answer;
         answer.style.display='block';
-        document.getElementById('pf-winner-meta').textContent='Deine Punktzahl: '+local+' Punkte';
+        const winners=[...this.correctPlayers.values()];
+        document.getElementById('pf-winner-meta').textContent=(winners.length?'Richtig geraten: '+winners.join(', '):'Niemand hat die richtige Antwort gefunden.')+' · Deine Punktzahl: '+local+' Punkte';
         document.getElementById('pf-winner-helpers').style.display='none';
         document.getElementById('pf-winner-next').onclick=()=>{overlay.classList.remove('active');this.nextRound();};
         overlay.classList.add('active');
