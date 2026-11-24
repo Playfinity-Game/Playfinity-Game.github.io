@@ -3088,6 +3088,447 @@
       "category": "Fahrzeuge",
       "difficulty": "mittel",
       "aliases": []
+    },
+    {
+      "emojis": "🎾 + ⚽",
+      "answer": "Tennisball",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⛳ + ⚽",
+      "answer": "Golfball",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎳 + ⚽",
+      "answer": "Bowlingkugel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎱 + ⚽",
+      "answer": "Billardkugel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏓 + 🎾",
+      "answer": "Tischtennis",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + 🏒",
+      "answer": "Eishockey",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌿 + 🏑",
+      "answer": "Feldhockey",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + 🏃",
+      "answer": "Skilanglauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🎿",
+      "answer": "Skifahren",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🌊 + 🏄",
+      "answer": "Wellenreiten",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💨 + 🏄",
+      "answer": "Windsurfen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪁 + 🏄",
+      "answer": "Kitesurfen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧊 + ⛸️",
+      "answer": "Eiskunstlauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "⚡ + ⛸️",
+      "answer": "Eisschnelllauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 👖",
+      "answer": "Badehose",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 🧢",
+      "answer": "Badekappe",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏊 + 🕶️",
+      "answer": "Schwimmbrille",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤿 + 🕶️",
+      "answer": "Taucherbrille",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤿 + 👕",
+      "answer": "Taucheranzug",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚲 + 🏁",
+      "answer": "Radrennen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🐎 + 🏁",
+      "answer": "Pferderennen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚗 + 🏁",
+      "answer": "Autorennen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏃 + 🏁",
+      "answer": "Wettlauf",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏔️ + 🧗",
+      "answer": "Bergsteigen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪨 + 🧗",
+      "answer": "Felsklettern",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 🧤",
+      "answer": "Boxhandschuh",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥊 + 💍",
+      "answer": "Boxring",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏹 + 🎯",
+      "answer": "Bogenschießen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "♟️ + 🎲",
+      "answer": "Brettspiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🃏 + 🎴",
+      "answer": "Kartenspiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧩 + 🎲",
+      "answer": "Puzzlespiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💻 + 🎮",
+      "answer": "Computerspiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📺 + 🎮",
+      "answer": "Videospiel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥾 + 🎒",
+      "answer": "Wanderrucksack",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🥾 + 🦯",
+      "answer": "Wanderstock",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🗺️ + 🧭",
+      "answer": "Wanderkarte",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎣 + 🦯",
+      "answer": "Angelrute",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎣 + 🪝",
+      "answer": "Angelhaken",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎣 + 👥",
+      "answer": "Anglerverein",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎸 + 🏫",
+      "answer": "Musikschule",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎨 + 🖌️",
+      "answer": "Malkurs",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💃 + 🏫",
+      "answer": "Tanzschule",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧘 + 🟩",
+      "answer": "Yogamatte",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏋️ + 💪",
+      "answer": "Krafttraining",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🤸 + 🏟️",
+      "answer": "Bodenturnen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎪 + 🤸",
+      "answer": "Zirkusartist",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎡 + 🎠",
+      "answer": "Riesenrad",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎬 + 🏠",
+      "answer": "Kinoabend",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🍿 + 🎬",
+      "answer": "Kinofilm",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📖 + 🪑",
+      "answer": "Lesesessel",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "📷 + 🚶",
+      "answer": "Fototour",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏙️ + 🚶",
+      "answer": "Stadtrundfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🚢 + 🌊",
+      "answer": "Bootsfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🎈 + 💨",
+      "answer": "Ballonfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🛷 + 🏔️",
+      "answer": "Schlittenfahrt",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "❄️ + ⛄",
+      "answer": "Schneemann",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏰 + 🏖️",
+      "answer": "Sandburg",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🪁 + 💨",
+      "answer": "Drachensteigen",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🔥 + 🪵",
+      "answer": "Lagerfeuer",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧺 + 🌳",
+      "answer": "Picknickkorb",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🧖 + 🛁",
+      "answer": "Wellnessbad",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "💆 + 🧖",
+      "answer": "Wellness",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
+    },
+    {
+      "emojis": "🏆 + 🏅",
+      "answer": "Siegerehrung",
+      "category": "Sport & Freizeit",
+      "difficulty": "mittel",
+      "aliases": []
     }
   ]
 }
