@@ -74,7 +74,7 @@ button:disabled{opacity:.4;cursor:not-allowed}
 const rounds=window.MEGASIZE_DATA||[];
 let index=0,total=0,zoom=1,panX=0,panY=0,locked=false,guessScale=1,guessX=0,guessY=0,base=142,drag=null;
 const $=id=>document.getElementById(id),board=$('board'),world=$('world'),ref=$('reference'),guess=$('guess'),actual=$('actual');
-const esc=s=>String(s).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 function box(item){if(item.w&&item.h)return {w:item.w,h:item.h};const svg=item.svg||'';const m=svg.match(/viewBox=["']\s*([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)\s*["']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
 function sizeFor(item,axisPx){const z=box(item),ratio=z.w/z.h;return {w:axisPx*(ratio>=1?1:ratio),h:axisPx*(ratio>=1?1/ratio:1)}}
 function factor(r){const ratio=r.target.value/r.reference.value;return r.dimension==='Fläche'?Math.sqrt(ratio):ratio}
