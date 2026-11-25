@@ -2462,8 +2462,8 @@
       command(action){
         if(action==='lobby'){this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – schreibe !join im Live-Chat.'});}
         if(action==='start'){if(this.phase==='lobby'||this.phase==='idle'){this.startRound();}}
-        if(action==='reveal'&&this.phase==='question'){this.phase='revealed';this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
-        if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'))this.resolve();
+        if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.phase='revealed';this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
+        if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
         if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
         if(action==='reset'){this.reset(true);}
       },
@@ -2489,7 +2489,7 @@
         this.stage++;this.question=this.pool[this.stage-1];this.seconds=20;this.phase='question';
         this.players.forEach(p=>{p.answer=null;p.locked=false;});
         this.render();this.broadcast({type:'round',state:this.snapshot()});
-        this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);this.broadcast({type:'time-up'});}},1000);
+        this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);this.phase='timeup';this.render();this.broadcast({type:'time-up'});}},1000);
       },
       resolve(){
         clearInterval(this.timer);if(!this.question)return;
@@ -2499,7 +2499,7 @@
       render(){
         const $=id=>document.getElementById(id);
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.seconds;
-        $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:'LOBBY OFFEN · Schreibe !join im TikTok-Live-Chat.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antworten werden gleich ausgewertet …',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
+        $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:'LOBBY OFFEN · Schreibe !join im TikTok-Live-Chat.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antworten werden gleich ausgewertet …',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'Die nächste Runde beginnt bald …';
         const opts=$('lcs-options');opts.hidden=!this.question||!['revealed','resolved','finished'].includes(this.phase);opts.innerHTML='';
         if(this.question&& !opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(this.phase!=='revealed'&&i===this.question.a?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
