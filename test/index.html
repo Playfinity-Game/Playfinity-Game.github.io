@@ -2216,7 +2216,7 @@
         const correct=guess===this.normalize(this.current.answer)||(this.current.aliases||[]).some(alias=>guess===this.normalize(alias));
         // Mehrwort-Nachrichten nur anzeigen, wenn sie das aktuelle Rätsel tatsächlich lösen.
         // So bleiben Redewendungen und andere mehrteilige Lösungen erlaubt, normale Chat-Sätze verschwinden.
-        if(options.source==='chat' && /\\s/u.test(String(value||'').trim()) && !correct)return false;
+        if(options.source==='chat' && /\s/u.test(String(value||'').trim()) && !correct)return false;
         this.startTimer();
         const list=document.getElementById('guessmoji-guesses');
         const row=document.createElement('div');row.className='guessmoji-guess'+(correct?' correct':'');
