@@ -2192,14 +2192,18 @@
         },100);
       },
       updateTimer(){document.getElementById('guessmoji-timer-fill').style.width=(this.remaining/this.duration*100)+'%';},
-      submitGuess(value,player){
+      submitGuess(value,player,options={}){
         if(!this.roundOpen||!this.current||PauseController.paused)return false;
-        const guess=this.normalize(value);if(!guess)return false;this.startTimer();
+        const guess=this.normalize(value);if(!guess)return false;
         const identity=player||{id:'unknown',name:'Zuschauer'};
         const correct=guess===this.normalize(this.current.answer)||(this.current.aliases||[]).some(alias=>guess===this.normalize(alias));
+        // Mehrwort-Nachrichten nur anzeigen, wenn sie das aktuelle Rätsel tatsächlich lösen.
+        // So bleiben Redewendungen und andere mehrteilige Lösungen erlaubt, normale Chat-Sätze verschwinden.
+        if(options.source==='chat' && /\\s/u.test(String(value||'').trim()) && !correct)return false;
+        this.startTimer();
         const list=document.getElementById('guessmoji-guesses');
         const row=document.createElement('div');row.className='guessmoji-guess'+(correct?' correct':'');
-        const name=document.createElement('span');name.className='guessmoji-guess-name';name.textContent='TikTok-Name: '+(identity.name||identity.uniqueId||'Zuschauer');
+        const name=document.createElement('span');name.className='guessmoji-guess-name';name.textContent=identity.name||identity.uniqueId||identity.unique_id||'Zuschauer';
         const message=document.createElement('span');message.className='guessmoji-guess-text';message.textContent=String(value).slice(0,60);
         row.append(name,message);list.prepend(row);
         if(correct){
