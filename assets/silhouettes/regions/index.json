@@ -1,0 +1,63 @@
+{
+  "source": "Natural Earth 10m",
+  "license": "Public domain",
+  "count": 7,
+  "regions": [
+    {
+      "id": "continent-africa",
+      "name": "Afrika",
+      "type": "continent",
+      "file": "continent-africa.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "continent-antarctica",
+      "name": "Antarktika",
+      "type": "continent",
+      "file": "continent-antarctica.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "continent-asia",
+      "name": "Asien",
+      "type": "continent",
+      "file": "continent-asia.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "continent-europe",
+      "name": "Europa",
+      "type": "continent",
+      "file": "continent-europe.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "continent-north-america",
+      "name": "Nordamerika",
+      "type": "continent",
+      "file": "continent-north-america.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "continent-oceania",
+      "name": "Ozeanien",
+      "type": "continent",
+      "file": "continent-oceania.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "continent-south-america",
+      "name": "Südamerika",
+      "type": "continent",
+      "file": "continent-south-america.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    }
+  ]
+}
