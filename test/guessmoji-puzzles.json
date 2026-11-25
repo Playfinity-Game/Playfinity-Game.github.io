@@ -371,13 +371,6 @@
       "aliases": []
     },
     {
-      "emojis": "🐘 + 🦭",
-      "answer": "See-Elefant",
-      "category": "Tiere & Natur",
-      "difficulty": "normal",
-      "aliases": []
-    },
-    {
       "emojis": "🐘 + 🐢",
       "answer": "Elefantenschildkröte",
       "category": "Tiere & Natur",
@@ -1744,7 +1737,7 @@
     },
     {
       "emojis": "🛁 + 🛁",
-      "answer": "Baden-Baden",
+      "answer": "BadenBaden",
       "category": "Länder & Orte",
       "difficulty": "normal",
       "aliases": []
@@ -2024,7 +2017,7 @@
     },
     {
       "emojis": "👻 + 🟡",
-      "answer": "Pac-Man",
+      "answer": "PacMan",
       "category": "Games",
       "difficulty": "normal",
       "aliases": []
@@ -2195,7 +2188,7 @@
     },
     {
       "emojis": "🕷️ + 🕸️",
-      "answer": "Spider-Man",
+      "answer": "SpiderMan",
       "category": "Games",
       "difficulty": "normal",
       "aliases": []
@@ -2348,7 +2341,7 @@
     },
     {
       "emojis": "🔫 + 💣",
-      "answer": "Counter-Strike",
+      "answer": "CounterStrike",
       "category": "Games",
       "difficulty": "schwer",
       "aliases": [
@@ -2503,7 +2496,7 @@
     },
     {
       "emojis": "🌾 + 🚜",
-      "answer": "Landwirtschafts-Simulator",
+      "answer": "LandwirtschaftsSimulator",
       "category": "Games",
       "difficulty": "extrem",
       "aliases": []
@@ -2736,7 +2729,7 @@
     },
     {
       "emojis": "🏙️ + 🚇",
-      "answer": "U-Bahn",
+      "answer": "UBahn",
       "category": "Fahrzeuge",
       "difficulty": "normal",
       "aliases": []
@@ -2904,7 +2897,7 @@
     },
     {
       "emojis": "🌊 + 🚢",
-      "answer": "U-Boot",
+      "answer": "UBoot",
       "category": "Fahrzeuge",
       "difficulty": "normal",
       "aliases": []
