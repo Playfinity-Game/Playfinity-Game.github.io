@@ -67,15 +67,6 @@ button:disabled{opacity:.4;cursor:not-allowed}
 
 </section>
 
-
-
-<section aria-label="SVG-Silhouetten-Test" style="margin:18px 0 0;padding:18px;border:1px solid #26344d;border-radius:16px;background:#10182a;text-align:center">
-  <div style="color:#00eaff;font-size:.72rem;font-weight:900;letter-spacing:1.5px">SVG-TEST</div>
-  <h2 style="margin:5px 0 8px;font-size:1.1rem">Game-Icon direkt aus dem GitHub-Ordner</h2>
-  <img src="../../assets/silhouettes/game-icons/heart-plus.svg" alt="Herz mit Pluszeichen – SVG-Silhouette" width="120" height="120" style="display:block;margin:12px auto;object-fit:contain;filter:drop-shadow(0 0 12px #00eaff55)">
-  <p style="margin:0;color:#aab5ca;font-size:.82rem">heart-plus.svg · lokal eingebundene SVG-Datei</p>
-</section>
-
 </main>
 <script src="./data.js"></script>
 <script>
@@ -83,8 +74,8 @@ button:disabled{opacity:.4;cursor:not-allowed}
 const rounds=window.MEGASIZE_DATA||[];
 let index=0,total=0,zoom=1,panX=0,panY=0,locked=false,guessScale=1,guessX=0,guessY=0,base=142,drag=null;
 const $=id=>document.getElementById(id),board=$('board'),world=$('world'),ref=$('reference'),guess=$('guess'),actual=$('actual');
-const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-function box(item){if(item.w&&item.h)return {w:item.w,h:item.h};const svg=item.svg||'';const m=svg.match(/viewBox=["']\s*([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)[ ,]+([\d.-]+)\s*["']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
+const esc=s=>String(s).replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',\"'\":'&#39;'}[c]));
+function box(item){if(item.w&&item.h)return {w:item.w,h:item.h};const svg=item.svg||'';const m=svg.match(/viewBox=[\"']\\s*([\\d.-]+)[ ,]+([\\d.-]+)[ ,]+([\\d.-]+)[ ,]+([\\d.-]+)\\s*[\"']/i);return m?{w:+m[3],h:+m[4]}:{w:1,h:1}}
 function sizeFor(item,axisPx){const z=box(item),ratio=z.w/z.h;return {w:axisPx*(ratio>=1?1:ratio),h:axisPx*(ratio>=1?1/ratio:1)}}
 function factor(r){const ratio=r.target.value/r.reference.value;return r.dimension==='Fläche'?Math.sqrt(ratio):ratio}
 function toMeters(value,unit){if(unit==='cm')return value/100;if(unit==='km')return value*1000;return value}
