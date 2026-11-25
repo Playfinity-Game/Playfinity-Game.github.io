@@ -1330,9 +1330,9 @@
     .guessmoji-title .moji{color:var(--neon-pink);text-shadow:0 0 10px rgba(255,0,127,.45),0 0 26px rgba(255,0,127,.18)}
     .guessmoji-card{position:relative;isolation:isolate;overflow:hidden;background:rgba(18,20,44,.62);border:1px solid var(--border-glow);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto;width:100%}
     .guessmoji-card>*{position:relative;z-index:1}
-    .guessmoji-top{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap}
-    .guessmoji-category{font-size:.75rem;font-weight:800;color:var(--neon-cyan);background:rgba(0,240,255,.10);border:1px solid rgba(0,240,255,.3);padding:4px 12px;border-radius:20px}
-    .guessmoji-difficulty{font-size:.72rem;font-weight:900;letter-spacing:.08em;color:#ff9cbd}
+    .guessmoji-top{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;min-height:42px;padding:2px 74px;}
+    .guessmoji-category{display:block;width:100%;text-align:center;font-size:clamp(1.15rem,4.5vw,1.55rem);line-height:1.2;font-weight:950;letter-spacing:.035em;color:var(--neon-cyan);background:linear-gradient(100deg,var(--neon-cyan) 5%,#9b6bff 52%,var(--neon-pink) 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;border:0;padding:5px 0;border-radius:0;text-shadow:none;}
+    .guessmoji-difficulty{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:900;letter-spacing:.04em;color:#ff9cbd;white-space:nowrap}
     .guessmoji-custom-emoji{width:1.08em;height:1.08em;vertical-align:-.16em;display:inline-block;filter:drop-shadow(0 0 5px rgba(0,240,255,.24))}
     .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
     .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2px}
