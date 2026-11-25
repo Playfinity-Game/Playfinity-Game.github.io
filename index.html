@@ -2208,6 +2208,7 @@
             this.scores.set(key,{name:identity.name||'Zuschauer',points:(this.scores.get(key)?.points||0)+points});
             if(key!=='local-player'){CommunityBoard.record('guessmoji',identity,points);PlayfinityScores.awardGuessmoji(identity,points,this.roundId,points===10?'first-correct':'additional-correct');}
           }
+          if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false')this.finishRound();
         }
         return true;
       },
