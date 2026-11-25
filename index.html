@@ -2344,7 +2344,7 @@
         // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
         if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
         if (screen === 'guessmoji' && text.trim()) {
-          GuessmojiGame.submitGuess(text, user);
+          GuessmojiGame.submitGuess(text, user, {source:'chat'});
         } else if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
         } else if (screen === 'wordfinity' && /^[A-Za-zÄÖÜäöüß-]+$/.test(text) && !text.startsWith('!')) {
