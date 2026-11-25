@@ -1,7 +1,7 @@
 {
   "source": "Natural Earth 10m",
   "license": "Public domain",
-  "count": 7,
+  "count": 19,
   "regions": [
     {
       "id": "continent-africa",
@@ -57,6 +57,102 @@
       "type": "continent",
       "file": "continent-south-america.svg",
       "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-azores",
+      "name": "Azoren",
+      "type": "island_group",
+      "file": "island-group-azores.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-fiji",
+      "name": "Fidschi-Inseln",
+      "type": "island_group",
+      "file": "island-group-fiji.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-galapagos",
+      "name": "Galápagosinseln",
+      "type": "island_group",
+      "file": "island-group-galapagos.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-hawaiian-islands",
+      "name": "Hawaii",
+      "type": "island_group",
+      "file": "island-group-hawaiian-islands.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-indonesian-archipelago",
+      "name": "Indonesischer Archipel",
+      "type": "island_group",
+      "file": "island-group-indonesian-archipelago.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-japanese-archipelago",
+      "name": "Japanischer Archipel",
+      "type": "island_group",
+      "file": "island-group-japanese-archipelago.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-canary-islands",
+      "name": "Kanarische Inseln",
+      "type": "island_group",
+      "file": "island-group-canary-islands.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-caribbean",
+      "name": "Karibische Inseln",
+      "type": "island_group",
+      "file": "island-group-caribbean.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-maldives",
+      "name": "Malediven",
+      "type": "island_group",
+      "file": "island-group-maldives.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-new-zealand",
+      "name": "Neuseeland",
+      "type": "island_group",
+      "file": "island-group-new-zealand.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-philippines",
+      "name": "Philippinen",
+      "type": "island_group",
+      "file": "island-group-philippines.svg",
+      "source": "Natural Earth 10m Land",
+      "license": "Public domain"
+    },
+    {
+      "id": "island-group-seychelles",
+      "name": "Seychellen",
+      "type": "island_group",
+      "file": "island-group-seychelles.svg",
+      "source": "Natural Earth 10m Land",
       "license": "Public domain"
     }
   ]
