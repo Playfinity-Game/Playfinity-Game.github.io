@@ -32,3 +32,20 @@ This directory is reserved for locally bundled SVG silhouette assets. The game m
 ## Important status
 
 This file documents approved sources and the acceptance policy only. It is not a claim that the full target catalogue (200+ assets per category) has already been collected or verified.
+
+
+## MEGASIZE – offene Natural-Earth-Datensätze
+
+Stand: 25.11.2026
+
+Bereits im Repository unter `assets/silhouettes/natural-earth/` hochgeladen:
+- `ne_10m_land.zip` – Landflächen
+- `ne_10m_admin_0_countries.zip` – Ländergrenzen
+- `ne_10m_rivers_lake_centerlines.zip` – Flüsse
+- `ne_10m_populated_places.zip` – Städte und Orte
+
+**Noch offen / nachzuliefern:**
+- `ne_10m_minor_islands.zip` – kleine Inseln
+- `ne_10m_lakes.zip` – Seen
+
+Die beiden fehlenden ZIP-Dateien konnten bisher trotz mehrerer Downloadversuche nicht zuverlässig heruntergeladen und hochgeladen werden. Sie bleiben ausdrücklich auf der MEGASIZE-To-do-Liste und sollen später ergänzt werden. Bis dahin ist der Natural-Earth-Datenbestand unvollständig.
