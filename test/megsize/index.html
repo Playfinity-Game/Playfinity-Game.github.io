@@ -104,7 +104,7 @@ function render(){
 }
 function groundWorldY(height){return (board.clientHeight*.86-panY)/zoom-height}
 function applyGuess(){const s=sizeFor(rounds[index].target,base),w=s.w*guessScale,h=s.h*guessScale;guess.style.width=w+'px';guess.style.height=h+'px';guessY=groundWorldY(h);pos(guess,guessX,guessY)}
-function applyReferenceZoom(){const r=rounds[index];if(!r)return;const rs=sizeFor(r.reference,base);ref.style.transformOrigin='top left';ref.style.transform='scale('+zoom+')';pos(ref,24,board.clientHeight*.86-rs.h*zoom)}
+function applyReferenceZoom(){const r=rounds[index];if(!r)return;const rs=sizeFor(r.reference,base);ref.style.transformOrigin='top left';ref.style.transform='none';pos(ref,24,board.clientHeight*.86-rs.h)}
 function positionActual(){if(!rounds[index]||actual.style.display==='none')return;const r=rounds[index],trueFactor=factor(r),s=sizeFor(r.target,base),h=s.h*trueFactor,c=center();actual.style.width=s.w*trueFactor+'px';actual.style.height=h+'px';pos(actual,c.x+25-s.w*trueFactor/2,groundWorldY(h))}
 function applyZoom(){world.style.transform='translate('+panX+'px,'+panY+'px) scale('+zoom+')';applyReferenceZoom();if(rounds[index])applyGuess();if(locked)positionActual()}
 function boardPoint(e){const b=board.getBoundingClientRect();return{x:(e.clientX-b.left-panX)/zoom,y:(e.clientY-b.top-panY)/zoom}}
