@@ -1330,9 +1330,9 @@
     .guessmoji-title .moji{color:var(--neon-pink);text-shadow:0 0 10px rgba(255,0,127,.45),0 0 26px rgba(255,0,127,.18)}
     .guessmoji-card{position:relative;isolation:isolate;overflow:hidden;background:rgba(18,20,44,.62);border:1px solid var(--border-glow);border-radius:16px;padding:24px;display:flex;flex-direction:column;gap:18px;max-width:600px;margin:0 auto;width:100%}
     .guessmoji-card>*{position:relative;z-index:1}
-    .guessmoji-top{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;min-height:42px;padding:2px 74px;}
+    .guessmoji-top{position:relative;display:flex;justify-content:center;align-items:center;gap:8px;min-height:42px;padding:2px 100px;}
     .guessmoji-category{display:block;width:100%;text-align:center;font-size:clamp(1.15rem,4.5vw,1.55rem);line-height:1.2;font-weight:950;letter-spacing:.035em;color:var(--neon-cyan);background:linear-gradient(100deg,var(--neon-cyan) 5%,#9b6bff 52%,var(--neon-pink) 95%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;border:0;padding:5px 0;border-radius:0;text-shadow:none;}
-    .guessmoji-difficulty{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.68rem;font-weight:900;letter-spacing:.04em;color:#ff9cbd;white-space:nowrap}
+    .guessmoji-difficulty{position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:.60rem;font-weight:900;letter-spacing:.02em;color:#ff9cbd;white-space:nowrap}
     .guessmoji-custom-emoji{width:1.08em;height:1.08em;vertical-align:-.16em;display:inline-block;filter:drop-shadow(0 0 5px rgba(0,240,255,.24))}
     .guessmoji-emojis{font-size:clamp(3.5rem,16vw,6.3rem);text-align:center;line-height:1.45;padding:22px 4px 12px;filter:drop-shadow(0 0 12px rgba(176,38,255,.18));overflow-wrap:anywhere}
     .guessmoji-question{text-align:center;color:var(--text-muted);font-size:.9rem;margin-bottom:2px}
@@ -2126,7 +2126,7 @@
           valid.forEach(p => counts[p.category]=(counts[p.category]||0)+1);
           const complete = valid.length >= 1 && Object.keys(counts).length >= 1;
           if (!complete) throw new Error('Rätselpool enthält keine gültigen Rätsel');
-          this.puzzles = valid.map(p => ({...p, difficulty:p.difficulty==='schwer'?'schwer':(p.difficulty||'mittel'), aliases:Array.isArray(p.aliases)?p.aliases:[]}));
+          this.puzzles = valid.map(p => ({...p, difficulty:['normal','schwer','extrem'].includes(p.difficulty)?p.difficulty:'normal', aliases:Array.isArray(p.aliases)?p.aliases:[]}));
           console.info('[GUESSMOJI] Geladen:', this.puzzles.length, 'Rätsel in', Object.keys(counts).length, 'Kategorien');
         } catch(error) {
           console.error('[GUESSMOJI] Rätselpool konnte nicht geladen werden:', error);
@@ -2171,9 +2171,11 @@
         if(this.round>=this.totalRounds){this.round=0;this.used.clear();}
         this.round++;this.roundId='gm-'+Date.now()+'-'+this.round;this.current=this.choosePuzzle();this.remaining=this.duration;this.roundOpen=true;this.solvedPlayers.clear();this.correctPlayers.clear();
         document.getElementById('guessmoji-category').textContent=this.current.category;
-        const hard=this.current.difficulty==='schwer';
+        const level=this.current.difficulty;
         const marker=document.getElementById('guessmoji-difficulty');
-        marker.textContent=hard?'☠️ SCHWER':'';marker.hidden=!hard;
+        marker.textContent=level==='extrem'?'☠️☠️☠️ EXTREM':level==='schwer'?'☠️ SCHWER':'NORMAL';
+        marker.style.color=level==='extrem'?'#ff4d8d':level==='schwer'?'#ff9cbd':'#9aa4c7';
+        marker.hidden=false;
         const emojiNode=document.getElementById('guessmoji-emojis');
         if(this.current.emojis.includes('[ESEL]')){const safe=this.current.emojis.split('[ESEL]').map(part=>part.replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch])));emojiNode.innerHTML=safe.join('<img class="guessmoji-custom-emoji" src="./assets/guessmoji-esel.svg" alt="Esel">');}else{emojiNode.textContent=this.current.emojis;}
         document.getElementById('guessmoji-timer-fill').style.width='100%';
