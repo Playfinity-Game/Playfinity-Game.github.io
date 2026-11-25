@@ -1266,6 +1266,32 @@
     @keyframes pfWinnerFade{from{opacity:0}to{opacity:1}} @keyframes pfWinnerPop{from{opacity:0;transform:translateY(12px) scale(.92)}to{opacity:1;transform:translateY(0) scale(1)}}
     @media(prefers-reduced-motion:reduce){#pf-winner-overlay.active,#pf-winner-card{animation:none}}
 
+ 
+    /* LAST CHAT STANDING – test build */
+    .lcs-shell{width:100%;max-width:820px;margin:0 auto;text-align:center;padding:10px 0 28px}
+    .lcs-kicker{font-size:.68rem;letter-spacing:.22em;color:#c084fc;font-weight:900}
+    .lcs-title{font-size:clamp(2rem,7vw,3.8rem);line-height:1.02;font-weight:1000;margin:10px 0 22px;letter-spacing:-.04em}
+    .lcs-title span{color:#c084fc;text-shadow:0 0 22px #8b5cf688}
+    .lcs-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
+    .lcs-stats>div{padding:13px 8px;border:1px solid #a855f744;background:#17112a;border-radius:13px}
+    .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
+    .lcs-stats strong{display:block;font-size:clamp(1.35rem,4vw,2rem);margin-top:4px}
+    .lcs-status{padding:11px;border-radius:10px;background:#a855f71a;color:#d8b4fe;font-weight:800;font-size:.86rem;margin-bottom:14px}
+    .lcs-question{font-size:clamp(1.15rem,3vw,1.75rem);font-weight:850;line-height:1.35;padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #a855f755;border-radius:16px;background:linear-gradient(140deg,#1c1530,#101326)}
+    .lcs-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
+    .lcs-option{padding:15px 12px;text-align:left;border:1px solid #8b5cf766;border-radius:12px;background:#17152b;font-weight:800;min-height:62px}
+    .lcs-option b{color:#c4b5fd;margin-right:8px}
+    .lcs-option.correct{border-color:#34d399;background:#064e3b66}
+    .lcs-option.wrong{opacity:.5}
+    .lcs-result{margin:12px 0;padding:14px;border-radius:12px;background:#201536;color:#e9d5ff;font-weight:800}
+    .lcs-lists{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin:18px 0}
+    .lcs-lists>div{padding:12px;border-radius:12px;background:#101326;border:1px solid #ffffff16;min-width:0}
+    .lcs-lists h3{font-size:.68rem;letter-spacing:.13em;color:#c4b5fd;margin-bottom:8px}
+    .lcs-player-list{font-size:.78rem;color:#d5d8e8;line-height:1.8;overflow-wrap:anywhere}
+    .lcs-open-secret{border:1px solid #c084fc88;background:#7e22ce33;color:#f3e8ff;border-radius:10px;padding:12px 16px;font-weight:850;cursor:pointer}
+    .lcs-footnote{font-size:.68rem;color:#8990aa;margin:10px auto;max-width:520px;line-height:1.5}
+    @media(max-width:520px){.lcs-options,.lcs-lists{grid-template-columns:1fr}.lcs-question{min-height:90px}}
+
 </style>
 </head>
 
@@ -1347,6 +1373,16 @@
           </div>
         </div>
 
+
+        <!-- LAST CHAT STANDING -->
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('lastchat')">
+          <div>
+            <div class="card-badge" style="color:var(--neon-purple)">15-Stufen-Eliminationsquiz</div>
+            <div class="card-title"><span style="color:var(--neon-purple)">LAST CHAT</span><br><span style="color:var(--neon-cyan)">STANDING</span></div>
+            <div class="card-desc">15 Fragen. Eine falsche Antwort – und du bist raus. Überlebt der Chat das Finale?</div>
+          </div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Test starten ›</span></div>
+        </div>
 
         <!-- Wordfinity -->
         <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')">
@@ -1570,6 +1606,27 @@
 
       </div>
     </section>
+    <section class="screen" id="screen-lastchat">
+      <div class="lcs-shell">
+        <div class="lcs-kicker">PLAYFINITY ORIGINAL · LIVE ELIMINATION</div>
+        <h1 class="lcs-title">LAST CHAT <span>STANDING</span></h1>
+        <div class="lcs-stats">
+          <div><small>STUFE</small><strong id="lcs-stage">0 / 15</strong></div>
+          <div><small>IM SPIEL</small><strong id="lcs-alive">0</strong></div>
+          <div><small>ZEIT</small><strong id="lcs-time">20</strong></div>
+        </div>
+        <div class="lcs-status" id="lcs-status">Warte auf den Streamer – öffne das geheime Streamer-Fenster.</div>
+        <div class="lcs-question" id="lcs-question">Die nächste Runde beginnt bald …</div>
+        <div class="lcs-options" id="lcs-options" hidden></div>
+        <div class="lcs-result" id="lcs-result" hidden></div>
+        <div class="lcs-lists">
+          <div><h3>IM SPIEL</h3><div id="lcs-players" class="lcs-player-list">Noch niemand dabei</div></div>
+          <div><h3>AUSGESCHIEDEN</h3><div id="lcs-out" class="lcs-player-list">Noch niemand</div></div>
+        </div>
+        <button type="button" class="lcs-open-secret" id="lcs-open-secret">🔐 Geheimes Streamer-Fenster öffnen</button>
+        <p class="lcs-footnote">Für OBS nur dieses Stream-Fenster / diese Browser-Quelle aufnehmen – nicht den gesamten Desktop.</p>
+      </div>
+    </section>
   </main>
 
   <div id="pf-winner-overlay" role="dialog" aria-modal="true" aria-labelledby="pf-winner-brand">
@@ -1702,6 +1759,7 @@
       },
 
       onEnterGame(screenId) {
+        if (screenId === 'lastchat') LastChatStanding.init();
         if (screenId === 'guessmoji') GuessmojiGame.init();
         if (screenId === 'wordle' && !WordleGame.initialized) WordleGame.startNewGame();
         if (screenId === 'hangmann') HangmannGame.init();
@@ -2344,7 +2402,8 @@
         const screen = PlayfinityRouter.currentScreen;
         // Eigene Nachrichten des Streamers sind keine Zuschauer-Tipps.
         if (screen === 'priceisright' && this.isStreamerChatMessage(user)) return;
-        if (screen === 'guessmoji' && text.trim()) { GuessmojiGame.submitGuess(text, user, {source:'chat'}); }
+        if (screen === 'lastchat') { LastChatStanding.handleChat(user, text); }
+        else if (screen === 'guessmoji' && text.trim()) { GuessmojiGame.submitGuess(text, user, {source:'chat'}); }
         else if (screen === 'wordle' && /^[A-Za-zÄÖÜäöüß]{5}$/.test(text)) {
           WordleGame.submitGuess(text.toUpperCase(), user);
         } else if (screen === 'priceisright' && /^-?\d+(?:[.,]\d+)?$/.test(text)) {
@@ -2360,6 +2419,96 @@
           }
         }
       }
+    };
+
+
+    /* LAST CHAT STANDING – round engine */
+    const LastChatStanding = {
+      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null,
+      seconds:20, phase:'idle', pool:[
+        {q:'Wie viele Tage hat eine Woche?',o:['5','6','7','8'],a:2},
+        {q:'Welche Farbe entsteht aus Blau und Gelb?',o:['Lila','Grün','Orange','Rosa'],a:1},
+        {q:'Welches Tier miaut?',o:['Hund','Katze','Pferd','Kuh'],a:1},
+        {q:'Wie viele Ecken hat ein Quadrat?',o:['3','4','5','6'],a:1},
+        {q:'Welcher Monat kommt direkt nach April?',o:['März','Mai','Juni','Juli'],a:1},
+        {q:'Welcher Planet ist als Roter Planet bekannt?',o:['Venus','Mars','Jupiter','Saturn'],a:1},
+        {q:'Wie heißt die Hauptstadt von Australien?',o:['Sydney','Melbourne','Canberra','Perth'],a:2},
+        {q:'Welches chemische Symbol steht für Gold?',o:['Ag','Go','Au','Gd'],a:2},
+        {q:'Wie viele Herzen hat ein Oktopus?',o:['1','2','3','4'],a:2},
+        {q:'Welcher Kontinent ist flächenmäßig der kleinste?',o:['Europa','Australien','Antarktika','Südamerika'],a:1},
+        {q:'Welche Zahl ist eine Primzahl?',o:['21','27','29','33'],a:2},
+        {q:'Welches dieser Tiere ist ein Säugetier?',o:['Hai','Delfin','Forelle','Krake'],a:1},
+        {q:'Wie viele Felder hat ein klassisches Schachbrett?',o:['48','56','64','72'],a:2},
+        {q:'Welche Einheit misst elektrische Stromstärke?',o:['Volt','Watt','Ampere','Ohm'],a:2},
+        {q:'Wenn alle Zorbs Blims sind und kein Blim ein Tral ist: Kann ein Zorb ein Tral sein?',o:['Ja, immer','Nein','Nur manchmal','Nicht bestimmbar'],a:1}
+      ],
+      init(){
+        if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
+        document.getElementById('lcs-open-secret').onclick=()=>this.openSecret();
+        this.render();
+      },
+      openSecret(){
+        const popup=window.open('./last-chat-streamer.html','playfinityLCSStreamer','popup=yes,width=560,height=850');
+        if(!popup){document.getElementById('lcs-status').textContent='Popup blockiert – bitte Popups für diese Testseite erlauben.';return;}
+        setTimeout(()=>this.broadcast({type:'snapshot',state:this.snapshot()}),350);
+      },
+      broadcast(message){try{this.channel?.postMessage(message);}catch(e){}},
+      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null};},
+      receive(message){
+        if(!message||!message.type)return;
+        if(message.type==='command')this.command(message.action);
+        if(message.type==='snapshot-request')this.broadcast({type:'snapshot',state:this.snapshot()});
+      },
+      command(action){
+        if(action==='lobby'){this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – schreibe !join im Live-Chat.'});}
+        if(action==='start'){if(this.phase==='lobby'||this.phase==='idle'){this.startRound();}}
+        if(action==='reveal'&&this.phase==='question'){this.phase='revealed';this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
+        if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'))this.resolve();
+        if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
+        if(action==='reset'){this.reset(true);}
+      },
+      reset(announce=true){clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=20;this.phase='idle';this.render();if(announce)this.broadcast({type:'reset'});},
+      join(user){
+        if(this.phase!=='lobby'||!user?.id)return false;
+        const id=String(user.id);if(this.players.has(id))return false;
+        this.players.set(id,{id,name:String(user.name||'Zuschauer'),answer:null,locked:false});
+        this.render();this.broadcast({type:'players',state:this.snapshot()});return true;
+      },
+      handleChat(user,text){
+        const msg=String(text||'').trim();if(!msg)return;
+        if(this.phase==='lobby'&&/^!join$/i.test(msg)){this.join(user);return;}
+        if(this.phase!=='question'||!this.players.has(String(user?.id||'')))return;
+        const player=this.players.get(String(user.id));if(player.locked)return;
+        const match=msg.match(/^(?:!?([ABCD]))$/i);if(!match)return;
+        player.answer=match[1].toUpperCase();player.locked=true;
+        this.render();this.broadcast({type:'players',state:this.snapshot()});
+      },
+      startRound(){
+        clearInterval(this.timer);
+        if(this.stage>=15){this.phase='finished';this.render();return;}
+        this.stage++;this.question=this.pool[this.stage-1];this.seconds=20;this.phase='question';
+        this.players.forEach(p=>{p.answer=null;p.locked=false;});
+        this.render();this.broadcast({type:'round',state:this.snapshot()});
+        this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);this.broadcast({type:'time-up'});}},1000);
+      },
+      resolve(){
+        clearInterval(this.timer);if(!this.question)return;
+        for(const [id,p] of this.players){if(!p.answer||'ABCD'.indexOf(p.answer)!==this.question.a){this.eliminated.unshift({...p,reason:p.answer?'Falsch':'Keine Antwort'});this.players.delete(id);}}
+        this.phase='resolved';this.render();this.broadcast({type:'resolved',state:this.snapshot()});
+      },
+      render(){
+        const $=id=>document.getElementById(id);
+        $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.seconds;
+        $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:'LOBBY OFFEN · Schreibe !join im TikTok-Live-Chat.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antworten werden gleich ausgewertet …',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
+        $('lcs-question').textContent=this.question?this.question.q:'Die nächste Runde beginnt bald …';
+        const opts=$('lcs-options');opts.hidden=!this.question||!['revealed','resolved','finished'].includes(this.phase);opts.innerHTML='';
+        if(this.question&& !opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(this.phase!=='revealed'&&i===this.question.a?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
+        $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
+        $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · Verblieben: '+this.players.size:this.phase==='finished'?(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden – nächste Runde wartet!'):'';
+        $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' ✓':'')).join(' · ')||'Noch niemand dabei';
+        $('lcs-out').textContent=this.eliminated.map(p=>p.name+' ('+p.reason+')').join(' · ')||'Noch niemand';
+      },
+      escape(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
     };
 
     /* ==========================================================================
@@ -3307,7 +3456,7 @@
         this.socket.send(JSON.stringify({type:'presence', game:this.game, active:document.visibilityState==='visible', streamerUsername:this.streamerUsername, solution: typeof solution === 'string' ? solution : ''}));
       },
       setGame(game) {
-        this.game = ['menu','wordle','sizeitup','hangmann','priceisright','wordfinity','guessmoji'].includes(game) ? game : 'menu';
+        this.game = ['menu','wordle','sizeitup','hangmann','priceisright','wordfinity','guessmoji','lastchat'].includes(game) ? game : 'menu';
         this.sendPresence();
       },
       showEffect(action) {
@@ -3368,6 +3517,7 @@
       TikTokConnector.init();
       PlayfinityUsageMetrics.init();
       PlayfinityPlayerPresence.init();
+      LastChatStanding.init();
     });
   </script>
 </body>
