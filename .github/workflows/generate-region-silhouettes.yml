@@ -28,5 +28,6 @@ jobs:
           git add assets/silhouettes/regions
           if ! git diff --cached --quiet; then
             git commit -m "Generate MEGASIZE continent and island-group SVGs"
-            git push
+            git pull --rebase origin main
+          git push
           fi
