@@ -1,0 +1,2329 @@
+{
+  "source": "Natural Earth 10m Admin-0 Countries",
+  "license": "Public domain",
+  "count": 258,
+  "countries": [
+    {
+      "id": "afg",
+      "name": "Afghanistan",
+      "iso_a2": "AF",
+      "iso_a3": "AFG",
+      "file": "afg.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "wsb",
+      "name": "Akrotiri Sovereign Base Area",
+      "iso_a2": null,
+      "iso_a3": "WSB",
+      "file": "wsb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ald",
+      "name": "Aland",
+      "iso_a2": "AX",
+      "iso_a3": "ALD",
+      "file": "ald.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "alb",
+      "name": "Albania",
+      "iso_a2": "AL",
+      "iso_a3": "ALB",
+      "file": "alb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "dza",
+      "name": "Algeria",
+      "iso_a2": "DZ",
+      "iso_a3": "DZA",
+      "file": "dza.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "asm",
+      "name": "American Samoa",
+      "iso_a2": "AS",
+      "iso_a3": "ASM",
+      "file": "asm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "and",
+      "name": "Andorra",
+      "iso_a2": "AD",
+      "iso_a3": "AND",
+      "file": "and.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ago",
+      "name": "Angola",
+      "iso_a2": "AO",
+      "iso_a3": "AGO",
+      "file": "ago.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "aia",
+      "name": "Anguilla",
+      "iso_a2": "AI",
+      "iso_a3": "AIA",
+      "file": "aia.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ata",
+      "name": "Antarctica",
+      "iso_a2": "AQ",
+      "iso_a3": "ATA",
+      "file": "ata.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "atg",
+      "name": "Antigua and Barbuda",
+      "iso_a2": "AG",
+      "iso_a3": "ATG",
+      "file": "atg.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "arg",
+      "name": "Argentina",
+      "iso_a2": "AR",
+      "iso_a3": "ARG",
+      "file": "arg.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "arm",
+      "name": "Armenia",
+      "iso_a2": "AM",
+      "iso_a3": "ARM",
+      "file": "arm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "abw",
+      "name": "Aruba",
+      "iso_a2": "AW",
+      "iso_a3": "ABW",
+      "file": "abw.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "atc",
+      "name": "Ashmore and Cartier Islands",
+      "iso_a2": null,
+      "iso_a3": "ATC",
+      "file": "atc.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "aus",
+      "name": "Australia",
+      "iso_a2": "AU",
+      "iso_a3": "AUS",
+      "file": "aus.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "aut",
+      "name": "Austria",
+      "iso_a2": "AT",
+      "iso_a3": "AUT",
+      "file": "aut.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "aze",
+      "name": "Azerbaijan",
+      "iso_a2": "AZ",
+      "iso_a3": "AZE",
+      "file": "aze.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bhr",
+      "name": "Bahrain",
+      "iso_a2": "BH",
+      "iso_a3": "BHR",
+      "file": "bhr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bjn",
+      "name": "Bajo Nuevo Bank (Petrel Is.)",
+      "iso_a2": null,
+      "iso_a3": "BJN",
+      "file": "bjn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bgd",
+      "name": "Bangladesh",
+      "iso_a2": "BD",
+      "iso_a3": "BGD",
+      "file": "bgd.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "brb",
+      "name": "Barbados",
+      "iso_a2": "BB",
+      "iso_a3": "BRB",
+      "file": "brb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kab",
+      "name": "Baykonur Cosmodrome",
+      "iso_a2": null,
+      "iso_a3": "KAB",
+      "file": "kab.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "blr",
+      "name": "Belarus",
+      "iso_a2": "BY",
+      "iso_a3": "BLR",
+      "file": "blr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bel",
+      "name": "Belgium",
+      "iso_a2": "BE",
+      "iso_a3": "BEL",
+      "file": "bel.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "blz",
+      "name": "Belize",
+      "iso_a2": "BZ",
+      "iso_a3": "BLZ",
+      "file": "blz.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ben",
+      "name": "Benin",
+      "iso_a2": "BJ",
+      "iso_a3": "BEN",
+      "file": "ben.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bmu",
+      "name": "Bermuda",
+      "iso_a2": "BM",
+      "iso_a3": "BMU",
+      "file": "bmu.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "btn",
+      "name": "Bhutan",
+      "iso_a2": "BT",
+      "iso_a3": "BTN",
+      "file": "btn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "brt",
+      "name": "Bir Tawil",
+      "iso_a2": null,
+      "iso_a3": "BRT",
+      "file": "brt.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bol",
+      "name": "Bolivia",
+      "iso_a2": "BO",
+      "iso_a3": "BOL",
+      "file": "bol.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bih",
+      "name": "Bosnia and Herzegovina",
+      "iso_a2": "BA",
+      "iso_a3": "BIH",
+      "file": "bih.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bwa",
+      "name": "Botswana",
+      "iso_a2": "BW",
+      "iso_a3": "BWA",
+      "file": "bwa.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bra",
+      "name": "Brazil",
+      "iso_a2": "BR",
+      "iso_a3": "BRA",
+      "file": "bra.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bri",
+      "name": "Brazilian Island",
+      "iso_a2": null,
+      "iso_a3": "BRI",
+      "file": "bri.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "iot",
+      "name": "British Indian Ocean Territory",
+      "iso_a2": "IO",
+      "iso_a3": "IOT",
+      "file": "iot.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "vgb",
+      "name": "British Virgin Islands",
+      "iso_a2": "VG",
+      "iso_a3": "VGB",
+      "file": "vgb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "brn",
+      "name": "Brunei",
+      "iso_a2": "BN",
+      "iso_a3": "BRN",
+      "file": "brn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bgr",
+      "name": "Bulgaria",
+      "iso_a2": "BG",
+      "iso_a3": "BGR",
+      "file": "bgr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bfa",
+      "name": "Burkina Faso",
+      "iso_a2": "BF",
+      "iso_a3": "BFA",
+      "file": "bfa.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bdi",
+      "name": "Burundi",
+      "iso_a2": "BI",
+      "iso_a3": "BDI",
+      "file": "bdi.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cpv",
+      "name": "Cabo Verde",
+      "iso_a2": "CV",
+      "iso_a3": "CPV",
+      "file": "cpv.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "khm",
+      "name": "Cambodia",
+      "iso_a2": "KH",
+      "iso_a3": "KHM",
+      "file": "khm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cmr",
+      "name": "Cameroon",
+      "iso_a2": "CM",
+      "iso_a3": "CMR",
+      "file": "cmr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "can",
+      "name": "Canada",
+      "iso_a2": "CA",
+      "iso_a3": "CAN",
+      "file": "can.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cym",
+      "name": "Cayman Islands",
+      "iso_a2": "KY",
+      "iso_a3": "CYM",
+      "file": "cym.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "caf",
+      "name": "Central African Republic",
+      "iso_a2": "CF",
+      "iso_a3": "CAF",
+      "file": "caf.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tcd",
+      "name": "Chad",
+      "iso_a2": "TD",
+      "iso_a3": "TCD",
+      "file": "tcd.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "chl",
+      "name": "Chile",
+      "iso_a2": "CL",
+      "iso_a3": "CHL",
+      "file": "chl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "chn",
+      "name": "China",
+      "iso_a2": "CN",
+      "iso_a3": "CHN",
+      "file": "chn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "clp",
+      "name": "Clipperton Island",
+      "iso_a2": null,
+      "iso_a3": "CLP",
+      "file": "clp.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "col",
+      "name": "Colombia",
+      "iso_a2": "CO",
+      "iso_a3": "COL",
+      "file": "col.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "com",
+      "name": "Comoros",
+      "iso_a2": "KM",
+      "iso_a3": "COM",
+      "file": "com.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cok",
+      "name": "Cook Islands",
+      "iso_a2": "CK",
+      "iso_a3": "COK",
+      "file": "cok.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "csi",
+      "name": "Coral Sea Islands",
+      "iso_a2": null,
+      "iso_a3": "CSI",
+      "file": "csi.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cri",
+      "name": "Costa Rica",
+      "iso_a2": "CR",
+      "iso_a3": "CRI",
+      "file": "cri.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "hrv",
+      "name": "Croatia",
+      "iso_a2": "HR",
+      "iso_a3": "HRV",
+      "file": "hrv.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cub",
+      "name": "Cuba",
+      "iso_a2": "CU",
+      "iso_a3": "CUB",
+      "file": "cub.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cuw",
+      "name": "Curaçao",
+      "iso_a2": "CW",
+      "iso_a3": "CUW",
+      "file": "cuw.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cyp",
+      "name": "Cyprus",
+      "iso_a2": "CY",
+      "iso_a3": "CYP",
+      "file": "cyp.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cnm",
+      "name": "Cyprus No Mans Area",
+      "iso_a2": null,
+      "iso_a3": "CNM",
+      "file": "cnm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cze",
+      "name": "Czechia",
+      "iso_a2": "CZ",
+      "iso_a3": "CZE",
+      "file": "cze.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cod",
+      "name": "Democratic Republic of the Congo",
+      "iso_a2": "CD",
+      "iso_a3": "COD",
+      "file": "cod.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "dnk",
+      "name": "Denmark",
+      "iso_a2": "DK",
+      "iso_a3": "DNK",
+      "file": "dnk.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "esb",
+      "name": "Dhekelia Sovereign Base Area",
+      "iso_a2": null,
+      "iso_a3": "ESB",
+      "file": "esb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "dji",
+      "name": "Djibouti",
+      "iso_a2": "DJ",
+      "iso_a3": "DJI",
+      "file": "dji.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "dma",
+      "name": "Dominica",
+      "iso_a2": "DM",
+      "iso_a3": "DMA",
+      "file": "dma.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "dom",
+      "name": "Dominican Republic",
+      "iso_a2": "DO",
+      "iso_a3": "DOM",
+      "file": "dom.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tls",
+      "name": "East Timor",
+      "iso_a2": "TL",
+      "iso_a3": "TLS",
+      "file": "tls.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ecu",
+      "name": "Ecuador",
+      "iso_a2": "EC",
+      "iso_a3": "ECU",
+      "file": "ecu.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "egy",
+      "name": "Egypt",
+      "iso_a2": "EG",
+      "iso_a3": "EGY",
+      "file": "egy.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "slv",
+      "name": "El Salvador",
+      "iso_a2": "SV",
+      "iso_a3": "SLV",
+      "file": "slv.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gnq",
+      "name": "Equatorial Guinea",
+      "iso_a2": "GQ",
+      "iso_a3": "GNQ",
+      "file": "gnq.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "eri",
+      "name": "Eritrea",
+      "iso_a2": "ER",
+      "iso_a3": "ERI",
+      "file": "eri.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "est",
+      "name": "Estonia",
+      "iso_a2": "EE",
+      "iso_a3": "EST",
+      "file": "est.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "eth",
+      "name": "Ethiopia",
+      "iso_a2": "ET",
+      "iso_a3": "ETH",
+      "file": "eth.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "flk",
+      "name": "Falkland Islands",
+      "iso_a2": "FK",
+      "iso_a3": "FLK",
+      "file": "flk.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "fro",
+      "name": "Faroe Islands",
+      "iso_a2": "FO",
+      "iso_a3": "FRO",
+      "file": "fro.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "fsm",
+      "name": "Federated States of Micronesia",
+      "iso_a2": "FM",
+      "iso_a3": "FSM",
+      "file": "fsm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "fji",
+      "name": "Fiji",
+      "iso_a2": "FJ",
+      "iso_a3": "FJI",
+      "file": "fji.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "fin",
+      "name": "Finland",
+      "iso_a2": "FI",
+      "iso_a3": "FIN",
+      "file": "fin.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "fra",
+      "name": "France",
+      "iso_a2": null,
+      "iso_a3": "FRA",
+      "file": "fra.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pyf",
+      "name": "French Polynesia",
+      "iso_a2": "PF",
+      "iso_a3": "PYF",
+      "file": "pyf.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "atf",
+      "name": "French Southern and Antarctic Lands",
+      "iso_a2": "TF",
+      "iso_a3": "ATF",
+      "file": "atf.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gab",
+      "name": "Gabon",
+      "iso_a2": "GA",
+      "iso_a3": "GAB",
+      "file": "gab.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gmb",
+      "name": "Gambia",
+      "iso_a2": "GM",
+      "iso_a3": "GMB",
+      "file": "gmb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "geo",
+      "name": "Georgia",
+      "iso_a2": "GE",
+      "iso_a3": "GEO",
+      "file": "geo.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "deu",
+      "name": "Germany",
+      "iso_a2": "DE",
+      "iso_a3": "DEU",
+      "file": "deu.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gha",
+      "name": "Ghana",
+      "iso_a2": "GH",
+      "iso_a3": "GHA",
+      "file": "gha.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gib",
+      "name": "Gibraltar",
+      "iso_a2": "GI",
+      "iso_a3": "GIB",
+      "file": "gib.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "grc",
+      "name": "Greece",
+      "iso_a2": "GR",
+      "iso_a3": "GRC",
+      "file": "grc.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "grl",
+      "name": "Greenland",
+      "iso_a2": "GL",
+      "iso_a3": "GRL",
+      "file": "grl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "grd",
+      "name": "Grenada",
+      "iso_a2": "GD",
+      "iso_a3": "GRD",
+      "file": "grd.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gum",
+      "name": "Guam",
+      "iso_a2": "GU",
+      "iso_a3": "GUM",
+      "file": "gum.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gtm",
+      "name": "Guatemala",
+      "iso_a2": "GT",
+      "iso_a3": "GTM",
+      "file": "gtm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ggy",
+      "name": "Guernsey",
+      "iso_a2": "GG",
+      "iso_a3": "GGY",
+      "file": "ggy.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gin",
+      "name": "Guinea",
+      "iso_a2": "GN",
+      "iso_a3": "GIN",
+      "file": "gin.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gnb",
+      "name": "Guinea-Bissau",
+      "iso_a2": "GW",
+      "iso_a3": "GNB",
+      "file": "gnb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "guy",
+      "name": "Guyana",
+      "iso_a2": "GY",
+      "iso_a3": "GUY",
+      "file": "guy.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "hti",
+      "name": "Haiti",
+      "iso_a2": "HT",
+      "iso_a3": "HTI",
+      "file": "hti.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "hmd",
+      "name": "Heard Island and McDonald Islands",
+      "iso_a2": "HM",
+      "iso_a3": "HMD",
+      "file": "hmd.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "hnd",
+      "name": "Honduras",
+      "iso_a2": "HN",
+      "iso_a3": "HND",
+      "file": "hnd.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "hkg",
+      "name": "Hong Kong S.A.R.",
+      "iso_a2": "HK",
+      "iso_a3": "HKG",
+      "file": "hkg.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "hun",
+      "name": "Hungary",
+      "iso_a2": "HU",
+      "iso_a3": "HUN",
+      "file": "hun.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "isl",
+      "name": "Iceland",
+      "iso_a2": "IS",
+      "iso_a3": "ISL",
+      "file": "isl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ind",
+      "name": "India",
+      "iso_a2": "IN",
+      "iso_a3": "IND",
+      "file": "ind.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ioa",
+      "name": "Indian Ocean Territories",
+      "iso_a2": null,
+      "iso_a3": "IOA",
+      "file": "ioa.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "idn",
+      "name": "Indonesia",
+      "iso_a2": "ID",
+      "iso_a3": "IDN",
+      "file": "idn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "irn",
+      "name": "Iran",
+      "iso_a2": "IR",
+      "iso_a3": "IRN",
+      "file": "irn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "irq",
+      "name": "Iraq",
+      "iso_a2": "IQ",
+      "iso_a3": "IRQ",
+      "file": "irq.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "irl",
+      "name": "Ireland",
+      "iso_a2": "IE",
+      "iso_a3": "IRL",
+      "file": "irl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "imn",
+      "name": "Isle of Man",
+      "iso_a2": "IM",
+      "iso_a3": "IMN",
+      "file": "imn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "isr",
+      "name": "Israel",
+      "iso_a2": "IL",
+      "iso_a3": "ISR",
+      "file": "isr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ita",
+      "name": "Italy",
+      "iso_a2": "IT",
+      "iso_a3": "ITA",
+      "file": "ita.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "civ",
+      "name": "Ivory Coast",
+      "iso_a2": "CI",
+      "iso_a3": "CIV",
+      "file": "civ.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "jam",
+      "name": "Jamaica",
+      "iso_a2": "JM",
+      "iso_a3": "JAM",
+      "file": "jam.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "jpn",
+      "name": "Japan",
+      "iso_a2": "JP",
+      "iso_a3": "JPN",
+      "file": "jpn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "jey",
+      "name": "Jersey",
+      "iso_a2": "JE",
+      "iso_a3": "JEY",
+      "file": "jey.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "jor",
+      "name": "Jordan",
+      "iso_a2": "JO",
+      "iso_a3": "JOR",
+      "file": "jor.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kaz",
+      "name": "Kazakhstan",
+      "iso_a2": "KZ",
+      "iso_a3": "KAZ",
+      "file": "kaz.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ken",
+      "name": "Kenya",
+      "iso_a2": "KE",
+      "iso_a3": "KEN",
+      "file": "ken.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kir",
+      "name": "Kiribati",
+      "iso_a2": "KI",
+      "iso_a3": "KIR",
+      "file": "kir.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kos",
+      "name": "Kosovo",
+      "iso_a2": null,
+      "iso_a3": "KOS",
+      "file": "kos.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kwt",
+      "name": "Kuwait",
+      "iso_a2": "KW",
+      "iso_a3": "KWT",
+      "file": "kwt.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kgz",
+      "name": "Kyrgyzstan",
+      "iso_a2": "KG",
+      "iso_a3": "KGZ",
+      "file": "kgz.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lao",
+      "name": "Laos",
+      "iso_a2": "LA",
+      "iso_a3": "LAO",
+      "file": "lao.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lva",
+      "name": "Latvia",
+      "iso_a2": "LV",
+      "iso_a3": "LVA",
+      "file": "lva.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lbn",
+      "name": "Lebanon",
+      "iso_a2": "LB",
+      "iso_a3": "LBN",
+      "file": "lbn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lso",
+      "name": "Lesotho",
+      "iso_a2": "LS",
+      "iso_a3": "LSO",
+      "file": "lso.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lbr",
+      "name": "Liberia",
+      "iso_a2": "LR",
+      "iso_a3": "LBR",
+      "file": "lbr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lby",
+      "name": "Libya",
+      "iso_a2": "LY",
+      "iso_a3": "LBY",
+      "file": "lby.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lie",
+      "name": "Liechtenstein",
+      "iso_a2": "LI",
+      "iso_a3": "LIE",
+      "file": "lie.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ltu",
+      "name": "Lithuania",
+      "iso_a2": "LT",
+      "iso_a3": "LTU",
+      "file": "ltu.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lux",
+      "name": "Luxembourg",
+      "iso_a2": "LU",
+      "iso_a3": "LUX",
+      "file": "lux.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mac",
+      "name": "Macao S.A.R",
+      "iso_a2": "MO",
+      "iso_a3": "MAC",
+      "file": "mac.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mdg",
+      "name": "Madagascar",
+      "iso_a2": "MG",
+      "iso_a3": "MDG",
+      "file": "mdg.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mwi",
+      "name": "Malawi",
+      "iso_a2": "MW",
+      "iso_a3": "MWI",
+      "file": "mwi.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mys",
+      "name": "Malaysia",
+      "iso_a2": "MY",
+      "iso_a3": "MYS",
+      "file": "mys.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mdv",
+      "name": "Maldives",
+      "iso_a2": "MV",
+      "iso_a3": "MDV",
+      "file": "mdv.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mli",
+      "name": "Mali",
+      "iso_a2": "ML",
+      "iso_a3": "MLI",
+      "file": "mli.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mlt",
+      "name": "Malta",
+      "iso_a2": "MT",
+      "iso_a3": "MLT",
+      "file": "mlt.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mhl",
+      "name": "Marshall Islands",
+      "iso_a2": "MH",
+      "iso_a3": "MHL",
+      "file": "mhl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mrt",
+      "name": "Mauritania",
+      "iso_a2": "MR",
+      "iso_a3": "MRT",
+      "file": "mrt.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mus",
+      "name": "Mauritius",
+      "iso_a2": "MU",
+      "iso_a3": "MUS",
+      "file": "mus.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mex",
+      "name": "Mexico",
+      "iso_a2": "MX",
+      "iso_a3": "MEX",
+      "file": "mex.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mda",
+      "name": "Moldova",
+      "iso_a2": "MD",
+      "iso_a3": "MDA",
+      "file": "mda.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mco",
+      "name": "Monaco",
+      "iso_a2": "MC",
+      "iso_a3": "MCO",
+      "file": "mco.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mng",
+      "name": "Mongolia",
+      "iso_a2": "MN",
+      "iso_a3": "MNG",
+      "file": "mng.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mne",
+      "name": "Montenegro",
+      "iso_a2": "ME",
+      "iso_a3": "MNE",
+      "file": "mne.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "msr",
+      "name": "Montserrat",
+      "iso_a2": "MS",
+      "iso_a3": "MSR",
+      "file": "msr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mar",
+      "name": "Morocco",
+      "iso_a2": "MA",
+      "iso_a3": "MAR",
+      "file": "mar.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "moz",
+      "name": "Mozambique",
+      "iso_a2": "MZ",
+      "iso_a3": "MOZ",
+      "file": "moz.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mmr",
+      "name": "Myanmar",
+      "iso_a2": "MM",
+      "iso_a3": "MMR",
+      "file": "mmr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nam",
+      "name": "Namibia",
+      "iso_a2": "NA",
+      "iso_a3": "NAM",
+      "file": "nam.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nru",
+      "name": "Nauru",
+      "iso_a2": "NR",
+      "iso_a3": "NRU",
+      "file": "nru.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "npl",
+      "name": "Nepal",
+      "iso_a2": "NP",
+      "iso_a3": "NPL",
+      "file": "npl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nld",
+      "name": "Netherlands",
+      "iso_a2": "NL",
+      "iso_a3": "NLD",
+      "file": "nld.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ncl",
+      "name": "New Caledonia",
+      "iso_a2": "NC",
+      "iso_a3": "NCL",
+      "file": "ncl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nzl",
+      "name": "New Zealand",
+      "iso_a2": "NZ",
+      "iso_a3": "NZL",
+      "file": "nzl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nic",
+      "name": "Nicaragua",
+      "iso_a2": "NI",
+      "iso_a3": "NIC",
+      "file": "nic.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ner",
+      "name": "Niger",
+      "iso_a2": "NE",
+      "iso_a3": "NER",
+      "file": "ner.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nga",
+      "name": "Nigeria",
+      "iso_a2": "NG",
+      "iso_a3": "NGA",
+      "file": "nga.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "niu",
+      "name": "Niue",
+      "iso_a2": "NU",
+      "iso_a3": "NIU",
+      "file": "niu.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nfk",
+      "name": "Norfolk Island",
+      "iso_a2": "NF",
+      "iso_a3": "NFK",
+      "file": "nfk.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "prk",
+      "name": "North Korea",
+      "iso_a2": "KP",
+      "iso_a3": "PRK",
+      "file": "prk.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mkd",
+      "name": "North Macedonia",
+      "iso_a2": "MK",
+      "iso_a3": "MKD",
+      "file": "mkd.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cyn",
+      "name": "Northern Cyprus",
+      "iso_a2": null,
+      "iso_a3": "CYN",
+      "file": "cyn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "mnp",
+      "name": "Northern Mariana Islands",
+      "iso_a2": "MP",
+      "iso_a3": "MNP",
+      "file": "mnp.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "nor",
+      "name": "Norway",
+      "iso_a2": null,
+      "iso_a3": "NOR",
+      "file": "nor.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "omn",
+      "name": "Oman",
+      "iso_a2": "OM",
+      "iso_a3": "OMN",
+      "file": "omn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pak",
+      "name": "Pakistan",
+      "iso_a2": "PK",
+      "iso_a3": "PAK",
+      "file": "pak.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "plw",
+      "name": "Palau",
+      "iso_a2": "PW",
+      "iso_a3": "PLW",
+      "file": "plw.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "psx",
+      "name": "Palestine",
+      "iso_a2": "PS",
+      "iso_a3": "PSX",
+      "file": "psx.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pan",
+      "name": "Panama",
+      "iso_a2": "PA",
+      "iso_a3": "PAN",
+      "file": "pan.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "png",
+      "name": "Papua New Guinea",
+      "iso_a2": "PG",
+      "iso_a3": "PNG",
+      "file": "png.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pry",
+      "name": "Paraguay",
+      "iso_a2": "PY",
+      "iso_a3": "PRY",
+      "file": "pry.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "per",
+      "name": "Peru",
+      "iso_a2": "PE",
+      "iso_a3": "PER",
+      "file": "per.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "phl",
+      "name": "Philippines",
+      "iso_a2": "PH",
+      "iso_a3": "PHL",
+      "file": "phl.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pcn",
+      "name": "Pitcairn Islands",
+      "iso_a2": "PN",
+      "iso_a3": "PCN",
+      "file": "pcn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pol",
+      "name": "Poland",
+      "iso_a2": "PL",
+      "iso_a3": "POL",
+      "file": "pol.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "prt",
+      "name": "Portugal",
+      "iso_a2": "PT",
+      "iso_a3": "PRT",
+      "file": "prt.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pri",
+      "name": "Puerto Rico",
+      "iso_a2": "PR",
+      "iso_a3": "PRI",
+      "file": "pri.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "qat",
+      "name": "Qatar",
+      "iso_a2": "QA",
+      "iso_a3": "QAT",
+      "file": "qat.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "srb",
+      "name": "Republic of Serbia",
+      "iso_a2": "RS",
+      "iso_a3": "SRB",
+      "file": "srb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "cog",
+      "name": "Republic of the Congo",
+      "iso_a2": "CG",
+      "iso_a3": "COG",
+      "file": "cog.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "rou",
+      "name": "Romania",
+      "iso_a2": "RO",
+      "iso_a3": "ROU",
+      "file": "rou.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "rus",
+      "name": "Russia",
+      "iso_a2": "RU",
+      "iso_a3": "RUS",
+      "file": "rus.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "rwa",
+      "name": "Rwanda",
+      "iso_a2": "RW",
+      "iso_a3": "RWA",
+      "file": "rwa.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "blm",
+      "name": "Saint Barthelemy",
+      "iso_a2": "BL",
+      "iso_a3": "BLM",
+      "file": "blm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "shn",
+      "name": "Saint Helena",
+      "iso_a2": "SH",
+      "iso_a3": "SHN",
+      "file": "shn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kna",
+      "name": "Saint Kitts and Nevis",
+      "iso_a2": "KN",
+      "iso_a3": "KNA",
+      "file": "kna.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lca",
+      "name": "Saint Lucia",
+      "iso_a2": "LC",
+      "iso_a3": "LCA",
+      "file": "lca.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "maf",
+      "name": "Saint Martin",
+      "iso_a2": "MF",
+      "iso_a3": "MAF",
+      "file": "maf.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "spm",
+      "name": "Saint Pierre and Miquelon",
+      "iso_a2": "PM",
+      "iso_a3": "SPM",
+      "file": "spm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "vct",
+      "name": "Saint Vincent and the Grenadines",
+      "iso_a2": "VC",
+      "iso_a3": "VCT",
+      "file": "vct.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "wsm",
+      "name": "Samoa",
+      "iso_a2": "WS",
+      "iso_a3": "WSM",
+      "file": "wsm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "smr",
+      "name": "San Marino",
+      "iso_a2": "SM",
+      "iso_a3": "SMR",
+      "file": "smr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sau",
+      "name": "Saudi Arabia",
+      "iso_a2": "SA",
+      "iso_a3": "SAU",
+      "file": "sau.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "scr",
+      "name": "Scarborough Reef",
+      "iso_a2": null,
+      "iso_a3": "SCR",
+      "file": "scr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sen",
+      "name": "Senegal",
+      "iso_a2": "SN",
+      "iso_a3": "SEN",
+      "file": "sen.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ser",
+      "name": "Serranilla Bank",
+      "iso_a2": null,
+      "iso_a3": "SER",
+      "file": "ser.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "syc",
+      "name": "Seychelles",
+      "iso_a2": "SC",
+      "iso_a3": "SYC",
+      "file": "syc.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kas",
+      "name": "Siachen Glacier",
+      "iso_a2": null,
+      "iso_a3": "KAS",
+      "file": "kas.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sle",
+      "name": "Sierra Leone",
+      "iso_a2": "SL",
+      "iso_a3": "SLE",
+      "file": "sle.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sgp",
+      "name": "Singapore",
+      "iso_a2": "SG",
+      "iso_a3": "SGP",
+      "file": "sgp.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sxm",
+      "name": "Sint Maarten",
+      "iso_a2": "SX",
+      "iso_a3": "SXM",
+      "file": "sxm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "svk",
+      "name": "Slovakia",
+      "iso_a2": "SK",
+      "iso_a3": "SVK",
+      "file": "svk.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "svn",
+      "name": "Slovenia",
+      "iso_a2": "SI",
+      "iso_a3": "SVN",
+      "file": "svn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "slb",
+      "name": "Solomon Islands",
+      "iso_a2": "SB",
+      "iso_a3": "SLB",
+      "file": "slb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "som",
+      "name": "Somalia",
+      "iso_a2": "SO",
+      "iso_a3": "SOM",
+      "file": "som.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sol",
+      "name": "Somaliland",
+      "iso_a2": null,
+      "iso_a3": "SOL",
+      "file": "sol.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "zaf",
+      "name": "South Africa",
+      "iso_a2": "ZA",
+      "iso_a3": "ZAF",
+      "file": "zaf.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sgs",
+      "name": "South Georgia and the Islands",
+      "iso_a2": "GS",
+      "iso_a3": "SGS",
+      "file": "sgs.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "kor",
+      "name": "South Korea",
+      "iso_a2": "KR",
+      "iso_a3": "KOR",
+      "file": "kor.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sds",
+      "name": "South Sudan",
+      "iso_a2": "SS",
+      "iso_a3": "SDS",
+      "file": "sds.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "spi",
+      "name": "Southern Patagonian Ice Field",
+      "iso_a2": null,
+      "iso_a3": "SPI",
+      "file": "spi.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "esp",
+      "name": "Spain",
+      "iso_a2": "ES",
+      "iso_a3": "ESP",
+      "file": "esp.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "pga",
+      "name": "Spratly Islands",
+      "iso_a2": null,
+      "iso_a3": "PGA",
+      "file": "pga.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "lka",
+      "name": "Sri Lanka",
+      "iso_a2": "LK",
+      "iso_a3": "LKA",
+      "file": "lka.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sdn",
+      "name": "Sudan",
+      "iso_a2": "SD",
+      "iso_a3": "SDN",
+      "file": "sdn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sur",
+      "name": "Suriname",
+      "iso_a2": "SR",
+      "iso_a3": "SUR",
+      "file": "sur.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "swe",
+      "name": "Sweden",
+      "iso_a2": "SE",
+      "iso_a3": "SWE",
+      "file": "swe.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "che",
+      "name": "Switzerland",
+      "iso_a2": "CH",
+      "iso_a3": "CHE",
+      "file": "che.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "syr",
+      "name": "Syria",
+      "iso_a2": "SY",
+      "iso_a3": "SYR",
+      "file": "syr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "stp",
+      "name": "São Tomé and Principe",
+      "iso_a2": "ST",
+      "iso_a3": "STP",
+      "file": "stp.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "twn",
+      "name": "Taiwan",
+      "iso_a2": "CN-TW",
+      "iso_a3": "TWN",
+      "file": "twn.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tjk",
+      "name": "Tajikistan",
+      "iso_a2": "TJ",
+      "iso_a3": "TJK",
+      "file": "tjk.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tha",
+      "name": "Thailand",
+      "iso_a2": "TH",
+      "iso_a3": "THA",
+      "file": "tha.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "bhs",
+      "name": "The Bahamas",
+      "iso_a2": "BS",
+      "iso_a3": "BHS",
+      "file": "bhs.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tgo",
+      "name": "Togo",
+      "iso_a2": "TG",
+      "iso_a3": "TGO",
+      "file": "tgo.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ton",
+      "name": "Tonga",
+      "iso_a2": "TO",
+      "iso_a3": "TON",
+      "file": "ton.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tto",
+      "name": "Trinidad and Tobago",
+      "iso_a2": "TT",
+      "iso_a3": "TTO",
+      "file": "tto.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tun",
+      "name": "Tunisia",
+      "iso_a2": "TN",
+      "iso_a3": "TUN",
+      "file": "tun.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tur",
+      "name": "Turkey",
+      "iso_a2": "TR",
+      "iso_a3": "TUR",
+      "file": "tur.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tkm",
+      "name": "Turkmenistan",
+      "iso_a2": "TM",
+      "iso_a3": "TKM",
+      "file": "tkm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tca",
+      "name": "Turks and Caicos Islands",
+      "iso_a2": "TC",
+      "iso_a3": "TCA",
+      "file": "tca.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tuv",
+      "name": "Tuvalu",
+      "iso_a2": "TV",
+      "iso_a3": "TUV",
+      "file": "tuv.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "usg",
+      "name": "US Naval Base Guantanamo Bay",
+      "iso_a2": null,
+      "iso_a3": "USG",
+      "file": "usg.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "uga",
+      "name": "Uganda",
+      "iso_a2": "UG",
+      "iso_a3": "UGA",
+      "file": "uga.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ukr",
+      "name": "Ukraine",
+      "iso_a2": "UA",
+      "iso_a3": "UKR",
+      "file": "ukr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "are",
+      "name": "United Arab Emirates",
+      "iso_a2": "AE",
+      "iso_a3": "ARE",
+      "file": "are.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "gbr",
+      "name": "United Kingdom",
+      "iso_a2": "GB",
+      "iso_a3": "GBR",
+      "file": "gbr.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "tza",
+      "name": "United Republic of Tanzania",
+      "iso_a2": "TZ",
+      "iso_a3": "TZA",
+      "file": "tza.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "umi",
+      "name": "United States Minor Outlying Islands",
+      "iso_a2": "UM",
+      "iso_a3": "UMI",
+      "file": "umi.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "vir",
+      "name": "United States Virgin Islands",
+      "iso_a2": "VI",
+      "iso_a3": "VIR",
+      "file": "vir.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "usa",
+      "name": "United States of America",
+      "iso_a2": "US",
+      "iso_a3": "USA",
+      "file": "usa.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ury",
+      "name": "Uruguay",
+      "iso_a2": "UY",
+      "iso_a3": "URY",
+      "file": "ury.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "uzb",
+      "name": "Uzbekistan",
+      "iso_a2": "UZ",
+      "iso_a3": "UZB",
+      "file": "uzb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "vut",
+      "name": "Vanuatu",
+      "iso_a2": "VU",
+      "iso_a3": "VUT",
+      "file": "vut.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "vat",
+      "name": "Vatican",
+      "iso_a2": "VA",
+      "iso_a3": "VAT",
+      "file": "vat.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "ven",
+      "name": "Venezuela",
+      "iso_a2": "VE",
+      "iso_a3": "VEN",
+      "file": "ven.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "vnm",
+      "name": "Vietnam",
+      "iso_a2": "VN",
+      "iso_a3": "VNM",
+      "file": "vnm.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "wlf",
+      "name": "Wallis and Futuna",
+      "iso_a2": "WF",
+      "iso_a3": "WLF",
+      "file": "wlf.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "sah",
+      "name": "Western Sahara",
+      "iso_a2": "EH",
+      "iso_a3": "SAH",
+      "file": "sah.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "yem",
+      "name": "Yemen",
+      "iso_a2": "YE",
+      "iso_a3": "YEM",
+      "file": "yem.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "zmb",
+      "name": "Zambia",
+      "iso_a2": "ZM",
+      "iso_a3": "ZMB",
+      "file": "zmb.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "zwe",
+      "name": "Zimbabwe",
+      "iso_a2": "ZW",
+      "iso_a3": "ZWE",
+      "file": "zwe.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    },
+    {
+      "id": "swz",
+      "name": "eSwatini",
+      "iso_a2": "SZ",
+      "iso_a3": "SWZ",
+      "file": "swz.svg",
+      "source": "Natural Earth 10m Admin-0 Countries",
+      "license": "Public domain"
+    }
+  ]
+}
