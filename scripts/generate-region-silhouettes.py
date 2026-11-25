@@ -105,7 +105,14 @@ for key,name in CONTINENT_NAMES.items():
 land_rows=read_records(LAND_ZIP)
 for group in ISLAND_GROUPS:
     windows=[box(*b) for b in group["boxes"]]
-    selected=[geom for _,geom in land_rows if any(w.contains(geom.representative_point()) for w in windows)]
+    selected=[]
+    for _, geom in land_rows:
+        # Natural Earth land features can be large MultiPolygons; inspect each island
+        # separately so a continent-sized feature does not hide its small islands.
+        parts=list(geom.geoms) if geom.geom_type=="MultiPolygon" else [geom]
+        for part in parts:
+            if part.geom_type=="Polygon" and any(w.contains(part.representative_point()) for w in windows):
+                selected.append(part)
     if not selected:
         print(f"WARNING: no land polygons selected for {group['id']}")
         continue
