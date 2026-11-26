@@ -1784,6 +1784,8 @@
         if (target) {
           target.classList.add('active');
           this.currentScreen = screenId;
+          // Beim Öffnen von Last Chat Standing immer am oberen Titel starten.
+          if (screenId === 'lastchat') window.scrollTo(0, 0);
         }
 
         const backBtn = document.getElementById('btn-back');
