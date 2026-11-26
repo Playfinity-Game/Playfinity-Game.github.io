@@ -1358,7 +1358,66 @@
     .game-card.card-guessmoji::before{background:linear-gradient(90deg,transparent,var(--neon-purple),transparent)}
     @media(max-width:420px){.guessmoji-card{padding:16px}.guessmoji-entry button{padding:0 12px}}
 
-  </style>
+  
+    /* Mobile: every game stays inside one fixed viewport (no page scrolling). */
+    @media (max-width: 600px) {
+      html, body { height: 100%; }
+      body { height: 100dvh; min-height: 0; overflow-x: hidden; }
+      body.game-active { overflow: hidden; }
+      body.game-active > header { flex: 0 0 auto; position: relative; top: auto; }
+      body.game-active > main { flex: 1 1 auto; min-height: 0; height: 0; overflow: hidden; }
+      body.game-active main > .screen {
+        flex: 1 1 auto;
+        min-height: 0;
+        height: 100%;
+        max-height: 100%;
+        padding: 8px 10px;
+        overflow: hidden;
+      }
+      body.game-active main > .screen.active { display: flex; }
+      body.game-active main > .screen.active > * { min-height: 0; }
+      body.game-active .screen#screen-wordle { min-height: 0; height: 100%; }
+      body.game-active .hangmann-wrap,
+      body.game-active .kontexto-wrap,
+      body.game-active .wordle-container,
+      body.game-active .pd-wrap,
+      body.game-active .size-stage-card,
+      body.game-active .pir-card,
+      body.game-active .guessmoji-wrap,
+      body.game-active .guessmoji-container {
+        min-height: 0;
+        max-height: 100%;
+      }
+      body.game-active .hangmann-wrap { gap: clamp(4px, 1vh, 9px); }
+      body.game-active .hangmann-title { font-size: clamp(1.35rem, 5vh, 2rem); line-height: 1; }
+      body.game-active .hangmann-stage { min-height: 0; height: clamp(105px, 19vh, 165px); padding: 4px; }
+      body.game-active .hangmann-svg { height: 100%; max-height: 155px; }
+      body.game-active .hangmann-word { min-height: 34px; gap: 3px; }
+      body.game-active .hangmann-slot { height: 32px; width: clamp(17px, 5vw, 29px); font-size: clamp(.9rem, 3.5vw, 1.25rem); }
+      body.game-active .hangmann-category { padding: 6px 8px; font-size: .78rem; }
+      body.game-active .hangmann-keyboard { gap: 4px; }
+      body.game-active .hangmann-keyrow { gap: 3px; }
+      body.game-active .hangmann-key { height: clamp(30px, 5vh, 39px); font-size: .82rem; }
+      body.game-active .hangmann-actions { gap: 5px; }
+      body.game-active .hangmann-actions .btn-action { padding: 7px 9px; font-size: .72rem; }
+      body.game-active .hangmann-solution-form input,
+      body.game-active .hangmann-solution-form button { padding-top: 7px; padding-bottom: 7px; }
+      body.game-active .pd-wrap { padding: 0 2px; overflow: hidden; }
+      body.game-active .pd-panel { padding: 7px; }
+      body.game-active .pd-board-frame { max-height: min(52vh, 420px); }
+      body.game-active .pd-numbers { gap: 3px; }
+      body.game-active .pd-numbers button { padding: 7px 1px; }
+      body.game-active .pd-actions { gap: 5px; }
+      body.game-active .pd-action { padding: 7px 8px; font-size: .75rem; }
+      body.game-active .kontexto-wrap { gap: 7px; }
+      body.game-active .wordle-container { gap: clamp(4px, 1vh, 8px); padding-top: 0; }
+      body.game-active .wordle-grid { max-height: 42vh; }
+      body.game-active .keyboard { gap: 3px; }
+      body.game-active .key-btn { height: clamp(32px, 5vh, 40px); }
+      body.game-active .pir-card { padding: 12px; gap: 10px; overflow: hidden; }
+      body.game-active .size-stage-card { padding: 10px; gap: 8px; }
+    }
+</style>
 </head>
 
 <body>
