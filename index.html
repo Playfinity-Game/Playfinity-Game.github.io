@@ -1867,8 +1867,11 @@
                 }else if(GuessmojiGame.timer){
                   GuessmojiGame.timerEndAt=Date.now()+duration*1000;
                   GuessmojiGame.timerPauseAt=0;
+                }else if(window.matchMedia('(max-width: 768px)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent)){
+                  // Auf Mobilgeräten läuft der Timer auch nach einer Zeitänderung automatisch.
+                  GuessmojiGame.startTimer();
                 }
-                // Nicht beim Speichern starten: Start bleibt beim ersten abgeschickten Tipp.
+                // Desktop startet weiterhin erst beim ersten gültigen Tipp.
                 GuessmojiGame.updateTimer();
               }
               if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false'&&GuessWhatGame.roundOpen){
@@ -2228,7 +2231,10 @@
         this.updateTimer();
         document.getElementById('guessmoji-input').disabled=false;
         document.getElementById('guessmoji-guesses').innerHTML='';
-        // Der Countdown startet erst, sobald die erste Antwort eingegeben wird.
+        // Handy: Countdown läuft ab Anzeige des neuen Rätsels automatisch.
+        // Desktop bleibt unverändert: Start erst mit dem ersten gültigen Tipp aus dem Chat.
+        const mobileDevice=window.matchMedia('(max-width: 768px)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        if(mobileDevice&&localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false')this.startTimer();
       },
       startTimer(){
         if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'||!this.roundOpen||this.timer)return;
