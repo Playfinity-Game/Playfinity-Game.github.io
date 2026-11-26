@@ -1279,7 +1279,8 @@
     .lcs-stats>div{padding:8px;border:1px solid #a855f744;background:rgba(17,20,43,.82);border-radius:13px}
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
     .lcs-stats strong{display:block;font-size:clamp(1.2rem,4vw,1.7rem);margin-top:4px}
-    .lcs-money-ladder{display:flex;flex-direction:column;gap:4px;width:min(100%,560px);margin:0 auto 16px;padding:10px;border:1px solid #facc1577;border-radius:15px;background:linear-gradient(145deg,rgba(9,13,34,.96),rgba(34,20,55,.94));box-shadow:0 0 20px #a855f755}
+    .lcs-money-ladder{display:none;flex-direction:column;gap:4px;width:min(100%,560px);margin:0 auto 16px;padding:10px;border:1px solid #facc1577;border-radius:15px;background:linear-gradient(145deg,rgba(9,13,34,.96),rgba(34,20,55,.94));box-shadow:0 0 20px #a855f755}
+    .lcs-money-ladder.visible{display:flex}
     .lcs-money-ladder:before{content:"GEWINNLEITER";display:block;color:#facc15;font-size:.72rem;font-weight:1000;letter-spacing:.2em;margin-bottom:3px}
     .lcs-money-step{display:flex;align-items:center;justify-content:space-between;padding:5px 10px;border:1px solid #ffffff24;border-radius:7px;background:rgba(9,13,34,.88);color:#d7d9eb;font-size:.75rem;font-weight:850;line-height:1.15}
     .lcs-money-step .lcs-step-number{color:#a5b4fc;font-size:.68rem}
@@ -2605,6 +2606,7 @@
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
          const ladder=$('lcs-money-ladder');
          if(ladder){
+           ladder.classList.toggle('visible',['timeup','resolved','finished'].includes(this.phase));
            const prizes=['100 €','200 €','500 €','1.000 €','2.500 €','5.000 €','10.000 €','20.000 €','35.000 €','50.000 €','100.000 €','150.000 €','250.000 €','500.000 €','1.000.000 €'];
            ladder.innerHTML=prizes.slice().reverse().map((prize,reverseIndex)=>{const level=15-reverseIndex;return '<div class="lcs-money-step '+(level<this.stage?'passed':level===this.stage?'current':'')+'"><span class="lcs-step-number">STUFE '+level+'</span><span>'+prize+'</span></div>';}).join('');
          }
