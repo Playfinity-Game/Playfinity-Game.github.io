@@ -88,7 +88,7 @@ async function handleSemanticSimilarity(env, body) {
 
   let parsed;
   try {
-    const match = raw.match(/\[[\s\S]*\]/);
+    const match = raw.match(/\{[\s\S]*\}/);
     if (match) parsed = JSON.parse(match[0]);
   } catch (_) {}
   if (!Array.isArray(parsed)) {
@@ -413,13 +413,13 @@ async function handleWord(env, body) {
     env,
     "Du erzeugst Zielwörter für ein deutsches Wort-Assoziationsspiel. Wähle ein konkretes, allgemein bekanntes deutsches Substantiv im Singular, das eindeutig und gut erratbar ist. Keine Eigennamen, Marken, abstrakten Begriffe, zusammengesetzten Sätze oder seltenen Fachwörter. Wähle genau eine passende Oberkategorie aus dieser Liste: " + allowed.join("; ") + ". Gib ausschließlich valides JSON in dieser Form aus: {\\"word\\":\\"...\\",\\"category\\":\\"...\\"}.",
     "Bereits verwendete Zielwörter (nicht erneut wählen): " + JSON.stringify(excluded) +
-      "\\nErzeuge ein neues, anderes Zielwort und ordne es genau einer erlaubten Kategorie zu.",
+      "\nErzeuge ein neues, anderes Zielwort und ordne es genau einer erlaubten Kategorie zu.",
     100,
     0.9
   );
   let item;
   try {
-    const match = raw.match(/\\{[\\s\\S]*\\}/);
+    const match = raw.match(/\{[\s\S]*\}/);
     if (match) item = JSON.parse(match[0]);
   } catch (_) {}
   const word = String(item?.word || "").normalize("NFC").trim();
