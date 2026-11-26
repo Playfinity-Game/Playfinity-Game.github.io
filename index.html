@@ -1943,6 +1943,8 @@
               if(event.target.matches('[data-setting-key]')){
                 const applyButton=content.querySelector('[data-settings-apply]');
                 if(applyButton){applyButton.disabled=false;applyButton.textContent='✓ Einstellungen übernehmen';}
+                // GUESSMOJI-Timer direkt aktualisieren, auch auf Mobilgeräten.
+                if(event.target.dataset.settingKey?.startsWith('playfinity_guessmoji_'))applySettings();
               }
             });
             const applySettings=()=>{
@@ -2327,7 +2329,7 @@
         document.getElementById('guessmoji-guesses').innerHTML='';
         // Handy: Countdown läuft ab Anzeige des neuen Rätsels automatisch.
         // Desktop bleibt unverändert: Start erst mit dem ersten gültigen Tipp aus dem Chat.
-        const mobileDevice=window.matchMedia('(max-width: 768px)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+        const mobileDevice=window.matchMedia('(max-width: 768px)').matches||window.matchMedia('(pointer: coarse)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
         if(mobileDevice&&localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false')this.startTimer();
       },
       startTimer(){
@@ -2383,6 +2385,7 @@
       finishRound(){
         if(!this.roundOpen)return;
         this.roundOpen=false;clearInterval(this.timer);this.timer=null;this.timerEndAt=0;this.timerPauseAt=0;
+        this.remaining=0;this.updateTimer();
         document.getElementById('guessmoji-input').disabled=true;
         document.getElementById('guessmoji-timer-fill').style.width='0%';
         const local=this.scores.get('local-player')?.points||0;
