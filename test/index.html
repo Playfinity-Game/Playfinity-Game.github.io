@@ -1275,10 +1275,15 @@
     .lcs-shell{width:100%;max-width:820px;margin:0 auto;text-align:center;padding:10px 0 28px;font-family:var(--font-main)}
     .lcs-title{font-size:clamp(2.1rem,8vw,4rem);line-height:1.02;font-weight:1000;margin:10px 0 16px;letter-spacing:-.04em}
     .lcs-title span{color:#c084fc;text-shadow:0 0 22px #8b5cf688}
-    .lcs-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
-    .lcs-stats>div{padding:10px 8px;border:1px solid #a855f744;background:rgba(17,20,43,.82);border-radius:13px}
+    .lcs-stats{display:grid;grid-template-columns:1fr;gap:10px;margin:0 0 10px}
+    .lcs-stats>div{padding:8px;border:1px solid #a855f744;background:rgba(17,20,43,.82);border-radius:13px}
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
     .lcs-stats strong{display:block;font-size:clamp(1.2rem,4vw,1.7rem);margin-top:4px}
+    .lcs-money-ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:0 0 14px}
+    .lcs-money-step{padding:6px 3px;border:1px solid #ffffff22;border-radius:8px;background:rgba(9,13,34,.82);color:#d7d9eb;font-size:.72rem;font-weight:850}
+    .lcs-money-step.passed{border-color:#34d39988;color:#6ee7b7;background:rgba(6,78,59,.45)}
+    .lcs-money-step.current{border-color:#facc15;color:#fef08a;background:rgba(113,63,18,.7);box-shadow:0 0 12px #facc1566;transform:scale(1.04)}
+    @media(max-width:520px){.lcs-money-ladder{grid-template-columns:repeat(3,minmax(0,1fr))}.lcs-money-step{font-size:.68rem}}
     .lcs-timer{width:min(270px,75%);margin:0 auto 16px;padding:8px 14px;border:2px solid #22d3ee;border-right-color:#c084fc;border-radius:13px;background:rgba(8,13,36,.88);color:#67e8f9;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:1000;line-height:1;text-shadow:0 0 14px #22d3ee;box-shadow:0 0 12px #22d3ee88,inset 0 0 12px #a855f744}
     .lcs-status{padding:9px 11px;border-radius:10px;background:rgba(168,85,247,.12);color:#d8b4fe;font-weight:800;font-size:.8rem;margin-bottom:12px}
     .lcs-mode-picker{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:22px;background:rgba(2,4,16,.82);backdrop-filter:blur(8px)}
@@ -1626,9 +1631,9 @@
         <h1 class="lcs-title">LAST CHAT <span>STANDING</span></h1>
         <div class="lcs-timer" id="lcs-time">20</div>
         <div class="lcs-stats">
-          <div><small>STUFE</small><strong id="lcs-stage">0 / 15</strong></div>
-          <div><small>IM SPIEL</small><strong id="lcs-alive">0</strong></div>
+          <div><small>RUNDE</small><strong id="lcs-stage">0 / 15</strong></div>
         </div>
+        <div class="lcs-money-ladder" id="lcs-money-ladder" aria-label="Gewinnleiter"></div>
         <button type="button" class="lcs-start-button" id="lcs-open-mode">SPIEL STARTEN</button>
         <div class="lcs-mode-picker" id="lcs-mode-picker" hidden>
           <div class="lcs-mode-card">
@@ -1644,9 +1649,6 @@
         <div class="lcs-question" id="lcs-question"></div>
         <div class="lcs-options" id="lcs-options" hidden></div>
         <div class="lcs-result" id="lcs-result" hidden></div>
-        <div class="lcs-lists">
-          <div><h3>IM SPIEL</h3><div id="lcs-players" class="lcs-player-list">Noch niemand dabei</div></div>
-        </div>
       </div>
     </section>
   </main>
@@ -2503,7 +2505,7 @@
         if(action==='chat-toggle'){this.chatEnabled=!!payload.enabled;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='timer-settings'){this.timerEnabled=!!payload.enabled;const seconds=Number(payload.seconds);if(Number.isFinite(seconds)&&seconds>=1&&seconds<=3600){this.timerDuration=seconds;this.seconds=seconds;}this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
-        if(action==='next'&&this.phase==='resolved'){if(this.gameMode==='solo'){if(this.stage>=15){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}else if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
+        if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
         if(action==='reset')this.reset(true);
       },
       loadDemoQuestions(){
@@ -2589,11 +2591,16 @@
           p.result=correct?'correct':'eliminated';
           if(!correct){this.eliminated.unshift({...p,reason:p.answer?'Falsch':'Keine Antwort'});this.players.delete(id);}
         }
-        this.phase=this.players.size<=1?'finished':'resolved';this.optionsVisible=true;this.render();this.broadcast({type:this.phase==='finished'?'finished':'resolved',state:this.snapshot()});
+        this.phase=this.players.size===0?'finished':'resolved';this.optionsVisible=true;this.render();this.broadcast({type:this.phase==='finished'?'finished':'resolved',state:this.snapshot()});
       },
       render(){
         const $=id=>document.getElementById(id);
-        $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
+        $('lcs-stage').textContent=this.stage+' / 15';$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
+         const ladder=$('lcs-money-ladder');
+         if(ladder){
+           const prizes=['100 €','200 €','500 €','1.000 €','2.500 €','5.000 €','10.000 €','20.000 €','35.000 €','50.000 €','100.000 €','150.000 €','250.000 €','500.000 €','1.000.000 €'];
+           ladder.innerHTML=prizes.map((prize,index)=>'<div class="lcs-money-step '+(index+1<this.stage?'passed':index+1===this.stage?'current':'')+'">R'+(index+1)+' · '+prize+'</div>').join('');
+         }
         const modePicker=$('lcs-mode-picker');
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.classList.toggle('active',button.dataset.lcsMode===this.gameMode));
         $('lcs-mode-note').textContent=this.gameMode==='solo'?'Solo ausgewählt · Du beantwortest die Fragen direkt hier im Spiel.':'Live ausgewählt · Zuschauer steigen mit ihrer ersten A–D-Antwort ein.';
