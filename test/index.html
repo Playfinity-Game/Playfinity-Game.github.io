@@ -2488,7 +2488,7 @@
         try{const saved=JSON.parse(localStorage.getItem('playfinity_lcs_question_pools_v1')||'null');if(saved&&['easy','medium','hard'].every(k=>Array.isArray(saved[k])&&saved[k].length)){this.levelPools=saved;this.pool=[...saved.easy,...saved.medium,...saved.hard];}}catch(_){}
         const modeModal=document.getElementById('lcs-mode-picker');
         document.getElementById('lcs-open-mode')?.addEventListener('click',()=>{modeModal.hidden=false;});
-         document.getElementById('lcs-next-question')?.addEventListener('click',()=>this.command('next'));
+         document.getElementById('lcs-next-question')?.addEventListener('click',()=>this.command(this.phase==='finished'?'new-game':'next'));
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{modeModal.hidden=true;this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live');}));
         this.render();
       },
@@ -2536,6 +2536,7 @@
         if(action==='timer-settings'){this.timerEnabled=!!payload.enabled;const seconds=Number(payload.seconds);if(Number.isFinite(seconds)&&seconds>=1&&seconds<=3600){this.timerDuration=seconds;this.seconds=seconds;}this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
         if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
+         if(action==='new-game'&&this.phase==='finished'){this.reset(false);this.usedIds=[];this.saveUsed();if(this.gameMode==='solo'){this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else{this.phase='lobby';this.render();this.broadcast({type:'reset'});this.broadcast({type:'notice',text:'Neues Spiel bereit – Lobby ist offen.'});}}
         if(action==='reset')this.reset(true);
       },
       loadDemoQuestions(){
@@ -2647,7 +2648,7 @@
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');const soloPlayer=this.gameMode==='solo'?this.players.get('solo-host'):null;const chosen=soloPlayer&&soloPlayer.answer===String.fromCharCode(65+i);d.className='lcs-option '+(chosen?'selected ':'')+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.disabled=!!(soloPlayer&&soloPlayer.locked);d.style.cursor=d.disabled?'default':'pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
          const nextQuestion=$('lcs-next-question');
-         if(nextQuestion){nextQuestion.classList.toggle('visible',this.phase==='resolved');nextQuestion.disabled=this.phase!=='resolved';}
+         if(nextQuestion){nextQuestion.classList.toggle('visible',this.phase==='resolved'||this.phase==='finished');nextQuestion.disabled=this.phase!=='resolved'&&this.phase!=='finished';nextQuestion.textContent=this.phase==='finished'?'NEUES SPIEL ↻':'NÄCHSTE RUNDE ›';}
         $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · '+(this.gameMode==='solo'?'Du bist weiter!':'Verblieben: '+this.players.size):this.phase==='finished'?(this.gameMode==='solo'?(this.players.size?'🏆 DU HAST GEWONNEN!':'❌ GAME OVER'):(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden')):'';
 
       },
