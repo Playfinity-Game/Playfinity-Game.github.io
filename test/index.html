@@ -1325,14 +1325,19 @@
     }
     .lcs-timer{width:min(270px,75%);margin:0 auto 16px;padding:8px 14px;border:2px solid #22d3ee;border-right-color:#c084fc;border-radius:13px;background:rgba(8,13,36,.88);color:#67e8f9;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:1000;line-height:1;text-shadow:0 0 14px #22d3ee;box-shadow:0 0 12px #22d3ee88,inset 0 0 12px #a855f744}
     .lcs-status{padding:9px 11px;border-radius:10px;background:rgba(168,85,247,.12);color:#d8b4fe;font-weight:800;font-size:.8rem;margin-bottom:12px}
-    .lcs-mode-picker{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:22px;background:rgba(2,4,16,.82);backdrop-filter:blur(8px)}
+    .lcs-mode-picker{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:rgba(2,4,16,.82);backdrop-filter:blur(8px)}
     .lcs-mode-picker[hidden]{display:none}
-    .lcs-mode-card{width:min(440px,100%);padding:24px 18px;border:1px solid #22d3ee99;border-radius:20px;background:linear-gradient(145deg,#101a38,#211536);box-shadow:0 0 35px #22d3ee33,0 0 55px #a855f733}
-    .lcs-mode-heading{font-size:1.05rem;letter-spacing:.1em;font-weight:950;color:#e9d5ff;margin-bottom:18px}
-    .lcs-mode-buttons{display:grid;grid-template-columns:1fr;gap:12px}
-    .lcs-mode-buttons button,.lcs-start-button{padding:15px 12px;border:1px solid #22d3eeaa;border-radius:12px;background:#102b49;color:#fff;font:950 .95rem var(--font-main);cursor:pointer;box-shadow:0 0 14px #22d3ee22}
-    .lcs-mode-buttons button+button{border-color:#c084fc;background:#2a1742;box-shadow:0 0 14px #c084fc22}
-    .lcs-mode-note{font-size:.75rem;color:#c4b5fd;margin-top:12px}
+    .lcs-mode-card{width:min(390px,100%);padding:22px 18px;border:1px solid #475569;border-radius:16px;background:#111827;box-shadow:0 18px 55px #0009}
+    .lcs-mode-heading{font-size:1rem;letter-spacing:.06em;font-weight:900;color:#f8fafc;margin-bottom:16px}
+    .lcs-mode-buttons{display:grid;grid-template-columns:1fr;gap:10px}
+    .lcs-mode-buttons button,.lcs-start-button{display:flex;flex-direction:column;align-items:center;gap:4px;padding:14px 12px;border:1px solid #0e7490;border-radius:10px;background:#123047;color:#fff;font:900 .95rem var(--font-main);cursor:pointer;box-shadow:none}
+    .lcs-mode-buttons button+button{border-color:#7c3aed;background:#2b1b45}
+    .lcs-mode-buttons button small{font-size:.72rem;font-weight:700;opacity:.8}
+    .lcs-mode-buttons button.active{outline:2px solid #67e8f9;outline-offset:2px}
+    .lcs-mode-note{font-size:.72rem;color:#cbd5e1;margin-top:10px;text-align:center}
+    .lcs-solo-settings{margin-top:14px;padding-top:12px;border-top:1px solid #ffffff20}
+    .lcs-solo-settings label{display:block;text-align:left;color:#cbd5e1;font-weight:800;font-size:.75rem}
+    .lcs-solo-settings select{width:100%;margin-top:6px;padding:10px;border:1px solid #475569;border-radius:8px;background:#0f172a;color:white;font:700 .9rem var(--font-main)}
     .lcs-start-button{width:100%;margin:8px 0 14px;background:linear-gradient(100deg,#073b55,#32164d);letter-spacing:.08em}
     .lcs-question{font:850 clamp(1.15rem,3vw,1.75rem)/1.35 var(--font-main);padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #67e8f9aa;border-radius:16px;background:rgba(13,18,43,.86);box-shadow:0 0 18px #22d3ee33}
     .lcs-question:empty{display:none}
@@ -1684,14 +1689,16 @@
         <button type="button" class="lcs-start-button" id="lcs-open-mode">SPIEL STARTEN</button>
         <div class="lcs-mode-picker" id="lcs-mode-picker" hidden>
           <div class="lcs-mode-card">
-            <div class="lcs-mode-heading">WIE MÖCHTEST DU SPIELEN?</div>
+            <div class="lcs-mode-heading">SPIELMODUS WÄHLEN</div>
             <div class="lcs-mode-buttons">
-              <button type="button" data-lcs-mode="solo"><strong>🎮 QUIZ MASTER</strong><small>SOLO SPIELEN</small></button>
-              <button type="button" data-lcs-mode="live"><strong>🔴 LAST CHAT STANDING</strong><small>LIVE MIT CHAT</small></button>
+              <button type="button" data-lcs-mode="solo"><strong>🎮 QUIZMASTER</strong><small>Alleine spielen</small></button>
+              <button type="button" data-lcs-mode="live"><strong>🔴 LIVE MIT CHAT</strong><small>Zuschauer spielen über den Chat mit</small></button>
             </div>
-            <label for="lcs-solo-time" style="display:block;text-align:left;margin-top:16px;color:#e9d5ff;font-weight:850;font-size:.82rem">QUIZ-MASTER ZEITLIMIT</label>
-            <select id="lcs-solo-time" style="width:100%;margin-top:7px;padding:12px;border:1px solid #22d3ee88;border-radius:10px;background:#101a38;color:white;font:800 .95rem var(--font-main)"><option value="30">30 Sekunden</option><option value="60">60 Sekunden</option><option value="90">90 Sekunden</option><option value="0">Ohne Zeitlimit</option></select>
-            <div class="lcs-mode-note" id="lcs-mode-note">Wähle deinen Spielmodus.</div>
+            <div class="lcs-solo-settings">
+              <label for="lcs-solo-time">Zeitlimit für Quizmaster</label>
+              <select id="lcs-solo-time"><option value="30">30 Sekunden</option><option value="60">60 Sekunden</option><option value="90">90 Sekunden</option><option value="0">Ohne Zeitlimit</option></select>
+            </div>
+            <div class="lcs-mode-note" id="lcs-mode-note">Wähle einen Spielmodus.</div>
           </div>
         </div>
         <div class="lcs-status" id="lcs-status">Bereit</div>
