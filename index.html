@@ -3246,18 +3246,11 @@
         });
       },
       isSuitablePuzzle(data){
-        if(!data||!Array.isArray(data.woerter)||data.woerter.length!==20000||typeof data.kategorie!=='string'||typeof data.woerter[0]!=='string'||!data.woerter[0])return false;
-        const target=this.normalize(data.woerter[0]);
-        const category=this.normalize(data.kategorie);
-        // Explizite Sexualbegriffe und eindeutig pornografische Themen nicht als Zielrätsel verwenden.
-        const unsuitable=/(penis|vagina|vulva|klitoris|clitoris|hoden|hodensack|brustwarze|nippel|porn|porno|pornografie|erotik|sexspielzeug|geschlechtsverkehr|性交|masturb|ejakulat|sperma|orgasmus|fellatio|cunnilingus)/iu;
-        // Konservative Sperrliste: eindeutig als Nicht-Nomen geprüfte Zielwörter.
-        // Keine Endungs-Heuristik verwenden: substantivierte Verben wie „Essen“ können Nomen sein.
-        const nonNounTargets=new Set(['bekommen','gesehen','kleine','eigenen','gewesen','ausserdem','ganzen','würden']);
-        return !unsuitable.test(target)&&!unsuitable.test(category)&&!nonNounTargets.has(target);
+        // Ausschließlich die redaktionell geprüften Rätsel aus wordfinity-daten verwenden.
+        return this.isValidPuzzle(data,data?.id);
       },
       datasetCacheName:'wordfinity-dataset-cache',
-      datasetCacheVersion:2,
+      datasetCacheVersion:3,
       puzzleManifestUrl:'https://dinaj-1992.github.io/wordfinity-daten/puzzle-index.json',
       puzzleBaseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
       puzzleManifest:null,
@@ -3312,10 +3305,10 @@
         });
       },
       isValidManifest(data){
-        return !!(data&&Array.isArray(data.puzzleIds)&&data.puzzleIds.length>0&&data.puzzleIds.every(id=>Number.isInteger(id)&&id>0));
+        return !!(data&&data.count===600&&Array.isArray(data.puzzleIds)&&data.puzzleIds.length===600&&new Set(data.puzzleIds).size===600&&data.puzzleIds.every(id=>Number.isInteger(id)&&id>=4034&&id<=4633));
       },
       isValidPuzzle(data,id){
-        return !!(data&&Number(data.id)===Number(id)&&Array.isArray(data.woerter)&&data.woerter.length===20000&&typeof data.kategorie==='string'&&typeof data.woerter[0]==='string'&&data.woerter[0].trim());
+        return !!(data&&Number(data.id)===Number(id)&&Array.isArray(data.woerter)&&data.woerter.length===20000&&typeof data.kategorie==='string'&&data.kategorie.trim()&&typeof data.woerter[0]==='string'&&data.woerter[0].trim());
       },
       loadUsedTargets(){
         if(this.usedTargetsLoaded)return;
@@ -3334,7 +3327,7 @@
         if(!response.ok)throw new Error('Rätsel-Index konnte nicht geladen werden (HTTP '+response.status+').');
         const data=await response.json();
         if(!this.isValidManifest(data))throw new Error('Der Rätsel-Index ist ungültig.');
-        const record={key:'manifest',version:1,savedAt:Date.now(),data};
+        const record={key:'manifest',version:2,savedAt:Date.now(),data};
         await this.writeLocal('meta',record);
         this.puzzleManifest=data;
         return data;
@@ -3350,7 +3343,7 @@
       async loadPuzzleManifest(){
         if(this.puzzleManifest)return this.puzzleManifest;
         const cached=await this.readLocal('meta','manifest');
-        if(cached&&cached.version===1&&this.isValidManifest(cached.data)){
+        if(cached&&cached.version===2&&this.isValidManifest(cached.data)){
           this.puzzleManifest=cached.data;
           this.refreshManifestInBackground(cached.savedAt);
           return this.puzzleManifest;
@@ -3362,7 +3355,7 @@
         if(!response.ok)throw new Error('Rätsel '+id+' konnte nicht geladen werden (HTTP '+response.status+').');
         const data=await response.json();
         if(!this.isValidPuzzle(data,id))throw new Error('Rätsel '+id+' hat ein ungültiges Format.');
-        await this.writeLocal('puzzles',{id:Number(id),version:1,savedAt:Date.now(),data});
+        await this.writeLocal('puzzles',{id:Number(id),version:2,savedAt:Date.now(),data});
         this.puzzleCache.set(Number(id),data);
         return data;
       },
@@ -3380,16 +3373,9 @@
       },
       async loadPuzzle(id){
         const numericId=Number(id);
-        // Puzzle 2096 wurde redaktionell korrigiert. Veraltete lokale Kopien
-        // mit dem alten Plural-Ziel oder der alten Kategorie dürfen nicht weiterlaufen.
-        const isCurrentPuzzleData=data=>numericId!==2096||(this.normalize(data?.woerter?.[0]||'')==='löwe'&&data?.kategorie==='Tiere');
-        if(this.puzzleCache.has(numericId)){
-          const memoryData=this.puzzleCache.get(numericId);
-          if(isCurrentPuzzleData(memoryData))return {data:memoryData,source:'memory'};
-          this.puzzleCache.delete(numericId);
-        }
+        if(this.puzzleCache.has(numericId))return {data:this.puzzleCache.get(numericId),source:'memory'};
         const cached=await this.readLocal('puzzles',numericId);
-        if(cached&&cached.version===1&&this.isValidPuzzle(cached.data,id)&&isCurrentPuzzleData(cached.data)){
+        if(cached&&cached.version===2&&this.isValidPuzzle(cached.data,id)){
           this.puzzleCache.set(numericId,cached.data);
           this.refreshPuzzleInBackground(id,cached.savedAt||0);
           return {data:cached.data,source:'local'};
