@@ -1410,10 +1410,45 @@
       body.game-active .pd-actions { gap: 5px; }
       body.game-active .pd-action { padding: 7px 8px; font-size: .75rem; }
       body.game-active .kontexto-wrap { gap: 7px; }
-      body.game-active .wordle-container { gap: clamp(4px, 1vh, 8px); padding-top: 0; }
-      body.game-active .wordle-grid { max-height: 42vh; }
-      body.game-active .keyboard { gap: 3px; }
-      body.game-active .key-btn { height: clamp(32px, 5vh, 40px); }
+      /* FIVE-X: Spielbrett, Tastatur und Eingabe bleiben gemeinsam sichtbar. */
+      body.game-active .wordle-container {
+        justify-content: flex-start;
+        gap: clamp(3px, .7vh, 6px);
+        padding-top: 0;
+        overflow: hidden;
+      }
+      body.game-active .wordle-grid {
+        flex: 0 0 auto;
+        width: min(72vw, 30vh, 250px);
+        max-width: 250px;
+        max-height: none;
+        gap: 3px;
+        margin: 1px auto;
+        padding: 0;
+      }
+      body.game-active .wordle-row { gap: 3px; }
+      body.game-active .wordle-cell {
+        min-width: 0;
+        font-size: clamp(.95rem, 3.5vh, 1.25rem);
+        border-width: 1.5px;
+        border-radius: 5px;
+      }
+      body.game-active .keyboard {
+        flex: 0 0 auto;
+        gap: 3px;
+        margin-top: 0;
+      }
+      body.game-active .keyboard-row { gap: 3px; }
+      body.game-active .key-btn {
+        height: clamp(27px, 4.5vh, 36px);
+        min-width: 0;
+        padding-left: 0;
+        padding-right: 0;
+        font-size: clamp(.72rem, 2.5vh, .9rem);
+      }
+      body.game-active .wordle-streamer-entry { flex: 0 0 auto; margin-top: 1px; }
+      body.game-active .wordle-streamer-entry input,
+      body.game-active .wordle-streamer-entry button { height: 34px; }
       body.game-active .pir-card { padding: 12px; gap: 10px; overflow: hidden; }
       body.game-active .size-stage-card { padding: 10px; gap: 8px; }
     }
