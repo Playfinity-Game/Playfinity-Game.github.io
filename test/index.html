@@ -1687,6 +1687,8 @@
               <button type="button" data-lcs-mode="solo"><strong>🎮 QUIZ MASTER</strong><small>SOLO SPIELEN</small></button>
               <button type="button" data-lcs-mode="live"><strong>🔴 LAST CHAT STANDING</strong><small>LIVE MIT CHAT</small></button>
             </div>
+            <label for="lcs-solo-time" style="display:block;text-align:left;margin-top:16px;color:#e9d5ff;font-weight:850;font-size:.82rem">QUIZ-MASTER ZEITLIMIT</label>
+            <select id="lcs-solo-time" style="width:100%;margin-top:7px;padding:12px;border:1px solid #22d3ee88;border-radius:10px;background:#101a38;color:white;font:800 .95rem var(--font-main)"><option value="30">30 Sekunden</option><option value="60">60 Sekunden</option><option value="90">90 Sekunden</option><option value="0">Ohne Zeitlimit</option></select>
             <div class="lcs-mode-note" id="lcs-mode-note">Wähle deinen Spielmodus.</div>
           </div>
         </div>
@@ -2534,7 +2536,7 @@
         document.getElementById('lcs-open-mode')?.addEventListener('click',()=>{modeModal.hidden=false;});
          document.getElementById('lcs-next-question')?.addEventListener('click',()=>this.command(this.phase==='finished'?'new-game':'next'));
         document.getElementById('lcs-joker-5050')?.addEventListener('click',()=>this.command('joker-5050'));
-        document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{modeModal.hidden=true;this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live');}));
+        document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{const solo=button.dataset.lcsMode==='solo';if(solo){const chosen=Number(document.getElementById('lcs-solo-time')?.value||30);this.timerEnabled=chosen>0;this.timerDuration=chosen>0?chosen:30;this.seconds=this.timerDuration;}modeModal.hidden=true;this.command(solo?'mode-solo':'mode-live');}));
         this.render();
       },
       updateGameTitle(){
