@@ -1381,7 +1381,6 @@
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
-    <button data-menu-action="lastchat-control" hidden>🎛 &nbsp; Last Chat Steuerung</button>
     <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
@@ -1777,17 +1776,20 @@
           }
           menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
           if (action === 'home') this.go('menu');
-          if (action === 'lastchat-control') LastChatStanding.openSecret();
           if (action === 'leaderboard') CommunityBoard.showAll();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') {
-            const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
+            const settingsHtml = '<div class="menu-setting-group"><div class="menu-setting-heading">LAST CHAT STANDING</div>' +
+              '<p style="color:var(--text-muted);font-size:.82rem;line-height:1.5;margin:0 0 10px">Öffne hier das separate Streamer-Fenster zum Steuern der Live-Runden und Anzeigen der richtigen Antworten.</p>' +
+              '<button type="button" id="lcs-open-streamer-settings" style="width:100%;padding:12px;border:1px solid var(--neon-purple);border-radius:9px;background:rgba(176,38,255,.16);color:#fff;font-weight:800;cursor:pointer">🎛 Streamer-Steuerung öffnen</button>' +
+              '</div><div class="menu-setting-group"><div class="menu-setting-heading">Automatik</div>' +
               '<label class="menu-setting"><input id="wordle-auto-next" type="checkbox"> <span>FIVE-X</span></label>' +
               '<label class="menu-setting"><input id="hangmann-auto-next" type="checkbox"> <span>Hangman</span></label>' +
               '<label class="menu-setting"><input id="priceisright-auto-next" type="checkbox"> <span>GUESSWHAT</span></label>' +
               '</div><div class="menu-setting-group"><div class="menu-setting-heading">Kategorie anzeigen</div>' +
               '<label class="menu-setting"><input id="hangmann-auto-category" type="checkbox"> <span>Hangman</span></label></div>';
             showModal('Einstellungen', settingsHtml);
+            document.getElementById('lcs-open-streamer-settings')?.addEventListener('click',()=>LastChatStanding.openSecret());
             [
               ['wordle-auto-next','playfinity_wordle_auto_next',true],
               ['hangmann-auto-next','playfinity_hangmann_auto_next',true],
@@ -1824,8 +1826,6 @@
         }
 
         const backBtn = document.getElementById('btn-back');
-        const lcsControl = document.querySelector('[data-menu-action="lastchat-control"]');
-        if (lcsControl) lcsControl.hidden = screenId !== 'lastchat';
         if (screenId === 'menu') {
           backBtn.style.display = 'none';
         } else {
@@ -2551,7 +2551,7 @@
       },
       command(action,payload={}){
         if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length)this.loadDemoQuestions();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Test gestartet.'});}
-        if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.openSecret();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet.'});}
+        if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet. Die Streamer-Steuerung findest du unter Einstellungen → Last Chat Standing.'});}
         if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
         if(action==='joker-5050'&&this.phase==='question'&&this.question&&!this.joker5050Used){const wrong=[0,1,2,3].filter(i=>i!==this.question.a);for(let i=wrong.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wrong[i],wrong[j]]=[wrong[j],wrong[i]];}this.joker5050Hidden=wrong.slice(0,2);this.joker5050Used=true;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
