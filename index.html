@@ -2182,8 +2182,12 @@
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
             const guess=input.value.trim();
+            // Mobile: Countdown bereits im nativen Formular-Submit starten,
+            // bevor weitere Verarbeitung oder Fokuswechsel stattfinden.
+            if(guess&&this.roundOpen&&localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false')this.startTimer();
             if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
-            input.value='';input.focus();
+            input.value='';
+            // Fokus nicht erzwingen: iOS/Android dürfen die Bildschirmtastatur selbst verwalten.
           });
           try{this.duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);}catch(_){this.duration=20;}
           if(![10,15,20,30,45,60].includes(this.duration))this.duration=20;
