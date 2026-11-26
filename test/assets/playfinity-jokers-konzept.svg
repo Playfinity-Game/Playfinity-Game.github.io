@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+<defs>
+ <radialGradient id="bg"><stop stop-color="#32105f"/><stop offset=".55" stop-color="#10091f"/><stop offset="1" stop-color="#05030b"/></radialGradient>
+ <linearGradient id="gold" x2="0" y2="1"><stop stop-color="#fff3a2"/><stop offset=".28" stop-color="#ffce45"/><stop offset=".62" stop-color="#b66a08"/><stop offset="1" stop-color="#fff0a0"/></linearGradient>
+ <linearGradient id="purple" x2="0" y2="1"><stop stop-color="#d88aff"/><stop offset=".45" stop-color="#8b2bdf"/><stop offset="1" stop-color="#32105f"/></linearGradient>
+ <radialGradient id="medal"><stop stop-color="#482078"/><stop offset=".72" stop-color="#160d28"/><stop offset="1" stop-color="#08050e"/></radialGradient>
+ <filter id="glow"><feGaussianBlur stdDeviation="13" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="shadow"><feGaussianBlur stdDeviation="22"/></filter>
+</defs>
+<rect width="1600" height="900" fill="url(#bg)"/>
+<g opacity=".5" filter="url(#glow)" fill="none" stroke="#9e31ff" stroke-width="18"><path d="M80 0 Q0 160 130 300"/><path d="M1520 0 Q1600 160 1470 300"/></g>
+<g opacity=".4" fill="#a33cff"><circle cx="90" cy="240" r="12"/><circle cx="1508" cy="240" r="12"/><circle cx="120" cy="310" r="7"/><circle cx="1480" cy="310" r="7"/></g>
+<path d="M220 150 L300 90 H1300 L1380 150 L1320 250 H280 Z" fill="#090610" stroke="url(#gold)" stroke-width="7"/>
+<path d="M245 166 L300 115 H1300 L1355 166 L1310 232 H290 Z" fill="none" stroke="#a83dff" stroke-width="3"/>
+<text x="800" y="185" text-anchor="middle" font-family="Arial,sans-serif" font-size="82" font-style="italic" font-weight="900" letter-spacing="3" fill="url(#gold)" stroke="#fff3d0" stroke-width="1">DEINE JOKER</text>
+<text x="800" y="222" text-anchor="middle" font-family="Arial,sans-serif" font-size="27" font-style="italic" fill="#f0d9ff">Nutze sie weise – jeder Joker ist nur einmal verfügbar!</text>
+<g transform="translate(0 20)">
+ <ellipse cx="800" cy="690" rx="700" ry="70" fill="#8b24ff" opacity=".18" filter="url(#shadow)"/>
+ <path d="M100 680 Q800 760 1500 680 L1460 760 Q800 840 140 760 Z" fill="#090611" stroke="url(#purple)" stroke-width="6"/>
+ <path d="M140 700 Q800 770 1460 700" fill="none" stroke="#ffca48" stroke-width="3" opacity=".8"/>
+</g>
+<g transform="translate(310 485)">
+ <circle r="190" fill="#9c35ff" opacity=".22" filter="url(#glow)"/><circle r="170" fill="url(#medal)" stroke="url(#gold)" stroke-width="13"/><circle r="151" fill="none" stroke="#a94bff" stroke-width="7"/><circle r="137" fill="none" stroke="#ffdf75" stroke-width="2" opacity=".8"/>
+ <path d="M-75 -105 L75 105" stroke="url(#gold)" stroke-width="9" opacity=".9"/><text x="0" y="30" text-anchor="middle" font-family="Arial,sans-serif" font-size="74" font-weight="900" fill="url(#gold)">50:50</text>
+ <path d="M-210 205 H210 L185 285 H-185 Z" fill="#08050e" stroke="url(#gold)" stroke-width="6"/><text x="0" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="39" font-weight="800" fill="#fff">50:50</text>
+</g>
+<g transform="translate(800 485)">
+ <circle r="190" fill="#9c35ff" opacity=".22" filter="url(#glow)"/><circle r="170" fill="url(#medal)" stroke="url(#gold)" stroke-width="13"/><circle r="151" fill="none" stroke="#a94bff" stroke-width="7"/><circle r="137" fill="none" stroke="#ffdf75" stroke-width="2" opacity=".8"/>
+ <g fill="#220d3d" stroke="#cf78ff" stroke-width="7"><circle cx="-75" cy="-25" r="31"/><circle cx="0" cy="-52" r="36"/><circle cx="75" cy="-25" r="31"/><circle cx="-105" cy="45" r="25"/><circle cx="105" cy="45" r="25"/></g><path d="M-90 112 Q-90 25 0 22 Q90 25 90 112" fill="#34105d" stroke="#d77aff" stroke-width="8"/>
+ <path d="M-210 205 H210 L185 285 H-185 Z" fill="#08050e" stroke="url(#gold)" stroke-width="6"/><text x="0" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="39" font-weight="800" fill="#fff">PUBLIKUM</text>
+</g>
+<g transform="translate(1290 485)">
+ <circle r="190" fill="#9c35ff" opacity=".22" filter="url(#glow)"/><circle r="170" fill="url(#medal)" stroke="url(#gold)" stroke-width="13"/><circle r="151" fill="none" stroke="#a94bff" stroke-width="7"/><circle r="137" fill="none" stroke="#ffdf75" stroke-width="2" opacity=".8"/>
+ <path d="M-65 -95 Q-100 -105 -118 -65 L-105 5 Q-80 85 10 118 Q70 145 100 100 L115 65 Q120 45 95 30 L55 5 Q35 -5 20 20 L0 42 Q-35 25 -50 -15 L-25 -40 Q-10 -60 -25 -75 Z" fill="url(#gold)" stroke="#fff0a0" stroke-width="5"/>
+ <path d="M72 -80 Q145 -20 95 65 M40 -115 Q160 -35 120 95" fill="none" stroke="#ffce45" stroke-width="9" stroke-linecap="round"/>
+ <path d="M-210 205 H210 L185 285 H-185 Z" fill="#08050e" stroke="url(#gold)" stroke-width="6"/><text x="0" y="260" text-anchor="middle" font-family="Arial,sans-serif" font-size="39" font-weight="800" fill="#fff">TELEFON</text>
+</g>
+<text x="800" y="865" text-anchor="middle" font-family="Arial,sans-serif" font-size="22" letter-spacing="5" fill="#bb8cff">PLAYFINITY • LAST CHAT STANDING • JOKER KONZEPT</text>
+</svg>
