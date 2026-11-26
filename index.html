@@ -2158,7 +2158,11 @@
           input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');if(input.value.trim()&&this.roundOpen)this.startTimer();});
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
-            const guess=input.value.trim();input.value='';input.focus();
+            const guess=input.value.trim();
+            // Auf Mobilbrowsern den Countdown direkt beim Absenden starten,
+            // bevor das Eingabefeld geleert oder der Fokus verschoben wird.
+            if(guess&&this.roundOpen)this.startTimer();
+            input.value='';input.focus();
             if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
           });
           try{this.duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);}catch(_){this.duration=20;}
