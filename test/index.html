@@ -2425,87 +2425,116 @@
     /* LAST CHAT STANDING – round engine */
     const LastChatStanding = {
       channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null,
-      seconds:20, phase:'idle', pool:[
-        {q:'Wie viele Tage hat eine Woche?',o:['5','6','7','8'],a:2},
-        {q:'Welche Farbe entsteht aus Blau und Gelb?',o:['Lila','Grün','Orange','Rosa'],a:1},
-        {q:'Welches Tier miaut?',o:['Hund','Katze','Pferd','Kuh'],a:1},
-        {q:'Wie viele Ecken hat ein Quadrat?',o:['3','4','5','6'],a:1},
-        {q:'Welcher Monat kommt direkt nach April?',o:['März','Mai','Juni','Juli'],a:1},
-        {q:'Welcher Planet ist als Roter Planet bekannt?',o:['Venus','Mars','Jupiter','Saturn'],a:1},
-        {q:'Wie heißt die Hauptstadt von Australien?',o:['Sydney','Melbourne','Canberra','Perth'],a:2},
-        {q:'Welches chemische Symbol steht für Gold?',o:['Ag','Go','Au','Gd'],a:2},
-        {q:'Wie viele Herzen hat ein Oktopus?',o:['1','2','3','4'],a:2},
-        {q:'Welcher Kontinent ist flächenmäßig der kleinste?',o:['Europa','Australien','Antarktika','Südamerika'],a:1},
-        {q:'Welche Zahl ist eine Primzahl?',o:['21','27','29','33'],a:2},
-        {q:'Welches dieser Tiere ist ein Säugetier?',o:['Hai','Delfin','Forelle','Krake'],a:1},
-        {q:'Wie viele Felder hat ein klassisches Schachbrett?',o:['48','56','64','72'],a:2},
-        {q:'Welche Einheit misst elektrische Stromstärke?',o:['Volt','Watt','Ampere','Ohm'],a:2},
-        {q:'Wenn alle Zorbs Blims sind und kein Blim ein Tral ist: Kann ein Zorb ein Tral sein?',o:['Ja, immer','Nein','Nur manchmal','Nicht bestimmbar'],a:1}
-      ],
+      seconds:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
+      levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
         if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
         document.getElementById('lcs-open-secret').onclick=()=>this.openSecret();
         this.render();
       },
       openSecret(){
-        const popup=window.open('./last-chat-streamer.html','playfinityLCSStreamer','popup=yes,width=560,height=850');
+        const popup=window.open('./last-chat-streamer.html','playfinityLCSStreamer','popup=yes,width=560,height=900');
         if(!popup){document.getElementById('lcs-status').textContent='Popup blockiert – bitte Popups für diese Testseite erlauben.';return;}
         setTimeout(()=>this.broadcast({type:'snapshot',state:this.snapshot()}),350);
       },
       broadcast(message){try{this.channel?.postMessage(message);}catch(e){}},
-      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null};},
+      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,timerEnabled:this.timerEnabled,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible};},
       receive(message){
         if(!message||!message.type)return;
-        if(message.type==='command'){if(message.action==='load-questions'){const incoming=Array.isArray(message.questions)?message.questions:[];if(incoming.length>=15&&incoming.every(q=>q&&typeof q.q==='string'&&Array.isArray(q.o)&&q.o.length===4&&Number.isInteger(q.a)&&q.a>=0&&q.a<4)){this.pool=[...incoming].sort(()=>Math.random()-.5);this.reset(false);this.broadcast({type:'notice',text:this.pool.length+' Rätsel geladen – die nächsten 15 werden zufällig gespielt.'});}else this.broadcast({type:'notice',text:'Import abgelehnt: Mindestens 15 gültige Rätsel werden benötigt.'});}else this.command(message.action);}
+        if(message.type==='command'){
+          if(message.action==='load-level-pools'){
+            const incoming=message.levels||{};
+            const valid=level=>Array.isArray(incoming[level])&&incoming[level].length>=5&&incoming[level].every(q=>q&&typeof q.q==='string'&&Array.isArray(q.o)&&q.o.length===4&&Number.isInteger(q.a)&&q.a>=0&&q.a<4);
+            if(['easy','medium','hard'].every(valid)){
+              this.levelPools={easy:incoming.easy,medium:incoming.medium,hard:incoming.hard};
+              this.pool=[...incoming.easy,...incoming.medium,...incoming.hard];
+              this.reset(false);this.broadcast({type:'notice',text:'Fragenpools geladen: '+incoming.easy.length+' leicht, '+incoming.medium.length+' mittel, '+incoming.hard.length+' schwer.'});
+            }else this.broadcast({type:'notice',text:'Import abgelehnt: Für jede Schwierigkeit werden mindestens 5 gültige Fragen benötigt.'});
+          } else if(message.action==='load-questions'){
+            const incoming=Array.isArray(message.questions)?message.questions:[];
+            if(incoming.length>=15&&incoming.every(q=>q&&typeof q.q==='string'&&Array.isArray(q.o)&&q.o.length===4&&Number.isInteger(q.a)&&q.a>=0&&q.a<4)){
+              this.levelPools={easy:incoming.filter(q=>q.levelGroup==='easy'||q.levelGroup==='leicht'),medium:incoming.filter(q=>q.levelGroup==='medium'||q.levelGroup==='mittel'),hard:incoming.filter(q=>q.levelGroup==='hard'||q.levelGroup==='schwer')};
+              if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length){this.levelPools={easy:incoming.slice(0,5),medium:incoming.slice(5,10),hard:incoming.slice(10,15)};}
+              this.pool=incoming;this.reset(false);this.broadcast({type:'notice',text:incoming.length+' Rätsel geladen.'});
+            }else this.broadcast({type:'notice',text:'Import abgelehnt: Mindestens 15 gültige Rätsel werden benötigt.'});
+          } else this.command(message.action,message);
+        }
         if(message.type==='snapshot-request')this.broadcast({type:'snapshot',state:this.snapshot()});
       },
-      command(action){
+      command(action,payload={}){
         if(action==='lobby'){this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – schreibe !join im Live-Chat.'});}
-        if(action==='start'){if(this.phase==='lobby'||this.phase==='idle'){this.startRound();}}
-        if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.phase='revealed';this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
+        if(action==='start'){if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
+        if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.optionsVisible=!this.optionsVisible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
+        if(action==='show-options'){this.optionsVisible=!!payload.visible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
+        if(action==='chat-toggle'){this.chatEnabled=!!payload.enabled;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
+        if(action==='timer-settings'){this.timerEnabled=!!payload.enabled;const seconds=Number(payload.seconds);if(Number.isFinite(seconds)&&seconds>=1&&seconds<=3600)this.seconds=seconds;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
         if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
-        if(action==='reset'){this.reset(true);}
+        if(action==='reset')this.reset(true);
       },
-      reset(announce=true){clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=20;this.phase='idle';this.render();if(announce)this.broadcast({type:'reset'});},
+      getUsed(){try{const value=JSON.parse(localStorage.getItem(this.usedKey)||'[]');return Array.isArray(value)?value:[];}catch(_){return [];}},
+      saveUsed(){try{localStorage.setItem(this.usedKey,JSON.stringify(this.usedIds));}catch(_){}},
+      chooseQuestion(level){
+        const list=this.levelPools[level]||[];
+        if(!list.length)return null;
+        let available=list.filter(q=>!this.usedIds.includes(String(q.id||q.uid||q.q)));
+        if(!available.length){this.usedIds=this.usedIds.filter(id=>!list.some(q=>String(q.id||q.uid||q.q)===id));available=list;}
+        const picked=available[Math.floor(Math.random()*available.length)];
+        this.usedIds.push(String(picked.id||picked.uid||picked.q));this.saveUsed();
+        return picked;
+      },
+      reset(announce=true){
+        clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=20;this.phase='idle';this.optionsVisible=false;
+        this.usedIds=this.getUsed();this.render();if(announce)this.broadcast({type:'reset'});
+      },
       join(user){
-        if(this.phase!=='lobby'||!user?.id)return false;
+        if(this.phase!=='lobby'||!this.chatEnabled||!user?.id)return false;
         const id=String(user.id);if(this.players.has(id))return false;
-        this.players.set(id,{id,name:String(user.name||'Zuschauer'),answer:null,locked:false});
+        this.players.set(id,{id,name:String(user.name||'Zuschauer'),answer:null,locked:false,result:'waiting'});
         this.render();this.broadcast({type:'players',state:this.snapshot()});return true;
       },
       handleChat(user,text){
+        if(!this.chatEnabled)return;
         const msg=String(text||'').trim();if(!msg)return;
         if(this.phase==='lobby'&&/^!join$/i.test(msg)){this.join(user);return;}
         if(this.phase!=='question'||!this.players.has(String(user?.id||'')))return;
         const player=this.players.get(String(user.id));if(player.locked)return;
         const match=msg.match(/^(?:!?([ABCD]))$/i);if(!match)return;
-        player.answer=match[1].toUpperCase();player.locked=true;
+        player.answer=match[1].toUpperCase();player.locked=true;player.result='submitted';
         this.render();this.broadcast({type:'players',state:this.snapshot()});
       },
       startRound(){
         clearInterval(this.timer);
-        if(this.stage>=15){this.phase='finished';this.render();return;}
-        this.stage++;this.question=this.pool[this.stage-1];this.seconds=20;this.phase='question';
-        this.players.forEach(p=>{p.answer=null;p.locked=false;});
+        if(this.stage>=15){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});return;}
+        const level=this.stage<5?'easy':this.stage<10?'medium':'hard';
+        const selected=this.chooseQuestion(level);
+        if(!selected){this.phase='finished';this.render();this.broadcast({type:'notice',text:'Keine Fragen für '+level+' vorhanden. Bitte den passenden ZIP-Fragenpool laden.'});return;}
+        this.stage++;this.question=selected;this.seconds=this.seconds||20;this.phase='question';this.optionsVisible=false;
+        this.players.forEach(p=>{p.answer=null;p.locked=false;p.result='waiting';});
         this.render();this.broadcast({type:'round',state:this.snapshot()});
-        this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);this.phase='timeup';this.render();this.broadcast({type:'time-up'});}},1000);
+        if(this.timerEnabled){
+          this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);this.phase='timeup';this.render();this.broadcast({type:'time-up'});}},1000);
+        }
       },
       resolve(){
         clearInterval(this.timer);if(!this.question)return;
-        for(const [id,p] of this.players){if(!p.answer||'ABCD'.indexOf(p.answer)!==this.question.a){this.eliminated.unshift({...p,reason:p.answer?'Falsch':'Keine Antwort'});this.players.delete(id);}}
-        this.phase='resolved';this.render();this.broadcast({type:'resolved',state:this.snapshot()});
+        for(const [id,p] of this.players){
+          const correct=p.answer&&'ABCD'.indexOf(p.answer)===this.question.a;
+          p.result=correct?'correct':'eliminated';
+          if(!correct){this.eliminated.unshift({...p,reason:p.answer?'Falsch':'Keine Antwort'});this.players.delete(id);}
+        }
+        this.phase='resolved';this.optionsVisible=true;this.render();this.broadcast({type:'resolved',state:this.snapshot()});
       },
       render(){
         const $=id=>document.getElementById(id);
-        $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.seconds;
-        $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:'LOBBY OFFEN · Schreibe !join im TikTok-Live-Chat.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antworten werden gleich ausgewertet …',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
+        $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
+        $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:this.chatEnabled?'LOBBY OFFEN · Schreibe !join im Live-Chat.':'LOBBY OFFEN · Chat-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'Die nächste Runde beginnt bald …';
-        const opts=$('lcs-options');opts.hidden=!this.question||!['revealed','resolved','finished'].includes(this.phase);opts.innerHTML='';
-        if(this.question&& !opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(this.phase!=='revealed'&&i===this.question.a?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
+        const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
+        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&this.phase!=='revealed'?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
         $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · Verblieben: '+this.players.size:this.phase==='finished'?(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden – nächste Runde wartet!'):'';
-        $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' ✓':'')).join(' · ')||'Noch niemand dabei';
+        $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' · '+p.answer:'')).join(' · ')||'Noch niemand dabei';
         $('lcs-out').textContent=this.eliminated.map(p=>p.name+' ('+p.reason+')').join(' · ')||'Noch niemand';
       },
       escape(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
