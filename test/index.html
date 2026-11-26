@@ -1268,7 +1268,7 @@
 
  
     /* LAST CHAT STANDING – test build */
-    .lcs-shell{width:100%;max-width:820px;margin:0 auto;text-align:center;padding:10px 0 28px}
+    .lcs-shell{width:100%;max-width:820px;margin:0 auto;text-align:center;padding:10px 0 28px;font-family:var(--font-main)}
     .lcs-kicker{font-size:.68rem;letter-spacing:.22em;color:#c084fc;font-weight:900}
     .lcs-title{font-size:clamp(2rem,7vw,3.8rem);line-height:1.02;font-weight:1000;margin:10px 0 22px;letter-spacing:-.04em}
     .lcs-title span{color:#c084fc;text-shadow:0 0 22px #8b5cf688}
@@ -1277,7 +1277,7 @@
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
     .lcs-stats strong{display:block;font-size:clamp(1.35rem,4vw,2rem);margin-top:4px}
     .lcs-status{padding:11px;border-radius:10px;background:#a855f71a;color:#d8b4fe;font-weight:800;font-size:.86rem;margin-bottom:14px}
-    .lcs-question{font-size:clamp(1.15rem,3vw,1.75rem);font-weight:850;line-height:1.35;padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #a855f755;border-radius:16px;background:linear-gradient(140deg,#1c1530,#101326)}
+    .lcs-question{font:850 clamp(1.15rem,3vw,1.75rem)/1.35 var(--font-main);padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #a855f755;border-radius:16px;background:linear-gradient(140deg,#1c1530,#101326)}\n    .lcs-question:empty{display:none}
     .lcs-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
     .lcs-option{padding:15px 12px;text-align:left;border:1px solid #8b5cf766;border-radius:12px;background:#17152b;font-weight:800;min-height:62px}
     .lcs-option b{color:#c4b5fd;margin-right:8px}
@@ -1323,7 +1323,7 @@
       <p id="tiktok-connector-status" role="status" aria-live="polite">Noch nicht mit TikTok LIVE verbunden.</p>
       <p class="tiktok-connector-note">Alternativ kannst du TikFinity verwenden. Es wird immer nur eine Quelle für Spielereignisse genutzt.</p>
     </div>
-    <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
+    <button data-menu-action="lastchat-control" hidden>🎛 &nbsp; Last Chat Steuerung</button>\n    <button data-menu-action="profile">👤 &nbsp; Streamer-Profil</button>
     <button data-menu-action="settings">⚙️ &nbsp; Einstellungen</button>
     <button data-menu-action="help">❔ &nbsp; Hilfe & Chat-Befehle</button>
     <div class="menu-status" id="menu-connection-status"><span class="status-dot" id="ws-indicator"></span><span id="ws-label">TikFinity wird geprüft …</span></div>
@@ -1615,8 +1615,8 @@
           <div><small>IM SPIEL</small><strong id="lcs-alive">0</strong></div>
           <div><small>ZEIT</small><strong id="lcs-time">20</strong></div>
         </div>
-        <div class="lcs-status" id="lcs-status">Warte auf den Streamer – öffne das geheime Streamer-Fenster.</div>
-        <div class="lcs-question" id="lcs-question">Die nächste Runde beginnt bald …</div>
+        <div class="lcs-status" id="lcs-status">Bereit</div>
+        <div class="lcs-question" id="lcs-question"></div>
         <div class="lcs-options" id="lcs-options" hidden></div>
         <div class="lcs-result" id="lcs-result" hidden></div>
         <div class="lcs-lists">
@@ -1705,7 +1705,7 @@
             return;
           }
           menu.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false');
-          if (action === 'home') this.go('menu');
+          if (action === 'home') this.go('menu');\n          if (action === 'lastchat-control') LastChatStanding.openSecret();
           if (action === 'leaderboard') CommunityBoard.showAll();
           if (action === 'profile') showModal('Streamer-Profil', 'Verbindungsstatus: <b>' + (TikFinity.connected ? 'TikFinity verbunden' : 'TikFinity nicht verbunden') + '</b><br>Letzter Chat-Nutzer: ' + CommunityBoard.escape(TikFinity.lastUserName || 'Noch keiner'));
           if (action === 'settings') {
@@ -1749,7 +1749,7 @@
           this.currentScreen = screenId;
         }
 
-        const backBtn = document.getElementById('btn-back');
+        const backBtn = document.getElementById('btn-back');\n        const lcsControl = document.querySelector('[data-menu-action="lastchat-control"]');\n        if (lcsControl) lcsControl.hidden = screenId !== 'lastchat';
         if (screenId === 'menu') {
           backBtn.style.display = 'none';
         } else {
@@ -2528,7 +2528,7 @@
       render(){
         const $=id=>document.getElementById(id);
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
-        $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:this.chatEnabled?'LOBBY OFFEN · Schreibe !join im Live-Chat.':'LOBBY OFFEN · Chat-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
+        $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Schreibe !join im Live-Chat.':'LOBBY OFFEN · Chat-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'Die nächste Runde beginnt bald …';
         const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
