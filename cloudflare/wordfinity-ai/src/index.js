@@ -1,3 +1,5 @@
+import WORDS_BY_CATEGORY from "../../../data/wordfinity-nouns.json";
+
 const TEXT_MODEL = "@cf/google/gemma-4-26b-a4b-it";
 const EMBEDDING_MODEL = "@cf/baai/bge-m3";
 
@@ -395,34 +397,30 @@ async function handlePrecomputedRank(env, body) {
 }
 
 async function handleWord(env, body) {
-  const excluded = Array.isArray(body.exclude)
-    ? body.exclude.slice(-300).map(x => String(x).toLocaleLowerCase("de-DE"))
-    : [];
-  let lastError;
-  // Ein einzelner ungültiger oder bereits verwendeter Modell-Output soll
-  // nicht direkt eine komplette Runde verhindern.
-  for (let attempt = 0; attempt < 2; attempt++) {
-    try {
-      const text = await generate(
-        env,
-        "Du wählst das geheime Lösungswort für ein deutsches Wort-Ratespiel. WICHTIG: Das Lösungswort MUSS ausnahmslos ein deutsches SUBSTANTIV (Nomen) im Singular sein. Erlaubt sind ausschließlich konkrete oder klar benennbare Dinge und Lebewesen, zum Beispiel Tiere, Pflanzen, Lebensmittel, Getränke, Gegenstände, Werkzeuge, Fahrzeuge, Kleidung, Möbel, Gebäude, Berufe und Instrumente. Keine Verben, keine Infinitive, keine Tätigkeitswörter, keine Adjektive, keine Eigenschaftswörter und keine substantivierten Verben oder Adjektive (z. B. nicht 'Laufen', 'Schönes', 'Gute'). Keine abstrakten Tätigkeiten oder Eigenschaften. Das Wort muss ein gebräuchliches deutsches Nomen sein und korrekt großgeschrieben werden. VERBOTEN: Eigennamen, Städte- und Ländernamen, seltene oder veraltete Wörter, Fachbegriffe, Fremdwörter die kaum jemand kennt, Fantasiewörter, Abkürzungen, Artikel, Präpositionen, Bindewörter, Pronomen, Wortgruppen, Erklärungen und Satzzeichen.",
-        "Wähle ein zufälliges, neues, möglichst abwechslungsreiches deutsches Substantiv im Singular aus deinem gesamten Wortschatz. Es muss ein bekanntes Alltags-Nomen sein, keine Tätigkeit und keine Eigenschaft. Schreibe es mit großem Anfangsbuchstaben. Nicht verwenden: " + excluded.join(", ") + ". " + (attempt ? "Der vorige Vorschlag war ungültig. Wähle diesmal zwingend ein anderes konkretes Nomen im Singular." : "") + " Antworte ausschließlich mit dem einzelnen Nomen.",
-        40
-      );
-      const word = cleanSingleLine(text, 40).replace(/[.!?,;:]+$/g, "").trim();
-      if (!/^[A-ZÄÖÜ][a-zäöüß]+(?:-[A-ZÄÖÜ][a-zäöüß]+)*$/.test(word) || word.length < 3 || word.length > 40) {
-        throw new Error("Die Wort-KI hat kein korrekt großgeschriebenes deutsches Nomen geliefert");
-      }
-      if (excluded.includes(word.toLocaleLowerCase("de-DE"))) {
-        throw new Error("Die Wort-KI hat ein bereits verwendetes Wort geliefert");
-      }
-      return json({ word });
-    } catch (error) {
-      lastError = error;
-      if (attempt === 0) continue;
-    }
+  // Ausschließlich die kuratierte, geprüfte Wordfinity-Zielwortliste verwenden.
+  // Die semantischen Ranglisten bleiben unverändert und ranken weiterhin die Rateversuche.
+  const excluded = new Set(
+    (Array.isArray(body.exclude) ? body.exclude : [])
+      .slice(-300)
+      .map(value => String(value || "").normalize("NFC").trim().toLocaleLowerCase("de-DE"))
+      .filter(Boolean)
+  );
+  const pool = Object.entries(WORDS_BY_CATEGORY).flatMap(([category, words]) =>
+    (Array.isArray(words) ? words : []).map(word => ({
+      word: String(word || "").normalize("NFC").trim(),
+      category
+    }))
+  ).filter(item =>
+    item.word.length >= 2 &&
+    /^[A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]*$/.test(item.word) &&
+    !excluded.has(item.word.toLocaleLowerCase("de-DE"))
+  );
+  if (!pool.length) {
+    return json({ error: "Keine unverbrauchten geprüften Wordfinity-Zielwörter mehr verfügbar" }, 409);
   }
-  throw lastError || new Error("Es konnte kein neues Lösungswort erstellt werden");
+  // Zufällige Auswahl aus der aktiven, kategorisierten 4.064-Wörter-Liste.
+  const selected = pool[Math.floor(Math.random() * pool.length)];
+  return json({ word: selected.word, category: selected.category, source: "curated-wordfinity-nouns" });
 }
 async function handleCategory(env, body) {
   const target = String(body.target || "").trim();
