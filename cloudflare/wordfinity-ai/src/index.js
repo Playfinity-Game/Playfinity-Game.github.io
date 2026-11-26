@@ -1,5 +1,3 @@
-import WORDS_BY_CATEGORY from "../../../data/wordfinity-nouns.json";
-
 const TEXT_MODEL = "@cf/google/gemma-4-26b-a4b-it";
 const EMBEDDING_MODEL = "@cf/baai/bge-m3";
 
@@ -397,30 +395,36 @@ async function handlePrecomputedRank(env, body) {
 }
 
 async function handleWord(env, body) {
-  // Ausschließlich die kuratierte, geprüfte Wordfinity-Zielwortliste verwenden.
-  // Die semantischen Ranglisten bleiben unverändert und ranken weiterhin die Rateversuche.
+  // Ausschließlich die externe, kuratierte Wordfinity-Datenquelle verwenden.
+  const sourceUrl = "https://dinaj-1992.github.io/wordfinity-daten/kategorien_uebersicht.json";
+  const response = await fetch(sourceUrl, { headers: { Accept: "application/json" } });
+  if (!response.ok) {
+    return json({ error: "Die geprüfte Wordfinity-Datenquelle ist momentan nicht erreichbar" }, 502);
+  }
+  const dataset = await response.json();
+  const targets = dataset?.zielwoerter;
+  if (!targets || typeof targets !== "object" || Object.keys(targets).length !== 600) {
+    return json({ error: "Die Wordfinity-Datenquelle ist ungültig oder unvollständig" }, 502);
+  }
   const excluded = new Set(
     (Array.isArray(body.exclude) ? body.exclude : [])
       .slice(-300)
       .map(value => String(value || "").normalize("NFC").trim().toLocaleLowerCase("de-DE"))
       .filter(Boolean)
   );
-  const pool = Object.entries(WORDS_BY_CATEGORY).flatMap(([category, words]) =>
-    (Array.isArray(words) ? words : []).map(word => ({
-      word: String(word || "").normalize("NFC").trim(),
-      category
-    }))
-  ).filter(item =>
+  const pool = Object.entries(targets).map(([word, category]) => ({
+    word: String(word || "").normalize("NFC").trim(),
+    category: String(category || "").trim()
+  })).filter(item =>
     item.word.length >= 2 &&
-    /^[A-ZÄÖÜ][A-Za-zÄÖÜäöüß-]*$/.test(item.word) &&
+    item.category &&
     !excluded.has(item.word.toLocaleLowerCase("de-DE"))
   );
   if (!pool.length) {
     return json({ error: "Keine unverbrauchten geprüften Wordfinity-Zielwörter mehr verfügbar" }, 409);
   }
-  // Zufällige Auswahl aus der aktiven, kategorisierten 4.064-Wörter-Liste.
   const selected = pool[Math.floor(Math.random() * pool.length)];
-  return json({ word: selected.word, category: selected.category, source: "curated-wordfinity-nouns" });
+  return json({ word: selected.word, category: selected.category, source: "wordfinity-daten" });
 }
 async function handleCategory(env, body) {
   const target = String(body.target || "").trim();
