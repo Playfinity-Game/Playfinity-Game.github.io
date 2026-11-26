@@ -2425,7 +2425,7 @@
     /* LAST CHAT STANDING – round engine */
     const LastChatStanding = {
       channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null,
-      seconds:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
+      seconds:20, timerDuration:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
         if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
@@ -2467,7 +2467,7 @@
         if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.optionsVisible=!this.optionsVisible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='show-options'){this.optionsVisible=!!payload.visible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='chat-toggle'){this.chatEnabled=!!payload.enabled;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
-        if(action==='timer-settings'){this.timerEnabled=!!payload.enabled;const seconds=Number(payload.seconds);if(Number.isFinite(seconds)&&seconds>=1&&seconds<=3600)this.seconds=seconds;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
+        if(action==='timer-settings'){this.timerEnabled=!!payload.enabled;const seconds=Number(payload.seconds);if(Number.isFinite(seconds)&&seconds>=1&&seconds<=3600){this.timerDuration=seconds;this.seconds=seconds;}this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
         if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
         if(action==='reset')this.reset(true);
@@ -2509,7 +2509,7 @@
         const level=this.stage<5?'easy':this.stage<10?'medium':'hard';
         const selected=this.chooseQuestion(level);
         if(!selected){this.phase='finished';this.render();this.broadcast({type:'notice',text:'Keine Fragen für '+level+' vorhanden. Bitte den passenden ZIP-Fragenpool laden.'});return;}
-        this.stage++;this.question=selected;this.seconds=this.seconds||20;this.phase='question';this.optionsVisible=false;
+        this.stage++;this.question=selected;this.seconds=this.timerDuration;this.phase='question';this.optionsVisible=false;
         this.players.forEach(p=>{p.answer=null;p.locked=false;p.result='waiting';});
         this.render();this.broadcast({type:'round',state:this.snapshot()});
         if(this.timerEnabled){
