@@ -1621,7 +1621,6 @@
         <div class="lcs-result" id="lcs-result" hidden></div>
         <div class="lcs-lists">
           <div><h3>IM SPIEL</h3><div id="lcs-players" class="lcs-player-list">Noch niemand dabei</div></div>
-          <div><h3>AUSGESCHIEDEN</h3><div id="lcs-out" class="lcs-player-list">Noch niemand</div></div>
         </div>
       </div>
     </section>
@@ -2533,9 +2532,9 @@
         const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
-        $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · Verblieben: '+this.players.size:this.phase==='finished'?(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden – nächste Runde wartet!'):'';
+        $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · Verblieben: '+this.players.size:this.phase==='finished'?(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden'):'';
         $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' · '+p.answer:'')).join(' · ')||'Noch niemand dabei';
-        $('lcs-out').textContent=this.eliminated.map(p=>p.name+' ('+p.reason+')').join(' · ')||'Noch niemand';
+        
       },
       escape(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
     };
