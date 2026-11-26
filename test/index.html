@@ -1278,10 +1278,10 @@
     .lcs-timer-row{display:flex;align-items:center;justify-content:center;gap:12px;width:min(100%,430px);margin:0 auto 16px}
     .lcs-timer-row .lcs-timer{flex:1;width:auto;min-width:0;margin:0}
     .lcs-jokers-preview{display:flex;align-items:center;gap:7px;flex:none}
-    .lcs-joker-preview{width:43px;height:43px;display:grid;place-items:center;border:1px solid #a855f7;border-radius:12px;background:linear-gradient(145deg,rgba(44,19,73,.96),rgba(9,12,32,.98));box-shadow:0 0 12px #8b5cf655,inset 0 0 10px #a855f722;color:#f8eaff;font-size:1.35rem;line-height:1}
+    .lcs-joker-preview{width:43px;height:43px;display:grid;place-items:center;cursor:pointer;padding:0;font:inherit;transition:opacity .18s,transform .18s;border:1px solid #a855f7;border-radius:12px;background:linear-gradient(145deg,rgba(44,19,73,.96),rgba(9,12,32,.98));box-shadow:0 0 12px #8b5cf655,inset 0 0 10px #a855f722;color:#f8eaff;font-size:1.35rem;line-height:1}
     .lcs-joker-preview:first-child{border-color:#facc15;box-shadow:0 0 12px #facc1544,inset 0 0 10px #facc1522}
     .lcs-joker-preview:last-child{border-color:#22d3ee;box-shadow:0 0 12px #22d3ee44,inset 0 0 10px #22d3ee22}
-    .lcs-joker-preview small{font-size:.48rem;font-weight:1000;letter-spacing:.02em}
+    .lcs-joker-preview small{font-size:.8rem;font-weight:1000;letter-spacing:.02em}.lcs-joker-preview:disabled{opacity:.35;filter:grayscale(1);cursor:not-allowed}.lcs-joker-preview:not(:disabled):active{transform:scale(.92)}
     @media(max-width:520px){.lcs-timer-row{gap:7px;width:100%;margin-bottom:12px}.lcs-joker-preview{width:36px;height:36px;border-radius:10px;font-size:1.12rem}.lcs-jokers-preview{gap:5px}.lcs-timer-row .lcs-timer{padding:7px 9px;font-size:clamp(1.35rem,5vw,1.8rem)}}
     .lcs-shell.result-view #lcs-question{margin-top:4px;border-color:#facc15;background:rgba(30,24,12,.94);color:#fff7b2;box-shadow:0 0 18px #facc1544}
 
@@ -1671,7 +1671,7 @@
         <div class="lcs-timer-row">
           <div class="lcs-timer" id="lcs-time">20</div>
           <div class="lcs-jokers-preview" aria-label="Joker – Funktionen folgen später">
-            <div class="lcs-joker-preview" title="50:50 Joker" aria-label="50:50 Joker"><small>½</small></div>
+            <button type="button" class="lcs-joker-preview" id="lcs-joker-5050" title="50:50 Joker" aria-label="50:50 Joker" disabled><small>½</small></button>
             <div class="lcs-joker-preview" title="Publikumsjoker" aria-label="Publikumsjoker">👥</div>
             <div class="lcs-joker-preview" title="Telefonjoker" aria-label="Telefonjoker">☎</div>
           </div>
@@ -2500,7 +2500,7 @@
 
     /* LAST CHAT STANDING – round engine */
     const LastChatStanding = {
-      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null, gameMode:'live',
+      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null, gameMode:'live', joker5050Used:false, joker5050Hidden:[],
       seconds:20, timerDuration:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
@@ -2509,6 +2509,7 @@
         const modeModal=document.getElementById('lcs-mode-picker');
         document.getElementById('lcs-open-mode')?.addEventListener('click',()=>{modeModal.hidden=false;});
          document.getElementById('lcs-next-question')?.addEventListener('click',()=>this.command(this.phase==='finished'?'new-game':'next'));
+        document.getElementById('lcs-joker-5050')?.addEventListener('click',()=>this.command('joker-5050'));
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{modeModal.hidden=true;this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live');}));
         this.render();
       },
@@ -2518,7 +2519,7 @@
         setTimeout(()=>this.broadcast({type:'snapshot',state:this.snapshot()}),350);
       },
       broadcast(message){try{this.channel?.postMessage(message);}catch(e){}},
-      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,gameMode:this.gameMode,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible};},
+      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,gameMode:this.gameMode,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible,joker5050Used:this.joker5050Used,joker5050Hidden:this.joker5050Hidden};},
       receive(message){
         if(!message||!message.type)return;
         if(message.type==='command'){
@@ -2549,6 +2550,7 @@
         if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.openSecret();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet.'});}
         if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
+        if(action==='joker-5050'&&this.phase==='question'&&this.question&&!this.joker5050Used){const wrong=[0,1,2,3].filter(i=>i!==this.question.a);for(let i=wrong.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wrong[i],wrong[j]]=[wrong[j],wrong[i]];}this.joker5050Hidden=wrong.slice(0,2);this.joker5050Used=true;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.resolve();}}
         if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.optionsVisible=!this.optionsVisible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='show-options'){this.optionsVisible=!!payload.visible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
@@ -2622,7 +2624,7 @@
         const level=this.stage<5?'easy':this.stage<10?'medium':'hard';
         const selected=this.chooseQuestion(level);
         if(!selected){this.phase='finished';this.render();this.broadcast({type:'notice',text:'Keine Fragen für '+level+' vorhanden. Bitte den passenden ZIP-Fragenpool laden.'});return;}
-        this.stage++;this.question=selected;this.seconds=this.timerDuration;this.phase='question';this.optionsVisible=false;
+        this.stage++;this.question=selected;this.seconds=this.timerDuration;this.phase='question';this.optionsVisible=false;this.joker5050Used=false;this.joker5050Hidden=[];
         this.players.forEach(p=>{p.answer=null;p.locked=false;p.result='waiting';});
         this.render();this.broadcast({type:'round',state:this.snapshot()});
         if(this.timerEnabled){
@@ -2664,8 +2666,9 @@
         $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Erste A–D-Antwort genügt.':'LOBBY OFFEN · Live-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         const showAnswer=['timeup','resolved','finished'].includes(this.phase);
         $('lcs-question').textContent=this.question?(showAnswer?'RICHTIGE ANTWORT: '+String.fromCharCode(65+this.question.a)+' · '+this.question.o[this.question.a]:this.question.q):'';
+        const joker5050=$('lcs-joker-5050');if(joker5050){joker5050.disabled=this.phase!=='question'||!this.question||this.joker5050Used;joker5050.title=this.joker5050Used?'50:50 bereits benutzt':'50:50 Joker – zwei falsche Antworten entfernen';joker5050.setAttribute('aria-label',joker5050.title);}
         const opts=$('lcs-options');opts.hidden=showAnswer||!this.question||(!this.optionsVisible&&!(this.gameMode==='solo'&&this.phase==='question'));opts.innerHTML='';
-        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');const soloPlayer=this.gameMode==='solo'?this.players.get('solo-host'):null;const chosen=soloPlayer&&soloPlayer.answer===String.fromCharCode(65+i);d.className='lcs-option '+(chosen?'selected ':'')+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.disabled=!!(soloPlayer&&soloPlayer.locked);d.style.cursor=d.disabled?'default':'pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
+        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{if(this.joker5050Hidden.includes(i))return;const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');const soloPlayer=this.gameMode==='solo'?this.players.get('solo-host'):null;const chosen=soloPlayer&&soloPlayer.answer===String.fromCharCode(65+i);d.className='lcs-option '+(chosen?'selected ':'')+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.disabled=!!(soloPlayer&&soloPlayer.locked);d.style.cursor=d.disabled?'default':'pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
          const nextQuestion=$('lcs-next-question');
          if(nextQuestion){nextQuestion.classList.toggle('visible',this.phase==='resolved'||this.phase==='finished');nextQuestion.disabled=this.phase!=='resolved'&&this.phase!=='finished';nextQuestion.textContent=this.phase==='finished'?'NEUES SPIEL ↻':'NÄCHSTE RUNDE ›';}
