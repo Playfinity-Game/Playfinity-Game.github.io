@@ -2286,6 +2286,9 @@
         }
       },
       init(){
+        // Ein eventuell vom vorherigen Spielzustand gesetzter Pause-Status darf
+        // den Countdown beim Öffnen von GUESSMOJI nicht dauerhaft blockieren.
+        if(PauseController.paused)PauseController.setPaused(false);
         if(!this.initialized){
           const input=document.getElementById('guessmoji-input');
           input.disabled=false;
@@ -2330,7 +2333,12 @@
         // Handy: Countdown läuft ab Anzeige des neuen Rätsels automatisch.
         // Desktop bleibt unverändert: Start erst mit dem ersten gültigen Tipp aus dem Chat.
         const mobileDevice=window.matchMedia('(max-width: 768px)').matches||window.matchMedia('(pointer: coarse)').matches||/Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-        if(mobileDevice&&localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false')this.startTimer();
+        if(mobileDevice&&localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false'){
+          // Einen eventuell veralteten Timer-Handle verwerfen und die Runde
+          // beim Anzeigen des Rätsels garantiert mit einem frischen Countdown starten.
+          if(this.timer){clearInterval(this.timer);this.timer=null;}
+          this.startTimer();
+        }
       },
       startTimer(){
         if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'||!this.roundOpen||this.timer)return;
