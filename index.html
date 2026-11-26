@@ -1604,7 +1604,7 @@
         <div class="keyboard" id="wordle-keyboard"></div>
         <form class="wordle-streamer-entry" id="wordle-streamer-entry" autocomplete="off">
           <input id="wordle-streamer-input" type="text" maxlength="5" minlength="5" pattern="[A-Za-zÄÖÜäöüß]{5}" placeholder="Dein Wort (5)" aria-label="Eigenes FIVE-X-Wort" autocomplete="off" spellcheck="false">
-          <button id="wordle-streamer-submit" type="submit">Raten</button>
+          <button id="wordle-streamer-submit" type="button">Raten</button>
         </form>
         <div class="round-result" id="wordle-round-result"></div>
       </div>
@@ -2883,7 +2883,11 @@
           e.preventDefault();
           this.submitStreamerGuess();
         });
+        document.getElementById('wordle-streamer-submit')?.addEventListener('click', () => {
+          this.submitStreamerGuess();
+        });
         streamerInput?.addEventListener('input', () => {
+          streamerInput.setCustomValidity('');
           streamerInput.value = streamerInput.value.replace(/[^A-Za-zÄÖÜäöüß]/g, '').toLocaleUpperCase('de-DE').slice(0, 5);
         });
         window.addEventListener('resize', () => this.renderBoard());
@@ -3009,7 +3013,14 @@
         if (PauseController.paused || PlayfinityRouter.currentScreen !== 'wordle') return;
         const input = document.getElementById('wordle-streamer-input');
         const word = (input?.value || '').trim().toLocaleUpperCase('de-DE');
-        if (!/^[A-ZÄÖÜ]{5}$/.test(word)) return;
+        if (!/^[A-ZÄÖÜ]{5}$/.test(word)) {
+          if (input) {
+            input.setCustomValidity('Bitte ein gültiges deutsches Wort mit genau 5 Buchstaben eingeben.');
+            input.reportValidity();
+          }
+          return;
+        }
+        if (input) input.setCustomValidity('');
         this.submitGuess(word, { id: 'streamer', name: 'Streamer' });
         if (input) input.value = '';
       },
