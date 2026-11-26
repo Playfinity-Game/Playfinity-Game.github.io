@@ -2529,7 +2529,7 @@
         if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.openSecret();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet.'});}
         if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
-        if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.render();this.broadcast({type:'players',state:this.snapshot()});}}
+        if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.resolve();}}
         if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.optionsVisible=!this.optionsVisible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='show-options'){this.optionsVisible=!!payload.visible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='chat-toggle'){this.chatEnabled=!!payload.enabled;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
@@ -2605,7 +2605,7 @@
         this.players.forEach(p=>{p.answer=null;p.locked=false;p.result='waiting';});
         this.render();this.broadcast({type:'round',state:this.snapshot()});
         if(this.timerEnabled){
-          this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);this.phase='timeup';this.render();this.broadcast({type:'time-up'});}},1000);
+          this.timer=setInterval(()=>{if(this.phase!=='question')return;this.seconds--;this.render();this.broadcast({type:'tick',seconds:this.seconds});if(this.seconds<=0){clearInterval(this.timer);if(this.gameMode==='solo'){this.resolve();}else{this.phase='timeup';this.render();this.broadcast({type:'time-up'});}}},1000);
         }
       },
       resolve(){
