@@ -1970,7 +1970,7 @@
             const response=await fetch('https://dinaj-1992.github.io/wordfinity-daten/raetsel/'+id+'.json',{cache:'no-cache'});
             if(response.ok){
               const candidate=await response.json();
-              if(this.isSuitablePuzzle(candidate,id))data=candidate;
+              if(this.isSuitablePuzzle(candidate,id)){data=candidate;this.usedTargets.add(this.normalize(candidate.woerter[0]));}
             }
           }
           if(!data)throw new Error('Kein gültiges Rätsel aus den 600 geprüften Daten gefunden.');
