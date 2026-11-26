@@ -1298,6 +1298,16 @@
     .lcs-player-list{font-size:.78rem;color:#d5d8e8;line-height:1.8;overflow-wrap:anywhere}
     @media(max-width:520px){.lcs-options,.lcs-lists{grid-template-columns:1fr}.lcs-question{min-height:90px}}
 
+    /* LAST CHAT STANDING – neon gameshow arena (test page only) */
+    #screen-lastchat{max-width:none;min-height:calc(100vh - 64px);overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 100%,rgba(35,83,255,.24),transparent 48%),radial-gradient(ellipse at 14% 10%,rgba(176,38,255,.22),transparent 34%),radial-gradient(ellipse at 88% 12%,rgba(0,224,255,.19),transparent 36%),linear-gradient(180deg,#08091d 0%,#090b24 54%,#050713 100%)}
+    #screen-lastchat::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.92;background-image:radial-gradient(ellipse 5.5% 2.4% at 8% 3%,rgba(255,255,255,.98) 0%,rgba(0,229,255,.85) 18%,rgba(0,229,255,.18) 52%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 27% 2%,rgba(255,255,255,.95) 0%,rgba(176,38,255,.9) 18%,rgba(176,38,255,.16) 54%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 50% 2%,rgba(255,255,255,.98) 0%,rgba(0,229,255,.9) 18%,rgba(0,229,255,.16) 54%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 73% 2%,rgba(255,255,255,.95) 0%,rgba(176,38,255,.9) 18%,rgba(176,38,255,.16) 54%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 92% 3%,rgba(255,255,255,.98) 0%,rgba(0,229,255,.85) 18%,rgba(0,229,255,.18) 52%,transparent 100%),linear-gradient(108deg,transparent 5%,rgba(0,229,255,.12) 10%,transparent 19%),linear-gradient(74deg,transparent 17%,rgba(176,38,255,.15) 24%,transparent 34%),linear-gradient(102deg,transparent 42%,rgba(0,229,255,.12) 50%,transparent 59%),linear-gradient(76deg,transparent 67%,rgba(176,38,255,.15) 76%,transparent 85%),radial-gradient(ellipse at 50% 105%,rgba(0,229,255,.24),transparent 46%),repeating-linear-gradient(0deg,transparent 0 54px,rgba(111,133,255,.045) 55px 56px);animation:lcsArenaGlow 8s ease-in-out infinite alternate}
+    #screen-lastchat .lcs-shell{position:relative;z-index:1;max-width:1120px;padding:20px 16px 34px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
+    #screen-lastchat .lcs-title{text-shadow:0 0 18px rgba(0,229,255,.22),0 0 34px rgba(176,38,255,.2)}
+    #screen-lastchat .lcs-stats>div,#screen-lastchat .lcs-question,#screen-lastchat .lcs-mode-picker,#screen-lastchat .lcs-lists>div{backdrop-filter:blur(12px);box-shadow:0 10px 32px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.06)}
+    @keyframes lcsArenaGlow{0%{filter:brightness(.86) saturate(.95)}100%{filter:brightness(1.16) saturate(1.18)}}
+    @media(prefers-reduced-motion:reduce){#screen-lastchat::after{animation:none}}
+    @media(max-width:600px){#screen-lastchat{min-height:calc(100dvh - 58px)}#screen-lastchat .lcs-shell{padding:14px 10px 26px}}
+
 </style>
 </head>
 
