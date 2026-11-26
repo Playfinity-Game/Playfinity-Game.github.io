@@ -2484,7 +2484,7 @@
         return picked;
       },
       reset(announce=true){
-        clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=20;this.phase='idle';this.optionsVisible=false;
+        clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=this.timerDuration;this.phase='idle';this.optionsVisible=false;
         this.usedIds=this.getUsed();this.render();if(announce)this.broadcast({type:'reset'});
       },
       join(user){
@@ -2523,7 +2523,7 @@
           p.result=correct?'correct':'eliminated';
           if(!correct){this.eliminated.unshift({...p,reason:p.answer?'Falsch':'Keine Antwort'});this.players.delete(id);}
         }
-        this.phase='resolved';this.optionsVisible=true;this.render();this.broadcast({type:'resolved',state:this.snapshot()});
+        this.phase=this.players.size<=1?'finished':'resolved';this.optionsVisible=true;this.render();this.broadcast({type:this.phase==='finished'?'finished':'resolved',state:this.snapshot()});
       },
       render(){
         const $=id=>document.getElementById(id);
@@ -2531,7 +2531,7 @@
         $('lcs-status').textContent=({idle:'Öffne das geheime Streamer-Fenster und starte die Lobby.',lobby:this.chatEnabled?'LOBBY OFFEN · Schreibe !join im Live-Chat.':'LOBBY OFFEN · Chat-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'Die nächste Runde beginnt bald …';
         const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
-        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&this.phase!=='revealed'?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
+        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
         $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · Verblieben: '+this.players.size:this.phase==='finished'?(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden – nächste Runde wartet!'):'';
         $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' · '+p.answer:'')).join(' · ')||'Noch niemand dabei';
