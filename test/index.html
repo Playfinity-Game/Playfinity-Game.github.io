@@ -2456,7 +2456,7 @@
       snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null};},
       receive(message){
         if(!message||!message.type)return;
-        if(message.type==='command')this.command(message.action);
+        if(message.type==='command'){if(message.action==='load-questions'){const incoming=Array.isArray(message.questions)?message.questions:[];if(incoming.length>=15&&incoming.every(q=>q&&typeof q.q==='string'&&Array.isArray(q.o)&&q.o.length===4&&Number.isInteger(q.a)&&q.a>=0&&q.a<4)){this.pool=[...incoming].sort(()=>Math.random()-.5);this.reset(false);this.broadcast({type:'notice',text:this.pool.length+' Rätsel geladen – die nächsten 15 werden zufällig gespielt.'});}else this.broadcast({type:'notice',text:'Import abgelehnt: Mindestens 15 gültige Rätsel werden benötigt.'});}else this.command(message.action);}
         if(message.type==='snapshot-request')this.broadcast({type:'snapshot',state:this.snapshot()});
       },
       command(action){
