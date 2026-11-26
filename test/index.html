@@ -1277,6 +1277,13 @@
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
     .lcs-stats strong{display:block;font-size:clamp(1.35rem,4vw,2rem);margin-top:4px}
     .lcs-status{padding:11px;border-radius:10px;background:#a855f71a;color:#d8b4fe;font-weight:800;font-size:.86rem;margin-bottom:14px}
+    .lcs-mode-picker{margin:0 0 16px;padding:16px;border:1px solid #a855f766;border-radius:15px;background:linear-gradient(135deg,#211536,#11152a)}
+    .lcs-mode-picker[hidden]{display:none}
+    .lcs-mode-heading{font-size:.72rem;letter-spacing:.16em;font-weight:950;color:#c4b5fd;margin-bottom:11px}
+    .lcs-mode-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+    .lcs-mode-buttons button{padding:14px 8px;border:1px solid #a78bfa88;border-radius:10px;background:#2a1b43;color:#fff;font:900 .82rem var(--font-main);cursor:pointer}
+    .lcs-mode-buttons button.active{border-color:#34d399;background:#064e3b88;box-shadow:0 0 16px #34d39933}
+    .lcs-mode-note{font-size:.72rem;color:#a5a3b8;margin-top:9px}
     .lcs-question{font:850 clamp(1.15rem,3vw,1.75rem)/1.35 var(--font-main);padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #a855f755;border-radius:16px;background:linear-gradient(140deg,#1c1530,#101326)}
     .lcs-question:empty{display:none}
     .lcs-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
@@ -1614,6 +1621,14 @@
           <div><small>STUFE</small><strong id="lcs-stage">0 / 15</strong></div>
           <div><small>IM SPIEL</small><strong id="lcs-alive">0</strong></div>
           <div><small>ZEIT</small><strong id="lcs-time">20</strong></div>
+        </div>
+        <div class="lcs-mode-picker" id="lcs-mode-picker">
+          <div class="lcs-mode-heading">WIE MÖCHTEST DU SPIELEN?</div>
+          <div class="lcs-mode-buttons">
+            <button type="button" data-lcs-mode="solo">🎮 SOLO TESTEN</button>
+            <button type="button" data-lcs-mode="live">🔴 LIVE MIT CHAT</button>
+          </div>
+          <div class="lcs-mode-note" id="lcs-mode-note">Wähle Solo zum Ausprobieren oder Live für deine Zuschauer.</div>
         </div>
         <div class="lcs-status" id="lcs-status">Bereit</div>
         <div class="lcs-question" id="lcs-question"></div>
@@ -2429,6 +2444,7 @@
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
         if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
+        document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live')));
         this.render();
       },
       openSecret(){
@@ -2536,10 +2552,13 @@
       render(){
         const $=id=>document.getElementById(id);
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
+        const modePicker=$('lcs-mode-picker');modePicker.hidden=this.phase!=='idle';
+        document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.classList.toggle('active',button.dataset.lcsMode===this.gameMode));
+        $('lcs-mode-note').textContent=this.gameMode==='solo'?'Solo ausgewählt · Du beantwortest die Fragen direkt hier im Spiel.':'Live ausgewählt · Zuschauer steigen mit ihrer ersten A–D-Antwort ein.';
         $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Erste A–D-Antwort genügt.':'LOBBY OFFEN · Live-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'';
-        const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
-        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
+        const opts=$('lcs-options');opts.hidden=!this.question||(!this.optionsVisible&&!(this.gameMode==='solo'&&this.phase==='question'));opts.innerHTML='';
+        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.style.cursor='pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
         $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · '+(this.gameMode==='solo'?'Du bist weiter!':'Verblieben: '+this.players.size):this.phase==='finished'?(this.gameMode==='solo'?(this.players.size?'🏆 DU HAST GEWONNEN!':'❌ GAME OVER'):(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden')):'';
         $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' · '+p.answer:'')).join(' · ')||'Noch niemand dabei';
