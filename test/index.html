@@ -1666,7 +1666,7 @@
     </section>
     <section class="screen" id="screen-lastchat">
       <div class="lcs-shell">
-        <h1 class="lcs-title">LAST CHAT <span>STANDING</span></h1>
+        <h1 class="lcs-title" id="lcs-title">PLAYFINITY</h1>
         <div class="lcs-timer-row">
           <div class="lcs-timer" id="lcs-time">20</div>
           <div class="lcs-jokers-preview" aria-label="Joker – Funktionen folgen später">
@@ -2517,6 +2517,10 @@
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{modeModal.hidden=true;this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live');}));
         this.render();
       },
+      updateGameTitle(){
+        const title=document.getElementById('lcs-title');
+        if(title) title.innerHTML=this.gameMode==='solo'?'QUIZ MASTER':'LAST CHAT <span>STANDING</span>';
+      },
       openSecret(){
         const popup=window.open('./last-chat-streamer.html','playfinityLCSStreamer','popup=yes,width=560,height=900');
         if(!popup){document.getElementById('lcs-status').textContent='Popup blockiert – bitte Popups für diese Testseite erlauben.';return;}
@@ -2550,9 +2554,9 @@
         if(message.type==='snapshot-request')this.broadcast({type:'snapshot',state:this.snapshot()});
       },
       command(action,payload={}){
-        if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length)this.loadDemoQuestions();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Test gestartet.'});}
-        if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet. Die Streamer-Steuerung findest du unter Einstellungen → Last Chat Standing.'});}
-        if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
+        if(action==='mode-solo'){this.gameMode='solo';this.updateGameTitle();this.chatEnabled=false;this.reset(false);if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length)this.loadDemoQuestions();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Test gestartet.'});}
+        if(action==='mode-live'){this.gameMode='live';this.updateGameTitle();this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet. Die Streamer-Steuerung findest du unter Einstellungen → Last Chat Standing.'});}
+        if(action==='lobby'){this.gameMode='live';this.updateGameTitle();this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
         if(action==='joker-5050'&&this.phase==='question'&&this.question&&!this.joker5050Used){const wrong=[0,1,2,3].filter(i=>i!==this.question.a);for(let i=wrong.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[wrong[i],wrong[j]]=[wrong[j],wrong[i]];}this.joker5050Hidden=wrong.slice(0,2);this.joker5050Used=true;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.resolve();}}
