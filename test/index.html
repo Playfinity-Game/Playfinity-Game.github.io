@@ -2500,7 +2500,7 @@
 
     /* LAST CHAT STANDING – round engine */
     const LastChatStanding = {
-      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null, gameMode:'live', joker5050Used:false, joker5050Hidden:[],
+      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null, gameMode:'live', joker5050Used:false, joker5050Hidden:[], jokerAudienceUsed:false, jokerPhoneUsed:false,
       seconds:20, timerDuration:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
@@ -2519,7 +2519,7 @@
         setTimeout(()=>this.broadcast({type:'snapshot',state:this.snapshot()}),350);
       },
       broadcast(message){try{this.channel?.postMessage(message);}catch(e){}},
-      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,gameMode:this.gameMode,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible,joker5050Used:this.joker5050Used,joker5050Hidden:this.joker5050Hidden};},
+      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,gameMode:this.gameMode,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible,joker5050Used:this.joker5050Used,joker5050Hidden:this.joker5050Hidden,jokerAudienceUsed:this.jokerAudienceUsed,jokerPhoneUsed:this.jokerPhoneUsed};},
       receive(message){
         if(!message||!message.type)return;
         if(message.type==='command'){
@@ -2600,7 +2600,7 @@
       },
       reset(announce=true){
         clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=this.timerDuration;this.phase='idle';this.optionsVisible=false;
-        this.usedIds=this.getUsed();this.render();if(announce)this.broadcast({type:'reset'});
+        this.joker5050Used=false;this.joker5050Hidden=[];this.jokerAudienceUsed=false;this.jokerPhoneUsed=false;this.usedIds=this.getUsed();this.render();if(announce)this.broadcast({type:'reset'});
       },
       join(user){
         if(this.gameMode!=='live'||this.phase!=='lobby'||!this.chatEnabled||!user?.id)return false;
@@ -2624,7 +2624,7 @@
         const level=this.stage<5?'easy':this.stage<10?'medium':'hard';
         const selected=this.chooseQuestion(level);
         if(!selected){this.phase='finished';this.render();this.broadcast({type:'notice',text:'Keine Fragen für '+level+' vorhanden. Bitte den passenden ZIP-Fragenpool laden.'});return;}
-        this.stage++;this.question=selected;this.seconds=this.timerDuration;this.phase='question';this.optionsVisible=false;this.joker5050Used=false;this.joker5050Hidden=[];
+        this.stage++;this.question=selected;this.seconds=this.timerDuration;this.phase='question';this.optionsVisible=false;
         this.players.forEach(p=>{p.answer=null;p.locked=false;p.result='waiting';});
         this.render();this.broadcast({type:'round',state:this.snapshot()});
         if(this.timerEnabled){
