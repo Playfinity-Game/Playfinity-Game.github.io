@@ -3366,7 +3366,7 @@
           if(!response.ok)return;
           const data=await response.json();
           if(!this.isValidPuzzle(data,id))return;
-          await this.writeLocal('puzzles',{id:Number(id),version:1,savedAt:Date.now(),data});
+          await this.writeLocal('puzzles',{id:Number(id),version:2,savedAt:Date.now(),data});
           this.puzzleCache.set(Number(id),data);
           console.info('[Wordfinity] Rätsel',id,'im Hintergrund aktualisiert.');
         }catch(error){console.warn('[Wordfinity] Hintergrund-Aktualisierung von Rätsel',id,'fehlgeschlagen.',error);}
