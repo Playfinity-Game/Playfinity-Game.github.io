@@ -2529,7 +2529,7 @@
         const $=id=>document.getElementById(id);
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
         $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Schreibe !join im Live-Chat.':'LOBBY OFFEN · Chat-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
-        $('lcs-question').textContent=this.question?this.question.q:'Die nächste Runde beginnt bald …';
+        $('lcs-question').textContent=this.question?this.question.q:'';
         const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
