@@ -2438,7 +2438,7 @@
         setTimeout(()=>this.broadcast({type:'snapshot',state:this.snapshot()}),350);
       },
       broadcast(message){try{this.channel?.postMessage(message);}catch(e){}},
-      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,timerEnabled:this.timerEnabled,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible};},
+      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible};},
       receive(message){
         if(!message||!message.type)return;
         if(message.type==='command'){
