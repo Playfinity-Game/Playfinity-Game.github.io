@@ -1298,16 +1298,6 @@
     .lcs-player-list{font-size:.78rem;color:#d5d8e8;line-height:1.8;overflow-wrap:anywhere}
     @media(max-width:520px){.lcs-options,.lcs-lists{grid-template-columns:1fr}.lcs-question{min-height:90px}}
 
-    /* LAST CHAT STANDING – neon gameshow arena (test page only) */
-    #screen-lastchat{max-width:none;min-height:calc(100vh - 64px);overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 100%,rgba(35,83,255,.24),transparent 48%),radial-gradient(ellipse at 14% 10%,rgba(176,38,255,.22),transparent 34%),radial-gradient(ellipse at 88% 12%,rgba(0,224,255,.19),transparent 36%),linear-gradient(180deg,#08091d 0%,#090b24 54%,#050713 100%)}
-    #screen-lastchat::after{content:"";position:absolute;z-index:-1;inset:0;pointer-events:none;opacity:.92;background-image:radial-gradient(ellipse 5.5% 2.4% at 8% 3%,rgba(255,255,255,.98) 0%,rgba(0,229,255,.85) 18%,rgba(0,229,255,.18) 52%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 27% 2%,rgba(255,255,255,.95) 0%,rgba(176,38,255,.9) 18%,rgba(176,38,255,.16) 54%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 50% 2%,rgba(255,255,255,.98) 0%,rgba(0,229,255,.9) 18%,rgba(0,229,255,.16) 54%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 73% 2%,rgba(255,255,255,.95) 0%,rgba(176,38,255,.9) 18%,rgba(176,38,255,.16) 54%,transparent 100%),radial-gradient(ellipse 5.5% 2.4% at 92% 3%,rgba(255,255,255,.98) 0%,rgba(0,229,255,.85) 18%,rgba(0,229,255,.18) 52%,transparent 100%),linear-gradient(108deg,transparent 5%,rgba(0,229,255,.12) 10%,transparent 19%),linear-gradient(74deg,transparent 17%,rgba(176,38,255,.15) 24%,transparent 34%),linear-gradient(102deg,transparent 42%,rgba(0,229,255,.12) 50%,transparent 59%),linear-gradient(76deg,transparent 67%,rgba(176,38,255,.15) 76%,transparent 85%),radial-gradient(ellipse at 50% 105%,rgba(0,229,255,.24),transparent 46%),repeating-linear-gradient(0deg,transparent 0 54px,rgba(111,133,255,.045) 55px 56px);animation:lcsArenaGlow 8s ease-in-out infinite alternate}
-    #screen-lastchat .lcs-shell{position:relative;z-index:1;max-width:1120px;padding:20px 16px 34px;text-shadow:0 2px 14px rgba(0,0,0,.45)}
-    #screen-lastchat .lcs-title{text-shadow:0 0 18px rgba(0,229,255,.22),0 0 34px rgba(176,38,255,.2)}
-    #screen-lastchat .lcs-stats>div,#screen-lastchat .lcs-question,#screen-lastchat .lcs-mode-picker,#screen-lastchat .lcs-lists>div{backdrop-filter:blur(12px);box-shadow:0 10px 32px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.06)}
-    @keyframes lcsArenaGlow{0%{filter:brightness(.86) saturate(.95)}100%{filter:brightness(1.16) saturate(1.18)}}
-    @media(prefers-reduced-motion:reduce){#screen-lastchat::after{animation:none}}
-    @media(max-width:600px){#screen-lastchat{min-height:calc(100dvh - 58px)}#screen-lastchat .lcs-shell{padding:14px 10px 26px}}
-
 </style>
 </head>
 
@@ -2454,6 +2444,7 @@
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
         if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
+        try{const saved=JSON.parse(localStorage.getItem('playfinity_lcs_question_pools_v1')||'null');if(saved&&['easy','medium','hard'].every(k=>Array.isArray(saved[k])&&saved[k].length)){this.levelPools=saved;this.pool=[...saved.easy,...saved.medium,...saved.hard];}}catch(_){}
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live')));
         this.render();
       },
@@ -2473,6 +2464,7 @@
             if(['easy','medium','hard'].every(valid)){
               this.levelPools={easy:incoming.easy,medium:incoming.medium,hard:incoming.hard};
               this.pool=[...incoming.easy,...incoming.medium,...incoming.hard];
+              try{localStorage.setItem('playfinity_lcs_question_pools_v1',JSON.stringify(this.levelPools));}catch(_){}
               this.reset(false);this.broadcast({type:'notice',text:'Fragenpools geladen: '+incoming.easy.length+' leicht, '+incoming.medium.length+' mittel, '+incoming.hard.length+' schwer.'});
             }else this.broadcast({type:'notice',text:'Import abgelehnt: Für jede Schwierigkeit werden mindestens 5 gültige Fragen benötigt.'});
           } else if(message.action==='load-questions'){
@@ -2480,14 +2472,16 @@
             if(incoming.length>=15&&incoming.every(q=>q&&typeof q.q==='string'&&Array.isArray(q.o)&&q.o.length===4&&Number.isInteger(q.a)&&q.a>=0&&q.a<4)){
               this.levelPools={easy:incoming.filter(q=>q.levelGroup==='easy'||q.levelGroup==='leicht'),medium:incoming.filter(q=>q.levelGroup==='medium'||q.levelGroup==='mittel'),hard:incoming.filter(q=>q.levelGroup==='hard'||q.levelGroup==='schwer')};
               if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length){this.levelPools={easy:incoming.slice(0,5),medium:incoming.slice(5,10),hard:incoming.slice(10,15)};}
-              this.pool=incoming;this.reset(false);this.broadcast({type:'notice',text:incoming.length+' Rätsel geladen.'});
+              this.pool=incoming;
+              try{localStorage.setItem('playfinity_lcs_question_pools_v1',JSON.stringify(this.levelPools));}catch(_){}
+              this.reset(false);this.broadcast({type:'notice',text:incoming.length+' Rätsel geladen.'});
             }else this.broadcast({type:'notice',text:'Import abgelehnt: Mindestens 15 gültige Rätsel werden benötigt.'});
           } else this.command(message.action,message);
         }
         if(message.type==='snapshot-request')this.broadcast({type:'snapshot',state:this.snapshot()});
       },
       command(action,payload={}){
-        if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Modus ausgewählt.'});}
+        if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length)this.loadDemoQuestions();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Test gestartet.'});}
         if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Modus ausgewählt.'});}
         if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
@@ -2499,6 +2493,32 @@
         if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
         if(action==='next'&&this.phase==='resolved'){if(this.gameMode==='solo'){if(this.stage>=15){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}else if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
         if(action==='reset')this.reset(true);
+      },
+      loadDemoQuestions(){
+        this.levelPools={
+          easy:[
+            {id:'demo-e1',q:'Welche Farbe entsteht aus Blau und Gelb?',o:['Grün','Lila','Orange','Rot'],a:0},
+            {id:'demo-e2',q:'Wie viele Beine hat eine Spinne?',o:['6','8','10','12'],a:1},
+            {id:'demo-e3',q:'Was ist die Hauptstadt von Frankreich?',o:['Rom','Madrid','Paris','Wien'],a:2},
+            {id:'demo-e4',q:'Welches Tier bellt?',o:['Katze','Hund','Pferd','Schaf'],a:1},
+            {id:'demo-e5',q:'Wie viele Tage hat eine Woche?',o:['5','6','7','8'],a:2}
+          ],
+          medium:[
+            {id:'demo-m1',q:'Welcher Planet ist der Sonne am nächsten?',o:['Venus','Mars','Merkur','Erde'],a:2},
+            {id:'demo-m2',q:'Wie heißt die chemische Formel von Wasser?',o:['CO₂','H₂O','O₂','NaCl'],a:1},
+            {id:'demo-m3',q:'In welchem Jahr fiel die Berliner Mauer?',o:['1987','1989','1990','1991'],a:1},
+            {id:'demo-m4',q:'Wie viele Felder hat ein Schachbrett?',o:['案64','72','81','100'],a:0},
+            {id:'demo-m5',q:'Welches Organ pumpt Blut durch den Körper?',o:['Lunge','Leber','Herz','Niere'],a:2}
+          ],
+          hard:[
+            {id:'demo-h1',q:'Welches Element hat das chemische Symbol W?',o:['Wolfram','Wasserstoff','Wismut','Vanadium'],a:0},
+            {id:'demo-h2',q:'Wie heißt die Hauptstadt von Kanada?',o:['Toronto','Vancouver','Ottawa','Montreal'],a:2},
+            {id:'demo-h3',q:'Wie viele Zähne hat ein erwachsener Mensch normalerweise inklusive Weisheitszähne?',o:['28','30','32','34'],a:2},
+            {id:'demo-h4',q:'Wer schrieb den Roman „Der Prozess“?',o:['Thomas Mann','Franz Kafka','Hermann Hesse','Bertolt Brecht'],a:1},
+            {id:'demo-h5',q:'Welcher Planet hat die größte Anzahl bekannter Monde (Stand kann sich ändern)?',o:['Jupiter','Saturn','Uranus','Neptun'],a:1}
+          ]
+        };
+        this.pool=[...this.levelPools.easy,...this.levelPools.medium,...this.levelPools.hard];
       },
       getUsed(){try{const value=JSON.parse(localStorage.getItem(this.usedKey)||'[]');return Array.isArray(value)?value:[];}catch(_){return [];}},
       saveUsed(){try{localStorage.setItem(this.usedKey,JSON.stringify(this.usedIds));}catch(_){}},
