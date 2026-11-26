@@ -1273,8 +1273,16 @@
     #screen-lastchat .lcs-title{text-shadow:0 3px 18px #000,0 0 20px #000}
 
     .lcs-shell{width:100%;max-width:820px;margin:0 auto;text-align:center;padding:8px 0 14px;font-family:var(--font-main)}
-    .lcs-shell.intro .lcs-timer,.lcs-shell.intro .lcs-stats,.lcs-shell.intro .lcs-status{display:none}
-    .lcs-shell.result-view .lcs-timer,.lcs-shell.result-view .lcs-status,.lcs-shell.result-view #lcs-options{display:none!important}
+    .lcs-shell.intro .lcs-timer-row,.lcs-shell.intro .lcs-stats,.lcs-shell.intro .lcs-status{display:none}
+    .lcs-shell.result-view .lcs-timer-row,.lcs-shell.result-view .lcs-status,.lcs-shell.result-view #lcs-options{display:none!important}
+    .lcs-timer-row{display:flex;align-items:center;justify-content:center;gap:12px;width:min(100%,430px);margin:0 auto 16px}
+    .lcs-timer-row .lcs-timer{flex:1;width:auto;min-width:0;margin:0}
+    .lcs-jokers-preview{display:flex;align-items:center;gap:7px;flex:none}
+    .lcs-joker-preview{width:43px;height:43px;display:grid;place-items:center;border:1px solid #a855f7;border-radius:12px;background:linear-gradient(145deg,rgba(44,19,73,.96),rgba(9,12,32,.98));box-shadow:0 0 12px #8b5cf655,inset 0 0 10px #a855f722;color:#f8eaff;font-size:1.35rem;line-height:1}
+    .lcs-joker-preview:first-child{border-color:#facc15;box-shadow:0 0 12px #facc1544,inset 0 0 10px #facc1522}
+    .lcs-joker-preview:last-child{border-color:#22d3ee;box-shadow:0 0 12px #22d3ee44,inset 0 0 10px #22d3ee22}
+    .lcs-joker-preview small{font-size:.48rem;font-weight:1000;letter-spacing:.02em}
+    @media(max-width:520px){.lcs-timer-row{gap:7px;width:100%;margin-bottom:12px}.lcs-joker-preview{width:36px;height:36px;border-radius:10px;font-size:1.12rem}.lcs-jokers-preview{gap:5px}.lcs-timer-row .lcs-timer{padding:7px 9px;font-size:clamp(1.35rem,5vw,1.8rem)}}
     .lcs-shell.result-view #lcs-question{margin-top:4px;border-color:#facc15;background:rgba(30,24,12,.94);color:#fff7b2;box-shadow:0 0 18px #facc1544}
 
     .lcs-shell.intro .lcs-start-button{margin-top:104px}
@@ -1660,7 +1668,14 @@
     <section class="screen" id="screen-lastchat">
       <div class="lcs-shell">
         <h1 class="lcs-title">LAST CHAT <span>STANDING</span></h1>
-        <div class="lcs-timer" id="lcs-time">20</div>
+        <div class="lcs-timer-row">
+          <div class="lcs-timer" id="lcs-time">20</div>
+          <div class="lcs-jokers-preview" aria-label="Joker – Funktionen folgen später">
+            <div class="lcs-joker-preview" title="50:50 Joker" aria-label="50:50 Joker"><small>½</small></div>
+            <div class="lcs-joker-preview" title="Publikumsjoker" aria-label="Publikumsjoker">👥</div>
+            <div class="lcs-joker-preview" title="Telefonjoker" aria-label="Telefonjoker">☎</div>
+          </div>
+        </div>
         <div class="lcs-stats">
           <div><small>RUNDE</small><strong id="lcs-stage">0 / 15</strong></div>
         </div>
