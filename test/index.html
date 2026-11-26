@@ -1312,6 +1312,8 @@
     .lcs-option b{color:#67e8f9;margin-right:8px}
     .lcs-option:nth-child(even) b{color:#d8b4fe}
     .lcs-option.correct{border-color:#34d399;background:#064e3b99}
+    .lcs-option.selected{border:2px solid #facc15;background:linear-gradient(100deg,rgba(133,77,14,.92),rgba(113,63,18,.86));color:#fff7b2;box-shadow:0 0 18px #facc1588}
+    .lcs-option.selected:after{content:'  ✓ DEINE AUSWAHL';display:block;color:#fde68a;font-size:.68rem;font-weight:1000;margin:5px 0 0 24px}
     .lcs-option.wrong{opacity:.5}
     .lcs-result{margin:12px 0;padding:14px;border-radius:12px;background:#201536;color:#e9d5ff;font-weight:800}
     .lcs-lists{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin:18px 0}
@@ -2621,7 +2623,7 @@
         $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Erste A–D-Antwort genügt.':'LOBBY OFFEN · Live-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'';
         const opts=$('lcs-options');opts.hidden=!this.question||(!this.optionsVisible&&!(this.gameMode==='solo'&&this.phase==='question'));opts.innerHTML='';
-        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.style.cursor='pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
+        if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');const soloPlayer=this.gameMode==='solo'?this.players.get('solo-host'):null;const chosen=soloPlayer&&soloPlayer.answer===String.fromCharCode(65+i);d.className='lcs-option '+(chosen?'selected ':'')+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.disabled=!!(soloPlayer&&soloPlayer.locked);d.style.cursor=d.disabled?'default':'pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
          const nextQuestion=$('lcs-next-question');
          if(nextQuestion){nextQuestion.classList.toggle('visible',this.phase==='resolved');nextQuestion.disabled=this.phase!=='resolved';}
