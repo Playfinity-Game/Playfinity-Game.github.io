@@ -2120,7 +2120,7 @@
     };
 
     const GuessmojiGame = {
-      initialized:false, round:0, totalRounds:700, current:null, timer:null, remaining:20, duration:20, roundId:'',
+      initialized:false, round:0, totalRounds:700, current:null, timer:null, timerEndAt:0, timerPauseAt:0, remaining:20, duration:20, roundId:'',
       roundOpen:false, scores:new Map(), solvedPlayers:new Set(), correctPlayers:new Map(), used:new Set(), autoNext:null,
       puzzles:[],
       normalize(value){return String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/ß/g,'ss').toLocaleLowerCase('de-DE').replace(/[^a-z0-9]/g,'');},
@@ -2156,15 +2156,12 @@
         if(!this.initialized){
           const input=document.getElementById('guessmoji-input');
           input.disabled=false;
-          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');if(input.value.trim()&&this.roundOpen)this.startTimer();});
+          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');});
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
             const guess=input.value.trim();
-            // Auf Mobilbrowsern den Countdown direkt beim Absenden starten,
-            // bevor das Eingabefeld geleert oder der Fokus verschoben wird.
-            if(guess&&this.roundOpen)this.startTimer();
-            input.value='';input.focus();
             if(guess)this.submitGuess(guess,{id:'local-player',name:'Du'});
+            input.value='';input.focus();
           });
           try{this.duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);}catch(_){this.duration=20;}
           if(![10,15,20,30,45,60].includes(this.duration))this.duration=20;
@@ -2179,7 +2176,7 @@
         this.used.add(index);return this.puzzles[index];
       },
       nextRound(){
-        clearInterval(this.timer);this.timer=null;clearTimeout(this.autoNext);
+        clearInterval(this.timer);this.timer=null;this.timerEndAt=0;this.timerPauseAt=0;clearTimeout(this.autoNext);
         if(this.round>=this.totalRounds){this.round=0;this.used.clear();}
         this.round++;this.roundId='gm-'+Date.now()+'-'+this.round;this.current=this.choosePuzzle();this.remaining=this.duration;this.roundOpen=true;this.solvedPlayers.clear();this.correctPlayers.clear();
         document.getElementById('guessmoji-category').textContent=this.current.category;
@@ -2197,10 +2194,18 @@
       },
       startTimer(){
         if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'||!this.roundOpen||this.timer)return;
-        this.remaining=this.duration;this.updateTimer();
+        const duration=Math.max(1,Number(this.duration)||20);
+        this.remaining=duration;
+        this.timerEndAt=Date.now()+duration*1000;
+        this.timerPauseAt=0;
+        this.updateTimer();
+        // Absolute deadline statt künstlichem 0,1-Sekunden-Abzug: stabiler auf Mobilbrowsern.
         this.timer=setInterval(()=>{
-          if(PauseController.paused)return;
-          this.remaining=Math.max(0,this.remaining-0.1);this.updateTimer();
+          if(!this.roundOpen){clearInterval(this.timer);this.timer=null;return;}
+          if(PauseController.paused){if(!this.timerPauseAt)this.timerPauseAt=Date.now();return;}
+          if(this.timerPauseAt){this.timerEndAt+=Date.now()-this.timerPauseAt;this.timerPauseAt=0;}
+          this.remaining=Math.max(0,(this.timerEndAt-Date.now())/1000);
+          this.updateTimer();
           if(this.remaining<=0)this.finishRound();
         },100);
       },
@@ -2239,7 +2244,7 @@
       },
       finishRound(){
         if(!this.roundOpen)return;
-        this.roundOpen=false;clearInterval(this.timer);this.timer=null;
+        this.roundOpen=false;clearInterval(this.timer);this.timer=null;this.timerEndAt=0;this.timerPauseAt=0;
         document.getElementById('guessmoji-input').disabled=true;
         document.getElementById('guessmoji-timer-fill').style.width='0%';
         const local=this.scores.get('local-player')?.points||0;
