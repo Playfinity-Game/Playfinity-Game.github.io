@@ -2155,7 +2155,7 @@
         if(!this.initialized){
           const input=document.getElementById('guessmoji-input');
           input.disabled=false;
-          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');});
+          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');if(input.value.trim())this.startTimer();});
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
             const guess=input.value.trim();input.value='';input.focus();
