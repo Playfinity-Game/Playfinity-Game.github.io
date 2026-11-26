@@ -2802,7 +2802,7 @@
         const $=id=>document.getElementById(id);
         const shell=document.querySelector('#screen-lastchat .lcs-shell');
         if(shell){
-          shell.classList.toggle('intro',this.phase==='idle'||this.phase==='lobby');
+          shell.classList.toggle('intro',this.phase==='idle');
           shell.classList.toggle('result-view',['timeup','resolved','finished'].includes(this.phase));
         }
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
