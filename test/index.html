@@ -2424,7 +2424,7 @@
 
     /* LAST CHAT STANDING – round engine */
     const LastChatStanding = {
-      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null,
+      channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null, gameMode:'live',
       seconds:20, timerDuration:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
@@ -2437,7 +2437,7 @@
         setTimeout(()=>this.broadcast({type:'snapshot',state:this.snapshot()}),350);
       },
       broadcast(message){try{this.channel?.postMessage(message);}catch(e){}},
-      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible};},
+      snapshot(){return {players:[...this.players.values()],eliminated:this.eliminated,stage:this.stage,question:this.question,seconds:this.seconds,phase:this.phase,correct:this.question?.a??null,gameMode:this.gameMode,timerEnabled:this.timerEnabled,timerDuration:this.timerDuration,chatEnabled:this.chatEnabled,optionsVisible:this.optionsVisible};},
       receive(message){
         if(!message||!message.type)return;
         if(message.type==='command'){
@@ -2461,14 +2461,17 @@
         if(message.type==='snapshot-request')this.broadcast({type:'snapshot',state:this.snapshot()});
       },
       command(action,payload={}){
-        if(action==='lobby'){this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – schreibe !join im Live-Chat.'});}
-        if(action==='start'){if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
+        if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Modus ausgewählt.'});}
+        if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Modus ausgewählt.'});}
+        if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – schreibe !join im Live-Chat.'});}
+        if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
+        if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.render();this.broadcast({type:'players',state:this.snapshot()});}}
         if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.optionsVisible=!this.optionsVisible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='show-options'){this.optionsVisible=!!payload.visible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
         if(action==='chat-toggle'){this.chatEnabled=!!payload.enabled;this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='timer-settings'){this.timerEnabled=!!payload.enabled;const seconds=Number(payload.seconds);if(Number.isFinite(seconds)&&seconds>=1&&seconds<=3600){this.timerDuration=seconds;this.seconds=seconds;}this.render();this.broadcast({type:'settings',state:this.snapshot()});}
         if(action==='resolve'&&(this.phase==='question'||this.phase==='revealed'||this.phase==='timeup'))this.resolve();
-        if(action==='next'&&this.phase==='resolved'){if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
+        if(action==='next'&&this.phase==='resolved'){if(this.gameMode==='solo'){if(this.stage>=15){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}else if(this.stage>=15||this.players.size===0){this.phase='finished';this.render();this.broadcast({type:'finished',state:this.snapshot()});}else this.startRound();}
         if(action==='reset')this.reset(true);
       },
       getUsed(){try{const value=JSON.parse(localStorage.getItem(this.usedKey)||'[]');return Array.isArray(value)?value:[];}catch(_){return [];}},
@@ -2487,18 +2490,18 @@
         this.usedIds=this.getUsed();this.render();if(announce)this.broadcast({type:'reset'});
       },
       join(user){
-        if(this.phase!=='lobby'||!this.chatEnabled||!user?.id)return false;
+        if(this.gameMode!=='live'||this.phase!=='lobby'||!this.chatEnabled||!user?.id)return false;
         const id=String(user.id);if(this.players.has(id))return false;
         this.players.set(id,{id,name:String(user.name||'Zuschauer'),answer:null,locked:false,result:'waiting'});
         this.render();this.broadcast({type:'players',state:this.snapshot()});return true;
       },
       handleChat(user,text){
-        if(!this.chatEnabled)return;
-        const msg=String(text||'').trim();if(!msg)return;
-        if(this.phase==='lobby'&&/^!join$/i.test(msg)){this.join(user);return;}
-        if(this.phase!=='question'||!this.players.has(String(user?.id||'')))return;
-        const player=this.players.get(String(user.id));if(player.locked)return;
-        const match=msg.match(/^(?:!?([ABCD]))$/i);if(!match)return;
+        if(!this.chatEnabled||this.gameMode!=='live')return;
+        const msg=String(text||'').trim();if(!msg||this.phase!=='question')return;
+        const match=msg.match(/^(?:!?([ABCD]))$/i);if(!match||!user?.id)return;
+        const id=String(user.id);let player=this.players.get(id);
+        if(!player){player={id,name:String(user.name||'Zuschauer'),answer:null,locked:false,result:'waiting'};this.players.set(id,player);}
+        if(player.locked)return;
         player.answer=match[1].toUpperCase();player.locked=true;player.result='submitted';
         this.render();this.broadcast({type:'players',state:this.snapshot()});
       },
@@ -2517,6 +2520,12 @@
       },
       resolve(){
         clearInterval(this.timer);if(!this.question)return;
+        if(this.gameMode==='solo'){
+          const p=this.players.get('solo-host');const correct=!!p?.answer&&'ABCD'.indexOf(p.answer)===this.question.a;
+          if(!correct){if(p)this.eliminated.unshift({...p,reason:p.answer?'Falsch':'Keine Antwort'});this.players.clear();this.phase='finished';}
+          else {p.result='correct';this.phase=this.stage>=15?'finished':'resolved';}
+          this.optionsVisible=true;this.render();this.broadcast({type:this.phase==='finished'?'finished':'resolved',state:this.snapshot()});return;
+        }
         for(const [id,p] of this.players){
           const correct=p.answer&&'ABCD'.indexOf(p.answer)===this.question.a;
           p.result=correct?'correct':'eliminated';
@@ -2532,7 +2541,7 @@
         const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
-        $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · Verblieben: '+this.players.size:this.phase==='finished'?(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden'):'';
+        $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · '+(this.gameMode==='solo'?'Du bist weiter!':'Verblieben: '+this.players.size):this.phase==='finished'?(this.gameMode==='solo'?(this.players.size?'🏆 DU HAST GEWONNEN!':'❌ GAME OVER'):(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden')):'';
         $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' · '+p.answer:'')).join(' · ')||'Noch niemand dabei';
         
       },
