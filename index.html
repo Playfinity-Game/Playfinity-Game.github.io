@@ -1844,21 +1844,33 @@
             showModal('⚙️ Spieleinstellungen',renderHome());
             document.getElementById('modal-btn-action').textContent='Zurück zum Spiel';
             const content=document.getElementById('modal-content');
+            // Sobald eine Einstellung geändert wird, muss der Übernehmen-Button wieder aktiv sein.
+            content.addEventListener('change',event=>{
+              if(event.target.matches('[data-setting-key]')){
+                const applyButton=content.querySelector('[data-settings-apply]');
+                if(applyButton){applyButton.disabled=false;applyButton.textContent='✓ Einstellungen übernehmen';}
+              }
+            });
             const applySettings=()=>{
               const controls=[...content.querySelectorAll('[data-setting-key]')];
               controls.forEach(el=>localStorage.setItem(el.dataset.settingKey,el.type==='checkbox'?String(el.checked):el.value));
+              // GUESSMOJI: neue Zeit sofort in der Leiste anzeigen und einen laufenden Timer neu setzen.
               const duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);
               if([10,15,20,30,45,60].includes(duration)){
                 GuessmojiGame.duration=duration;
-                if(GuessmojiGame.roundOpen){
-                  if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'){
-                    clearInterval(GuessmojiGame.timer);GuessmojiGame.timer=null;GuessmojiGame.timerEndAt=0;GuessmojiGame.remaining=duration;GuessmojiGame.updateTimer();
-                  }else if(GuessmojiGame.timer){
-                    GuessmojiGame.timerEndAt=Date.now()+duration*1000;GuessmojiGame.remaining=duration;GuessmojiGame.updateTimer();
-                  }else{GuessmojiGame.remaining=duration;GuessmojiGame.updateTimer();}
+                GuessmojiGame.remaining=duration;
+                if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'){
+                  clearInterval(GuessmojiGame.timer);
+                  GuessmojiGame.timer=null;
+                  GuessmojiGame.timerEndAt=0;
+                  GuessmojiGame.timerPauseAt=0;
+                }else if(GuessmojiGame.timer){
+                  GuessmojiGame.timerEndAt=Date.now()+duration*1000;
+                  GuessmojiGame.timerPauseAt=0;
                 }
+                // Nicht beim Speichern starten: Start bleibt beim ersten abgeschickten Tipp.
+                GuessmojiGame.updateTimer();
               }
-              if(localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false'&&GuessmojiGame.roundOpen&&!GuessmojiGame.timer)GuessmojiGame.startTimer();
               if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false'&&GuessWhatGame.roundOpen){
                 PauseController.clear('guesswhat','roundTimer');
                 PauseController.schedule('guesswhat','roundTimer',()=>GuessWhatGame.finishRound(),Number(localStorage.getItem('playfinity_guesswhat_timer')||30)*1000);
