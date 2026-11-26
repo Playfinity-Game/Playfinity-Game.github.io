@@ -2463,7 +2463,7 @@
       command(action,payload={}){
         if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Modus ausgewählt.'});}
         if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Modus ausgewählt.'});}
-        if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – schreibe !join im Live-Chat.'});}
+        if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
         if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.render();this.broadcast({type:'players',state:this.snapshot()});}}
         if(action==='reveal'&&(this.phase==='question'||this.phase==='timeup')){this.optionsVisible=!this.optionsVisible;this.render();this.broadcast({type:'reveal',state:this.snapshot()});}
@@ -2536,7 +2536,7 @@
       render(){
         const $=id=>document.getElementById(id);
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
-        $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Schreibe !join im Live-Chat.':'LOBBY OFFEN · Chat-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
+        $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Erste A–D-Antwort genügt.':'LOBBY OFFEN · Live-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
         $('lcs-question').textContent=this.question?this.question.q:'';
         const opts=$('lcs-options');opts.hidden=!this.question||!this.optionsVisible;opts.innerHTML='';
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement('div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);opts.appendChild(d);});
