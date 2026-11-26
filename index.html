@@ -1839,18 +1839,40 @@
               fivex:{title:'🔠 FIVE-X',items:[['Automatisch weiter','playfinity_wordle_auto_next',true],['Weiter nach','playfinity_fivex_next_delay',7000,'select',[['3000','3 Sekunden'],['5000','5 Sekunden'],['7000','7 Sekunden'],['10000','10 Sekunden']]]]}
             };
             const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
-            const renderHome=()=>'<div class="pf-settings-intro">Wähle ein Spiel, um seine Einstellungen zu ändern.</div><div class="pf-settings-games">'+Object.entries(gameSettings).map(([key,g])=>'<button type="button" data-settings-game="'+key+'">'+g.title+' <span>›</span></button>').join('')+'</div><div class="pf-settings-general"><b>Allgemein</b><label><input type="checkbox" data-setting-key="playfinity_sound_enabled" checked> Soundeffekte</label><label><input type="checkbox" data-setting-key="playfinity_animations_enabled" checked> Animationen</label><button type="button" data-settings-reset>Alle Einstellungen zurücksetzen</button></div>';
-            const renderGame=key=>{const g=gameSettings[key];return '<button type="button" class="pf-settings-back" data-settings-home>‹ Alle Spiele</button><h3 class="pf-settings-title">'+g.title+'</h3>'+g.items.map(([label,store,def,type,options])=>{const value=localStorage.getItem(store);const current=value===null?def:(type==='select'?value:value==='true');if(type==='select')return '<label class="pf-setting-row"><span>'+label+'</span><select data-setting-key="'+store+'">'+options.map(([v,t])=>'<option value="'+v+'" '+(String(current)===v?'selected':'')+'>'+t+'</option>').join('')+'</select></label>';return '<label class="pf-setting-row"><span>'+label+'</span><input type="checkbox" data-setting-key="'+store+'" '+(current?'checked':'')+'></label>';}).join('');};
+            const renderHome=()=>'<div class="pf-settings-intro">Wähle ein Spiel, um seine Einstellungen zu ändern.</div><div class="pf-settings-games">'+Object.entries(gameSettings).map(([key,g])=>'<button type="button" data-settings-game="'+key+'">'+g.title+' <span>›</span></button>').join('')+'</div><div class="pf-settings-general"><b>Allgemein</b><label><input type="checkbox" data-setting-key="playfinity_sound_enabled" '+(localStorage.getItem('playfinity_sound_enabled')!=='false'?'checked':'')+'> Soundeffekte</label><label><input type="checkbox" data-setting-key="playfinity_animations_enabled" '+(localStorage.getItem('playfinity_animations_enabled')!=='false'?'checked':'')+'> Animationen</label><button type="button" data-settings-apply>✓ Einstellungen übernehmen</button><button type="button" data-settings-reset>Alle Einstellungen zurücksetzen</button></div>';
+            const renderGame=key=>{const g=gameSettings[key];return '<button type="button" class="pf-settings-back" data-settings-home>‹ Alle Spiele</button><h3 class="pf-settings-title">'+g.title+'</h3>'+g.items.map(([label,store,def,type,options])=>{const value=localStorage.getItem(store);const current=value===null?def:(type==='select'?value:value==='true');if(type==='select')return '<label class="pf-setting-row"><span>'+label+'</span><select data-setting-key="'+store+'">'+options.map(([v,t])=>'<option value="'+v+'" '+(String(current)===v?'selected':'')+'>'+t+'</option>').join('')+'</select></label>';return '<label class="pf-setting-row"><span>'+label+'</span><input type="checkbox" data-setting-key="'+store+'" '+(current?'checked':'')+'></label>';}).join('')+'<button type="button" data-settings-apply>✓ Einstellungen übernehmen</button>';};
             showModal('⚙️ Spieleinstellungen',renderHome());
             document.getElementById('modal-btn-action').textContent='Zurück zum Spiel';
             const content=document.getElementById('modal-content');
+            const applySettings=()=>{
+              const controls=[...content.querySelectorAll('[data-setting-key]')];
+              controls.forEach(el=>localStorage.setItem(el.dataset.settingKey,el.type==='checkbox'?String(el.checked):el.value));
+              const duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);
+              if([10,15,20,30,45,60].includes(duration)){
+                GuessmojiGame.duration=duration;
+                if(GuessmojiGame.roundOpen){
+                  if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'){
+                    clearInterval(GuessmojiGame.timer);GuessmojiGame.timer=null;GuessmojiGame.timerEndAt=0;GuessmojiGame.remaining=duration;GuessmojiGame.updateTimer();
+                  }else if(GuessmojiGame.timer){
+                    GuessmojiGame.timerEndAt=Date.now()+duration*1000;GuessmojiGame.remaining=duration;GuessmojiGame.updateTimer();
+                  }else{GuessmojiGame.remaining=duration;GuessmojiGame.updateTimer();}
+                }
+              }
+              if(localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false'&&GuessmojiGame.roundOpen&&!GuessmojiGame.timer)GuessmojiGame.startTimer();
+              if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false'&&GuessWhatGame.roundOpen){
+                PauseController.clear('guesswhat','roundTimer');
+                PauseController.schedule('guesswhat','roundTimer',()=>GuessWhatGame.finishRound(),Number(localStorage.getItem('playfinity_guesswhat_timer')||30)*1000);
+              }
+              const button=content.querySelector('[data-settings-apply]');
+              if(button){button.textContent='✓ Übernommen';button.disabled=true;}
+            };
             content.addEventListener('click',event=>{
               const game=event.target.closest('[data-settings-game]')?.dataset.settingsGame;
               if(game)content.innerHTML=renderGame(game);
               if(event.target.closest('[data-settings-home]'))content.innerHTML=renderHome();
+              if(event.target.closest('[data-settings-apply]'))applySettings();
               if(event.target.closest('[data-settings-reset]')){Object.values(gameSettings).flatMap(g=>g.items.map(x=>x[1])).concat(['playfinity_sound_enabled','playfinity_animations_enabled']).forEach(k=>localStorage.removeItem(k));content.innerHTML=renderHome();}
             });
-            content.addEventListener('change',event=>{const el=event.target;if(!el.matches('[data-setting-key]'))return;localStorage.setItem(el.dataset.settingKey,el.type==='checkbox'?String(el.checked):el.value);if(el.dataset.settingKey==='playfinity_guessmoji_duration'){const v=Number(el.value);if([10,15,20,30,45,60].includes(v)){GuessmojiGame.duration=v;if(!GuessmojiGame.timer&&GuessmojiGame.roundOpen){GuessmojiGame.remaining=v;GuessmojiGame.updateTimer();}}}if(el.dataset.settingKey==='playfinity_guessmoji_timer_enabled'&&GuessmojiGame.roundOpen){if(el.checked){GuessmojiGame.startTimer();}else{clearInterval(GuessmojiGame.timer);GuessmojiGame.timer=null;GuessmojiGame.remaining=GuessmojiGame.duration;GuessmojiGame.updateTimer();}}if(el.dataset.settingKey==='playfinity_guesswhat_timer'&&GuessWhatGame.roundOpen){PauseController.clear('guesswhat','roundTimer');if(localStorage.getItem('playfinity_guesswhat_timer_enabled')!=='false')PauseController.schedule('guesswhat','roundTimer',()=>GuessWhatGame.finishRound(),Number(el.value));}});
           }
           if (action === 'help') showModal('Hilfe & Chat-Befehle', '<b>So spielst du</b><br><b>Hangman:</b> Buchstaben oder ganzes Wort raten. Richtiger Buchstabe: +1, gelöstes Wort: +10 Punkte.<br><b>FIVE-X:</b> Deutsches Wort mit genau 5 Buchstaben eingeben. Lösung: +5 Punkte.<br><b>Wordfinity:</b> Passende Wörter einzeln in den Chat schreiben. Lösung: +10 Punkte, Helfer: +1 Punkt.<br><b>GUESSWHAT:</b> Zahl schätzen und als Zahl senden. Erster Volltreffer: +10, jeder weitere Volltreffer: +5 Punkte. Trifft niemand exakt, erhält die nächste Schätzung +10.<br><b>GUESSMOJI:</b> Emoji-Rätsel lösen und Antwort schreiben. Erste richtige Antwort: +10, weitere richtige Spieler: +5 Punkte.<br><b>Playdoku:</b> Feld und Zahl senden, z. B. <b>A1 5</b>. Jede passende Zahl: +1 Punkt.<br><br><b>Chat</b><br>Verbinde Playfinity mit deinem LIVE-Chat. Während eines Spiels werden passende Nachrichten automatisch als Tipps gewertet. Keine Extra-Befehle nötig.');
         });
