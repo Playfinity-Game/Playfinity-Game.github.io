@@ -1295,7 +1295,19 @@
     @keyframes lcsPrizePulse{from{box-shadow:0 0 8px #facc1577}to{box-shadow:0 0 20px #facc15dd,inset 0 0 12px #facc1566}}
     .lcs-next-question{display:none;width:100%;margin:12px 0 6px;padding:15px;border:2px solid #facc15;border-radius:13px;background:linear-gradient(100deg,#854d0e,#713f12);color:#fff7b2;font:1000 1rem var(--font-main);letter-spacing:.08em;box-shadow:0 0 18px #facc1566;cursor:pointer}
     .lcs-next-question.visible{display:block}
-    @media(max-width:520px){.lcs-money-ladder{width:100%;gap:3px;padding:8px}.lcs-money-step{padding:5px 8px;font-size:.72rem}}
+    @media(max-width:520px){
+      .lcs-money-ladder{width:100%;gap:2px;padding:6px;margin:0 auto 7px;border-radius:11px}
+      .lcs-money-ladder:before{font-size:.62rem;letter-spacing:.16em;margin-bottom:1px}
+      .lcs-money-step{min-height:17px;padding:2px 7px;font-size:.64rem;line-height:1}
+      .lcs-money-step .lcs-step-number{font-size:.59rem}
+      .lcs-money-step.current{transform:none}
+      .lcs-shell.result-view{padding:3px 0 8px}
+      .lcs-shell.result-view .lcs-title{font-size:clamp(1.45rem,6vw,2rem);margin:2px 0 6px;line-height:1}
+      .lcs-shell.result-view .lcs-stats{display:none}
+      .lcs-shell.result-view #lcs-question{min-height:0;padding:8px 7px;margin:0 auto 6px;font-size:.95rem;line-height:1.2;border-radius:10px}
+      .lcs-shell.result-view .lcs-next-question{margin:3px 0 0;padding:9px 10px;font-size:.88rem;border-radius:10px}
+      #screen-lastchat{padding:8px 10px}
+    }
     .lcs-timer{width:min(270px,75%);margin:0 auto 16px;padding:8px 14px;border:2px solid #22d3ee;border-right-color:#c084fc;border-radius:13px;background:rgba(8,13,36,.88);color:#67e8f9;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:1000;line-height:1;text-shadow:0 0 14px #22d3ee;box-shadow:0 0 12px #22d3ee88,inset 0 0 12px #a855f744}
     .lcs-status{padding:9px 11px;border-radius:10px;background:rgba(168,85,247,.12);color:#d8b4fe;font-weight:800;font-size:.8rem;margin-bottom:12px}
     .lcs-mode-picker{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:22px;background:rgba(2,4,16,.82);backdrop-filter:blur(8px)}
@@ -1663,7 +1675,7 @@
         <div class="lcs-question" id="lcs-question"></div>
         <div class="lcs-options" id="lcs-options" hidden></div>
         <div class="lcs-result" id="lcs-result" hidden></div>
-        <button type="button" class="lcs-next-question" id="lcs-next-question">NÄCHSTE FRAGE ›</button>
+        <button type="button" class="lcs-next-question" id="lcs-next-question">NÄCHSTE RUNDE ›</button>
       </div>
     </section>
   </main>
