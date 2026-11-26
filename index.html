@@ -2155,7 +2155,7 @@
         if(!this.initialized){
           const input=document.getElementById('guessmoji-input');
           input.disabled=false;
-          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');if(input.value.trim())this.startTimer();});
+          input.addEventListener('input',()=>{input.value=input.value.replace(/[\u0000-\u001F\u007F]/g,'');if(input.value.trim()&&this.roundOpen)this.startTimer();});
           document.getElementById('guessmoji-entry').addEventListener('submit',event=>{
             event.preventDefault();
             const guess=input.value.trim();input.value='';input.focus();
@@ -2188,8 +2188,7 @@
         document.getElementById('guessmoji-timer-fill').style.width='100%';
         document.getElementById('guessmoji-input').disabled=false;
         document.getElementById('guessmoji-guesses').innerHTML='';
-        // Bei aktiviertem Zeitlimit beginnt die Uhr direkt mit dem neuen Rätsel.
-        if(localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false')this.startTimer();
+        // Der Countdown startet erst, sobald die erste Antwort eingegeben wird.
       },
       startTimer(){
         if(localStorage.getItem('playfinity_guessmoji_timer_enabled')==='false'||!this.roundOpen||this.timer)return;
