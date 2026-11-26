@@ -2510,7 +2510,7 @@
     /* LAST CHAT STANDING – round engine */
     const LastChatStanding = {
       channel:null, players:new Map(), eliminated:[], stage:0, question:null, timer:null, gameMode:'live', joker5050Used:false, joker5050Hidden:[], jokerAudienceUsed:false, jokerPhoneUsed:false,
-      seconds:20, timerDuration:20, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
+      seconds:30, timerDuration:30, timerEnabled:true, chatEnabled:true, phase:'idle', optionsVisible:false,
       levelPools:{easy:[],medium:[],hard:[]}, pool:[], usedKey:'playfinity_lcs_used_question_ids_v1', usedIds:[],
       init(){
         if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
