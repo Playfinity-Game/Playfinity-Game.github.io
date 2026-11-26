@@ -1285,23 +1285,26 @@
     .lcs-stats>div{padding:8px;border:1px solid #a855f744;background:rgba(17,20,43,.82);border-radius:13px}
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
     .lcs-stats strong{display:block;font-size:clamp(1.2rem,4vw,1.7rem);margin-top:4px}
-    .lcs-money-ladder{display:none;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;width:min(100%,560px);margin:0 auto 16px;padding:14px;border:1px solid #a78bfa88;border-radius:20px;background:linear-gradient(145deg,rgba(7,10,29,.97),rgba(26,15,53,.96));box-shadow:0 12px 34px #050816aa,0 0 24px #8b5cf644;position:relative;overflow:hidden}
-    .lcs-money-ladder.visible{display:grid}
-    .lcs-money-ladder:before{content:"PLAYFINITY  /  GEWINNLEITER";display:block;grid-column:1/-1;color:#c4b5fd;font-size:.7rem;font-weight:1000;letter-spacing:.2em;text-align:center;margin:0 0 5px;text-shadow:0 0 12px #8b5cf6aa}
-    .lcs-money-step{min-width:0;min-height:58px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:8px 4px;border:1px solid #8b5cf655;border-radius:12px;background:linear-gradient(145deg,rgba(22,25,55,.94),rgba(10,15,36,.96));color:#f4f1ff;font-size:.82rem;font-weight:950;line-height:1.1;box-shadow:inset 0 1px #ffffff0b;transition:transform .2s,box-shadow .2s,border-color .2s}
-    .lcs-money-step .lcs-step-number{color:#a78bfa;font-size:.59rem;font-weight:900;letter-spacing:.13em}
-    .lcs-money-step.passed{border-color:#34d39988;color:#a7f3d0;background:linear-gradient(145deg,rgba(6,78,59,.62),rgba(6,30,39,.94))}
-    .lcs-money-step.passed .lcs-step-number{color:#6ee7b7}
-    .lcs-money-step.current{border:1px solid #facc15;color:#fff7c2;background:linear-gradient(145deg,rgba(120,78,10,.96),rgba(63,37,11,.96));box-shadow:0 0 0 1px #facc1544,0 0 22px #facc1588,inset 0 0 18px #facc1522;transform:translateY(-2px) scale(1.035);animation:lcsPrizePulse 1.2s ease-in-out infinite alternate}
-    .lcs-money-step.current .lcs-step-number{color:#fde68a}
+    .lcs-money-ladder{display:none;flex-direction:column;gap:5px;width:min(100%,500px);margin:0 auto 16px;padding:16px 18px;border:1px solid #8b5cf688;border-radius:19px;background:radial-gradient(ellipse at 50% 0%,rgba(124,58,237,.2),transparent 55%),linear-gradient(160deg,rgba(6,9,27,.98),rgba(17,13,43,.98));box-shadow:0 14px 38px #020617bb,0 0 28px #8b5cf633;position:relative;overflow:hidden}
+    .lcs-money-ladder.visible{display:flex}
+    .lcs-money-ladder:before{content:"PLAYFINITY  /  JACKPOT";display:block;color:#c4b5fd;font-size:.72rem;font-weight:1000;letter-spacing:.22em;text-align:center;margin:0 0 9px;text-shadow:0 0 14px #8b5cf6cc}
+    .lcs-money-step{position:relative;min-height:37px;display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:12px;padding:6px 14px 6px 53px;border:1px solid #8b5cf64d;border-radius:9px;background:linear-gradient(90deg,rgba(30,27,75,.88),rgba(10,15,36,.96));color:#f3f0ff;font-size:.88rem;font-weight:950;line-height:1.1;box-shadow:inset 0 1px #ffffff0b;transition:transform .2s,box-shadow .2s,border-color .2s}
+    .lcs-money-step:before{content:"";position:absolute;left:25px;top:100%;height:6px;width:2px;background:linear-gradient(#a78bfa,#6d28d9);opacity:.8}
+    .lcs-money-step:last-child:before{display:none}
+    .lcs-money-step .lcs-step-number{position:absolute;left:10px;top:50%;transform:translateY(-50%);width:29px;height:25px;display:grid;place-items:center;border:1px solid #a78bfa88;border-radius:7px;background:#17133a;color:#c4b5fd;font-size:.61rem;font-weight:1000;letter-spacing:.02em}
+    .lcs-money-step.passed{border-color:#34d39988;color:#a7f3d0;background:linear-gradient(90deg,rgba(6,78,59,.62),rgba(7,24,39,.94))}
+    .lcs-money-step.passed .lcs-step-number{border-color:#34d399aa;background:#064e3b;color:#a7f3d0}
+    .lcs-money-step.current{border:1px solid #facc15;color:#fff7c2;background:linear-gradient(90deg,rgba(104,67,9,.98),rgba(46,31,17,.98));box-shadow:0 0 0 1px #facc1544,0 0 22px #facc1577,inset 0 0 18px #facc1522;transform:scale(1.025);animation:lcsPrizePulse 1.2s ease-in-out infinite alternate}
+    .lcs-money-step.current .lcs-step-number{border-color:#facc15;background:#713f12;color:#fff7c2;box-shadow:0 0 12px #facc1588}
     @keyframes lcsPrizePulse{from{box-shadow:0 0 8px #facc1577,inset 0 0 8px #facc1511}to{box-shadow:0 0 22px #facc15bb,inset 0 0 16px #facc1533}}
     .lcs-next-question{display:none;width:100%;margin:12px 0 6px;padding:15px;border:2px solid #facc15;border-radius:13px;background:linear-gradient(100deg,#854d0e,#713f12);color:#fff7b2;font:1000 1rem var(--font-main);letter-spacing:.08em;box-shadow:0 0 18px #facc1566;cursor:pointer}
     .lcs-next-question.visible{display:block}
     @media(max-width:520px){
-      .lcs-money-ladder{width:100%;gap:6px;padding:10px;margin:0 auto 7px;border-radius:15px}
-      .lcs-money-ladder:before{font-size:.59rem;letter-spacing:.14em;margin-bottom:2px}
-      .lcs-money-step{min-height:49px;padding:6px 2px;gap:4px;border-radius:9px;font-size:.72rem}
-      .lcs-money-step .lcs-step-number{font-size:.53rem}
+      .lcs-money-ladder{width:100%;gap:4px;padding:11px 12px;margin:0 auto 7px;border-radius:14px}
+      .lcs-money-ladder:before{font-size:.62rem;letter-spacing:.16em;margin-bottom:5px}
+      .lcs-money-step{min-height:32px;padding:5px 10px 5px 45px;border-radius:8px;font-size:.76rem}
+      .lcs-money-step:before{left:21px;height:5px}
+      .lcs-money-step .lcs-step-number{left:8px;width:25px;height:22px;font-size:.56rem}
       .lcs-money-step.current{transform:none}
       .lcs-shell.result-view{padding:3px 0 8px}
       .lcs-shell.result-view .lcs-title{font-size:clamp(1.45rem,6vw,2rem);margin:2px 0 6px;line-height:1}
