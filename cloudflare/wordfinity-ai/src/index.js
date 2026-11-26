@@ -395,36 +395,43 @@ async function handlePrecomputedRank(env, body) {
 }
 
 async function handleWord(env, body) {
-  // Ausschließlich die externe, kuratierte Wordfinity-Datenquelle verwenden.
-  const sourceUrl = "https://dinaj-1992.github.io/wordfinity-daten/kategorien_uebersicht.json";
-  const response = await fetch(sourceUrl, { headers: { Accept: "application/json" } });
-  if (!response.ok) {
-    return json({ error: "Die geprüfte Wordfinity-Datenquelle ist momentan nicht erreichbar" }, 502);
-  }
-  const dataset = await response.json();
-  const targets = dataset?.zielwoerter;
-  if (!targets || typeof targets !== "object" || Object.keys(targets).length !== 600) {
-    return json({ error: "Die Wordfinity-Datenquelle ist ungültig oder unvollständig" }, 502);
-  }
-  const excluded = new Set(
+  const allowed = [
+    "Tiere", "Pflanzen & Natur", "Lebensmittel & Getränke", "Kleidung & Schuhe",
+    "Sport & Freizeit", "Werkzeuge & Handwerk", "Fahrzeuge & Verkehr",
+    "Technik & Elektronik", "Haushalt & Möbel", "Gebäude & Architektur",
+    "Orte & Geografie", "Berufe", "Körper & Gesundheit", "Musik & Instrumente",
+    "Kunst & Kultur", "Spiele & Spielzeug", "Schule & Wissen",
+    "Wetter & Jahreszeiten", "Weltraum & Astronomie", "Materialien & Rohstoffe"
+  ];
+  const excluded = [...new Set(
     (Array.isArray(body.exclude) ? body.exclude : [])
       .slice(-300)
-      .map(value => String(value || "").normalize("NFC").trim().toLocaleLowerCase("de-DE"))
+      .map(value => String(value || "").normalize("NFC").trim())
       .filter(Boolean)
+  )];
+  const raw = await generate(
+    env,
+    "Du erzeugst Zielwörter für ein deutsches Wort-Assoziationsspiel. Wähle ein konkretes, allgemein bekanntes deutsches Substantiv im Singular, das eindeutig und gut erratbar ist. Keine Eigennamen, Marken, abstrakten Begriffe, zusammengesetzten Sätze oder seltenen Fachwörter. Wähle genau eine passende Oberkategorie aus dieser Liste: " + allowed.join("; ") + ". Gib ausschließlich valides JSON in dieser Form aus: {\\"word\\":\\"...\\",\\"category\\":\\"...\\"}.",
+    "Bereits verwendete Zielwörter (nicht erneut wählen): " + JSON.stringify(excluded) +
+      "\\nErzeuge ein neues, anderes Zielwort und ordne es genau einer erlaubten Kategorie zu.",
+    100,
+    0.9
   );
-  const pool = Object.entries(targets).map(([word, category]) => ({
-    word: String(word || "").normalize("NFC").trim(),
-    category: String(category || "").trim()
-  })).filter(item =>
-    item.word.length >= 2 &&
-    item.category &&
-    !excluded.has(item.word.toLocaleLowerCase("de-DE"))
-  );
-  if (!pool.length) {
-    return json({ error: "Keine unverbrauchten geprüften Wordfinity-Zielwörter mehr verfügbar" }, 409);
+  let item;
+  try {
+    const match = raw.match(/\\{[\\s\\S]*\\}/);
+    if (match) item = JSON.parse(match[0]);
+  } catch (_) {}
+  const word = String(item?.word || "").normalize("NFC").trim();
+  const categoryRaw = String(item?.category || "").trim();
+  const category = allowed.find(value => value.toLocaleLowerCase("de-DE") === categoryRaw.toLocaleLowerCase("de-DE"));
+  const excludedKeys = new Set(excluded.map(value => value.toLocaleLowerCase("de-DE")));
+  if (!/^[A-ZÄÖÜ][a-zäöüß-]{2,29}$/.test(word) ||
+      !category ||
+      excludedKeys.has(word.toLocaleLowerCase("de-DE"))) {
+    throw new Error("Die Wort-KI hat kein gültiges neues Zielwort geliefert");
   }
-  const selected = pool[Math.floor(Math.random() * pool.length)];
-  return json({ word: selected.word, category: selected.category, source: "wordfinity-daten" });
+  return json({ word, category, source: "cloudflare-ai-generated" });
 }
 async function handleCategory(env, body) {
   const target = String(body.target || "").trim();
