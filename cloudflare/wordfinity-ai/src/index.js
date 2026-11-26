@@ -405,13 +405,13 @@ async function handleWord(env, body) {
     try {
       const text = await generate(
         env,
-        "Du wählst das geheime Lösungswort für ein deutsches Wort-Ratespiel. Gib ausschließlich genau EIN gebräuchliches, allgemein verständliches deutsches Wort aus. Erlaubt sind NUR diese Wortarten: (1) Gattungsnamen/Nomen im Singular, (2) Verben im Infinitiv, (3) Adjektive in der ungebeugten Grundform. Wähle abwechslungsreich aus allen Alltagsthemen und Kategorien, zum Beispiel Tiere, Natur, Essen, Trinken, Berufe, Gegenstände, Orte (aber keine Ortsnamen), Sport, Technik, Haushalt, Kleidung, Gefühle, Tätigkeiten und Eigenschaften. Nur Wörter, die normale deutschsprachige Spieler wahrscheinlich kennen. VERBOTEN: Eigennamen, Vor- und Nachnamen, Städte- und Ländernamen, seltene oder veraltete Wörter, Fachbegriffe, Fremdwörter die kaum jemand kennt, Fantasiewörter, Abkürzungen, Artikel, Präpositionen, Bindewörter, Pronomen, Füllwörter, Wortgruppen, Erklärungen und Satzzeichen. Bei Nomen immer Einzahl, bei Verben Infinitiv, bei Adjektiven Grundform.",
-        "Wähle ein zufälliges, neues und möglichst abwechslungsreiches deutsches Lösungswort aus deinem gesamten Wortschatz. Es muss ein bekanntes Alltagswort sein und genau eine der erlaubten Wortarten haben. Nicht verwenden: " + excluded.join(", ") + ". " + (attempt ? "Wähle diesmal unbedingt ein anderes gültiges Wort." : "") + " Antworte ausschließlich mit dem einzelnen Wort.",
+        "Du wählst das geheime Lösungswort für ein deutsches Wort-Ratespiel. WICHTIG: Das Lösungswort MUSS ausnahmslos ein deutsches SUBSTANTIV (Nomen) im Singular sein. Erlaubt sind ausschließlich konkrete oder klar benennbare Dinge und Lebewesen, zum Beispiel Tiere, Pflanzen, Lebensmittel, Getränke, Gegenstände, Werkzeuge, Fahrzeuge, Kleidung, Möbel, Gebäude, Berufe und Instrumente. Keine Verben, keine Infinitive, keine Tätigkeitswörter, keine Adjektive, keine Eigenschaftswörter und keine substantivierten Verben oder Adjektive (z. B. nicht 'Laufen', 'Schönes', 'Gute'). Keine abstrakten Tätigkeiten oder Eigenschaften. Das Wort muss ein gebräuchliches deutsches Nomen sein und korrekt großgeschrieben werden. VERBOTEN: Eigennamen, Städte- und Ländernamen, seltene oder veraltete Wörter, Fachbegriffe, Fremdwörter die kaum jemand kennt, Fantasiewörter, Abkürzungen, Artikel, Präpositionen, Bindewörter, Pronomen, Wortgruppen, Erklärungen und Satzzeichen.",
+        "Wähle ein zufälliges, neues, möglichst abwechslungsreiches deutsches Substantiv im Singular aus deinem gesamten Wortschatz. Es muss ein bekanntes Alltags-Nomen sein, keine Tätigkeit und keine Eigenschaft. Schreibe es mit großem Anfangsbuchstaben. Nicht verwenden: " + excluded.join(", ") + ". " + (attempt ? "Der vorige Vorschlag war ungültig. Wähle diesmal zwingend ein anderes konkretes Nomen im Singular." : "") + " Antworte ausschließlich mit dem einzelnen Nomen.",
         40
       );
       const word = cleanSingleLine(text, 40).replace(/[.!?,;:]+$/g, "").trim();
-      if (!/^[A-Za-zÄÖÜäöüß]+(?:-[A-Za-zÄÖÜäöüß]+)*$/.test(word) || word.length < 3 || word.length > 40) {
-        throw new Error("Die Wort-KI hat kein gültiges deutsches Lösungswort geliefert");
+      if (!/^[A-ZÄÖÜ][a-zäöüß]+(?:-[A-ZÄÖÜ][a-zäöüß]+)*$/.test(word) || word.length < 3 || word.length > 40) {
+        throw new Error("Die Wort-KI hat kein korrekt großgeschriebenes deutsches Nomen geliefert");
       }
       if (excluded.includes(word.toLocaleLowerCase("de-DE"))) {
         throw new Error("Die Wort-KI hat ein bereits verwendetes Wort geliefert");
