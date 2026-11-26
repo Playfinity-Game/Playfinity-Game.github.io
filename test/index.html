@@ -1753,12 +1753,21 @@
         // PopState-Event fängt die Browser- und Android-Zurück-Taste ab
         window.addEventListener('popstate', (e) => {
           const targetScreen = (e.state && e.state.screen) ? e.state.screen : 'menu';
+          if (this.currentScreen === 'lastchat' && targetScreen === 'menu') {
+            LastChatStanding.backToIntro();
+            this.renderScreen('lastchat', false);
+            history.pushState({ screen: 'lastchat' }, '', '#lastchat');
+            return;
+          }
           this.renderScreen(targetScreen, false);
         });
 
         // Klicks auf Logo & Back-Button
         document.getElementById('brand-home').addEventListener('click', () => this.go('menu'));
-        document.getElementById('btn-back').addEventListener('click', () => this.go('menu'));
+        document.getElementById('btn-back').addEventListener('click', () => {
+          if (this.currentScreen === 'lastchat') LastChatStanding.backToIntro();
+          else this.go('menu');
+        });
 
         document.getElementById('pause-toggle').addEventListener('click',()=>PauseController.toggle());
         document.getElementById('pause-resume').addEventListener('click',()=>PauseController.setPaused(false));
@@ -2593,6 +2602,15 @@
         const picked=available[Math.floor(Math.random()*available.length)];
         this.usedIds.push(String(picked.id||picked.uid||picked.q));this.saveUsed();
         return picked;
+      },
+      backToIntro(){
+        this.reset(true);
+        this.gameMode='live';
+        const title=document.getElementById('lcs-title');
+        if(title) title.textContent='PLAYFINITY';
+        const picker=document.getElementById('lcs-mode-picker');
+        if(picker) picker.hidden=true;
+        window.scrollTo(0,0);
       },
       reset(announce=true){
         clearInterval(this.timer);this.players.clear();this.eliminated=[];this.stage=0;this.question=null;this.seconds=this.timerDuration;this.phase='idle';this.optionsVisible=false;
