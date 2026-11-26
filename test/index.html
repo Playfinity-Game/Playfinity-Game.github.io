@@ -1279,11 +1279,16 @@
     .lcs-stats>div{padding:8px;border:1px solid #a855f744;background:rgba(17,20,43,.82);border-radius:13px}
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
     .lcs-stats strong{display:block;font-size:clamp(1.2rem,4vw,1.7rem);margin-top:4px}
-    .lcs-money-ladder{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:5px;margin:0 0 14px}
-    .lcs-money-step{padding:6px 3px;border:1px solid #ffffff22;border-radius:8px;background:rgba(9,13,34,.82);color:#d7d9eb;font-size:.72rem;font-weight:850}
-    .lcs-money-step.passed{border-color:#34d39988;color:#6ee7b7;background:rgba(6,78,59,.45)}
-    .lcs-money-step.current{border-color:#facc15;color:#fef08a;background:rgba(113,63,18,.7);box-shadow:0 0 12px #facc1566;transform:scale(1.04)}
-    @media(max-width:520px){.lcs-money-ladder{grid-template-columns:repeat(3,minmax(0,1fr))}.lcs-money-step{font-size:.68rem}}
+    .lcs-money-ladder{display:flex;flex-direction:column;gap:4px;width:min(100%,560px);margin:0 auto 16px;padding:10px;border:1px solid #facc1577;border-radius:15px;background:linear-gradient(145deg,rgba(9,13,34,.96),rgba(34,20,55,.94));box-shadow:0 0 20px #a855f755}
+    .lcs-money-ladder:before{content:"GEWINNLEITER";display:block;color:#facc15;font-size:.72rem;font-weight:1000;letter-spacing:.2em;margin-bottom:3px}
+    .lcs-money-step{display:flex;align-items:center;justify-content:space-between;padding:5px 10px;border:1px solid #ffffff24;border-radius:7px;background:rgba(9,13,34,.88);color:#d7d9eb;font-size:.75rem;font-weight:850;line-height:1.15}
+    .lcs-money-step .lcs-step-number{color:#a5b4fc;font-size:.68rem}
+    .lcs-money-step.passed{border-color:#34d39988;color:#6ee7b7;background:rgba(6,78,59,.55)}
+    .lcs-money-step.current{border:2px solid #facc15;color:#fff7b2;background:linear-gradient(90deg,rgba(161,98,7,.92),rgba(113,63,18,.86));box-shadow:0 0 16px #facc15aa,inset 0 0 10px #facc1544;transform:scale(1.025);animation:lcsPrizePulse 1s ease-in-out infinite alternate}
+    @keyframes lcsPrizePulse{from{box-shadow:0 0 8px #facc1577}to{box-shadow:0 0 20px #facc15dd,inset 0 0 12px #facc1566}}
+    .lcs-next-question{display:none;width:100%;margin:12px 0 6px;padding:15px;border:2px solid #facc15;border-radius:13px;background:linear-gradient(100deg,#854d0e,#713f12);color:#fff7b2;font:1000 1rem var(--font-main);letter-spacing:.08em;box-shadow:0 0 18px #facc1566;cursor:pointer}
+    .lcs-next-question.visible{display:block}
+    @media(max-width:520px){.lcs-money-ladder{width:100%;gap:3px;padding:8px}.lcs-money-step{padding:5px 8px;font-size:.72rem}}
     .lcs-timer{width:min(270px,75%);margin:0 auto 16px;padding:8px 14px;border:2px solid #22d3ee;border-right-color:#c084fc;border-radius:13px;background:rgba(8,13,36,.88);color:#67e8f9;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:1000;line-height:1;text-shadow:0 0 14px #22d3ee;box-shadow:0 0 12px #22d3ee88,inset 0 0 12px #a855f744}
     .lcs-status{padding:9px 11px;border-radius:10px;background:rgba(168,85,247,.12);color:#d8b4fe;font-weight:800;font-size:.8rem;margin-bottom:12px}
     .lcs-mode-picker{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:22px;background:rgba(2,4,16,.82);backdrop-filter:blur(8px)}
@@ -1649,6 +1654,7 @@
         <div class="lcs-question" id="lcs-question"></div>
         <div class="lcs-options" id="lcs-options" hidden></div>
         <div class="lcs-result" id="lcs-result" hidden></div>
+        <button type="button" class="lcs-next-question" id="lcs-next-question">NÄCHSTE FRAGE ›</button>
       </div>
     </section>
   </main>
@@ -2459,6 +2465,7 @@
         try{const saved=JSON.parse(localStorage.getItem('playfinity_lcs_question_pools_v1')||'null');if(saved&&['easy','medium','hard'].every(k=>Array.isArray(saved[k])&&saved[k].length)){this.levelPools=saved;this.pool=[...saved.easy,...saved.medium,...saved.hard];}}catch(_){}
         const modeModal=document.getElementById('lcs-mode-picker');
         document.getElementById('lcs-open-mode')?.addEventListener('click',()=>{modeModal.hidden=false;});
+         document.getElementById('lcs-next-question')?.addEventListener('click',()=>this.command('next'));
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{modeModal.hidden=true;this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live');}));
         this.render();
       },
@@ -2599,7 +2606,7 @@
          const ladder=$('lcs-money-ladder');
          if(ladder){
            const prizes=['100 €','200 €','500 €','1.000 €','2.500 €','5.000 €','10.000 €','20.000 €','35.000 €','50.000 €','100.000 €','150.000 €','250.000 €','500.000 €','1.000.000 €'];
-           ladder.innerHTML=prizes.map((prize,index)=>'<div class="lcs-money-step '+(index+1<this.stage?'passed':index+1===this.stage?'current':'')+'">R'+(index+1)+' · '+prize+'</div>').join('');
+           ladder.innerHTML=prizes.slice().reverse().map((prize,reverseIndex)=>{const level=15-reverseIndex;return '<div class="lcs-money-step '+(level<this.stage?'passed':level===this.stage?'current':'')+'"><span class="lcs-step-number">STUFE '+level+'</span><span>'+prize+'</span></div>';}).join('');
          }
         const modePicker=$('lcs-mode-picker');
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.classList.toggle('active',button.dataset.lcsMode===this.gameMode));
@@ -2609,9 +2616,10 @@
         const opts=$('lcs-options');opts.hidden=!this.question||(!this.optionsVisible&&!(this.gameMode==='solo'&&this.phase==='question'));opts.innerHTML='';
         if(this.question&&!opts.hidden)this.question.o.forEach((v,i)=>{const d=document.createElement(this.gameMode==='solo'&&this.phase==='question'?'button':'div');d.className='lcs-option '+(i===this.question.a&&(this.phase==='resolved'||this.phase==='finished')?'correct':'');d.innerHTML='<b>'+String.fromCharCode(65+i)+'</b>'+this.escape(v);if(this.gameMode==='solo'&&this.phase==='question'){d.type='button';d.style.cursor='pointer';d.addEventListener('click',()=>this.command('solo-answer',{answer:String.fromCharCode(65+i)}));}opts.appendChild(d);});
         $('lcs-result').hidden=this.phase!=='resolved'&&this.phase!=='finished';
+         const nextQuestion=$('lcs-next-question');
+         if(nextQuestion){nextQuestion.classList.toggle('visible',this.phase==='resolved');nextQuestion.disabled=this.phase!=='resolved';}
         $('lcs-result').textContent=this.phase==='resolved'?'Richtig: '+String.fromCharCode(65+this.question.a)+' · '+(this.gameMode==='solo'?'Du bist weiter!':'Verblieben: '+this.players.size):this.phase==='finished'?(this.gameMode==='solo'?(this.players.size?'🏆 DU HAST GEWONNEN!':'❌ GAME OVER'):(this.players.size?'🏆 Gewinner: '+[...this.players.values()].map(p=>p.name).join(', '):'Keine Überlebenden')):'';
-        $('lcs-players').textContent=[...this.players.values()].map(p=>p.name+(p.locked?' · '+p.answer:'')).join(' · ')||'Noch niemand dabei';
-        
+
       },
       escape(value){return String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
     };
