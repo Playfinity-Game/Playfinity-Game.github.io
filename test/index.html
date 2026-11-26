@@ -1269,34 +1269,38 @@
  
     /* LAST CHAT STANDING – test build */
     .lcs-shell{width:100%;max-width:820px;margin:0 auto;text-align:center;padding:10px 0 28px;font-family:var(--font-main)}
-    .lcs-kicker{font-size:.68rem;letter-spacing:.22em;color:#c084fc;font-weight:900}
-    .lcs-title{font-size:clamp(2rem,7vw,3.8rem);line-height:1.02;font-weight:1000;margin:10px 0 22px;letter-spacing:-.04em}
+    .lcs-title{font-size:clamp(2.1rem,8vw,4rem);line-height:1.02;font-weight:1000;margin:10px 0 16px;letter-spacing:-.04em}
     .lcs-title span{color:#c084fc;text-shadow:0 0 22px #8b5cf688}
-    .lcs-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:0 0 16px}
-    .lcs-stats>div{padding:13px 8px;border:1px solid #a855f744;background:#17112a;border-radius:13px}
+    .lcs-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 14px}
+    .lcs-stats>div{padding:10px 8px;border:1px solid #a855f744;background:rgba(17,20,43,.82);border-radius:13px}
     .lcs-stats small{display:block;color:#a78bfa;font-size:.65rem;font-weight:900;letter-spacing:.12em}
-    .lcs-stats strong{display:block;font-size:clamp(1.35rem,4vw,2rem);margin-top:4px}
-    .lcs-status{padding:11px;border-radius:10px;background:#a855f71a;color:#d8b4fe;font-weight:800;font-size:.86rem;margin-bottom:14px}
-    .lcs-mode-picker{margin:0 0 16px;padding:16px;border:1px solid #a855f766;border-radius:15px;background:linear-gradient(135deg,#211536,#11152a)}
+    .lcs-stats strong{display:block;font-size:clamp(1.2rem,4vw,1.7rem);margin-top:4px}
+    .lcs-timer{width:min(270px,75%);margin:0 auto 16px;padding:8px 14px;border:2px solid #22d3ee;border-right-color:#c084fc;border-radius:13px;background:rgba(8,13,36,.88);color:#67e8f9;font-size:clamp(1.5rem,5vw,2.1rem);font-weight:1000;line-height:1;text-shadow:0 0 14px #22d3ee;box-shadow:0 0 12px #22d3ee88,inset 0 0 12px #a855f744}
+    .lcs-status{padding:9px 11px;border-radius:10px;background:rgba(168,85,247,.12);color:#d8b4fe;font-weight:800;font-size:.8rem;margin-bottom:12px}
+    .lcs-mode-picker{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:22px;background:rgba(2,4,16,.82);backdrop-filter:blur(8px)}
     .lcs-mode-picker[hidden]{display:none}
-    .lcs-mode-heading{font-size:.72rem;letter-spacing:.16em;font-weight:950;color:#c4b5fd;margin-bottom:11px}
-    .lcs-mode-buttons{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-    .lcs-mode-buttons button{padding:14px 8px;border:1px solid #a78bfa88;border-radius:10px;background:#2a1b43;color:#fff;font:900 .82rem var(--font-main);cursor:pointer}
-    .lcs-mode-buttons button.active{border-color:#34d399;background:#064e3b88;box-shadow:0 0 16px #34d39933}
-    .lcs-mode-note{font-size:.72rem;color:#a5a3b8;margin-top:9px}
-    .lcs-question{font:850 clamp(1.15rem,3vw,1.75rem)/1.35 var(--font-main);padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #a855f755;border-radius:16px;background:linear-gradient(140deg,#1c1530,#101326)}
+    .lcs-mode-card{width:min(440px,100%);padding:24px 18px;border:1px solid #22d3ee99;border-radius:20px;background:linear-gradient(145deg,#101a38,#211536);box-shadow:0 0 35px #22d3ee33,0 0 55px #a855f733}
+    .lcs-mode-heading{font-size:1.05rem;letter-spacing:.1em;font-weight:950;color:#e9d5ff;margin-bottom:18px}
+    .lcs-mode-buttons{display:grid;grid-template-columns:1fr;gap:12px}
+    .lcs-mode-buttons button,.lcs-start-button{padding:15px 12px;border:1px solid #22d3eeaa;border-radius:12px;background:#102b49;color:#fff;font:950 .95rem var(--font-main);cursor:pointer;box-shadow:0 0 14px #22d3ee22}
+    .lcs-mode-buttons button+button{border-color:#c084fc;background:#2a1742;box-shadow:0 0 14px #c084fc22}
+    .lcs-mode-note{font-size:.75rem;color:#c4b5fd;margin-top:12px}
+    .lcs-start-button{width:100%;margin:8px 0 14px;background:linear-gradient(100deg,#073b55,#32164d);letter-spacing:.08em}
+    .lcs-question{font:850 clamp(1.15rem,3vw,1.75rem)/1.35 var(--font-main);padding:22px 12px;min-height:105px;display:grid;place-items:center;border:1px solid #67e8f9aa;border-radius:16px;background:rgba(13,18,43,.86);box-shadow:0 0 18px #22d3ee33}
     .lcs-question:empty{display:none}
     .lcs-options{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0}
-    .lcs-option{padding:15px 12px;text-align:left;border:1px solid #8b5cf766;border-radius:12px;background:#17152b;font-weight:800;min-height:62px}
-    .lcs-option b{color:#c4b5fd;margin-right:8px}
-    .lcs-option.correct{border-color:#34d399;background:#064e3b66}
+    .lcs-option{padding:13px 12px;text-align:left;border:1px solid #22d3eeaa;border-radius:28px;background:rgba(5,18,42,.9);color:#fff;font-weight:850;min-height:54px;box-shadow:0 0 12px #22d3ee33}
+    .lcs-option:nth-child(even){border-color:#c084fc;box-shadow:0 0 12px #c084fc33}
+    .lcs-option b{color:#67e8f9;margin-right:8px}
+    .lcs-option:nth-child(even) b{color:#d8b4fe}
+    .lcs-option.correct{border-color:#34d399;background:#064e3b99}
     .lcs-option.wrong{opacity:.5}
     .lcs-result{margin:12px 0;padding:14px;border-radius:12px;background:#201536;color:#e9d5ff;font-weight:800}
     .lcs-lists{display:grid;grid-template-columns:1fr 1fr;gap:10px;text-align:left;margin:18px 0}
-    .lcs-lists>div{padding:12px;border-radius:12px;background:#101326;border:1px solid #ffffff16;min-width:0}
+    .lcs-lists>div{padding:12px;border-radius:12px;background:rgba(16,19,38,.85);border:1px solid #ffffff16;min-width:0}
     .lcs-lists h3{font-size:.68rem;letter-spacing:.13em;color:#c4b5fd;margin-bottom:8px}
     .lcs-player-list{font-size:.78rem;color:#d5d8e8;line-height:1.8;overflow-wrap:anywhere}
-    @media(max-width:520px){.lcs-options,.lcs-lists{grid-template-columns:1fr}.lcs-question{min-height:90px}}
+    @media(max-width:520px){.lcs-options{grid-template-columns:1fr 1fr}.lcs-question{min-height:90px}.lcs-lists{grid-template-columns:1fr}}
 
 </style>
 </head>
@@ -1615,20 +1619,22 @@
     </section>
     <section class="screen" id="screen-lastchat">
       <div class="lcs-shell">
-        <div class="lcs-kicker">PLAYFINITY ORIGINAL · LIVE ELIMINATION</div>
         <h1 class="lcs-title">LAST CHAT <span>STANDING</span></h1>
+        <div class="lcs-timer" id="lcs-time">20</div>
         <div class="lcs-stats">
           <div><small>STUFE</small><strong id="lcs-stage">0 / 15</strong></div>
           <div><small>IM SPIEL</small><strong id="lcs-alive">0</strong></div>
-          <div><small>ZEIT</small><strong id="lcs-time">20</strong></div>
         </div>
-        <div class="lcs-mode-picker" id="lcs-mode-picker">
-          <div class="lcs-mode-heading">WIE MÖCHTEST DU SPIELEN?</div>
-          <div class="lcs-mode-buttons">
-            <button type="button" data-lcs-mode="solo">🎮 SOLO TESTEN</button>
-            <button type="button" data-lcs-mode="live">🔴 LIVE MIT CHAT</button>
+        <button type="button" class="lcs-start-button" id="lcs-open-mode">SPIEL STARTEN</button>
+        <div class="lcs-mode-picker" id="lcs-mode-picker" hidden>
+          <div class="lcs-mode-card">
+            <div class="lcs-mode-heading">WIE MÖCHTEST DU SPIELEN?</div>
+            <div class="lcs-mode-buttons">
+              <button type="button" data-lcs-mode="solo">🎮 SOLO TESTEN</button>
+              <button type="button" data-lcs-mode="live">🔴 LIVE MIT CHAT</button>
+            </div>
+            <div class="lcs-mode-note" id="lcs-mode-note">Wähle deinen Spielmodus.</div>
           </div>
-          <div class="lcs-mode-note" id="lcs-mode-note">Wähle Solo zum Ausprobieren oder Live für deine Zuschauer.</div>
         </div>
         <div class="lcs-status" id="lcs-status">Bereit</div>
         <div class="lcs-question" id="lcs-question"></div>
@@ -2445,7 +2451,9 @@
       init(){
         if(!this.channel && 'BroadcastChannel' in window){this.channel=new BroadcastChannel('playfinity-last-chat-standing');this.channel.onmessage=e=>this.receive(e.data);}
         try{const saved=JSON.parse(localStorage.getItem('playfinity_lcs_question_pools_v1')||'null');if(saved&&['easy','medium','hard'].every(k=>Array.isArray(saved[k])&&saved[k].length)){this.levelPools=saved;this.pool=[...saved.easy,...saved.medium,...saved.hard];}}catch(_){}
-        document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live')));
+        const modeModal=document.getElementById('lcs-mode-picker');
+        document.getElementById('lcs-open-mode')?.addEventListener('click',()=>{modeModal.hidden=false;});
+        document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.addEventListener('click',()=>{modeModal.hidden=true;this.command(button.dataset.lcsMode==='solo'?'mode-solo':'mode-live');}));
         this.render();
       },
       openSecret(){
@@ -2482,7 +2490,7 @@
       },
       command(action,payload={}){
         if(action==='mode-solo'){this.gameMode='solo';this.chatEnabled=false;this.reset(false);if(!this.levelPools.easy.length&&!this.levelPools.medium.length&&!this.levelPools.hard.length)this.loadDemoQuestions();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Solo-Test gestartet.'});}
-        if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Modus ausgewählt.'});}
+        if(action==='mode-live'){this.gameMode='live';this.chatEnabled=true;this.reset(false);this.phase='lobby';this.render();this.openSecret();this.broadcast({type:'settings',state:this.snapshot()});this.broadcast({type:'notice',text:'Live-Lobby gestartet.'});}
         if(action==='lobby'){this.gameMode='live';this.reset(false);this.phase='lobby';this.render();this.broadcast({type:'notice',text:'Lobby geöffnet – erste A–D-Antwort genügt.'});}
         if(action==='start'){if(this.gameMode==='solo'&&this.phase==='idle'){this.players.clear();this.players.set('solo-host',{id:'solo-host',name:'Du',answer:null,locked:false,result:'waiting'});this.startRound();}else if(this.phase==='lobby'||this.phase==='idle')this.startRound();}
         if(action==='solo-answer'&&this.gameMode==='solo'&&this.phase==='question'){const answer=String(payload.answer||'').toUpperCase();const p=this.players.get('solo-host');if(p&&!p.locked&&'ABCD'.includes(answer)){p.answer=answer;p.locked=true;p.result='submitted';this.render();this.broadcast({type:'players',state:this.snapshot()});}}
@@ -2582,7 +2590,7 @@
       render(){
         const $=id=>document.getElementById(id);
         $('lcs-stage').textContent=this.stage+' / 15';$('lcs-alive').textContent=this.players.size;$('lcs-time').textContent=this.timerEnabled?this.seconds:'—';
-        const modePicker=$('lcs-mode-picker');modePicker.hidden=this.phase!=='idle';
+        const modePicker=$('lcs-mode-picker');
         document.querySelectorAll('[data-lcs-mode]').forEach(button=>button.classList.toggle('active',button.dataset.lcsMode===this.gameMode));
         $('lcs-mode-note').textContent=this.gameMode==='solo'?'Solo ausgewählt · Du beantwortest die Fragen direkt hier im Spiel.':'Live ausgewählt · Zuschauer steigen mit ihrer ersten A–D-Antwort ein.';
         $('lcs-status').textContent=({idle:'Bereit',lobby:this.chatEnabled?'LOBBY OFFEN · Erste A–D-Antwort genügt.':'LOBBY OFFEN · Live-Teilnahme deaktiviert.',question:'ANTWORTEN! · A, B, C oder D in den Chat schreiben.',revealed:'Antwortmöglichkeiten werden angezeigt.',timeup:'ZEIT ABGELAUFEN · Jetzt auflösen.',resolved:'Runde ausgewertet · Wer bleibt im Spiel?',finished:'SPIEL BEENDET'})[this.phase]||'Bereit';
