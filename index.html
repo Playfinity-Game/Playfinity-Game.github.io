@@ -1417,6 +1417,31 @@
       max-width: 100%;
     }
 
+    /* Nur für den internen Zwei-Streamer-Isolationstest. */
+    body.stream-test-mode { padding-bottom: 118px; }
+    #pf-stream-test-panel {
+      position: fixed; z-index: 9999; left: 10px; right: 10px; bottom: 10px;
+      display: grid; grid-template-columns: 1fr 1fr auto; gap: 7px;
+      padding: 10px; border: 1px solid rgba(0,240,255,.55); border-radius: 12px;
+      background: rgba(7,8,20,.96); box-shadow: 0 8px 30px rgba(0,0,0,.5);
+      font: 12px system-ui,sans-serif;
+    }
+    #pf-stream-test-panel strong { grid-column: 1 / -1; color: #00f0ff; }
+    #pf-stream-test-panel input {
+      min-width: 0; width: 100%; padding: 9px; border-radius: 7px;
+      border: 1px solid rgba(0,240,255,.3); background: #101329; color: white;
+    }
+    #pf-stream-test-panel button {
+      border: 1px solid rgba(0,240,255,.4); border-radius: 7px;
+      padding: 8px 10px; background: rgba(0,240,255,.12); color: white; font-weight: 700;
+    }
+    #pf-stream-test-panel .pf-test-actions { display: flex; gap: 6px; grid-column: 1 / -1; }
+    #pf-stream-test-panel small { color: #aab3d2; align-self: center; }
+    @media(max-width:520px) {
+      #pf-stream-test-panel { grid-template-columns: 1fr 1fr; }
+      #pf-stream-test-panel strong, #pf-stream-test-panel .pf-test-actions { grid-column: 1 / -1; }
+    }
+
 </style>
 </head>
 
@@ -4279,15 +4304,81 @@
       requestAnimationFrame(animate);
     }
 
+    // Lokaler Isolationstest: jede Test-Instanz läuft in einem eigenen Browser-Tab.
+    function initStreamIsolationTest() {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('streamTest') !== '1') return false;
+      document.body.classList.add('stream-test-mode');
+      const tester = (params.get('tester') || 'Test-Streamer').replace(/[^A-Za-z0-9_-]/g, '').slice(0, 24) || 'Test-Streamer';
+      activeLiveSource = 'tikfinity';
+      window.__pfStreamTestScores = { total: 0, players: {} };
+      const localAward = async (playerName, points) => {
+        const value = Number(points) || 0;
+        window.__pfStreamTestScores.total += value;
+        const key = String(playerName || 'Testspieler');
+        window.__pfStreamTestScores.players[key] = (window.__pfStreamTestScores.players[key] || 0) + value;
+        renderScore();
+        return true;
+      };
+      PlayfinityScores.award = localAward;
+      PlayfinityScores.awardGame = async (gameKey, playerKey, displayName, points) => localAward(displayName || playerKey, points);
+      PlayfinityScores.awardGuessmoji = async (player, points) => localAward(player?.name || player?.id, points);
+
+      const panel = document.createElement('section');
+      panel.id = 'pf-stream-test-panel';
+      const heading = document.createElement('strong');
+      heading.textContent = 'TESTMODUS · ' + tester + ' — nur lokal in diesem Tab';
+      const player = document.createElement('input');
+      player.value = tester + '-Viewer';
+      player.setAttribute('aria-label', 'Simulierter Zuschauer');
+      const comment = document.createElement('input');
+      comment.placeholder = 'Chat-Nachricht für das aktive Spiel';
+      comment.setAttribute('aria-label', 'Simulierte Chat-Nachricht');
+      const send = document.createElement('button');
+      send.textContent = 'Chat senden';
+      const points = document.createElement('button');
+      points.textContent = '+10 Testpunkte';
+      const status = document.createElement('small');
+      status.textContent = 'Punktestand in diesem Tab: 0';
+      function renderScore() {
+        status.textContent = 'Punktestand in diesem Tab: ' + window.__pfStreamTestScores.total;
+      }
+      send.addEventListener('click', () => {
+        const message = comment.value.trim();
+        if (!message) { status.textContent = 'Bitte zuerst eine Chat-Nachricht eingeben.'; return; }
+        TikFinity.routeLiveChat(
+          { id: tester + ':' + player.value.trim(), name: player.value.trim() || tester + '-Viewer' },
+          message,
+          'tikfinity'
+        );
+        status.textContent = 'Chat an ' + PlayfinityRouter.currentScreen + ' gesendet · Punkte: ' + window.__pfStreamTestScores.total;
+        comment.value = '';
+      });
+      comment.addEventListener('keydown', event => { if (event.key === 'Enter') send.click(); });
+      points.addEventListener('click', () => localAward(player.value.trim() || tester + '-Viewer', 10));
+      const actions = document.createElement('div');
+      actions.className = 'pf-test-actions';
+      actions.append(send, points, status);
+      panel.append(heading, player, comment, actions);
+      document.body.appendChild(panel);
+      return true;
+    }
+
     // Beim Laden der Plattform initialisieren
     window.addEventListener('DOMContentLoaded', () => {
-      document.body.classList.toggle('stream-mode', new URLSearchParams(window.location.search).get('stream') === '1');
+      const params = new URLSearchParams(window.location.search);
+      const streamTest = params.get('streamTest') === '1';
+      document.body.classList.toggle('stream-mode', params.get('stream') === '1' || streamTest);
       initPlayfinityTextFrames();
       PlayfinityRouter.init();
-      TikFinity.init();
-      TikTokConnector.init();
-      PlayfinityUsageMetrics.init();
-      PlayfinityPlayerPresence.init();
+      if (streamTest) {
+        initStreamIsolationTest();
+      } else {
+        TikFinity.init();
+        TikTokConnector.init();
+        PlayfinityUsageMetrics.init();
+        PlayfinityPlayerPresence.init();
+      }
     });
   </script>
 </body>
