@@ -666,6 +666,12 @@ const server = http.createServer(async (request, response) => {
     response.writeHead(204, { "access-control-allow-origin": request.headers.origin, "access-control-allow-methods": "POST, OPTIONS", "access-control-allow-headers": "content-type", "access-control-max-age": "600", vary: "Origin" });
     return response.end();
   }
+  if (request.method === "POST" && url.pathname === "/api/stream-source/register") {
+    if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
+    const id = randomBytes(12).toString("hex");
+    streamSources.set(id, { id, socket: null, room: null, lastView: null, createdAt: Date.now() });
+    return sendJson(response, 200, { ok: true, sourceId: id, websocketPath: "/stream-source/" + id }, { "access-control-allow-origin": request.headers.origin, vary: "Origin" });
+  }
   if (request.method === "POST" && url.pathname === "/api/stream-control/connect") {
     if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
     let raw = "";
@@ -680,7 +686,7 @@ const server = http.createServer(async (request, response) => {
   return sendJson(response, 404, { error: "Nicht gefunden." });
 });
 
-const streamControlRooms = new Map();
+const streamControlRooms = new Map();\nconst streamSources = new Map();
 function normalizeStreamKey(value) {
   if (typeof value !== "string") return "";
   const key = value.trim().replace(/^@/, "").toLowerCase();
@@ -699,6 +705,11 @@ server.on("upgrade", (request, socket, head) => {
   if (pathname.startsWith("/stream-control/")) {
     if (!origin || !allowedOrigins.has(origin)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
     websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("stream-control-connection", websocket, pathname.slice("/stream-control/".length)));
+    return;
+  }
+  if (pathname.startsWith("/stream-source/")) {
+    if (!origin || !allowedOrigins.has(origin)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
+    websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("stream-source-connection", websocket, pathname.slice("/stream-source/".length)));
     return;
   }
   const token = pathname.startsWith("/ws/") ? pathname.slice(4) : "";
@@ -739,26 +750,46 @@ websocketServer.on("player-connection", (websocket) => {
   websocket.on("error", () => activePlayers.delete(id));
 });
 
+function sendSourceList() {
+  const sources = [...streamSources.values()].filter(s => s.socket?.readyState === WebSocket.OPEN).map(s => ({ id: s.id, label: "Streamquelle · " + s.id.slice(0, 5).toUpperCase(), claimed: !!s.room }));
+  for (const room of streamControlRooms.values()) for (const client of room.clients) if (client.readyState === WebSocket.OPEN) client.send(JSON.stringify({ type: "sources", sources }));
+}
+websocketServer.on("stream-source-connection", (websocket, id) => {
+  const source = streamSources.get(id);
+  if (!source) { websocket.close(1008, "Unknown source"); return; }
+  source.socket = websocket;
+  websocket.send(JSON.stringify({ type: "source-connected" }));
+  sendSourceList();
+  websocket.on("close", () => { streamSources.delete(id); sendSourceList(); });
+  websocket.on("error", () => { streamSources.delete(id); sendSourceList(); });
+});
 websocketServer.on("stream-control-connection", (websocket, encodedKey) => {
   const key = normalizeStreamKey(decodeURIComponent(encodedKey));
   if (!key) { websocket.close(1008, "Invalid streamer"); return; }
-  const room = streamControlRooms.get(key) || { clients: new Set(), lastSeen: Date.now() };
+  const room = streamControlRooms.get(key) || { clients: new Set(), lastSeen: Date.now(), sourceId: null };
   room.lastSeen = Date.now(); room.clients.add(websocket); streamControlRooms.set(key, room);
   websocket.send(JSON.stringify({ type: "stream-control-connected", username: key }));
+  websocket.send(JSON.stringify({ type: "sources", sources: [...streamSources.values()].filter(s => s.socket?.readyState === WebSocket.OPEN).map(s => ({ id: s.id, label: "Streamquelle · " + s.id.slice(0,5).toUpperCase(), claimed: !!s.room })) }));
   websocket.on("message", raw => {
     if (Buffer.byteLength(raw) > 4096) return;
     let msg; try { msg = JSON.parse(String(raw)); } catch { return; }
+    if (msg.type === "claim" && typeof msg.sourceId === "string") {
+      const source = streamSources.get(msg.sourceId);
+      if (!source || source.socket?.readyState !== WebSocket.OPEN) { websocket.send(JSON.stringify({ type: "claim-error", message: "Diese Streamquelle ist nicht mehr verfügbar." })); return; }
+      if (source.room && source.room !== room) { websocket.send(JSON.stringify({ type: "claim-error", message: "Diese Streamquelle wird bereits gesteuert." })); return; }
+      if (room.sourceId && room.sourceId !== source.id) { const previous=streamSources.get(room.sourceId); if(previous) previous.room=null; }
+      room.sourceId=source.id; source.room=room;
+      websocket.send(JSON.stringify({ type: "claimed", sourceId: source.id }));
+      if (source.lastView) source.socket.send(JSON.stringify({ type: "view", view: source.lastView }));
+      sendSourceList(); return;
+    }
     if (msg.type !== "view" || !msg.view || typeof msg.view !== "object") return;
-    const view = {
-      format: ["portrait","wide","free"].includes(msg.view.format) ? msg.view.format : "portrait",
-      showScore: msg.view.showScore !== false,
-      game: ["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"].includes(msg.view.game) ? msg.view.game : "menu"
-    };
+    const view = { format: ["portrait","wide","free"].includes(msg.view.format) ? msg.view.format : "portrait", showScore: msg.view.showScore !== false, game: ["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"].includes(msg.view.game) ? msg.view.game : "menu" };
     room.lastSeen = Date.now();
-    const payload = JSON.stringify({ type: "view", view, updatedAt: Date.now() });
-    for (const peer of room.clients) if (peer !== websocket && peer.readyState === WebSocket.OPEN) peer.send(payload);
+    const source=streamSources.get(room.sourceId);
+    if(source?.socket?.readyState===WebSocket.OPEN){source.lastView=view;source.socket.send(JSON.stringify({type:"view",view,updatedAt:Date.now()}));}
   });
-  websocket.on("close", () => { room.clients.delete(websocket); room.lastSeen = Date.now(); });
+  websocket.on("close", () => { room.clients.delete(websocket); room.lastSeen = Date.now(); if(!room.clients.size && room.sourceId){const source=streamSources.get(room.sourceId);if(source)source.room=null;room.sourceId=null;sendSourceList();} });
   websocket.on("error", () => room.clients.delete(websocket));
 });
 
