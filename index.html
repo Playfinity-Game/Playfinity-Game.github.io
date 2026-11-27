@@ -367,6 +367,47 @@
     .wordfinity-card-smoker .wf-head { fill:#03040a; stroke:#03040a; stroke-width:2; }
     .wordfinity-card-smoker .wf-cigarette { stroke:#03040a; stroke-width:3; stroke-linecap:round; }
     .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.95; }
+
+    /* Wordfinity-Rückkehr: Zigarette weg, Schild aufnehmen, gemeinsam abtreten. */
+    .wordfinity-card-smoker .wf-cigarette {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: wf-cigarette-flick .9s ease-in .25s both;
+    }
+    .wordfinity-card-smoker .wf-smoke {
+      animation: wf-smoke-fade .45s ease-out .35s both;
+    }
+    .wordfinity-mini-sign {
+      animation: wf-sign-pickup-and-exit 3.15s cubic-bezier(.45,.02,.7,.35) .95s both;
+    }
+    .wordfinity-card-smoker {
+      transform-origin: 75% 90%;
+      animation: wf-worker-pickup-and-run 4.1s cubic-bezier(.42,0,.75,.35) both;
+    }
+    @keyframes wf-cigarette-flick {
+      0% { opacity:1; transform:translate(0,0) rotate(0); }
+      22% { opacity:1; transform:translate(-3px,-3px) rotate(-35deg); }
+      100% { opacity:0; transform:translate(-28px,35px) rotate(155deg); }
+    }
+    @keyframes wf-smoke-fade { to { opacity:0; } }
+    @keyframes wf-sign-pickup-and-exit {
+      0% { opacity:1; transform:translate(0,0) rotate(-5deg); }
+      38% { opacity:1; transform:translate(82px,-24px) rotate(12deg); }
+      54% { opacity:1; transform:translate(82px,-24px) rotate(12deg); }
+      100% { opacity:0; transform:translate(285px,-10px) rotate(24deg); }
+    }
+    @keyframes wf-worker-pickup-and-run {
+      0%,32% { opacity:1; transform:translate(0,0) rotate(0); }
+      43% { opacity:1; transform:translate(-13px,-3px) rotate(-5deg); }
+      54% { opacity:1; transform:translate(-13px,0) rotate(0); }
+      63% { opacity:1; transform:translate(4px,-5px) rotate(3deg); }
+      72% { opacity:1; transform:translate(35px,2px) rotate(-3deg); }
+      100% { opacity:0; transform:translate(190px,12px) rotate(8deg); }
+    }
+    @media(prefers-reduced-motion:reduce) {
+      .wordfinity-card-smoker, .wordfinity-card-smoker .wf-cigarette,
+      .wordfinity-card-smoker .wf-smoke, .wordfinity-mini-sign { animation:none!important; }
+    }
     .wordfinity-card-footer { position:relative; z-index:4; }
     @media(max-width:420px) {
       .wordfinity-card { min-height:210px; }
