@@ -764,7 +764,7 @@ websocketServer.on("stream-source-connection", (websocket, id) => {
     if (Buffer.byteLength(raw) > 1024) return;
     let message; try { message = JSON.parse(String(raw)); } catch { return; }
     if (message.type !== "view-applied" || typeof message.ok !== "boolean") return;
-    const reply = JSON.stringify({ type: "view-applied", game: typeof message.game === "string" ? message.game : "menu", ok: message.ok });
+    const reply = JSON.stringify({ type: "view-applied", requestId: typeof message.requestId === "string" ? message.requestId : null, game: typeof message.game === "string" ? message.game : "menu", ok: message.ok });
     if (source.room) for (const client of source.room.clients) if (client.readyState === WebSocket.OPEN) client.send(reply);
   });
   sendSourceList();
@@ -795,7 +795,7 @@ websocketServer.on("stream-control-connection", (websocket, encodedKey) => {
     const view = { format: ["portrait","wide","free"].includes(msg.view.format) ? msg.view.format : "portrait", showScore: msg.view.showScore !== false, game: ["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"].includes(msg.view.game) ? msg.view.game : "menu" };
     room.lastSeen = Date.now();
     const source=streamSources.get(room.sourceId);
-    if(source?.socket?.readyState===WebSocket.OPEN){source.lastView=view;source.socket.send(JSON.stringify({type:"view",view,updatedAt:Date.now()}));}
+    if(source?.socket?.readyState===WebSocket.OPEN){source.lastView=view;source.socket.send(JSON.stringify({type:"view",requestId:typeof msg.requestId==="string"?msg.requestId:null,view,updatedAt:Date.now()}));websocket.send(JSON.stringify({type:"view-sent",requestId:msg.requestId||null}));}else{websocket.send(JSON.stringify({type:"view-error",message:"Keine aktive Streamquelle zugeordnet. Bitte Streamquelle erneut auswählen."}));}
   });
   websocket.on("close", () => { room.clients.delete(websocket); room.lastSeen = Date.now(); if(!room.clients.size && room.sourceId){const source=streamSources.get(room.sourceId);if(source)source.room=null;room.sourceId=null;sendSourceList();} });
   websocket.on("error", () => room.clients.delete(websocket));
