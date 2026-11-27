@@ -183,8 +183,11 @@
     /* Einheitlicher Spielfeldrahmen: gleiche Außenmaße für alle Spiele. */
     .screen:not(#screen-menu) {
       box-sizing: border-box;
-      height: min(700px, calc(100vh - 160px));
-      min-height: min(540px, calc(100vh - 160px));
+      width: 100%;
+      max-width: 900px;
+      height: 600px;
+      min-height: 600px;
+      flex: 0 0 600px;
       overflow-y: auto;
       padding: 22px;
       scrollbar-gutter: stable;
@@ -202,8 +205,9 @@
 
     @media (max-width: 520px) {
       .screen:not(#screen-menu) {
-        height: min(700px, calc(100vh - 140px));
+        height: min(600px, calc(100vh - 140px));
         min-height: min(480px, calc(100vh - 140px));
+        flex: 0 0 auto;
         padding: 20px;
       }
     }
