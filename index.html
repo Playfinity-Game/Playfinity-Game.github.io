@@ -220,6 +220,19 @@
       display: flex;
     }
 
+    /* Einheitliche Spieltitel für Screens ohne eigenes Marken-Heading. */
+    .screen-game-title {
+      margin: 0 0 14px;
+      text-align: center;
+      font-size: clamp(1.35rem, 4vw, 1.8rem);
+      line-height: 1.15;
+      font-weight: 900;
+      letter-spacing: .045em;
+      text-shadow: 0 0 14px rgba(0, 240, 255, .16);
+    }
+    .screen-game-title span:first-child { color: var(--neon-cyan); }
+    .screen-game-title span:last-child { color: var(--neon-pink); }
+
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(6px); }
       to { opacity: 1; transform: translateY(0); }
@@ -1567,6 +1580,7 @@
 
     <!-- SCREEN 2: WORDLE -->
     <section class="screen" id="screen-wordle">
+      <h1 class="screen-game-title"><span>FIVE</span><span>X</span></h1>
       <div class="wordle-container">
         <div class="wordle-mobile-entry" aria-live="polite" aria-label="Aktuelle Eingabe">
           <div class="wordle-mobile-letters" id="wordle-mobile-letters"></div>
@@ -1584,6 +1598,7 @@
 
     <!-- SCREEN: WORDFINITY -->
     <section class="screen" id="screen-wordfinity">
+      <h1 class="screen-game-title"><span>WORD</span><span>FINITY</span></h1>
       <div class="kontexto-wrap">
         <div class="kontexto-hint-controls" aria-label="Wordfinity-Tipps">
           <div class="kontexto-inline-hints">
