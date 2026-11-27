@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#070814">
+  <title>PLAYFINITY · Stream-Isolationstest</title>
+  <style>
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;display:grid;place-items:center;padding:24px;background:radial-gradient(circle at 15% 15%,#241044,transparent 42%),radial-gradient(circle at 85% 85%,#073448,transparent 42%),#070814;color:#f0f4ff;font:16px system-ui,sans-serif}
+    main{width:min(620px,100%);padding:28px;border:1px solid rgba(0,240,255,.3);border-radius:20px;background:rgba(12,15,36,.92);box-shadow:0 20px 70px #0008}
+    h1{margin:0 0 8px;text-align:center;letter-spacing:.08em;background:linear-gradient(90deg,#00f0ff,#ff007f);background-clip:text;color:transparent}
+    p{color:#aab3d2;line-height:1.55}.streams{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:24px 0}
+    a{display:block;padding:18px 12px;text-align:center;text-decoration:none;font-weight:850;border-radius:12px;border:1px solid rgba(0,240,255,.4);background:rgba(0,240,255,.08);color:#00f0ff}
+    a:last-child{border-color:rgba(255,0,127,.45);background:rgba(255,0,127,.08);color:#ff83bd}
+    small{display:block;margin-top:8px;color:#aab3d2;font-weight:500}
+    ol{padding-left:22px;color:#d9def3;line-height:1.7} .note{font-size:.85rem;border-top:1px solid #ffffff20;padding-top:14px}
+    @media(max-width:440px){.streams{grid-template-columns:1fr}main{padding:22px}}
+  </style>
+</head>
+<body>
+  <main>
+    <h1>PLAYFINITY TESTLAB</h1>
+    <p>Öffne beide Test-Streamer in getrennten Browser-Tabs. Jeder Tab erhält seine eigene Spielrunde, simulierte Chat-Eingaben und einen lokalen Test-Punktestand.</p>
+    <div class="streams">
+      <a href="../?stream=1&amp;streamTest=1&amp;tester=Streamer-A#menu" target="_blank" rel="noopener">STREAMER A<small>Eigenständigen Test öffnen ↗</small></a>
+      <a href="../?stream=1&amp;streamTest=1&amp;tester=Streamer-B#menu" target="_blank" rel="noopener">STREAMER B<small>Eigenständigen Test öffnen ↗</small></a>
+    </div>
+    <ol>
+      <li>In beiden Tabs ein unterschiedliches Spiel starten.</li>
+      <li>Unten im Testfeld Chat-Nachrichten oder Testpunkte auslösen.</li>
+      <li>Prüfen, dass sich Spiel und Punktestand nur im jeweiligen Tab ändern.</li>
+    </ol>
+    <p class="note">Wichtig: Dieser Testmodus simuliert Chat und Punkte vollständig lokal. Es wird keine TikTok-Verbindung aufgebaut und die echte Community-Rangliste wird nicht verändert.</p>
+  </main>
+</body>
+</html>
