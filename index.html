@@ -3417,7 +3417,7 @@
           for(let attempts=0;attempts<manifest.puzzleIds.length;attempts++){
             if(!this.puzzleDeck.length)this.puzzleDeck=this.shufflePuzzleDeck(manifest.puzzleIds);
             const id=this.puzzleDeck.pop();
-            document.getElementById('wordfinity-status').textContent='Lade Rätsel '+id+' …';
+            document.getElementById('wordfinity-status').textContent='Rätsel wird vorbereitet …';
             const loaded=await this.loadPuzzle(id);
             if(token!==this.roundToken)return;
             const data=loaded.data;
@@ -3445,7 +3445,7 @@
           this.puzzle={woerter:words,kategorie:data.kategorie,target:selected.target,id:data.id};
           this.setControls(true);
           if(localStorage.getItem('playfinity_wordfinity_auto_category')==='true')this.showCategory();
-          document.getElementById('wordfinity-status').textContent=source==='network'?'Los geht’s! Rätsel geladen und lokal gespeichert.':'Los geht’s! Rätsel aus deinem Speicher geladen.';
+          document.getElementById('wordfinity-status').textContent='Viel Spaß beim Rätseln!';
           document.getElementById('wordfinity-input').focus({preventScroll:true});
           PlayfinityPlayerPresence.sendPresence();
         }catch(error){
