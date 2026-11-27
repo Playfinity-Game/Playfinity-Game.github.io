@@ -368,41 +368,44 @@
     .wordfinity-card-smoker .wf-cigarette { stroke:#03040a; stroke-width:3; stroke-linecap:round; }
     .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.95; }
 
-    /* Wordfinity-Rückkehr: Zigarette weg, Schild aufnehmen, gemeinsam abtreten. */
+    /* Wordfinity-Rückkehr: erst zum Schild laufen, dann damit abtreten. */
     .wordfinity-card-smoker .wf-cigarette {
       transform-box: fill-box;
       transform-origin: center;
-      animation: wf-cigarette-flick .9s ease-in .25s both;
+      animation: wf-cigarette-flick .65s ease-in .2s both;
     }
-    .wordfinity-card-smoker .wf-smoke {
-      animation: wf-smoke-fade .45s ease-out .35s both;
-    }
-    .wordfinity-mini-sign {
-      animation: wf-sign-pickup-and-exit 3.15s cubic-bezier(.45,.02,.7,.35) .95s both;
-    }
+    .wordfinity-card-smoker .wf-smoke { animation: wf-smoke-fade .4s ease-out .25s both; }
     .wordfinity-card-smoker {
       transform-origin: 75% 90%;
-      animation: wf-worker-pickup-and-run 4.1s cubic-bezier(.42,0,.75,.35) both;
+      animation: wf-walk-to-sign-and-exit 5.25s ease-in-out both;
+    }
+    .wordfinity-mini-sign {
+      animation: wf-sign-lift-and-exit 5.25s ease-in-out both;
     }
     @keyframes wf-cigarette-flick {
       0% { opacity:1; transform:translate(0,0) rotate(0); }
-      22% { opacity:1; transform:translate(-3px,-3px) rotate(-35deg); }
-      100% { opacity:0; transform:translate(-28px,35px) rotate(155deg); }
+      20% { opacity:1; transform:translate(-4px,-4px) rotate(-45deg); }
+      100% { opacity:0; transform:translate(-30px,38px) rotate(180deg); }
     }
     @keyframes wf-smoke-fade { to { opacity:0; } }
-    @keyframes wf-sign-pickup-and-exit {
-      0% { opacity:1; transform:translate(0,0) rotate(-5deg); }
-      38% { opacity:1; transform:translate(82px,-24px) rotate(12deg); }
-      54% { opacity:1; transform:translate(82px,-24px) rotate(12deg); }
-      100% { opacity:0; transform:translate(285px,-10px) rotate(24deg); }
+    /* 0–1 s Zigarette, 1–2.6 s zum Schild, kurze Aufnahme, dann gemeinsam rechts hinaus. */
+    @keyframes wf-walk-to-sign-and-exit {
+      0%,18% { opacity:1; transform:translateX(0) translateY(0); }
+      25% { transform:translateX(-22px) translateY(-3px); }
+      33% { transform:translateX(-58px) translateY(0); }
+      41% { transform:translateX(-96px) translateY(-3px); }
+      49% { opacity:1; transform:translateX(-150px) translateY(0); }
+      56% { opacity:1; transform:translateX(-150px) translateY(-2px); }
+      66% { opacity:1; transform:translateX(-95px) translateY(-4px); }
+      78% { opacity:1; transform:translateX(35px) translateY(0); }
+      100% { opacity:0; transform:translateX(280px) translateY(8px); }
     }
-    @keyframes wf-worker-pickup-and-run {
-      0%,32% { opacity:1; transform:translate(0,0) rotate(0); }
-      43% { opacity:1; transform:translate(-13px,-3px) rotate(-5deg); }
-      54% { opacity:1; transform:translate(-13px,0) rotate(0); }
-      63% { opacity:1; transform:translate(4px,-5px) rotate(3deg); }
-      72% { opacity:1; transform:translate(35px,2px) rotate(-3deg); }
-      100% { opacity:0; transform:translate(190px,12px) rotate(8deg); }
+    @keyframes wf-sign-lift-and-exit {
+      0%,48% { opacity:1; transform:translate(0,0) rotate(-5deg); }
+      56% { opacity:1; transform:translate(18px,-15px) rotate(8deg); }
+      66% { opacity:1; transform:translate(65px,-10px) rotate(5deg); }
+      78% { opacity:1; transform:translate(175px,-4px) rotate(2deg); }
+      100% { opacity:0; transform:translate(360px,8px) rotate(8deg); }
     }
     @media(prefers-reduced-motion:reduce) {
       .wordfinity-card-smoker, .wordfinity-card-smoker .wf-cigarette,
@@ -1565,7 +1568,6 @@
               <div class="wordfinity-mini-sign-pole"></div>
             </div>
             <svg class="wordfinity-card-smoker" viewBox="0 0 112 132" role="img" aria-label="">
-              <path d="M101 18 L101 116" fill="none" stroke="#171717" stroke-width="3" opacity=".75"/>
               <circle class="wf-head" cx="82" cy="22" r="12"/>
               <path class="wf-figure" d="M86 36 Q91 55 76 77 M85 44 L72 35 L62 29 M85 46 L94 57 L92 68 M76 77 L57 99 L43 100 M76 77 Q91 78 88 91 L98 96"/>
               <path class="wf-figure" d="M72 35 L76 28 M92 68 L96 72"/>
