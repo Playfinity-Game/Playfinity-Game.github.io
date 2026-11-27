@@ -3250,7 +3250,7 @@
         return this.isValidPuzzle(data,data?.id);
       },
       datasetCacheName:'wordfinity-dataset-cache',
-      datasetCacheVersion:4,
+      datasetCacheVersion:5,
       puzzleManifestUrl:'https://dinaj-1992.github.io/wordfinity-daten/puzzle-index.json',
       puzzleBaseUrl:'https://dinaj-1992.github.io/wordfinity-daten/',
       puzzleManifest:null,
@@ -3330,8 +3330,8 @@
         if(!response.ok)throw new Error('Rätsel-Index konnte nicht geladen werden (HTTP '+response.status+').');
         const data=await response.json();
         if(!this.isValidManifest(data))throw new Error('Der Rätsel-Index ist ungültig.');
-        const manifest={count:data.length,puzzleIds:data.map(item=>Number(item.id)),entries:data};
-        const record={key:'manifest',version:3,savedAt:Date.now(),data:manifest};
+        const manifest={count:data.length,puzzleIds:data.filter(item=>!item.zielwort_entfernt).map(item=>Number(item.id)),entries:data};
+        const record={key:'manifest',version:4,savedAt:Date.now(),data:manifest};
         await this.writeLocal('meta',record);
         this.puzzleManifest=manifest;
         return manifest;
@@ -3347,7 +3347,7 @@
       async loadPuzzleManifest(){
         if(this.puzzleManifest)return this.puzzleManifest;
         const cached=await this.readLocal('meta','manifest');
-        if(cached&&cached.version===3&&this.isValidManifest(cached.data)){
+        if(cached&&cached.version===4&&this.isValidManifest(cached.data)){
           this.puzzleManifest=cached.data;
           this.refreshManifestInBackground(cached.savedAt);
           return this.puzzleManifest;
