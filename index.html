@@ -369,67 +369,93 @@
     .wordfinity-card-smoker .wf-cigarette { stroke:#03040a; stroke-width:3; stroke-linecap:round; }
     .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.95; }
 
-    /* Wordfinity-Rückkehr: erst zum Schild laufen, dann damit abtreten. */
-    .wordfinity-card-smoker .wf-cigarette {
-      transform-box: fill-box;
-      transform-origin: center;
-      animation: wf-cigarette-flick .65s ease-in .2s both;
-    }
-    .wordfinity-card-smoker .wf-smoke { animation: wf-smoke-fade .4s ease-out .25s both; }
+    /* Wordfinity-Szene: klare, langsame Bewegungsfolge mit gemeinsamem Timing. */
     .wordfinity-card-smoker {
-      transform-origin: 75% 90%;
-      animation: wf-walk-to-sign-and-exit 5.25s ease-in-out both;
+      right:auto; left:calc(100% - 109px); bottom:0; z-index:2;
+      transform-origin:50% 90%;
+      animation:wf-character-journey 10.8s linear both;
     }
-    .wordfinity-card-smoker .wf-leg { animation: wf-leg-walk 5.25s linear both; }
-    .wordfinity-card-smoker .wf-leg-back { animation-delay:-.18s; }
-    @keyframes wf-leg-walk {
-      0%,18%,49%,56% { transform:rotate(0deg); }
-      23% { transform:rotate(28deg); }
-      28% { transform:rotate(-25deg); }
-      33% { transform:rotate(28deg); }
-      38% { transform:rotate(-25deg); }
-      43% { transform:rotate(28deg); }
-      48% { transform:rotate(0deg); }
-      61% { transform:rotate(25deg); }
-      66% { transform:rotate(-25deg); }
-      71% { transform:rotate(25deg); }
-      76% { transform:rotate(-25deg); }
-      81% { transform:rotate(25deg); }
-      86% { transform:rotate(-25deg); }
-      91% { transform:rotate(25deg); }
-      96%,100% { transform:rotate(0deg); }
+    .wordfinity-card-smoker .wf-cigarette {
+      transform-box:fill-box; transform-origin:center;
+      animation:wf-cigarette-throw 1.15s ease-in 1.15s both;
     }
+    .wordfinity-card-smoker .wf-smoke { animation:wf-smoke-fade .55s ease-out 1.35s both; }
+    .wordfinity-card-smoker .wf-reach-arm {
+      fill:none; stroke:#03040a; stroke-width:7; stroke-linecap:round; stroke-linejoin:round;
+      opacity:0; animation:wf-reach-for-sign 10.8s linear both;
+    }
+    .wordfinity-card-smoker .wf-leg { transform-box:view-box; }
+    .wordfinity-card-smoker .wf-leg-back { transform-origin:76px 77px; animation:wf-thigh-back 10.8s linear both; }
+    .wordfinity-card-smoker .wf-leg-front { transform-origin:76px 77px; animation:wf-thigh-front 10.8s linear both; }
+    .wordfinity-card-smoker .wf-calf { transform-box:view-box; }
+    .wordfinity-card-smoker .wf-calf-back { transform-origin:64px 89px; animation:wf-calf-back 10.8s linear both; }
+    .wordfinity-card-smoker .wf-calf-front { transform-origin:88px 91px; animation:wf-calf-front 10.8s linear both; }
     .wordfinity-mini-sign {
-      animation: wf-sign-lift-and-exit 5.25s ease-in-out both;
+      left:10px; z-index:3; transform-origin:50% 85%;
+      animation:wf-sign-journey 10.8s linear both;
     }
-    @keyframes wf-cigarette-flick {
-      0% { opacity:1; transform:translate(0,0) rotate(0); }
-      20% { opacity:1; transform:translate(-4px,-4px) rotate(-45deg); }
-      100% { opacity:0; transform:translate(-30px,38px) rotate(180deg); }
+    @keyframes wf-cigarette-throw {
+      0%,8% { opacity:1; transform:translate(0,0) rotate(0); }
+      48% { opacity:1; transform:translate(-15px,7px) rotate(130deg); }
+      78% { opacity:0; transform:translate(-32px,34px) rotate(300deg); }
+      100% { opacity:0; }
     }
     @keyframes wf-smoke-fade { to { opacity:0; } }
-    /* 0–1 s Zigarette, 1–2.6 s zum Schild, kurze Aufnahme, dann gemeinsam rechts hinaus. */
-    @keyframes wf-walk-to-sign-and-exit {
-      0%,18% { opacity:1; transform:translateX(0) translateY(0); }
-      25% { transform:translateX(-22px) translateY(-3px); }
-      33% { transform:translateX(-58px) translateY(0); }
-      41% { transform:translateX(-96px) translateY(-3px); }
-      49% { opacity:1; transform:translateX(-150px) translateY(0); }
-      56% { opacity:1; transform:translateX(-150px) translateY(-2px); }
-      66% { opacity:1; transform:translateX(-95px) translateY(-4px); }
-      78% { opacity:1; transform:translateX(35px) translateY(0); }
-      100% { opacity:0; transform:translateX(280px) translateY(8px); }
+    /* Figur: bleibt zunächst an der Wand, geht nach links zum Schild und kehrt damit rechts aus. */
+    @keyframes wf-character-journey {
+      0%,13% { left:calc(100% - 109px); transform:translateY(0); opacity:1; }
+      17% { left:calc(100% - 109px); transform:translateY(0); }
+      31% { left:calc(100% - 170px); transform:translateY(-2px); }
+      43% { left:calc(100% - 225px); transform:translateY(0); }
+      51%,61% { left:5px; transform:translateY(0); opacity:1; }
+      66% { left:5px; transform:translateY(-2px); }
+      75% { left:calc(100% - 170px); transform:translateY(-2px); }
+      88% { left:calc(100% + 20px); transform:translateY(0); opacity:1; }
+      100% { left:calc(100% + 150px); transform:translateY(3px); opacity:0; }
     }
-    @keyframes wf-sign-lift-and-exit {
-      0%,48% { opacity:1; transform:translate(0,0) rotate(-5deg); }
-      56% { opacity:1; transform:translate(18px,-15px) rotate(8deg); }
-      66% { opacity:1; transform:translate(65px,-10px) rotate(5deg); }
-      78% { opacity:1; transform:translate(175px,-4px) rotate(2deg); }
-      100% { opacity:0; transform:translate(360px,8px) rotate(8deg); }
+    @keyframes wf-sign-journey {
+      0%,51% { left:10px; bottom:7px; transform:rotate(-5deg); opacity:1; }
+      55% { left:25px; bottom:18px; transform:rotate(12deg); opacity:1; }
+      61%,66% { left:25px; bottom:18px; transform:rotate(5deg); opacity:1; }
+      75% { left:calc(100% - 150px); bottom:18px; transform:rotate(3deg); opacity:1; }
+      88% { left:calc(100% + 40px); bottom:12px; transform:rotate(4deg); opacity:1; }
+      100% { left:calc(100% + 190px); bottom:7px; transform:rotate(8deg); opacity:0; }
+    }
+    /* Zwei Gelenke pro Bein: Oberschenkel und Unterschenkel schwingen gegengleich. */
+    @keyframes wf-thigh-back {
+      0%,17%,50%,66% { transform:rotate(0); }
+      23%,35%,76%,84% { transform:rotate(24deg); }
+      29%,41%,71%,91% { transform:rotate(-22deg); }
+      48%,61%,100% { transform:rotate(0); }
+    }
+    @keyframes wf-thigh-front {
+      0%,17%,50%,66% { transform:rotate(0); }
+      23%,35%,76%,84% { transform:rotate(-22deg); }
+      29%,41%,71%,91% { transform:rotate(24deg); }
+      48%,61%,100% { transform:rotate(0); }
+    }
+    @keyframes wf-calf-back {
+      0%,17%,50%,66% { transform:rotate(0); }
+      23%,35%,76%,84% { transform:rotate(-30deg); }
+      29%,41%,71%,91% { transform:rotate(18deg); }
+      48%,61%,100% { transform:rotate(0); }
+    }
+    @keyframes wf-calf-front {
+      0%,17%,50%,66% { transform:rotate(0); }
+      23%,35%,76%,84% { transform:rotate(18deg); }
+      29%,41%,71%,91% { transform:rotate(-30deg); }
+      48%,61%,100% { transform:rotate(0); }
+    }
+    @keyframes wf-reach-for-sign {
+      0%,42% { opacity:0; }
+      47%,61% { opacity:1; }
+      66%,100% { opacity:0; }
     }
     @media(prefers-reduced-motion:reduce) {
       .wordfinity-card-smoker, .wordfinity-card-smoker .wf-cigarette,
-      .wordfinity-card-smoker .wf-smoke, .wordfinity-card-smoker .wf-leg, .wordfinity-mini-sign { animation:none!important; }
+      .wordfinity-card-smoker .wf-smoke, .wordfinity-card-smoker .wf-leg,
+      .wordfinity-card-smoker .wf-calf, .wordfinity-card-smoker .wf-reach-arm,
+      .wordfinity-mini-sign { animation:none!important; }
     }
     .wordfinity-card-footer { position:relative; z-index:4; }
     @media(max-width:420px) {
@@ -1590,12 +1616,19 @@
             <svg class="wordfinity-card-smoker" viewBox="0 0 112 132" role="img" aria-label="">
               <circle class="wf-head" cx="82" cy="22" r="12"/>
               <path class="wf-figure" d="M86 36 Q91 55 76 77 M85 44 L72 35 L62 29 M85 46 L94 57 L92 68"/>
-              <path class="wf-figure wf-leg wf-leg-back" d="M76 77 L57 99 L43 100"/>
-              <path class="wf-figure wf-leg wf-leg-front" d="M76 77 Q91 78 88 91 L98 96"/>
+              <g class="wf-leg wf-leg-back">
+                <path class="wf-figure" d="M76 77 L64 89"/>
+                <g class="wf-calf wf-calf-back"><path class="wf-figure" d="M64 89 L57 99 L43 100"/></g>
+              </g>
+              <g class="wf-leg wf-leg-front">
+                <path class="wf-figure" d="M76 77 L88 91"/>
+                <g class="wf-calf wf-calf-front"><path class="wf-figure" d="M88 91 L98 96 L106 96"/></g>
+              </g>
+              <path class="wf-reach-arm" d="M85 46 L72 52 L56 59 L43 59"/>
               <path class="wf-figure" d="M72 35 L76 28 M92 68 L96 72"/>
               <path class="wf-cigarette" d="M63 29 L51 27"/>
               <path class="wf-smoke" d="M50 23 C45 18 53 15 48 10 C45 7 48 4 51 2 M42 25 C38 21 43 18 40 15"/>
-              <path class="wf-figure" d="M43 100 L31 100 M98 96 L106 96"/>
+              
             </svg>
             <div class="wordfinity-tear left"></div><div class="wordfinity-tear right"></div>
           </div>
