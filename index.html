@@ -3250,9 +3250,9 @@
         return this.isValidPuzzle(data,data?.id);
       },
       datasetCacheName:'wordfinity-dataset-cache',
-      datasetCacheVersion:3,
+      datasetCacheVersion:4,
       puzzleManifestUrl:'https://dinaj-1992.github.io/wordfinity-daten/puzzle-index.json',
-      puzzleBaseUrl:'https://dinaj-1992.github.io/wordfinity-daten/raetsel/',
+      puzzleBaseUrl:'https://dinaj-1992.github.io/wordfinity-daten/',
       puzzleManifest:null,
       usedTargetsLoaded:false,
       puzzleCache:new Map(),
@@ -3305,10 +3305,13 @@
         });
       },
       isValidManifest(data){
-        return !!(data&&data.count===600&&Array.isArray(data.puzzleIds)&&data.puzzleIds.length===600&&new Set(data.puzzleIds).size===600&&data.puzzleIds.every(id=>Number.isInteger(id)&&id>=4034&&id<=4633));
+        const entries=Array.isArray(data)?data:data?.entries;
+        return !!(Array.isArray(entries)&&entries.length===1960&&new Set(entries.map(item=>Number(item?.id))).size===1960&&entries.every(item=>Number.isInteger(Number(item?.id))&&Number(item.id)>0&&typeof item.zielwort==='string'&&item.zielwort.trim()&&typeof item.kategorie==='string'&&item.kategorie.trim()&&typeof item.datei==='string'&&item.datei.startsWith('raetsel/')));
       },
       isValidPuzzle(data,id){
-        return !!(data&&Number(data.id)===Number(id)&&Array.isArray(data.woerter)&&data.woerter.length===20000&&typeof data.kategorie==='string'&&data.kategorie.trim()&&typeof data.woerter[0]==='string'&&data.woerter[0].trim());
+        const entry=this.puzzleManifest?.entries?.find(item=>Number(item.id)===Number(id));
+        const expectedTarget=entry?.zielwort||data?.zielwort||'';
+        return !!(data&&Number(data.id)===Number(id)&&Array.isArray(data.woerter)&&data.woerter.length>=10000&&typeof data.kategorie==='string'&&data.kategorie.trim()&&typeof data.woerter[0]==='string'&&data.woerter[0].trim()&&this.normalize(data.woerter[0])===this.normalize(expectedTarget)&&(!entry||data.kategorie===entry.kategorie));
       },
       loadUsedTargets(){
         if(this.usedTargetsLoaded)return;
@@ -3327,10 +3330,11 @@
         if(!response.ok)throw new Error('Rätsel-Index konnte nicht geladen werden (HTTP '+response.status+').');
         const data=await response.json();
         if(!this.isValidManifest(data))throw new Error('Der Rätsel-Index ist ungültig.');
-        const record={key:'manifest',version:2,savedAt:Date.now(),data};
+        const manifest={count:data.length,puzzleIds:data.map(item=>Number(item.id)),entries:data};
+        const record={key:'manifest',version:3,savedAt:Date.now(),data:manifest};
         await this.writeLocal('meta',record);
-        this.puzzleManifest=data;
-        return data;
+        this.puzzleManifest=manifest;
+        return manifest;
       },
       async refreshManifestInBackground(savedAt=0){
         if(Date.now()-savedAt<6*60*60*1000)return;
@@ -3343,7 +3347,7 @@
       async loadPuzzleManifest(){
         if(this.puzzleManifest)return this.puzzleManifest;
         const cached=await this.readLocal('meta','manifest');
-        if(cached&&cached.version===2&&this.isValidManifest(cached.data)){
+        if(cached&&cached.version===3&&this.isValidManifest(cached.data)){
           this.puzzleManifest=cached.data;
           this.refreshManifestInBackground(cached.savedAt);
           return this.puzzleManifest;
@@ -3351,22 +3355,28 @@
         return this.fetchManifest();
       },
       async fetchPuzzle(id){
-        const response=await fetch(this.puzzleBaseUrl+encodeURIComponent(id)+'.json',{cache:'no-cache'});
+        const entry=this.puzzleManifest?.entries?.find(item=>Number(item.id)===Number(id));
+        const relativePath=entry?.datei||('raetsel/'+String(id).padStart(4,'0')+'.json');
+        const puzzleUrl=this.puzzleBaseUrl+relativePath.split('/').map(encodeURIComponent).join('/');
+        const response=await fetch(puzzleUrl,{cache:'no-cache'});
         if(!response.ok)throw new Error('Rätsel '+id+' konnte nicht geladen werden (HTTP '+response.status+').');
         const data=await response.json();
         if(!this.isValidPuzzle(data,id))throw new Error('Rätsel '+id+' hat ein ungültiges Format.');
-        await this.writeLocal('puzzles',{id:Number(id),version:2,savedAt:Date.now(),data});
+        await this.writeLocal('puzzles',{id:Number(id),version:3,savedAt:Date.now(),data});
         this.puzzleCache.set(Number(id),data);
         return data;
       },
       async refreshPuzzleInBackground(id,savedAt){
         if(Date.now()-savedAt<24*60*60*1000)return;
         try{
-          const response=await fetch(this.puzzleBaseUrl+encodeURIComponent(id)+'.json',{cache:'no-cache'});
+          const entry=this.puzzleManifest?.entries?.find(item=>Number(item.id)===Number(id));
+          const relativePath=entry?.datei||('raetsel/'+String(id).padStart(4,'0')+'.json');
+          const puzzleUrl=this.puzzleBaseUrl+relativePath.split('/').map(encodeURIComponent).join('/');
+          const response=await fetch(puzzleUrl,{cache:'no-cache'});
           if(!response.ok)return;
           const data=await response.json();
           if(!this.isValidPuzzle(data,id))return;
-          await this.writeLocal('puzzles',{id:Number(id),version:2,savedAt:Date.now(),data});
+          await this.writeLocal('puzzles',{id:Number(id),version:3,savedAt:Date.now(),data});
           this.puzzleCache.set(Number(id),data);
           console.info('[Wordfinity] Rätsel',id,'im Hintergrund aktualisiert.');
         }catch(error){console.warn('[Wordfinity] Hintergrund-Aktualisierung von Rätsel',id,'fehlgeschlagen.',error);}
@@ -3375,7 +3385,7 @@
         const numericId=Number(id);
         if(this.puzzleCache.has(numericId))return {data:this.puzzleCache.get(numericId),source:'memory'};
         const cached=await this.readLocal('puzzles',numericId);
-        if(cached&&cached.version===2&&this.isValidPuzzle(cached.data,id)){
+        if(cached&&cached.version===3&&this.isValidPuzzle(cached.data,id)){
           this.puzzleCache.set(numericId,cached.data);
           this.refreshPuzzleInBackground(id,cached.savedAt||0);
           return {data:cached.data,source:'local'};
