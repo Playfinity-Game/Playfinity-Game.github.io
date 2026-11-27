@@ -3553,16 +3553,17 @@
         if(!this.puzzle||this.won)return;
         const alreadyUsed=new Set(this.guesses.map(item=>item.rank));
         const bestRank=this.guesses.reduce((best,item)=>Math.min(best,item.rank),Infinity);
-        const desiredRank=Number.isFinite(bestRank)?Math.max(2,Math.round((bestRank+2)/2)):100;
-        const upperBound=Number.isFinite(bestRank)?Math.max(2,bestRank-1):Math.min(19999,this.puzzle.woerter.length-1);
+        const hasGuess=Number.isFinite(bestRank);
+        // Ein Tipp verbessert den besten bisherigen Rang um maximal 10 Plätze.
+        const lowerBound=hasGuess?Math.max(2,bestRank-10):2;
+        const upperBound=hasGuess?bestRank-1:Math.min(19999,this.puzzle.woerter.length-1);
+        const desiredRank=hasGuess?lowerBound:Math.min(100,upperBound);
         let selectedRank=desiredRank;
         if(alreadyUsed.has(selectedRank)||selectedRank>upperBound){
-          let distance=1,found=false;
-          while(!found&&distance<=this.puzzle.woerter.length){
-            for(const candidate of [desiredRank-distance,desiredRank+distance]){
-              if(candidate>=2&&candidate<=upperBound&&!alreadyUsed.has(candidate)){selectedRank=candidate;found=true;break;}
-            }
-            distance++;
+          let found=false;
+          // Nur innerhalb des erlaubten Fensters suchen: niemals mehr als 10 Ränge springen.
+          for(let candidate=desiredRank+1;candidate<=upperBound;candidate++){
+            if(!alreadyUsed.has(candidate)){selectedRank=candidate;found=true;break;}
           }
           if(!found){document.getElementById('wordfinity-status').textContent='Kein weiterer passender Tipp verfügbar.';return;}
         }
