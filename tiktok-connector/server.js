@@ -661,7 +661,7 @@ const server = http.createServer(async (request, response) => {
     }
   }
 
-  if (request.method === "OPTIONS" && url.pathname === "/api/stream-control/connect") {
+  if (request.method === "OPTIONS" && (url.pathname === "/api/stream-control/connect" || url.pathname === "/api/stream-source/register")) {
     if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
     response.writeHead(204, { "access-control-allow-origin": request.headers.origin, "access-control-allow-methods": "POST, OPTIONS", "access-control-allow-headers": "content-type", "access-control-max-age": "600", vary: "Origin" });
     return response.end();
