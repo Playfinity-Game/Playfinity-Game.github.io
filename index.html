@@ -180,39 +180,31 @@
       animation: fadeIn 0.25s ease-out;
     }
 
-    /* Einheitliches PLAYFINITY-Wasserzeichen auf allen Spielbildschirmen. */
-    .screen.active:not(#screen-menu)::before {
-      content: "PLAYFINITY";
+    /* Einheitlicher Spielfeldrahmen: gleiche Außenmaße für alle Spiele. */
+    .screen:not(#screen-menu) {
+      box-sizing: border-box;
+      height: min(700px, calc(100vh - 160px));
+      min-height: min(540px, calc(100vh - 160px));
+      overflow-y: auto;
+      padding: 22px;
+      scrollbar-gutter: stable;
+    }
+
+    .pf-text-frame {
       position: absolute;
-      z-index: -1;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
+      inset: 0;
+      z-index: 20;
       width: 100%;
-      padding: 0 8px;
-      text-align: center;
-      white-space: nowrap;
+      height: 100%;
+      overflow: visible;
       pointer-events: none;
-      user-select: none;
-      font-size: clamp(3rem, 12vw, 8rem);
-      line-height: 1;
-      font-weight: 1000;
-      letter-spacing: 0.045em;
-      color: transparent;
-      background: linear-gradient(100deg, #a900ff 0%, #00eaff 48%, #d000ff 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      opacity: 0.18;
-      filter:
-        drop-shadow(0 0 5px rgba(0, 234, 255, 0.48))
-        drop-shadow(0 0 16px rgba(0, 234, 255, 0.28))
-        drop-shadow(0 0 28px rgba(176, 38, 255, 0.24));
     }
 
     @media (max-width: 520px) {
-      .screen.active:not(#screen-menu)::before {
-        font-size: clamp(2.25rem, 11vw, 4rem);
-        letter-spacing: 0.025em;
+      .screen:not(#screen-menu) {
+        height: min(700px, calc(100vh - 140px));
+        min-height: min(480px, calc(100vh - 140px));
+        padding: 20px;
       }
     }
 
@@ -4137,8 +4129,141 @@
       }
     };
 
+    // Animierter PLAYFINITY-Schriftzug als umlaufender Rahmen auf allen Spielansichten.
+    function initPlayfinityTextFrames() {
+      const ns = 'http://www.w3.org/2000/svg';
+      const unit = 'PLAYFINITY • ';
+      const baseSpacing = 1.6;
+      const states = [];
+
+      document.querySelectorAll('.screen:not(#screen-menu)').forEach((screen, index) => {
+        const svg = document.createElementNS(ns, 'svg');
+        svg.setAttribute('class', 'pf-text-frame');
+        svg.setAttribute('aria-hidden', 'true');
+        svg.setAttribute('preserveAspectRatio', 'none');
+
+        const defs = document.createElementNS(ns, 'defs');
+        const gradient = document.createElementNS(ns, 'linearGradient');
+        const gradientId = 'pf-frame-gradient-' + index;
+        gradient.setAttribute('id', gradientId);
+        gradient.setAttribute('x1', '0%');
+        gradient.setAttribute('y1', '0%');
+        gradient.setAttribute('x2', '100%');
+        gradient.setAttribute('y2', '100%');
+        [['0%','#00f2fe'],['50%','#9d4edd'],['100%','#ff007f']].forEach(([offset,color]) => {
+          const stop = document.createElementNS(ns, 'stop');
+          stop.setAttribute('offset', offset);
+          stop.setAttribute('stop-color', color);
+          gradient.appendChild(stop);
+        });
+
+        const filter = document.createElementNS(ns, 'filter');
+        const filterId = 'pf-frame-glow-' + index;
+        filter.setAttribute('id', filterId);
+        filter.setAttribute('x', '-25%');
+        filter.setAttribute('y', '-25%');
+        filter.setAttribute('width', '150%');
+        filter.setAttribute('height', '150%');
+        const blur = document.createElementNS(ns, 'feGaussianBlur');
+        blur.setAttribute('stdDeviation', '2.5');
+        blur.setAttribute('result', 'blur');
+        const merge = document.createElementNS(ns, 'feMerge');
+        const blurNode = document.createElementNS(ns, 'feMergeNode');
+        blurNode.setAttribute('in', 'blur');
+        const sourceNode = document.createElementNS(ns, 'feMergeNode');
+        sourceNode.setAttribute('in', 'SourceGraphic');
+        merge.append(blurNode, sourceNode);
+        filter.append(blur, merge);
+        defs.append(gradient, filter);
+
+        const path = document.createElementNS(ns, 'path');
+        path.setAttribute('id', 'pf-frame-path-' + index);
+        path.setAttribute('fill', 'none');
+
+        const measure = document.createElementNS(ns, 'text');
+        measure.setAttribute('x', '-9999');
+        measure.setAttribute('y', '-9999');
+        measure.setAttribute('opacity', '0');
+        measure.setAttribute('font-family', 'monospace');
+        measure.setAttribute('font-size', '5.5px');
+        measure.setAttribute('font-weight', '800');
+        measure.setAttribute('letter-spacing', baseSpacing + 'px');
+        measure.textContent = unit;
+
+        const visible = document.createElementNS(ns, 'text');
+        visible.setAttribute('filter', 'url(#' + filterId + ')');
+        visible.setAttribute('font-family', 'monospace');
+        visible.setAttribute('font-size', '5.5px');
+        visible.setAttribute('font-weight', '800');
+        visible.setAttribute('fill', 'url(#' + gradientId + ')');
+        visible.setAttribute('dominant-baseline', 'central');
+        const textPath = document.createElementNS(ns, 'textPath');
+        textPath.setAttribute('href', '#pf-frame-path-' + index);
+        textPath.setAttribute('startOffset', '0');
+        visible.appendChild(textPath);
+
+        svg.append(defs, path, measure, visible);
+        screen.appendChild(svg);
+
+        const state = { screen, svg, path, measure, visible, textPath, unitWidth: 0, offset: 0, lastTime: null };
+        states.push(state);
+
+        const calibrate = () => {
+          const rect = screen.getBoundingClientRect();
+          const w = rect.width;
+          const h = rect.height;
+          if (!w || !h) return;
+          const inset = 6.5;
+          const radius = 25;
+          path.setAttribute('d',
+            'M ' + (inset + radius) + ',' + inset +
+            ' H ' + (w - inset - radius) +
+            ' A ' + radius + ',' + radius + ' 0 0 1 ' + (w - inset) + ',' + (inset + radius) +
+            ' V ' + (h - inset - radius) +
+            ' A ' + radius + ',' + radius + ' 0 0 1 ' + (w - inset - radius) + ',' + (h - inset) +
+            ' H ' + (inset + radius) +
+            ' A ' + radius + ',' + radius + ' 0 0 1 ' + inset + ',' + (h - inset - radius) +
+            ' V ' + (inset + radius) +
+            ' A ' + radius + ',' + radius + ' 0 0 1 ' + (inset + radius) + ',' + inset + ' Z'
+          );
+          svg.setAttribute('viewBox', '0 0 ' + w + ' ' + h);
+          const length = path.getTotalLength();
+          const rawWidth = measure.getComputedTextLength();
+          if (!length || !rawWidth) return;
+          const repeats = Math.max(1, Math.round(length / rawWidth));
+          state.unitWidth = length / repeats;
+          const spacing = baseSpacing + (state.unitWidth - rawWidth) / Array.from(unit).length;
+          visible.setAttribute('letter-spacing', spacing.toFixed(5) + 'px');
+          textPath.textContent = unit.repeat(repeats * 2 + 3);
+        };
+
+        if ('ResizeObserver' in window) {
+          const observer = new ResizeObserver(calibrate);
+          observer.observe(screen);
+          state.observer = observer;
+        } else {
+          window.addEventListener('resize', calibrate);
+        }
+        calibrate();
+      });
+
+      function animate(ts) {
+        states.forEach(state => {
+          if (!state.unitWidth) return;
+          if (state.lastTime === null) state.lastTime = ts;
+          const dt = Math.min((ts - state.lastTime) / 1000, 0.1);
+          state.lastTime = ts;
+          state.offset = (state.offset + 4 * dt) % state.unitWidth;
+          state.textPath.setAttribute('startOffset', (state.offset - state.unitWidth).toFixed(3) + 'px');
+        });
+        requestAnimationFrame(animate);
+      }
+      requestAnimationFrame(animate);
+    }
+
     // Beim Laden der Plattform initialisieren
     window.addEventListener('DOMContentLoaded', () => {
+      initPlayfinityTextFrames();
       PlayfinityRouter.init();
       TikFinity.init();
       TikTokConnector.init();
