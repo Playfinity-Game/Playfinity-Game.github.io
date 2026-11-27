@@ -1801,6 +1801,7 @@
           <button type="submit">RATEN</button>
         </form>
         <div class="guessmoji-timer-track" aria-label="Rundenzeit"><div class="guessmoji-timer-fill" id="guessmoji-timer-fill"></div><span class="guessmoji-timer-label" id="guessmoji-timer-label">20s</span></div>
+        <div class="guessmoji-settings"><label for="guessmoji-duration-control">Zeitlimit</label><select id="guessmoji-duration-control" aria-label="Guessmoji-Zeitlimit"><option value="10">10 Sekunden</option><option value="15">15 Sekunden</option><option value="20">20 Sekunden</option><option value="30">30 Sekunden</option><option value="45">45 Sekunden</option><option value="60">60 Sekunden</option></select></div>
         <div class="guessmoji-guesses" id="guessmoji-guesses" aria-live="polite"></div>
 
       </div>
@@ -2305,6 +2306,18 @@
           });
           try{this.duration=Number(localStorage.getItem('playfinity_guessmoji_duration')||20);}catch(_){this.duration=20;}
           if(![10,15,20,30,45,60].includes(this.duration))this.duration=20;
+          const durationControl=document.getElementById('guessmoji-duration-control');
+          durationControl.value=String(this.duration);
+          durationControl.addEventListener('change',()=>{
+            const nextDuration=Number(durationControl.value);
+            if(![10,15,20,30,45,60].includes(nextDuration))return;
+            this.duration=nextDuration;
+            try{localStorage.setItem('playfinity_guessmoji_duration',String(nextDuration));}catch(_){}
+            if(this.roundOpen&&localStorage.getItem('playfinity_guessmoji_timer_enabled')!=='false'){
+              clearInterval(this.timer);this.timer=null;this.timerEndAt=0;this.timerPauseAt=0;
+              this.startTimer();
+            }else{this.remaining=nextDuration;this.updateTimer();}
+          });
           this.initialized=true;
         }
         if(!this.current)this.loadPuzzles().then(()=>this.nextRound());
