@@ -4370,6 +4370,7 @@
       const streamTest = params.get('streamTest') === '1';
       document.body.classList.toggle('stream-mode', params.get('stream') === '1' || streamTest);
       initPlayfinityTextFrames();
+      window.PlayfinityRouter = PlayfinityRouter;
       PlayfinityRouter.init();
       if (streamTest) {
         initStreamIsolationTest();
