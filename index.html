@@ -1394,6 +1394,29 @@
       body.game-active .pir-card { padding: 12px; gap: 10px; overflow: hidden; }
       body.game-active .size-stage-card { padding: 10px; gap: 8px; }
     }
+    /* Separate Stream-Ansicht: dieselben Spiele, aber ohne Website-Navigation. */
+    body.stream-mode header {
+      min-height: 48px;
+      padding: 6px 12px;
+      justify-content: flex-end;
+      background: rgba(7, 8, 20, 0.72);
+    }
+    body.stream-mode .brand,
+    body.stream-mode .pause-toggle {
+      display: none !important;
+    }
+    body.stream-mode .app-menu [data-menu-action="leaderboard"],
+    body.stream-mode .app-menu [data-menu-action="profile"],
+    body.stream-mode .app-menu [data-menu-action="help"] {
+      display: none !important;
+    }
+    body.stream-mode main {
+      min-height: calc(100vh - 48px);
+    }
+    body.stream-mode .screen {
+      max-width: 100%;
+    }
+
 </style>
 </head>
 
@@ -4247,6 +4270,7 @@
 
     // Beim Laden der Plattform initialisieren
     window.addEventListener('DOMContentLoaded', () => {
+      document.body.classList.toggle('stream-mode', new URLSearchParams(window.location.search).get('stream') === '1');
       initPlayfinityTextFrames();
       PlayfinityRouter.init();
       TikFinity.init();
