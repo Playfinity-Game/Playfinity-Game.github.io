@@ -686,7 +686,8 @@ const server = http.createServer(async (request, response) => {
   return sendJson(response, 404, { error: "Nicht gefunden." });
 });
 
-const streamControlRooms = new Map();\nconst streamSources = new Map();
+const streamControlRooms = new Map();
+const streamSources = new Map();
 function normalizeStreamKey(value) {
   if (typeof value !== "string") return "";
   const key = value.trim().replace(/^@/, "").toLowerCase();
