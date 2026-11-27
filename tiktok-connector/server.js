@@ -760,6 +760,13 @@ websocketServer.on("stream-source-connection", (websocket, id) => {
   if (!source) { websocket.close(1008, "Unknown source"); return; }
   source.socket = websocket;
   websocket.send(JSON.stringify({ type: "source-connected" }));
+  websocket.on("message", raw => {
+    if (Buffer.byteLength(raw) > 1024) return;
+    let message; try { message = JSON.parse(String(raw)); } catch { return; }
+    if (message.type !== "view-applied" || typeof message.ok !== "boolean") return;
+    const reply = JSON.stringify({ type: "view-applied", game: typeof message.game === "string" ? message.game : "menu", ok: message.ok });
+    if (source.room) for (const client of source.room.clients) if (client.readyState === WebSocket.OPEN) client.send(reply);
+  });
   sendSourceList();
   websocket.on("close", () => { streamSources.delete(id); sendSourceList(); });
   websocket.on("error", () => { streamSources.delete(id); sendSourceList(); });
