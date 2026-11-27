@@ -661,9 +661,26 @@ const server = http.createServer(async (request, response) => {
     }
   }
 
+  if (request.method === "POST" && url.pathname === "/api/stream-control/connect") {
+    if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
+    let raw = "";
+    for await (const chunk of request) { raw += chunk; if (raw.length > 1024) return sendJson(response, 413, { error: "Anfrage zu groß." }); }
+    let body; try { body = JSON.parse(raw || "{}"); } catch { return sendJson(response, 400, { error: "Ungültige Anfrage." }); }
+    const username = normalizeStreamKey(body.username);
+    if (!username) return sendJson(response, 400, { error: "Bitte einen gültigen TikTok-Benutzernamen eingeben." });
+    const room = streamControlRooms.get(username) || { clients: new Set(), lastSeen: Date.now() };
+    room.lastSeen = Date.now(); streamControlRooms.set(username, room);
+    return sendJson(response, 200, { ok: true, username, websocketPath: "/stream-control/" + encodeURIComponent(username) }, { "access-control-allow-origin": request.headers.origin, vary: "Origin" });
+  }
   return sendJson(response, 404, { error: "Nicht gefunden." });
 });
 
+const streamControlRooms = new Map();
+function normalizeStreamKey(value) {
+  if (typeof value !== "string") return "";
+  const key = value.trim().replace(/^@/, "").toLowerCase();
+  return /^[a-z0-9._]{2,24}$/.test(key) ? key : "";
+}
 const websocketServer = new WebSocketServer({ noServer: true });
 
 server.on("upgrade", (request, socket, head) => {
@@ -672,6 +689,11 @@ server.on("upgrade", (request, socket, head) => {
   if (pathname === "/players") {
     if (!origin || !allowedOrigins.has(origin)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
     websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("player-connection", websocket, request));
+    return;
+  }
+  if (pathname.startsWith("/stream-control/")) {
+    if (!origin || !allowedOrigins.has(origin)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
+    websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("stream-control-connection", websocket, pathname.slice("/stream-control/".length)));
     return;
   }
   const token = pathname.startsWith("/ws/") ? pathname.slice(4) : "";
@@ -710,6 +732,29 @@ websocketServer.on("player-connection", (websocket) => {
   });
   websocket.on("close", () => activePlayers.delete(id));
   websocket.on("error", () => activePlayers.delete(id));
+});
+
+websocketServer.on("stream-control-connection", (websocket, encodedKey) => {
+  const key = normalizeStreamKey(decodeURIComponent(encodedKey));
+  if (!key) { websocket.close(1008, "Invalid streamer"); return; }
+  const room = streamControlRooms.get(key) || { clients: new Set(), lastSeen: Date.now() };
+  room.lastSeen = Date.now(); room.clients.add(websocket); streamControlRooms.set(key, room);
+  websocket.send(JSON.stringify({ type: "stream-control-connected", username: key }));
+  websocket.on("message", raw => {
+    if (Buffer.byteLength(raw) > 4096) return;
+    let msg; try { msg = JSON.parse(String(raw)); } catch { return; }
+    if (msg.type !== "view" || !msg.view || typeof msg.view !== "object") return;
+    const view = {
+      format: ["portrait","wide","free"].includes(msg.view.format) ? msg.view.format : "portrait",
+      showScore: msg.view.showScore !== false,
+      game: ["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"].includes(msg.view.game) ? msg.view.game : "menu"
+    };
+    room.lastSeen = Date.now();
+    const payload = JSON.stringify({ type: "view", view, updatedAt: Date.now() });
+    for (const peer of room.clients) if (peer !== websocket && peer.readyState === WebSocket.OPEN) peer.send(payload);
+  });
+  websocket.on("close", () => { room.clients.delete(websocket); room.lastSeen = Date.now(); });
+  websocket.on("error", () => room.clients.delete(websocket));
 });
 
 websocketServer.on("connection", (websocket, _request, session) => {
