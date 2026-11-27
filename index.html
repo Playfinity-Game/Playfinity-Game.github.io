@@ -327,143 +327,6 @@
       .wordfinity-work-sign { right: 8px; width: 80px; }
     }
 
-    /* Wordfinity: halb geöffnetes Baustellenband + wartender Strichmann */
-    .wordfinity-card { min-height: 206px; isolation: isolate; }
-    .wordfinity-card-copy { position: relative; z-index: 3; padding-right: 112px; }
-    .wordfinity-card-scene { position:absolute; inset:auto 0 0; height:140px; z-index:2; pointer-events:none; overflow:visible; }
-    .wordfinity-barrier-half { position:absolute; bottom:24px; height:15px; width:47%; border-top:1px solid #171717; border-bottom:1px solid #171717; background:repeating-linear-gradient(135deg,#f4ca45 0 12px,#171717 12px 24px); box-shadow:0 2px 5px #0008; }
-    .wordfinity-barrier-half.left { left:-2%; transform:rotate(-3deg); clip-path:polygon(0 0,100% 0,97% 78%,94% 100%,0 100%); }
-    .wordfinity-barrier-half.right { right:-2%; transform:rotate(3deg); clip-path:polygon(3% 0,100% 0,100% 100%,6% 100%,0 75%); }
-    .wordfinity-card.wordfinity-closed { cursor:not-allowed; border-color:rgba(255,190,65,.65); background:linear-gradient(145deg,rgba(46,35,52,.98),rgba(27,27,39,.98)); }
-    .wordfinity-card.wordfinity-closed:hover { transform:none; border-color:rgba(255,190,65,.8); background:linear-gradient(145deg,rgba(46,35,52,.98),rgba(27,27,39,.98)); box-shadow:0 8px 22px rgba(0,0,0,.24); }
-    .wordfinity-card.wordfinity-closed .wordfinity-card-copy { padding-right:112px; }
-    .wordfinity-barrier-full { position:absolute; left:-5%; right:-5%; bottom:36px; z-index:5; height:23px; display:flex; align-items:center; justify-content:center; overflow:hidden; transform:rotate(-3deg); border-top:2px solid #171717; border-bottom:2px solid #171717; background:repeating-linear-gradient(135deg,#f5c842 0 17px,#20202a 17px 34px); box-shadow:0 2px 7px rgba(0,0,0,.45); }
-    .wordfinity-barrier-full span { padding:1px 7px; background:rgba(255,255,255,.94); color:#20202a; font-size:8px; line-height:1.4; font-weight:1000; letter-spacing:.06em; white-space:nowrap; }
-    .wordfinity-barrier-full { display:none; }
-    .wordfinity-tear { position:absolute; bottom:36px; z-index:5; height:23px; width:53%; border-top:2px solid #171717; border-bottom:2px solid #171717; background:repeating-linear-gradient(135deg,#f5c842 0 17px,#20202a 17px 34px); box-shadow:0 2px 7px rgba(0,0,0,.45); pointer-events:none; }
-    .wordfinity-tear.left { left:-2%; transform:rotate(-3deg); clip-path:polygon(0 0,100% 0,96% 38%,100% 62%,94% 100%,0 100%); animation:wordfinity-tear-left 1.25s cubic-bezier(.2,.75,.25,1) both; }
-    .wordfinity-tear.right { right:-2%; transform:rotate(3deg); clip-path:polygon(4% 0,100% 0,100% 100%,6% 100%,0 62%,5% 38%); animation:wordfinity-tear-right 1.25s cubic-bezier(.2,.75,.25,1) both; }
-    @keyframes wordfinity-tear-left { 0%{transform:rotate(-3deg) translateX(0)} 45%{transform:rotate(-9deg) translateX(-22%) translateY(-5px)} 100%{transform:rotate(-13deg) translateX(-115%) translateY(13px);opacity:.25} }
-    @keyframes wordfinity-tear-right { 0%{transform:rotate(3deg) translateX(0)} 45%{transform:rotate(9deg) translateX(22%) translateY(-5px)} 100%{transform:rotate(13deg) translateX(115%) translateY(13px);opacity:.25} }
-    @media(prefers-reduced-motion:reduce){.wordfinity-tear{animation:none!important;opacity:.15}}
-    .wordfinity-card.wordfinity-closed .wordfinity-card-footer { position:relative; z-index:6; justify-content:flex-end; }
-    .wordfinity-card.wordfinity-closed .wordfinity-closed-label { color:#ffd84a; font-size:.72rem; font-weight:900; text-align:right; }
-    .wordfinity-mini-sign {
-      position:absolute; left:10px; bottom:7px; z-index:1; width:76px; height:48px;
-      display:flex; flex-direction:column; align-items:center; justify-content:center;
-      transform:rotate(-5deg); pointer-events:none; filter:drop-shadow(0 2px 2px #0009);
-    }
-    .wordfinity-mini-sign-board {
-      width:76px; padding:4px 3px; border:2px solid #171717; border-radius:2px;
-      background:repeating-linear-gradient(135deg,#f4ca45 0 7px,#171717 7px 14px);
-      color:#171717; text-align:center; font-size:7px; line-height:1.15; font-weight:1000;
-      letter-spacing:.02em;
-    }
-    .wordfinity-mini-sign-board span { display:block; margin-top:2px; padding:2px 1px; background:#fff1bd; }
-    .wordfinity-mini-sign-pole { width:4px; height:12px; background:#b8bdc8; border:1px solid #30323a; }
-
-    .wordfinity-card-smoker { position:absolute; right:-7px; bottom:0; width:116px; height:138px; overflow:visible; filter:drop-shadow(0 0 2px rgba(255,255,255,.95)) drop-shadow(0 2px 2px #000); }
-    .wordfinity-card-smoker .wf-figure { fill:none; stroke:#03040a; stroke-width:7; stroke-linecap:round; stroke-linejoin:round; }
-    .wordfinity-card-smoker .wf-leg { transform-box:view-box; transform-origin:76px 77px; }
-    .wordfinity-card-smoker .wf-head { fill:#03040a; stroke:#03040a; stroke-width:2; }
-    .wordfinity-card-smoker .wf-cigarette { stroke:#03040a; stroke-width:3; stroke-linecap:round; }
-    .wordfinity-card-smoker .wf-smoke { fill:none; stroke:#171923; stroke-width:2.2; stroke-linecap:round; opacity:.95; }
-
-    /* Wordfinity-Szene: klare, langsame Bewegungsfolge mit gemeinsamem Timing. */
-    .wordfinity-card-smoker {
-      right:auto; left:calc(100% - 109px); bottom:0; z-index:2;
-      transform-origin:50% 90%;
-      animation:wf-character-journey 10.8s linear both;
-    }
-    .wordfinity-card-smoker .wf-cigarette {
-      transform-box:fill-box; transform-origin:center;
-      animation:wf-cigarette-throw 1.15s ease-in 1.15s both;
-    }
-    .wordfinity-card-smoker .wf-smoke { animation:wf-smoke-fade .55s ease-out 1.35s both; }
-    .wordfinity-card-smoker .wf-reach-arm {
-      fill:none; stroke:#03040a; stroke-width:7; stroke-linecap:round; stroke-linejoin:round;
-      opacity:0; animation:wf-reach-for-sign 10.8s linear both;
-    }
-    .wordfinity-card-smoker .wf-leg { transform-box:view-box; }
-    .wordfinity-card-smoker .wf-leg-back { transform-origin:76px 77px; animation:wf-thigh-back 10.8s linear both; }
-    .wordfinity-card-smoker .wf-leg-front { transform-origin:76px 77px; animation:wf-thigh-front 10.8s linear both; }
-    .wordfinity-card-smoker .wf-calf { transform-box:view-box; }
-    .wordfinity-card-smoker .wf-calf-back { transform-origin:64px 89px; animation:wf-calf-back 10.8s linear both; }
-    .wordfinity-card-smoker .wf-calf-front { transform-origin:88px 91px; animation:wf-calf-front 10.8s linear both; }
-    .wordfinity-mini-sign {
-      left:10px; z-index:3; transform-origin:50% 85%;
-      animation:wf-sign-journey 10.8s linear both;
-    }
-    @keyframes wf-cigarette-throw {
-      0%,8% { opacity:1; transform:translate(0,0) rotate(0); }
-      48% { opacity:1; transform:translate(-15px,7px) rotate(130deg); }
-      78% { opacity:0; transform:translate(-32px,34px) rotate(300deg); }
-      100% { opacity:0; }
-    }
-    @keyframes wf-smoke-fade { to { opacity:0; } }
-    /* Figur: bleibt zunächst an der Wand, geht nach links zum Schild und kehrt damit rechts aus. */
-    @keyframes wf-character-journey {
-      0%,13% { left:calc(100% - 109px); transform:translateY(0); opacity:1; }
-      17% { left:calc(100% - 109px); transform:translateY(0); }
-      31% { left:calc(100% - 170px); transform:translateY(-2px); }
-      43% { left:calc(100% - 225px); transform:translateY(0); }
-      51%,61% { left:5px; transform:translateY(0); opacity:1; }
-      66% { left:5px; transform:translateY(-2px); }
-      75% { left:calc(100% - 170px); transform:translateY(-2px); }
-      88% { left:calc(100% + 20px); transform:translateY(0); opacity:1; }
-      100% { left:calc(100% + 150px); transform:translateY(3px); opacity:0; }
-    }
-    @keyframes wf-sign-journey {
-      0%,51% { left:10px; bottom:7px; transform:rotate(-5deg); opacity:1; }
-      55% { left:25px; bottom:18px; transform:rotate(12deg); opacity:1; }
-      61%,66% { left:25px; bottom:18px; transform:rotate(5deg); opacity:1; }
-      75% { left:calc(100% - 150px); bottom:18px; transform:rotate(3deg); opacity:1; }
-      88% { left:calc(100% + 40px); bottom:12px; transform:rotate(4deg); opacity:1; }
-      100% { left:calc(100% + 190px); bottom:7px; transform:rotate(8deg); opacity:0; }
-    }
-    /* Zwei Gelenke pro Bein: Oberschenkel und Unterschenkel schwingen gegengleich. */
-    @keyframes wf-thigh-back {
-      0%,17%,50%,66% { transform:rotate(0); }
-      23%,35%,76%,84% { transform:rotate(24deg); }
-      29%,41%,71%,91% { transform:rotate(-22deg); }
-      48%,61%,100% { transform:rotate(0); }
-    }
-    @keyframes wf-thigh-front {
-      0%,17%,50%,66% { transform:rotate(0); }
-      23%,35%,76%,84% { transform:rotate(-22deg); }
-      29%,41%,71%,91% { transform:rotate(24deg); }
-      48%,61%,100% { transform:rotate(0); }
-    }
-    @keyframes wf-calf-back {
-      0%,17%,50%,66% { transform:rotate(0); }
-      23%,35%,76%,84% { transform:rotate(-30deg); }
-      29%,41%,71%,91% { transform:rotate(18deg); }
-      48%,61%,100% { transform:rotate(0); }
-    }
-    @keyframes wf-calf-front {
-      0%,17%,50%,66% { transform:rotate(0); }
-      23%,35%,76%,84% { transform:rotate(18deg); }
-      29%,41%,71%,91% { transform:rotate(-30deg); }
-      48%,61%,100% { transform:rotate(0); }
-    }
-    @keyframes wf-reach-for-sign {
-      0%,42% { opacity:0; }
-      47%,61% { opacity:1; }
-      66%,100% { opacity:0; }
-    }
-    @media(prefers-reduced-motion:reduce) {
-      .wordfinity-card-smoker, .wordfinity-card-smoker .wf-cigarette,
-      .wordfinity-card-smoker .wf-smoke, .wordfinity-card-smoker .wf-leg,
-      .wordfinity-card-smoker .wf-calf, .wordfinity-card-smoker .wf-reach-arm,
-      .wordfinity-mini-sign { animation:none!important; }
-    }
-    .wordfinity-card-footer { position:relative; z-index:4; }
-    @media(max-width:420px) {
-      .wordfinity-card { min-height:210px; }
-      .wordfinity-card-copy { padding-right:94px; }
-      .wordfinity-card-smoker { right:-5px; width:106px; height:126px; }
-    }
-
     .game-card:hover {
       transform: translateY(-4px);
       background: var(--bg-card-hover);
@@ -1601,38 +1464,14 @@
           </div>
         </div>
 
-        <!-- WORDFINITY – wieder freigegeben; das Baustellenband zerreißt beim Öffnen -->
-        <div class="game-card card-purple wordfinity-card" onclick="PlayfinityRouter.go('wordfinity')" role="button" tabindex="0" aria-label="Wordfinity starten" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();PlayfinityRouter.go('wordfinity')}">
+        <!-- WORDFINITY -->
+        <div class="game-card card-purple" onclick="PlayfinityRouter.go('wordfinity')" role="button" tabindex="0" aria-label="Wordfinity starten" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();PlayfinityRouter.go('wordfinity')}">
           <div class="wordfinity-card-copy">
             <div class="card-badge" style="color:var(--neon-purple)">Worträtsel</div>
             <div class="card-title"><span style="color:var(--neon-cyan)">WORD</span><span style="color:var(--neon-pink)">FINITY</span></div>
             <div class="card-desc">Finde das geheime Wort und entdecke, wie nah deine Tipps an der Lösung liegen.</div>
           </div>
-          <div class="wordfinity-card-scene" aria-hidden="true">
-            <div class="wordfinity-mini-sign" aria-hidden="true">
-              <div class="wordfinity-mini-sign-board">BAUSTELLE<span>WIR ARBEITEN DRAN 😎</span></div>
-              <div class="wordfinity-mini-sign-pole"></div>
-            </div>
-            <svg class="wordfinity-card-smoker" viewBox="0 0 112 132" role="img" aria-label="">
-              <circle class="wf-head" cx="82" cy="22" r="12"/>
-              <path class="wf-figure" d="M86 36 Q91 55 76 77 M85 44 L72 35 L62 29 M85 46 L94 57 L92 68"/>
-              <g class="wf-leg wf-leg-back">
-                <path class="wf-figure" d="M76 77 L64 89"/>
-                <g class="wf-calf wf-calf-back"><path class="wf-figure" d="M64 89 L57 99 L43 100"/></g>
-              </g>
-              <g class="wf-leg wf-leg-front">
-                <path class="wf-figure" d="M76 77 L88 91"/>
-                <g class="wf-calf wf-calf-front"><path class="wf-figure" d="M88 91 L98 96 L106 96"/></g>
-              </g>
-              <path class="wf-reach-arm" d="M85 46 L72 52 L56 59 L43 59"/>
-              <path class="wf-figure" d="M72 35 L76 28 M92 68 L96 72"/>
-              <path class="wf-cigarette" d="M63 29 L51 27"/>
-              <path class="wf-smoke" d="M50 23 C45 18 53 15 48 10 C45 7 48 4 51 2 M42 25 C38 21 43 18 40 15"/>
-              
-            </svg>
-            <div class="wordfinity-tear left"></div><div class="wordfinity-tear right"></div>
-          </div>
-          <div class="card-footer wordfinity-card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
+          <div class="card-footer"><span class="btn-play-card" style="color:var(--neon-purple)">Starten ›</span></div>
         </div>
 
         <!-- PlayDuko -->
