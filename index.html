@@ -2550,6 +2550,24 @@
         return document.body.classList.contains('stream-mode') ? sessionStorage : localStorage;
       },
 
+      // Hauptseite und jede Stream-Quelle erhalten eine getrennte Connector-Session.
+      getClientId() {
+        const storage = this.getUsernameStorage();
+        const key = 'playfinity_tiktok_client_id_v1';
+        try {
+          let id = storage.getItem(key) || '';
+          if (!/^[a-f0-9]{32}$/i.test(id)) {
+            const bytes = new Uint8Array(16);
+            crypto.getRandomValues(bytes);
+            id = Array.from(bytes, value => value.toString(16).padStart(2, '0')).join('');
+            storage.setItem(key, id);
+          }
+          return id;
+        } catch (error) {
+          return 'fallback' + Math.random().toString(16).slice(2, 26);
+        }
+      },
+
       init() {
         const input = document.getElementById('tiktok-username');
         let savedUsername = '';
@@ -2602,7 +2620,7 @@
           const response = await fetch(this.baseUrl + '/api/connect', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username })
+            body: JSON.stringify({ username, clientId: this.getClientId() })
           });
           const data = await response.json().catch(() => ({}));
           if (!response.ok || !data.websocketPath) {
@@ -2685,7 +2703,7 @@
           const response = await fetch(this.baseUrl + '/api/reconnect', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ username })
+            body: JSON.stringify({ username, clientId: this.getClientId() })
           });
           const data = await response.json().catch(() => ({}));
           if (!response.ok || !data.ok) {
