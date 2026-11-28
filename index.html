@@ -1183,6 +1183,8 @@
     #pf-admin-effect .pf-pinky-hearts:before{content:"💗     💖       💕       💗";position:absolute;left:4%;top:20%}
     #pf-admin-effect .pf-pinky-hearts:after{content:"💕       💗       💖";position:absolute;right:4%;bottom:18%}
     #pf-admin-effect.peterle{background:radial-gradient(ellipse at 50% 50%,rgba(255,160,60,.2),rgba(70,35,10,.18) 45%,#080711ee 100%)}
+    #pf-admin-effect.mel{background:radial-gradient(ellipse at 50% 50%,rgba(90,160,255,.2),rgba(5,12,35,.18) 55%,#030714dd 100%)}
+    #pf-admin-effect .pf-mel-gif{position:absolute;left:50%;top:52%;transform:translate(-50%,-50%);width:min(88vw,960px);max-height:76vh;object-fit:contain;filter:drop-shadow(0 0 24px rgba(120,190,255,.55));border-radius:12px}
     #pf-admin-effect .pf-peterle-rig{position:absolute;left:0;top:43%;display:flex;flex-direction:column;align-items:center;gap:8px;animation:pf-peterle-run 5s ease-in-out forwards;filter:drop-shadow(0 8px 12px #0009)}
     #pf-admin-effect .pf-peterle-fox{font-size:clamp(5rem,16vw,11rem);line-height:1}
     #pf-admin-effect .pf-peterle-name{font-family:var(--font-main);font-size:clamp(1.7rem,5vw,3.8rem);font-weight:1000;letter-spacing:.12em;color:#fff;text-shadow:0 0 8px #ff9a35,0 0 20px #ff6a00,3px 4px 0 #5c2c0a;white-space:nowrap}
@@ -2520,7 +2522,7 @@
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'playduko') {
           // Beide Show-Commands sind exklusiv für den Stream von @elite_1964.
-          if (/^\s*!?(koala|elite|albo|pinky|peterle)\s*$/i.test(String(text || ''))) {
+          if (/^\s*!?(koala|elite|albo|pinky|peterle|mel)\s*$/i.test(String(text || ''))) {
             let streamUsername = '';
             try {
               const storage = document.body.classList.contains('stream-mode') ? sessionStorage : localStorage;
@@ -2531,6 +2533,7 @@
               else if (/^\s*!?albo\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('albo');
               else if (/^\s*!?pinky\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('pinky');
               else if (/^\s*!?peterle\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('peterle');
+              else if (/^\s*!?mel\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('mel');
               else PlayfinityPlayerPresence.showEffect('elite');
             }
             return;
@@ -4196,8 +4199,8 @@
         document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
         root.className = '';
         root.innerHTML = '<div class="pf-effect-label"></div>';
-        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Konfetti-Explosion!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!',dog:'🐶 Wuff! Der Hund kommt!',penguin:'🐧 Pinguin auf Abwegen!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Banane im Anflug!',duck:'🦆 Quak! Die Ente kommt!',pizza:'🍕 Pizza-Lieferung!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter aktiviert!',chicken:'🐔 Hühner-Alarm!',lightning:'⚡ Blitzeinschlag!',potato:'🥔 Kanoffel-Rakete!',koala:'🐨 Lianen-Koala im Anflug!',koalaClassic:'🐨 KOALA-KARATE! Blätterwirbel!',elite:'⭐ ELITE – HALLOOOO?!',albo:'👑 ALBOOOO!',pinky:'💗 PINKY × 3!',peterle:'🦊 PETERLE!',fire:'🔥 Feuer frei!'};
-        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200,dog:4200,penguin:4400,monkey:3900,shark:3600,banana:3300,duck:4200,pizza:3600,ufo:3400,robot:3900,chicken:4000,lightning:1800,potato:3600,koala:5600,koalaClassic:5000,elite:4800,albo:5000,pinky:5200,peterle:5000,fire:3200};
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Konfetti-Explosion!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!',dog:'🐶 Wuff! Der Hund kommt!',penguin:'🐧 Pinguin auf Abwegen!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Banane im Anflug!',duck:'🦆 Quak! Die Ente kommt!',pizza:'🍕 Pizza-Lieferung!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter aktiviert!',chicken:'🐔 Hühner-Alarm!',lightning:'⚡ Blitzeinschlag!',potato:'🥔 Kanoffel-Rakete!',koala:'🐨 Lianen-Koala im Anflug!',koalaClassic:'🐨 KOALA-KARATE! Blätterwirbel!',elite:'⭐ ELITE – HALLOOOO?!',albo:'👑 ALBOOOO!',pinky:'💗 PINKY × 3!',peterle:'🦊 PETERLE!',mel:'🦌 MEL!',fire:'🔥 Feuer frei!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200,dog:4200,penguin:4400,monkey:3900,shark:3600,banana:3300,duck:4200,pizza:3600,ufo:3400,robot:3900,chicken:4000,lightning:1800,potato:3600,koala:5600,koalaClassic:5000,elite:4800,albo:5000,pinky:5200,peterle:5000,mel:3600,fire:3200};
         if (action === 'shake') document.body.classList.add('pf-admin-shake');
         else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
         else if (action === 'invert') document.body.classList.add('pf-admin-invert');
@@ -4210,6 +4213,7 @@
         else if (action === 'albo') { root.classList.add('albo'); const crown=document.createElement('div');crown.className='pf-albo-crown';crown.textContent='👑';const title=document.createElement('div');title.className='pf-albo-title';title.textContent='ALBOOOO';root.append(crown,title); }
         else if (action === 'pinky') { root.classList.add('pinky'); const hearts=document.createElement('div');hearts.className='pf-pinky-hearts';const title=document.createElement('div');title.className='pf-pinky-title';title.textContent='PINKY  PINKY  PINKY';root.append(hearts,title); }
         else if (action === 'peterle') { root.classList.add('peterle'); const rig=document.createElement('div');rig.className='pf-peterle-rig';const fox=document.createElement('div');fox.className='pf-peterle-fox';fox.textContent='🦊';const name=document.createElement('div');name.className='pf-peterle-name';name.textContent='PETERLE';rig.append(fox,name);root.appendChild(rig); }
+        else if (action === 'mel') { root.classList.add('mel'); const gif=document.createElement('img');gif.className='pf-mel-gif';gif.src='https://playfinity-game.github.io/assets/elite_1964/Mel.gif';gif.alt='Mel';gif.decoding='async';root.appendChild(gif); }
         else if (action === 'koala') { const rig=document.createElement('div');rig.className='pf-koala-rig';const vine=document.createElement('div');vine.className='pf-koala-vine';const hanger=document.createElement('div');hanger.className='pf-koala-hanger';hanger.textContent='🐨';rig.append(vine,hanger);root.appendChild(rig); }
         else if (['frog','skeleton','ghost','rocket','cat','dog','penguin','monkey','shark','banana','duck','pizza','ufo','robot','chicken','lightning','potato','koalaClassic','fire'].includes(action)) {
           const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀',cat:'🐱',dog:'🐶',penguin:'🐧',monkey:'🐒',shark:'🦈',banana:'🍌',duck:'🦆',pizza:'🍕',ufo:'🛸',robot:'🤖',chicken:'🐔',lightning:'⚡',potato:'🥔',koala:'🐨🌿',koalaClassic:'🐨',fire:'🔥'};
