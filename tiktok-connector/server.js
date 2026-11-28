@@ -82,7 +82,18 @@ function sendJson(response, status, body, extraHeaders = {}) {
 
 function originAllowed(request) {
   const origin = request.headers.origin;
-  return Boolean(origin && allowedOrigins.has(origin));
+  if (!origin || origin === "null") return false;
+  try {
+    const normalizedOrigin = new URL(origin).origin;
+    const configuredOrigins = [...allowedOrigins].map(value => {
+      try { return new URL(value).origin; } catch { return ""; }
+    });
+    // The public Playfinity site is always an approved origin. Normalize configured
+    // values as well, so an accidental trailing slash cannot cause HTTP 403.
+    return normalizedOrigin === "https://playfinity-game.github.io" || configuredOrigins.includes(normalizedOrigin);
+  } catch {
+    return false;
+  }
 }
 
 function normalizeUsername(value) {
@@ -699,7 +710,7 @@ server.on("upgrade", (request, socket, head) => {
   const origin = request.headers.origin;
   const pathname = new URL(request.url || "/", "http://localhost").pathname;
   if (pathname === "/players") {
-    if (!origin || !allowedOrigins.has(origin)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
+    if (!originAllowed(request)) { socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
     websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("player-connection", websocket, request));
     return;
   }
