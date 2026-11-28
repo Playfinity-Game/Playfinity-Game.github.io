@@ -792,7 +792,7 @@ websocketServer.on("stream-source-connection", (websocket, id) => {
   source.socket = websocket;
   websocket.send(JSON.stringify({ type: "source-connected" }));
   websocket.on("message", raw => {
-    if (Buffer.byteLength(raw) > 1024) return;
+    if (Buffer.byteLength(raw) > 750_000) return;
     let message; try { message = JSON.parse(String(raw)); } catch { return; }
     if (message.type === "preview-frame" && typeof message.data === "string" && message.data.length <= 700_000) {
       if (source.room) for (const client of source.room.clients) if (client.readyState === WebSocket.OPEN) client.send(JSON.stringify({ type: "preview-frame", data: message.data, capturedAt: Date.now() }));
