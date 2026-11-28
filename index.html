@@ -2719,6 +2719,26 @@
         }
       },
 
+      connectForStream(username) {
+        const normalized = String(username || '').trim().replace(/^@/, '');
+        if (!/^[A-Za-z0-9._]{2,24}$/.test(normalized)) return Promise.resolve(false);
+        const storage = this.getUsernameStorage();
+        let saved = '';
+        try { saved = storage.getItem(this.savedUsernameKey) || ''; } catch (error) {}
+        if (this.connected && saved.toLowerCase() === normalized.toLowerCase()) return Promise.resolve(true);
+        if (this.connected) this.disconnect();
+        const input = document.getElementById('tiktok-username');
+        if (input) input.value = normalized;
+        try { storage.setItem(this.savedUsernameKey, normalized); } catch (error) {}
+        return this.connect().then(async () => {
+          for (let attempt = 0; attempt < 100; attempt++) {
+            if (this.connected) return true;
+            await new Promise(resolve => setTimeout(resolve, 200));
+          }
+          return false;
+        });
+      },
+
       disconnect() {
         try { this.getUsernameStorage().removeItem(this.savedUsernameKey); } catch (error) {}
         const socket = this.ws;
@@ -2732,6 +2752,8 @@
         if (!TikFinity.connected) TikFinity.connect();
       }
     };
+
+    window.PlayfinityTikTokConnector = TikTokConnector;
 
     const PlayfinityScores = {
       url:'https://vfandcnxeiuakxmjewmr.supabase.co',
