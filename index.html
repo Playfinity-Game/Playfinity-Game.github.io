@@ -2501,9 +2501,9 @@
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'playduko') {
-          // "!elite" ist exklusiv für den Stream von @elite_1964.
+          // "!Koala" ist exklusiv für den Stream von @elite_1964.
           // In anderen Streams wird der Trigger abgefangen, aber keine Animation ausgelöst.
-          if (/^\s*!?elite\s*$/i.test(String(text || ''))) {
+          if (/^\s*!?koala\s*$/i.test(String(text || ''))) {
             let streamUsername = '';
             try {
               const storage = document.body.classList.contains('stream-mode') ? sessionStorage : localStorage;
