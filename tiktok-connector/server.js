@@ -102,6 +102,14 @@ function normalizeUsername(value) {
   if (!/^[A-Za-z0-9._]{2,24}$/.test(username)) return null;
   return username;
 }
+function normalizeClientId(value) {
+  // Older clients without a clientId continue using the legacy shared session.
+  if (value === undefined || value === null || value === "") return "default";
+  return typeof value === "string" && /^[a-f0-9]{32}$/i.test(value) ? value.toLowerCase() : null;
+}
+function sessionKeyFor(username, clientId) {
+  return username.toLowerCase() + "::" + clientId;
+}
 
 function allowRequest(request) {
   const key = request.socket.remoteAddress || "unknown";
@@ -224,8 +232,8 @@ function stopSession(session) {
   session.stopped = true;
   clearTimeout(session.idleTimer);
   sessions.delete(session.token);
-  if (sessionsByUsername.get(session.username) === session.token) {
-    sessionsByUsername.delete(session.username);
+  if (sessionsByUsername.get(session.sessionKey) === session.token) {
+    sessionsByUsername.delete(session.sessionKey);
   }
   for (const client of session.clients) {
     if (client.readyState === WebSocket.OPEN) client.close(1000, "Session ended");
@@ -233,8 +241,9 @@ function stopSession(session) {
   session.connection.disconnect().catch(() => {});
 }
 
-async function startSession(username) {
-  const existingToken = sessionsByUsername.get(username);
+async function startSession(username, clientId = "default") {
+  const sessionKey = sessionKeyFor(username, clientId);
+  const existingToken = sessionsByUsername.get(sessionKey);
   const existing = existingToken && sessions.get(existingToken);
   if (existing && !existing.stopped) return existing;
 
@@ -247,6 +256,8 @@ async function startSession(username) {
   const session = {
     token,
     username,
+    clientId,
+    sessionKey,
     connection,
     clients: new Set(),
     stopped: false,
@@ -268,7 +279,7 @@ async function startSession(username) {
 
   await connection.connect();
   sessions.set(token, session);
-  sessionsByUsername.set(username, token);
+  sessionsByUsername.set(sessionKey, token);
   return session;
 }
 
@@ -597,10 +608,13 @@ const server = http.createServer(async (request, response) => {
     for await (const chunk of request) { rawBody += chunk; if (rawBody.length > 2048) return sendJson(response, 413, { error: "Anfrage zu groß." }); }
     let body; try { body = JSON.parse(rawBody || "{}"); } catch { return sendJson(response, 400, { error: "Ungültige Anfrage." }); }
     const username = normalizeUsername(body.username);
+    const clientId = normalizeClientId(body.clientId);
     if (!username) return sendJson(response, 400, { error: "Bitte einen gültigen TikTok-@Namen eingeben." });
+    if (!clientId) return sendJson(response, 400, { error: "Ungültige Client-Sitzung." });
+    const sessionKey = sessionKeyFor(username, clientId);
     try {
-      let session = sessions.get(sessionsByUsername.get(username));
-      if (!session || session.stopped) session = await startSession(username);
+      let session = sessions.get(sessionsByUsername.get(sessionKey));
+      if (!session || session.stopped) session = await startSession(username, clientId);
       else {
         if (!session.reconnecting) {
           session.reconnecting = (async () => {
@@ -647,10 +661,12 @@ const server = http.createServer(async (request, response) => {
     }
 
     const username = normalizeUsername(body.username);
+    const clientId = normalizeClientId(body.clientId);
     if (!username) return sendJson(response, 400, { error: "Bitte einen gültigen TikTok-@Namen eingeben." });
+    if (!clientId) return sendJson(response, 400, { error: "Ungültige Client-Sitzung." });
 
     try {
-      const session = await startSession(username);
+      const session = await startSession(username, clientId);
       return sendJson(response, 200, {
         ok: true,
         username: session.username,
