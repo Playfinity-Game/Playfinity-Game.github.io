@@ -678,10 +678,12 @@ const server = http.createServer(async (request, response) => {
     return response.end();
   }
   if (request.method === "POST" && url.pathname === "/api/stream-source/register") {
-    if (!originAllowed(request)) { console.warn("[StreamSource] Registration rejected; Origin:", request.headers.origin || "(missing)", "Host:", request.headers.host || "(missing)"); return sendJson(response, 403, { error: "Origin not allowed", receivedOrigin: request.headers.origin || null }); }
+    // TikTok LIVE Studio browser sources can omit the Origin header. This endpoint
+    // only creates an unguessable source ID; the normal control endpoint remains origin-checked.
+    if (request.headers.origin && !originAllowed(request)) { console.warn("[StreamSource] Registration rejected; Origin:", request.headers.origin, "Host:", request.headers.host || "(missing)"); return sendJson(response, 403, { error: "Origin not allowed", receivedOrigin: request.headers.origin }); }
     const id = randomBytes(12).toString("hex");
     streamSources.set(id, { id, socket: null, room: null, lastView: null, createdAt: Date.now() });
-    return sendJson(response, 200, { ok: true, sourceId: id, websocketPath: "/stream-source/" + id }, { "access-control-allow-origin": request.headers.origin, vary: "Origin" });
+    return sendJson(response, 200, { ok: true, sourceId: id, websocketPath: "/stream-source/" + id }, { "access-control-allow-origin": request.headers.origin || "*", vary: "Origin" });
   }
   if (request.method === "POST" && url.pathname === "/api/stream-control/connect") {
     if (!originAllowed(request)) return sendJson(response, 403, { error: "Origin not allowed" });
@@ -720,7 +722,9 @@ server.on("upgrade", (request, socket, head) => {
     return;
   }
   if (pathname.startsWith("/stream-source/")) {
-    if (!originAllowed(request)) { console.warn("[StreamSource] WebSocket rejected; Origin:", origin || "(missing)"); socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
+    // The source ID is a random 96-bit capability created by the registration endpoint.
+    // Permit missing Origin from TikTok LIVE Studio, but still validate any supplied Origin.
+    if (origin && !originAllowed(request)) { console.warn("[StreamSource] WebSocket rejected; Origin:", origin); socket.write("HTTP/1.1 403 Forbidden\\r\\n\\r\\n"); socket.destroy(); return; }
     websocketServer.handleUpgrade(request, socket, head, websocket => websocketServer.emit("stream-source-connection", websocket, pathname.slice("/stream-source/".length)));
     return;
   }
