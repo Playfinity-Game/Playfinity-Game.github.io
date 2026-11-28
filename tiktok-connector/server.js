@@ -828,7 +828,7 @@ websocketServer.on("stream-control-connection", (websocket, encodedKey) => {
       sendSourceList(); return;
     }
     if (msg.type !== "view" || !msg.view || typeof msg.view !== "object") return;
-    const view = { format: ["portrait","wide","free"].includes(msg.view.format) ? msg.view.format : "portrait", showScore: msg.view.showScore !== false, game: ["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"].includes(msg.view.game) ? msg.view.game : "menu" };
+    const view = { format: ["portrait","wide","free"].includes(msg.view.format) ? msg.view.format : "portrait", showScore: msg.view.showScore !== false, game: ["menu","wordle","wordfinity","sizeitup","hangmann","priceisright"].includes(msg.view.game) ? msg.view.game : "menu", streamerUsername: normalizeUsername(msg.view.streamerUsername) || null };
     room.lastSeen = Date.now();
     const source=streamSources.get(room.sourceId);
     if(source?.socket?.readyState===WebSocket.OPEN){source.lastView=view;source.socket.send(JSON.stringify({type:"view",requestId:typeof msg.requestId==="string"?msg.requestId:null,view,updatedAt:Date.now()}));websocket.send(JSON.stringify({type:"view-sent",requestId:msg.requestId||null}));}else{websocket.send(JSON.stringify({type:"view-error",message:"Keine aktive Streamquelle zugeordnet. Bitte Streamquelle erneut auswählen."}));}
