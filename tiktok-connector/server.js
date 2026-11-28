@@ -781,6 +781,11 @@ websocketServer.on("stream-control-connection", (websocket, encodedKey) => {
   websocket.on("message", raw => {
     if (Buffer.byteLength(raw) > 4096) return;
     let msg; try { msg = JSON.parse(String(raw)); } catch { return; }
+    if (msg.type === "sources-request") {
+      const sources = [...streamSources.values()].filter(source => source.socket?.readyState === WebSocket.OPEN).map(source => ({ id: source.id, label: "Streamquelle · " + source.id.slice(0, 5).toUpperCase(), claimed: !!source.room }));
+      websocket.send(JSON.stringify({ type: "sources", sources }));
+      return;
+    }
     if (msg.type === "claim" && typeof msg.sourceId === "string") {
       const source = streamSources.get(msg.sourceId);
       if (!source || source.socket?.readyState !== WebSocket.OPEN) { websocket.send(JSON.stringify({ type: "claim-error", message: "Diese Streamquelle ist nicht mehr verfügbar." })); return; }
