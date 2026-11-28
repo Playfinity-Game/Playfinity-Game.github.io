@@ -2564,7 +2564,7 @@
           }
           return id;
         } catch (error) {
-          return 'fallback' + Math.random().toString(16).slice(2, 26);
+          return Array.from({ length: 32 }, () => Math.floor(Math.random() * 16).toString(16)).join('');
         }
       },
 
