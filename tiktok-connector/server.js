@@ -794,6 +794,10 @@ websocketServer.on("stream-source-connection", (websocket, id) => {
   websocket.on("message", raw => {
     if (Buffer.byteLength(raw) > 1024) return;
     let message; try { message = JSON.parse(String(raw)); } catch { return; }
+    if (message.type === "preview-frame" && typeof message.data === "string" && message.data.length <= 700_000) {
+      if (source.room) for (const client of source.room.clients) if (client.readyState === WebSocket.OPEN) client.send(JSON.stringify({ type: "preview-frame", data: message.data, capturedAt: Date.now() }));
+      return;
+    }
     if (message.type !== "view-applied" || typeof message.ok !== "boolean") return;
     const reply = JSON.stringify({ type: "view-applied", requestId: typeof message.requestId === "string" ? message.requestId : null, game: typeof message.game === "string" ? message.game : "menu", ok: message.ok });
     if (source.room) for (const client of source.room.clients) if (client.readyState === WebSocket.OPEN) client.send(reply);
@@ -815,6 +819,12 @@ websocketServer.on("stream-control-connection", (websocket, encodedKey) => {
     if (msg.type === "sources-request") {
       const sources = [...streamSources.values()].filter(source => source.socket?.readyState === WebSocket.OPEN).map(source => ({ id: source.id, label: "Streamquelle · " + source.id.slice(0, 5).toUpperCase(), claimed: !!source.room }));
       websocket.send(JSON.stringify({ type: "sources", sources }));
+      return;
+    }
+    if (msg.type === "preview-start" || msg.type === "preview-stop") {
+      const source = streamSources.get(room.sourceId);
+      if (source?.socket?.readyState === WebSocket.OPEN) source.socket.send(JSON.stringify({ type: msg.type }));
+      else websocket.send(JSON.stringify({ type: "preview-error", message: "Keine aktive Streamquelle verbunden." }));
       return;
     }
     if (msg.type === "claim" && typeof msg.sourceId === "string") {
