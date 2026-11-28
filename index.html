@@ -2499,9 +2499,15 @@
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'playduko') {
-          // Reiner Show-Trigger: "elite" darf im PlayDuko-Chat keine Sudoku-Eingabe auslösen.
-          if (/^\s*elite\s*$/i.test(String(text || ''))) {
-            PlayfinityPlayerPresence.showEffect('elite');
+          // "!elite" ist exklusiv für den Stream von @elite_1964.
+          // In anderen Streams wird der Trigger abgefangen, aber keine Animation ausgelöst.
+          if (/^\s*!?elite\s*$/i.test(String(text || ''))) {
+            let streamUsername = '';
+            try {
+              const storage = document.body.classList.contains('stream-mode') ? sessionStorage : localStorage;
+              streamUsername = (storage.getItem('playfinity_tiktok_username_v1') || '').trim().replace(/^@/, '').toLowerCase();
+            } catch (_) {}
+            if (streamUsername === 'elite_1964') PlayfinityPlayerPresence.showEffect('elite');
             return;
           }
           PlayDukoGame.handleChat(text,user);
