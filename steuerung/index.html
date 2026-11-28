@@ -15,7 +15,7 @@
 </main>
 <script>
 const API='https://playfinity-game-github-io.onrender.com',$=id=>document.getElementById(id);let ws=null,username='',claimedSourceId='';
-function view(){return{game:$('game').value,format:$('format').value,showScore:$('score').checked}}
+function view(){return{game:$('game').value,format:$('format').value,showScore:$('score').checked,streamerUsername:username||null}}
 
 function claimSource(){const id=$('source').value;if(!id||!ws||ws.readyState!==WebSocket.OPEN)return;claimedSourceId='';ws.send(JSON.stringify({type:'claim',sourceId:id}));status('Verbinde mit Streamquelle …')}
 function status(t,ok=false){$('status').textContent=t;$('status').className='status'+(ok?' connected':'')}
