@@ -2501,15 +2501,17 @@
         if (PauseController.paused || activeLiveSource !== source) return;
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'playduko') {
-          // "!Koala" ist exklusiv für den Stream von @elite_1964.
-          // In anderen Streams wird der Trigger abgefangen, aber keine Animation ausgelöst.
-          if (/^\s*!?koala\s*$/i.test(String(text || ''))) {
+          // Beide Show-Commands sind exklusiv für den Stream von @elite_1964.
+          if (/^\s*!?(koala|elite)\s*$/i.test(String(text || ''))) {
             let streamUsername = '';
             try {
               const storage = document.body.classList.contains('stream-mode') ? sessionStorage : localStorage;
               streamUsername = (storage.getItem('playfinity_tiktok_username_v1') || '').trim().replace(/^@/, '').toLowerCase();
             } catch (_) {}
-            if (streamUsername === 'elite_1964') PlayfinityPlayerPresence.showEffect('koalaClassic');
+            if (streamUsername === 'elite_1964') {
+              if (/^\s*!?koala\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('koalaClassic');
+              else PlayfinityPlayerPresence.showEffect('elite');
+            }
             return;
           }
           PlayDukoGame.handleChat(text,user);
