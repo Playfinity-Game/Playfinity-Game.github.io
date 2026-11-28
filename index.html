@@ -1178,6 +1178,11 @@
     #pf-admin-effect .pf-koala-hanger{position:absolute;left:50%;top:61%;transform:translateX(-50%);font-size:clamp(4.5rem,10vw,7rem);white-space:nowrap;text-shadow:0 5px 8px #0009}
     #pf-admin-effect.elite{background:radial-gradient(ellipse at 50% 45%,rgba(0,240,255,.22) 0%,rgba(176,38,255,.2) 32%,rgba(255,0,127,.16) 58%,#050711ee 100%)}
     #pf-admin-effect .pf-elite-title{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%) scale(.25) rotate(-8deg);font-size:clamp(5rem,19vw,15rem);font-weight:1000;letter-spacing:.08em;line-height:.9;background:linear-gradient(100deg,var(--neon-cyan) 0%,var(--neon-purple) 34%,var(--neon-pink) 67%,var(--neon-green) 100%);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.82);filter:drop-shadow(0 0 8px rgba(0,240,255,.9)) drop-shadow(0 0 22px rgba(176,38,255,.85)) drop-shadow(0 0 42px rgba(255,0,127,.72)) drop-shadow(0 12px 0 rgba(5,7,17,.9));white-space:nowrap;animation:pf-elite-pop 1s cubic-bezier(.15,1.6,.35,1) forwards}
+    #pf-admin-effect.albo{background:radial-gradient(ellipse at 50% 45%,rgba(255,208,0,.32),rgba(145,91,0,.2) 42%,#050711ee 100%)}
+    #pf-admin-effect .pf-albo-crown{position:absolute;left:50%;top:23%;transform:translate(-50%,-30px) scale(.3) rotate(-12deg);font-size:clamp(4rem,13vw,9rem);line-height:1;filter:drop-shadow(0 0 12px #ffd000) drop-shadow(0 8px 8px #000b);animation:pf-albo-crown .7s cubic-bezier(.15,1.7,.35,1) forwards}
+    #pf-admin-effect .pf-albo-title{position:absolute;left:50%;top:55%;transform:translate(-50%,-50%) scale(.25) rotate(-5deg);font-family:var(--font-main);font-size:clamp(4.5rem,17vw,13rem);font-weight:1000;letter-spacing:.07em;line-height:.95;color:#ffd84a;-webkit-text-stroke:2px #fff1b0;text-shadow:0 0 8px #ffd000,0 0 24px #ffb000,0 12px 0 #6e4100,0 18px 24px #000;white-space:nowrap;animation:pf-albo-pop .85s cubic-bezier(.15,1.6,.35,1) forwards}
+    @keyframes pf-albo-crown{to{transform:translate(-50%,0) scale(1) rotate(0);opacity:1}}
+    @keyframes pf-albo-pop{0%{transform:translate(-50%,-50%) scale(.25) rotate(-5deg);opacity:0}75%{transform:translate(-50%,-50%) scale(1.12) rotate(2deg);opacity:1}100%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1}}
     #pf-admin-effect .pf-elite-subtitle{position:absolute;left:50%;top:61%;transform:translate(-50%,30px) rotate(-5deg);font-size:clamp(2.2rem,8vw,6rem);font-weight:1000;color:#fff;text-shadow:0 0 10px var(--neon-cyan),0 0 22px var(--neon-purple),0 0 34px var(--neon-pink),4px 5px 0 #171b42;white-space:nowrap;animation:pf-elite-hello .65s .65s cubic-bezier(.2,1.5,.4,1) both}
     @keyframes pf-elite-pop{0%{transform:translate(-50%,-50%) scale(.25) rotate(-8deg);opacity:0}75%{transform:translate(-50%,-50%) scale(1.12) rotate(3deg);opacity:1}100%{transform:translate(-50%,-50%) scale(1) rotate(0);opacity:1}}
     @keyframes pf-elite-hello{0%{transform:translate(-50%,30px) rotate(-5deg) scale(.2);opacity:0}70%{transform:translate(-50%,-8px) rotate(4deg) scale(1.12);opacity:1}100%{transform:translate(-50%,0) rotate(-2deg) scale(1);opacity:1}}
@@ -2502,7 +2507,7 @@
         const screen = PlayfinityRouter.currentScreen;
         if (screen === 'playduko') {
           // Beide Show-Commands sind exklusiv für den Stream von @elite_1964.
-          if (/^\s*!?(koala|elite)\s*$/i.test(String(text || ''))) {
+          if (/^\s*!?(koala|elite|albo)\s*$/i.test(String(text || ''))) {
             let streamUsername = '';
             try {
               const storage = document.body.classList.contains('stream-mode') ? sessionStorage : localStorage;
@@ -2510,6 +2515,7 @@
             } catch (_) {}
             if (streamUsername === 'elite_1964') {
               if (/^\s*!?koala\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('koalaClassic');
+              else if (/^\s*!?albo\s*$/i.test(String(text || ''))) PlayfinityPlayerPresence.showEffect('albo');
               else PlayfinityPlayerPresence.showEffect('elite');
             }
             return;
@@ -4175,8 +4181,8 @@
         document.body.classList.remove('pf-admin-shake','pf-admin-glitch','pf-admin-invert','pf-admin-spin','pf-admin-pixel','pf-admin-ice');
         root.className = '';
         root.innerHTML = '<div class="pf-effect-label"></div>';
-        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Konfetti-Explosion!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!',dog:'🐶 Wuff! Der Hund kommt!',penguin:'🐧 Pinguin auf Abwegen!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Banane im Anflug!',duck:'🦆 Quak! Die Ente kommt!',pizza:'🍕 Pizza-Lieferung!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter aktiviert!',chicken:'🐔 Hühner-Alarm!',lightning:'⚡ Blitzeinschlag!',potato:'🥔 Kanoffel-Rakete!',koala:'🐨 Lianen-Koala im Anflug!',koalaClassic:'🐨 KOALA-KARATE! Blätterwirbel!',elite:'⭐ ELITE – HALLOOOO?!',fire:'🔥 Feuer frei!'};
-        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200,dog:4200,penguin:4400,monkey:3900,shark:3600,banana:3300,duck:4200,pizza:3600,ufo:3400,robot:3900,chicken:4000,lightning:1800,potato:3600,koala:5600,koalaClassic:5000,elite:4800,fire:3200};
+        const labels = {shake:'👀 Erwischt! Bildschirm-Wackler',confetti:'🎉 Konfetti-Explosion!',glitch:'🌀 Glitch-Modus!',fog:'🌫️ Nebel-Alarm!',invert:'🙃 Alles steht Kopf!',pixel:'🟪 Pixel-Chaos!',spin:'🌀 DREHWURM!',ice:'🧊 EISZEIT!',static:'📺 Kein Signal?!',googly:'👀 Wer glotzt denn da?!',frog:'🐸 Frosch-Alarm!',skeleton:'💀 Das Skelett kommt!',ghost:'👻 Ein Geist!',rocket:'🚀 Raketenstart!',cat:'🐱 MIAU! Die Katze kommt!',dog:'🐶 Wuff! Der Hund kommt!',penguin:'🐧 Pinguin auf Abwegen!',monkey:'🐒 Affen-Alarm!',shark:'🦈 Hai-Alarm!',banana:'🍌 Banane im Anflug!',duck:'🦆 Quak! Die Ente kommt!',pizza:'🍕 Pizza-Lieferung!',ufo:'🛸 UFO im Anflug!',robot:'🤖 Roboter aktiviert!',chicken:'🐔 Hühner-Alarm!',lightning:'⚡ Blitzeinschlag!',potato:'🥔 Kanoffel-Rakete!',koala:'🐨 Lianen-Koala im Anflug!',koalaClassic:'🐨 KOALA-KARATE! Blätterwirbel!',elite:'⭐ ELITE – HALLOOOO?!',albo:'👑 ALBOOOO!',fire:'🔥 Feuer frei!'};
+        const durations = {shake:1800,confetti:6200,glitch:1400,fog:5000,invert:2500,pixel:4200,spin:2400,ice:4200,static:3600,googly:4200,frog:4400,skeleton:3900,ghost:4200,rocket:2700,cat:4200,dog:4200,penguin:4400,monkey:3900,shark:3600,banana:3300,duck:4200,pizza:3600,ufo:3400,robot:3900,chicken:4000,lightning:1800,potato:3600,koala:5600,koalaClassic:5000,elite:4800,albo:5000,fire:3200};
         if (action === 'shake') document.body.classList.add('pf-admin-shake');
         else if (action === 'glitch') document.body.classList.add('pf-admin-glitch');
         else if (action === 'invert') document.body.classList.add('pf-admin-invert');
@@ -4186,6 +4192,7 @@
         else if (['confetti','fog','static'].includes(action)) root.classList.add(action);
         else if (action === 'googly') { root.classList.add('googly'); root.insertAdjacentHTML('afterbegin','<div class="pf-googly-eyes" aria-hidden="true">👀</div>'); }
         else if (action === 'elite') { root.classList.add('elite'); const title=document.createElement('div');title.className='pf-elite-title';title.textContent='ELITE';const subtitle=document.createElement('div');subtitle.className='pf-elite-subtitle';subtitle.textContent='HALLOOOO?!';root.append(title,subtitle); }
+        else if (action === 'albo') { root.classList.add('albo'); const crown=document.createElement('div');crown.className='pf-albo-crown';crown.textContent='👑';const title=document.createElement('div');title.className='pf-albo-title';title.textContent='ALBOOOO';root.append(crown,title); }
         else if (action === 'koala') { const rig=document.createElement('div');rig.className='pf-koala-rig';const vine=document.createElement('div');vine.className='pf-koala-vine';const hanger=document.createElement('div');hanger.className='pf-koala-hanger';hanger.textContent='🐨';rig.append(vine,hanger);root.appendChild(rig); }
         else if (['frog','skeleton','ghost','rocket','cat','dog','penguin','monkey','shark','banana','duck','pizza','ufo','robot','chicken','lightning','potato','koalaClassic','fire'].includes(action)) {
           const sprites = {frog:'🐸',skeleton:'💀',ghost:'👻',rocket:'🚀',cat:'🐱',dog:'🐶',penguin:'🐧',monkey:'🐒',shark:'🦈',banana:'🍌',duck:'🦆',pizza:'🍕',ufo:'🛸',robot:'🤖',chicken:'🐔',lightning:'⚡',potato:'🥔',koala:'🐨🌿',koalaClassic:'🐨',fire:'🔥'};
