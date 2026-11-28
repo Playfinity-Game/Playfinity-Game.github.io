@@ -11,7 +11,6 @@
 <label for="format">STREAM-FORMAT</label><select id="format"><option value="portrait">9:16 · Hochkant</option><option value="wide">16:9 · Querformat</option><option value="free">Flexibel · Fläche füllen</option></select>
 <label><input id="score" type="checkbox" checked style="width:auto;margin-right:8px">Punktebereich anzeigen</label>
 <button id="connect">Mit meinem Stream verbinden</button><button id="disconnect" class="secondary" type="button" hidden>Verbindung trennen</button><div class="status" id="status" aria-live="polite">Noch nicht verbunden.</div>
-<div class="hint">Zum Testen ohne PC oder LIVE: Verbinde zuerst diese Steuerung und tippe dann auf „Test-Stream ohne LIVE öffnen“. Der Test-Stream öffnet sich in einem zweiten Tab und erscheint hier als Streamquelle. Wähle ihn aus, ändere das Spiel und tippe auf „Spiel öffnen“. Für einen echten TikTok-Stream verwendest du später stattdessen die Browserquelle in LIVE Studio.</div>
 </main>
 <script>
 const API='https://playfinity-game-github-io.onrender.com',$=id=>document.getElementById(id);let ws=null,username='',claimedSourceId='',sourcePoll=null;
