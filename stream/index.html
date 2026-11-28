@@ -19,6 +19,12 @@ body.stream-mode .screen.active h1{font-size:clamp(1.25rem,4.2vw,2.25rem)!import
 body.stream-mode .screen.active button,body.stream-mode .screen.active input,body.stream-mode .screen.active select{max-width:100%;}
 @media(max-height:760px){body.stream-mode .screen{padding:6px 10px!important}body.stream-mode .screen.active{gap:5px!important}body.stream-mode .screen.active h1{font-size:clamp(1.15rem,3.8vw,1.8rem)!important;margin-block:2px 5px!important}}
 @media(orientation:landscape){body.stream-mode .screen{padding:6px 12px!important}body.stream-mode .screen.active{gap:5px!important}body.stream-mode .screen.active>*{max-height:100%;}}
+
+/* Scrollen bleibt möglich; nur die sichtbare Scroll-Leiste wird ausgeblendet. */
+body.stream-mode main{height:100%!important;min-height:0!important;overflow-x:hidden!important;overflow-y:auto!important;}
+body.stream-mode .screen{height:auto!important;min-height:100%!important;max-height:none!important;overflow:visible!important;}
+body.stream-mode .screen.active{height:auto!important;max-height:none!important;overflow:visible!important;}
+body.stream-mode .screen.active>*{max-height:none!important;}
 ';d.head.appendChild(s);new MutationObserver(updateTitle).observe(d.body,{subtree:true,childList:true,attributes:true,attributeFilter:['class']});setInterval(updateTitle,1000)}catch(_){}}); 
 connectSource();
 </script></body></html>
